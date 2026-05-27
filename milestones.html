@@ -69,8 +69,17 @@
 
   <main>
     <div class="milestones-container">
-      <h2>Project Deliverables Sign-Off</h2>
-      <p>This table tracks monthly deliverables. Checkboxes are saved locally in your browser.</p>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #2e6b3f; padding-bottom: 15px; margin-bottom: 20px;">
+        <div>
+          <h2 style="margin: 0; color: #1b4d2b;">Project Deliverables Sign-Off</h2>
+          <p style="margin: 5px 0 0 0; color: #555;">This table tracks monthly deliverables. Checkboxes are saved locally in your browser.</p>
+        </div>
+        <div style="text-align: right; background: #f6f8fa; padding: 10px 20px; border-radius: 6px; border: 1px solid #dfe2e5;">
+          <div style="font-size: 14px; font-weight: bold; color: #555;" id="currentDateDisplay">Today's Date: --</div>
+          <div style="font-size: 20px; font-weight: bold; color: #d32f2f; margin-top: 5px;" id="globalCountdown">-- Days Left in Project</div>
+        </div>
+      </div>
+      
       <div class="actions">
         <button id="clearBtn" style="margin-bottom: 10px;">Clear All Sign-Offs</button>
       </div>
