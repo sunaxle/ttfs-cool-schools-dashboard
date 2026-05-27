@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Milestones & Deliverables Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .milestones-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #dfe2e5;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f6f8fa;
+      color: #1b4d2b;
+    }
+    .month-header {
+      background-color: #2e6b3f;
+      color: white;
+      font-weight: bold;
+    }
+    .checkbox-group {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .checkbox-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.85em;
+      color: #555;
+    }
+    .doc-link {
+      display: inline-block;
+      margin: 2px 0;
+      color: #2e6b3f;
+      text-decoration: underline;
+    }
+    .doc-link:hover {
+      color: #1b4d2b;
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="title">Internal Journal: Milestones Tracker</div>
+  </header>
+  
+  <nav class="app-nav">
+    <a class="nav-link" href="campuses.html">Select Campus</a><span style="color: #ccc; padding: 6px;">|</span>
+    <a class="nav-link" href="dashboard_map.html">Dashboard</a>
+    <a class="nav-link active" href="milestones.html">Milestones Tracker</a>
+  </nav>
+
+  <main>
+    <div class="milestones-container">
+      <h2>Project Deliverables Sign-Off</h2>
+      <p>This table tracks monthly deliverables. Checkboxes are saved locally in your browser.</p>
+      <div class="actions">
+        <button id="clearBtn" style="margin-bottom: 10px;">Clear All Sign-Offs</button>
+      </div>
+      <table id="milestonesTable">
+        <thead>
+          <tr>
+            <th>Deliverable Description</th>
+            <th style="width: 250px;">Sign-Offs</th>
+            <th>Related Documents</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will be populated by JS -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="milestones.js"></script>
+</body>
+</html>
