@@ -4,10 +4,8 @@ const milestoneData = [
     items: [
       {
         id: "jun-26-1",
-        desc: "Dashboard scaffolding (data model, folders) and draft QA checklist.",
-        docs: [
-          { name: "QA Checklist", url: "doc_viewer.html?doc=QA_Checklist.md" }
-        ]
+        desc: "Kickoff; confirm campus list currently listed in Exhibit E",
+        docs: []
       },
       {
         id: "jun-26-2",
@@ -18,19 +16,57 @@ const milestoneData = [
       },
       {
         id: "jun-26-3",
-        desc: "Monitoring Docs: SOP outlines + data dictionary v0.1. Expand to v0.6.",
+        desc: "Dashboard scaffolding (data model, folders) and draft QA checklist.",
         docs: [
-          { name: "Data Dictionary v0.1", url: "doc_viewer.html?doc=docs/Data_Dictionary.md" },
+          { name: "QA Checklist", url: "doc_viewer.html?doc=QA_Checklist.md" }
+        ]
+      },
+      {
+        id: "jun-26-4",
+        desc: "Draft baseline tables/figures; Monitoring Docs: SOP outlines + data dictionary v0.1.",
+        docs: [
+          { name: "Data Dictionary v0.1", url: "doc_viewer.html?doc=docs/Data_Dictionary.md" }
+        ]
+      },
+      {
+        id: "jun-26-5",
+        desc: "Dashboard ingestion prototype (CSV/GeoJSON) and first heat-surface visual.",
+        docs: []
+      },
+      {
+        id: "jun-26-6",
+        desc: "Baseline QA on early campuses; fill data gaps from March.",
+        docs: []
+      },
+      {
+        id: "jun-26-7",
+        desc: "Monitoring Docs v0.3 (procedures + quick-reference sheets).",
+        docs: []
+      },
+      {
+        id: "jun-26-8",
+        desc: "Dashboard v1 architecture (pages, filters, style); modeling assumptions v0.1.",
+        docs: [
+          { name: "Modeling Assumptions v0.1", url: "doc_viewer.html?doc=docs/modeling_assumptions_v0.1.md" }
+        ]
+      },
+      {
+        id: "jun-26-9",
+        desc: "Baseline near-final package (campus summaries + canopy/heat overlays).",
+        docs: []
+      },
+      {
+        id: "jun-26-10",
+        desc: "Monitoring Docs v0.6 with checklists and field forms.",
+        docs: [
           { name: "Monitoring SOP v0.6", url: "doc_viewer.html?doc=docs/Monitoring_SOP_v0.6.md" },
           { name: "Field Forms", url: "doc_viewer.html?doc=docs/Field_Forms.md" }
         ]
       },
       {
-        id: "jun-26-4",
-        desc: "Dashboard v1 architecture; modeling assumptions v0.1; ingestion prototype.",
-        docs: [
-          { name: "Modeling Assumptions v0.1", url: "doc_viewer.html?doc=docs/modeling_assumptions_v0.1.md" }
-        ]
+        id: "jun-26-11",
+        desc: "Dashboard v1 feature buildout; start model runs with test inputs.",
+        docs: []
       }
     ]
   },
