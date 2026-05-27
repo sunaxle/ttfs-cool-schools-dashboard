@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="checkbox-group">
               <label class="checkbox-item">
                 <input type="checkbox" data-id="${item.id}" data-type="ai" ${loadState(item.id, 'ai') ? 'checked' : ''}>
-                AI Check
+                Student Check
               </label>
               <label class="checkbox-item">
                 <input type="checkbox" data-id="${item.id}" data-type="pi" ${loadState(item.id, 'pi') ? 'checked' : ''}>
