@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hub of Prosperity | Systems</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --bg-color: #0f172a;
+            --text-main: #ffffff;
+            --accent-gold: #fde047;
+            --accent-green: #22c55e;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: linear-gradient(to bottom, rgba(6, 78, 59, 1), rgba(15, 23, 42, 1));
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Unified Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 25px 0;
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a.active {
+            color: var(--bg-color);
+            background: var(--accent-gold);
+        }
+
+        nav a:hover:not(.active) {
+            color: var(--accent-gold);
+            background: rgba(253, 224, 71, 0.1);
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 60px 20px 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin: 0 0 10px;
+            letter-spacing: -1px;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        /* Artistic Background Watermarks */
+        .bg-watermark {
+            position: fixed;
+            z-index: -100;
+            pointer-events: none;
+            opacity: 0.6; /* High opacity to make the etching visible */
+            mix-blend-mode: multiply; /* Multiplies black onto the green base */
+            filter: grayscale(100%) contrast(400%) brightness(1.2); /* Cranks contrast so grays become harsh black etching */
+            /* Feathered transparency masking effectively "crops" them seamlessly into the page */
+            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%);
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%);
+            object-fit: cover;
+            width: 800px;
+            height: 800px;
+        }
+
+        .watermark-1 {
+            bottom: -150px;
+            left: -200px;
+            transform: rotate(-15deg);
+        }
+
+        .watermark-2 {
+            top: -100px;
+            right: -150px;
+            transform: rotate(10deg);
+        }
+
+        /* Circular Radial Orbit Approach */
+        .system-container {
+            position: relative;
+            width: 1000px;
+            height: 1000px; /* Large safe area for the orbit */
+            margin: 60px auto;
+            perspective: 1500px; /* 3D depth for the center hub */
+        }
+
+        .hub-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            border: 8px solid #000;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            overflow: hidden;
+            z-index: 5;
+            background: #000;
+            transform-style: preserve-3d;
+            animation: gentleTilt 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes gentleTilt {
+            0% { transform: translate(-50%, -50%) rotateX(15deg) rotateY(-15deg); }
+            100% { transform: translate(-50%, -50%) rotateX(-15deg) rotateY(15deg); }
+        }
+
+        .hub-center img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.15); /* Enforce black and white aesthetic */
+            opacity: 0.9;
+        }
+
+        .sys-card-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 320px;
+            height: 360px;
+            margin-top: -180px;
+            margin-left: -160px;
+            z-index: 2;
+            --outward: calc(var(--angle) - 90deg);
+            transform: rotate(var(--angle)) translateY(-420px) rotate(calc(-1 * var(--angle)));
+        }
+
+        /* Position the 6 cards in a circle with a radius of approximately 420px */
+        .sys-card-wrapper.pos-1 { --angle: 270deg; --tx: calc(-100% - 15px); } /* Left */
+        .sys-card-wrapper.pos-2 { --angle: 330deg; --tx: calc(-100% - 15px); } /* Top Left */
+        .sys-card-wrapper.pos-3 { --angle: 30deg; --tx: 15px; }  /* Top Right */
+        .sys-card-wrapper.pos-4 { --angle: 90deg; --tx: 15px; }   /* Right */
+        .sys-card-wrapper.pos-5 { --angle: 150deg; --tx: 15px; } /* Bottom Right */
+        .sys-card-wrapper.pos-6 { --angle: 210deg; --tx: calc(-100% - 15px); } /* Bottom Left */
+
+        /* Branching Hover Network */
+        .branch-network {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            z-index: -1; 
+            pointer-events: none;
+        }
+
+        .sys-card-wrapper:hover .branch-network {
+            pointer-events: auto;
+            z-index: -1;
+        }
+
+        .branch {
+            position: absolute;
+            top: 0; left: 0;
+            width: 0px; 
+            height: 3px;
+            background: linear-gradient(90deg, #fff, #000);
+            transform-origin: 0% 50%;
+            transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+        }
+
+        .sys-card-wrapper:hover .branch {
+            width: 180px;
+        }
+
+        .branch.b1 { transform: rotate(calc(var(--outward) - 25deg)); transition-delay: 0.1s; }
+        .branch.b2 { transform: rotate(var(--outward)); transition-delay: 0s; }
+        .branch.b3 { transform: rotate(calc(var(--outward) + 25deg)); transition-delay: 0.2s; }
+
+        .branch span {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: #fdfdfb;
+            border: 2px solid #000;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: opacity 0.4s ease 0.2s, background 0.3s ease, color 0.3s ease, transform 0.1s;
+            pointer-events: auto;
+        }
+
+        .branch:hover span {
+            background: #000;
+            color: #fff;
+            transform: scale(1.05); /* Added !important during text transformation to keep this scale */
+        }
+
+        .sys-card-wrapper:hover .branch span {
+            opacity: 1;
+        }
+
+        .branch.b1 span { transform: rotate(calc(-1 * (var(--outward) - 25deg))) translate(var(--tx), -50%); }
+        .branch.b2 span { transform: rotate(calc(-1 * var(--outward))) translate(var(--tx), -50%); }
+        .branch.b3 span { transform: rotate(calc(-1 * (var(--outward) + 25deg))) translate(var(--tx), -50%); }
+
+        .branch.b1:hover span { transform: rotate(calc(-1 * (var(--outward) - 25deg))) translate(var(--tx), -50%) scale(1.05); }
+        .branch.b2:hover span { transform: rotate(calc(-1 * var(--outward))) translate(var(--tx), -50%) scale(1.05); }
+        .branch.b3:hover span { transform: rotate(calc(-1 * (var(--outward) + 25deg))) translate(var(--tx), -50%) scale(1.05); }
+
+        /* Card Setup mimicking Hexagonal content pods with Drop Shadow */
+        .sys-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            animation: floatUp 0.8s ease-out forwards;
+            opacity: 0;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
+            transition: transform 0.4s ease;
+        }
+
+        @keyframes floatUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Removed nth-child animation delays since cards are wrapped */
+        
+        /* The black border as background */
+        .sys-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #000;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 1;
+        }
+
+        /* The light background mimicking the physical poster */
+        .sys-card::after {
+            content: '';
+            position: absolute;
+            inset: 6px; /* Creates the 6px thick black border */
+            background: #fdfdfb; /* Off-white document color */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 2;
+            transition: background 0.3s ease;
+        }
+
+        .sys-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            z-index: 10;
+        }
+
+        .sys-card:hover::after {
+            background: #f1f5f9; /* Slight darkening on hover to feel interactive */
+        }
+
+        /* Ensure content stays above the pseudo-element backgrounds */
+        .sys-card > * {
+            position: relative;
+            z-index: 3;
+        }
+
+        .sys-card-content {
+            height: 100%;
+            padding: 85px 35px 30px; /* Shift content down to fit inside hexagon */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .sys-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+            transition: transform 0.4s ease;
+        }
+        
+        .sys-card:hover .sys-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .sys-card h3 {
+            font-size: 20px;
+            color: #000000; /* Black text to match poster */
+            margin: 0 0 15px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .sys-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            width: 100%;
+        }
+
+        .sys-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: #1f2937; /* Dark gray for readability */
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .sys-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #000;
+            font-size: 20px;
+            top: -4px;
+        }
+
+        /* Dynamic Outer Rim Art */
+        .rim-art-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 280px;
+            height: 280px;
+            margin-top: -140px;
+            margin-left: -140px;
+            z-index: 10;
+        }
+
+        /* Place them exactly in the gaps between the 6 cards, but at a further radius to avoid touching (620px) */
+        .rim-art-wrapper.pos-tomato { transform: rotate(300deg) translateY(-620px) rotate(-300deg); } /* Between Veggies & Livestock */
+        .rim-art-wrapper.pos-chicken { transform: rotate(60deg) translateY(-620px) rotate(-60deg); }  /* Between Soil Health & Seed Saving */
+        .rim-art-wrapper.pos-water { transform: rotate(120deg) translateY(-620px) rotate(-120deg); }   /* Between Seed & Water */
+        .rim-art-wrapper.pos-cactus { transform: rotate(240deg) translateY(-620px) rotate(-240deg); }  /* Between Natives & Veggies */
+
+        .rim-art {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 6px solid #000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: slowFloat 6s ease-in-out infinite alternate;
+        }
+        
+        .rim-art-wrapper.pos-tomato .rim-art { animation-delay: 0s; }
+        .rim-art-wrapper.pos-chicken .rim-art { animation-delay: 1.5s; }
+        .rim-art-wrapper.pos-water .rim-art { animation-delay: 3s; }
+        .rim-art-wrapper.pos-cactus .rim-art { animation-delay: 4.5s; }
+
+        @keyframes slowFloat {
+            0% { transform: translateY(-10px) rotate(-2deg); }
+            100% { transform: translateY(10px) rotate(2deg); }
+        }
+
+        .rim-art:hover {
+            transform: scale(1.15) !important;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.8);
+            z-index: 20;
+            position: relative;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="hub_intro.html">The Pillars</a>
+        <a href="hub_systems.html" class="active">Ecosystem Practices</a>
+        <a href="dynamic_conference.html" style="margin-left: 20px; border: 1px solid rgba(255,255,255,0.2);">← Return to Network</a>
+    </nav>
+
+    <!-- Artistic Watermarks -->
+    <img src="assets/watermark_beetandcorn.jpg" class="bg-watermark watermark-1" alt="Watermark Beet and Corn">
+    <img src="assets/watermark_cabbage.jpg" class="bg-watermark watermark-2" alt="Watermark Cabbage">
+
+    <header>
+        <div class="subtitle">Agricultural Integration Matrix</div>
+        <h1>Hub Ecosystem Systems</h1>
+    </header>
+
+    <div class="system-container">
+        
+        <div class="hub-center">
+            <img src="assets/hubwheel.jpg" alt="Hub Wheel">
+        </div>
+        
+        <!-- Seasonal Veggies -->
+        <div class="sys-card-wrapper pos-1">
+            <div class="sys-card">
+                <div class="sys-card-content">
+                    <div class="sys-icon">🍅</div>
+                    <h3>Seasonal Veggies</h3>
+                    <ul class="sys-list">
+                        <li>Regular plantings September to April</li>
+                        <li>Harvest season November to June</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="branch-network">
+                <a href="https://www.rgvagroecology.com/organicagriculture" class="branch b1"><span>Organic Agriculture</span></a>
+                <a href="https://www.rgvagroecology.com/food-systems" class="branch b2"><span>Food Systems</span></a>
+                <a href="https://www.rgvagroecology.com/resources" class="branch b3"><span>RGV Grower's Guide</span></a>
+            </div>
+        </div>
+
+        <!-- Small Livestock -->
+        <div class="sys-card-wrapper pos-2">
+            <div class="sys-card">
+                <div class="sys-card-content">
+                    <div class="sys-icon">🐔</div>
+                    <h3>Small Livestock</h3>
+                    <ul class="sys-list">
+                        <li>Mobile chicken brigade</li>
+                        <li>Benefits include soil fertility, weed/pest management, eggs</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="branch-network">
+                <a href="https://www.rgvagroecology.com/sustainable-food-systems-program-growing" class="branch b1"><span>Sustainable Food Sys</span></a>
+                <a href="https://www.rgvagroecology.com/on-farm-conservation" class="branch b2"><span>On-farm Conservation</span></a>
+                <a href="https://www.rgvagroecology.com/video-library-1" class="branch b3"><span>Video Library</span></a>
+            </div>
+        </div>
+
+        <!-- Soil Health -->
+        <div class="sys-card-wrapper pos-3">
+            <div class="sys-card">
+                <div class="sys-card-content">
+                    <div class="sys-icon">🌱</div>
+                    <h3>Soil Health</h3>
+                    <ul class="sys-list">
+                        <li>Cover crops</li>
+                        <li>Composting local waste streams</li>
+                        <li>Tarping for weed management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="branch-network">
+                <a href="https://www.rgvagroecology.com/sshi" class="branch b1"><span>Soil Health Initiative</span></a>
+                <a href="https://www.rgvagroecology.com/organicagriculture" class="branch b2"><span>Organic Agriculture</span></a>
+                <a href="https://www.rgvagroecology.com/urbanecology-research" class="branch b3"><span>Urban Ecology Research</span></a>
+            </div>
+        </div>
+
+        <!-- Seed Saving -->
+        <div class="sys-card-wrapper pos-4">
+            <div class="sys-card">
+                <div class="sys-card-content">
+                    <div class="sys-icon">🌰</div>
+                    <h3>Seed Saving</h3>
+                    <ul class="sys-list">
+                        <li>Encourages local adaptation</li>
+                        <li>Reduces input costs</li>
+                        <li>Deepens cultural connections</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="branch-network">
+                <a href="https://www.rgvagroecology.com/resources" class="branch b1"><span>RGV Grower's Guide</span></a>
+                <a href="https://www.rgvagroecology.com/community2" class="branch b2"><span>Community Events</span></a>
+                <a href="https://www.rgvagroecology.com/on-farm-conservation" class="branch b3"><span>On-farm Conservation</span></a>
+            </div>
+        </div>
+
+        <!-- Water Conservation -->
+        <div class="sys-card-wrapper pos-5">
+            <div class="sys-card">
+                <div class="sys-card-content">
+                    <div class="sys-icon">💧</div>
+                    <h3>Water Conservation</h3>
+                    <ul class="sys-list">
+                        <li>Drip line irrigation</li>
+                        <li>Mulching with biodegradables</li>
+                        <li>3000 gallon rain harvest tank</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="branch-network">
+                <a href="https://www.rgvagroecology.com/sshi" class="branch b1"><span>Soil Health Initiative</span></a>
+                <a href="https://www.rgvagroecology.com/organicagriculture" class="branch b2"><span>Organic Agriculture</span></a>
+                <a href="https://www.rgvagroecology.com/publications" class="branch b3"><span>Publications</span></a>
+            </div>
+        </div>
+
+        <!-- Natives -->
+        <div class="sys-card-wrapper pos-6">
+            <div class="sys-card">
+                <div class="sys-card-content">
+                    <div class="sys-icon">🦋</div>
+                    <h3>Natives in Farms</h3>
+                    <ul class="sys-list">
+                        <li>Insectary strips & windbreaks</li>
+                        <li>Plans for edible natives</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="branch-network">
+                <a href="https://www.rgvagroecology.com/on-farm-conservation" class="branch b1"><span>On-farm Conservation</span></a>
+                <a href="https://www.rgvagroecology.com/utrgv-plant-walk" class="branch b2"><span>UTRGV Plant Walk</span></a>
+                <a href="https://www.rgvagroecology.com/urbanecology-research" class="branch b3"><span>Urban Ecology</span></a>
+            </div>
+        </div>
+
+        <!-- Dynamic Rim Art injected at their respective angles -->
+        <div class="rim-art-wrapper pos-tomato">
+            <img src="assets/tomatoes.jpg" class="rim-art" alt="Tomato">
+        </div>
+        <div class="rim-art-wrapper pos-chicken">
+            <img src="assets/chickens.jpg" class="rim-art" alt="Chickens">
+        </div>
+        <div class="rim-art-wrapper pos-water">
+            <img src="assets/waterharvesting.jpg" class="rim-art" alt="Water Harvesting">
+        </div>
+        <div class="rim-art-wrapper pos-cactus">
+            <img src="assets/catus.jpg" class="rim-art" alt="Cactus">
+        </div>
+
+    </div>
+
+</body>
+</html>

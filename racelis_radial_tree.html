@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Racelis Academic Radial Tree</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #f8fafc;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 30px;
+            animation: fadeInDown 1s ease-out;
+            z-index: 10;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-weight: 300;
+        }
+
+        #chart-container {
+            width: 100%;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .link {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.15);
+            stroke-width: 1.5px;
+            transition: stroke 0.3s;
+        }
+        
+        .link:hover {
+            stroke: rgba(129, 140, 248, 0.8);
+            stroke-width: 3px;
+        }
+
+        .node circle {
+            fill: #1e293b;
+            stroke-width: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .node circle:hover {
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+            transform: scale(1.2);
+        }
+
+        .node text {
+            font-size: 11px;
+            fill: #cbd5e1;
+            text-shadow: 0 1px 4px black;
+            pointer-events: none;
+        }
+        
+        .node.root circle { stroke: #c084fc; fill: #c084fc; stroke-width: 4px; }
+        .node.leadership circle { stroke: #f59e0b; }
+        .node.masters circle { stroke: #3b82f6; }
+        .node.undergrad circle { stroke: #10b981; }
+
+        /* Tooltip */
+        #tooltip {
+            position: absolute;
+            opacity: 0;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            pointer-events: none;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            color: white;
+            transition: opacity 0.2s ease;
+            max-width: 250px;
+            z-index: 100;
+        }
+        
+        #tooltip h4 { color: #818cf8; margin-bottom: 5px; font-size: 14px; }
+        #tooltip p { font-size: 12px; color: #cbd5e1; font-weight: 300; line-height: 1.4; }
+        #tooltip .group-badge {
+            display: inline-block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="racelis_network_data.js"></script>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Dr. Racelis Academic Network</h1>
+        <p>Interactive Radial Tree mapping cohorts since 2013</p>
+    </div>
+
+    <div id="tooltip">
+        <div class="group-badge" id="tt-group">GROUP</div>
+        <h4 id="tt-name">Name</h4>
+        <p id="tt-desc">Description goes here.</p>
+    </div>
+
+    <div id="chart-container"></div>
+
+    <script>
+        const width = window.innerWidth;
+        const height = window.innerHeight - 100;
+        const radius = Math.min(width, height) / 2 - 100;
+
+        const svg = d3.select("#chart-container").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", `translate(${width / 2},${height / 2})`);
+
+        const tree = d3.tree()
+            .size([2 * Math.PI, radius])
+            .separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth);
+
+        const root = d3.hierarchy(treeData);
+        tree(root);
+
+        // Zoom and Pan
+        const zoom = d3.zoom()
+            .scaleExtent([0.5, 3])
+            .on("zoom", (e) => {
+                svg.attr("transform", `translate(${width/2 + e.transform.x}, ${height/2 + e.transform.y}) scale(${e.transform.k})`);
+            });
+        d3.select("svg").call(zoom);
+
+        // Links
+        const link = svg.append("g")
+            .selectAll("path")
+            .data(root.links())
+            .join("path")
+            .attr("class", "link")
+            .attr("d", d3.linkRadial()
+                .angle(d => d.x)
+                .radius(d => d.y));
+
+        // Nodes
+        const node = svg.append("g")
+            .selectAll("g")
+            .data(root.descendants())
+            .join("g")
+            .attr("class", d => `node ${d.data.group || ''}`)
+            .attr("transform", d => `
+                rotate(${d.x * 180 / Math.PI - 90})
+                translate(${d.y},0)
+            `);
+
+        node.append("circle")
+            .attr("r", d => d.depth === 0 ? 8 : (d.depth === 1 ? 6 : 4))
+            .on("mouseover", function(event, d) {
+                const tooltip = d3.select("#tooltip");
+                tooltip.style("opacity", 1);
+                
+                document.getElementById('tt-name').innerText = d.data.name;
+                document.getElementById('tt-desc').innerText = d.data.description || 'No description available.';
+                document.getElementById('tt-group').innerText = (d.data.group || 'Node').toUpperCase();
+                
+                let color = "rgba(255,255,255,0.1)";
+                if(d.data.group === 'leadership') color = "rgba(245, 158, 11, 0.2)";
+                if(d.data.group === 'masters') color = "rgba(59, 130, 246, 0.2)";
+                if(d.data.group === 'undergrad') color = "rgba(16, 185, 129, 0.2)";
+                if(d.data.group === 'root') color = "rgba(192, 132, 252, 0.2)";
+                document.getElementById('tt-group').style.background = color;
+            })
+            .on("mousemove", function(event) {
+                d3.select("#tooltip")
+                    .style("left", (event.pageX + 15) + "px")
+                    .style("top", (event.pageY - 15) + "px");
+            })
+            .on("mouseout", function() {
+                d3.select("#tooltip").style("opacity", 0);
+            });
+
+        node.append("text")
+            .attr("dy", "0.31em")
+            .attr("x", d => d.x < Math.PI === !d.children ? 8 : -8)
+            .attr("text-anchor", d => d.x < Math.PI === !d.children ? "start" : "end")
+            .attr("transform", d => d.x >= Math.PI ? "rotate(180)" : null)
+            .text(d => d.data.name)
+            .clone(true).lower()
+            .attr("stroke", "rgba(15,23,42,0.8)")
+            .attr("stroke-width", 3);
+
+    </script>
+</body>
+</html>

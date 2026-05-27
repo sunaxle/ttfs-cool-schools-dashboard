@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agroecology Taxonomy Tree</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to top, #0f172a 0%, #1e1b4b 100%); /* Flipped so ground is dark, sky is purplish */
+            color: #f8fafc;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 30px;
+            z-index: 10;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #4ade80, #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 5px;
+        }
+
+        #chart-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+
+        svg:active {
+            cursor: grabbing;
+        }
+
+        .link line {
+            stroke-linecap: round;
+            transition: stroke-opacity 0.3s ease, stroke 0.3s ease;
+        }
+
+        .link .dimmed {
+            stroke-opacity: 0.05 !important;
+        }
+
+        .link .highlighted {
+            stroke: #ffffff !important; /* White Path */
+            stroke-width: 3px !important;
+            stroke-opacity: 1 !important;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,1));
+        }
+
+        .node g {
+            transition: opacity 0.3s ease;
+        }
+
+        .node .dimmed {
+            opacity: 0.15;
+        }
+
+        .node .highlighted circle, .node .highlighted path {
+            fill: #ffffff !important;
+            stroke: #fff !important;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,1)) !important;
+        }
+
+        .node circle {
+            stroke: rgba(255, 255, 255, 0.4);
+            stroke-width: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .node circle:hover {
+            filter: drop-shadow(0 0 12px rgba(74,222,128,1));
+            stroke-width: 2px;
+            stroke: #fff;
+        }
+
+        .node text {
+            font-size: 11px;
+            fill: #e2e8f0;
+            pointer-events: none;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.2s ease;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8), -1px -1px 3px rgba(0,0,0,0.8);
+            letter-spacing: 0.5px;
+        }
+
+        .node.root text { font-size: 16px; font-weight: 700; fill: #fbbf24; }
+        .node.branch-level-1 text { font-size: 14px; font-weight: 600; fill: #cbd5e1; }
+
+        /* Tooltip */
+        #tooltip {
+            position: absolute;
+            opacity: 0;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            pointer-events: none;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            color: white;
+            transition: opacity 0.2s ease;
+            max-width: 280px;
+            z-index: 100;
+        }
+        
+        #tooltip h4 { color: #818cf8; margin-bottom: 5px; font-size: 15px; }
+        #tooltip p { font-size: 12px; color: #cbd5e1; font-weight: 300; line-height: 1.4; }
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="agriculture_physics_data.js"></script>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Agroecology Taxonomy Tree</h1>
+        <p>Connecting fundamental science domains (roots) to modern practitioners (branches)</p>
+    </div>
+
+    <div id="tooltip">
+        <h4 id="tt-name">Name</h4>
+        <p id="tt-desc">Description goes here.</p>
+    </div>
+
+    <div id="chart-container"></div>
+    <button id="conference-btn" style="position: absolute; bottom: 30px; left: 30px; z-index: 1000; padding: 15px 30px; font-size: 18px; font-weight: 800; background: rgba(0,0,0,0.5); border: 2px solid #fde047; color: #fde047; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 8px; box-shadow: 0 0 15px rgba(253, 224, 71, 0.4); text-shadow: 0 0 5px rgba(253, 224, 71, 0.8); transition: all 0.3s; backdrop-filter: blur(10px);">⚡ Trigger Conference</button>
+
+    <script>
+        // treeData is loaded from agriculture_physics_data.js
+
+        const root = d3.hierarchy(treeData);
+        const nodes = root.descendants();
+        const links = root.links();
+
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const groundY = height - 350; // The Y position for the ground line and main node
+
+        const svg = d3.select("#chart-container").append("svg")
+            .attr("viewBox", [0, 0, width, height]);
+
+        const group = svg.append("g");
+
+        // Zoom and pan
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 4])
+            .on("zoom", (e) => {
+                group.attr("transform", e.transform);
+            });
+        
+        svg.call(zoom).on("dblclick.zoom", null);
+        
+        // Define colors based on group
+        // Roots (-3 to -1): Dark browns -> Soil/Earth
+        // Trunk (0): Brown/Gold
+        // Branches (1 to 4): Greens to teals -> Leaves/Canopy
+        const colorScale = d3.scaleLinear()
+            .domain([-5, -2, 0, 1, 4])
+            .range(["#291002", "#78350f", "#f59e0b", "#10b981", "#67e8f9"]);
+
+        // Define distinct bright colors for the actual populated academic cohorts
+        const realDataColor = d3.scaleOrdinal()
+            .domain([1, 2, 3, 4])
+            .range(["#10b981", "#fbbf24", "#f43f5e", "#8b5cf6"]); // Emerald, Amber, Rose, Violet
+
+        // The physics target Y coordinates
+        // Roots pull down, branches pull up
+        const depthY = d3.scaleLinear()
+            .domain([-5, 0, 1, 7]) // Explicitly define a massive vertical jump for group 1
+            .range([groundY + 900, groundY, groundY - 450, -800]); 
+
+        // Background click clears active golden paths and unfreezes tree
+        svg.on("click", (event) => {
+            if (event.target.tagName !== "circle" && event.target.tagName !== "path") {
+                node.classed("dimmed", false).classed("highlighted", false);
+                link.classed("dimmed", false).classed("highlighted", false);
+                simulation.alpha(0.3).restart();
+            }
+        });
+
+        // Add Layer Guides and Node Counters
+        const layerCounts = {};
+        nodes.forEach(n => {
+            if (!layerCounts[n.data.group]) layerCounts[n.data.group] = 0;
+            layerCounts[n.data.group]++;
+        });
+
+        const activeLayers = Object.keys(layerCounts).map(Number).sort((a,b) => b - a); // Top to bottom
+        
+        activeLayers.forEach(g => {
+            const lineY = depthY(g);
+            const isGround = g === 0;
+
+            group.append("line")
+                .attr("class", "layer-guide")
+                .attr("x1", -width * 5)
+                .attr("y1", lineY)
+                .attr("x2", width * 5)
+                .attr("y2", lineY)
+                .attr("stroke", isGround ? "rgba(255, 255, 255, 0.2)" : "rgba(255, 255, 255, 0.05)")
+                .attr("stroke-width", isGround ? 2 : 1)
+                .attr("stroke-dasharray", "8,4");
+                
+            group.append("text")
+                .attr("class", "layer-counter")
+                .attr("x", width * 2.5) // Pushed extremely far to the right
+                .attr("y", lineY - 20)
+                .attr("text-anchor", "start") // Expand outward bounds
+                .attr("fill", "#fde047") // Bright sunflower yellow
+                .style("font-size", isGround ? "64px" : "48px")
+                .style("font-weight", isGround ? "800" : "600")
+                .style("pointer-events", "none")
+                .style("letter-spacing", "2px")
+                .style("filter", "drop-shadow(0 0 15px rgba(253, 224, 71, 0.8))") // Glowing neon drop-shadow
+                .text(`Level ${isGround ? "0 (Trunk)" : (g > 0 ? "+" + g : g)} • ${layerCounts[g].toLocaleString()} Nodes`);
+        });
+
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.data.id).distance(d => {
+                if (d.target.data.group === -1) return 150; // Primary roots long
+                if (d.target.data.group < 0) return 60 + Math.abs(d.target.data.group) * 20; 
+                if (d.target.data.group === 1) return 350; // Massive link length for main branches so they shoot up first
+                return 40; 
+            }))
+            .force("charge", d3.forceManyBody().strength(d => {
+                if (d.data.group < 0) return -450; // Powerfully repel to spread roots extremely wide
+                if (d.data.group === 0) return -1000;
+                return -300;
+            }))
+            .force("y", d3.forceY(d => depthY(d.data.group)).strength(0.85)) 
+            .force("x", d3.forceX(d => {
+                // Trace nodes back to their main branch ancestor to determine their horizontal lane
+                let ancestor = d;
+                while (ancestor.parent && ancestor.data.group > 1) {
+                    ancestor = ancestor.parent;
+                }
+                
+                // If it traces back to one of the 5 real main branches, assign a strict horizontal lane
+                if (ancestor.data.group === 1 && !ancestor.data.isFiller) {
+                    if (ancestor.data.name.includes("Leadership")) return width * 0.10; // Far left
+                    if (ancestor.data.name.includes("Master's")) return width * 0.30;   // Mid left
+                    if (ancestor.data.name.includes("Undergraduates")) return width * 0.50; // Center
+                    if (ancestor.data.name.includes("University Classes")) return width * 0.70; // Mid right
+                    if (ancestor.data.name.includes("Region 1")) return width * 0.90;   // Far right
+                }
+                
+                // Roots and random procedural fillers pull gently toward the center
+                return width / 2;
+            }).strength(d => {
+                if (d.data.group <= 0) return 0.05; // Tighten the horizontal pull on roots to keep them perfectly aligned under the massive trunk
+                
+                let ancestor = d;
+                while (ancestor.parent && ancestor.data.group > 1) {
+                    ancestor = ancestor.parent;
+                }
+                
+                // If it's real data tracing to a main branch, pull it powerfully into its lane
+                if (ancestor.data.group === 1 && !ancestor.data.isFiller) {
+                    // Pull strongest at the base of the branch, slightly weaker at the top so the canopy still bushes out
+                    return Math.max(0.06, 0.4 - (d.data.group * 0.05));
+                }
+                
+                // Random procedural fillers have very weak pull so they just dynamically fill the gaps
+                return 0.015;
+            }))
+            .force("collide", d3.forceCollide().radius(d => d.data.radius + 5));
+
+        // Draw links
+        const link = group.append("g")
+            .attr("class", "link")
+            .selectAll("line")
+            .data(links)
+            .join("line")
+            .attr("stroke-width", d => {
+                if (d.target.data.group < 0) {
+                    // Thick roots tapering down
+                    return Math.max(4, 25 - Math.abs(d.target.data.group) * 7); 
+                } else if (d.target.data.group === 0) {
+                    return 25; // Trunk base
+                } else if (d.target.data.group === 1) {
+                    return 15; // Main branches
+                } else {
+                    return Math.max(1, 8 - d.target.data.group * 1.5); // Thinner branches
+                }
+            })
+            // Roots get dark soil, filler canopy gets faint white, actual students get UTRGV brand lines
+            .attr("stroke", d => {
+                if (d.target.data.group < 0) return "rgba(70, 35, 15, 0.7)";
+                if (d.target.data.isFiller) return "rgba(255, 255, 255, 0.08)";
+                if (d.target.data.isLegacy) return "rgba(0, 168, 80, 0.5)"; // UTRGV Green for legacy projections
+                return "rgba(245, 130, 32, 0.9)"; // Strong orange lines for the central student bodies
+            });
+
+        // Draw nodes
+        const node = group.append("g")
+            .attr("class", "node")
+            .selectAll("g")
+            .data(nodes)
+            .join("g")
+            .classed("root", d => d.data.group === 0)
+            .classed("branch-level-1", d => d.data.group === 1)
+            .call(drag(simulation))
+            .on("mouseover", function(event, d) {
+                // Reveal the hidden text label
+                d3.select(this).select("text").style("opacity", 1);
+                
+                const tooltip = d3.select("#tooltip");
+                tooltip.style("opacity", 1);
+                
+                document.getElementById('tt-name').innerText = d.data.name;
+                
+                let desc = d.data.description;
+                if (!desc) {
+                    if (d.data.group < 0) desc = "Foundational science domain connected to Agroecology.";
+                    else if (d.data.group === 1 && d.data.isFiller) desc = "Procedural academic hub expansion.";
+                    else if (d.data.isFiller) desc = "Future cohort projection.";
+                    else if (d.data.isLegacy) desc = "Generational real-world impact.";
+                    else desc = "Agroecology network member.";
+                }
+                document.getElementById('tt-desc').innerText = desc;
+            })
+            .on("mousemove", function(event) {
+                d3.select("#tooltip")
+                    .style("left", (event.pageX + 15) + "px")
+                    .style("top", (event.pageY - 15) + "px");
+            })
+            .on("mouseout", function(event, d) {
+                // Hide the text label again
+                d3.select(this).select("text").style("opacity", 0);
+                d3.select("#tooltip").style("opacity", 0);
+            })
+            .on("click", function(event, d) {
+                // If this is NOT a canopy leaf node, reset and ignore
+                if (d.data.group <= 0 || (d.children && d.children.length > 0)) {
+                    node.classed("dimmed", false).classed("highlighted", false);
+                    link.classed("dimmed", false).classed("highlighted", false);
+                    simulation.alpha(0.3).restart();
+                    return;
+                }
+                
+                // Freeze the physics simulation while the path is visualized
+                simulation.stop();
+                
+                const highlightedNodes = new Set();
+                const highlightedLinks = new Set();
+                
+                // 1. Trace upwards continuously to the trunk
+                let current = d;
+                while(current) {
+                    highlightedNodes.add(current.data.id);
+                    if (current.parent) {
+                        highlightedLinks.add(`${current.parent.data.id}->${current.data.id}`);
+                        highlightedLinks.add(`${current.data.id}->${current.parent.data.id}`);
+                    }
+                    current = current.parent;
+                }
+                
+                // 2. Explode out into 6-8 deep roots from the trunk for a much heavier display
+                const trunkNode = nodes[0];
+                const rootChildren = trunkNode.children.filter(c => c.data.group < 0);
+                const numTopRoots = Math.min(rootChildren.length, Math.floor(Math.random() * 3) + 6); // 6 to 8
+                const randomRoots = rootChildren.sort(() => 0.5 - Math.random()).slice(0, numTopRoots);
+                
+                // 3. Trace downward dynamically to multiply and spread heavily into lowest layer root tips
+                randomRoots.forEach(rootBranch => {
+                    highlightedNodes.add(rootBranch.data.id);
+                    highlightedLinks.add(`${trunkNode.data.id}->${rootBranch.data.id}`);
+                    highlightedLinks.add(`${rootBranch.data.id}->${trunkNode.data.id}`);
+                    
+                    let layer = [rootBranch];
+                    while (layer.length > 0) {
+                        const nextLayer = [];
+                        layer.forEach(n => {
+                            if(n.children && n.children.length > 0) {
+                                // Create a new array from children before sorting to avoid mutation bugs
+                                const childArray = Array.from(n.children);
+                                
+                                // Multiply down harder: pick 1-3 children at random to branch out
+                                const numToPick = Math.floor(Math.random() * 3) + 1; 
+                                const picks = childArray.sort(() => 0.5 - Math.random()).slice(0, numToPick);
+                                
+                                picks.forEach(p => {
+                                    highlightedNodes.add(p.data.id);
+                                    highlightedLinks.add(`${n.data.id}->${p.data.id}`);
+                                    highlightedLinks.add(`${p.data.id}->${n.data.id}`);
+                                    nextLayer.push(p);
+                                });
+                            }
+                        });
+                        layer = nextLayer;
+                    }
+                });
+                
+                // 4. Apply the golden path classes
+                node.classed("dimmed", n => !highlightedNodes.has(n.data.id))
+                    .classed("highlighted", n => highlightedNodes.has(n.data.id));
+                    
+                link.classed("dimmed", l => !highlightedLinks.has(`${l.source.data.id}->${l.target.data.id}`) && !highlightedLinks.has(`${l.target.data.id}->${l.source.data.id}`))
+                    .classed("highlighted", l => highlightedLinks.has(`${l.source.data.id}->${l.target.data.id}`) || highlightedLinks.has(`${l.target.data.id}->${l.source.data.id}`));
+                    
+                event.stopPropagation();
+            });
+
+        // Render distinct shapes conditionally
+        node.each(function(d) {
+            const el = d3.select(this);
+            if (d.data.group === 0) {
+                // Massive procedural custom SVG Tree Trunk base
+                el.append("path")
+                    .attr("d", "M -100 60 C -40 10 -25 -50 -25 -120 L 25 -120 C 25 -50 40 10 100 60 Z")
+                    .attr("fill", "#b45309") // Deep thick wood orange-brown
+                    .attr("stroke", "rgba(255,255,255,0.2)")
+                    .attr("stroke-width", 2)
+                    .style("filter", "drop-shadow(0 0 15px rgba(245,158,11,0.6))");
+            } else {
+                // Standard organic nodes
+                el.append("circle")
+                    .attr("r", Math.abs(d.data.radius))
+                    .attr("fill", () => {
+                        // Dynamically render clickable leaf nodes as Bright Gold so user knows where to click
+                        if (d.data.group > 0 && (!d.children || d.children.length === 0)) {
+                            return "#fde047"; 
+                        }
+                        if (d.data.group < 0) return colorScale(d.data.group);
+                        if (d.data.isFiller) return "rgba(103, 232, 249, 0.4)"; 
+                        if (d.data.isLegacy) return "#00a850"; 
+                        return "#f58220"; 
+                    })
+                    .attr("stroke", () => {
+                        if (d.data.group > 0 && (!d.children || d.children.length === 0)) return "#fff";
+                        return "rgba(255, 255, 255, 0.4)";
+                    })
+                    .attr("stroke-width", () => {
+                        if (d.data.group > 0 && (!d.children || d.children.length === 0)) return 2;
+                        return 1;
+                    });
+            }
+        });
+
+        // Add text labels
+        node.append("text")
+            .attr("dx", d => d.data.group === 0 ? 55 : 15)
+            .attr("dy", "0.3em")
+            .text(d => d.data.name);
+
+        simulation.on("tick", () => {
+            // Pin the root node to the absolute center on the ground line
+            nodes[0].fx = width / 2;
+            nodes[0].fy = groundY;
+
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => {
+                    // Visually offset the connection points for the massive trunk so lines emerge natively from its drawing boundaries
+                    if (d.source.data.group === 0 && d.target.data.group > 0) {
+                        return d.source.y - 110; // Canopy vines emerge cleanly from the top tube of the trunk
+                    }
+                    if (d.source.data.group === 0 && d.target.data.group < 0) {
+                        return d.source.y + 40; // Roots emerge safely from the bottom flared base
+                    }
+                    return d.source.y;
+                })
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node
+                .attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+
+        // Drag functionality
+        function drag(simulation) {
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                if (d.data.group !== 0) { // Keep seed pinned
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+            }
+            
+            function dragged(event, d) {
+                if (d.data.group !== 0) {
+                    d.fx = event.x;
+                    d.fy = event.y;
+                }
+            }
+            
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                if (d.data.group !== 0) {
+                    d.fx = null;
+                    d.fy = null;
+                }
+            }
+            
+            return d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended);
+        }
+
+        // --------------------------------------------------------
+        // CONFERENCE MODE / FEEDING FRENZY ENGINE
+        // --------------------------------------------------------
+        document.getElementById('conference-btn').addEventListener('click', function() {
+            // 1. Freeze the structural simulation
+            simulation.stop();
+            this.disabled = true;
+            this.style.opacity = '0.5';
+            this.innerText = 'SYNCING NETWORK...';
+
+            // 2. Identify the endpoints (Canopy Leaves & Root Spores)
+            // REDUCED by 90% to save browser compute and provide a clean "sketch" visual
+            const leafNodes = nodes.filter(d => d.data.group > 0 && (!d.children || d.children.length === 0)).filter((d, i) => i % 10 === 0);
+            const sporeNodes = nodes.filter(d => d.data.group < 0 && (!d.children || d.children.length === 0)).filter((d, i) => i % 10 === 0);
+
+            // Fade the background tree to highlight the kinetic energy
+            node.transition().duration(2000).style("opacity", 0.15);
+            link.transition().duration(2000).style("opacity", 0.05);
+            d3.selectAll(".layer-counter").transition().duration(1000).style("opacity", 0.1);
+
+            // 3. Create the detached particle array
+            const activeParticles = [];
+            leafNodes.forEach(n => {
+                activeParticles.push({ id: n.data.id + "-clone", x: n.x, y: n.y, type: "leaf" });
+            });
+            sporeNodes.forEach(n => {
+                activeParticles.push({ id: n.data.id + "-clone", x: n.x, y: n.y, type: "spore" });
+            });
+
+            // 4. Render the particles onto the existing zoomed group
+            const particles = group.selectAll(".frenzy-particle")
+                .data(activeParticles)
+                .enter()
+                .append("circle")
+                .attr("class", "frenzy-particle")
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y)
+                .attr("r", d => d.type === "leaf" ? 6 : 4) // Slightly larger since there are fewer
+                .attr("fill", d => d.type === "leaf" ? "#fde047" : "#000000") // Yellow leaves, Black spores
+                .attr("stroke", d => d.type === "spore" ? "#10b981" : "none") // Green glow around spores
+                .attr("stroke-width", d => d.type === "spore" ? 2 : 0)
+                .style("filter", d => d.type === "leaf" ? "drop-shadow(0 0 10px rgba(253, 224, 71, 0.9))" : "drop-shadow(0 0 8px rgba(16, 185, 129, 0.8))");
+
+            // Build a container for temporary connection lines
+            const lineGlows = group.append("g").attr("class", "combinatorial-sparks");
+            const targetY = depthY(0);
+
+            // --------------------------------------------------------
+            // METAPHOR VISUALIZATION (SOIL, AIR, WATER)
+            // --------------------------------------------------------
+            const metaphorGroup = group.append("g").attr("class", "metaphor-titles").style("opacity", 0);
+            
+            // THE AIR
+            metaphorGroup.append("text")
+                .attr("x", width / 2)
+                .attr("y", depthY(4) - 50)
+                .attr("text-anchor", "middle")
+                .attr("fill", "rgba(255, 255, 255, 0.4)")
+                .style("font-size", "72px")
+                .style("font-weight", "800")
+                .style("letter-spacing", "10px")
+                .text("THE AIR: ACADEMIC & SCIENTIFIC DOMAIN");
+
+            // KNOWLEDGE CLOUDS (Academic Papers floating in the Air)
+            const citations = [
+                "Cover Crop Impacts on Entomopathogenic Nematodes",
+                "Organic Transition in Subtropical Semi-Arid Gradients",
+                "Mycorrhizal Responses to Sunn Hemp Integration",
+                "Socio-Ecological Dynamics in RGV Food Pantries",
+                "Civic Agriculture and Student-Led Farm Models",
+                "Arthropod Abundance in Multi-Species Cover Systems",
+                "Soil Microbiome Health in the Rio Grande Valley",
+                "Water Conservation via Agroecological Intervention",
+                "Community Scale Food System Resilience",
+                "Bio-Indicators of Transitioning Arable Land"
+            ];
+            
+            for(let c = 0; c < 15; c++) {
+                const cloudG = metaphorGroup.append("g")
+                    .attr("transform", `translate(${(Math.random() * width * 2) - width * 0.5}, ${depthY(5) - Math.random() * 800})`);
+                
+                // Group 3 random papers into a "cloud"
+                for(let p = 0; p < 3; p++) {
+                    cloudG.append("text")
+                        .attr("x", (Math.random() - 0.5) * 100)
+                        .attr("y", p * 20)
+                        .attr("text-anchor", "middle")
+                        .attr("fill", "rgba(203, 213, 225, 0.25)") // Very faint cloud text
+                        .style("font-size", "14px")
+                        .style("font-style", "italic")
+                        .text(citations[Math.floor(Math.random() * citations.length)]);
+                }
+                
+                // Slow cloud drift animation
+                function driftCloud(element) {
+                    element.transition()
+                        .duration(30000 + Math.random() * 20000)
+                        .attr("transform", `translate(${element.node().transform.baseVal[0].matrix.e + 300}, ${element.node().transform.baseVal[0].matrix.f})`)
+                        .on("end", function() { driftCloud(element); });
+                }
+                driftCloud(cloudG);
+            }
+
+            // THE SOIL
+            metaphorGroup.append("text")
+                .attr("x", width / 2)
+                .attr("y", depthY(-4) + 150)
+                .attr("text-anchor", "middle")
+                .attr("fill", "rgba(255, 255, 255, 0.4)")
+                .style("font-size", "72px")
+                .style("font-weight", "800")
+                .style("letter-spacing", "10px")
+                .text("THE SOIL: RIO GRANDE VALLEY ECOSYSTEM");
+
+            // THE 9 COUNTIES OF THE RGV (Rooted in the Soil)
+            metaphorGroup.append("text")
+                .attr("x", width / 2)
+                .attr("y", depthY(-4) + 220)
+                .attr("text-anchor", "middle")
+                .attr("fill", "rgba(245, 158, 11, 0.5)") // Faint earth/orange
+                .style("font-size", "24px")
+                .style("font-weight", "600")
+                .style("letter-spacing", "6px")
+                .text("HIDALGO • CAMERON • STARR • WILLACY • WEBB • ZAPATA • JIM HOGG • BROOKS • KENEDY");
+
+            // THE WATER (Rain)
+            const rainGroup = group.insert("g", ":first-child").attr("class", "rain-system"); // Drop it behind the core tree
+            for(let i=0; i<150; i++) {
+                const startX = (Math.random() * (width * 3)) - width; // Spanning wide across the panning area
+                const startY = depthY(5) - Math.random() * 2000; 
+                const endY = depthY(-5) + 1000; // Fall deep into the root system
+                
+                const drop = rainGroup.append("g").attr("transform", `translate(${startX}, ${startY})`);
+                
+                drop.append("line")
+                    .attr("x1", 0).attr("y1", 0)
+                    .attr("x2", 0).attr("y2", 60)
+                    .attr("stroke", "rgba(34, 211, 238, 0.3)") // Light blue rain
+                    .attr("stroke-width", 2);
+                    
+                drop.append("text")
+                    .attr("x", 4).attr("y", 65)
+                    .attr("fill", "rgba(34, 211, 238, 0.7)")
+                    .style("font-size", "14px")
+                    .style("font-weight", "bold")
+                    .text("$");
+
+                drop.transition()
+                    .delay(Math.random() * 4000)
+                    .duration(1200 + Math.random() * 800)
+                    .ease(d3.easeLinear)
+                    .attr("transform", `translate(${startX}, ${endY})`)
+                    .on("end", function repeat() {
+                        d3.select(this)
+                            .attr("transform", `translate(${startX}, ${startY})`)
+                            .transition()
+                            .duration(1200 + Math.random() * 800)
+                            .ease(d3.easeLinear)
+                            .attr("transform", `translate(${startX}, ${endY})`)
+                            .on("end", repeat);
+                    });
+            }
+
+            // The Capital Label
+            metaphorGroup.append("text")
+                .attr("x", width / 2)
+                .attr("y", depthY(2))
+                .attr("text-anchor", "middle")
+                .attr("fill", "#22d3ee")
+                .style("font-size", "36px")
+                .style("font-weight", "800")
+                .style("letter-spacing", "4px")
+                .style("filter", "drop-shadow(0 0 10px rgba(34, 211, 238, 0.8))")
+                .text("WATER: GRANT FUNDING & CAPITAL CYCLE");
+
+            metaphorGroup.transition().duration(3000).style("opacity", 1);
+            // --------------------------------------------------------
+
+            // 5. PHASE 1: Cinematic Falling / Rising
+            // We use D3 transitions first so they drop beautifully and slowly over 4 seconds
+            particles.transition()
+                .duration(4000)
+                .ease(d3.easeCubicInOut)
+                .delay(d => Math.random() * 2000) // Stagger the drop so it looks organic and like rain
+                .attr("cy", targetY)
+                .attr("cx", d => d.x + ((Math.random() - 0.5) * 300)) // Slight left/right drift as they fall
+                .end()
+                .then(() => {
+                    // Update particle data coordinates before sparking the physics engine
+                    particles.each(function(d) {
+                        d.x = parseFloat(d3.select(this).attr("cx"));
+                        d.y = parseFloat(d3.select(this).attr("cy"));
+                    });
+
+                    // 6. PHASE 2: Ignite the Secondary Swarm Physics Simulation
+                    const frenzySim = d3.forceSimulation(activeParticles)
+                        .velocityDecay(0.15) // Make it feel like fluid/air
+                        .force("y", d3.forceY(targetY).strength(0.04)) // Pull everything to the Trunk Line (Level 0)
+                        .force("x", d3.forceX(0).strength(0.01)) // Slow drift to the center
+                        .force("collide", d3.forceCollide(d => d.type === "leaf" ? 8 : 6).iterations(3))
+                        .force("charge", d3.forceManyBody().strength(d => d.type === "leaf" ? -1 : 3)) // Spores attract, leaves spread
+                        .on("tick", () => {
+                            particles
+                                .attr("cx", d => d.x)
+                                .attr("cy", d => Math.max(targetY - 100, Math.min(targetY + 100, d.y))); // Trap them closely around Level 0
+
+                            // 7. Combinatorial Networking Sparks
+                            if(Math.random() > 0.85) {
+                                // Sub-sample to ensure we don't crash
+                                const randomLeaf = activeParticles.find(p => p.type === "leaf" && Math.random() > 0.9);
+                                const randomSpore = activeParticles.find(p => p.type === "spore" && Math.random() > 0.9);
+                                
+                                if(randomLeaf && randomSpore) {
+                                    if(Math.abs(randomLeaf.x - randomSpore.x) < 80 && Math.abs(randomLeaf.y - randomSpore.y) < 80) {
+                                        lineGlows.append("line")
+                                            .attr("x1", randomLeaf.x)
+                                            .attr("y1", randomLeaf.y)
+                                            .attr("x2", randomSpore.x)
+                                            .attr("y2", randomSpore.y)
+                                            .attr("stroke", "#ffffff")
+                                            .attr("stroke-width", 1.5)
+                                            .style("filter", "drop-shadow(0 0 5px #ffffff)")
+                                            .transition()
+                                            .duration(600)
+                                            .style("opacity", 0)
+                                            .remove();
+                                    }
+                                }
+                            }
+                        });
+                })
+                .catch(err => console.log("Transition Interrupted"));
+        });
+    </script>
+</body>
+</html>
