@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollinator Counter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-panel">
+        <div class="header">
+            <h1 id="app-title">Pollinator Counter</h1>
+            <div class="lang-toggle">
+                <button class="lang-btn active" id="btn-en" data-lang="en">EN</button>
+                <button class="lang-btn" id="btn-es" data-lang="es">ES</button>
+                <button class="lang-btn" id="btn-texmex" data-lang="texmex">TexMex</button>
+            </div>
+        </div>
+        
+        <div class="counters">
+            <div class="counter-box" onclick="increment('bee')">
+                <div class="emoji">🐝</div>
+                <div class="count" id="count-bee">0</div>
+                <div class="label" id="label-bee">Bees</div>
+            </div>
+            <div class="counter-box" onclick="increment('butterfly')">
+                <div class="emoji">🦋</div>
+                <div class="count" id="count-butterfly">0</div>
+                <div class="label" id="label-butterfly">Butterflies</div>
+            </div>
+        </div>
+
+        <button class="btn" id="submit-btn" onclick="submitCounts()">Submit Counts</button>
+        <p id="feedback-msg"></p>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

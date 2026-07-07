@@ -1,3 +1,5 @@
+[[work]]
+
 # Field Data Dictionary (v0.1)
 This dictionary describes the required variables and data types for the Environmental Monitoring database.
 

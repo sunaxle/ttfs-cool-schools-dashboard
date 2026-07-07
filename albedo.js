@@ -82,12 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
         let allZones = [];
 
         // Try to fetch custom zones (user generated) or fallback to static json
+        /**
+         * Attempts to load user-drawn site zones from localStorage. If none exist,
+         * falls back to fetching the default mock GeoJSON boundary file.
+         */
         function loadZones() {
             let zones = [];
             try {
                 const savedModes = localStorage.getItem(`zones_${campusName}`);
                 if (savedModes) zones = JSON.parse(savedModes);
-            } catch (e) { }
+            } catch (e) { console.warn("Failed to retrieve metrics", e); }
 
             if (zones.length > 0) {
                 renderZones(zones);
@@ -102,15 +106,24 @@ document.addEventListener("DOMContentLoaded", () => {
                         }));
                         renderZones(zones);
                     })
-                    .catch(e => console.log("Failed to load zones", e));
+                    .catch(e => console.warn("Failed to load zones", e));
             }
         }
 
+        /**
+         * Caches the loaded zones globally within the scope and triggers the initial render.
+         * @param {Array} zones - The array of parsed polygon zone objects.
+         */
         function renderZones(zones) {
             allZones = zones;
             drawSurfaces("all");
         }
 
+        /**
+         * Filters and draws the polygons on the map based on surface albedo characteristics.
+         * Colors range from red (asphalt/hot) to green (vegetation/cool).
+         * @param {string} filterType - The classification filter to apply ("all", "parking", "roof", "veg").
+         */
         function drawSurfaces(filterType) {
             surfaceLayer.removeAll();
 
@@ -146,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (z.geometry.rings[0][0][0] && Math.abs(z.geometry.rings[0][0][0]) > 180) {
                         wkid = 3857;
                     }
-                } catch (e) { }
+                } catch (e) { console.warn("Failed to load map location", e); }
 
                 const polygon = new Polygon({ rings: z.geometry.rings, spatialReference: { wkid: wkid } });
                 const graphic = new Graphic({

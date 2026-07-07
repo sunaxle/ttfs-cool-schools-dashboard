@@ -1,4 +1,7 @@
-// Logic for the Student Wellbeing & Thermal Comfort Kiosk
+/**
+ * Logic for the Student Wellbeing & Thermal Comfort Kiosk.
+ * Loads zones from localStorage and provides feedback mechanism.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const campusName = localStorage.getItem("activeCampusName") || "J.W. Caceres & M. Rivas Academy";
     document.getElementById("campusTitle").textContent = campusName;
@@ -67,7 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Mock initial data if empty
+    /**
+     * Retrieves survey data from localStorage or seeds it with mock data if none exists.
+     * @returns {Object} The survey data mapping zones to feedback counts.
+     */
     function getSurveyData() {
         const raw = localStorage.getItem("survey_data");
         if (raw) return JSON.parse(raw);
@@ -83,6 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return mock;
     }
 
+    /**
+     * Updates the UI statistics for a given zone using animation.
+     * @param {string} zone - The name of the zone to update stats for.
+     */
     function updateStatsForZone(zone) {
         const data = getSurveyData();
         const zoneData = data[zone] || { pleasant: 0, neutral: 0, uncomfortable: 0 };
@@ -93,30 +103,40 @@ document.addEventListener('DOMContentLoaded', () => {
         animateValue(statUncomfortable, zoneData.uncomfortable);
     }
 
-    window.logFeedback = function (sentiment) {
-        const zone = zoneSelector.value;
-        if (!zone) return;
+    // Listeners for feedback buttons
+    const faceBtns = document.querySelectorAll('.face-btn');
+    faceBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const sentiment = btn.getAttribute('data-value');
+            const zone = zoneSelector.value;
+            if (!zone || !sentiment) return;
 
-        // Save to DB (localStorage)
-        const data = getSurveyData();
-        if (!data[zone]) {
-            data[zone] = { pleasant: 0, neutral: 0, uncomfortable: 0 };
-        }
-        data[zone][sentiment]++;
-        localStorage.setItem("survey_data", JSON.stringify(data));
+            // Save to DB (localStorage)
+            const data = getSurveyData();
+            if (!data[zone]) {
+                data[zone] = { pleasant: 0, neutral: 0, uncomfortable: 0 };
+            }
+            data[zone][sentiment]++;
+            localStorage.setItem("survey_data", JSON.stringify(data));
 
-        // Show thank you message
-        const tkMsg = document.getElementById("thankYouMessage");
-        tkMsg.style.display = "block";
+            // Show thank you message
+            const tkMsg = document.getElementById("thankYouMessage");
+            tkMsg.style.display = "block";
 
-        // Update stats
-        updateStatsForZone(zone);
+            // Update stats
+            updateStatsForZone(zone);
 
-        setTimeout(() => {
-            tkMsg.style.display = "none";
-        }, 1500);
-    };
+            setTimeout(() => {
+                tkMsg.style.display = "none";
+            }, 1500);
+        });
+    });
 
+    /**
+     * Animates the numerical value of a DOM element from its current value to the target end value.
+     * @param {HTMLElement} obj - The DOM element to update.
+     * @param {number} end - The target numerical value.
+     */
     function animateValue(obj, end) {
         let current = parseInt(obj.textContent) || 0;
         if (current === end) {

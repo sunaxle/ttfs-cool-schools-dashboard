@@ -1,12 +1,17 @@
 // Root Hierarchy combining Racelis Students (Branches) and Scientific Domains (Roots)
 
+/**
+ * Represents the fundamental scientific domains underpinning Agroecology.
+ * Used to procedurally generate the deep root structures of the taxonomy tree.
+ * @type {Object<string, Array<string>>}
+ */
 const domains = {
     "Ecology": [
-        "Population Dynamics", "Community Ecology", "Ecosystem Services", "Biodiversity", "Biogeochemical Cycles", 
+        "Population Dynamics", "Community Ecology", "Ecosystem Services", "Biodiversity", "Biogeochemical Cycles",
         "Trophic Cascades", "Restoration Ecology", "Landscape Ecology", "Disturbance Regimes", "Succession"
     ],
     "Biology": [
-        "Botany", "Entomology", "Microbiology", "Genetics", "Plant Physiology", 
+        "Botany", "Entomology", "Microbiology", "Genetics", "Plant Physiology",
         "Mycology", "Zoology", "Pathology", "Taxonomy", "Evolutionary Biology"
     ],
     "Chemistry": [
@@ -30,13 +35,19 @@ const domains = {
         "Soil Physics", "Evapotranspiration", "Mechanization", "Spectroscopy", "Remote Sensing"
     ],
     "World Traveling": [
-        "Cultural Exchange", "Global Perspective", "Cross-cultural Communication", 
-        "Adaptability", "Empathy", "Historical Context", "Resilience", 
+        "Cultural Exchange", "Global Perspective", "Cross-cultural Communication",
+        "Adaptability", "Empathy", "Historical Context", "Resilience",
         "Language Acquisition", "Breaking Stereotypes", "Creative Inspiration"
     ]
 };
 
 // Generates specific sub-topic for deep roots
+/**
+ * Procedurally generates highly specific, contextual sub-topics or geographical locations
+ * based on the parent scientific domain, feeding into the deep physics tree procedural generation.
+ * @param {string} topic - The parent topic or scientific domain name.
+ * @returns {string} A localized sub-topic or country name.
+ */
 function getSubtopic(topic) {
     const subtopics = {
         "Cover Cropping": ["Legume Inoculation", "Biomass Accumulation", "Nitrogen Fixation"],
@@ -45,11 +56,11 @@ function getSubtopic(topic) {
         "Precision Agriculture": ["Drone Imagery", "Sensors", "GIS Mapping"],
         "Community Organizing": ["Farmer Collectives", "Action Research", "Workshops"]
     };
-    
+
     // Check if it's a World Traveling topic to provide a country
     if (domains["World Traveling"] && domains["World Traveling"].includes(topic)) {
         const countries = [
-            "Japan", "Peru", "Iceland", "South Africa", "Morocco", "New Zealand", 
+            "Japan", "Peru", "Iceland", "South Africa", "Morocco", "New Zealand",
             "Italy", "Vietnam", "Costa Rica", "Spain", "Brazil", "India", "Kenya"
         ];
         return countries[Math.floor(Math.random() * countries.length)];
@@ -70,7 +81,7 @@ for (const [domain, topics] of Object.entries(domains)) {
         radius: 12,
         children: []
     };
-    
+
     topics.forEach(topic => {
         const topicNode = {
             id: `root-${rootCounter++}`,
@@ -79,8 +90,8 @@ for (const [domain, topics] of Object.entries(domains)) {
             radius: 8,
             children: []
         };
-        
-        // Procedurally heavily branch into sub-roots to recreate the massive density 
+
+        // Procedurally heavily branch into sub-roots to recreate the massive density
         // from the original physics tree concept (Halved to tighten the layout)
         const numL3 = Math.floor(Math.random() * 2) + 1; // 1-2 subtopics
         for (let i = 0; i < numL3; i++) {
@@ -91,7 +102,7 @@ for (const [domain, topics] of Object.entries(domains)) {
                 radius: 5,
                 children: []
             };
-            
+
             // Branch perfectly into Level -4 fibrous roots
             const numL4 = Math.floor(Math.random() * 2) + 1; // 1-2 deep roots
             for (let j = 0; j < numL4; j++) {
@@ -102,7 +113,7 @@ for (const [domain, topics] of Object.entries(domains)) {
                     radius: 3,
                     children: []
                 };
-                
+
                 // Branch into microscopic root tips Level -5
                 const numL5 = Math.floor(Math.random() * 2); // 0-1 tips
                 for (let k = 0; k < numL5; k++) {
@@ -117,10 +128,10 @@ for (const [domain, topics] of Object.entries(domains)) {
             }
             topicNode.children.push(L3Node);
         }
-        
+
         domainNode.children.push(topicNode);
     });
-    
+
     rootNodes.push(domainNode);
 }
 
@@ -178,17 +189,17 @@ const agroFundersNetwork = {
 const globalRegions = ["North America", "South America", "Europe", "Africa", "Asia"];
 globalRegions.forEach(region => {
     const regionNode = { id: `root-afn-${region}`, name: region, group: -2, radius: 8, children: [] };
-    
+
     // Abstracting global scholars (a representation of the 400 total)
-    const numScholars = Math.floor(Math.random() * 4) + 3; 
+    const numScholars = Math.floor(Math.random() * 4) + 3;
     for(let i=0; i<numScholars; i++) {
         const scholarNode = { id: `root-afn-sch-${Math.random()}`, name: "Global Agroecologist", group: -3, radius: 5, children: [] };
-        
+
         // Abstracting global projects
         const numProjects = Math.floor(Math.random() * 3) + 2;
         for(let j=0; j<numProjects; j++) {
             const projNode = { id: `root-afn-proj-${Math.random()}`, name: "International Research", group: -4, radius: 3, children: [] };
-            
+
             // Global outcomes
             const numOutcomes = Math.floor(Math.random() * 3) + 1;
             for(let k=0; k<numOutcomes; k++) {
@@ -416,7 +427,7 @@ for (let i = 0; i < numFillerBranches; i++) {
         isFiller: true,
         children: []
     };
-    
+
     // Sub-branches (group 2)
     const numL2 = Math.floor(Math.random() * 3) + 3; // 3-5
     for (let j = 0; j < numL2; j++) {
@@ -428,7 +439,7 @@ for (let i = 0; i < numFillerBranches; i++) {
             isFiller: true,
             children: []
         };
-        
+
         // Leaves (group 3)
         const numL3 = Math.floor(Math.random() * 3) + 4; // 4-6
         for (let k = 0; k < numL3; k++) {
@@ -440,7 +451,7 @@ for (let i = 0; i < numFillerBranches; i++) {
                 isFiller: true,
                 children: []
             };
-            
+
             // Canopy tips (group 4)
             const numL4 = Math.floor(Math.random() * 2) + 2; // 2-3
             for (let l = 0; l < numL4; l++) {
@@ -464,7 +475,7 @@ let legacyCounter = 0;
 branchNodes.forEach(cohort => {
     cohort.children.forEach(student => {
         student.children = [];
-        
+
         // Level 1: Direct Impacts (Mentees, Immediate Projects)
         const numL1 = Math.floor(Math.random() * 3) + 2; // 2-4 direct impact nodes
         for(let i=0; i<numL1; i++) {
@@ -476,7 +487,7 @@ branchNodes.forEach(cohort => {
                 isLegacy: true,
                 children: []
             };
-            
+
             // Level 2: Generational Field Impact
             const numL2 = Math.floor(Math.random() * 4) + 2; // 2-5 secondary impacts
             for(let j=0; j<numL2; j++) {
@@ -513,7 +524,7 @@ for (let c = 1; c <= 5; c++) {
         radius: 8,
         children: []
     };
-    
+
     // Abstracting 20 teachers into a visually manageable cluster (so the browser engine doesn't crash)
     const numTeachers = Math.floor(Math.random() * 4) + 4; // 4-7 teacher clusters
     for (let t = 0; t < numTeachers; t++) {
@@ -524,7 +535,7 @@ for (let c = 1; c <= 5; c++) {
             radius: 5,
             children: []
         };
-        
+
         // Years of teaching
         for (let y = 1; y <= yearsActive; y++) {
             const yearNode = {
@@ -534,7 +545,7 @@ for (let c = 1; c <= 5; c++) {
                 radius: 3,
                 children: []
             };
-            
+
             // Abstracting the 50-100 students into heavy nodes
             const numStudents = Math.floor(Math.random() * 3) + 3; // 3-5 massive student clusters
             for (let s = 0; s < numStudents; s++) {
@@ -573,7 +584,7 @@ for (let yr = 2013; yr <= 2025; yr++) {
         radius: 8,
         children: []
     };
-    
+
     // Abstracting hundreds of students into manageable clusters
     const numSemesters = Math.floor(Math.random() * 3) + 2; // 2-4 instruction blocks
     for (let s = 0; s < numSemesters; s++) {
@@ -584,7 +595,7 @@ for (let yr = 2013; yr <= 2025; yr++) {
             radius: 5,
             children: []
         };
-        
+
         // Abstract student groups (Increased to mathematically hit the ~777 node target for Group 4)
         const numBlocks = Math.floor(Math.random() * 3) + 5; // 5-7 groups (up from 2-4)
         for (let b = 0; b < numBlocks; b++) {
@@ -595,9 +606,9 @@ for (let yr = 2013; yr <= 2025; yr++) {
                 radius: 3,
                 children: []
             };
-            
+
             // Legacy impact (using UTRGV Green projection)
-            const numImpacts = Math.floor(Math.random() * 3) + 2; 
+            const numImpacts = Math.floor(Math.random() * 3) + 2;
             for (let i = 0; i < numImpacts; i++) {
                 blockNode.children.push({
                     id: `dci-${dcCounter++}`,
@@ -615,6 +626,11 @@ for (let yr = 2013; yr <= 2025; yr++) {
 }
 directClassesNodes.push(dcbranch);
 
+/**
+ * The assembled taxonomy tree combining generated procedural nodes (roots and canopy filler)
+ * with the hardcoded network data (students and partners).
+ * @type {Object}
+ */
 const treeData = {
     id: "trunk",
     name: "Dr. Alex Racelis",

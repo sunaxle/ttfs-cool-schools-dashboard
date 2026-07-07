@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Toolkit Library | UTRGV Cool Schools</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="toolkit_library.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glass-nav">
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+        <h1 class="nav-title">Cool Schools Toolkit Library</h1>
+        <div class="lang-toggle">
+            <button class="active">EN</button>
+            <button>ES</button>
+            <button>TEX</button>
+        </div>
+    </div>
+
+    <main class="toolkit-container">
+        <header class="toolkit-header">
+            <h2>Analog Stewardship Toolkits</h2>
+            <p>Download 1-page, TEKS-aligned activity sheets to take your classroom outdoors. No iPads required.</p>
+        </header>
+
+        <section class="filter-section glass-panel">
+            <div class="filter-group">
+                <label for="grade-filter">Grade Level</label>
+                <select id="grade-filter">
+                    <option value="all">All Grades</option>
+                    <option value="k-2">K - 2nd</option>
+                    <option value="3-5">3rd - 5th</option>
+                    <option value="6-8">6th - 8th</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="subject-filter">Subject</label>
+                <select id="subject-filter">
+                    <option value="all">All Subjects</option>
+                    <option value="science">Science</option>
+                    <option value="english">English / ELA</option>
+                    <option value="math">Math</option>
+                    <option value="art">Art</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="duration-filter">Duration</label>
+                <select id="duration-filter">
+                    <option value="all">Any Length</option>
+                    <option value="short">15 - 30 mins</option>
+                    <option value="medium">45 mins (1 Class)</option>
+                    <option value="long">Multi-Week Project</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="toolkit-grid" id="toolkit-grid">
+            <!-- Populated by JS -->
+        </section>
+    </main>
+
+    <script src="toolkit_library.js"></script>
+</body>
+</html>

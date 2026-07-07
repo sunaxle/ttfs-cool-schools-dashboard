@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let playInterval;
 
     // --- Shared Time/Temperature Logic ---
+    /**
+     * Converts a decimal hour value (e.g., 14.5) to a formatted 12-hour string (e.g., "2:30 PM").
+     * @param {number} decimalTime - The time represented as a decimal fraction of 24 hours.
+     * @returns {string} The formatted time string.
+     */
     function formatTime(decimalTime) {
         const hrs = Math.floor(decimalTime);
         const mins = Math.round((decimalTime - hrs) * 60);
@@ -26,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const tempCurveExposed = [74, 76, 82, 88, 94, 98, 102, 104, 105, 102, 98, 94, 88];
     const tempCurveShaded = [74, 75, 79, 83, 86, 89, 90, 91, 92, 90, 88, 85, 82];
 
+    /**
+     * Calculates the interpolated exposed and shaded temperatures for a given decimal hour.
+     * Updates the UI readouts with the resulting temperatures and the cooling difference.
+     * @param {number} decimalHour - The time of day (between 6.0 and 18.0).
+     */
     function calculateTemps(decimalHour) {
         const curveIndex = decimalHour - 6;
         const lowerIdx = Math.floor(curveIndex);
@@ -52,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tempDiffEl.style.color = diff > 8 ? '#1b5e20' : '#2e7d32';
     }
 
-
     // --- Global Materials ---
     const trunkMat = new THREE.MeshStandardMaterial({ color: 0x5c4033, roughness: 0.9 }); // Dark Brown
     const oakTrunkMat = new THREE.MeshStandardMaterial({ color: 0x6e6259, roughness: 0.9 }); // Greying Bark
@@ -73,7 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const readerMat = new THREE.MeshStandardMaterial({ color: 0x4169e1, roughness: 0.5 }); // Blue kid shirt
     const headMat = new THREE.MeshStandardMaterial({ color: 0xffe0bd }); // Skin tone
 
-    // Helper to build a generic child mesh
+    /**
+     * Helper function to build a generic 3D child/student mesh using basic geometric primitives.
+     * @param {THREE.Material} shirtMaterial - The material/color applied to the cylinder body.
+     * @returns {THREE.Group} A THREE.Group containing the assembled body and head meshes.
+     */
     function createChildMesh(shirtMaterial) {
         const group = new THREE.Group();
         const bodyGeo = new THREE.CylinderGeometry(0.3, 0.3, 0.8, 8);
@@ -88,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
         group.add(head);
         return group;
     }
-
 
     // ==========================================
     // SCENE 1: Single Montezuma Cypress
@@ -221,7 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     })();
 
-
     // ==========================================
     // SCENE 2: Multi-Tree Microforest
     // ==========================================
@@ -270,7 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < groundGeo.attributes.position.count; i++) { colors.push(1, 0.4, 0); }
         groundGeo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
-
         // --- Helper to spawn generic trees ---
         function spawnTree(x, z, h, w, trunkW, tMat, lMats) {
             const grp = new THREE.Group();
@@ -316,7 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // 6. Texas Ebony
         trees.push(spawnTree(20, -2, 9, 8, 1.8, trunkMat, [oakG1, cypressG3]));
 
-
         // --- Children ---
         // 1 Static Reader
         const readerChild = createChildMesh(readerMat);
@@ -347,7 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 offsetZ: (Math.random() - 0.5) * 4
             });
         }
-
 
         return {
             container, scene, camera, renderer, controls, sunLight, ambientLight, groundGeo, runners, trees,
@@ -422,8 +430,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
     })();
-
-
 
     // ==========================================
     // SCENE 3: 2025 - 2060 Temporal Projection
@@ -521,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const yearPct = (year - 2025) / (2060 - 2025); // 0.0 to 1.0 progress
                 const scaleMulti = 0.3 + (yearPct * 1.5); // Start at 30% scale, grow to 180%
 
-                // Heat Escalation 
+                // Heat Escalation
                 // 2025 avg max is say ~102
                 // 2060 avg max is say ~106 (+4 degrees)
                 const baseExposedColorTemp = 0.5 - (yearPct * 0.2); // make asphalt more red as time goes on
@@ -575,12 +581,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     })();
 
-
-
     // ==========================================
     // GLOBAL TICK CONTROLLER (Scenes 1 & 2)
     // ==========================================
 
+    /**
+     * Updates the global sun angle, time display, temperatures, and shadow casting
+     * logic for both the single-tree and multi-tree microforest scenes simultaneously.
+     */
     function updateSunPosition() {
         const hour = parseFloat(sunSlider.value);
         timeDisplay.textContent = formatTime(hour);
@@ -628,7 +636,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     playBtn.addEventListener('click', togglePlay);
-
 
     // ==========================================
     // TEMPORAL CONTROLLER & CHART (Scene 3)
@@ -713,6 +720,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    /**
+     * Forces the Chart.js temporal projection graph to actively highlight the data points
+     * corresponding to the currently selected year in the 3D timeline slider.
+     * @param {number} yearVal - The current projected year (2025-2060).
+     */
     function updateChartTracer(yearVal) {
         const index = yearVal - 2025;
         tempChart.setActiveElements([
@@ -726,6 +738,10 @@ document.addEventListener('DOMContentLoaded', () => {
         tempChart.update();
     }
 
+    /**
+     * Reads the current value of the timeline year slider, updates the 3D Temporal Projection scene
+     * (tree growth and shadow changes), and advances the Chart.js visual tracer.
+     */
     function updateYearPosition() {
         const year = parseInt(yearSlider.value);
         yearDisplay.textContent = year;
@@ -758,7 +774,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     playYearBtn.addEventListener('click', togglePlayYears);
-
 
     // Bootstrap
     updateSunPosition();

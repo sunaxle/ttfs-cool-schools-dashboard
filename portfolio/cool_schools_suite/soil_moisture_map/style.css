@@ -1,0 +1,42 @@
+:root {
+  --primary-orange: #F05023;
+  --primary-green: #00B140;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #dcedc8 0%, #fff3e0 100%);
+  margin: 0; padding: 2rem; display: flex; justify-content: center; min-height: 100vh;
+}
+.glass-panel {
+  background: rgba(255,255,255,0.7); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.5); border-radius: 24px;
+  padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 500px; box-sizing: border-box;
+}
+.header { text-align: center; margin-bottom: 1.5rem; }
+.lang-toggle { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
+.lang-btn { background: white; border: none; padding: 0.4rem 1rem; border-radius: 20px; cursor: pointer; font-weight: 600; }
+.lang-btn.active { background: var(--primary-orange); color: white; }
+.controls { margin-bottom: 1.5rem; text-align: center; }
+#instruction { font-weight: 600; color: #555; }
+.tool-picker { display: flex; gap: 0.5rem; justify-content: center; margin-top: 0.5rem; }
+.tool-btn {
+  background: var(--c); border: 2px solid transparent; padding: 0.8rem 1rem;
+  border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1rem; opacity: 0.6;
+}
+.tool-btn.active { opacity: 1; border-color: #333; transform: scale(1.05); }
+.map-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 2rem;
+  background: #e0e0e0; padding: 10px; border-radius: 16px;
+}
+.zone {
+  aspect-ratio: 1; background: #fafafa; border-radius: 12px;
+  cursor: pointer; transition: 0.3s; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  display: flex; align-items: center; justify-content: center; font-weight: bold; color: rgba(0,0,0,0.3);
+}
+.zone:hover { opacity: 0.8; transform: scale(0.98); }
+.btn {
+  background: var(--primary-green); color: white; border: none; padding: 1rem; border-radius: 12px;
+  font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%;
+}
+.btn:hover { background: #009636; }
+#status-msg { text-align: center; margin-top: 1rem; font-weight: bold; color: var(--primary-orange); min-height: 1.5rem; }

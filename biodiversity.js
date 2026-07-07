@@ -28,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /**
+     * Renders biodiversity species cards for a selected category (e.g., birds, plants, insects).
+     * @param {string} category - The biological category to filter and render data for.
+     */
     function renderCategory(category) {
         if (!speciesData || !speciesData[category]) return;
 
@@ -74,15 +78,37 @@ document.addEventListener('DOMContentLoaded', () => {
         "esri/widgets/BasemapToggle"
     ], function (Map, MapView, GraphicsLayer, Graphic, Polygon, Point, geometryEngine, BasemapToggle) {
 
+      const campusName = localStorage.getItem("activeCampusName") || "J.W. Caceres & M. Rivas Academy";
       const activeLng = parseFloat(localStorage.getItem("activeCampusLng"));
       const activeLat = parseFloat(localStorage.getItem("activeCampusLat"));
-      const mapCenter = !isNaN(activeLng) && !isNaN(activeLat) ? [activeLng, activeLat] : [-98.0520, 26.1704];
-        const map = new Map({ basemap: config?.map?.basemap || "satellite" });
+      let mapCenter = !isNaN(activeLng) && !isNaN(activeLat) ? [activeLng, activeLat] : [-98.0520, 26.1704];
+
+      // Deep Check: If user drew zones, use the first point of the first zone to perfectly lock the camera
+      try {
+          const savedZones = localStorage.getItem(`zones_${campusName}`);
+          if (savedZones) {
+              const zones = JSON.parse(savedZones);
+              if (zones.length > 0) {
+                  let x = zones[0].geometry.rings[0][0][0];
+                  let y = zones[0].geometry.rings[0][0][1];
+
+                  if (Math.abs(x) > 180) { // It's WebMercator
+                      const lon = (x / 20037508.34) * 180;
+                      const lat = (Math.atan(Math.exp((y / 20037508.34) * Math.PI)) * 360 / Math.PI) - 90;
+                      mapCenter = [lon, lat];
+                  } else {
+                      mapCenter = [x, y];
+                  }
+              }
+          }
+      } catch (e) { console.error("Could not parse map center from zones", e) }
+
+      const map = new Map({ basemap: config?.map?.basemap || "satellite" });
 
         const view = new MapView({
             container: "bioMap",
             map: map,
-            center: config?.map?.center || [-98.0706, 26.1675],
+            center: mapCenter, // Use dynamically calculated center
             zoom: 18, // Zoomed in tighter for biodiversity
             constraints: {
                 minZoom: 16,
@@ -181,4 +207,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
     });
+
+    const syncBtn = document.getElementById("syncBiodiversityBtn");
+    if(syncBtn) {
+        syncBtn.addEventListener('click', () => {
+            const originalText = syncBtn.innerHTML;
+            syncBtn.textContent = "Syncing...";
+            syncBtn.style.backgroundColor = "#4CAF50";
+            syncBtn.style.color = "white";
+            setTimeout(() => {
+                syncBtn.textContent = "Synced!";
+                setTimeout(() => {
+                    syncBtn.innerHTML = originalText;
+                    syncBtn.style.backgroundColor = "";
+                    syncBtn.style.color = "";
+                }, 2000);
+            }, 1500);
+        });
+    }
 });

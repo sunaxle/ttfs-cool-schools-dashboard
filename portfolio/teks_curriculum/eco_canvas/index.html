@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Canvas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">TTFS UTRGV Cool Schools</div>
+        <h1 id="main-title">Eco-Canvas Dashboard</h1>
+        <select id="lang-toggle" class="premium-select">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="tm">TexMex</option>
+        </select>
+        <div class="score-board">
+            <span id="score-label">Art Points:</span> <span id="score-value">0</span> 🎨
+        </div>
+    </header>
+    
+    <main class="dashboard-grid">
+        <!-- Left Column: Guided Lesson Plan -->
+        <section class="glass-panel col-lesson">
+            <h2 id="lesson-title">Guided Lesson Plan (45 Min)</h2>
+            <div id="lesson-content">
+                <ol>
+                    <li><strong id="warm-up-title">Warm-Up (5m):</strong> <span id="warm-up-text">Have students sit under the trees and get their hands dirty! Feel the bark and look at the leaves.</span></li>
+                    <li><strong id="core-act-title">Core Activity (30m):</strong> <span id="core-act-text">Students use the app to match the leaf shapes they found to the correct bark textures they felt. Then, they do a physical bark rubbing on paper.</span></li>
+                    <li><strong id="cool-down-title">Cool-Down (10m):</strong> <span id="cool-down-text">Share the bark rubbings and discuss how different trees have different patterns.</span></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Middle Column: TEKS Pedagogy -->
+        <section class="glass-panel col-teks">
+            <h2 id="teks-title">TEKS Pedagogy</h2>
+            <div class="teks-card">
+                <h3 id="teks-citation">Art TEKS 117.111.b.1.A</h3>
+                <p id="teks-objective">Explore ideas from life experiences about family, peers, and the natural environment.</p>
+                <h4 id="teks-why-title">Why this matters:</h4>
+                <p id="teks-why">Observing patterns and textures in nature (like leaves and bark) inspires artistic expression and attention to detail.</p>
+            </div>
+        </section>
+
+        <!-- Right Column: Interactive Student App -->
+        <section class="glass-panel col-app">
+            <h2 id="app-title">Student App: Pattern Matching</h2>
+            <div class="app-container">
+                <p id="instructions" class="app-instructions">Match the leaf shape to the correct bark texture to earn Art Points!</p>
+                
+                <div class="matching-game">
+                    <div class="column" id="leaves-col">
+                        <h3 id="leaves-title">Leaves</h3>
+                        <div class="item leaf" data-match="oak" id="leaf-oak" draggable="true">Oak Leaf (Lobed)</div>
+                        <div class="item leaf" data-match="pine" id="leaf-pine" draggable="true">Pine Needles (Linear)</div>
+                        <div class="item leaf" data-match="mesquite" id="leaf-mesquite" draggable="true">Mesquite (Bipinnate)</div>
+                    </div>
+                    <div class="column" id="barks-col">
+                        <h3 id="barks-title">Barks</h3>
+                        <div class="item dropzone" data-match="pine" id="bark-pine">Rough & Scaly</div>
+                        <div class="item dropzone" data-match="mesquite" id="bark-mesquite">Dark & Fissured</div>
+                        <div class="item dropzone" data-match="oak" id="bark-oak">Deeply Ridged</div>
+                    </div>
+                </div>
+                
+                <p id="message"></p>
+                <button id="reset-btn">Reset Canvas</button>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

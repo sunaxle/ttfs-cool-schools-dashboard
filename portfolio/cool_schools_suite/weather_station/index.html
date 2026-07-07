@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Station</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-panel">
+        <div class="header">
+            <h1 id="app-title">Weather Station</h1>
+            <div class="lang-toggle">
+                <button class="lang-btn active" id="btn-en" data-lang="en">EN</button>
+                <button class="lang-btn" id="btn-es" data-lang="es">ES</button>
+                <button class="lang-btn" id="btn-texmex" data-lang="texmex">TexMex</button>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label id="rain-label">Rain Gauge (mm)</label>
+            <input type="number" id="rain-input" placeholder="0 mm" min="0">
+        </div>
+        
+        <div class="input-group">
+            <label id="temp-label">Soil Temp (°C)</label>
+            <input type="number" id="temp-input" placeholder="20 °C">
+        </div>
+
+        <button class="btn" id="save-btn" onclick="saveWeather()">Save Weather Data</button>
+
+        <div class="history">
+            <h3 id="history-title">Daily Logs</h3>
+            <div id="weather-cards" class="cards-container"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

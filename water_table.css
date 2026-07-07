@@ -1,0 +1,163 @@
+.wt-layout {
+            display: flex;
+            height: calc(100vh - 60px - 45px);
+            /* Subtract Header/Nav */
+            width: 100%;
+        }
+
+        .wt-panel {
+            width: 350px;
+            background: #fff;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wt-map-container {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .depth-control-box {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .depth-readout {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1976D2;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+
+        /* Vertical Slider Container */
+        .slider-wrapper {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .soil-profile {
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to bottom, #8db600 0%, #795548 10%, #5D4037 40%, #3e2723 100%);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-right: 20px;
+        }
+
+        #waterLevelIndicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: rgba(33, 150, 243, 0.6);
+            border-top: 3px dashed #bbdefb;
+            transition: height 0.1s ease-out;
+        }
+
+        input[type="range"][orient="vertical"] {
+            -webkit-appearance: slider-vertical;
+            appearance: slider-vertical;
+            writing-mode: bt-lr;
+            height: 100%;
+            width: 20px;
+            cursor: pointer;
+        }
+
+        .stat-grid {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .kpi-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .kpi-card .val {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .kpi-card .lbl {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        #valThriving {
+            color: #4CAF50;
+        }
+
+        #valStressed {
+            color: #FF9800;
+        }
+
+        #valDrowning {
+            color: #9C27B0;
+        }
+
+        #valDying {
+            color: #F44336;
+        }
+
+        .species-guide {
+            padding: 20px;
+            font-size: 13px;
+            color: #444;
+            flex-grow: 1;
+        }
+
+        .species-guide h4 {
+            margin-top: 0;
+            color: var(--green-dark);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .species-guide ul {
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+
+        .legend-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .legend-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .legend-color {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }

@@ -1,3 +1,5 @@
+[[work]]
+
 # TTFS Cool Schools - Communications Log
 
 *Use this document to log all important emails, meetings, and decisions regarding the contract with TTFS, Dr. Rosales, Hefner Design Group, and the graduate students.*

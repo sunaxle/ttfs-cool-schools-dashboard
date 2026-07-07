@@ -3,130 +3,18 @@
 
 <head>
     <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://js.arcgis.com" crossorigin />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <meta name="description" content="UTRGV Agroecology Project Dashboard - Community Impact & Health" />
+    <meta name="author" content="UTRGV Agroecology" />
     <title>Site Zoning & Delineation | UTRGV Agroecology</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css" />
-    <style>
-        .zoning-grid {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            height: calc(100vh - 120px);
-        }
-
-        .zoning-panel {
-            background: var(--gray);
-            border-right: 2px solid var(--border);
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .zoning-map {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        #viewDiv {
-            width: 100%;
-            height: 100%;
-        }
-
-        .tool-card {
-            background: white;
-            border: 2px solid var(--border);
-            border-radius: 4px;
-            padding: 15px;
-        }
-
-        .tool-card h3 {
-            margin: 0 0 10px 0;
-            color: var(--green-dark);
-            font-size: 1.1em;
-            border-bottom: 2px solid var(--green-light);
-            padding-bottom: 5px;
-        }
-
-        .zone-type-select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-family: inherit;
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 8px;
-            border: 1px solid var(--border);
-            background: var(--green-light);
-            color: var(--text);
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            border-radius: 4px;
-        }
-
-        .btn:hover {
-            background: #c5d9c8;
-        }
-
-        .btn-primary {
-            background: var(--green);
-            color: white;
-            border-color: var(--green-dark);
-        }
-
-        .btn-primary:hover {
-            background: var(--green-dark);
-        }
-
-        .btn-danger {
-            background: #ffebee;
-            color: #c62828;
-            border-color: #ef9a9a;
-        }
-
-        .btn-danger:hover {
-            background: #ffcdd2;
-        }
-
-        .zone-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .zone-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px;
-            background: #fcfcfc;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-
-        .zone-color-swatch {
-            width: 16px;
-            height: 16px;
-            display: inline-block;
-            border-radius: 50%;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            margin-right: 8px;
-            vertical-align: text-bottom;
-        }
-    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="zoning.css" />
 </head>
 
 <body>
@@ -139,7 +27,7 @@
     </header>
 
     <nav class="app-nav">
-        <a class="nav-link" href="campuses.html">Select Campus</a><span style="color: #ccc; padding: 6px;">|</span><a class="nav-link" href="dashboard_map.html">Dashboard</a>
+        <a class="nav-link" href="campuses.html">Select Campus</a><span class="nav-separator">|</span><a class="nav-link" href="dashboard_map.html">Dashboard</a>
         <a class="nav-link" href="canopy.html">Canopy Over Time</a>
         <a class="nav-link" href="trails.html">Trail Analysis</a>
         <a class="nav-link" href="wind.html">Wind Analysis</a>
@@ -189,8 +77,8 @@
                     <option value="Open Land" selected>Open Land (Permeable)</option>
                 </select>
 
-                <button id="btnDrawPolygon" class="btn btn-primary">Draw Polygon</button>
-                <button id="btnClearSelection" class="btn btn-danger" style="display:none;">Cancel Drawing</button>
+                <button type="button" id="btnDrawPolygon" class="btn btn-primary">Draw Polygon</button>
+                <button type="button" id="btnClearSelection" class="btn btn-danger" style="display:none;">Cancel Drawing</button>
             </div>
 
             <div class="tool-card" style="flex: 1; display:flex; flex-direction:column;">
@@ -200,8 +88,8 @@
                         <!-- Polygons populated here via JS -->
                     </ul>
                 </div>
-                <button id="btnExportGeoJSON" class="btn">Export Zones to GeoJSON</button>
-                <button id="btnClearAll" class="btn btn-danger" style="margin-bottom: 0;">Clear All Zones</button>
+                <button type="button" id="btnExportGeoJSON" class="btn">Export Zones to GeoJSON</button>
+                <button type="button" id="btnClearAll" class="btn btn-danger" style="margin-bottom: 0;">Clear All Zones</button>
             </div>
         </div>
 
@@ -211,7 +99,7 @@
     </div>
 
     <!-- ArcGIS API -->
-    <script src="https://js.arcgis.com/4.28/"></script>
+    <script src="https://js.arcgis.com/4.29/"></script>
     <script src="zoning.js"></script>
 </body>
 

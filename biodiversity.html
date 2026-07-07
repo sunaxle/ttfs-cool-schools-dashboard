@@ -3,162 +3,18 @@
 
 <head>
     <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://js.arcgis.com" crossorigin />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <meta name="description" content="UTRGV Agroecology Project Dashboard - Community Impact & Health" />
+    <meta name="author" content="UTRGV Agroecology" />
     <title>Biodiversity Tracking</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
-    <style>
-        .bio-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            height: calc(100vh - var(--header-height) - var(--nav-height));
-            overflow: hidden;
-        }
-
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        #bioMap {
-            flex: 1;
-            min-height: 45vh;
-        }
-
-        .bio-panel {
-            background: #fff;
-            padding: 24px;
-            overflow-y: auto;
-        }
-
-        .bio-panel h2 {
-            color: var(--green-dark);
-            margin-bottom: 5px;
-        }
-
-        .bio-panel p {
-            color: #666;
-            margin-bottom: 24px;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            padding: 8px 16px;
-            font-size: 16px;
-            font-weight: 600;
-            color: #777;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-
-        .tab-btn:hover {
-            background: #f0f0f0;
-        }
-
-        .tab-btn.active {
-            background: var(--green);
-            color: white;
-        }
-
-        .species-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 16px;
-        }
-
-        .species-card {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            background: #fafafa;
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .species-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .species-img {
-            height: 160px;
-            background: #e0e0e0;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-size: 12px;
-        }
-
-        .species-info {
-            padding: 12px;
-            flex-grow: 1;
-        }
-
-        .species-info h4 {
-            margin: 0 0 4px 0;
-            font-size: 15px;
-            color: var(--green-dark);
-        }
-
-        .species-info p.scientific {
-            margin: 0 0 10px 0;
-            font-size: 12px;
-            color: #777;
-            font-style: italic;
-        }
-
-        .observations-badge {
-            display: inline-block;
-            background: #eee;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: bold;
-            color: var(--green-dark);
-        }
-
-        .sync-btn {
-            width: 100%;
-            padding: 12px;
-            font-weight: bold;
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .sync-btn:hover {
-            background: #333;
-        }
-
-        .empty-state {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px;
-            color: #888;
-        }
-    </style>
+    <link rel="stylesheet" href="biodiversity.css" />
 </head>
 
 <body>
@@ -171,7 +27,7 @@
     </header>
 
     <nav class="app-nav">
-        <a class="nav-link" href="campuses.html">Select Campus</a><span style="color: #ccc; padding: 6px;">|</span><a class="nav-link" href="dashboard_map.html">Dashboard</a>
+        <a class="nav-link" href="campuses.html">Select Campus</a><span class="nav-separator">|</span><a class="nav-link" href="dashboard_map.html">Dashboard</a>
         <a class="nav-link" href="canopy.html">Canopy Over Time</a>
         <a class="nav-link" href="trails.html">Trail Analysis</a>
         <a class="nav-link" href="wind.html">Wind Analysis</a>
@@ -209,15 +65,15 @@
 
             <section class="card">
                 <h3>iNaturalist Sync</h3>
-                <p style="font-size: 13px; color: #555;">Data synced from local community bounding boxes in South Texas.
-                </p>
-                <button class="sync-btn" onclick="alert('Syncing latest observations from iNaturalist API limits...')">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.59-9.2L21.5 8"></path>
-                    </svg>
-                    Refresh Data
-                </button>
+                <p style="font-size: 13px; color: #555;">Data synced from local community bounding boxes in South Texas.</p>
+                <div style="margin-top: 24px; text-align: center;">
+                    <button type="button" id="syncBiodiversityBtn" class="sync-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                        </svg>
+                        Sync iNaturalist Data
+                    </button>
+                </div>
             </section>
 
             <section class="card">
@@ -238,9 +94,9 @@
                     grows.</p>
 
                 <div class="tabs">
-                    <button class="tab-btn active" data-tab="birds">Birds (20)</button>
-                    <button class="tab-btn" data-tab="plants">Plants & Trees (25)</button>
-                    <button class="tab-btn" data-tab="insects">Insects & Pollinators (25)</button>
+                    <button type="button" class="tab-btn active" data-tab="birds">Birds (20)</button>
+                    <button type="button" class="tab-btn" data-tab="plants">Plants & Trees (25)</button>
+                    <button type="button" class="tab-btn" data-tab="insects">Insects & Pollinators (25)</button>
                 </div>
 
                 <div id="speciesContent" class="species-grid">
@@ -255,5 +111,4 @@
     <script src="biodiversity.js"></script>
     <script src="https://js.arcgis.com/4.29/"></script>
 </body>
-
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verified Service Log</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Verified Service Log</h1>
+            <p>Log your hours for graduation requirements.</p>
+        </header>
+
+        <section id="login-section" class="card">
+            <h2>Team Verification</h2>
+            <div class="form-group">
+                <label for="team-name">Class Group Code or Team Name</label>
+                <input type="text" id="team-name" placeholder="e.g. Ms. Frizzle's 4th Grade">
+            </div>
+            <button id="verify-btn" class="primary-btn">Verify & Continue</button>
+        </section>
+
+        <section id="logging-section" class="card hidden">
+            <h2>Log Activity</h2>
+            <p>Team: <span id="display-team-name"></span></p>
+            
+            <div class="form-group">
+                <label for="activity-select">Select Activity</label>
+                <select id="activity-select">
+                    <option value="" disabled selected>Select an activity...</option>
+                    <option value="raking" data-title="Raked Leaves" data-mins="30">Raked Leaves (30 mins)</option>
+                    <option value="harvesting" data-title="Picked Veggies" data-mins="15">Picked Veggies (15 mins)</option>
+                    <option value="composting" data-title="Compost" data-mins="20">Compost Management (20 mins)</option>
+                    <option value="planting" data-title="Tree Planting" data-mins="120">Tree Planting Event (2 hrs)</option>
+                </select>
+            </div>
+            
+            <button id="log-activity-btn" class="primary-btn" disabled>Generate Receipt</button>
+        </section>
+
+        <section id="receipt-section" class="card receipt hidden">
+            <div class="receipt-header">
+                <h2>Team Service Receipt</h2>
+                <p>TTFS UTRGV Cool Schools</p>
+            </div>
+            <div class="receipt-body">
+                <p><strong>Date:</strong> <span id="receipt-date"></span></p>
+                <p><strong>Team Name:</strong> <span id="receipt-team"></span></p>
+                <p><strong>Activity:</strong> <span id="receipt-activity"></span></p>
+                <p><strong>Duration:</strong> <span id="receipt-duration"></span> minutes</p>
+                <p><strong>Status:</strong> VERIFIED</p>
+            </div>
+            <button id="print-btn" class="secondary-btn">Print / Save as PDF</button>
+            <button id="new-log-btn" class="outline-btn">Log Another Activity</button>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

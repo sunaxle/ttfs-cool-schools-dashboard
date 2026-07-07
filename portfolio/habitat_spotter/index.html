@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitat Spotter</title>
+    <style>
+        :root {
+            --utrgv-green: #00843D;
+            --utrgv-light-green: #E8F5E9;
+            --utrgv-orange: #F05023;
+            --warm-yellow: #FFCA28;
+            --sky-blue: #B3E5FC;
+            --white: #FFFFFF;
+            --text-dark: #333333;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Nunito', 'Quicksand', sans-serif;
+            background-color: #F0F4F8;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--white);
+            min-height: 100vh;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        /* Fun Header */
+        header {
+            background-color: var(--warm-yellow);
+            color: var(--text-dark);
+            padding: 30px 20px 20px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "☁️";
+            position: absolute;
+            font-size: 40px;
+            top: 10px;
+            left: 10px;
+            opacity: 0.6;
+        }
+
+        header::after {
+            content: "☁️";
+            position: absolute;
+            font-size: 50px;
+            top: 20px;
+            right: 5px;
+            opacity: 0.5;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 900;
+            position: relative;
+            z-index: 2;
+        }
+
+        header p {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Main Content */
+        main {
+            padding: 24px 20px;
+            padding-bottom: 120px; /* Space for footer */
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: var(--utrgv-green);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        /* Grid Selection (Animal Type) */
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .radio-label {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .radio-label input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .select-card {
+            background-color: #FAFAFA;
+            border: 3px solid #E0E0E0;
+            border-radius: 20px;
+            padding: 20px 10px;
+            text-align: center;
+            transition: all 0.2s ease;
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Checked States for Animal Type */
+        .radio-label input[type="radio"]:checked ~ .select-card {
+            background-color: var(--utrgv-light-green);
+            border-color: var(--utrgv-green);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 132, 61, 0.2);
+        }
+
+        .radio-label input[type="radio"]:checked ~ .select-card .card-text {
+            color: var(--utrgv-green);
+        }
+
+        /* Location Selection (List) */
+        .location-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .location-card {
+            background-color: #FAFAFA;
+            border: 3px solid #E0E0E0;
+            border-radius: 16px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .loc-icon {
+            font-size: 28px;
+            margin-right: 15px;
+        }
+
+        .loc-text {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Checked States for Location */
+        .radio-label input[type="radio"]:checked ~ .location-card {
+            background-color: #FFF3E0;
+            border-color: var(--utrgv-orange);
+            transform: translateX(5px);
+        }
+
+        .radio-label input[type="radio"]:checked ~ .location-card .loc-text {
+            color: var(--utrgv-orange);
+        }
+
+        /* Focus States */
+        .radio-label input[type="radio"]:focus-visible ~ .select-card,
+        .radio-label input[type="radio"]:focus-visible ~ .location-card {
+            outline: 4px solid var(--text-dark);
+            outline-offset: 4px;
+        }
+
+        /* Footer Action */
+        .action-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 480px;
+            background: linear-gradient(to top, var(--white) 85%, rgba(255,255,255,0));
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-photo {
+            background-color: #E0E0E0;
+            color: var(--text-dark);
+            border: none;
+            border-radius: 20px;
+            padding: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #BDBDBD;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn-submit {
+            flex: 1;
+            background-color: var(--utrgv-orange);
+            color: var(--white);
+            border: none;
+            border-radius: 20px;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #D84315;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn-photo:active, .btn-submit:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 transparent;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <h1>Habitat Spotter 🔎</h1>
+            <p>Who is visiting our new forest today?</p>
+        </header>
+
+        <main>
+            <!-- What did you spot? -->
+            <h2 class="section-title">1. Did you see a cool visitor?</h2>
+            <div class="grid-2x2">
+                <label class="radio-label">
+                    <input type="radio" name="animal_type" value="bug" aria-label="A bug or crawler">
+                    <div class="select-card">
+                        <span class="card-icon">🐞</span>
+                        <span class="card-text">Cool Bug</span>
+                    </div>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="animal_type" value="bird" aria-label="A bird or flyer">
+                    <div class="select-card">
+                        <span class="card-icon">🐦</span>
+                        <span class="card-text">Flying Friend</span>
+                    </div>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="animal_type" value="reptile" aria-label="A lizard or frog">
+                    <div class="select-card">
+                        <span class="card-icon">🦎</span>
+                        <span class="card-text">Lizard / Frog</span>
+                    </div>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="animal_type" value="furry" aria-label="A furry animal">
+                    <div class="select-card">
+                        <span class="card-icon">🐿️</span>
+                        <span class="card-text">Furry Friend</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Where was it? -->
+            <h2 class="section-title">2. Where was it hanging out?</h2>
+            <div class="location-list">
+                <label class="radio-label">
+                    <input type="radio" name="location" value="leaves" aria-label="On a leaf">
+                    <div class="location-card">
+                        <span class="loc-icon">🍃</span>
+                        <span class="loc-text">Sitting on a leaf</span>
+                    </div>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="location" value="dirt" aria-label="In the dirt">
+                    <div class="location-card">
+                        <span class="loc-icon">🪱</span>
+                        <span class="loc-text">Down in the dirt</span>
+                    </div>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="location" value="trunk" aria-label="On the trunk">
+                    <div class="location-card">
+                        <span class="loc-icon">🪵</span>
+                        <span class="loc-text">Crawling on the trunk</span>
+                    </div>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="location" value="sky" aria-label="In the sky">
+                    <div class="location-card">
+                        <span class="loc-icon">☁️</span>
+                        <span class="loc-text">Flying high above!</span>
+                    </div>
+                </label>
+            </div>
+        </main>
+
+        <!-- Fixed Footer Actions -->
+        <div class="action-footer">
+            <button class="btn-photo" aria-label="Take a photo">
+                📸
+            </button>
+            <button class="btn-submit">
+                Add to Field Guide! 📖
+            </button>
+        </div>
+    </div>
+</body>
+</html>

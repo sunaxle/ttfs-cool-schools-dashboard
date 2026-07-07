@@ -1,3 +1,8 @@
+/**
+ * Mock data array containing donor records for the Agroecology CRM.
+ * Used in the "Donors & Supporters" tab to populate the interaction tables.
+ * @type {Array<Object>}
+ */
 const donorsData = [
     {
         id: "d-1001",

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Schools: 10-App Suite Hub</title>
+    <style>
+        :root {
+            --utrgv-green: #00B140;
+            --utrgv-orange: #F05023;
+            --bg-color: #f4f7f6;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: var(--utrgv-green);
+            margin-bottom: 10px;
+        }
+        p.subtitle {
+            color: #555;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 600px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,177,64,0.15);
+            border-color: var(--utrgv-green);
+        }
+        .card h2 {
+            font-size: 1.2rem;
+            margin: 0 0 10px 0;
+            color: var(--utrgv-orange);
+        }
+        .card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cool Schools App Suite</h1>
+    <p class="subtitle">Welcome to the UTRGV Proprietary App Hub. Select any of the 10 mini-apps below to launch the prototype.</p>
+
+    <div class="grid">
+        <a href="seedling_tracker/index.html" class="card">
+            <h2>🌱 Seedling Tracker</h2>
+            <p>Measure weekly sapling growth.</p>
+        </a>
+        <a href="weather_station/index.html" class="card">
+            <h2>☀️ Weather Station</h2>
+            <p>Log rain gauge & soil temp.</p>
+        </a>
+        <a href="pollinator_counter/index.html" class="card">
+            <h2>🐝 Pollinator Counter</h2>
+            <p>Tap to count garden bugs.</p>
+        </a>
+        <a href="soil_moisture_map/index.html" class="card">
+            <h2>💧 Soil Moisture Map</h2>
+            <p>Interactive mud & dry zones.</p>
+        </a>
+        <a href="compost_cam/index.html" class="card">
+            <h2>🍎 Compost Cam</h2>
+            <p>Decomposition timeline tracker.</p>
+        </a>
+        <a href="bird_song_recorder/index.html" class="card">
+            <h2>🐦 Bird Song Recorder</h2>
+            <p>Match local RGV bird calls.</p>
+        </a>
+        <a href="leaf_color_palette/index.html" class="card">
+            <h2>🍂 Leaf Color Palette</h2>
+            <p>Match physical leaves to colors.</p>
+        </a>
+        <a href="micro_forest_scavenger/index.html" class="card">
+            <h2>🔎 Micro-Forest Scavenger</h2>
+            <p>Randomized texture checklist.</p>
+        </a>
+        <a href="water_cycle_simulator/index.html" class="card">
+            <h2>🌧️ Water Cycle Simulator</h2>
+            <p>Track puddle evaporation.</p>
+        </a>
+        <a href="adopt_a_worm/index.html" class="card">
+            <h2>🪱 Adopt-a-Worm</h2>
+            <p>Vermicompost colony tracker.</p>
+        </a>
+    </div>
+
+</body>
+</html>

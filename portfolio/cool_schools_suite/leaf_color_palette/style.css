@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+    --utrgv-green: #005f36;
+    --utrgv-orange: #f05023;
+    --utrgv-gray: #4a4a4a;
+    --bg-gradient: linear-gradient(135deg, #e0f2f1 0%, #ffcc80 100%);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color: var(--utrgv-gray);
+}
+
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--glass-border);
+    padding-bottom: 1rem;
+}
+
+h1 {
+    color: var(--utrgv-green);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.lang-toggle {
+    background: white;
+    border: 1px solid var(--utrgv-green);
+    color: var(--utrgv-green);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.lang-toggle:hover {
+    background: var(--utrgv-green);
+    color: white;
+}
+
+button.primary {
+    background: var(--utrgv-orange);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 12px rgba(240, 80, 35, 0.3);
+}
+
+button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(240, 80, 35, 0.4);
+    background: #e04013;
+}
+
+button.primary:active {
+    transform: translateY(0);
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.color-wheel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+}
+.color-swatch {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 3px solid transparent;
+}
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+.color-swatch.active {
+    border: 3px solid var(--utrgv-gray);
+    transform: scale(1.1);
+}
+.selected-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.selected-display {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.large-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+.action-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.result-message {
+    color: var(--utrgv-green);
+    font-weight: bold;
+    min-height: 1.5rem;
+}

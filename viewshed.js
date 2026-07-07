@@ -1,12 +1,12 @@
 (function () {
     /*
      * FUTURE ROADMAP NOTES (Saved from User Feedback):
-     * 1. Exact Distance Measurement: Once the classroom window locations are 
-     *    more defined and exact horizontally/vertically, we should add a tool 
+     * 1. Exact Distance Measurement: Once the classroom window locations are
+     *    more defined and exact horizontally/vertically, we should add a tool
      *    to measure the exact distance from a specific window to a specific tree.
-     * 2. Directional Isolation (Green View Equity): The N/S/E/W window filter 
-     *    is very important. We need to build advanced work to isolate these views 
-     *    and calculate exactly who is getting what kind of "green view" space 
+     * 2. Directional Isolation (Green View Equity): The N/S/E/W window filter
+     *    is very important. We need to build advanced work to isolate these views
+     *    and calculate exactly who is getting what kind of "green view" space
      *    to ensure students have equitable visual access to nature.
      */
     const config = window.APP_CONFIG;
@@ -47,7 +47,7 @@
                         }
                     }
                 }
-            } catch (e) { }
+            } catch (e) { console.warn("Failed to center map", e); }
 
             const map = new Map({ basemap: config?.map?.basemap || "satellite" });
 
@@ -139,7 +139,7 @@
                 .then(responses => Promise.all(responses.map(res => res.json())))
                 .then(([treeData, zoneData]) => {
                     const campusName = localStorage.getItem("activeCampusName") || "J.W. Caceres & M. Rivas Academy";
-                    // If backend is returning a FeatureCollection, treeData[campusName] won't work perfectly if treeData is the direct feature collection. 
+                    // If backend is returning a FeatureCollection, treeData[campusName] won't work perfectly if treeData is the direct feature collection.
                     // Let's check if treeData has a 'features' array instead.
                     if (treeData.features) {
                         trees = treeData.features;
@@ -179,6 +179,11 @@
                     drawSightlines();
                 });
 
+            /**
+             * Calculates and draws visual lines connecting building windows (rooftop points)
+             * to planned tree locations, filtered by species and cardinal viewing direction.
+             * Also calculates a theoretical Green View Equity Score.
+             */
             function drawSightlines() {
                 viewshedLayer.removeAll();
                 if (trees.length === 0 || windows.length === 0) return;

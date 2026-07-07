@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt A Worm Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <h1 data-i18n="title">Adopt A Worm Tracker</h1>
+            <select id="lang-select" class="lang-toggle">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="texmex">Tex-Mex</option>
+            </select>
+        </header>
+        <p data-i18n="subtitle" class="subtitle">Check on the campus vermicompost bin and track worm colony health.</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card card">
+                <div class="icon">🌡️</div>
+                <h4 data-i18n="temp">Temperature</h4>
+                <div class="value" id="temp-val">72°F</div>
+                <div class="status healthy" data-i18n="status_good">Good</div>
+            </div>
+            <div class="stat-card card">
+                <div class="icon">💧</div>
+                <h4 data-i18n="moist">Moisture</h4>
+                <div class="value" id="moist-val">80%</div>
+                <div class="status healthy" data-i18n="status_good">Good</div>
+            </div>
+            <div class="stat-card card">
+                <div class="icon">🍏</div>
+                <h4 data-i18n="food">Food Level</h4>
+                <div class="value" id="food-val">Low</div>
+                <div class="status warning" data-i18n="status_feed">Feed Soon</div>
+            </div>
+        </div>
+
+        <div class="feeding-area card">
+            <h3 data-i18n="log_feed_title">Log a Feeding</h3>
+            <div class="input-group">
+                <select id="food-type">
+                    <option value="scraps" data-i18n="opt_scraps">Fruit/Veg Scraps</option>
+                    <option value="paper" data-i18n="opt_paper">Shredded Paper</option>
+                    <option value="grounds" data-i18n="opt_grounds">Coffee Grounds</option>
+                </select>
+                <button class="primary" id="feed-btn" data-i18n="feed_btn" onclick="feedWorms()">Add Food</button>
+            </div>
+            <div id="feed-msg" class="result-message"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

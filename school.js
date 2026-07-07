@@ -1,3 +1,4 @@
+
 (function () {
   const config = window.APP_CONFIG;
   const schoolSelect = document.getElementById("schoolSelect");
@@ -12,6 +13,10 @@
 
   const SCHOOL_PROFILE_KEY = "rg-school-profiles";
 
+  /**
+   * Loads all saved school profiles from localStorage.
+   * @returns {Object} An object mapping school names to their profile data.
+   */
   function loadProfiles() {
     try {
       return JSON.parse(localStorage.getItem(SCHOOL_PROFILE_KEY)) || {};
@@ -20,10 +25,18 @@
     }
   }
 
+  /**
+   * Saves the provided profiles object to localStorage.
+   * @param {Object} profiles - The object containing all school profiles.
+   */
   function saveProfiles(profiles) {
     localStorage.setItem(SCHOOL_PROFILE_KEY, JSON.stringify(profiles));
   }
 
+  /**
+   * Applies a saved profile to the UI forms for the specified school.
+   * @param {string} name - The name of the school to apply the profile for.
+   */
   function applyProfile(name) {
     const profiles = loadProfiles();
     const profile = profiles[name] || {};
@@ -32,6 +45,10 @@
     profileNotes.value = profile.notes || "";
   }
 
+  /**
+   * Stores the current UI form values into a profile for the specified school.
+   * @param {string} name - The name of the school to store the profile for.
+   */
   function storeProfile(name) {
     const profiles = loadProfiles();
     profiles[name] = {
@@ -46,6 +63,13 @@
     const name = schoolSelect.value;
     if (!name) return;
     storeProfile(name);
+    const originalText = saveProfile.textContent;
+    saveProfile.textContent = "Saved!";
+    saveProfile.style.backgroundColor = "#4CAF50";
+    setTimeout(() => {
+      saveProfile.textContent = originalText;
+      saveProfile.style.backgroundColor = "";
+    }, 2000);
   });
 
   window.require(

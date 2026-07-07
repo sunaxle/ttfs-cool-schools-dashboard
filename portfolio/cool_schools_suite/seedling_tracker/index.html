@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seedling Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-panel">
+        <div class="header">
+            <h1 id="app-title">Seedling Tracker</h1>
+            <div class="lang-toggle">
+                <button class="lang-btn active" id="btn-en" data-lang="en">EN</button>
+                <button class="lang-btn" id="btn-es" data-lang="es">ES</button>
+                <button class="lang-btn" id="btn-texmex" data-lang="texmex">TexMex</button>
+            </div>
+        </div>
+        
+        <div class="tracker-ui">
+            <div class="visualizer">
+                <div class="plant-svg" id="plant-visual">🌱</div>
+            </div>
+            <input type="number" id="height-input" placeholder="Height in cm" min="0" step="0.1">
+            <button class="btn" id="log-btn" onclick="logGrowth()">Log Growth</button>
+        </div>
+
+        <div class="history" id="history-panel">
+            <h3 id="history-title">Recent Logs</h3>
+            <ul id="log-list"></ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

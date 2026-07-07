@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Log - Volunteer Scanner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Campus Volunteer Log</h1>
+            <p>No login needed. Just tap to log!</p>
+        </header>
+
+        <section class="counter-section">
+            <h2>Global Campus Hours</h2>
+            <div id="global-hours" class="hours-display">124.5</div>
+            <p>hours volunteered this semester</p>
+        </section>
+
+        <section class="task-section">
+            <h3>Log a Quick Task</h3>
+            <button class="task-btn" data-minutes="30">Raked Leaves (30 mins)</button>
+            <button class="task-btn" data-minutes="15">Picked Veggies (15 mins)</button>
+            <button class="task-btn" data-minutes="20">Compost (20 mins)</button>
+            <button class="task-btn" data-minutes="60">Watering Trees (1 hr)</button>
+        </section>
+        <div id="toast" class="toast hidden">Hours added!</div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

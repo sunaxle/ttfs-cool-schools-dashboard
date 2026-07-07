@@ -1,0 +1,131 @@
+:root {
+    --primary: #0056b3;
+    --primary-hover: #004494;
+    --background: #eef2f5;
+    --text: #333;
+    --border: #ccc;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.primary-btn {
+    background-color: var(--primary);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.primary-btn:disabled {
+    background-color: #a0c4e8;
+    cursor: not-allowed;
+}
+
+.secondary-btn {
+    background-color: #333;
+    color: white;
+}
+
+.outline-btn {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+/* Receipt Styles */
+.receipt {
+    border: 2px dashed #999;
+    background-color: #fffdf5;
+}
+
+.receipt-header {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.receipt-header h2 {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.receipt-body p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+@media print {
+    body { background-color: white; }
+    #login-section, #logging-section, header, button { display: none !important; }
+    .receipt { border: none; }
+}

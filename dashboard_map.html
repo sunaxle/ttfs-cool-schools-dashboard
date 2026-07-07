@@ -3,7 +3,15 @@
 
 <head>
   <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://js.arcgis.com" crossorigin />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <meta name="description" content="UTRGV Agroecology Project Dashboard - Community Impact & Health" />
+    <meta name="author" content="UTRGV Agroecology" />
   <title>Rio Grande Schools Environmental Dashboard</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
@@ -18,7 +26,7 @@
       </div>
   </header>
   <nav class="app-nav">
-        <a class="nav-link" href="campuses.html">Select Campus</a><span style="color: #ccc; padding: 6px;">|</span><a class="nav-link active" href="dashboard_map.html">Dashboard</a>
+        <a class="nav-link" href="campuses.html">Select Campus</a><span class="nav-separator">|</span><a class="nav-link active" href="dashboard_map.html">Dashboard</a>
         <a class="nav-link" href="milestones.html">Milestones Tracker</a>
         <a class="nav-link" href="canopy.html">Canopy Over Time</a>
         <a class="nav-link" href="trails.html">Trail Analysis</a>
@@ -68,7 +76,7 @@
         <h3>Data Ingestion (Prototype)</h3>
         <label for="dataUpload">Upload CSV or GeoJSON:</label>
         <input type="file" id="dataUpload" accept=".csv, .geojson, .json" style="width: 100%; margin-top: 5px; margin-bottom: 5px;" />
-        <button id="toggleHeatmapBtn" type="button" style="width: 100%; margin-top: 5px;">Toggle Heat-Surface Visual</button>
+        <button type="button" id="toggleHeatmapBtn" style="width: 100%; margin-top: 5px;">Toggle Heat-Surface Visual</button>
         <small id="uploadStatus"></small>
       </section>
 
@@ -78,13 +86,13 @@
           <span>Active school:</span>
           <strong id="activeSchoolName">None selected</strong>
         </div>
-        <button id="drawAreaBtn" type="button">Draw School Area</button>
-        <button id="finishDrawingBtn" type="button">Finish Drawing</button>
-        <button id="cancelDrawingBtn" type="button">Cancel Drawing</button>
-        <button id="addObservationBtn" type="button">Add Tree Observation</button>
-        <button id="downloadAreasBtn" type="button">Download Areas (GeoJSON)</button>
-        <button id="downloadObservationsBtn" type="button">Download Observations (GeoJSON)</button>
-        <button id="downloadObservationsCsvBtn" type="button">Download Observations (CSV)</button>
+        <button type="button" id="drawAreaBtn">Draw School Area</button>
+        <button type="button" id="finishDrawingBtn">Finish Drawing</button>
+        <button type="button" id="cancelDrawingBtn">Cancel Drawing</button>
+        <button type="button" id="addObservationBtn">Add Tree Observation</button>
+        <button type="button" id="downloadAreasBtn">Download Areas (GeoJSON)</button>
+        <button type="button" id="downloadObservationsBtn">Download Observations (GeoJSON)</button>
+        <button type="button" id="downloadObservationsCsvBtn">Download Observations (CSV)</button>
         <small id="fieldStatus"></small>
       </section>
     </aside>
@@ -94,7 +102,7 @@
       <div class="layer-panel">
         <div class="layer-panel-header">
           <span>Layers</span>
-          <button id="layerPanelToggle" type="button">×</button>
+          <button type="button" id="layerPanelToggle">×</button>
         </div>
         <div id="layerListContainer"></div>
       </div>

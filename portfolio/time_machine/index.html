@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Time Machine</title>
+    <style>
+        :root {
+            --utrgv-green: #00843D;
+            --utrgv-orange: #F05023;
+            --sky-blue: #87CEEB;
+            --ground-color: #8D6E63;
+            --white: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Nunito', 'Quicksand', 'Comic Sans MS', sans-serif;
+            background-color: #F4F7F6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--white);
+            min-height: 100vh;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Header */
+        header {
+            background-color: #673AB7; /* "Magical" time machine color */
+            color: var(--white);
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(103, 58, 183, 0.4);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            font-size: 16px;
+            opacity: 0.95;
+            font-weight: bold;
+        }
+
+        /* Visualization Area */
+        .visualization-area {
+            flex: 1;
+            background: linear-gradient(to bottom, var(--sky-blue) 0%, #E0F7FA 70%, #C8E6C9 70%, #A5D6A7 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 80px; /* Space for the ground */
+        }
+
+        /* Sun Graphic */
+        .sun {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #FFEB3B;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #FFC107;
+        }
+
+        /* Elements inside visualization */
+        .scene-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        /* The Tree */
+        .tree-wrapper {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-origin: bottom center;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .tree-leaves {
+            width: 100px;
+            height: 100px;
+            background-color: var(--utrgv-green);
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            box-shadow: inset -10px -10px 0 rgba(0,0,0,0.1);
+        }
+
+        .tree-leaves::before, .tree-leaves::after {
+            content: '';
+            position: absolute;
+            background-color: var(--utrgv-green);
+            border-radius: 50%;
+        }
+
+        .tree-leaves::before {
+            width: 80px; height: 80px;
+            bottom: -10px; left: -40px;
+        }
+
+        .tree-leaves::after {
+            width: 90px; height: 90px;
+            bottom: -20px; right: -40px;
+            box-shadow: inset -10px -15px 0 rgba(0,0,0,0.1);
+        }
+
+        .tree-trunk {
+            width: 24px;
+            height: 80px;
+            background-color: #795548;
+            margin-top: -20px;
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        /* The Shadow (Shade) */
+        .shade {
+            position: absolute;
+            bottom: -15px;
+            width: 120px;
+            height: 30px;
+            background-color: rgba(0, 100, 0, 0.2);
+            border-radius: 50%;
+            z-index: 0;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Kid for Scale */
+        .kid-scale {
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            font-size: 40px;
+            z-index: 3;
+        }
+
+        /* Controls Area */
+        .controls-card {
+            background-color: var(--white);
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            padding: 30px 20px 40px;
+            box-shadow: 0 -10px 20px rgba(0,0,0,0.05);
+            z-index: 10;
+            margin-top: -30px; /* Overlap the visualization */
+        }
+
+        .time-message {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--utrgv-green);
+            margin-bottom: 25px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Large Custom Slider */
+        .slider-wrapper {
+            position: relative;
+            padding: 0 10px;
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+            position: relative;
+            z-index: 5;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        /* Slider Track */
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 16px;
+            cursor: pointer;
+            background: #E0E0E0;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+        }
+
+        /* Slider Thumb (The "Dial") */
+        input[type=range]::-webkit-slider-thumb {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background: var(--utrgv-orange);
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -14px;
+            box-shadow: 0 4px 10px rgba(240, 80, 35, 0.4);
+            border: 4px solid var(--white);
+            transition: transform 0.1s;
+        }
+
+        input[type=range]::-webkit-slider-thumb:active {
+            transform: scale(1.1);
+        }
+
+        input[type=range]:focus-visible::-webkit-slider-thumb {
+            outline: 4px solid #673AB7;
+            outline-offset: 4px;
+        }
+
+        /* Slider Labels */
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .slider-labels span {
+            flex: 1;
+            text-align: center;
+        }
+        .slider-labels span:first-child { text-align: left; }
+        .slider-labels span:last-child { text-align: right; }
+
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <h1>Tree Time Machine ⏳</h1>
+            <p>Slide to see the future!</p>
+        </header>
+
+        <!-- Dynamic Visualization Area -->
+        <div class="visualization-area">
+            <div class="sun"></div>
+            
+            <div class="scene-container">
+                <!-- Human for Scale -->
+                <div class="kid-scale" aria-hidden="true">🧒</div>
+                
+                <!-- Tree and Shade -->
+                <div class="shade" id="treeShadow"></div>
+                <div class="tree-wrapper" id="treeGraphic">
+                    <div class="tree-leaves"></div>
+                    <div class="tree-trunk"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls-card">
+            <div class="time-message" id="timeMessage" aria-live="polite">
+                Today: Just a tiny sapling! 🌱
+            </div>
+
+            <div class="slider-wrapper">
+                <!-- Range slider: 0 = Today, 5 = 5 Years, 10 = 10 Years -->
+                <input type="range" min="0" max="10" step="5" value="0" id="timeSlider" aria-label="Time travel slider">
+                
+                <div class="slider-labels" aria-hidden="true">
+                    <span>Today</span>
+                    <span>5 Years</span>
+                    <span>10 Years</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        const slider = document.getElementById('timeSlider');
+        const treeGraphic = document.getElementById('treeGraphic');
+        const treeShadow = document.getElementById('treeShadow');
+        const timeMessage = document.getElementById('timeMessage');
+
+        const stateData = {
+            '0': {
+                message: "Today: Just a tiny sapling! 🌱",
+                treeScale: 1,
+                shadeScale: 1,
+                shadeOpacity: 0.2
+            },
+            '5': {
+                message: "In 5 Years: Big enough to play under! 🏃",
+                treeScale: 1.8,
+                shadeScale: 2.2,
+                shadeOpacity: 0.4
+            },
+            '10': {
+                message: "In 10 Years: Massive shade for when you're in high school! 🎓",
+                treeScale: 2.8,
+                shadeScale: 4.0,
+                shadeOpacity: 0.6
+            }
+        };
+
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            const state = stateData[val];
+            
+            // Update Text
+            timeMessage.textContent = state.message;
+            
+            // Update Visuals
+            treeGraphic.style.transform = `scale(${state.treeScale})`;
+            treeShadow.style.transform = `scale(${state.shadeScale}, 1)`;
+            treeShadow.style.backgroundColor = `rgba(0, 100, 0, ${state.shadeOpacity})`;
+        });
+    </script>
+</body>
+</html>

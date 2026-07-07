@@ -1,39 +1,22 @@
 # Environmental Monitoring Standard Operating Procedures (SOP)
-**Version:** 0.6
+**Version:** 0.6 (Revised for Remote Assessment)
 **Project:** TTFS UTRGV Cool Schools
 
 ## 1. Overview
-This SOP outlines the standardized methods for collecting field data regarding tree locations, health status, and canopy measurements at participating school campuses.
+This SOP outlines the current methods for collecting tree data given restricted on-campus access. Primary data collection will occur remotely using base maps and on-campus photos, focusing on tree locations, species identification, and approximate height/age estimates. Physical field data collection is dependent on Texas Tree Foundation personnel (e.g., Jorge) accessing the sites.
 
-## 2. Equipment Required
-- Handheld GPS or GPS-enabled tablet (Accuracy < 5m)
-- Measuring tape (100 ft)
-- Thermal imaging camera (e.g., FLIR) or calibrated IR thermometer
-- DBH (Diameter at Breast Height) tape
-- Digital camera / Smartphone
-- Field data collection forms or mobile app (e.g., Collector for ArcGIS)
+## 2. Remote Assessment Procedures (Current Focus)
+1. **Remote Identification:** Utilize provided campus base maps, satellite imagery, and available on-campus photos to pinpoint existing tree locations.
+2. **Species & Age Estimation:** Estimate tree species and approximate age/height based on visual reference materials and remote imagery.
+3. **Data Logging:** Record the approximate locations (latitude/longitude) and visual estimates directly into the dashboard backend structures.
 
-## 3. Tree Location and Assessment Procedure
-1.  **Locate the Tree:** Stand as close to the main trunk as safely possible. Wait for the GPS signal to stabilize (accuracy below 5 meters).
-2.  **Record Coordinates:** Log the latitude and longitude in decimal degrees.
-3.  **Identify Species:** Record both the common and scientific name. If unsure, take clear photos of the leaves, bark, and overall structure for later identification.
-4.  **Assess Health:** Grade the tree's health based on the following scale:
-    *   **Excellent:** Vigorous growth, no signs of disease or stress.
-    *   **Good:** Minor signs of stress, mostly healthy canopy.
-    *   **Fair:** Noticeable dieback, signs of pest damage or disease.
-    *   **Poor:** Severe dieback, major structural flaws.
-    *   **Dead:** No living foliage or cambium.
+## 3. Field Data Collection (TBD - Pending Access)
+If Texas Tree Foundation personnel or approved proxies are permitted on campus, the following structures can be built into a field data collection tool:
+1. **Tree Location Check:** Verifying the remotely pinpointed locations in person using a GPS-enabled device.
+2. **Species Verification:** Confirming the tree species (common and scientific name) on site.
+3. **Canopy Measurement:** [To Be Determined] Ideal procedures involve physical drip-line measurements, but specific methodologies are pending approval and access.
+4. **Microclimate Temperature:** [To Be Determined] We aim to obtain rough thermal gun scans of shaded vs. unshaded surface temperatures, pending equipment access and personnel availability.
 
-## 4. Canopy Measurement Procedure
-1.  **Drip-Line Method:** Measure the diameter of the canopy by finding the widest point from the edge of the foliage (drip-line) on one side to the opposite side, passing through the trunk.
-2.  **Cross-Measurement:** Take a second measurement perpendicular to the first. 
-3.  **Average:** The canopy width is the average of these two measurements, recorded in feet.
-
-## 5. Microclimate Temperature Procedure
-1.  **Timing:** All measurements should be taken between 12:00 PM and 3:00 PM on sunny days to capture peak heat.
-2.  **Surface Temp:** Using the IR thermometer, measure the surface temperature of the ground directly beneath the tree canopy (shaded).
-3.  **Control Temp:** Measure the surface temperature of a comparable, unshaded surface (e.g., nearby asphalt or grass) at least 15 feet away from the canopy edge.
-4.  **Log Data:** Record both temperatures and the time of measurement.
-
-## 6. QA/QC Process
-Refer to the `QA_Checklist.md` document prior to finalizing any dataset. All field logs must be reviewed by the lead researcher before ingestion into the dashboard.
+## 4. Equipment & Roles (Proposed)
+- **Data Analysts (Remote):** Responsible for base map plotting and visual estimations.
+- **Field Techs (Texas Tree Foundation - TBD):** Responsible for physical verification, pending access. Proposed equipment includes a smartphone/tablet for logging, and potentially a thermal gun for rough scans if authorized.

@@ -10,6 +10,10 @@
   const canopyNotes = document.getElementById("canopyNotes");
   const saveCanopyNotes = document.getElementById("saveCanopyNotes");
 
+  /**
+   * Updates the UI text elements to reflect the current year and selected scenario
+   * from the HTML controls.
+   */
   function updateSummary() {
     const year = Number(yearSlider.value);
     const scenario = scenarioSelect.value;
@@ -17,13 +21,27 @@
     summaryText.textContent = `Scenario: ${scenario} | Year: ${year}`;
   }
 
+  /**
+   * Retrieves any previously saved canopy analysis notes from localStorage and
+   * populates the textarea.
+   */
   function loadNotes() {
     const notes = localStorage.getItem("canopy-notes");
     if (notes) canopyNotes.value = notes;
   }
 
+  /**
+   * Saves the current text from the canopy notes textarea into localStorage.
+   */
   function saveNotes() {
     localStorage.setItem("canopy-notes", canopyNotes.value || "");
+    const originalText = saveCanopyNotes.textContent;
+    saveCanopyNotes.textContent = "Saved!";
+    saveCanopyNotes.style.backgroundColor = "#4CAF50";
+    setTimeout(() => {
+      saveCanopyNotes.textContent = originalText;
+      saveCanopyNotes.style.backgroundColor = "";
+    }, 2000);
   }
 
   yearSlider.addEventListener("input", updateSummary);
@@ -84,7 +102,7 @@
 
       if (districts) map.add(districts);
 
-      // Create a layer for our dynamic dynamic tree canopies
+      // Create a layer for our dynamic tree canopies
       const treeCanopyLayer = new GraphicsLayer({
         title: "Microforest Canopy Progression"
       });
@@ -161,6 +179,10 @@
       let mockTreesData = null;
 
       // Render canopy based on selected year
+      /**
+       * Calculates the projected growth of each tree based on its plant year, species growth rate,
+       * and the current timeline slider year. Draws circular polygons to represent the canopy shadow.
+       */
       const renderCanopy = () => {
         if (!mockTreesData || !view.ready) return;
 
@@ -218,6 +240,10 @@
       let playInterval;
       const playBtn = document.getElementById('playBtn');
 
+      /**
+       * Toggles the automatic timeline animation, advancing the simulation year by year
+       * and continuously recalculating canopy coverage area.
+       */
       function togglePlay() {
         isPlaying = !isPlaying;
         playBtn.textContent = isPlaying ? "Pause" : "Play";
@@ -246,7 +272,7 @@
         if (isPlaying) togglePlay();
       });
 
-      // Fetch the mock trees JSON 
+      // Fetch the mock trees JSON
       fetch("data/mock_trees.json")
         .then(response => response.json())
         .then(data => {
@@ -260,7 +286,6 @@
           }
         })
         .catch(err => console.error("Error loading mock trees:", err));
-
 
       trend2020.textContent = "5.2%";
       trend2025.textContent = "8.1%";

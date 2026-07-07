@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Canopy | Tree Namer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="glass-header">
+            <div class="logo">
+                <i class="fa-solid fa-leaf logo-icon"></i>
+                <h1 id="app-title">Meet the Canopy</h1>
+            </div>
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+                <button class="lang-btn" data-lang="tx">TexMex</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="roster-section">
+                <h2 id="roster-title" class="section-title">Campus Tree Roster</h2>
+                <div class="roster-grid" id="roster-grid">
+                    <!-- Cards injected by JS -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal -->
+        <div class="modal-overlay" id="tree-modal">
+            <div class="modal-content glass-panel">
+                <button class="close-btn" id="close-modal"><i class="fa-solid fa-times"></i></button>
+                <div class="modal-body" id="modal-body">
+                    <!-- Content injected by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

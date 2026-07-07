@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+    --utrgv-green: #005f36;
+    --utrgv-orange: #f05023;
+    --utrgv-gray: #4a4a4a;
+    --bg-gradient: linear-gradient(135deg, #e0f2f1 0%, #ffcc80 100%);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color: var(--utrgv-gray);
+}
+
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--glass-border);
+    padding-bottom: 1rem;
+}
+
+h1 {
+    color: var(--utrgv-green);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.lang-toggle {
+    background: white;
+    border: 1px solid var(--utrgv-green);
+    color: var(--utrgv-green);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.lang-toggle:hover {
+    background: var(--utrgv-green);
+    color: white;
+}
+
+button.primary {
+    background: var(--utrgv-orange);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 12px rgba(240, 80, 35, 0.3);
+}
+
+button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(240, 80, 35, 0.4);
+    background: #e04013;
+}
+
+button.primary:active {
+    transform: translateY(0);
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+}
+.stat-card .icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+.stat-card h4 {
+    font-size: 0.9rem;
+    color: var(--utrgv-gray);
+    margin-bottom: 0.5rem;
+}
+.stat-card .value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--utrgv-green);
+    margin-bottom: 0.5rem;
+}
+.stat-card .status {
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+}
+.status.healthy { background: #e8f5e9; color: #2e7d32; }
+.status.warning { background: #fff3e0; color: #ef6c00; }
+
+.feeding-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+.input-group select {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--utrgv-gray);
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
+}
+.result-message {
+    font-weight: bold;
+    min-height: 1.5rem;
+    text-align: center;
+    color: var(--utrgv-green);
+}

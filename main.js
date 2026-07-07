@@ -30,7 +30,6 @@
   const toggleHeatmapBtn = document.getElementById("toggleHeatmapBtn");
   const uploadStatus = document.getElementById("uploadStatus");
 
-
   config.districts.forEach((district) => {
     const option = document.createElement("option");
     option.value = district.id;
@@ -38,6 +37,10 @@
     districtSelect.appendChild(option);
   });
 
+  /**
+   * Updates the UI dashboard cards with metrics specific to a selected school district.
+   * @param {string} districtId - The unique identifier of the selected district.
+   */
   function setMetrics(districtId) {
     const metrics = config.metrics[districtId];
     if (!metrics) return;
@@ -50,6 +53,11 @@
     lstWinter.textContent = `${metrics.lst.winter}°F`;
   }
 
+  /**
+   * Updates the application's global status banner and the field status readout
+   * with contextual user instructions or feedback.
+   * @param {string} message - The status message to display.
+   */
   function setFieldStatus(message) {
     fieldStatus.textContent = message;
     if (statusBox) statusBox.textContent = message;
@@ -74,6 +82,12 @@
       "esri/widgets/LayerList"
     ],
     (Map, MapView, FeatureLayer, ImageryLayer, Graphic, GraphicsLayer, GroupLayer, Legend, BasemapToggle, Zoom, FeatureTable, Sketch, geometryEngine, webMercatorUtils, LayerList) => {
+      /**
+       * Factory function that constructs an ArcGIS layer (ImageryLayer or FeatureLayer)
+       * based on the configuration object parameters.
+       * @param {Object} layerConfig - Configuration dictionary for the layer.
+       * @returns {ImageryLayer|FeatureLayer|null} The constructed layer instance, or null if no URL is provided.
+       */
       function createLayer(layerConfig) {
         if (!layerConfig.url) return null;
         if (layerConfig.type === "imagery") {
@@ -222,6 +236,10 @@
         map.add(treeObservationsLayer);
       }
 
+      /**
+       * Initializes and aggregates the multi-layered Rio Grande Valley (RGV)
+       * regional base map data (e.g., Reference, Residential, Standalone) into GroupLayers.
+       */
       function addRgvLayers() {
         const rgvConfig = config.layers.rgv;
         if (!rgvConfig) return;
@@ -322,6 +340,12 @@
         container: "tableContainer"
       });
 
+      /**
+       * Safely pulls cached ArcGIS Feature data from the browser's localStorage
+       * and rehydrates it into the active map layer's source graphics.
+       * @param {string} storageKey - The localStorage key identifying the dataset.
+       * @param {FeatureLayer} layer - The active FeatureLayer to inject the loaded graphics into.
+       */
       function loadLocalFeatures(storageKey, layer) {
         try {
           const raw = localStorage.getItem(storageKey);
@@ -337,12 +361,23 @@
         }
       }
 
+      /**
+       * Calculates the next available incremental ObjectID for client-side layers.
+       * @param {FeatureLayer} layer - The layer to inspect for current IDs.
+       * @returns {number} The next safe integer ID.
+       */
       function getNextObjectId(layer) {
         const features = layer.source?.toArray?.() || [];
         const ids = features.map((feature) => feature.attributes?.ObjectID || 0);
         return Math.max(0, ...ids) + 1;
       }
 
+      /**
+       * Pushes a serialized version of an ArcGIS Graphic into the local storage array
+       * to safely persist drawn polygons or points offline.
+       * @param {string} storageKey - The localStorage key to push the graphic into.
+       * @param {Graphic} graphic - The geometry graphic to save.
+       */
       function saveLocalFeature(storageKey, graphic) {
         try {
           const raw = localStorage.getItem(storageKey);
@@ -363,6 +398,10 @@
       });
       // Keep Sketch UI hidden; use our own buttons for a simpler flow.
 
+      /**
+       * Queries the district boundaries layer and dynamically pans/zooms the camera
+       * to strictly encompass the selected districts with a small padding buffer.
+       */
       async function tightenToDistricts() {
         if (!districtsLayer) return;
         const districtWhere = config.districts.map((d) => `(${d.where})`).join(" OR ");
@@ -381,6 +420,11 @@
       let localAreaId = 1;
       let localObsId = 1;
 
+      /**
+       * Toggles the disabled state of the drawing and observation buttons in the UI
+       * based on the user's current interaction step.
+       * @param {boolean} isEnabled - Whether the primary action buttons should be active.
+       */
       function setButtonsEnabled(isEnabled) {
         drawAreaBtn.disabled = !isEnabled;
         addObservationBtn.disabled = !isEnabled;
@@ -400,6 +444,11 @@
         localObsId = getNextObjectId(treeObservationsLayer);
       }
 
+      /**
+       * Asynchronously attempts to resolve the exact physical boundaries (Polygon)
+       * associated with the currently selected school site.
+       * @returns {Promise<Polygon|null>} The school boundary geometry, or null if unmapped.
+       */
       async function getActiveSchoolAreaGeometry() {
         if (!activeSchool || !schoolAreasLayer) return null;
         const areaField = config.fields.areaSchool;
@@ -472,7 +521,7 @@
           id: schoolGraphic.attributes[nameField]
         };
         activeSchoolName.textContent = activeSchool.name;
-        
+
         if (typeof projectCampuses !== 'undefined') {
             const campusData = projectCampuses.find(c => c.name === activeSchool.name);
             if (campusData) {
@@ -485,7 +534,7 @@
                 document.getElementById("lstWinter").textContent = campusData.metrics.soilMoisture + "%";
             }
         }
-        
+
         const safeId = activeSchool.id.replace(/'/g, "''");
         view.whenLayerView(schoolAreasLayer).then((layerView) => {
           layerView.filter = { where: `${config.fields.areaSchool} = '${safeId}'` };
@@ -503,6 +552,10 @@
         setFieldStatus("Step 2: Click 'Draw School Area' or 'Add Tree Observation'.");
       });
 
+      /**
+       * Triggers a series of browser prompts to gather metadata for a new tree observation.
+       * @returns {Object|null} A formatted attributes object matching the layer schema, or null if cancelled.
+       */
       function promptForObservation() {
         if (!activeSchool) {
           setFieldStatus("Select a school first by clicking its point.");
@@ -812,9 +865,9 @@
         maxPixelIntensity: 10,
         minPixelIntensity: 0
       };
-      
+
       const simpleMarkerRenderer = treeObservationsLayer.renderer;
-      
+
       if (toggleHeatmapBtn) {
         toggleHeatmapBtn.addEventListener("click", () => {
           heatmapActive = !heatmapActive;

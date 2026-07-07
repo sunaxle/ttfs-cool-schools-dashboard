@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Cycle Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <h1 data-i18n="title">Water Cycle Simulator</h1>
+            <select id="lang-select" class="lang-toggle">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="texmex">Tex-Mex</option>
+            </select>
+        </header>
+        <p data-i18n="subtitle" class="subtitle">Drop a pin where a puddle formed, and track its evaporation over time.</p>
+        
+        <div class="map-area card" id="map-area" onclick="dropPin(event)">
+            <p class="map-placeholder" data-i18n="map_hint">Campus Map Area<br>(Click to drop a pin)</p>
+        </div>
+
+        <div class="controls card">
+            <h3 data-i18n="evap_title">Evaporation Tracker</h3>
+            <div class="slider-container">
+                <label data-i18n="time_lbl">Time since rain (Hours): <span id="time-val">0</span></label>
+                <input type="range" id="time-slider" min="0" max="24" value="0" oninput="updateEvaporation()">
+            </div>
+        </div>
+
+        <div class="action-area">
+            <button class="primary" id="save-btn" data-i18n="save_btn" onclick="saveData()">Save Puddle Data</button>
+            <div id="save-msg" class="result-message"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

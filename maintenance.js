@@ -24,12 +24,37 @@
         ],
         (Map, MapView, GraphicsLayer, Graphic, Polygon, geometryEngine, BasemapToggle, Zoom) => {
 
+            const campusName = localStorage.getItem("activeCampusName") || "J.W. Caceres & M. Rivas Academy";
+            let activeLng = parseFloat(localStorage.getItem("activeCampusLng"));
+            let activeLat = parseFloat(localStorage.getItem("activeCampusLat"));
+            let mapCenter = !isNaN(activeLng) && !isNaN(activeLat) ? [activeLng, activeLat] : [-98.0700, 26.1668];
+
+            // Deep Check: If user drew zones, use the first point of the first zone to perfectly lock the camera
+            try {
+                const savedZones = localStorage.getItem(`zones_${campusName}`);
+                if (savedZones) {
+                    const zones = JSON.parse(savedZones);
+                    if (zones.length > 0) {
+                        let x = zones[0].geometry.rings[0][0][0];
+                        let y = zones[0].geometry.rings[0][0][1];
+
+                        if (Math.abs(x) > 180) { // It's WebMercator
+                            const lon = (x / 20037508.34) * 180;
+                            const lat = (Math.atan(Math.exp((y / 20037508.34) * Math.PI)) * 360 / Math.PI) - 90;
+                            mapCenter = [lon, lat];
+                        } else {
+                            mapCenter = [x, y];
+                        }
+                    }
+                }
+            } catch (e) { console.error("Could not parse map center from zones", e) }
+
             const map = new Map({ basemap: config?.map?.basemap || "satellite" });
 
             const view = new MapView({
                 container: "maintenanceMap",
                 map,
-                center: [-98.0700, 26.1668], // Temp default
+                center: mapCenter, // Use dynamic campus center
                 zoom: config?.map?.zoom || 18,
                 constraints: {
                     minZoom: config?.map?.minZoom || 16,
@@ -49,8 +74,14 @@
             // Global Data vars
             let treesData = [];
 
-            // A deterministic pseudo-random function based on coordinates to ensure 
-            // the same tree dies or needs pruning every time we drag the slider back and forth.
+            /**
+             * Generates a deterministic pseudo-random number based on longitude and latitude coordinates.
+             * This ensures that the same tree exhibits the same behavior (e.g., mortality or pruning needs)
+             * consistently across timeline slider scrubbing.
+             * @param {number} lon - Tree longitude.
+             * @param {number} lat - Tree latitude.
+             * @returns {number} A deterministic random value between 0 and 1.
+             */
             function pseudoRandom(lon, lat) {
                 let seed = Math.abs(lon * lat * 100000);
                 let x = Math.sin(seed++) * 10000;
@@ -103,6 +134,11 @@
                 });
 
             // The Schoeneman (1994) maintenance logic engine
+            /**
+             * Evaluates tree health and maintenance requirements based on the current timeline year.
+             * Highlights drought stress, pruning cycles, and mortality rates, rendering them on the map.
+             * @param {number} currentYear - The projected year to simulate (1-15).
+             */
             function renderTrees(currentYear) {
                 treeLayer.removeAll();
 

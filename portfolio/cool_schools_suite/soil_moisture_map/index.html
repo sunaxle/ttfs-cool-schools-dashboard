@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Moisture Map</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-panel">
+        <div class="header">
+            <h1 id="app-title">Soil Moisture Map</h1>
+            <div class="lang-toggle">
+                <button class="lang-btn active" id="btn-en" data-lang="en">EN</button>
+                <button class="lang-btn" id="btn-es" data-lang="es">ES</button>
+                <button class="lang-btn" id="btn-texmex" data-lang="texmex">TexMex</button>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <p id="instruction">Select a state, then tap a garden zone:</p>
+            <div class="tool-picker">
+                <button class="tool-btn active" data-state="dry" style="--c: #ffd54f">Dry 🏜️</button>
+                <button class="tool-btn" data-state="damp" style="--c: #4fc3f7">Damp 💧</button>
+                <button class="tool-btn" data-state="muddy" style="--c: #795548; color: white;">Muddy 💩</button>
+            </div>
+        </div>
+
+        <div class="map-grid" id="garden-map">
+            <!-- Generate zones dynamically -->
+        </div>
+
+        <button class="btn" id="save-btn" onclick="saveMap()">Save Map</button>
+        <p id="status-msg"></p>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

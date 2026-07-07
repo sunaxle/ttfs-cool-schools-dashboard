@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro-Forest Scavenger</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <h1 data-i18n="title">Micro-Forest Scavenger</h1>
+            <select id="lang-select" class="lang-toggle">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="texmex">Tex-Mex</option>
+            </select>
+        </header>
+        <p data-i18n="subtitle" class="subtitle">Find these things in the campus micro-forest!</p>
+        
+        <div class="checklist card">
+            <div class="check-item">
+                <input type="checkbox" id="item1" onchange="checkCompletion()">
+                <label for="item1" id="lbl-item1">...</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="item2" onchange="checkCompletion()">
+                <label for="item2" id="lbl-item2">...</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="item3" onchange="checkCompletion()">
+                <label for="item3" id="lbl-item3">...</label>
+            </div>
+        </div>
+
+        <div class="action-area">
+            <button class="primary" id="refresh-btn" data-i18n="refresh_btn" onclick="generateList()">Generate New List</button>
+            <div id="completion-msg" class="completion-message"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

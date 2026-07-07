@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compost Cam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-panel">
+        <div class="header">
+            <h1 id="app-title">Compost Cam</h1>
+            <div class="lang-toggle">
+                <button class="lang-btn active" id="btn-en" data-lang="en">EN</button>
+                <button class="lang-btn" id="btn-es" data-lang="es">ES</button>
+                <button class="lang-btn" id="btn-texmex" data-lang="texmex">TexMex</button>
+            </div>
+        </div>
+        
+        <div class="input-form">
+            <input type="text" id="item-name" placeholder="E.g., Apple Core">
+            <div class="slider-group">
+                <label id="slider-label">Decomposition Stage:</label>
+                <input type="range" id="stage-slider" min="1" max="3" value="1" step="1">
+                <div class="stage-labels">
+                    <span id="stg-1">Fresh</span>
+                    <span id="stg-2">Rotting</span>
+                    <span id="stg-3">Soil</span>
+                </div>
+            </div>
+            <button class="btn" id="add-btn" onclick="addCompost()">Add to Timeline</button>
+        </div>
+
+        <div class="timeline" id="timeline">
+            <h3 id="timeline-title">Compost Timeline</h3>
+            <!-- Items added here -->
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Care Quests</title>
+    <style>
+        :root {
+            --utrgv-green: #00843D;
+            --utrgv-light-green: #E8F5E9;
+            --utrgv-orange: #F05023;
+            --utrgv-blue: #005B9F;
+            --dirt-brown: #8D6E63;
+            --white: #FFFFFF;
+            --bg-color: #F3F8FF;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Nunito', 'Quicksand', 'Comic Sans MS', sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--white);
+            min-height: 100vh;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        /* Quest Header */
+        header {
+            background-color: var(--utrgv-blue);
+            color: var(--white);
+            padding: 30px 20px 20px;
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 10.01%);
+            background-size: 20px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .badge-container {
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        /* Quests Area */
+        main {
+            padding: 24px 20px;
+            padding-bottom: 100px; /* space for sticky button */
+        }
+
+        .quest-card {
+            background-color: var(--white);
+            border: 4px solid var(--utrgv-light-green);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 24px;
+            transition: transform 0.2s;
+        }
+
+        .quest-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--utrgv-green);
+        }
+
+        .quest-icon {
+            font-size: 40px;
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .quest-title {
+            color: var(--utrgv-green);
+            font-size: 22px;
+            margin: 0 0 15px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        /* Big Options / Answers */
+        .option-grid {
+            display: flex;
+            gap: 12px;
+        }
+
+        .option-label {
+            flex: 1;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .option-label input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .option-card {
+            background-color: #F9F9F9;
+            border: 3px solid #E0E0E0;
+            border-radius: 16px;
+            padding: 16px 10px;
+            text-align: center;
+            transition: all 0.2s ease-in-out;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .option-emoji {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .option-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            line-height: 1.2;
+        }
+
+        /* Selected States */
+        .option-label input[type="radio"]:checked ~ .option-card {
+            background-color: #FFF3E0;
+            border-color: var(--utrgv-orange);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(240, 80, 35, 0.2);
+        }
+
+        .option-label input[type="radio"]:checked ~ .option-card .option-text {
+            color: var(--utrgv-orange);
+        }
+
+        .option-label input[type="radio"]:focus-visible ~ .option-card {
+            outline: 4px solid var(--utrgv-green);
+            outline-offset: 4px;
+        }
+
+        /* Sticky Action Button */
+        .action-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 480px;
+            background: linear-gradient(to top, var(--white) 80%, rgba(255,255,255,0));
+            padding: 30px 20px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .complete-btn {
+            background-color: var(--utrgv-orange);
+            color: var(--white);
+            border: none;
+            border-radius: 24px;
+            padding: 18px 24px;
+            font-size: 22px;
+            font-weight: 900;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #D84315;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .complete-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #D84315;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <h1>Campus Care Quests 🗺️</h1>
+            <div class="badge-container">
+                🌟 20 XP | 🏅 3 Badges
+            </div>
+        </header>
+
+        <main>
+            <!-- Quest 1: Watering -->
+            <section class="quest-card" aria-labelledby="quest1-title">
+                <span class="quest-icon" aria-hidden="true">💧</span>
+                <h2 id="quest1-title" class="quest-title">Soil Check!</h2>
+                <p style="text-align: center; font-size: 18px; margin-bottom: 20px; font-weight: bold;">
+                    Is the dirt dry like a cracker or moist like a sponge?
+                </p>
+                <div class="option-grid">
+                    <label class="option-label">
+                        <input type="radio" name="soil_status" value="dry" aria-label="Dry like a cracker">
+                        <div class="option-card">
+                            <span class="option-emoji">🍘</span>
+                            <span class="option-text">Dry like a Cracker</span>
+                        </div>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="soil_status" value="moist" aria-label="Moist like a sponge">
+                        <div class="option-card">
+                            <span class="option-emoji">🧽</span>
+                            <span class="option-text">Moist like a Sponge</span>
+                        </div>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Quest 2: Weeding -->
+            <section class="quest-card" aria-labelledby="quest2-title">
+                <span class="quest-icon" aria-hidden="true">🌿</span>
+                <h2 id="quest2-title" class="quest-title">Weed Patrol!</h2>
+                <p style="text-align: center; font-size: 18px; margin-bottom: 20px; font-weight: bold;">
+                    Do you see any sneaky weeds stealing our tree's food?
+                </p>
+                <div class="option-grid">
+                    <label class="option-label">
+                        <input type="radio" name="weed_status" value="yes" aria-label="Yes, I see sneaky weeds">
+                        <div class="option-card">
+                            <span class="option-emoji">🫣</span>
+                            <span class="option-text">Yes, Sneaky Weeds!</span>
+                        </div>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="weed_status" value="no" aria-label="No, all clear">
+                        <div class="option-card">
+                            <span class="option-emoji">✅</span>
+                            <span class="option-text">Nope, All Clear!</span>
+                        </div>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Quest 3: Damage Check -->
+            <section class="quest-card" aria-labelledby="quest3-title">
+                <span class="quest-icon" aria-hidden="true">🩹</span>
+                <h2 id="quest3-title" class="quest-title">Health Check!</h2>
+                <p style="text-align: center; font-size: 18px; margin-bottom: 20px; font-weight: bold;">
+                    Does the tree look hurt (broken branches), or happy and healthy?
+                </p>
+                <div class="option-grid">
+                    <label class="option-label">
+                        <input type="radio" name="health_status" value="hurt" aria-label="The tree looks hurt">
+                        <div class="option-card">
+                            <span class="option-emoji">🤕</span>
+                            <span class="option-text">Looks Hurt</span>
+                        </div>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="health_status" value="happy" aria-label="The tree looks happy">
+                        <div class="option-card">
+                            <span class="option-emoji">🥰</span>
+                            <span class="option-text">Happy & Healthy</span>
+                        </div>
+                    </label>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sticky Footer -->
+        <div class="action-footer">
+            <button class="complete-btn">
+                Complete Quest! 🚀
+            </button>
+        </div>
+    </div>
+</body>
+</html>

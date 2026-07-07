@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let daysSinceRain = 3;
 
+    /**
+     * Calculates exponential moisture decay for both exposed and shaded soil
+     * based on the days since last rain, updating the dashboard UI meters.
+     */
     function updateMetrics() {
         daysSinceRain = parseInt(rainSlider.value, 10);
         rainReadout.textContent = `${daysSinceRain} Day${daysSinceRain === 1 ? '' : 's'}`;
@@ -135,12 +139,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Draw initial state
                 renderMoisture(daysSinceRain);
             })
-            .catch(e => console.log("Tree data fetch error", e));
+            .catch(e => console.warn("Tree data fetch error", e));
 
         window.updateMoistureMap = function (days) {
             renderMoisture(days);
         };
 
+        /**
+         * Renders the dynamic moisture overlay on the map, mapping soil saturation
+         * visually to blue, green, and orange gradients based on drought severity.
+         * @param {number} days - The number of days since the last rainfall event.
+         */
         function renderMoisture(days) {
             treeBaseMoistureLayer.removeAll();
             mockMoistureBaseLayer.removeAll();

@@ -1,7 +1,13 @@
+/**
+ * Global application configuration object for the TTFS Cool Schools Dashboard.
+ * Stores map settings, ArcGIS layer URLs, district boundaries, baseline metrics,
+ * and tree growth parameters used by various dashboard models.
+ * @type {Object}
+ */
 window.APP_CONFIG = {
   map: {
     basemap: "hybrid", // Using hybrid to see street labels over satellite
-    center: [-98.0706, 26.1675], // Exact location of J.W. Caceres & M. Rivas Academy 
+    center: [-98.0706, 26.1675], // Exact location of J.W. Caceres & M. Rivas Academy
     zoom: 17,
     minZoom: 16,
     maxZoom: 19
@@ -62,12 +68,18 @@ window.APP_CONFIG = {
     schoolAreas: {
       type: "feature",
       title: "School Areas",
-      url: ""
+      url: "data/bowie_grid.geojson",
+      mockData: [
+        { id: "area_1", name: "Zone A - Front Entrance", surfaceType: "asphalt" },
+        { id: "area_2", name: "Zone B - Courtyard", surfaceType: "grass" },
+        { id: "area_3", name: "Zone C - Playground", surfaceType: "canopy" }
+      ]
     },
     treeObservations: {
       type: "feature",
       title: "Tree Observations",
-      url: ""
+      url: "",
+      mockData: []
     },
     rgv: {
       reference: {

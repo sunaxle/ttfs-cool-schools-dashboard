@@ -56,13 +56,21 @@
     </nav>
 
     <main class="page-container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
-        <div style="margin-bottom: 30px; text-align: center;">
-            <p style="font-size: 18px; color: var(--text);">Baseline environmental monitoring and projected i-Tree ecosystem benefits.</p>
+        <div style="margin-bottom: 30px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 20px; color: var(--primary); font-weight: bold; margin-bottom: 10px;">Hyper-Local Green Tech on Campus</p>
+            <p style="font-size: 18px; color: var(--text);">What does it take to turn a school campus into a living, breathing climate shield? Welcome to the Cool Schools Dashboard—where we track baseline environmental monitoring and projected i-Tree ecosystem benefits.</p>
             <h2 id="campusHeader" style="margin-top: 10px; color: var(--primary);">J.W. Caceres & M. Rivas Academy</h2>
             <button type="button" id="toggleAcademicBtn" class="btn-academic">Show Academic/i-Tree Forecasts</button>
         </div>
 
-        <h3 style="margin-top: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">Contract Baseline Metrics (Current)</h3>
+        <div style="text-align: center; margin-bottom: 20px; margin-top: 30px;">
+            <select id="timelinePhaseSelect" style="padding: 10px; font-size: 16px; border: 1px solid var(--primary); border-radius: 4px; background: white; color: var(--text);">
+                <option value="baseline">Baseline (Before TTFS Tree Planting)</option>
+                <option value="post">Post Tree Planting</option>
+                <option value="projection">10-Year Projection</option>
+            </select>
+        </div>
+        <h3 id="metricsHeaderTitle" style="margin-top: 10px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">Contract Baseline Metrics (Before TTFS Tree Planting)</h3>
         <div class="impact-grid" id="baselineGrid">
             <div class="impact-card"><div class="impact-icon">🌳</div><div class="impact-value" id="valBaselineCanopy">--%</div><h3>Canopy Coverage</h3><p>Current % of total campus area covered by tree canopy. Target is 30%.</p></div>
             <div class="impact-card"><div class="impact-icon">🌡️</div><div class="impact-value" id="valAirTemp">--°F</div><h3>Air Temperature</h3><p>Baseline ambient air temperature during peak sunlight hours.</p></div>

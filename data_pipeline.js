@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     }
                 }
-            } catch (e) { }
+            } catch (e) { console.warn("Failed to retrieve metrics", e); }
 
             const hardwareNodes = [
                 { type: "RX2106 Base Station", lat: trueCenterLat, lon: trueCenterLng, color: [33, 150, 243] }, // Blue
@@ -351,5 +351,30 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // Polling and processing button logic from HTML
+    const btn1 = document.getElementById("forcePollBtn");
+    if(btn1) {
+        btn1.addEventListener('click', () => {
+            const originalText = btn1.textContent;
+            btn1.textContent = "Polling...";
+            setTimeout(() => {
+                btn1.textContent = "Telemetry Updated!";
+                setTimeout(() => { btn1.textContent = originalText; }, 2000);
+            }, 1500);
+        });
+    }
+
+    const btn2 = document.getElementById("processFilesBtn");
+    if(btn2) {
+        btn2.addEventListener('click', () => {
+            const originalText = btn2.textContent;
+            btn2.textContent = "Parsing CSV...";
+            setTimeout(() => {
+                btn2.textContent = "Files Processed!";
+                setTimeout(() => { btn2.textContent = originalText; }, 2000);
+            }, 1500);
+        });
+    }
 
 });

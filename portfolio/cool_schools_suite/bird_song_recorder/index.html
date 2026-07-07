@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Song Matcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <h1 data-i18n="title">Bird Song Matcher</h1>
+            <select id="lang-select" class="lang-toggle">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="texmex">Tex-Mex</option>
+            </select>
+        </header>
+        <p data-i18n="subtitle" class="subtitle">Match local RGV bird chirps to the right bird!</p>
+        
+        <div class="soundboard">
+            <div class="bird-card card" id="bird1" onclick="playAndSelect('kiskadee')">
+                <div class="icon">🦆</div>
+                <h3 data-i18n="bird1">Great Kiskadee</h3>
+                <p data-i18n="bird1_desc">Loud, boisterous "kis-ka-dee" call.</p>
+            </div>
+            <div class="bird-card card" id="bird2" onclick="playAndSelect('chachalaca')">
+                <div class="icon">🦃</div>
+                <h3 data-i18n="bird2">Plain Chachalaca</h3>
+                <p data-i18n="bird2_desc">Raucous "cha-cha-la-ca" chorus.</p>
+            </div>
+            <div class="bird-card card" id="bird3" onclick="playAndSelect('greenjay')">
+                <div class="icon">🐦</div>
+                <h3 data-i18n="bird3">Green Jay</h3>
+                <p data-i18n="bird3_desc">Varied clicks and rattling sounds.</p>
+            </div>
+        </div>
+
+        <div class="action-area">
+            <button class="primary" id="match-btn" data-i18n="match_btn" onclick="checkMatch()">Match Current Sound</button>
+            <div id="result" class="result-message"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

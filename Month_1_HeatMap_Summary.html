@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dynamic Zone-by-Zone Heat Map Explanation</title>
+</head>
+<body>
+<h1>Month 1 Deliverable: Dynamic Zone-by-Zone Heat Map</h1>
+
+<h2>Overview</h2>
+<p>To satisfy the requirement for a "first heat-surface visual" without introducing external API dependencies in Month 1, we have implemented a dynamic zone-by-zone heat mapping engine. This leverages the existing ArcGIS library and the locally drawn campus zones.</p>
+
+<h2>Methodology</h2>
+<p>Instead of relying on a static image, the dashboard calculates mock surface temperatures for specific zones (e.g., Asphalt, Trees/Grass, Buildings) depending on the time of day. As the user drags the Time of Day slider, the zones dynamically change color based on their simulated heat index.</p>
+<ul>
+    <li><strong>Trees / Grass:</strong> Maintains cooler baseline temperatures, peaking at ~80&deg;F to 85&deg;F.</li>
+    <li><strong>Buildings / Roofs:</strong> Maintains warm temperatures, retaining heat into the evening.</li>
+    <li><strong>Asphalt / Parking:</strong> Highest heat absorption, peaking well over 110&deg;F in the mid-afternoon.</li>
+</ul>
+<p>Below are automated captures of the dashboard simulating these temperature zones throughout the day.</p>
+
+<hr>
+
+<h2>Morning (8:00 AM)</h2>
+<p>In the early morning, surface temperatures are generally uniform and cool across all zones. Asphalt has not yet absorbed significant solar radiation.</p>
+<p><img src="docs/heatmap_morning.png" alt="Morning Heat Map" width="600"></p>
+
+<h2>Midday (12:00 PM)</h2>
+<p>By midday, solar loading is heavily affecting the asphalt and parking lot zones, shifting them into the orange/red (danger) categories, while the tree canopy zones remain visibly cooler in the yellow/light-blue range.</p>
+<p><img src="docs/heatmap_midday.png" alt="Midday Heat Map" width="600"></p>
+
+<h2>After School (4:00 PM)</h2>
+<p>During the critical after-school dismissal window, the heat divergence is at its peak. Impervious surfaces are radiating massive amounts of stored heat, while the shaded/vegetated zones demonstrate actionable cooling impact.</p>
+<p><img src="docs/heatmap_evening.png" alt="After School Heat Map" width="600"></p>
+
+</body>
+</html>

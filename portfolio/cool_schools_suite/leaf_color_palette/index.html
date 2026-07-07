@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Color Palette</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <h1 data-i18n="title">Leaf Color Palette</h1>
+            <select id="lang-select" class="lang-toggle">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="texmex">Tex-Mex</option>
+            </select>
+        </header>
+        <p data-i18n="subtitle" class="subtitle">Match physical leaves to colors to track the seasons!</p>
+        
+        <div class="color-wheel">
+            <div class="color-swatch" style="background-color: #4CAF50;" onclick="selectColor('#4CAF50', 'Spring Green')"></div>
+            <div class="color-swatch" style="background-color: #8BC34A;" onclick="selectColor('#8BC34A', 'Light Green')"></div>
+            <div class="color-swatch" style="background-color: #CDDC39;" onclick="selectColor('#CDDC39', 'Yellow Green')"></div>
+            <div class="color-swatch" style="background-color: #FFEB3B;" onclick="selectColor('#FFEB3B', 'Yellow')"></div>
+            <div class="color-swatch" style="background-color: #FFC107;" onclick="selectColor('#FFC107', 'Amber')"></div>
+            <div class="color-swatch" style="background-color: #FF9800;" onclick="selectColor('#FF9800', 'Orange')"></div>
+            <div class="color-swatch" style="background-color: #FF5722;" onclick="selectColor('#FF5722', 'Deep Orange')"></div>
+            <div class="color-swatch" style="background-color: #795548;" onclick="selectColor('#795548', 'Brown')"></div>
+        </div>
+
+        <div class="selected-area card">
+            <h3 data-i18n="selected_title">Selected Color:</h3>
+            <div class="selected-display">
+                <div id="chosen-color-swatch" class="large-swatch"></div>
+                <p id="chosen-color-name">None</p>
+            </div>
+        </div>
+
+        <div class="action-area">
+            <button class="primary" id="log-btn" data-i18n="log_btn" onclick="logLeaf()">Log Leaf Color</button>
+            <div id="log-result" class="result-message"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

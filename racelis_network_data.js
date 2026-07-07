@@ -1,3 +1,8 @@
+/**
+ * Hierarchical network data for the Agroecology program's personnel and partners.
+ * Represents relationships between the director, leadership, students, and community partners.
+ * @type {Object}
+ */
 const treeData = {
     name: "Dr. Alex Racelis",
     group: "root",

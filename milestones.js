@@ -1,3 +1,8 @@
+/**
+ * Logic for the Milestones & Deliverables Tracker.
+ * Manages task states and stores progress in localStorage.
+ */
+(function() {
 const milestoneData = [
   {
     month: "June 2026",
@@ -170,6 +175,11 @@ const milestoneData = [
   }
 ];
 
+/**
+ * Calculates the number of days remaining until a target date.
+ * @param {string} targetDateStr - The target date string (e.g. ISO format).
+ * @returns {number} The number of full days remaining (0 if the date has passed).
+ */
 function getDaysRemaining(targetDateStr) {
   const now = new Date();
   const target = new Date(targetDateStr);
@@ -185,16 +195,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Global Countdown Logic
   const todayDisplay = document.getElementById("currentDateDisplay");
   const globalCountdown = document.getElementById("globalCountdown");
-  
+
   if (todayDisplay && globalCountdown) {
     const today = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     todayDisplay.innerHTML = "Today's Date: <span style='color: #1b4d2b; font-weight: bold;'>" + today.toLocaleDateString(undefined, options) + "</span>";
-    
+
     // Project end date from contract (Dec 31, 2027)
     const projectEnd = "2027-12-31T23:59:59";
     const daysLeft = getDaysRemaining(projectEnd);
-    
+
     if (daysLeft > 0) {
       globalCountdown.textContent = daysLeft + " Days Left in Project";
     } else {
@@ -203,20 +213,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /**
+   * Loads the boolean sign-off state for a specific milestone check.
+   * @param {string} id - The milestone identifier.
+   * @param {string} checkType - The type of check (e.g., 'ai', 'pi', 'sup').
+   * @returns {boolean} True if the milestone check was previously checked.
+   */
   function loadState(id, checkType) {
     return localStorage.getItem(`milestone_${id}_${checkType}`) === "true";
   }
 
+  /**
+   * Saves the boolean sign-off state for a specific milestone check.
+   * @param {string} id - The milestone identifier.
+   * @param {string} checkType - The type of check (e.g., 'ai', 'pi', 'sup').
+   * @param {boolean} isChecked - Whether the milestone check is completed.
+   */
   function saveState(id, checkType, isChecked) {
     localStorage.setItem(`milestone_${id}_${checkType}`, isChecked);
   }
 
+  /**
+   * Dynamically renders the milestones table, including headers, countdown tickers,
+   * checkboxes, and attached document links.
+   */
   function renderTable() {
     tableBody.innerHTML = "";
     milestoneData.forEach(monthGroup => {
       // Add Month Header with Ticker
       const headerRow = document.createElement("tr");
-      
+
       let tickerHtml = "";
       if (monthGroup.monthEnd) {
         const daysLeftMonth = getDaysRemaining(monthGroup.monthEnd);
@@ -233,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add Items
       monthGroup.items.forEach(item => {
         const row = document.createElement("tr");
-        
+
         // Docs links HTML
         const docsHtml = item.docs.map(d => `<a href="${d.url}" class="doc-link" target="_blank">${d.name}</a>`).join("<br>");
 
@@ -289,3 +315,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderTable();
 });
+})();

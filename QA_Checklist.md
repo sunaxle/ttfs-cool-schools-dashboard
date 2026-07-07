@@ -1,3 +1,5 @@
+[[work]]
+
 # QA Checklist: Field Data Collection for TTFS
 
 This checklist ensures that all field data (tree locations, canopy coverage, temperature, etc.) is accurately collected, verified, and standardized before being integrated into the dashboard.

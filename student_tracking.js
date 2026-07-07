@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Helper: Convert slider 24hr value to 12hr AM/PM string
+    /**
+     * Converts a 24-hour integer into a formatted 12-hour AM/PM string.
+     * @param {number} hour24 - The hour of the day (0-23).
+     * @returns {string} The formatted time string (e.g., "2:00 PM").
+     */
     function formatHourString(hour24) {
         const ampm = hour24 >= 12 ? 'PM' : 'AM';
         const hr12 = hour24 > 12 ? hour24 - 12 : (hour24 === 0 ? 12 : hour24);
@@ -35,15 +40,38 @@ document.addEventListener('DOMContentLoaded', () => {
         "esri/widgets/BasemapToggle"
     ], function (Map, MapView, GraphicsLayer, Graphic, Polygon, Point, geometryEngine, BasemapToggle) {
 
+        const campusName = localStorage.getItem("activeCampusName") || "J.W. Caceres & M. Rivas Academy";
         const activeLng = parseFloat(localStorage.getItem("activeCampusLng"));
         const activeLat = parseFloat(localStorage.getItem("activeCampusLat"));
-        const mapCenter = !isNaN(activeLng) && !isNaN(activeLat) ? [activeLng, activeLat] : [-98.0520, 26.1704];
+        let mapCenter = !isNaN(activeLng) && !isNaN(activeLat) ? [activeLng, activeLat] : [-98.0520, 26.1704];
+
+        // Deep Check: If user drew zones, use the first point of the first zone to perfectly lock the camera
+        try {
+            const savedZones = localStorage.getItem(`zones_${campusName}`);
+            if (savedZones) {
+                const zones = JSON.parse(savedZones);
+                if (zones.length > 0) {
+                    let x = zones[0].geometry.rings[0][0][0];
+                    let y = zones[0].geometry.rings[0][0][1];
+
+                    if (Math.abs(x) > 180) { // It's WebMercator
+                        const lon = (x / 20037508.34) * 180;
+                        const lat = (Math.atan(Math.exp((y / 20037508.34) * Math.PI)) * 360 / Math.PI) - 90;
+                        mapCenter = [lon, lat];
+                    } else {
+                        mapCenter = [x, y];
+                    }
+                }
+            }
+        } catch (e) { console.error("Could not parse map center from zones", e) }
+
         const map = new Map({ basemap: config?.map?.basemap || "satellite" });
 
         const view = new MapView({
             container: "studentMap",
             map: map,
-            center: config?.map?.center || [-98.0706, 26.1675],
+            center: mapCenter, // Use dynamically calculated center
+
             zoom: 18,
             constraints: { minZoom: 17, maxZoom: 20 }
         });
@@ -90,6 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Core Render Function based on the selected hour
+        /**
+         * Renders student dots on the map for a specific hour, categorizing them by indoor/outdoor
+         * and calculating cumulative outdoor time by department.
+         * @param {number} targetHour - The hour to render data for (e.g., 8 to 16).
+         */
         function updateMapForHour(targetHour) {
             studentLayer.removeAll(); // Clear existing dots
 
@@ -132,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById(`bar${cleanId}`).style.width = `${pct}%`;
             });
 
-
             currentPoints.forEach(feature => {
                 const props = feature.properties;
                 const zone = props.zone_desc;
@@ -165,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (props.group === "C") deptName = "English Group";
                 if (props.group === "D") deptName = "Art Group";
 
-
                 const point = new Point({
                     longitude: feature.geometry.coordinates[0],
                     latitude: feature.geometry.coordinates[1]
@@ -193,6 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let playInterval;
         const playBtn = document.getElementById('playBtn');
 
+        /**
+         * Toggles the automatic timeline animation, looping the map state through the school day hours.
+         */
         function togglePlay() {
             isPlaying = !isPlaying;
             playBtn.textContent = isPlaying ? "Pause" : "Play";
