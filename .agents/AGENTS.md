@@ -21,3 +21,9 @@ UTRGV has strict AI compliance rules (Effective Dec 1, 2025) that apply to all o
 - **Data Protection:** Absolutely no sensitive data (student, medical, financial records) can be uploaded or processed through non-approved tools. This extends FERPA/HIPAA protections to AI.
 - **Human Oversight:** AI must not operate independently of human judgment. All AI outputs must be reviewed, validated, and interpreted by a human before use (e.g., in reports, code, or outreach).
 - **Technology Approval:** Any new AI software/tool must go through a Technology Assessment before use or purchase.
+
+## 4. UI Design Philosophy (Human-Analog)
+The visual identity of this project must feel "simple, productive, and functional." 
+- **Avoid AI Slop:** Do not generate overly complex, messy, or hallucinated UI elements that feel like cheap AI-generated templates.
+- **Human Analog Aesthetics:** Users prefer interfaces that look like they were handcrafted by a human.
+- **Layout Preference:** Favor clean, split-screen layouts (e.g., half the screen scrollable with links/tools, and the other half static, like a persistent flyer or map view) whenever designing new directory or resource pages.

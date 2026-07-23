@@ -21,6 +21,8 @@
 - [ ] **Feature Concept 2 - "Campus Care Quests":** Gamified, simple maintenance checklists (watering, weeding) using "farmer/elementary talk" (e.g., "Is the dirt dry like a cracker?").
 - [ ] **Feature Concept 3 - "Habitat Spotter":** An elementary-friendly wildlife logging module (bugs, birds) to track biodiversity returning to the campus over 10 years.
 - [ ] **Feature Concept 4 - "Time Machine" Slider:** A visualization tool using CAD data to show the projected 5- and 10-year canopy growth ("See the shade when you're in high school!").
+- [ ] **Feature Concept 5 - "Living Tree Legacy (Time-Lapse Naming)":** An automated visual time-lapse showing individual trees growing over a decade. Every incoming UTRGV class names a tree via tag numbers; the visualization overlaps/morphs the tree's growth with its evolving names (a collage of names) over the years.
+
 
 ## 🏗️ In Progress (Active Sprints)
 - [ ] **July Milestone - Baseline QA & Finalization:** Lock v1 tables & campus fact sheets.

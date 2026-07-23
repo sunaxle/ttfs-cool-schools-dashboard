@@ -245,5 +245,57 @@ document.addEventListener("DOMContentLoaded", () => {
             downloadAnchorNode.click();
             downloadAnchorNode.remove();
         });
+
+        // 8. GeoJSON Import Logic
+        const btnImport = document.getElementById("btnImportGeoJSON");
+        const fileInput = document.getElementById("importGeoJSONInput");
+
+        btnImport.addEventListener("click", () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const geojson = JSON.parse(event.target.result);
+                    if (geojson.type !== "FeatureCollection" || !geojson.features) {
+                        alert("Invalid GeoJSON file format.");
+                        return;
+                    }
+
+                    // Convert GeoJSON features back to drawnZones format
+                    const newZones = geojson.features.map(f => {
+                        // Project back to WebMercator for rendering
+                        const poly = new Polygon({ rings: f.geometry.coordinates, spatialReference: { wkid: 4326 } });
+                        const webMercPoly = webMercatorUtils.geographicToWebMercator(poly);
+                        
+                        return {
+                            category: f.properties.category || "Open Land",
+                            campus: f.properties.campus || campusName,
+                            timestamp: f.properties.dateAdded || new Date().toISOString(),
+                            geometry: {
+                                type: "polygon",
+                                rings: webMercPoly.rings
+                            }
+                        };
+                    });
+
+                    // Merge and save
+                    drawnZones = [...drawnZones, ...newZones];
+                    localStorage.setItem(`zones_${campusName}`, JSON.stringify(drawnZones));
+                    renderSavedZones();
+                    alert("Zones imported successfully!");
+                } catch (err) {
+                    console.error("Import error", err);
+                    alert("Error parsing the JSON file.");
+                }
+                fileInput.value = ""; // Reset input
+            };
+            reader.readAsText(file);
+        });
     });
 });
