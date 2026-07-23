@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGV Eco-Archive | Wandering the Thornscrub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="eco_archive.css">
+</head>
+<body>
+    <header class="archive-header">
+        <h1>RGV Eco-Archive</h1>
+        <p>Wander through the thornscrub and discover the history, art, and ecology of the Valley.</p>
+        <div style="margin-top: 10px; margin-bottom: 15px;">
+            <a href="index.html" class="back-btn">← Back to Dashboard</a>
+            <button id="toggleStyleBtn" class="back-btn" style="margin-left: 10px; background-color: #e57373;">Switch to Realistic Bushes</button>
+        </div>
+    </header>
+
+    <div class="parallax-wrapper">
+        <!-- Background Layer: Distant Sky and Sun -->
+        <div class="parallax-layer background-layer">
+            <div class="sun"></div>
+        </div>
+
+        <!-- Midground Layer: The winding dirt path -->
+        <div class="parallax-layer midground-layer">
+            <svg class="winding-path" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <!-- A soft, winding curve -->
+                <path d="M50,0 Q80,20 50,40 T50,80 T50,100" stroke="#c09d7a" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </svg>
+            
+            <div id="archive-nodes-container">
+                <!-- JS injects nodes here -->
+            </div>
+        </div>
+
+        <!-- Foreground Layer: Fast-moving thornscrub bushes overlapping the screen -->
+        <div class="parallax-layer foreground-layer" id="foreground-bushes">
+            <!-- JS injects foreground brush here -->
+        </div>
+    </div>
+
+    <script src="rgv_archive_data.js"></script>
+    <script src="eco_archive.js"></script>
+</body>
+</html>
