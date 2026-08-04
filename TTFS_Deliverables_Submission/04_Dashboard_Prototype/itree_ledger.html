@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>USDA i-Tree Eco Ledger - Cool Schools</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .itree-container {
+            max-width: 1300px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .summary-banner {
+            background: linear-gradient(135deg, #1b4332 0%, #2e4d3c 100%);
+            color: #ffffff;
+            padding: 24px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            margin-bottom: 24px;
+        }
+
+        .summary-banner h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .summary-banner p {
+            margin: 4px 0 0 0;
+            opacity: 0.85;
+            font-size: 14px;
+        }
+
+        .metric-big {
+            font-size: 32px;
+            font-weight: 800;
+            color: #a3e635;
+        }
+
+        .timeline-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .itree-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .eco-card {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .eco-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        .eco-card-header h3 {
+            margin: 0;
+            font-size: 18px;
+            color: var(--green-dark);
+        }
+
+        .eco-icon {
+            font-size: 26px;
+        }
+
+        .eco-metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 14px;
+        }
+
+        .eco-metric-row span {
+            color: #555;
+        }
+
+        .eco-metric-row strong {
+            color: var(--green-dark);
+            font-weight: 700;
+        }
+
+        .value-highlight {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-top: 12px;
+        }
+
+        .export-btn {
+            background: var(--green-dark);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .export-btn:hover {
+            background: #1b4332;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="brand-left"></div>
+        <div class="title">USDA i-Tree Eco Ledger & Valuations</div>
+        <div class="brand-right"></div>
+    </header>
+
+        <nav class="app-nav">
+        <span style="font-size:11px; font-weight:bold; color:var(--green-dark); margin-right:4px;">📋 DELIVERABLES:</span>
+        <a class="nav-link" href="campuses.html">Select Campus</a><span class="nav-separator">|</span>
+        <a class="nav-link" href="dashboard_map.html">Dashboard</a>
+        <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+        <a class="nav-link deliverable-link" href="itree_ledger.html" class="active">i-Tree Eco Ledger <span class="badge-tag">DELIVERABLE</span></a>
+        <a class="nav-link deliverable-link" href="tree_3d.html">3D Shade Models <span class="badge-tag">DELIVERABLE</span></a>
+        <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+        <a class="nav-link deliverable-link" href="student_tracking.html">Student Tracking <span class="badge-tag">DELIVERABLE</span></a>
+        <a class="nav-link deliverable-link" href="zoning.html">Site Zoning <span class="badge-tag">DELIVERABLE</span></a>
+        <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+        <a class="nav-link deliverable-link" href="protocols.html">SOP Protocols <span class="badge-tag">DELIVERABLE</span></a>
+        <span class="nav-separator">|</span>
+        <span style="font-size:11px; font-weight:bold; color:#555; margin-right:4px;">🧪 SIMULATIONS:</span>
+        <a class="nav-link" href="trails.html">Trails</a>
+        <a class="nav-link" href="wind.html">Wind</a>
+        <a class="nav-link" href="temperature.html">Temp</a>
+        <a class="nav-link" href="soil_moisture.html">Moisture</a>
+        <a class="nav-link" href="albedo.html">Albedo</a>
+        <a class="nav-link" href="water_table.html">Water Table</a>
+        <a class="nav-link" href="soil_types.html">Soils</a>
+        <a class="nav-link" href="index.html">Impact</a>
+    </nav>
+
+    <main class="itree-container">
+        <!-- Header Banner -->
+        <div class="summary-banner">
+            <div>
+                <h1>🌳 USDA i-Tree Ecosystem Services Ledger</h1>
+                <p>Quantifying urban forestry benefits using USDA Forest Service i-Tree Eco v6.0 mathematical models for J.W. Caceres & M. Rivas Academy.</p>
+            </div>
+            <div>
+                <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px;">Combined Annual Eco Benefit (<span id="bannerYear">2025</span>)</div>
+                <div class="metric-big" id="bannerTotalValue">$0 / yr</div>
+            </div>
+        </div>
+
+        <!-- Timeline Slider -->
+        <div class="timeline-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <label for="itreeYearSlider" style="font-weight: bold; font-size: 16px; color: var(--green-dark);">Simulation Timeline Year:</label>
+                <div style="font-size: 24px; font-weight: bold; color: var(--green-dark);" id="itreeYearReadout">2025</div>
+            </div>
+            <input id="itreeYearSlider" type="range" min="2020" max="2055" step="1" value="2025" style="width: 100%; cursor: pointer;" />
+            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666; text-align: center;">Scrub the slider to watch stormwater interception, carbon storage, air filtration, and CTLA asset value grow over a 35-year lifecycle.</p>
+        </div>
+
+        <!-- 6 i-Tree Pillars Grid -->
+        <div class="itree-grid">
+            <!-- 1. Stormwater -->
+            <div class="eco-card">
+                <div>
+                    <div class="eco-card-header">
+                        <span class="eco-icon">🌧️</span>
+                        <h3>Stormwater & Flood Mitigation</h3>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Avoided Runoff Volume:</span>
+                        <strong id="valRunoffGal">0 gallons / yr</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Annual Rainfall Intercepted:</span>
+                        <strong id="valRainfallInches">24.8 inches / yr</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Sewer Infrastructure Savings:</span>
+                        <strong id="valRunoffUsd">$0 / yr</strong>
+                    </div>
+                </div>
+                <div class="value-highlight" id="valRunoffBadge">Prevents localized schoolyard flooding</div>
+            </div>
+
+            <!-- 2. Carbon -->
+            <div class="eco-card">
+                <div>
+                    <div class="eco-card-header">
+                        <span class="eco-icon">🌿</span>
+                        <h3>Carbon Sequestration & Storage</h3>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Gross Annual Sequestration:</span>
+                        <strong id="valCarbonSeqLbs">0 lbs CO₂ / yr</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Cumulative Lifetime Storage:</span>
+                        <strong id="valCarbonStoreLbs">0 lbs CO₂ stored</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Social Carbon Offset Value:</span>
+                        <strong id="valCarbonUsd">$0 / yr</strong>
+                    </div>
+                </div>
+                <div class="value-highlight" id="valCarbonBadge">Locks atmospheric carbon into biomass</div>
+            </div>
+
+            <!-- 3. Air Quality -->
+            <div class="eco-card">
+                <div>
+                    <div class="eco-card-header">
+                        <span class="eco-icon">🫁</span>
+                        <h3>Air Quality & Health Impact</h3>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Fine Particulates (PM2.5) Removed:</span>
+                        <strong id="valPm25Lbs">0.00 lbs / yr</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Ground Ozone (O₃) Filtered:</span>
+                        <strong id="valOzoneLbs">0.00 lbs / yr</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Avoided Healthcare Expenses:</span>
+                        <strong id="valHealthUsd">$0 / yr</strong>
+                    </div>
+                </div>
+                <div class="value-highlight" id="valHealthBadge">Filters particulate soot linked to asthma</div>
+            </div>
+
+            <!-- 4. Energy -->
+            <div class="eco-card">
+                <div>
+                    <div class="eco-card-header">
+                        <span class="eco-icon">⚡</span>
+                        <h3>Building Energy & AC Savings</h3>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Summer A/C Electricity Saved:</span>
+                        <strong id="valEnergyKwh">0 kWh / yr</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Winter Heating Reduction:</span>
+                        <strong id="valHeatingMbtu">18.5 MBtu / yr</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Annual Utility Bill Savings:</span>
+                        <strong id="valEnergyUsd">$0 / yr</strong>
+                    </div>
+                </div>
+                <div class="value-highlight" id="valEnergyBadge">Shades building roofs & windows</div>
+            </div>
+
+            <!-- 5. Microclimate -->
+            <div class="eco-card">
+                <div>
+                    <div class="eco-card-header">
+                        <span class="eco-icon">🌡️</span>
+                        <h3>Microclimate & Leaf Area Index</h3>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Campus Leaf Area Index (LAI):</span>
+                        <strong id="valLai">0.00</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Total Leaf Surface Area:</span>
+                        <strong id="valLeafAreaSqFt">0 sq ft</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Effective Canopy Footprint:</span>
+                        <strong id="valCanopyAreaSqFt">0 sq ft</strong>
+                    </div>
+                </div>
+                <div class="value-highlight" id="valMicroclimateBadge">Cooling air via evapotranspiration</div>
+            </div>
+
+            <!-- 6. Asset Value -->
+            <div class="eco-card">
+                <div>
+                    <div class="eco-card-header">
+                        <span class="eco-icon">💎</span>
+                        <h3>CTLA Structural Replacement Asset</h3>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Active Campus Trees:</span>
+                        <strong id="valTreeCount">0 Trees</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Appraised CTLA Asset Value:</span>
+                        <strong id="valCtlaAssetUsd">$0</strong>
+                    </div>
+                    <div class="eco-metric-row">
+                        <span>Average Asset Value / Tree:</span>
+                        <strong id="valAvgAssetUsd">$0 / tree</strong>
+                    </div>
+                </div>
+                <div class="value-highlight" id="valAssetBadge">Structural value of living forest assets</div>
+            </div>
+        </div>
+
+        <!-- Export Action Bar -->
+        <div style="text-align: center; padding: 20px; background: #ffffff; border-radius: 8px; border: 1px solid var(--border);">
+            <button type="button" id="exportReportBtn" class="export-btn">
+                📄 Export Official i-Tree Grant Audit Summary Report (.CSV)
+            </button>
+        </div>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="itree_engine.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.getElementById('itreeYearSlider');
+            const yearReadout = document.getElementById('itreeYearReadout');
+            const bannerYear = document.getElementById('bannerYear');
+            const bannerTotalValue = document.getElementById('bannerTotalValue');
+            const exportReportBtn = document.getElementById('exportReportBtn');
+
+            let mockTrees = [];
+
+            fetch('data/mock_trees.json')
+                .then(res => res.json())
+                .then(data => {
+                    mockTrees = data.features || [];
+                    updateLedger();
+                })
+                .catch(err => console.error("Error loading mock trees for i-Tree engine:", err));
+
+            function updateLedger() {
+                const year = parseInt(slider.value, 10);
+                yearReadout.textContent = year;
+                bannerYear.textContent = year;
+
+                if (!window.ITreeEngine) return;
+
+                const res = window.ITreeEngine.calculateEcoServices(year, mockTrees);
+
+                // Update Banner
+                bannerTotalValue.textContent = `$${res.totalAnnualEcoBenefitsUsd.toLocaleString()} / yr`;
+
+                // 1. Stormwater
+                document.getElementById('valRunoffGal').textContent = `${res.annualRunoffAvoidedGallons.toLocaleString()} gal / yr`;
+                document.getElementById('valRunoffUsd').textContent = `$${res.stormwaterSavingsUsd.toLocaleString()} / yr`;
+
+                // 2. Carbon
+                document.getElementById('valCarbonSeqLbs').textContent = `${res.annualCo2SequestrationLbs.toLocaleString()} lbs CO₂ / yr`;
+                document.getElementById('valCarbonStoreLbs').textContent = `${res.lifetimeCo2StorageLbs.toLocaleString()} lbs CO₂ stored`;
+                document.getElementById('valCarbonUsd').textContent = `$${res.carbonSequestrationValueUsd.toLocaleString()} / yr`;
+
+                // 3. Air Quality
+                document.getElementById('valPm25Lbs').textContent = `${res.annualPm25RemovedLbs} lbs / yr`;
+                document.getElementById('valOzoneLbs').textContent = `${res.annualOzoneRemovedLbs} lbs / yr`;
+                document.getElementById('valHealthUsd').textContent = `$${res.healthSavingsUsd.toLocaleString()} / yr`;
+
+                // 4. Energy
+                document.getElementById('valEnergyKwh').textContent = `${res.annualAcSavingsKwh.toLocaleString()} kWh / yr`;
+                document.getElementById('valEnergyUsd').textContent = `$${res.energySavingsUsd.toLocaleString()} / yr`;
+
+                // 5. Microclimate
+                document.getElementById('valLai').textContent = res.overallLai;
+                document.getElementById('valLeafAreaSqFt').textContent = `${res.totalLeafAreaSqFt.toLocaleString()} sq ft`;
+                document.getElementById('valCanopyAreaSqFt').textContent = `${res.effectiveCanopySqFt.toLocaleString()} sq ft (${res.canopyCoverPct}%)`;
+
+                // 6. Asset Valuation
+                document.getElementById('valTreeCount').textContent = `${res.activeTreesCount} Trees`;
+                document.getElementById('valCtlaAssetUsd').textContent = `$${res.totalCtlaAssetValue.toLocaleString()}`;
+                const avgAsset = res.activeTreesCount > 0 ? Math.round(res.totalCtlaAssetValue / res.activeTreesCount) : 0;
+                document.getElementById('valAvgAssetUsd').textContent = `$${avgAsset.toLocaleString()} / tree`;
+            }
+
+            slider.addEventListener('input', updateLedger);
+
+            if (exportReportBtn) {
+                exportReportBtn.addEventListener('click', () => {
+                    const year = parseInt(slider.value, 10);
+                    const res = window.ITreeEngine.calculateEcoServices(year, mockTrees);
+
+                    let csvContent = "data:text/csv;charset=utf-8,";
+                    csvContent += "USDA i-Tree Eco Summary Report - J.W. Caceres & M. Rivas Academy\n";
+                    csvContent += `Simulation Year,${year}\n`;
+                    csvContent += `Active Trees,${res.activeTreesCount}\n`;
+                    csvContent += `Canopy Cover Area (sq ft),${res.effectiveCanopySqFt}\n`;
+                    csvContent += `Canopy Cover Percentage,${res.canopyCoverPct}%\n`;
+                    csvContent += `Leaf Area Index (LAI),${res.overallLai}\n`;
+                    csvContent += `Avoided Runoff (Gallons/yr),${res.annualRunoffAvoidedGallons}\n`;
+                    csvContent += `Stormwater Treatment Savings ($/yr),${res.stormwaterSavingsUsd}\n`;
+                    csvContent += `Annual CO2 Sequestration (lbs/yr),${res.annualCo2SequestrationLbs}\n`;
+                    csvContent += `Cumulative Carbon Storage (lbs),${res.lifetimeCo2StorageLbs}\n`;
+                    csvContent += `PM2.5 Air Filtration (lbs/yr),${res.annualPm25RemovedLbs}\n`;
+                    csvContent += `Healthcare Expense Savings ($/yr),${res.healthSavingsUsd}\n`;
+                    csvContent += `Summer AC Electricity Savings (kWh/yr),${res.annualAcSavingsKwh}\n`;
+                    csvContent += `CTLA Replacement Asset Value ($),${res.totalCtlaAssetValue}\n`;
+                    csvContent += `Total Combined Ecosystem Benefit ($/yr),${res.totalAnnualEcoBenefitsUsd}\n`;
+
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", `iTree_Eco_Report_Donna_ISD_${year}.csv`);
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
