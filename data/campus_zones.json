@@ -6,7 +6,8 @@
       "properties": {
         "category": "Campus Boundary",
         "campus": "J.W. Caceres & M. Rivas Academy",
-        "dateAdded": "2026-03-09T02:11:28.358Z"
+        "dateAdded": "2026-03-09T02:11:28.358Z",
+        "area_sqft": 854632
       },
       "geometry": {
         "type": "Polygon",
@@ -45,7 +46,8 @@
       "properties": {
         "category": "Open Land",
         "campus": "J.W. Caceres & M. Rivas Academy",
-        "dateAdded": "2026-03-08T13:45:44.486Z"
+        "dateAdded": "2026-03-08T13:45:44.486Z",
+        "area_sqft": 239655
       },
       "geometry": {
         "type": "Polygon",
@@ -116,7 +118,8 @@
       "properties": {
         "category": "Rooftop",
         "campus": "J.W. Caceres & M. Rivas Academy",
-        "dateAdded": "2026-03-08T13:46:12.018Z"
+        "dateAdded": "2026-03-08T13:46:12.018Z",
+        "area_sqft": 42967
       },
       "geometry": {
         "type": "Polygon",
@@ -175,7 +178,8 @@
       "properties": {
         "category": "Rooftop",
         "campus": "J.W. Caceres & M. Rivas Academy",
-        "dateAdded": "2026-03-08T13:46:28.051Z"
+        "dateAdded": "2026-03-08T13:46:28.051Z",
+        "area_sqft": 9577
       },
       "geometry": {
         "type": "Polygon",
@@ -222,7 +226,8 @@
       "properties": {
         "category": "Rooftop",
         "campus": "J.W. Caceres & M. Rivas Academy",
-        "dateAdded": "2026-03-08T13:46:50.621Z"
+        "dateAdded": "2026-03-08T13:46:50.621Z",
+        "area_sqft": 46284
       },
       "geometry": {
         "type": "Polygon",
@@ -313,7 +318,8 @@
       "properties": {
         "category": "Rooftop",
         "campus": "J.W. Caceres & M. Rivas Academy",
-        "dateAdded": "2026-03-08T13:47:00.835Z"
+        "dateAdded": "2026-03-08T13:47:00.835Z",
+        "area_sqft": 8721
       },
       "geometry": {
         "type": "Polygon",
@@ -348,7 +354,8 @@
       "properties": {
         "category": "Parking Lot",
         "campus": "J.W. Caceres & M. Rivas Academy",
-        "dateAdded": "2026-03-08T13:47:27.185Z"
+        "dateAdded": "2026-03-08T13:47:27.185Z",
+        "area_sqft": 11317
       },
       "geometry": {
         "type": "Polygon",
@@ -459,7 +466,8 @@
       "properties": {
         "category": "Parking Lot",
         "campus": "J.W. Caceres & M. Rivas Academy",
-        "dateAdded": "2026-03-08T13:47:51.318Z"
+        "dateAdded": "2026-03-08T13:47:51.318Z",
+        "area_sqft": 63374
       },
       "geometry": {
         "type": "Polygon",
@@ -546,7 +554,8 @@
       "properties": {
         "category": "Courtyard",
         "campus": "J.W. Caceres & M. Rivas Academy",
-        "dateAdded": "2026-03-08T13:48:33.202Z"
+        "dateAdded": "2026-03-08T13:48:33.202Z",
+        "area_sqft": 26592
       },
       "geometry": {
         "type": "Polygon",
