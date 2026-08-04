@@ -1,14 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const campusName = localStorage.getItem("activeCampusName") || "J.W. Caceres & M. Rivas Academy";
+    const campusName = localStorage.getItem("activeCampusName") || "M. Rivas Primary";
     const campusNameDisplay = document.getElementById("campusNameDisplay");
     if (campusNameDisplay) campusNameDisplay.textContent = campusName;
-
-    const DEFAULT_CENTER = [-98.0706, 26.1670];
-    const activeLng = parseFloat(localStorage.getItem("activeCampusLng"));
-    const activeLat = parseFloat(localStorage.getItem("activeCampusLat"));
-    let mapCenter = (!isNaN(activeLng) && !isNaN(activeLat) && activeLat > 25.5 && activeLat < 27.5) 
-        ? [activeLng, activeLat] 
-        : DEFAULT_CENTER;
 
     const hourSlider = document.getElementById("hourSlider");
     const hourReadout = document.getElementById("hourReadout");
@@ -42,16 +35,27 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     /**
-     * Converts a surface temperature (°F) into a RGBA color array along a smooth heat gradient
-     * Range: 75°F (Blue) -> 88°F (Green) -> 100°F (Yellow) -> 115°F (Orange) -> 128°F+ (Red)
+     * Converts surface temp to hex color along smooth heat gradient
      */
-    function getTempHeatColor(tempF) {
-        if (tempF <= 78) return [33, 150, 243, 0.75];   // Vibrant Blue
-        if (tempF <= 86) return [76, 175, 80, 0.75];   // Vibrant Green
-        if (tempF <= 98) return [255, 235, 59, 0.75];  // Yellow
-        if (tempF <= 112) return [255, 152, 0, 0.75]; // Orange
-        return [244, 67, 54, 0.85];                    // Crimson Red
+    function getTempHeatColorHex(tempF) {
+        if (tempF <= 78) return "#2196f3"; // Vibrant Blue
+        if (tempF <= 86) return "#4caf50"; // Vibrant Green
+        if (tempF <= 98) return "#ffeb3b"; // Bright Yellow
+        if (tempF <= 112) return "#ff9800"; // Thermal Orange
+        return "#f44336";                  // Crimson Red
     }
+
+    // 1. Initialize Leaflet Map
+    const map = L.map('albedoMap', {
+        center: [26.1670, -98.0706], // Center directly over M. Rivas Primary
+        zoom: 18
+    });
+
+    // High-Res Esri Satellite Basemap
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Esri Satellite',
+        maxZoom: 20
+    }).addTo(map);
 
     let isPlaying = false;
     let playInterval = null;
@@ -60,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         playHourBtn.addEventListener("click", () => {
             isPlaying = !isPlaying;
             playHourBtn.textContent = isPlaying ? "⏸ Pause" : "▶ Play Cycle";
-            playHourBtn.style.background = isPlaying ? "#c62828" : "#2e4d3c";
+            playHourBtn.style.background = isPlaying ? "#c62828" : "#1b4332";
 
             if (isPlaying) {
                 playInterval = setInterval(() => {
@@ -78,6 +82,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     hourSlider.addEventListener("input", updateHourState);
     if (typeSelect) typeSelect.addEventListener("change", updateHourState);
+
+    let rawGeoJson = null;
+
+    if (window.JASON_ZONES_DATA) {
+        rawGeoJson = window.JASON_ZONES_DATA;
+    } else {
+        fetch("data/jason_m_rivas_zones.json")
+            .then(res => res.json())
+            .then(data => {
+                rawGeoJson = data;
+                updateHourState();
+            })
+            .catch(err => console.error("Error loading zone JSON:", err));
+    }
+
+    let geoJsonLayerGroup = L.layerGroup().addTo(map);
 
     function updateHourState() {
         const hour = parseInt(hourSlider.value, 10);
@@ -101,131 +121,89 @@ document.addEventListener("DOMContentLoaded", () => {
             riskText.textContent = `At ${data.label}, unshaded asphalt reaches ${data.asphaltF}°F (${heatOffset}°F hotter than ambient air), while canopy shade stays at ${data.shadeF}°F.`;
         }
 
-        if (window.redrawAlbedoHeatMap) {
-            window.redrawAlbedoHeatMap(hour, typeSelect ? typeSelect.value : "all");
-        }
-
+        renderThermalPolygons(hour, typeSelect ? typeSelect.value : "all");
         renderMatrixTable(hour);
     }
 
-    let allZones = [];
+    function renderThermalPolygons(hour, filterType) {
+        geoJsonLayerGroup.clearLayers();
+        if (!rawGeoJson || !rawGeoJson.features) return;
 
-    // ArcGIS Map Init
-    require([
-        "esri/Map",
-        "esri/views/MapView",
-        "esri/layers/GraphicsLayer",
-        "esri/Graphic",
-        "esri/geometry/Polygon"
-    ], function (Map, MapView, GraphicsLayer, Graphic, Polygon) {
+        const hData = diurnalModel[hour] || diurnalModel[13];
 
-        const map = new Map({ basemap: "hybrid" });
-        const surfaceLayer = new GraphicsLayer({ title: "Surface Heat Gradient Layer" });
-        map.add(surfaceLayer);
-
-        const view = new MapView({
-            container: "albedoMap",
-            map: map,
-            center: mapCenter,
-            zoom: 17.5
+        const filteredFeatures = rawGeoJson.features.filter(f => {
+            const cat = f.properties.category || "Unmapped Surface";
+            if (cat === "Campus Boundary") return true;
+            if (filterType === "all") return true;
+            if (filterType === "parking" && cat.includes("Parking")) return true;
+            if (filterType === "roof" && cat.includes("Roof")) return true;
+            if (filterType === "veg" && (cat.includes("Field") || cat.includes("Lawn") || cat.includes("Grass") || cat.includes("Microforest") || cat.includes("Shaded"))) return true;
+            return false;
         });
 
-        function loadZones() {
-            fetch("data/jason_m_rivas_zones.json")
-                .then(res => res.json())
-                .then(data => {
-                    allZones = data.features;
-                    updateHourState();
-                })
-                .catch(() => {
-                    fetch("data/campus_zones.json")
-                        .then(res => res.json())
-                        .then(data => {
-                            allZones = data.features;
-                            updateHourState();
-                        })
-                        .catch(err => console.error("Error loading zones:", err));
-                });
-        }
-
-        window.redrawAlbedoHeatMap = function (hour, filterType) {
-            surfaceLayer.removeAll();
-            const hData = diurnalModel[hour] || diurnalModel[13];
-
-            allZones.forEach(f => {
-                const cat = f.properties.category || "Unmapped Surface";
-
-                let show = false;
-                if (filterType === "all") show = true;
-                if (filterType === "parking" && cat === "Parking Lot") show = true;
-                if (filterType === "roof" && cat === "Rooftop") show = true;
-                if (filterType === "veg" && (cat === "Open Field" || cat === "Grass" || cat === "Tree Enclosed Area" || cat === "Shaded Area")) show = true;
-                if (cat === "Campus Boundary") show = true;
-
-                if (!show) return;
-
-                let surfaceTemp = hData.ambientF;
-                let albedoVal = 0.35;
-
-                if (cat === "Parking Lot") {
-                    surfaceTemp = hData.asphaltF;
-                    albedoVal = 0.08;
-                } else if (cat === "Rooftop") {
-                    surfaceTemp = hData.roofF;
-                    albedoVal = 0.22;
-                } else if (cat === "Open Field") {
-                    surfaceTemp = hData.vegF + 4;
-                    albedoVal = 0.35;
-                } else if (cat === "Grass") {
-                    surfaceTemp = hData.vegF;
-                    albedoVal = 0.48;
-                } else if (cat === "Tree Enclosed Area" || cat === "Shaded Area") {
-                    surfaceTemp = hData.shadeF;
-                    albedoVal = 0.82;
-                }
-
-                let color = getTempHeatColor(surfaceTemp);
-                let outlineColor = [255, 255, 255, 0.8];
-                let outlineWidth = 1.5;
+        const geoJsonLayer = L.geoJSON({ type: "FeatureCollection", features: filteredFeatures }, {
+            style: function (feature) {
+                const cat = feature.properties.category || "";
 
                 if (cat === "Campus Boundary") {
-                    color = [0, 0, 0, 0];
-                    outlineColor = [255, 235, 59, 1];
-                    outlineWidth = 3;
+                    return {
+                        color: "#ffeb3b", // Bright Yellow boundary outline
+                        weight: 3,
+                        fillColor: "transparent",
+                        fillOpacity: 0
+                    };
                 }
 
-                let coords = f.geometry.coordinates;
-                if (f.geometry.type === "Polygon") {
-                    const polygon = new Polygon({ rings: coords, spatialReference: { wkid: 4326 } });
-                    const graphic = new Graphic({
-                        geometry: polygon,
-                        symbol: {
-                            type: "simple-fill",
-                            color: color,
-                            outline: { width: outlineWidth, color: outlineColor }
-                        },
-                        popupTemplate: {
-                            title: `Zone: ${cat}`,
-                            content: `<p><b>Material:</b> ${cat}</p><p><b>Albedo (α):</b> ${albedoVal}</p><p><b>Active Temp (${hData.label}):</b> <span style="font-size:16px; font-weight:bold; color:#c62828;">${surfaceTemp}°F</span></p>`
-                        }
-                    });
-                    surfaceLayer.add(graphic);
-                }
-            });
-        };
+                let surfaceTemp = hData.ambientF;
+                if (cat.includes("Parking")) surfaceTemp = hData.asphaltF;
+                else if (cat.includes("Roof")) surfaceTemp = hData.roofF;
+                else if (cat.includes("Field")) surfaceTemp = hData.vegF + 4;
+                else if (cat.includes("Lawn") || cat.includes("Grass")) surfaceTemp = hData.vegF;
+                else if (cat.includes("Microforest") || cat.includes("Shaded")) surfaceTemp = hData.shadeF;
 
-        loadZones();
-    });
+                const hexColor = getTempHeatColorHex(surfaceTemp);
+
+                return {
+                    color: "#ffffff",
+                    weight: 1.5,
+                    fillColor: hexColor,
+                    fillOpacity: 0.65
+                };
+            },
+            onEachFeature: function (feature, layer) {
+                const props = feature.properties || {};
+                const cat = props.category || "Zone";
+                if (cat === "Campus Boundary") return;
+
+                let surfaceTemp = hData.ambientF;
+                let albedoVal = "0.35";
+                if (cat.includes("Parking")) { surfaceTemp = hData.asphaltF; albedoVal = "0.08 (Low)"; }
+                else if (cat.includes("Roof")) { surfaceTemp = hData.roofF; albedoVal = "0.22 (Med)"; }
+                else if (cat.includes("Field")) { surfaceTemp = hData.vegF + 4; albedoVal = "0.35"; }
+                else if (cat.includes("Lawn") || cat.includes("Grass")) { surfaceTemp = hData.vegF; albedoVal = "0.48 (Cooling)"; }
+                else if (cat.includes("Microforest") || cat.includes("Shaded")) { surfaceTemp = hData.shadeF; albedoVal = "0.82 (High)"; }
+
+                layer.bindPopup(`
+                    <div style="font-family:sans-serif; font-size:13px; padding:4px;">
+                        <h4 style="margin:0 0 6px 0; color:#1b4332;">📍 ${cat}</h4>
+                        <p style="margin:2px 0;"><b>Area:</b> ${(props.area_sqft || 0).toLocaleString()} sq ft</p>
+                        <p style="margin:2px 0;"><b>Albedo Rating (α):</b> ${albedoVal}</p>
+                        <p style="margin:6px 0 0 0;"><b>Active Surface Temp (${hData.label}):</b> <strong style="color:#c62828; font-size:15px;">${surfaceTemp}°F</strong></p>
+                    </div>
+                `);
+            }
+        });
+
+        geoJsonLayerGroup.addLayer(geoJsonLayer);
+    }
 
     function renderMatrixTable(hour) {
-        if (!matrixTableBody || !allZones.length) return;
+        if (!matrixTableBody || !rawGeoJson || !rawGeoJson.features) return;
         const hData = diurnalModel[hour] || diurnalModel[13];
 
         matrixTableBody.innerHTML = "";
 
-        const sampleHours = [8, 10, 12, 14, 16, 18];
-
-        allZones.forEach((f, idx) => {
+        rawGeoJson.features.forEach((f, idx) => {
             const cat = f.properties.category || "Zone";
             if (cat === "Campus Boundary") return;
 
@@ -233,20 +211,20 @@ document.addEventListener("DOMContentLoaded", () => {
             let matName = "Soil / Open Field";
             let getTempFn = (h) => diurnalModel[h].vegF + 3;
 
-            if (cat === "Parking Lot") {
-                matName = "Dark Asphalt";
+            if (cat.includes("Parking")) {
+                matName = "Dark Asphalt Blacktop";
                 albedoVal = "0.08 (Low)";
                 getTempFn = (h) => diurnalModel[h].asphaltF;
-            } else if (cat === "Rooftop") {
-                matName = "Asphalt Shingle / Built-Up";
+            } else if (cat.includes("Roof")) {
+                matName = "Asphalt Shingle / Roof Deck";
                 albedoVal = "0.22 (Med)";
                 getTempFn = (h) => diurnalModel[h].roofF;
-            } else if (cat === "Grass") {
-                matName = "Turf Grass";
+            } else if (cat.includes("Lawn") || cat.includes("Grass")) {
+                matName = "Turf Grass Lawn";
                 albedoVal = "0.48 (Cooling)";
                 getTempFn = (h) => diurnalModel[h].vegF;
-            } else if (cat === "Tree Enclosed Area" || cat === "Shaded Area") {
-                matName = "Canopy Shade Shield";
+            } else if (cat.includes("Microforest") || cat.includes("Shaded")) {
+                matName = "Microforest Canopy Shade";
                 albedoVal = "0.82 (High)";
                 getTempFn = (h) => diurnalModel[h].shadeF;
             }
@@ -258,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const tr = document.createElement("tr");
             tr.innerHTML = `
-                <td><strong>Zone #${idx + 1}: ${cat}</strong></td>
+                <td><strong>Zone #${idx}: ${cat}</strong></td>
                 <td>${matName}</td>
                 <td><strong>${albedoVal}</strong></td>
                 <td>${getTempFn(8)}°F</td>
@@ -274,4 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
             matrixTableBody.appendChild(tr);
         });
     }
+
+    // Initial render call
+    updateHourState();
 });
