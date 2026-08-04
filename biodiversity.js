@@ -79,6 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ], function (Map, MapView, GraphicsLayer, Graphic, Polygon, Point, geometryEngine, BasemapToggle) {
 
       const campusName = localStorage.getItem("activeCampusName") || "J.W. Caceres & M. Rivas Academy";
+      const activeLng = parseFloat(localStorage.getItem("activeCampusLng"));
+      const activeLat = parseFloat(localStorage.getItem("activeCampusLat"));
       let mapCenter = (!isNaN(activeLng) && !isNaN(activeLat) && activeLat > 25.5 && activeLat < 27.5) 
         ? [activeLng, activeLat] 
         : [-98.0710, 26.1668];
@@ -225,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+});
 
 
 

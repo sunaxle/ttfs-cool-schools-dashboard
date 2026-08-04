@@ -1,26 +1,28 @@
 .bio-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            height: calc(100vh - var(--header-height) - var(--nav-height));
-            overflow: hidden;
-        }
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: calc(100vh - 150px);
+}
 
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
+.main-content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #ffffff;
+}
 
-        #bioMap {
-            flex: 1;
-            min-height: 45vh;
-        }
+#bioMap {
+    height: 380px;
+    width: 100%;
+    border-bottom: 2px solid var(--border);
+    flex-shrink: 0;
+}
 
-        .bio-panel {
-            background: #fff;
-            padding: 24px;
-            overflow-y: auto;
-        }
+.bio-panel {
+    background: #fff;
+    padding: 24px;
+    flex: 1;
+}
 
         .bio-panel h2 {
             color: var(--green-dark);
