@@ -9,23 +9,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
     <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
-    <meta name="description" content="UTRGV Agroecology Project Dashboard - Community Impact & Health" />
+    <meta name="description" content="UTRGV Agroecology Project Dashboard - Surface Albedo & Thermal Reflectance Matrix" />
     <meta name="author" content="UTRGV Agroecology" />
-    <title>Albedo & Heat Reflection | UTRGV Agroecology</title>
+    <title>Albedo & Thermal Reflectance Matrix | UTRGV Agroecology</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
     <link rel="stylesheet" href="albedo.css" />
+    <style>
+        .heat-gradient-bar {
+            height: 12px;
+            width: 100%;
+            border-radius: 6px;
+            background: linear-gradient(to right, #2196f3 0%, #4caf50 25%, #ffeb3b 50%, #ff9800 75%, #f44336 100%);
+            margin: 8px 0;
+            border: 1px solid var(--border);
+        }
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            text-align: left;
+        }
+        .matrix-table th, .matrix-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .matrix-table th {
+            background: var(--green-dark);
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .temp-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #ffffff;
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
     <header class="app-header">
-        <div class="brand-left">
-            </div>
-        <div class="title">Albedo & Heat Reflection</div>
-        <div class="brand-right">
-            </div>
+        <div class="brand-left"></div>
+        <div class="title">Surface Albedo & Thermal Reflectance Matrix</div>
+        <div class="brand-right"></div>
     </header>
-            <nav class="app-nav">
+
+    <nav class="app-nav">
         <div class="nav-section deliverables-section">
             <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
             <a class="nav-link" href="campuses.html">Select Campus</a>
@@ -34,7 +67,7 @@
             <a class="nav-link deliverable-link" href="itree_ledger.html">i-Tree Eco Ledger <span class="badge-tag">DELIVERABLE</span></a>
             <a class="nav-link deliverable-link" href="tree_3d.html">3D Shade Models <span class="badge-tag">DELIVERABLE</span></a>
             <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="albedo.html" class="active">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link active" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
             <a class="nav-link deliverable-link" href="student_tracking.html">Student Tracking <span class="badge-tag">DELIVERABLE</span></a>
             <a class="nav-link deliverable-link" href="zoning.html">Site Zoning <span class="badge-tag">DELIVERABLE</span></a>
             <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
@@ -53,67 +86,147 @@
     </nav>
 
     <main class="canopy-layout">
+        <!-- Left Sidebar: Diurnal Sun Controls & Metrics -->
         <aside class="panel left">
             <section class="card">
-                <h2>Surface Material Impact</h2>
-                <p class="hint">Albedo is the measure of how much solar radiation a surface reflects. Dark surfaces
-                    (asphalt) absorb heat, creating Urban Heat Islands. Light surfaces and vegetation reflect or
-                    dissipate it.</p>
-
-                <div style="margin-top: 15px;">
-                    <label>Highlight Material Type:</label>
-                    <select id="albedoTypeSelect"
-                        style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc;">
-                        <option value="all">View All Surfaces</option>
-                        <option value="parking">High Absorption (Asphalt/Parking)</option>
-                        <option value="roof">Moderate Absorption (Rooftops)</option>
-                        <option value="veg">Cooling (Vegetation/Canopy)</option>
-                    </select>
+                <h2>Diurnal Solar Cycle</h2>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <label for="hourSlider" style="font-weight: bold; margin-bottom: 0;">Time of Day:</label>
+                    <button type="button" id="playHourBtn" style="background: var(--green-dark); color: white; border: none; padding: 4px 12px; border-radius: 4px; font-weight: bold; cursor: pointer;">▶ Play Cycle</button>
                 </div>
+                <input id="hourSlider" type="range" min="8" max="18" step="1" value="13" style="width: 100%; cursor: pointer;" />
+                <div class="year-readout" id="hourReadout" style="font-size: 26px; font-weight: bold; color: var(--green-dark); text-align: center; margin: 8px 0;">1:00 PM</div>
+                <p class="hint">Scrub the slider or click Play Cycle to observe minute-by-minute and hour-by-hour surface thermal fluctuations across campus zones.</p>
+            </section>
+
+            <section class="card">
+                <h3>Surface Material Filter</h3>
+                <select id="albedoTypeSelect" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                    <option value="all">View All Surfaces (32 Zones)</option>
+                    <option value="parking">High Heat / Low Albedo (Asphalt Parking Lots)</option>
+                    <option value="roof">Moderate Absorption (Building Rooftops)</option>
+                    <option value="veg">High Albedo / Cooling (Microforest Canopy & Grass)</option>
+                </select>
             </section>
 
             <section class="card status">
-                <h3>Campus Heat Island Risk</h3>
-                <div class="metric-value" id="riskValue"
-                    style="font-size: 32px; color: #d9534f; text-align: center; font-weight: bold; margin-bottom: 5px;">
-                    High</div>
-                <p id="riskText" style="font-size: 13px; text-align: center;">Large continuous expanses of asphalt
-                    increase ambient temperatures by 5-8°F.</p>
+                <h3>Active Solar Metrics</h3>
+                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 13px;">
+                    <span>Solar Irradiance:</span>
+                    <strong id="valSolarIrradiance" style="color: #e65100;">940 W/m²</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 13px;">
+                    <span>Ambient Air Temp:</span>
+                    <strong id="valAmbientTemp" style="color: #1565c0;">94°F</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 13px;">
+                    <span>Peak Asphalt Temp:</span>
+                    <strong id="valPeakAsphaltTemp" style="color: #c62828;">126°F</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 13px;">
+                    <span>Canopy Shade Temp:</span>
+                    <strong id="valCanopyShadeTemp" style="color: #2e7d32;">84°F (-42°F Cooler!)</strong>
+                </div>
+            </section>
+
+            <section class="card status" style="border-left: 4px solid var(--green); background: #f0fdf4;">
+                <h3 style="color: var(--green);">Urban Heat Island Impact</h3>
+                <div class="metric-value" id="riskValue" style="font-size: 28px; color: #c62828; text-align: center; font-weight: bold; margin-bottom: 4px;">Severe (+32°F)</div>
+                <p id="riskText" style="font-size: 12px; text-align: center; color: #555; margin: 0;">Unshaded asphalt parking lots reach 126°F at 1:00 PM, creating intense surface thermal radiation.</p>
             </section>
         </aside>
 
-        <section class="map-panel">
+        <!-- Center Map Panel -->
+        <section class="map-panel" style="position: relative;">
             <div id="albedoMap" style="width: 100%; height: 100%;"></div>
-            <div
-                style="position: absolute; bottom: 20px; left: 20px; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10;">
-                <h4 style="margin: 0 0 5px 0; font-size: 14px;">Albedo Map</h4>
-                <div style="font-size: 12px; margin-bottom: 3px;"><span class="legend-box"
-                        style="background: rgba(244, 67, 54, 0.7);"></span> High Absorption (Asphalt)</div>
-                <div style="font-size: 12px; margin-bottom: 3px;"><span class="legend-box"
-                        style="background: rgba(255, 152, 0, 0.6);"></span> Moderate (Roofs/Dirt)</div>
-                <div style="font-size: 12px;"><span class="legend-box"
-                        style="background: rgba(76, 175, 80, 0.6);"></span> Cooling (Grass/Canopy)</div>
+            
+            <!-- Dynamic Thermal Gradient Legend Overlay -->
+            <div style="position: absolute; bottom: 24px; left: 20px; background: rgba(255,255,255,0.95); padding: 12px 16px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10; width: 240px; border: 1px solid var(--border);">
+                <h4 style="margin: 0 0 6px 0; font-size: 13px; color: var(--green-dark);">Surface Thermal Gradient (&deg;F)</h4>
+                <div class="heat-gradient-bar"></div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: bold; color: #444;">
+                    <span style="color:#2196f3;">75°F (Shade)</span>
+                    <span style="color:#4caf50;">88°F</span>
+                    <span style="color:#ff9800;">105°F</span>
+                    <span style="color:#f44336;">128°F+ (Asphalt)</span>
+                </div>
             </div>
         </section>
 
+        <!-- Right Sidebar: Material Reflectance & Mitigation -->
         <aside class="panel right">
             <section class="card">
-                <h3 id="targetSchoolTitle">Target Campus</h3>
-                <p><strong><span id="campusNameDisplay">J.W. Caceres & M. Rivas Academy</span></strong><br>Donna, TX</p>
+                <h3>Target Campus</h3>
+                <p style="margin: 0; font-size: 14px;"><strong><span id="campusNameDisplay">J.W. Caceres & M. Rivas Academy</span></strong><br>Donna, TX (32 Digitized Zones)</p>
             </section>
 
             <section class="card">
-                <h3>Mitigation Strategies</h3>
-                <ul style="font-size: 13px; padding-left: 20px; color: var(--text);">
-                    <li style="margin-bottom: 5px;">Depave unused parking zones and replace with permeable pavers or
-                        grass.</li>
-                    <li style="margin-bottom: 5px;">Plant shade trees strategically to block afternoon sun on exposed
-                        concrete.</li>
-                    <li>Apply highly reflective coatings to school rooftops.</li>
+                <h3>Reflectance Index (&alpha;)</h3>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>🟦 Microforest Canopy:</span>
+                        <strong style="color: #2196f3;">&alpha; = 0.82 (High Reflectance)</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>🟩 Grass / Open Turf:</span>
+                        <strong style="color: #4caf50;">&alpha; = 0.48 (Cooling)</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>🟧 Roof Surfaces:</span>
+                        <strong style="color: #ff9800;">&alpha; = 0.22 (Moderate)</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>🟥 Asphalt Parking:</span>
+                        <strong style="color: #f44336;">&alpha; = 0.08 (Low / High Heat)</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3>Albedo Mitigation SOP</h3>
+                <ul style="font-size: 12px; padding-left: 18px; color: #444; margin: 0; line-height: 1.5;">
+                    <li style="margin-bottom: 6px;">Plant high-albedo native trees around asphalt perimeters.</li>
+                    <li style="margin-bottom: 6px;">Apply cool-roof white elastomer coatings to lower A/C thermal load.</li>
+                    <li>Convert unshaded blacktop into shaded outdoor learning microforests.</li>
                 </ul>
             </section>
         </aside>
     </main>
+
+    <!-- Hourly Temperature & Reflectance Matrix Table Section -->
+    <section class="matrix-section" style="padding: 24px; background: #ffffff; border-top: 3px solid var(--green-dark); margin-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div>
+                <h2 style="margin: 0; color: var(--green-dark); font-size: 22px;">📊 Zone-by-Zone Hourly Surface Temperature Matrix</h2>
+                <p style="margin: 4px 0 0 0; color: #555; font-size: 13px;">
+                    Hour-by-hour surface temperature fluctuations (°F) and solar reflectance values across all digitized campus zones for <strong style="color:var(--green-dark);" id="matrixHourLabel">1:00 PM</strong>.
+                </p>
+            </div>
+        </div>
+
+        <div style="max-height: 380px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>Zone Name / Category</th>
+                        <th>Surface Material</th>
+                        <th>Albedo (&alpha;)</th>
+                        <th>8:00 AM</th>
+                        <th>10:00 AM</th>
+                        <th>12:00 PM</th>
+                        <th>2:00 PM (Peak)</th>
+                        <th>4:00 PM</th>
+                        <th>6:00 PM</th>
+                        <th>Active Temp (<span id="tableActiveHourLabel">1 PM</span>)</th>
+                        <th>Heat Offset vs. Air</th>
+                    </tr>
+                </thead>
+                <tbody id="matrixTableBody">
+                    <!-- Populated dynamically by albedo.js -->
+                </tbody>
+            </table>
+        </div>
+    </section>
 
     <script src="config.js"></script>
     <script src="https://js.arcgis.com/4.29/"></script>
