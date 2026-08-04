@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const riskVal = document.getElementById("riskValue");
     const riskText = document.getElementById("riskText");
 
+    const btnModeHeatmap = document.getElementById("btnModeHeatmap");
+    const btnModePolygons = document.getElementById("btnModePolygons");
+
     const valSolarIrradiance = document.getElementById("valSolarIrradiance");
     const valAmbientTemp = document.getElementById("valAmbientTemp");
     const valPeakAsphaltTemp = document.getElementById("valPeakAsphaltTemp");
@@ -18,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const matrixHourLabel = document.getElementById("matrixHourLabel");
     const tableActiveHourLabel = document.getElementById("tableActiveHourLabel");
     const matrixTableBody = document.getElementById("matrixTableBody");
+
+    let activeDisplayMode = "heatmap"; // "heatmap" or "polygons"
 
     // Diurnal Solar & Ambient Temperature Model (8 AM to 6 PM)
     const diurnalModel = {
@@ -34,20 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
         18: { label: "6:00 PM",  solarW: 180, ambientF: 89, asphaltF: 94,  roofF: 90,  vegF: 83,  shadeF: 81 }
     };
 
-    /**
-     * Converts surface temp to hex color along smooth heat gradient
-     */
     function getTempHeatColorHex(tempF) {
-        if (tempF <= 78) return "#2196f3"; // Vibrant Blue
-        if (tempF <= 86) return "#4caf50"; // Vibrant Green
-        if (tempF <= 98) return "#ffeb3b"; // Bright Yellow
-        if (tempF <= 112) return "#ff9800"; // Thermal Orange
-        return "#f44336";                  // Crimson Red
+        if (tempF <= 78) return "#2196f3"; // Blue
+        if (tempF <= 86) return "#4caf50"; // Green
+        if (tempF <= 98) return "#ffeb3b"; // Yellow
+        if (tempF <= 112) return "#ff9800"; // Orange
+        return "#f44336";                  // Red
     }
 
-    // 1. Initialize Leaflet Map
+    // Initialize Leaflet Map
     const map = L.map('albedoMap', {
-        center: [26.1670, -98.0706], // Center directly over M. Rivas Primary
+        center: [26.1670, -98.0706], // Centered on M. Rivas Primary
         zoom: 18
     });
 
@@ -80,14 +82,41 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Mode Toggle Buttons
+    if (btnModeHeatmap && btnModePolygons) {
+        btnModeHeatmap.addEventListener("click", () => {
+            activeDisplayMode = "heatmap";
+            btnModeHeatmap.style.background = "var(--green-dark)";
+            btnModeHeatmap.style.color = "white";
+            btnModeHeatmap.style.border = "2px solid var(--green-dark)";
+
+            btnModePolygons.style.background = "white";
+            btnModePolygons.style.color = "#333";
+            btnModePolygons.style.border = "1px solid var(--border)";
+
+            updateHourState();
+        });
+
+        btnModePolygons.addEventListener("click", () => {
+            activeDisplayMode = "polygons";
+            btnModePolygons.style.background = "var(--green-dark)";
+            btnModePolygons.style.color = "white";
+            btnModePolygons.style.border = "2px solid var(--green-dark)";
+
+            btnModeHeatmap.style.background = "white";
+            btnModeHeatmap.style.color = "#333";
+            btnModeHeatmap.style.border = "1px solid var(--border)";
+
+            updateHourState();
+        });
+    }
+
     hourSlider.addEventListener("input", updateHourState);
     if (typeSelect) typeSelect.addEventListener("change", updateHourState);
 
-    let rawGeoJson = null;
+    let rawGeoJson = window.JASON_ZONES_DATA || null;
 
-    if (window.JASON_ZONES_DATA) {
-        rawGeoJson = window.JASON_ZONES_DATA;
-    } else {
+    if (!rawGeoJson) {
         fetch("data/jason_m_rivas_zones.json")
             .then(res => res.json())
             .then(data => {
@@ -97,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error("Error loading zone JSON:", err));
     }
 
-    let geoJsonLayerGroup = L.layerGroup().addTo(map);
+    let mapLayerGroup = L.layerGroup().addTo(map);
 
     function updateHourState() {
         const hour = parseInt(hourSlider.value, 10);
@@ -121,12 +150,100 @@ document.addEventListener("DOMContentLoaded", () => {
             riskText.textContent = `At ${data.label}, unshaded asphalt reaches ${data.asphaltF}°F (${heatOffset}°F hotter than ambient air), while canopy shade stays at ${data.shadeF}°F.`;
         }
 
-        renderThermalPolygons(hour, typeSelect ? typeSelect.value : "all");
+        if (activeDisplayMode === "heatmap") {
+            renderSmoothHeatmap(hour, typeSelect ? typeSelect.value : "all");
+        } else {
+            renderThermalPolygons(hour, typeSelect ? typeSelect.value : "all");
+        }
+
         renderMatrixTable(hour);
     }
 
+    /**
+     * Renders a smooth FLIR Thermal Gradient Field across campus using sampled grid points
+     */
+    function renderSmoothHeatmap(hour, filterType) {
+        mapLayerGroup.clearLayers();
+        if (!rawGeoJson || !rawGeoJson.features) return;
+
+        const hData = diurnalModel[hour] || diurnalModel[13];
+
+        // Sample heat points across zone geometries
+        const heatPoints = [];
+
+        rawGeoJson.features.forEach(f => {
+            const cat = f.properties.category || "";
+            if (cat === "Campus Boundary") return;
+
+            let surfaceTemp = hData.ambientF;
+            if (cat.includes("Parking")) surfaceTemp = hData.asphaltF;
+            else if (cat.includes("Roof")) surfaceTemp = hData.roofF;
+            else if (cat.includes("Field")) surfaceTemp = hData.vegF + 4;
+            else if (cat.includes("Lawn") || cat.includes("Grass")) surfaceTemp = hData.vegF;
+            else if (cat.includes("Microforest") || cat.includes("Shaded")) surfaceTemp = hData.shadeF;
+
+            // Normalized thermal intensity (0.0 to 1.0)
+            const intensity = Math.max(0.1, (surfaceTemp - 75) / (135 - 75));
+
+            // Extract ring points
+            const ring = f.geometry.coordinates[0];
+            if (!ring || !ring.length) return;
+
+            // Compute centroid + interior grid points
+            let sumLat = 0, sumLng = 0;
+            ring.forEach(pt => {
+                sumLng += pt[0];
+                sumLat += pt[1];
+                // Boundary sampling
+                heatPoints.push([pt[1], pt[0], intensity * 0.8]);
+            });
+
+            const cLat = sumLat / ring.length;
+            const cLng = sumLng / ring.length;
+
+            // Centroid dense sampling
+            heatPoints.push([cLat, cLng, intensity]);
+            heatPoints.push([cLat + 0.00005, cLng + 0.00005, intensity]);
+            heatPoints.push([cLat - 0.00005, cLng - 0.00005, intensity]);
+            heatPoints.push([cLat + 0.00005, cLng - 0.00005, intensity]);
+            heatPoints.push([cLat - 0.00005, cLng + 0.00005, intensity]);
+        });
+
+        // Create Leaflet.heat smooth gradient layer
+        if (typeof L.heatLayer === "function") {
+            const heatLayer = L.heatLayer(heatPoints, {
+                radius: 28,
+                blur: 20,
+                maxZoom: 19,
+                max: 1.0,
+                gradient: {
+                    0.15: '#2196f3', // Cool Blue
+                    0.35: '#4caf50', // Temperate Green
+                    0.55: '#ffeb3b', // Yellow
+                    0.75: '#ff9800', // Thermal Orange
+                    0.95: '#f44336'  // Crimson Red
+                }
+            });
+            mapLayerGroup.addLayer(heatLayer);
+        }
+
+        // Draw Campus Boundary outline overlay
+        const boundaryFeature = rawGeoJson.features.find(f => f.properties.category === "Campus Boundary");
+        if (boundaryFeature) {
+            const boundaryLayer = L.geoJSON(boundaryFeature, {
+                style: {
+                    color: "#ffeb3b",
+                    weight: 3,
+                    fillColor: "transparent",
+                    fillOpacity: 0
+                }
+            });
+            mapLayerGroup.addLayer(boundaryLayer);
+        }
+    }
+
     function renderThermalPolygons(hour, filterType) {
-        geoJsonLayerGroup.clearLayers();
+        mapLayerGroup.clearLayers();
         if (!rawGeoJson || !rawGeoJson.features) return;
 
         const hData = diurnalModel[hour] || diurnalModel[13];
@@ -147,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (cat === "Campus Boundary") {
                     return {
-                        color: "#ffeb3b", // Bright Yellow boundary outline
+                        color: "#ffeb3b",
                         weight: 3,
                         fillColor: "transparent",
                         fillOpacity: 0
@@ -194,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        geoJsonLayerGroup.addLayer(geoJsonLayer);
+        mapLayerGroup.addLayer(geoJsonLayer);
     }
 
     function renderMatrixTable(hour) {
