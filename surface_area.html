@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Surface Area Breakdown - Cool Schools</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .surface-layout {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .dropzone {
+            border: 2px dashed var(--green-dark);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            background: #ffffff;
+            color: #555;
+            cursor: pointer;
+            margin-bottom: 24px;
+            transition: all 0.2s;
+        }
+
+        .dropzone:hover {
+            background: #f4f8f5;
+            border-color: var(--green);
+        }
+
+        .model-toggle-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            justify-content: center;
+        }
+
+        .model-btn {
+            background: #ffffff;
+            border: 2px solid var(--green-dark);
+            color: var(--green-dark);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .model-btn.active, .model-btn:hover {
+            background: var(--green-dark);
+            color: #ffffff;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .stats-table th, .stats-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stats-table th {
+            background: #f9f9f9;
+            color: var(--green-dark);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="brand-left"></div>
+        <div class="title">Surface Area Breakdown (Jason's Model)</div>
+        <div class="brand-right"></div>
+    </header>
+
+    <nav class="app-nav">
+        <span class="nav-section-label" style="font-size:11px; font-weight:bold; color:var(--green-dark); margin-right:4px;">📋 DELIVERABLES:</span>
+        <a class="nav-link" href="campuses.html">Select Campus</a><span class="nav-separator">|</span>
+        <a class="nav-link" href="dashboard_map.html">Dashboard</a>
+        <a class="nav-link" href="canopy.html">Canopy Over Time</a>
+        <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
+        <a class="nav-link" href="biodiversity.html">Biodiversity</a>
+        <a class="nav-link" href="student_tracking.html">Student Tracking</a>
+        <a class="nav-link" href="zoning.html">Site Zoning</a>
+        <a class="nav-link active" href="surface_area.html">Surface Breakdown</a>
+        <a class="nav-link" href="protocols.html">Protocols</a>
+        <span class="nav-separator">|</span>
+        <span class="nav-section-label" style="font-size:11px; font-weight:bold; color:#777; margin-right:4px;">🧪 SIMULATIONS:</span>
+        <a class="nav-link" href="trails.html">Trails</a>
+        <a class="nav-link" href="wind.html">Wind</a>
+        <a class="nav-link" href="temperature.html">Temp</a>
+        <a class="nav-link" href="soil_moisture.html">Moisture</a>
+        <a class="nav-link" href="albedo.html">Albedo</a>
+        <a class="nav-link" href="water_table.html">Water Table</a>
+        <a class="nav-link" href="soil_types.html">Soils</a>
+        <a class="nav-link" href="index.html">Impact</a>
+    </nav>
+
+    <main class="surface-layout">
+        <div class="model-toggle-bar">
+            <button type="button" id="loadJasonBtn" class="model-btn active">
+                📍 Jason's M. Rivas Primary Digitized Model (32 Polygons)
+            </button>
+            <button type="button" id="loadDefaultBtn" class="model-btn">
+                🏫 Standard Campus Model (9 Polygons)
+            </button>
+        </div>
+
+        <div class="dropzone" id="dropzone">
+            <p style="margin:0; font-weight:bold; color:var(--green-dark);">Drag & Drop custom *_Zones.json file here (or click to upload)</p>
+            <input type="file" id="fileInput" style="display: none;" accept=".json">
+        </div>
+
+        <h2 id="campusTitle" style="text-align:center; color:var(--green-dark); margin-bottom:20px;">M. Rivas Primary Surface Area Analysis</h2>
+
+        <div class="dashboard-grid" id="dashboard">
+            <div class="card">
+                <h3 style="margin-top:0; color:var(--green-dark);">Surface Category Breakdown</h3>
+                <canvas id="pieChart"></canvas>
+            </div>
+            <div class="card">
+                <h3 style="margin-top:0; color:var(--green-dark);">Metrics & Land Cover Proportions</h3>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Zone Category</th>
+                            <th>Total Area (sq ft)</th>
+                            <th>% of Campus</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const loadJasonBtn = document.getElementById('loadJasonBtn');
+        const loadDefaultBtn = document.getElementById('loadDefaultBtn');
+        let chartInstance = null;
+
+        const categoryColors = {
+            "Campus Boundary": "#2e4d3c",
+            "Rooftop": "#ff8a65",
+            "Parking Lot": "#78909c",
+            "Open Field": "#dce775",
+            "Grass": "#81c784",
+            "Tree Enclosed Area": "#388e3c",
+            "Shaded Area": "#4fc3f7",
+            "Unmapped Surface": "#e57373"
+        };
+
+        dropzone.addEventListener('click', () => fileInput.click());
+        
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.style.background = '#e8f5e9';
+        });
+
+        dropzone.addEventListener('dragleave', () => dropzone.style.background = '#ffffff');
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.style.background = '#ffffff';
+            if (e.dataTransfer.files.length) {
+                processFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                processFile(e.target.files[0]);
+            }
+        });
+
+        loadJasonBtn.addEventListener('click', () => {
+            loadJasonBtn.classList.add('active');
+            loadDefaultBtn.classList.remove('active');
+            fetchData('data/jason_m_rivas_zones.json');
+        });
+
+        loadDefaultBtn.addEventListener('click', () => {
+            loadDefaultBtn.classList.add('active');
+            loadJasonBtn.classList.remove('active');
+            fetchData('data/campus_zones.json');
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchData('data/jason_m_rivas_zones.json');
+        });
+
+        function fetchData(url) {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => analyzeData(data))
+                .catch(err => console.error("Error loading dataset:", err));
+        }
+
+        function processFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    analyzeData(data);
+                } catch (error) {
+                    alert("Invalid JSON file format.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function analyzeData(geoJson) {
+            const features = geoJson.features;
+            let campusName = "M. Rivas Primary";
+            if (features.length > 0 && features[0].properties.campus) {
+                campusName = features[0].properties.campus;
+            }
+
+            document.getElementById('campusTitle').textContent = `${campusName} Surface Breakdown (${features.length} Polygons Logged)`;
+            
+            let campusBoundaryArea = 0;
+            const categorySums = {};
+
+            features.forEach(f => {
+                const props = f.properties;
+                const cat = props.category || "Unmapped Surface";
+                const area = props.area_sqft || 0;
+
+                if (cat === "Individual Tree") return;
+
+                if (cat === "Campus Boundary") {
+                    campusBoundaryArea = area;
+                } else {
+                    if (!categorySums[cat]) categorySums[cat] = 0;
+                    categorySums[cat] += area;
+                }
+            });
+
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            const labels = [];
+            const datasetData = [];
+            const backgroundColor = [];
+
+            for (const [cat, area] of Object.entries(categorySums)) {
+                let percentage = campusBoundaryArea > 0 ? ((area / campusBoundaryArea) * 100).toFixed(1) : "N/A";
+                
+                labels.push(cat);
+                datasetData.push(area);
+                backgroundColor.push(categoryColors[cat] || "#888888");
+
+                tbody.insertAdjacentHTML('beforeend', `
+                    <tr>
+                        <td><strong>${cat}</strong></td>
+                        <td>${area.toLocaleString()} sq ft</td>
+                        <td><strong>${percentage}%</strong></td>
+                    </tr>
+                `);
+            }
+
+            tbody.insertAdjacentHTML('beforeend', `
+                <tr style="background:#e8f5e9; font-weight:bold;">
+                    <td>Total Campus Boundary Area</td>
+                    <td>${campusBoundaryArea.toLocaleString()} sq ft</td>
+                    <td>100%</td>
+                </tr>
+            `);
+
+            renderChart(labels, datasetData, backgroundColor);
+        }
+
+        function renderChart(labels, data, colors) {
+            const ctx = document.getElementById('pieChart').getContext('2d');
+            
+            if (chartInstance) chartInstance.destroy();
+
+            chartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: colors,
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

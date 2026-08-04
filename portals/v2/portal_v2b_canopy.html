@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cool Schools - Deep Dive Portal (v2)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --sand: #F4F1EA;
+      --earth: #4A4036;
+      --leaf-dark: #2F3E2B;
+      --accent: #C25C3A;
+      --card-bg: #FFFFFF;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--sand);
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden; /* We handle scrolling via GSAP Observer */
+      color: var(--earth);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle physical noise texture overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* 3D Scene Container for zoom effects */
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+    }
+
+    /* --------------------------------------
+       STATE 1: TITLE SCREEN 
+       -------------------------------------- */
+    .title-screen {
+      position: absolute;
+      text-align: center;
+      z-index: 6;
+      pointer-events: none;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .title-screen h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      margin: 0;
+      color: var(--leaf-dark);
+      line-height: 1.1;
+    }
+    .title-screen h1 span {
+      display: block;
+      font-style: italic;
+      font-size: 4rem;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .title-screen p {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      color: var(--earth);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .instruction {
+      position: absolute;
+      bottom: 40px;
+      text-align: center;
+      width: 100%;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      z-index: 15;
+      color: var(--earth);
+      opacity: 0.6;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: opacity 0.3s;
+    }
+    .instruction:hover { opacity: 1; }
+
+    /* --------------------------------------
+       LAYER 1: OUTER LEAVES (District Level)
+       -------------------------------------- */
+    .leaf-layer {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .leaf-img {
+      position: absolute;
+      mix-blend-mode: multiply;
+      object-fit: contain;
+      filter: contrast(1.05) saturate(1.1);
+      will-change: transform;
+    }
+    #leaf1 { width: 75vw; max-width: 900px; top: -15%; left: -20%; transform: rotate(-15deg); }
+    #leaf2 { width: 60vw; max-width: 800px; bottom: -25%; right: -15%; transform: rotate(35deg); }
+    #leaf3 { width: 80vw; max-width: 1000px; top: -10%; right: -25%; transform: rotate(115deg); z-index: 11; }
+
+    /* --------------------------------------
+       LAYER 2: DISTRICT CARDS
+       -------------------------------------- */
+    .districts-container {
+      display: flex;
+      gap: 4rem;
+      z-index: 5;
+      opacity: 0;
+      transform: translateY(40px);
+      padding: 0 2rem;
+      position: absolute; /* so we can zoom past them */
+    }
+
+    .card {
+      width: 360px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(74, 64, 54, 0.05), 0 40px 80px rgba(74, 64, 54, 0.08);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 6px;
+      background: var(--leaf-dark);
+      border-radius: 16px 16px 0 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(74, 64, 54, 0.08), 0 50px 100px rgba(74, 64, 54, 0.12);
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: contain;
+      margin-bottom: 2rem;
+      background: #FFF;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      padding: 10px;
+    }
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin: 0 0 1rem 0;
+      color: var(--leaf-dark);
+    }
+    .card p {
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+      flex-grow: 1;
+    }
+    .card button {
+      background: var(--sand);
+      color: var(--leaf-dark);
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 14px 36px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    .card:hover button {
+      background: var(--leaf-dark);
+      color: #FFF;
+      border-color: var(--leaf-dark);
+    }
+
+    /* --------------------------------------
+       LAYER 3: INNER LEAVES (Campus Level)
+       -------------------------------------- */
+    .inner-leaf-layer {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 20;
+      display: none; /* hidden until deep dive */
+      opacity: 0;
+    }
+    /* Reusing the same images for now, but scaled and blurred differently for depth */
+    #inner-leaf1 { width: 110vw; max-width: 1200px; bottom: -30%; left: -20%; transform: rotate(45deg); filter: blur(3px) contrast(1.1) saturate(1.1); }
+    #inner-leaf2 { width: 80vw; max-width: 900px; top: -20%; right: -15%; transform: rotate(-85deg); filter: blur(1px) contrast(1.1) saturate(1.1); }
+
+    /* --------------------------------------
+       LAYER 4: CAMPUS CARDS (The Deep Dive)
+       -------------------------------------- */
+    .campuses-container {
+      display: none; /* hidden until deep dive */
+      opacity: 0;
+      gap: 3rem;
+      z-index: 15;
+      padding: 0 2rem;
+      position: absolute;
+      transform: scale(0.8) translateZ(-500px); /* start pushed back in Z-space */
+    }
+    
+    .campus-header {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--leaf-dark);
+      text-align: center;
+      width: 100%;
+      white-space: nowrap;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: -100px;
+      left: -20px;
+      background: none;
+      border: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      color: var(--accent);
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-btn:hover { text-decoration: underline; }
+
+  </style>
+</head>
+<body>
+
+  <div class="scene" id="scene">
+    
+    <!-- STATE 1: Title View -->
+    <div class="title-screen">
+      <h1>Cool Schools <span>Initiative</span></h1>
+      <p>South Texas Canopy Project</p>
+    </div>
+
+    <div class="instruction">Scroll or Click to Begin</div>
+
+    <!-- STATE 1: Foreground Leaves -->
+    <div class="leaf-layer">
+      <img src="../../assets/mesquite_leaf.jpg" alt="Mesquite Leaf" class="leaf-img" id="leaf1">
+      <img src="../../assets/live_oak_leaf.jpg" alt="Live Oak Leaf" class="leaf-img" id="leaf2">
+      <img src="../../assets/cedar_elm_leaf.jpg" alt="Cedar Elm Leaf" class="leaf-img" id="leaf3">
+    </div>
+
+    <!-- STATE 2: District Cards -->
+    <div class="districts-container">
+      <div class="card" id="btn-donna">
+        <img src="../../assets/logos/donna_isd.jpg" alt="Donna ISD Logo">
+        <h2>Donna ISD</h2>
+        <p>Explore the urban canopy models, environmental monitoring, and student-led tree planting initiatives.</p>
+        <button>View Campuses →</button>
+      </div>
+
+      <div class="card" id="btn-mercedes">
+        <img src="../../assets/logos/mercedes_isd.jpg" alt="Mercedes ISD Logo">
+        <h2>Mercedes ISD</h2>
+        <p>Access the field survey data, campus ecosystem insights, and cool school resources.</p>
+        <button>View Campuses →</button>
+      </div>
+    </div>
+
+    <!-- STATE 3: Inner Leaves (Deep Dive) -->
+    <div class="inner-leaf-layer">
+      <img src="../../assets/live_oak_leaf.jpg" alt="Live Oak Leaf" class="leaf-img" id="inner-leaf1">
+      <img src="../../assets/mesquite_leaf.jpg" alt="Mesquite Leaf" class="leaf-img" id="inner-leaf2">
+    </div>
+
+    <!-- STATE 4: Campus Cards -->
+    <div class="campuses-container">
+      <button class="back-btn" id="btn-back">← Back to Districts</button>
+      <h2 class="campus-header">Select a Donna ISD Campus</h2>
+      
+      <div class="card campus-card">
+        <!-- Using text since we lack campus logos right now -->
+        <h2 style="font-size: 4rem; color: var(--accent); margin-bottom: 0;">M</h2>
+        <h2 style="font-size: 1.5rem; margin-top: 10px;">M. Rivas Primary</h2>
+        <p>Pre-K to 2nd Grade Discovery Academy</p>
+        <button>Enter Dashboard</button>
+      </div>
+
+      <div class="card campus-card">
+        <h2 style="font-size: 4rem; color: var(--accent); margin-bottom: 0;">J</h2>
+        <h2 style="font-size: 1.5rem; margin-top: 10px;">J.W. Caceres</h2>
+        <p>2nd to 5th Grade Intermediate Academy</p>
+        <button>Enter Dashboard</button>
+      </div>
+    </div>
+
+    <!-- Overlay for Dashboard Transition -->
+    <div class="transition-overlay" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--sand); z-index: 100; pointer-events: none; opacity: 0;"></div>
+
+  </div>
+
+  <script>
+    gsap.registerPlugin(Observer);
+
+    let currentState = "title"; // title -> districts -> campuses
+
+    /* -----------------------------------------------------------
+       TRANSITION 1: Scroll to part leaves and reveal Districts
+    ----------------------------------------------------------- */
+    function revealDistricts() {
+      if (currentState !== "title") return;
+      currentState = "districts";
+
+      const tl = gsap.timeline();
+      tl.to(".instruction", { opacity: 0, y: 20, duration: 0.5, ease: "power2.inOut" }, 0);
+      tl.to(".title-screen", { opacity: 0, y: -40, duration: 0.8, ease: "power3.inOut" }, 0);
+
+      // Part outer leaves
+      tl.to("#leaf1", { x: "-80vw", y: "-50vh", rotation: -65, duration: 1.8, ease: "power3.inOut" }, 0.1);
+      tl.to("#leaf2", { x: "70vw", y: "60vh", rotation: 90, duration: 1.7, ease: "power3.inOut" }, 0.15);
+      tl.to("#leaf3", { x: "90vw", y: "-40vh", rotation: 160, duration: 1.9, ease: "power3.inOut" }, 0.05);
+
+      // Reveal District cards
+      tl.to(".districts-container", { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, 0.7);
+    }
+
+    Observer.create({
+      target: window,
+      type: "wheel,touch,pointer",
+      onUp: revealDistricts,
+      onDown: revealDistricts,
+      onLeft: revealDistricts,
+      onRight: revealDistricts,
+      onClick: revealDistricts,
+      tolerance: 10
+    });
+
+    /* -----------------------------------------------------------
+       TRANSITION 2: "The Deep Dive" (Click Donna ISD)
+    ----------------------------------------------------------- */
+    document.getElementById('btn-donna').addEventListener('click', () => {
+      if (currentState !== "districts") return;
+      currentState = "campuses";
+
+      const tl = gsap.timeline();
+
+      // Fade out Mercedes card
+      tl.to("#btn-mercedes", { opacity: 0, scale: 0.9, duration: 0.4 }, 0);
+
+      // "Zoom through" the Donna card to dive deeper
+      tl.to("#btn-donna", { 
+        scale: 3, 
+        opacity: 0, 
+        y: -100,
+        duration: 1.2, 
+        ease: "power3.inOut" 
+      }, 0.2);
+      
+      tl.set(".districts-container", { display: "none" });
+
+      // Bring in the inner leaf layer to simulate diving deeper into foliage
+      tl.set(".inner-leaf-layer", { display: "block" });
+      tl.to(".inner-leaf-layer", { opacity: 1, duration: 0.5 }, 0.5);
+      
+      // Slight parallax on inner leaves
+      tl.fromTo("#inner-leaf1", { x: "-20vw", y: "10vh" }, { x: "0vw", y: "0vh", duration: 2, ease: "power2.out" }, 0.6);
+      tl.fromTo("#inner-leaf2", { x: "20vw", y: "-10vh" }, { x: "0vw", y: "0vh", duration: 2, ease: "power2.out" }, 0.6);
+
+      // Reveal Campus cards (flying in from Z-space)
+      tl.set(".campuses-container", { display: "flex" });
+      tl.to(".campuses-container", { 
+        opacity: 1, 
+        scale: 1, 
+        z: 0, // bring forward in Z space
+        duration: 1.2, 
+        ease: "back.out(1.2)" 
+      }, 0.8);
+    });
+
+    /* -----------------------------------------------------------
+       TRANSITION 3: "Back to Surface"
+    ----------------------------------------------------------- */
+    document.getElementById('btn-back').addEventListener('click', () => {
+      if (currentState !== "campuses") return;
+      currentState = "districts";
+
+      const tl = gsap.timeline();
+      
+      // Push campuses back into Z-space
+      tl.to(".campuses-container", { opacity: 0, scale: 0.8, duration: 0.8, ease: "power3.inOut" }, 0);
+      tl.set(".campuses-container", { display: "none" });
+
+      // Fade out inner leaves
+      tl.to(".inner-leaf-layer", { opacity: 0, duration: 0.8 }, 0);
+      tl.set(".inner-leaf-layer", { display: "none" });
+
+      // Zoom Donna card back in from massive scale
+      tl.set(".districts-container", { display: "flex" });
+      tl.to("#btn-donna", { scale: 1, opacity: 1, y: 0, duration: 1.2, ease: "power3.inOut" }, 0.2);
+      
+      // Fade Mercedes card back in
+      tl.to("#btn-mercedes", { opacity: 1, scale: 1, duration: 0.8 }, 0.6);
+    });
+
+    /* -----------------------------------------------------------
+       TRANSITION 4 -> 5: Enter Dashboard
+    ----------------------------------------------------------- */
+    document.querySelectorAll('.campus-card').forEach(card => {
+      card.addEventListener('click', function() {
+        // Prevent further clicking
+        document.body.style.pointerEvents = 'none';
+        
+        const tl = gsap.timeline();
+        
+        // The clicked card scales up and takes over the screen
+        tl.to(this, {
+          scale: 1.5,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.inOut"
+        }, 0);
+
+        // Hide the other card and UI elements
+        tl.to(".campus-header, .back-btn", { opacity: 0, duration: 0.4 }, 0);
+        const siblings = Array.from(this.parentNode.children).filter(el => el !== this && el.classList.contains('campus-card'));
+        if (siblings.length) {
+          tl.to(siblings, { opacity: 0, scale: 0.8, y: 40, duration: 0.6 }, 0);
+        }
+
+        // Fade to solid background color for seamless transition to dashboard
+        tl.to(".transition-overlay", { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 0.4);
+
+        // Redirect after animation completes
+        tl.call(() => {
+          window.location.href = '../../campus_hub.html';
+        });
+      });
+    });
+
+  </script>
+</body>
+</html>

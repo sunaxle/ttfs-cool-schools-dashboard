@@ -1,0 +1,199 @@
+/* photo_wall.css */
+
+/* --- Split Screen Layout --- */
+.split-screen-container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 150px);
+    background-color: #f4f1ea;
+    overflow: hidden;
+}
+
+/* --- Left Pane: Corkboard --- */
+.corkboard-pane {
+    flex: 6;
+    background-color: #d1bfae; /* Simulated cork color */
+    background-image: radial-gradient(#bca997 15%, transparent 16%), radial-gradient(#bca997 15%, transparent 16%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    overflow-y: auto;
+    padding: 20px;
+    box-shadow: inset -5px 0 15px rgba(0,0,0,0.1);
+}
+
+.corkboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.8);
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.corkboard-header h2 {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+}
+
+.upload-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: background 0.2s;
+}
+
+.upload-btn:hover {
+    background-color: #45a049;
+}
+
+/* Grid for photos */
+.corkboard-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* --- Polaroid Style Photos --- */
+.polaroid {
+    background: #fff;
+    padding: 10px 10px 25px 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 200px;
+    position: relative;
+}
+
+.polaroid:hover {
+    transform: scale(1.05) rotate(0deg) !important; /* overrides random inline rotation */
+    box-shadow: 0 10px 15px rgba(0,0,0,0.4);
+    z-index: 10;
+}
+
+.polaroid.active {
+    outline: 3px solid #2b5c2d;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.polaroid-caption {
+    font-family: 'Caveat', cursive;
+    font-size: 1.3em;
+    text-align: center;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* The thumbtack */
+.polaroid::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #cc0000;
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.5), 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* --- Right Pane: Field Notes --- */
+.field-notes-pane {
+    flex: 4;
+    background-color: #faf9f6; /* Paper color */
+    padding: 30px;
+    overflow-y: auto;
+    border-left: 2px solid #ddd;
+}
+
+.field-notes-container {
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: 'Lora', serif;
+}
+
+.empty-state {
+    text-align: center;
+    color: #888;
+    margin-top: 100px;
+}
+
+/* Dynamic Field Note Content */
+.field-note-card {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.field-note-card h3 {
+    font-family: 'Open Sans', sans-serif;
+    color: #2b5c2d;
+    font-size: 1.8em;
+    border-bottom: 2px solid #2b5c2d;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.note-meta {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+    background: #f0ece1;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.note-meta strong {
+    color: #333;
+}
+
+.note-body {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #222;
+}
+
+.approval-stamp {
+    margin-top: 30px;
+    display: inline-block;
+    padding: 5px 15px;
+    border: 2px solid #2b5c2d;
+    color: #2b5c2d;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    transform: rotate(-5deg);
+    opacity: 0.7;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .split-screen-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .corkboard-pane {
+        height: 50vh;
+    }
+    .field-notes-pane {
+        height: 50vh;
+    }
+}

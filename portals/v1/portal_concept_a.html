@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cool Schools Portal - Canopy Reveal</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #f4f3ef;
+      --text-primary: #1c211e;
+      --text-secondary: #5b635e;
+      --accent: #2e4d3c;
+      --border-color: #d6d2c4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      /* Hide pull-to-refresh on mobile for smoother scrub */
+      overscroll-behavior: none;
+    }
+
+    /* Tactile Noise Overlay */
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .reveal-wrapper {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Curtain styles */
+    .curtain-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      display: flex;
+      pointer-events: none;
+    }
+
+    .curtain {
+      position: relative;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #1a1e1b;
+    }
+
+    .curtain img {
+      position: absolute;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    .curtain-left img { left: 0; }
+    .curtain-right img { left: -50vw; }
+
+    /* Subtle shadow/gradient at the split */
+    .curtain-left::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      z-index: 2;
+    }
+    
+    .curtain-right::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    .scroll-prompt {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 11;
+      color: #fff;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background-color: rgba(255,255,255,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      animation: scroll-down 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+    @keyframes scroll-down {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    /* Content styles */
+    .content-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      overflow-y: auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+      max-width: 650px;
+    }
+    
+    .header .eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+    
+    .header h1 i {
+      color: var(--accent);
+    }
+
+    .header p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .cards-wrapper {
+      display: flex;
+      gap: 30px;
+      width: 100%;
+      max-width: 1000px;
+      justify-content: center;
+    }
+
+    .district-card {
+      flex: 1;
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      position: relative;
+    }
+
+    /* Inner tactile border */
+    .district-card::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border: 1px solid rgba(0,0,0,0.03);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .district-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08), 0 10px 20px -8px rgba(0,0,0,0.04);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 220px;
+      background-color: #faf9f6;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: grayscale(100%) opacity(0.85);
+      transition: filter 0.8s ease, transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: scale(0.96);
+    }
+
+    .district-card:hover .card-image img {
+      filter: grayscale(0%) opacity(1);
+      transform: scale(1.02);
+    }
+
+    .card-content {
+      padding: 35px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      background-color: #fff;
+    }
+
+    .card-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .card-content p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+
+    .status {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .arrow {
+      font-size: 1.2rem;
+      color: var(--accent);
+      transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .district-card:hover .arrow {
+      transform: translateX(6px);
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      .header h1 { font-size: 3.2rem; }
+      .cards-wrapper { flex-direction: column; }
+      .district-card { flex: none; width: 100%; }
+      .content-container { padding-top: 80px; padding-bottom: 80px; justify-content: flex-start; }
+      
+      .curtain-container { flex-direction: column; }
+      .curtain { width: 100vw; height: 50%; }
+      .curtain-left img { left: 0; top: 0; }
+      .curtain-right img { left: 0; top: -50vh; }
+      .curtain-left::after { width: 100%; height: 1px; top: auto; bottom: 0; right: auto; left: 0; }
+      .curtain-right::after { width: 100%; height: 1px; top: 0; left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tactile Noise Overlay -->
+  <div class="noise-overlay"></div>
+
+  <div class="reveal-wrapper">
+    <!-- Curtain Section -->
+    <div class="curtain-container">
+      <div class="curtain curtain-left">
+        <img src="../../assets/canopy_curtain.jpg" alt="Canopy Left">
+      </div>
+      <div class="curtain curtain-right">
+        <img src="../../assets/canopy_curtain.jpg" alt="Canopy Right">
+      </div>
+      <div class="scroll-prompt">
+        <span>Scroll to Explore</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+
+    <!-- Revealed Content -->
+    <div class="content-container">
+      <div class="header">
+        <span class="eyebrow">Interactive Dashboard</span>
+        <h1>Cool Schools <i>Initiative</i></h1>
+        <p>Select a district to view environmental analytics, tree canopy data, and localized campus initiatives.</p>
+      </div>
+
+      <div class="cards-wrapper">
+        <a href="#" class="district-card" id="card-donna">
+          <div class="card-image">
+            <img src="../../assets/logos/donna_isd.jpg" alt="Donna ISD Logo">
+          </div>
+          <div class="card-content">
+            <h2>Donna ISD</h2>
+            <p>Explore environmental data and impact metrics across 14 active campuses.</p>
+            <div class="card-footer">
+              <span class="status">View Dashboard</span>
+              <span class="arrow">→</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="district-card" id="card-mercedes">
+          <div class="card-image">
+            <img src="../../assets/logos/mercedes_isd.jpg" alt="Mercedes ISD Logo">
+          </div>
+          <div class="card-content">
+            <h2>Mercedes ISD</h2>
+            <p>Explore environmental data and impact metrics across 8 active campuses.</p>
+            <div class="card-footer">
+              <span class="status">View Dashboard</span>
+              <span class="arrow">→</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const isMobile = window.innerWidth <= 768;
+
+    // Timeline for the entire reveal interaction
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".reveal-wrapper",
+        start: "top top",
+        end: "+=150%", // Scroll distance to complete animation
+        pin: true,     // Pin the wrapper so it feels like a fixed overlay
+        scrub: 1,      // Smooth scrubbing
+      }
+    });
+
+    // Parting the curtains
+    if (isMobile) {
+      // Split vertically on mobile
+      tl.to(".curtain-left", { yPercent: -100, ease: "power2.inOut" }, 0)
+        .to(".curtain-right", { yPercent: 100, ease: "power2.inOut" }, 0);
+    } else {
+      // Split horizontally on desktop
+      tl.to(".curtain-left", { xPercent: -100, ease: "power2.inOut" }, 0)
+        .to(".curtain-right", { xPercent: 100, ease: "power2.inOut" }, 0);
+    }
+    
+    // Hide scroll prompt early
+    tl.to(".scroll-prompt", { opacity: 0, y: 30, duration: 0.2 }, 0);
+
+    // Fade and animate content up as curtains open
+    tl.from(".header", { opacity: 0, y: 30, duration: 0.4 }, 0.2)
+      .from(".district-card", { opacity: 0, y: 40, stagger: 0.1, duration: 0.4 }, 0.3);
+
+  </script>
+
+</body>
+</html>

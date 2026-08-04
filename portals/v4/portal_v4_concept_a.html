@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cool Schools - Path of Leaves (Concept A v4)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #f4f3ef;
+      --text-primary: #1c211e;
+      --text-secondary: #5b635e;
+      --accent: #2e4d3c;
+      --border-color: #d6d2c4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      overscroll-behavior: none;
+    }
+
+    .noise-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none; z-index: 9999; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* SECTION 1: CANOPY CURTAIN */
+    .reveal-wrapper {
+      position: relative; width: 100vw; height: 100vh; overflow: hidden;
+    }
+    .curtain-container {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; display: flex; pointer-events: none;
+    }
+    .curtain { position: relative; width: 50%; height: 100%; overflow: hidden; background-color: #1a1e1b; }
+    .curtain img { position: absolute; top: 0; width: 100vw; height: 100vh; object-fit: cover; }
+    .curtain-left img { left: 0; }
+    .curtain-right img { left: -50vw; }
+    .curtain-left::after { content: ''; position: absolute; top: 0; right: 0; width: 1px; height: 100%; background: rgba(255,255,255,0.15); z-index: 2; }
+    .curtain-right::after { content: ''; position: absolute; top: 0; left: 0; width: 1px; height: 100%; background: rgba(0,0,0,0.3); z-index: 2; }
+
+    .scroll-prompt {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 11; color: #fff;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .scroll-line { width: 1px; height: 50px; background-color: rgba(255,255,255,0.3); position: relative; overflow: hidden; }
+    .scroll-line::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #fff; animation: scroll-down 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1); }
+    @keyframes scroll-down { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+
+    .content-container {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px;
+    }
+    .header { text-align: center; margin-bottom: 60px; max-width: 650px; }
+    .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; margin-bottom: 20px; line-height: 1.05; }
+    .header h1 i { color: var(--accent); }
+    .header p { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.6; }
+
+    .cards-wrapper { display: flex; gap: 30px; width: 100%; max-width: 1000px; justify-content: center; }
+    .district-card {
+      flex: 1; background: #fff; border: 1px solid var(--border-color); cursor: pointer;
+      display: flex; flex-direction: column; transition: transform 0.4s, box-shadow 0.4s; position: relative;
+    }
+    .district-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08); }
+    .card-image { width: 100%; height: 220px; background: #faf9f6; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; padding: 40px; }
+    .card-image img { max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(100%); transition: filter 0.4s; }
+    .district-card:hover .card-image img { filter: grayscale(0%); }
+    .card-content { padding: 35px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 8px; }
+    .card-content p { color: var(--text-secondary); line-height: 1.5; margin-bottom: 30px; }
+    .card-footer { margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 20px; color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; }
+
+    /* SECTION 2: THE PATH OF LEAVES */
+    #campus-path-section {
+      width: 100%;
+      background-color: var(--bg-color);
+      position: relative;
+      /* Starts hidden */
+      display: none;
+      opacity: 0;
+      padding: 100px 20px;
+    }
+
+    .path-header {
+      text-align: center;
+      margin-bottom: 100px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      color: var(--text-primary);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* The Vine */
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: var(--accent);
+      opacity: 0.2;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+      border-radius: 4px;
+    }
+
+    .timeline-node {
+      padding: 10px 40px;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+      opacity: 0; /* for gsap fade in */
+      transform: translateY(40px);
+    }
+
+    .timeline-node.left { left: 0; text-align: right; }
+    .timeline-node.right { left: 50%; }
+
+    /* The leaf marker on the vine */
+    .timeline-node::after {
+      content: '❦';
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      right: -20px;
+      background-color: var(--bg-color);
+      border: 2px solid var(--accent);
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    .timeline-node.right::after {
+      left: -20px;
+    }
+
+    .campus-card-content {
+      padding: 30px;
+      background: white;
+      border: 1px solid var(--border-color);
+      position: relative;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+    }
+    .campus-card-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+      border-color: var(--accent);
+    }
+    .campus-card-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
+    .campus-card-content p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+    .campus-card-content .btn {
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    /* Ambient Leaves along the path */
+    .ambient-leaf {
+      position: absolute;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      opacity: 0.5;
+      filter: blur(2px);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="noise-overlay"></div>
+
+  <!-- SECTION 1: CANOPY CURTAIN -->
+  <div class="reveal-wrapper">
+    <div class="curtain-container">
+      <div class="curtain curtain-left"><img src="../../assets/canopy_curtain.jpg" alt="Canopy"></div>
+      <div class="curtain curtain-right"><img src="../../assets/canopy_curtain.jpg" alt="Canopy"></div>
+      <div class="scroll-prompt"><span>Scroll to Explore</span><div class="scroll-line"></div></div>
+    </div>
+    <div class="content-container">
+      <div class="header">
+        <h1>Cool Schools <i>Initiative</i></h1>
+        <p>Select a district to unlock the interactive path to your campus.</p>
+      </div>
+      <div class="cards-wrapper">
+        <div class="district-card" id="btn-donna">
+          <div class="card-image"><img src="../../assets/logos/donna_isd.jpg" alt="Donna ISD"></div>
+          <div class="card-content">
+            <h2>Donna ISD</h2>
+            <p>Unlock the path to view 8 active campus initiatives.</p>
+            <div class="card-footer">Unlock Path ↓</div>
+          </div>
+        </div>
+        <div class="district-card" id="btn-mercedes">
+          <div class="card-image"><img src="../../assets/logos/mercedes_isd.jpg" alt="Mercedes ISD"></div>
+          <div class="card-content">
+            <h2>Mercedes ISD</h2>
+            <p>Unlock the path to view 6 active campus initiatives.</p>
+            <div class="card-footer">Unlock Path ↓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: PATH OF LEAVES -->
+  <div id="campus-path-section">
+    <img src="../../assets/live_oak_leaf.jpg" class="ambient-leaf" style="top: 10%; left: -5%; width: 400px; transform: rotate(45deg);">
+    <img src="../../assets/mesquite_leaf.jpg" class="ambient-leaf" style="top: 40%; right: -5%; width: 500px; transform: rotate(-30deg);">
+    <img src="../../assets/cedar_elm_leaf.jpg" class="ambient-leaf" style="bottom: 10%; left: 10%; width: 350px; transform: rotate(110deg);">
+
+    <h2 class="path-header" id="path-title">District Campuses</h2>
+    <div class="timeline" id="timeline-container">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    // 1. Curtain Animation
+    const revealTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".reveal-wrapper",
+        start: "top top",
+        end: "+=150%", 
+        pin: true,     
+        scrub: 1,      
+      }
+    });
+    revealTl.to(".curtain-left", { xPercent: -100, ease: "power2.inOut" }, 0)
+            .to(".curtain-right", { xPercent: 100, ease: "power2.inOut" }, 0)
+            .to(".scroll-prompt", { opacity: 0, y: 30, duration: 0.2 }, 0)
+            .from(".header", { opacity: 0, y: 30, duration: 0.4 }, 0.2)
+            .from(".district-card", { opacity: 0, y: 40, stagger: 0.1, duration: 0.4 }, 0.3);
+
+    // 2. Data Structure
+    const campusData = {
+      "donna": {
+        title: "Donna ISD: The Cool Schools Path",
+        campuses: [
+          { name: "M. Rivas Primary", file: "donna_rivas.html", desc: "Pre-K to 2nd Grade Discovery Academy" },
+          { name: "J.W. Caceres", file: "donna_jw_caceres.html", desc: "Intermediate Academy" },
+          { name: "A.M. Ochoa", file: "donna_ochoa.html", desc: "Elementary Campus" },
+          { name: "Capt. D. Salinas", file: "donna_salinas.html", desc: "Elementary Campus" },
+          { name: "E.G. Garza", file: "donna_garza.html", desc: "Elementary Campus" },
+          { name: "Singleterry", file: "donna_singleterry.html", desc: "Elementary Campus" },
+          { name: "Solis", file: "donna_solis.html", desc: "Middle School Campus" },
+          { name: "Stainke", file: "donna_stainke.html", desc: "Elementary Campus" }
+        ]
+      },
+      "mercedes": {
+        title: "Mercedes ISD: The Cool Schools Path",
+        campuses: [
+          { name: "Mercedes Early College", file: "mercedes_academy.html", desc: "High School Campus" },
+          { name: "Sgt. William G. Chacon", file: "mercedes_chacon.html", desc: "Middle School Campus" },
+          { name: "Kennedy / Harrell", file: "mercedes_harrell.html", desc: "Elementary Campus" },
+          { name: "Mercedes High", file: "mercedes_high.html", desc: "High School Campus" },
+          { name: "Ruben Hinojosa", file: "mercedes_hinojosa.html", desc: "Elementary Campus" },
+          { name: "Travis", file: "mercedes_travis.html", desc: "Elementary Campus" }
+        ]
+      }
+    };
+
+    let pathUnlocked = false;
+
+    function unlockPath(districtId) {
+      const data = campusData[districtId];
+      document.getElementById('path-title').innerText = data.title;
+      
+      const container = document.getElementById('timeline-container');
+      container.innerHTML = ""; // Clear existing
+
+      // Generate nodes
+      data.campuses.forEach((campus, index) => {
+        const side = index % 2 === 0 ? 'left' : 'right';
+        const nodeHTML = `
+          <div class="timeline-node ${side}">
+            <div class="campus-card-content" onclick="window.location.href='../../${campus.file}'">
+              <h3>${campus.name}</h3>
+              <p>${campus.desc}</p>
+              <span class="btn">Enter Dashboard →</span>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML('beforeend', nodeHTML);
+      });
+
+      // Show section
+      const pathSection = document.getElementById('campus-path-section');
+      pathSection.style.display = "block";
+      gsap.to(pathSection, { opacity: 1, duration: 1 });
+
+      // Setup scroll animations for the new timeline nodes
+      ScrollTrigger.refresh(); // Important since we changed DOM height
+
+      gsap.utils.toArray('.timeline-node').forEach((node, i) => {
+        gsap.to(node, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: node,
+            start: "top 85%", // trigger when node is 85% down viewport
+            toggleActions: "play none none reverse"
+          }
+        });
+      });
+
+      // Auto scroll down
+      gsap.to(window, { duration: 1.5, scrollTo: "#campus-path-section", ease: "power3.inOut" });
+    }
+
+    document.getElementById('btn-donna').addEventListener('click', () => unlockPath('donna'));
+    document.getElementById('btn-mercedes').addEventListener('click', () => unlockPath('mercedes'));
+
+  </script>
+</body>
+</html>

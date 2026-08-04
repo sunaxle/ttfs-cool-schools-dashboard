@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cool Schools - Portal Concept B</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --sand: #F4F1EA;
+      --earth: #4A4036;
+      --leaf-dark: #2F3E2B;
+      --accent: #C25C3A;
+      --card-bg: #FFFFFF;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--sand);
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+      color: var(--earth);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle physical noise texture overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* TITLE SCREEN */
+    .title-screen {
+      position: absolute;
+      text-align: center;
+      z-index: 6;
+      pointer-events: none;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .title-screen h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      margin: 0;
+      color: var(--leaf-dark);
+      line-height: 1.1;
+    }
+
+    .title-screen h1 span {
+      display: block;
+      font-style: italic;
+      font-size: 4rem;
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    .title-screen p {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      color: var(--earth);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* LEAVES */
+    .leaf-layer {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .leaf-img {
+      position: absolute;
+      mix-blend-mode: multiply;
+      object-fit: contain;
+      filter: contrast(1.05) saturate(1.1);
+      will-change: transform;
+    }
+
+    /* Leaf Placements */
+    #leaf1 { 
+      width: 75vw; max-width: 900px; 
+      top: -15%; left: -20%; 
+      transform: rotate(-15deg); 
+    }
+    
+    #leaf2 { 
+      width: 60vw; max-width: 800px; 
+      bottom: -25%; right: -15%; 
+      transform: rotate(35deg); 
+    }
+
+    #leaf3 { 
+      width: 80vw; max-width: 1000px; 
+      top: -10%; right: -25%; 
+      transform: rotate(115deg); 
+      z-index: 11;
+    }
+
+    .instruction {
+      position: absolute;
+      bottom: 40px;
+      text-align: center;
+      width: 100%;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      z-index: 15;
+      color: var(--earth);
+      opacity: 0.6;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: opacity 0.3s;
+    }
+
+    .instruction:hover {
+      opacity: 1;
+    }
+
+    /* CARDS */
+    .cards-container {
+      display: flex;
+      gap: 4rem;
+      z-index: 5;
+      opacity: 0;
+      transform: translateY(40px);
+      padding: 0 2rem;
+    }
+
+    .card {
+      width: 360px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(74, 64, 54, 0.05), 
+                  0 40px 80px rgba(74, 64, 54, 0.08);
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                  box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 6px;
+      background: var(--leaf-dark);
+      border-radius: 16px 16px 0 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(74, 64, 54, 0.08), 
+                  0 50px 100px rgba(74, 64, 54, 0.12);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: contain;
+      margin-bottom: 2rem;
+      background: #FFF;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      padding: 10px;
+    }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin: 0 0 1rem 0;
+      color: var(--leaf-dark);
+    }
+
+    .card p {
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+      flex-grow: 1;
+    }
+
+    .card button {
+      background: var(--sand);
+      color: var(--leaf-dark);
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 14px 36px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .card:hover button {
+      background: var(--leaf-dark);
+      color: #FFF;
+      border-color: var(--leaf-dark);
+    }
+
+    @media (max-width: 900px) {
+      .cards-container {
+        flex-direction: column;
+        gap: 2rem;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 4rem 1rem;
+        justify-content: flex-start;
+      }
+      .title-screen h1 {
+        font-size: 3.5rem;
+      }
+      .title-screen h1 span {
+        font-size: 3rem;
+      }
+      #leaf1 { width: 120vw; }
+      #leaf2 { width: 100vw; }
+      #leaf3 { width: 140vw; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scene" id="scene">
+    
+    <!-- Title View -->
+    <div class="title-screen">
+      <h1>Cool Schools <span>Initiative</span></h1>
+      <p>South Texas Canopy Project</p>
+    </div>
+
+    <div class="instruction">Scroll or Click to Begin</div>
+
+    <!-- Foreground Leaves -->
+    <div class="leaf-layer">
+      <!-- We use mix-blend-mode in CSS to remove the white bg from these generated images -->
+      <img src="../../assets/mesquite_leaf.jpg" alt="Mesquite Leaf" class="leaf-img" id="leaf1">
+      <img src="../../assets/live_oak_leaf.jpg" alt="Live Oak Leaf" class="leaf-img" id="leaf2">
+      <img src="../../assets/cedar_elm_leaf.jpg" alt="Cedar Elm Leaf" class="leaf-img" id="leaf3">
+    </div>
+
+    <!-- Cards View -->
+    <div class="cards-container">
+      
+      <div class="card" onclick="location.href='donna_isd_portal.html'">
+        <img src="../../assets/logos/donna_isd.jpg" alt="Donna ISD Logo">
+        <h2>Donna ISD</h2>
+        <p>Explore the urban canopy models, environmental monitoring, and student-led tree planting initiatives across Donna Independent School District.</p>
+        <button>Select District</button>
+      </div>
+
+      <div class="card" onclick="location.href='mercedes_isd_portal.html'">
+        <img src="../../assets/logos/mercedes_isd.jpg" alt="Mercedes ISD Logo">
+        <h2>Mercedes ISD</h2>
+        <p>Access the field survey data, campus ecosystem insights, and cool school resources dedicated to Mercedes Independent School District.</p>
+        <button>Select District</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    gsap.registerPlugin(Observer);
+
+    let isRevealed = false;
+
+    function revealCards() {
+      if (isRevealed) return;
+      isRevealed = true;
+
+      const tl = gsap.timeline();
+
+      // Hide instructions and title
+      tl.to(".instruction", { opacity: 0, y: 20, duration: 0.5, ease: "power2.inOut" }, 0);
+      tl.to(".title-screen", { opacity: 0, y: -40, duration: 0.8, ease: "power3.inOut" }, 0);
+
+      // Animate leaves floating away and rotating
+      tl.to("#leaf1", { x: "-80vw", y: "-50vh", rotation: -65, duration: 1.8, ease: "power3.inOut" }, 0.1);
+      tl.to("#leaf2", { x: "70vw", y: "60vh", rotation: 90, duration: 1.7, ease: "power3.inOut" }, 0.15);
+      tl.to("#leaf3", { x: "90vw", y: "-40vh", rotation: 160, duration: 1.9, ease: "power3.inOut" }, 0.05);
+
+      // Reveal the beautiful physical cards
+      tl.to(".cards-container", { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, 0.7);
+
+      // Enable scrolling if on mobile after reveal
+      document.body.style.overflow = "auto";
+    }
+
+    // Attach Observer to listen for any intent to move forward (scroll, drag, touch)
+    Observer.create({
+      target: window,
+      type: "wheel,touch,pointer",
+      onUp: revealCards,
+      onDown: revealCards,
+      onLeft: revealCards,
+      onRight: revealCards,
+      onClick: revealCards,
+      tolerance: 10
+    });
+  </script>
+</body>
+</html>
