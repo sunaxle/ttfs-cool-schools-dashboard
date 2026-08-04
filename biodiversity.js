@@ -4,17 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('speciesContent');
     let speciesData = null;
 
-    // Fetch the mock data (pulled from iNaturalist)
-    fetch('data/mock_biodiversity.json')
-        .then(response => response.json())
-        .then(data => {
-            speciesData = data;
-            renderCategory('birds'); // Render birds by default
-        })
-        .catch(err => {
-            console.error("Failed to load biodiversity data:", err);
-            if (content) content.innerHTML = '<div class="empty-state">Error loading species data.</div>';
-        });
+    function initSpeciesGrid(data) {
+        speciesData = data;
+        renderCategory('birds');
+    }
+
+    if (window.MOCK_BIODIVERSITY_DATA) {
+        initSpeciesGrid(window.MOCK_BIODIVERSITY_DATA);
+    } else {
+        fetch('data/mock_biodiversity.json')
+            .then(response => response.json())
+            .then(initSpeciesGrid)
+            .catch(err => {
+                console.error("Failed to load biodiversity data:", err);
+                if (content) content.innerHTML = '<div class="empty-state">Error loading species data.</div>';
+            });
+    }
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -152,46 +157,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 "insects": [255, 152, 0, 0.95]     // Vibrant Orange
             };
 
-            fetch("data/mock_observations.json")
-                .then(res => res.json())
-                .then(data => {
-                    if (!data.features) return;
+            function processObservations(data) {
+                if (!data || !data.features) return;
 
-                    data.features.forEach(feature => {
-                        const props = feature.properties;
-                        const coords = feature.geometry.coordinates;
+                data.features.forEach(feature => {
+                    const props = feature.properties;
+                    const coords = feature.geometry.coordinates;
 
-                        const point = new Point({
-                            longitude: coords[0],
-                            latitude: coords[1]
-                        });
-
-                        let content = `<p><i>${props.scientific_name}</i></p>`;
-                        content += `<p>Total Campus Observations: <b>${props.observations}</b></p>`;
-                        if (props.image_url) {
-                            content += `<img src="${props.image_url}" style="width:100%; max-height:150px; object-fit:cover; border-radius:4px; margin-top:8px;" />`;
-                        }
-
-                        const graphic = new Graphic({
-                            geometry: point,
-                            symbol: {
-                                type: "simple-marker",
-                                style: "circle",
-                                color: categoryColors[props.category] || [156, 39, 176, 0.95],
-                                size: "14px",
-                                outline: { color: [255, 255, 255, 1], width: 2 }
-                            },
-                            attributes: props,
-                            popupTemplate: {
-                                title: `${props.category.toUpperCase()}: ${props.common_name}`,
-                                content: content
-                            }
-                        });
-
-                        obsLayer.add(graphic);
+                    const point = new Point({
+                        longitude: coords[0],
+                        latitude: coords[1]
                     });
-                })
-                .catch(err => console.error("Error loading observations:", err));
+
+                    let content = `<p><i>${props.scientific_name}</i></p>`;
+                    content += `<p>Total Campus Observations: <b>${props.observations}</b></p>`;
+                    if (props.image_url) {
+                        content += `<img src="${props.image_url}" style="width:100%; max-height:150px; object-fit:cover; border-radius:4px; margin-top:8px;" />`;
+                    }
+
+                    const graphic = new Graphic({
+                        geometry: point,
+                        symbol: {
+                            type: "simple-marker",
+                            style: "circle",
+                            color: categoryColors[props.category] || [156, 39, 176, 0.95],
+                            size: "14px",
+                            outline: { color: [255, 255, 255, 1], width: 2 }
+                        },
+                        attributes: props,
+                        popupTemplate: {
+                            title: `${props.category.toUpperCase()}: ${props.common_name}`,
+                            content: content
+                        }
+                    });
+
+                    obsLayer.add(graphic);
+                });
+            }
+
+            if (window.MOCK_OBSERVATIONS_DATA) {
+                processObservations(window.MOCK_OBSERVATIONS_DATA);
+            } else {
+                fetch("data/mock_observations.json")
+                    .then(res => res.json())
+                    .then(processObservations)
+                    .catch(err => console.error("Error loading observations:", err));
+            }
         });
     }
 
