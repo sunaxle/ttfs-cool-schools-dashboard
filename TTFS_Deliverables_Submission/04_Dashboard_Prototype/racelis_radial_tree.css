@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #f8fafc;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 30px;
+            animation: fadeInDown 1s ease-out;
+            z-index: 10;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-weight: 300;
+        }
+
+        #chart-container {
+            width: 100%;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .link {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.15);
+            stroke-width: 1.5px;
+            transition: stroke 0.3s;
+        }
+
+        .link:hover {
+            stroke: rgba(129, 140, 248, 0.8);
+            stroke-width: 3px;
+        }
+
+        .node circle {
+            fill: #1e293b;
+            stroke-width: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .node circle:hover {
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+            transform: scale(1.2);
+        }
+
+        .node text {
+            font-size: 11px;
+            fill: #cbd5e1;
+            text-shadow: 0 1px 4px black;
+            pointer-events: none;
+        }
+
+        .node.root circle { stroke: #c084fc; fill: #c084fc; stroke-width: 4px; }
+        .node.leadership circle { stroke: #f59e0b; }
+        .node.masters circle { stroke: #3b82f6; }
+        .node.undergrad circle { stroke: #10b981; }
+
+        /* Tooltip */
+        #tooltip {
+            position: absolute;
+            opacity: 0;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            pointer-events: none;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            color: white;
+            transition: opacity 0.2s ease;
+            max-width: 250px;
+            z-index: 100;
+        }
+
+        #tooltip h4 { color: #818cf8; margin-bottom: 5px; font-size: 14px; }
+        #tooltip p { font-size: 12px; color: #cbd5e1; font-weight: 300; line-height: 1.4; }
+        #tooltip .group-badge {
+            display: inline-block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }

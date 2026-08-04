@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Wall - Cool Schools</title>
+    <!-- Use Google Fonts to create a clean, analog typographic feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Open+Sans:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="photo_wall.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>Cool Schools Project</h1>
+        <p>Urban Greening & Tree Canopy Tracking Dashboard</p>
+    </header>
+
+    <nav class="app-nav">
+        <a class="nav-link" href="school.html">School Profile</a>
+        <a class="nav-link" href="biodiversity.html">Biodiversity</a>
+        <a class="nav-link" href="protocols.html">Protocols</a>
+        <a class="nav-link" href="eco_archive.html">RGV Eco-Archive</a>
+        <a class="nav-link" href="index.html">Community Impact</a>
+        <a class="nav-link active" href="photo_wall.html">Photo Wall</a>
+        <a class="nav-link" href="student_tracking.html">Student Tracking</a>
+        <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
+        <a class="nav-link" href="maintenance.html">Structural Maint.</a>
+    </nav>
+
+    <div class="split-screen-container">
+        <!-- Left Side: The Corkboard -->
+        <div class="corkboard-pane">
+            <div class="corkboard-header">
+                <h2>Campus Photo Wall</h2>
+                <button id="uploadMockBtn" class="upload-btn">Submit New Photo</button>
+            </div>
+            <div id="corkboardGrid" class="corkboard-grid">
+                <!-- Photos dynamically injected here -->
+            </div>
+        </div>
+
+        <!-- Right Side: The Field Notes (Sticky) -->
+        <div class="field-notes-pane">
+            <div id="fieldNotesContainer" class="field-notes-container">
+                <div class="empty-state">
+                    <h3>Field Notes</h3>
+                    <p>Select a photo from the wall to view the scientific field notes, campus origin, and tree diary details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="photo_data.js"></script>
+    <script src="photo_wall.js"></script>
+</body>
+</html>

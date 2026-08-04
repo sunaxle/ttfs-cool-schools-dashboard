@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to top, #0f172a 0%, #1e1b4b 100%); /* Flipped so ground is dark, sky is purplish */
+            color: #f8fafc;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 30px;
+            z-index: 10;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #4ade80, #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 5px;
+        }
+
+        #chart-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+
+        svg:active {
+            cursor: grabbing;
+        }
+
+        .link line {
+            stroke-linecap: round;
+            transition: stroke-opacity 0.3s ease, stroke 0.3s ease;
+        }
+
+        .link .dimmed {
+            stroke-opacity: 0.05 !important;
+        }
+
+        .link .highlighted {
+            stroke: #ffffff !important; /* White Path */
+            stroke-width: 3px !important;
+            stroke-opacity: 1 !important;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,1));
+        }
+
+        .node g {
+            transition: opacity 0.3s ease;
+        }
+
+        .node .dimmed {
+            opacity: 0.15;
+        }
+
+        .node .highlighted circle, .node .highlighted path {
+            fill: #ffffff !important;
+            stroke: #fff !important;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,1)) !important;
+        }
+
+        .node circle {
+            stroke: rgba(255, 255, 255, 0.4);
+            stroke-width: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .node circle:hover {
+            filter: drop-shadow(0 0 12px rgba(74,222,128,1));
+            stroke-width: 2px;
+            stroke: #fff;
+        }
+
+        .node text {
+            font-size: 11px;
+            fill: #e2e8f0;
+            pointer-events: none;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.2s ease;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8), -1px -1px 3px rgba(0,0,0,0.8);
+            letter-spacing: 0.5px;
+        }
+
+        .node.root text { font-size: 16px; font-weight: 700; fill: #fbbf24; }
+        .node.branch-level-1 text { font-size: 14px; font-weight: 600; fill: #cbd5e1; }
+
+        /* Tooltip */
+        #tooltip {
+            position: absolute;
+            opacity: 0;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            pointer-events: none;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            color: white;
+            transition: opacity 0.2s ease;
+            max-width: 280px;
+            z-index: 100;
+        }
+
+        #tooltip h4 { color: #818cf8; margin-bottom: 5px; font-size: 15px; }
+        #tooltip p { font-size: 12px; color: #cbd5e1; font-weight: 300; line-height: 1.4; }
+
+        /* Impact Matrix Table Overlay */
+        #impact-matrix-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        #impact-matrix-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .matrix-modal {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(253, 224, 71, 0.6); /* Gold */
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(253, 224, 71, 0.05);
+            position: relative;
+        }
+
+        .matrix-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: transparent;
+            border: none;
+            color: #fde047;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.2s;
+            font-weight: 300;
+        }
+
+        .matrix-close:hover { color: #ffffff; }
+
+        .matrix-title {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-right: 40px;
+        }
+
+        .matrix-subtitle {
+            color: #fde047;
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .matrix-table th {
+            text-align: left;
+            color: #fde047;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(253, 224, 71, 0.3);
+        }
+
+        .matrix-table td {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        .matrix-table td strong {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .td-category {
+            color: #94a3b8 !important;
+            font-size: 12px !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 30%;
+        }

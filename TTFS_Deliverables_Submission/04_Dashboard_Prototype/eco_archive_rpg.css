@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    --bg-color: #f4efe8; /* Paper-like */
+    --text-primary: #2c3e2e; /* Forest green black */
+    --text-secondary: #5c6c57;
+    --accent: #5d7553;
+    --border-color: #d1c7b8;
+    --card-bg: #fffcf8;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Hide scrollbars, we use drag */
+    font-family: 'Open Sans', sans-serif;
+    background-color: #1a1a1a;
+}
+
+h1, h2, h3 {
+    font-family: 'Lora', serif;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* UI Layer */
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through to map by default */
+    z-index: 10;
+}
+
+header {
+    pointer-events: auto;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--card-bg);
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--text-primary);
+}
+
+/* The Viewport */
+#map-viewport {
+    width: 100vw;
+    height: 100vh;
+    cursor: grab;
+    user-select: none;
+}
+
+#map-viewport:active {
+    cursor: grabbing;
+}
+
+/* The Map */
+#rpg-map {
+    position: relative;
+    width: 4000px;
+    height: 3000px;
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(138, 154, 115, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(162, 136, 107, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(121, 142, 164, 0.05) 0%, transparent 50%),
+        linear-gradient(45deg, rgba(200, 190, 180, 0.1) 25%, transparent 25%, transparent 75%, rgba(200, 190, 180, 0.1) 75%, rgba(200, 190, 180, 0.1)), 
+        linear-gradient(-45deg, rgba(200, 190, 180, 0.1) 25%, transparent 25%, transparent 75%, rgba(200, 190, 180, 0.1) 75%, rgba(200, 190, 180, 0.1));
+    background-size: 100% 100%, 100% 100%, 100% 100%, 20px 20px, 20px 20px;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.1);
+    transform-origin: 0 0;
+}
+
+/* Nodes */
+.map-node {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.map-node:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+.node-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.map-node:hover .node-icon-wrapper {
+    background: #fdf5e6;
+    border-color: var(--accent);
+}
+
+.node-icon-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 15px;
+    background-color: var(--border-color);
+    z-index: -1;
+    transition: background-color 0.2s;
+}
+
+.map-node:hover .node-icon-wrapper::after {
+    background-color: var(--accent);
+}
+
+.node-shadow {
+    position: absolute;
+    bottom: -15px;
+    width: 40px;
+    height: 10px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 50%;
+    filter: blur(2px);
+    z-index: -2;
+}
+
+.node-label {
+    margin-top: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    pointer-events: none;
+}
+
+/* Modal Overlay */
+#modal-overlay {
+    pointer-events: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+#modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#modal-card {
+    background: var(--card-bg);
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid var(--border-color);
+}
+
+#modal-overlay.hidden #modal-card {
+    transform: translateY(20px);
+}
+
+#modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+#modal-close:hover {
+    color: #000;
+}
+
+#modal-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#modal-title {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.meta-data {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-family: 'Lora', serif;
+}
+
+#modal-desc {
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+.action-btn {
+    display: block;
+    text-align: center;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.action-btn:hover {
+    background: #4a5e42;
+}
+
+/* Map Decoration */
+.map-decoration {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    pointer-events: auto;
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.compass-icon {
+    font-size: 30px;
+}
+
+.map-decoration-text h3 {
+    font-size: 1rem;
+}
+.map-decoration-text p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}

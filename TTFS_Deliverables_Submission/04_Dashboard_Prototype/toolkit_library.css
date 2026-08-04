@@ -1,0 +1,168 @@
+.toolkit-container {
+    padding: 100px 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--text-light);
+}
+
+.toolkit-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.toolkit-header h2 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #4ade80, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.filter-section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-group label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.filter-group select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.filter-group select:focus {
+    border-color: var(--primary-green);
+}
+
+.filter-group select option {
+    background: var(--bg-dark);
+    color: var(--text-light);
+}
+
+.toolkit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.toolkit-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.toolkit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #4ade80, #3b82f6);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.toolkit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.toolkit-card:hover::before {
+    opacity: 1;
+}
+
+.card-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+}
+
+.tag.teks {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.toolkit-card h3 {
+    font-size: 1.25rem;
+    color: var(--text-light);
+}
+
+.toolkit-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.download-btn {
+    display: inline-block;
+    background: var(--primary-green);
+    color: var(--bg-dark);
+    padding: 0.75rem 1rem;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.download-btn:hover {
+    background: #22c55e;
+    transform: scale(1.02);
+}
+
+.download-btn::before {
+    content: '↓ ';
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
