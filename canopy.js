@@ -260,6 +260,70 @@
     });
   }
 
+  function renderTreeRegistryTable(targetYear) {
+    const tbody = document.getElementById("treeRegistryTableBody");
+    const filterSelect = document.getElementById("speciesFilter");
+    const registryYearLabel = document.getElementById("registryYearLabel");
+    const dynYearTexts = document.querySelectorAll(".dyn-year-text");
+
+    if (!tbody || !mockTreesData || !mockTreesData.features) return;
+
+    if (registryYearLabel) registryYearLabel.textContent = targetYear;
+    dynYearTexts.forEach(el => el.textContent = targetYear);
+
+    const selectedFilter = filterSelect ? filterSelect.value : "all";
+    tbody.innerHTML = "";
+
+    mockTreesData.features.forEach(feature => {
+      const props = feature.properties;
+      const coords = feature.geometry.coordinates;
+
+      if (selectedFilter !== "all" && props.species !== selectedFilter) return;
+
+      const speciesConfig = (config && config.treeSpecies && config.treeSpecies[props.species]) || { growthRateFeetPerYear: 2.5 };
+      const isPlanted = targetYear >= props.plantYear;
+      const yearsGrown = isPlanted ? (targetYear - props.plantYear) : 0;
+
+      let currentRadiusFeet = isPlanted ? (props.baseRadiusFeet + (yearsGrown * speciesConfig.growthRateFeetPerYear)) : 0;
+      if (currentRadiusFeet > props.maxRadiusFeet) currentRadiusFeet = props.maxRadiusFeet;
+
+      const areaSqFt = isPlanted ? Math.round(Math.PI * currentRadiusFeet * currentRadiusFeet) : 0;
+      const rowBg = isPlanted ? "#ffffff" : "#f8f9fa";
+      const statusText = isPlanted ? `${currentRadiusFeet.toFixed(1)} ft` : `<span style="color:#999; font-style:italic;">Not Planted Yet (${props.plantYear})</span>`;
+
+      const tr = document.createElement("tr");
+      tr.style.backgroundColor = rowBg;
+      tr.style.borderBottom = "1px solid var(--border)";
+
+      tr.innerHTML = `
+        <td style="padding: 8px 12px; font-weight: bold; color: var(--green-dark);">Tree #${props.id}</td>
+        <td style="padding: 8px 12px; font-weight: 600;">${props.species}</td>
+        <td style="padding: 8px 12px;">${props.plantYear}</td>
+        <td style="padding: 8px 12px; color: #2e7d32; font-weight: bold;">+${speciesConfig.growthRateFeetPerYear} ft/yr</td>
+        <td style="padding: 8px 12px;">${props.baseRadiusFeet} ft</td>
+        <td style="padding: 8px 12px; font-weight: bold; color: #1565c0;">${statusText}</td>
+        <td style="padding: 8px 12px; font-weight: bold; color: #2e7d32;">${isPlanted ? areaSqFt.toLocaleString() + ' sq ft' : '0 sq ft'}</td>
+        <td style="padding: 8px 12px; color: #666;">${props.maxRadiusFeet} ft max</td>
+        <td style="padding: 8px 12px; text-align: center;">
+          <button type="button" class="locate-btn" data-lat="${coords[1]}" data-lng="${coords[0]}" data-id="${props.id}"
+            style="background: var(--green-dark); color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold;">
+            📍 Focus
+          </button>
+        </td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+
+    tbody.querySelectorAll(".locate-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lat = parseFloat(btn.dataset.lat);
+        const lng = parseFloat(btn.dataset.lng);
+        map.flyTo([lat, lng], 19, { duration: 1.2 });
+      });
+    });
+  }
+
   const renderCanopy = () => {
     if (!mockTreesData) return;
 
@@ -289,12 +353,21 @@
         fillOpacity: 0.8
       });
 
-      circle.bindPopup(`<b>${props.species}</b><br/>Planted: ${props.plantYear}<br/>Current Year: ${targetYear}<br/>Estimated Canopy Radius: ${currentRadiusFeet.toFixed(1)} ft`);
+      circle.bindPopup(`<b>Tree #${props.id}: ${props.species}</b><br/>Planted: ${props.plantYear}<br/>Current Year: ${targetYear}<br/>Canopy Radius: ${currentRadiusFeet.toFixed(1)} ft<br/>Shade Area: ${Math.round(Math.PI * currentRadiusFeet * currentRadiusFeet).toLocaleString()} sq ft`);
       treeCanopyLayer.addLayer(circle);
     });
 
     updateLiveShadeCardAndBreakdown(targetYear);
+    renderTreeRegistryTable(targetYear);
   };
+
+  const speciesFilter = document.getElementById("speciesFilter");
+  if (speciesFilter) {
+    speciesFilter.addEventListener("change", () => {
+      const targetYear = Number(yearSlider.value);
+      renderTreeRegistryTable(targetYear);
+    });
+  }
 
   yearSlider.addEventListener("input", () => {
     updateSummary();

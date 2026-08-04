@@ -147,6 +147,54 @@
     </aside>
   </main>
 
+  <!-- Dynamic Tree Species & Growth Registry Table -->
+  <section class="tree-registry-section" style="padding: 24px; background: #ffffff; border-top: 3px solid var(--green-dark); margin-top: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+          <div>
+              <h2 style="margin: 0; color: var(--green-dark); font-size: 22px;">🌳 Campus Tree Species & Individual Growth Registry</h2>
+              <p style="margin: 4px 0 0 0; color: #555; font-size: 13px;">
+                  Dynamic inventory of all 158 campus trees mapped to their corresponding map ID tag (#1 to #158). Canopy radii and shade surface areas recalculate in real-time as you move the timeline slider for <strong style="color:var(--green-dark);" id="registryYearLabel">2025</strong>.
+              </p>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+              <label for="speciesFilter" style="font-weight: bold; font-size: 13px; color: var(--green-dark);">Filter Species:</label>
+              <select id="speciesFilter" style="padding: 6px 12px; border: 1px solid var(--border); border-radius: 4px; font-weight: 500;">
+                  <option value="all">All Species (158 Trees)</option>
+                  <option value="Bur Oak">Bur Oak</option>
+                  <option value="Montezuma Bald Cypress">Montezuma Bald Cypress</option>
+                  <option value="Texas Pecan">Texas Pecan</option>
+                  <option value="Mexican Sycamore">Mexican Sycamore</option>
+                  <option value="Live Oak">Live Oak</option>
+                  <option value="Cedar Elm">Cedar Elm</option>
+                  <option value="Texas Ebony">Texas Ebony</option>
+                  <option value="Honey Mesquite">Honey Mesquite</option>
+                  <option value="Anacua">Anacua</option>
+              </select>
+          </div>
+      </div>
+
+      <div style="max-height: 420px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+              <thead>
+                  <tr style="background: var(--green-dark); color: #ffffff; position: sticky; top: 0; z-index: 5;">
+                      <th style="padding: 10px 12px;">Map Tag ID</th>
+                      <th style="padding: 10px 12px;">Tree Species Name</th>
+                      <th style="padding: 10px 12px;">Planted Year</th>
+                      <th style="padding: 10px 12px;">Annual Growth Rate</th>
+                      <th style="padding: 10px 12px;">Initial Radius @ Planting</th>
+                      <th style="padding: 10px 12px;">Current Radius (<span class="dyn-year-text">2025</span>)</th>
+                      <th style="padding: 10px 12px;">Current Shade Area (ft²)</th>
+                      <th style="padding: 10px 12px;">Max Biological Limit</th>
+                      <th style="padding: 10px 12px; text-align: center;">Locate on Map</th>
+                  </tr>
+              </thead>
+              <tbody id="treeRegistryTableBody">
+                  <!-- Populated dynamically by canopy.js -->
+              </tbody>
+          </table>
+      </div>
+  </section>
+
   <script src="config.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="canopy.js"></script>
