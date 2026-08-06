@@ -156,8 +156,12 @@
 
     .campus-cards {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 30px;
       z-index: 5;
+      max-width: 1400px;
+      padding: 0 20px;
     }
 
     .campus-card {
@@ -308,22 +312,10 @@
     <img src="../../assets/mesquite_leaf.jpg" alt="Mesquite Leaf" class="parallax-leaf p-leaf-2">
     <img src="../../assets/cedar_elm_leaf.jpg" alt="Elm Leaf" class="parallax-leaf p-leaf-3">
 
-    <h2 class="campus-header">Donna ISD Campuses</h2>
+    <h2 class="campus-header" id="campus-header">Select a District</h2>
     
-    <div class="campus-cards">
-      <div class="campus-card">
-        <div class="campus-letter">M</div>
-        <div class="campus-name">M. Rivas Primary</div>
-        <div class="campus-desc">Pre-K to 2nd Grade Discovery Academy</div>
-        <div class="campus-btn">Enter Dashboard</div>
-      </div>
-
-      <div class="campus-card">
-        <div class="campus-letter">J</div>
-        <div class="campus-name">J.W. Caceres</div>
-        <div class="campus-desc">2nd to 5th Grade Intermediate Academy</div>
-        <div class="campus-btn">Enter Dashboard</div>
-      </div>
+    <div class="campus-cards" id="campus-cards-container">
+      <!-- Cards dynamically injected here -->
     </div>
   </div>
 
@@ -387,54 +379,101 @@
     });
 
     /* -----------------------------------------------------------
-       CLICK ACTION: Scroll down to Campuses
+       DATA & CLICK ACTION: Scroll down to Campuses
     ----------------------------------------------------------- */
+    const campusData = {
+      donna: [
+        { name: "M. Rivas Primary", desc: "Pre-K to 2nd Grade Discovery Academy", letter: "M" },
+        { name: "J.W. Caceres", desc: "2nd to 5th Grade Intermediate Academy", letter: "J" },
+        { name: "P.S. Garza", desc: "Elementary School", letter: "P" },
+        { name: "A.M. Ochoa", desc: "Primary Science & Sports Academy", letter: "A" },
+        { name: "Capt. D. Salinas II", desc: "STEAM Academy", letter: "C" },
+        { name: "C. Stainke", desc: "Intermediate Science & Sports Academy", letter: "C" },
+        { name: "D. Singleterry", desc: "Senior Elementary School", letter: "D" },
+        { name: "A.P. Solis", desc: "Middle School", letter: "A" }
+      ],
+      mercedes: [
+        { name: "Ruben Hinojosa", desc: "Elementary School", letter: "R" },
+        { name: "W.B. Travis", desc: "Elementary School", letter: "W" },
+        { name: "Sgt. M. Chacon", desc: "Middle School", letter: "S" },
+        { name: "Sgt. W.G. Harrell", desc: "Elementary School", letter: "S" },
+        { name: "Mercedes High", desc: "High School", letter: "M" },
+        { name: "Mercedes Academy", desc: "Academic Academy", letter: "M" }
+      ]
+    };
+
+    function populateCampuses(districtKey, title) {
+      document.getElementById("campus-header").innerText = title;
+      const container = document.getElementById("campus-cards-container");
+      container.innerHTML = "";
+      
+      campusData[districtKey].forEach(campus => {
+        const cardHTML = `
+          <div class="campus-card">
+            <div class="campus-letter">${campus.letter}</div>
+            <div class="campus-name">${campus.name}</div>
+            <div class="campus-desc">${campus.desc}</div>
+            <div class="campus-btn">Enter Dashboard</div>
+          </div>
+        `;
+        container.insertAdjacentHTML('beforeend', cardHTML);
+      });
+
+      bindCardTransitions();
+
+      gsap.fromTo(".campus-card", 
+        { opacity: 0, y: 80 }, 
+        { opacity: 1, y: 0, stagger: 0.1, duration: 1, ease: "power3.out" }
+      );
+    }
+
     document.getElementById('btn-donna').addEventListener('click', () => {
-      // Smoothly scroll the page down to the deep-dive section
+      populateCampuses('donna', 'Donna ISD Campuses');
       gsap.to(window, { duration: 1.5, scrollTo: "#deep-dive", ease: "power3.inOut" });
     });
 
-    // Mercedes just scrolls down to demonstrate it works, though technically it would load Mercedes campuses.
     document.getElementById('btn-mercedes').addEventListener('click', () => {
-      document.querySelector(".campus-header").innerText = "Mercedes ISD Campuses";
+      populateCampuses('mercedes', 'Mercedes ISD Campuses');
       gsap.to(window, { duration: 1.5, scrollTo: "#deep-dive", ease: "power3.inOut" });
     });
 
     /* -----------------------------------------------------------
        TRANSITION 4 -> 5: Enter Dashboard
     ----------------------------------------------------------- */
-    document.querySelectorAll('.campus-card').forEach(card => {
-      card.addEventListener('click', function() {
-        // Prevent further clicking or scrolling
-        document.body.style.pointerEvents = 'none';
-        document.body.style.overflow = 'hidden';
-        
-        const tl = gsap.timeline();
-        
-        // The clicked card scales up and takes over the screen
-        tl.to(this, {
-          scale: 1.5,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power2.inOut"
-        }, 0);
+    function bindCardTransitions() {
+      document.querySelectorAll('.campus-card').forEach(card => {
+        card.addEventListener('click', function() {
+          // Prevent further clicking or scrolling
+          document.body.style.pointerEvents = 'none';
+          document.body.style.overflow = 'hidden';
+          
+          const tl = gsap.timeline();
+          
+          // The clicked card scales up and takes over the screen
+          tl.to(this, {
+            scale: 1.5,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.inOut"
+          }, 0);
 
-        // Hide the other card and header
-        tl.to(".campus-header", { opacity: 0, duration: 0.4 }, 0);
-        const siblings = Array.from(this.parentNode.children).filter(el => el !== this && el.classList.contains('campus-card'));
-        if (siblings.length) {
-          tl.to(siblings, { opacity: 0, scale: 0.8, y: 40, duration: 0.6 }, 0);
-        }
+          // Hide the other card and header
+          tl.to(".campus-header", { opacity: 0, duration: 0.4 }, 0);
+          const siblings = Array.from(this.parentNode.children).filter(el => el !== this && el.classList.contains('campus-card'));
+          if (siblings.length) {
+            tl.to(siblings, { opacity: 0, scale: 0.8, y: 40, duration: 0.6 }, 0);
+          }
 
-        // Fade to solid background color for seamless transition to dashboard
-        tl.to(".transition-overlay", { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 0.4);
+          // Fade to solid background color for seamless transition to dashboard
+          tl.to(".transition-overlay", { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 0.4);
 
-        // Redirect after animation completes
-        tl.call(() => {
-          window.location.href = '../../campus_hub.html';
+          // Redirect after animation completes
+          tl.call(() => {
+            window.location.href = '../../campuses.html';
+          });
         });
       });
-    });
+    }
 
   </script>
 </body>
