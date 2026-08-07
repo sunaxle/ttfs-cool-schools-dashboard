@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Access Strategy | UTRGV Agroecology</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .strategy-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .role-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-top: 5px solid;
+        }
+
+        .role-admin { border-top-color: #F44336; }
+        .role-educator { border-top-color: #2196F3; }
+        .role-public { border-top-color: #4CAF50; }
+
+        .role-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .role-header h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .role-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .role-admin .role-badge { background: #F44336; }
+        .role-educator .role-badge { background: #2196F3; }
+        .role-public .role-badge { background: #4CAF50; }
+
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .page-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 4px;
+            border-left: 3px solid #ccc;
+            font-size: 14px;
+        }
+
+        .page-item.granted {
+            border-left-color: #4CAF50;
+            background: #e8f5e9;
+        }
+
+        .page-item.denied {
+            border-left-color: #F44336;
+            background: #ffebee;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .diagram-container {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- WILL BE REPLACED BY update_nav.py automatically -->
+    <header class="app-header">
+        <div class="brand-left"></div>
+        <div class="title">User Access Level Strategy (Mockup)</div>
+        <div class="brand-right"></div>
+    </header>
+
+    <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
+            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
+            <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
+            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
+            <a class="nav-link" href="zoning.html">Site Zoning</a>
+            <a class="nav-link" href="protocols.html">SOP Protocols</a>
+            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
+            <a class="nav-link" href="economics.html">Economics / ROI</a>
+            <a class="nav-link" href="trails.html">Trails</a>
+            <a class="nav-link" href="wind.html">Wind</a>
+            <a class="nav-link" href="temperature.html">Temp</a>
+            <a class="nav-link" href="soil_moisture.html">Moisture</a>
+            <a class="nav-link" href="water_table.html">Water Table</a>
+            <a class="nav-link" href="soil_types.html">Soils</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+        <div class="nav-section new-prototypes-section" style="border-left: 2px solid #9C27B0; padding-left: 10px; margin-left: 15px;">
+            <span class="nav-header-label" style="color: #9C27B0;">🆕 NEW PROTOTYPES (NOT DELIVERABLES)</span>
+            <a class="nav-link" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
+            <a class="nav-link" href="biodiversity_analog_concept.html">Child-Friendly Biodiversity</a>
+            <a class="nav-link" href="rivas_tree_roster.html">Tree Sponsorship Roster</a>
+            <a class="nav-link active" href="user_access_strategy.html">User Access Strategy</a>
+        </div>
+    </nav>
+    <!-- END REPLACEMENT BLOCK -->
+
+    <main class="strategy-container">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="color: var(--primary);">Platform Access & Governance Strategy</h1>
+            <p style="font-size: 16px; color: #555;">This document outlines the proposed Role-Based Access Control (RBAC) architecture to ensure compliance with FERPA, COPPA, and university policies while maximizing public engagement.</p>
+        </div>
+
+        <div class="diagram-container">
+            <h3 style="margin-bottom: 20px;">Access Hierarchy Diagram</h3>
+            <!-- Placeholder for a visual diagram using simple HTML elements -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+                <div style="padding: 20px; background: #ffebee; border: 2px solid #F44336; border-radius: 8px; width: 200px;">
+                    <strong>University Admins / Researchers</strong>
+                    <div style="font-size: 12px; margin-top: 5px;">(Full System Access)</div>
+                </div>
+                <div style="font-size: 24px; color: #ccc;">➔</div>
+                <div style="padding: 20px; background: #e3f2fd; border: 2px solid #2196F3; border-radius: 8px; width: 200px;">
+                    <strong>Educators / Teachers</strong>
+                    <div style="font-size: 12px; margin-top: 5px;">(Curriculum & Tracking Access)</div>
+                </div>
+                <div style="font-size: 24px; color: #ccc;">➔</div>
+                <div style="padding: 20px; background: #e8f5e9; border: 2px solid #4CAF50; border-radius: 8px; width: 200px;">
+                    <strong>Students / Public</strong>
+                    <div style="font-size: 12px; margin-top: 5px;">(Anonymized Exploratory Access)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Role -->
+        <div class="role-card role-admin">
+            <div class="role-header">
+                <h2>Level 1: System Administrators & Researchers</h2>
+                <span class="role-badge">High Clearance</span>
+            </div>
+            <p style="font-size: 14px; color: #666;">Full unhindered access to raw data, system logs, sensor telemetry, and platform configurations. Required for grant reporting and backend maintenance.</p>
+            
+            <h4 style="margin-top: 20px; color: #333;">Accessible Modules:</h4>
+            <div class="access-grid">
+                <div class="page-item granted">✔️ Raw Data Pipelines</div>
+                <div class="page-item granted">✔️ Maintenance Trackers</div>
+                <div class="page-item granted">✔️ Economic ROI / Budgeting</div>
+                <div class="page-item granted">✔️ i-Tree Eco Ledger</div>
+                <div class="page-item granted">✔️ PII-Visible Student Tracking</div>
+                <div class="page-item granted">✔️ SOP Protocols & Uploads</div>
+            </div>
+        </div>
+
+        <!-- Educator Role -->
+        <div class="role-card role-educator">
+            <div class="role-header">
+                <h2>Level 2: Principals & Educators</h2>
+                <span class="role-badge">Secure Gateway</span>
+            </div>
+            <p style="font-size: 14px; color: #666;">Authenticated portal for school staff. Provides access to lesson plans, student engagement metrics, and class-level analytics without exposing backend university tools.</p>
+            
+            <h4 style="margin-top: 20px; color: #333;">Accessible Modules:</h4>
+            <div class="access-grid">
+                <div class="page-item granted">✔️ TEKS Lesson Plans Portal</div>
+                <div class="page-item granted">✔️ Anonymized Student Tracking</div>
+                <div class="page-item granted">✔️ Pre/Post Survey Gateways</div>
+                <div class="page-item granted">✔️ Canopy Over Time</div>
+                <div class="page-item granted">✔️ Dashboard Overview</div>
+                <div class="page-item denied">❌ Raw Sensor Configurations</div>
+            </div>
+        </div>
+
+        <!-- Public Role -->
+        <div class="role-card role-public">
+            <div class="role-header">
+                <h2>Level 3: Students, Parents & General Public</h2>
+                <span class="role-badge">Open Access (Anonymized)</span>
+            </div>
+            <p style="font-size: 14px; color: #666;">COPPA/FERPA compliant public tier. No PII is collected or displayed. Focuses entirely on educational games, simulations, and community engagement features.</p>
+            
+            <h4 style="margin-top: 20px; color: #333;">Accessible Modules:</h4>
+            <div class="access-grid">
+                <div class="page-item granted">✔️ Educational Biodiversity Portal</div>
+                <div class="page-item granted">✔️ Tree Sponsorship Portal (Alumni)</div>
+                <div class="page-item granted">✔️ 3D Shade Models</div>
+                <div class="page-item granted">✔️ Weather & Temp Simulations</div>
+                <div class="page-item denied">❌ TEKS Lesson Plans (Keys/Answers)</div>
+                <div class="page-item denied">❌ Individual Student Tracking Data</div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

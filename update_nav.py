@@ -39,8 +39,6 @@ def process_file(filepath):
 {make_link('student_tracking.html', 'Student Tracking', False)}
 {make_link('zoning.html', 'Site Zoning', False)}
 {make_link('protocols.html', 'SOP Protocols', False)}
-{make_link('teks_lesson_plans.html', 'TEKS Lesson Plans', False)}
-{make_link('tree_portal.html', 'Tree Sponsorship', False)}
 {make_link('maintenance.html', 'Maintenance Tracker', False)}
 {make_link('economics.html', 'Economics / ROI', False)}
 {make_link('trails.html', 'Trails', False)}
@@ -50,6 +48,13 @@ def process_file(filepath):
 {make_link('water_table.html', 'Water Table', False)}
 {make_link('soil_types.html', 'Soils', False)}
 {make_link('index.html', 'Impact', False)}
+        </div>
+        <div class="nav-section new-prototypes-section" style="border-left: 2px solid #9C27B0; padding-left: 10px; margin-left: 15px;">
+            <span class="nav-header-label" style="color: #9C27B0;">🆕 NEW PROTOTYPES (NOT DELIVERABLES)</span>
+{make_link('teks_lesson_plans.html', 'TEKS Lesson Plans', False)}
+{make_link('biodiversity_analog_concept.html', 'Child-Friendly Biodiversity', False)}
+{make_link('rivas_tree_roster.html', 'Tree Sponsorship Roster', False)}
+{make_link('user_access_strategy.html', 'User Access Strategy', False)}
         </div>
     </nav>"""
 
