@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <title>Biodiversity Tracking (Analog Concept)</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="biodiversity_analog_concept.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="brand-left"></div>
+        <div class="title">Biodiversity Tracking - Classroom Edition</div>
+        <div class="brand-right"></div>
+    </header>
+
+    <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
+            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
+            <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
+            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
+            <a class="nav-link" href="zoning.html">Site Zoning</a>
+            <a class="nav-link" href="protocols.html">SOP Protocols</a>
+            <a class="nav-link" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
+            <a class="nav-link" href="tree_portal.html">Tree Sponsorship</a>
+            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
+            <a class="nav-link" href="economics.html">Economics / ROI</a>
+            <a class="nav-link" href="trails.html">Trails</a>
+            <a class="nav-link" href="wind.html">Wind</a>
+            <a class="nav-link" href="temperature.html">Temp</a>
+            <a class="nav-link" href="soil_moisture.html">Moisture</a>
+            <a class="nav-link" href="water_table.html">Water Table</a>
+            <a class="nav-link" href="soil_types.html">Soils</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+    </nav>
+
+    <main class="analog-layout">
+        <!-- LEFT PANEL: The Classroom Clipboard -->
+        <aside class="clipboard-panel">
+            <div class="clipboard-header">
+                <h2>📋 Mrs. Smith's Classroom Tally</h2>
+                <p>J.W. Caceres Academy - Week of Oct 12</p>
+            </div>
+            
+            <div class="map-illustration-container">
+                <div class="hand-drawn-map">
+                    <h3>Our Campus Microforest</h3>
+                    <div class="map-zone" style="top: 20%; left: 10%;">🦋 Butterfly Garden</div>
+                    <div class="map-zone" style="top: 60%; left: 30%;">🛝 Playground</div>
+                    <div class="map-zone" style="top: 30%; left: 60%;">🌳 Big Oak Tree</div>
+                    <div class="map-zone" style="top: 75%; left: 70%;">🍎 Cafeteria Patio</div>
+                </div>
+            </div>
+
+            <div class="tally-station">
+                <h3>Enter Today's Tallies</h3>
+                <p class="hint">Teachers: Enter the total counts from the students' physical bingo cards.</p>
+                <form id="tallyForm" class="tally-form">
+                    <div class="form-row">
+                        <label>Birds Spotted:</label>
+                        <input type="number" id="birdTally" min="0" value="0">
+                    </div>
+                    <div class="form-row">
+                        <label>Insects Found:</label>
+                        <input type="number" id="insectTally" min="0" value="0">
+                    </div>
+                    <div class="form-row">
+                        <label>Plants Identified:</label>
+                        <input type="number" id="plantTally" min="0" value="0">
+                    </div>
+                    <button type="button" id="submitTallyBtn" class="btn-primary">Update Classroom Total</button>
+                </form>
+            </div>
+            
+            <div class="print-actions">
+                <button type="button" id="printBingoBtn" class="btn-secondary">🖨️ Print Outdoor Bingo Cards</button>
+            </div>
+        </aside>
+
+        <!-- RIGHT PANEL: The Campus Scrapbook -->
+        <section class="scrapbook-panel">
+            <div class="scrapbook-header">
+                <h1>Our Campus Field Guide</h1>
+                <p>Find these species outside and color them in!</p>
+            </div>
+
+            <div class="scrapbook-tabs">
+                <button class="scrapbook-tab active" data-tab="birds">Birds</button>
+                <button class="scrapbook-tab" data-tab="insects">Insects</button>
+                <button class="scrapbook-tab" data-tab="plants">Plants</button>
+            </div>
+
+            <div id="scrapbookGrid" class="scrapbook-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+        
+        <!-- Print Modal -->
+        <div id="printModal" class="modal-overlay hidden">
+            <div class="modal-content scrapbook-style">
+                <h2>🖨️ Printing Outdoor Bingo Cards</h2>
+                <p>This will print 25 randomized bingo cards featuring local species from the iNaturalist database. Students can use these on clipboards during recess!</p>
+                <div class="modal-actions">
+                    <button id="confirmPrintBtn" class="btn-primary">Send to Printer</button>
+                    <button id="cancelPrintBtn" class="btn-text">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="data/mock_biodiversity_data.js"></script>
+    <script src="biodiversity_analog_concept.js"></script>
+</body>
+</html>

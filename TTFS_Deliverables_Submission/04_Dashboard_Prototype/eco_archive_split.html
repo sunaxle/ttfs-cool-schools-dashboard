@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGV Eco-Archive | Split-Screen Hub</title>
+    <!-- Use Google Fonts to enhance the "Human-Analog" aesthetics -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="eco_archive_split.css">
+</head>
+<body>
+
+    <header class="hub-header">
+        <a href="index.html" class="back-link">← Back to Dashboard</a>
+        <div class="header-titles">
+            <h1>Regional Eco-Archive</h1>
+            <p>A hand-curated field guide to the habitats and history of the Lower Rio Grande Valley.</p>
+        </div>
+    </header>
+
+    <main class="split-container">
+        <!-- Left Side: Scrollable Trail -->
+        <section class="scroll-trail" id="scroll-trail">
+            <!-- Nodes will be injected here via JS -->
+        </section>
+
+        <!-- Right Side: Persistent Flyer / Field Guide View -->
+        <section class="flyer-container">
+            <div class="flyer-paper" id="flyer-view">
+                <div class="flyer-content">
+                    <div class="flyer-icon" id="flyer-icon">🌿</div>
+                    <h2 class="flyer-title" id="flyer-title">Select an Entry</h2>
+                    <h4 class="flyer-subtitle" id="flyer-date">Explore the trail on the left</h4>
+                    <p class="flyer-desc" id="flyer-desc">
+                        As you browse the eco-archive, this field guide will automatically update to reflect the history, location, or blog entry you select. 
+                    </p>
+                    <a href="#" class="flyer-link" id="flyer-link" target="_blank" style="display: none;">Read More</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Load the data and then the main logic -->
+    <script src="rgv_archive_data.js"></script>
+    <script src="eco_archive_split.js"></script>
+</body>
+</html>

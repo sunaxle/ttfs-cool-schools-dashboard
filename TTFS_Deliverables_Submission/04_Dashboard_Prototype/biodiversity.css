@@ -1,0 +1,389 @@
+.bio-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: calc(100vh - 150px);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #ffffff;
+}
+
+#bioMap {
+    height: 380px;
+    width: 100%;
+    border-bottom: 2px solid var(--border);
+    flex-shrink: 0;
+}
+
+.bio-panel {
+    background: #fff;
+    padding: 24px;
+    flex: 1;
+}
+
+        .bio-panel h2 {
+            color: var(--green-dark);
+            margin-bottom: 5px;
+        }
+
+        .bio-panel p {
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #777;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .tab-btn.active {
+            background: var(--green);
+            color: white;
+        }
+
+        .species-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .species-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fafafa;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .species-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .species-img {
+            height: 160px;
+            background: #e0e0e0;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .species-info {
+            padding: 12px;
+            flex-grow: 1;
+        }
+
+        .species-info h4 {
+            margin: 0 0 4px 0;
+            font-size: 15px;
+            color: var(--green-dark);
+        }
+
+        .species-info p.scientific {
+            margin: 0 0 10px 0;
+            font-size: 12px;
+            color: #777;
+            font-style: italic;
+        }
+
+        .observations-badge {
+            display: inline-block;
+            background: #eee;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--green-dark);
+        }
+
+        .sync-btn {
+            width: 100%;
+            padding: 12px;
+            font-weight: bold;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .sync-btn:hover {
+            background: #333;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+
+        /* --- iNaturalist Bounding Box Vision Section --- */
+        .inat-vision-section {
+            margin-top: 30px;
+            padding-top: 24px;
+            border-top: 3px solid var(--green-dark);
+        }
+
+        .inat-stats-bar {
+            background: #424242;
+            display: flex;
+            align-items: center;
+            border-radius: 4px 4px 0 0;
+            overflow: hidden;
+            color: white;
+        }
+
+        .inat-stat-btn {
+            background: #333;
+            padding: 10px 14px;
+            border-right: 1px solid #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-bound-label {
+            border: 2px solid #ff7043;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: #ff7043;
+            font-weight: bold;
+            font-size: 13px;
+            background: rgba(255, 112, 67, 0.1);
+        }
+
+        .inat-stat-box {
+            padding: 8px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid #555;
+            flex: 1;
+        }
+
+        .inat-stat-box.green {
+            background: #7cb342;
+        }
+
+        .inat-stat-box .stat-num {
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+
+        .inat-stat-box .stat-lbl {
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        .inat-tools-bar {
+            background: #eeeeee;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tool-tab {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 4px;
+        }
+
+        .tool-tab.active {
+            background: #e0e0e0;
+            font-weight: bold;
+            border-color: #999;
+        }
+
+        .tool-icon-btn {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .redo-btn {
+            background: #ff7043;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .redo-btn:hover {
+            background: #f4511e;
+        }
+
+        .reset-btn {
+            background: #757575;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .inat-explorer-container {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            height: 480px;
+            border: 2px solid #424242;
+            border-top: none;
+            background: #fafafa;
+            border-radius: 0 0 6px 6px;
+            overflow: hidden;
+        }
+
+        .inat-map-viewport {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #inatVisionMap {
+            width: 100%;
+            height: 100%;
+        }
+
+        .inat-feed-panel {
+            overflow-y: auto;
+            background: #ffffff;
+            border-left: 1px solid #e0e0e0;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .feed-card {
+            display: flex;
+            gap: 12px;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .feed-card:hover {
+            border-color: #7cb342;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .feed-img {
+            width: 64px;
+            height: 64px;
+            border-radius: 4px;
+            background-size: cover;
+            background-position: center;
+            background-color: #eee;
+            flex-shrink: 0;
+        }
+
+        .feed-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feed-details h4 {
+            margin: 0 0 2px 0;
+            font-size: 14px;
+            color: var(--green-dark);
+        }
+
+        .feed-details .sc-name {
+            margin: 0 0 4px 0;
+            font-size: 11px;
+            color: #777;
+            font-style: italic;
+        }
+
+        .feed-details .feed-loc {
+            margin: 0 0 6px 0;
+            font-size: 11px;
+            color: #555;
+        }
+
+        .feed-badge-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .grade-badge {
+            background: #7cb342;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .feed-time {
+            font-size: 11px;
+            color: #888;
+        }
+
+        @media (max-width: 900px) {
+            .inat-explorer-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            #inatVisionMap {
+                height: 350px;
+            }
+        }

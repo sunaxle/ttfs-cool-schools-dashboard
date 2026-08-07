@@ -1,0 +1,162 @@
+.portal-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    min-height: 700px;
+}
+
+/* Left Side - Static Flyer */
+.portal-left {
+    flex: 1;
+    background: linear-gradient(135deg, #2b5f3a 0%, #1e4529 100%);
+    color: white;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flyer-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    color: #a3e635;
+}
+
+.flyer-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.flyer-image-placeholder {
+    width: 250px;
+    height: 250px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    margin: 0 auto 40px;
+    border: 4px dashed rgba(255,255,255,0.3);
+}
+
+.flyer-details {
+    background: rgba(0,0,0,0.2);
+    padding: 30px;
+    border-radius: 8px;
+    border-left: 4px solid #a3e635;
+}
+
+.flyer-details h3 {
+    margin-top: 0;
+    color: #a3e635;
+    margin-bottom: 15px;
+}
+
+/* Right Side - Form */
+.portal-right {
+    flex: 1.2;
+    padding: 60px 50px;
+    background: #f9fbf9;
+    overflow-y: auto;
+}
+
+.portal-right h2 {
+    color: #2b5f3a;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    border-color: #2b5f3a;
+    outline: none;
+}
+
+/* Mad-libs special layout */
+.madlibs-container {
+    display: flex;
+    gap: 10px;
+}
+
+.madlibs-container input {
+    background: #f0f5f0;
+    font-weight: bold;
+    color: #2b5f3a;
+}
+
+.btn-generate {
+    background: #4a8c5b;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.btn-generate:hover {
+    background: #366b43;
+}
+
+.privacy-notice {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #665c00;
+    margin: 30px 0;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 18px;
+    background: #2b5f3a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(43,95,58,0.3);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(43,95,58,0.4);
+}
+
+@media (max-width: 900px) {
+    .portal-container {
+        flex-direction: column;
+    }
+}

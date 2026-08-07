@@ -1,0 +1,29 @@
+{
+  "region": "Rio Grande Valley",
+  "county": "Hidalgo",
+  "district": "Donna ISD",
+  "historical_climate_data": {
+    "average_summer_high_f": 98,
+    "heat_advisories_2023": 45,
+    "heat_index_threshold_advisory_f": 111,
+    "nighttime_low_threshold_f": 75
+  },
+  "attendance_impacts": {
+    "estimated_learning_loss_per_degree_f": "1%",
+    "tea_waiver_threshold": "-10%",
+    "chronic_absenteeism_factors": [
+      "Lack of home air conditioning",
+      "Unshaded transit to school (walking/bus stops)",
+      "Asthma and heat-related illness"
+    ]
+  },
+  "colonia_vulnerability": {
+    "thermal_inequality": true,
+    "key_infrastructure_deficits": [
+      "Lack of paved roads",
+      "Insufficient tree canopy",
+      "Poor drainage",
+      "Older housing lacking HVAC"
+    ]
+  }
+}

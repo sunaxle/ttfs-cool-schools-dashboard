@@ -1,0 +1,249 @@
+.roster-layout {
+    display: flex;
+    height: calc(100vh - 70px); /* Subtract header height */
+    overflow: hidden;
+    background: #f4f7f6;
+}
+
+/* --- MAP PANE --- */
+.map-pane {
+    flex: 1.2;
+    position: relative;
+    background: #e9efe7;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.map-overlay-header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.map-overlay-header h2 {
+    margin: 0 0 5px 0;
+    color: #2b5f3a;
+    font-size: 1.4rem;
+}
+
+.map-overlay-header p {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.legend {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.claimed-dot { background-color: #2b5f3a; border: 2px solid #fff; box-shadow: 0 0 0 1px #2b5f3a; }
+.available-dot { background-color: #a3e635; border: 2px solid #fff; box-shadow: 0 0 0 1px #8bc92a; }
+
+.simulated-map {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    /* Simulated grass/campus texture */
+    background-image: 
+        radial-gradient(#d3e2ce 15%, transparent 16%),
+        radial-gradient(#d3e2ce 15%, transparent 16%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+    background-color: #e4efe0;
+}
+
+.tree-pin {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.2s, z-index 0s;
+}
+
+.tree-pin:hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    z-index: 100 !important;
+}
+
+.tree-pin.claimed {
+    background-color: #2b5f3a;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.tree-pin.available {
+    background-color: #a3e635;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.tree-pin.active {
+    box-shadow: 0 0 0 4px #ffc107;
+    animation: pulse 1s infinite alternate;
+    z-index: 200 !important;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1.2); }
+    100% { transform: translate(-50%, -50%) scale(1.6); }
+}
+
+/* --- GALLERY PANE --- */
+.gallery-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+}
+
+.gallery-header {
+    padding: 25px;
+    border-bottom: 1px solid #eee;
+    background: #fafdfa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gallery-header h2 {
+    margin: 0;
+    color: #2b5f3a;
+    font-size: 1.8rem;
+}
+
+.roster-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-num {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #2b5f3a;
+}
+
+.stat-lbl {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.roster-grid {
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    align-content: start;
+}
+
+/* Tree Card */
+.tree-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.tree-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    border-color: #a3e635;
+}
+
+.tree-card.active {
+    border: 2px solid #2b5f3a;
+    box-shadow: 0 4px 15px rgba(43,95,58,0.2);
+}
+
+.card-img-placeholder {
+    height: 140px;
+    background: #e9efe7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border-bottom: 1px solid #eee;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.tree-name {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2b5f3a;
+}
+
+.tree-species {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.claim-status {
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+    font-size: 0.9rem;
+}
+
+.claimed-by {
+    color: #2b5f3a;
+    font-weight: 600;
+}
+
+.claimed-by-icon {
+    margin-right: 5px;
+}
+
+.btn-claim {
+    display: inline-block;
+    background: #a3e635;
+    color: #1e4529;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.btn-claim:hover {
+    background: #8bc92a;
+}

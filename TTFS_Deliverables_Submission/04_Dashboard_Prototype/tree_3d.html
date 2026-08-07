@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <meta name="description" content="UTRGV Agroecology Project Dashboard - Community Impact & Health" />
+    <meta name="author" content="UTRGV Agroecology" />
+    <title>3D Microclimate Modeling</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="tree_3d.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="brand-left">
+            </div>
+        <div class="title">3D Microclimate Modeling</div>
+        <div class="brand-right">
+            </div>
+    </header>
+
+                <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="itree_ledger.html">i-Tree Eco Ledger <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="tree_3d.html" class="active">3D Shade Models <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="student_tracking.html">Student Tracking <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="zoning.html">Site Zoning <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="protocols.html">SOP Protocols <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
+            <a class="nav-link" href="trails.html">Trails</a>
+            <a class="nav-link" href="wind.html">Wind</a>
+            <a class="nav-link" href="temperature.html">Temp</a>
+            <a class="nav-link" href="soil_moisture.html">Moisture</a>
+            <a class="nav-link" href="water_table.html">Water Table</a>
+            <a class="nav-link" href="soil_types.html">Soils</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+    </nav>
+
+    <main class="app-layout">
+        <aside class="panel left">
+            <section class="card">
+                <h2>Orbital Shadow Simulation</h2>
+                <p class="hint" style="margin-bottom: 15px;">A 3D simulation of a mature Montezuma Cypress tree. Drag
+                    the slider to track the sun arc and observe real-time cooling effects from the canopy shade.</p>
+                <p class="hint" style="color:var(--green)"><strong>Controls:</strong> Click and drag the model window to
+                    orbit 360&deg; around the tree. Scroll to zoom.</p>
+            </section>
+
+            <section class="card">
+                <h3>South Texas Microclimate (Mock)</h3>
+
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="lbl">Asphalt / Ground Exposed</div>
+                        <div class="val-hot" id="tempExposed">72°F</div>
+                        <div class="lbl" style="font-size: 9px; color: #999;">Direct Solar Radiation</div>
+                    </div>
+
+                    <div class="metric-box">
+                        <div class="lbl">Under Cypress Canopy</div>
+                        <div class="val-cool" id="tempShaded">72°F</div>
+                        <div class="lbl" style="font-size: 9px; color: #999;">Evapotranspiration Cooling</div>
+                    </div>
+                </div>
+
+                <div class="differential" id="tempDiff">
+                    0°F Shading Effect
+                </div>
+            </section>
+
+            <section class="card" style="margin-top:20px;">
+                <h3>Simulation Notes</h3>
+                <p class="hint">Microforest shade mitigates extreme land surface heat by intercepting direct solar irradiance and providing continuous evapotranspiration cooling.</p>
+            </section>
+        </aside>
+
+        <div class="main-content">
+            <!-- ThreeJS Targets -->
+            <div id="canvasContainer1">
+                <div class="canvas-label">Single Canopy: Montezuma Cypress</div>
+            </div>
+
+            <div id="canvasContainer2">
+                <div class="canvas-label">Mixed Microforest Layout</div>
+            </div>
+
+            <div id="timeSliderContainer">
+                <button type="button" id="playBtn"
+                    style="background:#2e7d32; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; font-weight:bold;">Play
+                    Daily Cycle</button>
+                <span style="font-size: 14px; color: #555; white-space: nowrap; margin-left: 10px;">6:00 AM</span>
+                <input type="range" id="sunSlider" min="6" max="18" value="8" step="0.25" />
+                <span style="font-size: 14px; color: #555; white-space: nowrap;">6:00 PM</span>
+
+                <div id="timeDisplay" style="margin-left:auto;">8:00 AM</div>
+            </div>
+
+            <div id="canvasContainer3">
+                <div class="canvas-label">2025 - 2060 Microforest Mitigation Projection</div>
+            </div>
+
+            <div id="yearSliderContainer">
+                <button type="button" id="playYearBtn"
+                    style="background:#0277bd; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; font-weight:bold;">Play
+                    35-Year Timeline</button>
+                <span style="font-size: 14px; color: #555; white-space: nowrap; margin-left: 10px;">2025</span>
+                <input type="range" id="yearSlider" min="2025" max="2060" value="2025" step="1" style="flex:1" />
+                <span style="font-size: 14px; color: #555; white-space: nowrap;">2060</span>
+
+                <div id="yearDisplay" style="margin-left:auto; font-weight:bold; font-size:20px; color:#0277bd;">2025
+                </div>
+            </div>
+
+            <!-- Large Full-Width 2025-2060 Climate Projection Chart at the Bottom -->
+            <section class="card climate-chart-card">
+                <div class="chart-header">
+                    <div>
+                        <h2>2025 – 2060 Climate & Shade Mitigation Projection</h2>
+                        <p class="hint">Visualizing rising baseline temperatures (°F) vs mitigated microforest shading across the 35-year canopy lifecycle.</p>
+                    </div>
+                    <!-- Live Metric Badges -->
+                    <div class="chart-badges">
+                        <div class="badge-item orange">
+                            <span class="badge-lbl">Base Hottest Hour</span>
+                            <strong id="lblBaseTemp">102.0°F</strong>
+                        </div>
+                        <div class="badge-item green">
+                            <span class="badge-lbl">Mitigated Shade Temp</span>
+                            <strong id="lblShadeTemp">98.0°F</strong>
+                        </div>
+                        <div class="badge-item blue">
+                            <span class="badge-lbl">Net Cooling Relief</span>
+                            <strong id="lblCoolingDiff">-4.0°F</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-canvas-wrapper">
+                    <canvas id="tempChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Chart 2: Canopy Coverage Surface Area & Air Volume Expansion -->
+            <section class="card climate-chart-card" style="margin-top: 24px;">
+                <div class="chart-header">
+                    <div>
+                        <h2>2025 – 2060 Canopy Surface Area & Air Volume Expansion</h2>
+                        <p class="hint">Tracking year-by-year canopy surface area growth (sq ft) and the expanding volume of cooled microclimate air (cu ft) creating thermal protection pockets across campus.</p>
+                    </div>
+                    <!-- Live Metric Badges -->
+                    <div class="chart-badges">
+                        <div class="badge-item green">
+                            <span class="badge-lbl">Canopy Surface Area</span>
+                            <strong id="lblCanopyArea">18,500 sq ft</strong>
+                        </div>
+                        <div class="badge-item blue">
+                            <span class="badge-lbl">Cooled Air Shield Vol</span>
+                            <strong id="lblAirVolume">277,500 cu ft</strong>
+                        </div>
+                        <div class="badge-item teal" style="background:#e0f2f1; border:1px solid #80cbc4; color:#00695c;">
+                            <span class="badge-lbl">Cooling Thermal Pockets</span>
+                            <strong id="lblThermalPockets">4 Active Zones</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-canvas-wrapper">
+                    <canvas id="canopyGrowthChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Three.js + OrbitControls + Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="tree_3d.js"></script>
+</body>
+
+</html>

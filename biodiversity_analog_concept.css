@@ -1,0 +1,346 @@
+/* biodiversity_analog_concept.css */
+
+.analog-layout {
+    display: flex;
+    height: calc(100vh - 60px); /* Assuming 60px header */
+    width: 100%;
+    overflow: hidden;
+    background-color: #f4f1ea; /* Paper-like off-white */
+    font-family: 'Kalam', cursive;
+}
+
+/* LEFT PANEL: Clipboard */
+.clipboard-panel {
+    width: 35%;
+    min-width: 350px;
+    background-color: #e3dec9;
+    border-right: 4px solid #8c7b64;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    box-shadow: inset -10px 0 20px rgba(0,0,0,0.05);
+}
+
+.clipboard-header {
+    background: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    transform: rotate(-1deg);
+    border-top: 15px solid #bd2828; /* Clipboard clip aesthetic */
+}
+
+.clipboard-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.clipboard-header p {
+    margin: 5px 0 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.map-illustration-container {
+    background: #fff;
+    border: 2px dashed #a09785;
+    border-radius: 8px;
+    padding: 15px;
+    position: relative;
+    height: 250px;
+}
+
+.hand-drawn-map {
+    width: 100%;
+    height: 100%;
+    background-color: #fcf9f2;
+    position: relative;
+    border-radius: 4px;
+}
+
+.hand-drawn-map h3 {
+    margin: 0;
+    padding: 10px;
+    font-size: 20px;
+    color: #5d6e4e;
+    text-align: center;
+}
+
+.map-zone {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: #4a5c3a;
+    background: rgba(255,255,255,0.8);
+    padding: 4px 8px;
+    border-radius: 12px;
+    border: 1px solid #88a86a;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.map-zone:hover {
+    transform: scale(1.1);
+    background: #e8f5df;
+}
+
+.tally-station {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.tally-station h3 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #333;
+}
+
+.hint {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.form-row input {
+    width: 60px;
+    padding: 5px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'Kalam', cursive;
+}
+
+.btn-primary {
+    background-color: #5d6e4e;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Caveat', cursive;
+    font-weight: bold;
+    font-size: 20px;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #4a5c3a;
+}
+
+.btn-secondary {
+    background-color: #f0ebd8;
+    color: #333;
+    border: 2px solid #a09785;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Caveat', cursive;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #e2dac0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* RIGHT PANEL: Scrapbook */
+.scrapbook-panel {
+    width: 65%;
+    padding: 30px;
+    overflow-y: auto;
+    background-image: radial-gradient(#d4cdba 1px, transparent 1px);
+    background-size: 20px 20px; /* dot grid for journal feel */
+}
+
+.scrapbook-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.scrapbook-header h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    color: #2c3e50;
+    margin: 0;
+    transform: rotate(-1deg);
+}
+
+.scrapbook-header p {
+    font-size: 20px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.scrapbook-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.scrapbook-tab {
+    background: #fff;
+    border: 2px solid #ccc;
+    padding: 8px 20px;
+    font-size: 18px;
+    font-family: 'Kalam', cursive;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.scrapbook-tab.active {
+    background: #5d6e4e;
+    color: #fff;
+    border-color: #5d6e4e;
+    transform: scale(1.05);
+}
+
+.scrapbook-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.scrapbook-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 2px;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.15);
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.scrapbook-item:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.scrapbook-item:nth-child(odd) {
+    transform: rotate(-2deg);
+}
+
+.scrapbook-item:hover {
+    transform: scale(1.05) rotate(0deg);
+    z-index: 10;
+}
+
+/* Tape effect */
+.scrapbook-item::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 60px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    z-index: 5;
+}
+
+.species-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid #eee;
+    background-color: #f9f9f9;
+}
+
+/* Sticker silhouette effect for unobserved species */
+.species-image.silhouette {
+    filter: grayscale(100%) contrast(0%) brightness(90%);
+    opacity: 0.7;
+}
+
+.species-info {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.species-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+.species-scientific {
+    font-size: 12px;
+    color: #888;
+    margin: 2px 0 0 0;
+    font-family: sans-serif;
+    font-style: italic;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content.scrapbook-style {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    font-family: 'Kalam', cursive;
+}
+
+.modal-content h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    margin-top: 0;
+}
+
+.modal-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 18px;
+    font-family: 'Kalam', cursive;
+    cursor: pointer;
+    text-decoration: underline;
+}

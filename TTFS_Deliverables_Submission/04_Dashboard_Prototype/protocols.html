@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <meta name="description" content="UTRGV Agroecology Project Dashboard - Community Impact & Health" />
+    <meta name="author" content="UTRGV Agroecology" />
+    <title>Monitoring Protocols & Assessment | UTRGV Agroecology</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="protocols.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="brand-left">
+            </div>
+        <div class="title">Resource Library & Assessments</div>
+        <div class="brand-right">
+            </div>
+    </header>
+
+                <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="itree_ledger.html">i-Tree Eco Ledger <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="tree_3d.html">3D Shade Models <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="student_tracking.html">Student Tracking <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="zoning.html">Site Zoning <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="protocols.html" class="active">SOP Protocols <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
+            <a class="nav-link" href="trails.html">Trails</a>
+            <a class="nav-link" href="wind.html">Wind</a>
+            <a class="nav-link" href="temperature.html">Temp</a>
+            <a class="nav-link" href="soil_moisture.html">Moisture</a>
+            <a class="nav-link" href="water_table.html">Water Table</a>
+            <a class="nav-link" href="soil_types.html">Soils</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+    </nav>
+
+    <main class="page-container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div style="margin-bottom: 40px; text-align: center;">
+            <p style="font-size: 18px; color: var(--text);">Download standardized field monitoring protocols for
+                student-led ecosystem service collection across the 14 participating campuses.</p>
+        </div>
+
+        <h2 style="margin-bottom: 20px; color: var(--primary);">Field Monitoring Manuals</h2>
+
+        <div class="protocols-grid">
+            <div class="resource-card" style="border-left-color: #f44336;">
+                <h3>Air & Surface Temp Protocol</h3>
+                <p style="font-size: 14px; margin-top: 10px; color: #555;">Detailed manual on how to properly shoot FLIR
+                    thermal imagery and log HOBO air temperatures without solar radiation bias.</p>
+                <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+            </div>
+
+            <div class="resource-card" style="border-left-color: #2196F3;">
+                <h3>Soil Moisture Protocol</h3>
+                <p style="font-size: 14px; margin-top: 10px; color: #555;">Instructions on using standard soil moisture
+                    depth probes under canopy versus exposed fields.</p>
+                <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+            </div>
+
+            <div class="resource-card" style="border-left-color: #FF9800;">
+                <h3>Albedo & Heat Protocol</h3>
+                <p style="font-size: 14px; margin-top: 10px; color: #555;">Methods for measuring reflective light
+                    indexes on varying urban and natural surfaces using lux meters.</p>
+                <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+            </div>
+
+            <div class="resource-card" style="border-left-color: #4CAF50;">
+                <h3>Biodiversity Survey Protocol</h3>
+                <p style="font-size: 14px; margin-top: 10px; color: #555;">Guidance on conducting point-count bird
+                    surveys and macroinvertebrate sampling in leaf litter.</p>
+                <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 50px; margin-bottom: 20px; color: var(--primary);">Teacher Pre/Post Assessment Gateway
+        </h2>
+
+        <div class="form-section">
+            <p style="margin-bottom: 25px;">Use this form to log your class's aggregate data or submit your programmatic
+                evaluation results back to the grant administrators.</p>
+
+            <form id="assessmentForm">
+                <div class="protocols-grid">
+                    <div class="form-group">
+                        <label for="campusSelect">Participating Campus</label>
+                        <select id="campusSelect" required>
+                            <option value="">-- Select Campus --</option>
+                            <option value="donna">J.W. Caceres & M. Rivas Academy</option>
+                            <option value="econ">Economedes High School</option>
+                            <option value="rowe">Nikki Rowe High School</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assessType">Assessment Stage</label>
+                        <select id="assessType" required>
+                            <option value="pre">Pre-Program Baseline</option>
+                            <option value="mid">Mid-Year Check-in</option>
+                            <option value="post">Post-Program Conclusion (Year 2)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentCount">Number of Student Participants</label>
+                    <input type="number" id="studentCount" placeholder="e.g. 24" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="keyFindings">Key Observational Findings</label>
+                    <textarea id="keyFindings" rows="5"
+                        placeholder="Summarize your class's primary findings regarding temperature shifts or biodiversity sightings..."
+                        required></textarea>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <label>Upload Raw Data Sheets (Optional)</label>
+                    <input type="file" style="padding: 5px;">
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Assessment Data</button>
+            </form>
+        </div>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="protocols.js"></script>
+</body>
+
+</html>

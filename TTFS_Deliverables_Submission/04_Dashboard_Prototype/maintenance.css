@@ -1,0 +1,85 @@
+.legend-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .legend-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .legend-color {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .legend-color.healthy {
+            background-color: #4CAF50;
+            border: 2px solid #388E3C;
+        }
+
+        .legend-color.prune {
+            background-color: #FF9800;
+            border: 2px solid #F57C00;
+        }
+
+        .legend-color.drought {
+            background-color: #2196F3;
+            border: 2px solid #1976D2;
+        }
+
+        .legend-color.dead {
+            background-color: #F44336;
+            border: 2px solid #D32F2F;
+            border-radius: 0;
+        }
+
+        .kpi-board {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .kpi-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .kpi-card .val {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .kpi-card .lbl {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        /* Value Colors explicitly */
+        #valHealthy {
+            color: #4CAF50;
+        }
+
+        #valPrune {
+            color: #FF9800;
+        }
+
+        #valDrought {
+            color: #2196F3;
+        }
+
+        #valDead {
+            color: #F44336;
+        }

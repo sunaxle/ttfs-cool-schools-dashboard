@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <meta name="description" content="UTRGV Agroecology Project Dashboard - TEKS-Aligned Lesson Plans" />
+    <meta name="author" content="UTRGV Agroecology" />
+    <title>TEKS-Aligned Lesson Plans | UTRGV Agroecology</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="protocols.css" />
+    <link rel="stylesheet" href="teks_lesson_plans.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="brand-left"></div>
+        <div class="title">Texas Tree Foundation: TEKS Lesson Plans</div>
+        <div class="brand-right"></div>
+    </header>
+
+    <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
+            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
+            <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
+            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
+            <a class="nav-link" href="zoning.html">Site Zoning</a>
+            <a class="nav-link" href="protocols.html">SOP Protocols</a>
+            <a class="nav-link active" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
+            <a class="nav-link" href="tree_portal.html">Tree Sponsorship</a>
+            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
+            <a class="nav-link" href="economics.html">Economics / ROI</a>
+            <a class="nav-link" href="trails.html">Trails</a>
+            <a class="nav-link" href="wind.html">Wind</a>
+            <a class="nav-link" href="temperature.html">Temp</a>
+            <a class="nav-link" href="soil_moisture.html">Moisture</a>
+            <a class="nav-link" href="water_table.html">Water Table</a>
+            <a class="nav-link" href="soil_types.html">Soils</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+    </nav>
+
+    <main class="page-container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div style="margin-bottom: 40px; text-align: center;">
+            <p style="font-size: 18px; color: var(--text);">Access Texas Tree Foundation's TEKS-aligned educational resources for your classroom. These lesson plans incorporate outdoor learning and urban canopy concepts.</p>
+        </div>
+
+        <div id="passwordSection" class="form-section" style="max-width: 500px; margin: 0 auto 50px;">
+            <h2 style="margin-bottom: 20px; color: var(--primary); text-align: center;">Secure Educator Access</h2>
+            <p style="text-align: center; margin-bottom: 25px; color: #555;">Please enter the educator access code provided by your campus administrator to unlock lesson plans.</p>
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="educatorPassword">Access Code</label>
+                    <input type="password" id="educatorPassword" placeholder="Enter password..." required>
+                </div>
+                <div id="authError" style="color: #f44336; margin-bottom: 15px; display: none; text-align: center;">Incorrect access code. Please try again.</div>
+                <button type="submit" class="submit-btn">Unlock Resources</button>
+            </form>
+        </div>
+
+        <div id="secureContent" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="color: var(--primary);">TEKS-Aligned Lesson Plans</h2>
+                <button id="lockBtn" class="submit-btn" style="width: auto; background: #9E9E9E; padding: 8px 15px;">Lock Access</button>
+            </div>
+
+            <div class="protocols-grid">
+                <div class="resource-card" style="border-left-color: #4CAF50;">
+                    <h3>The Urban Canopy (Science 4.9B)</h3>
+                    <p style="font-size: 14px; margin-top: 10px; color: #555;">Students explore how trees affect local temperatures and the concept of the urban heat island effect.</p>
+                    <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+                </div>
+
+                <div class="resource-card" style="border-left-color: #2196F3;">
+                    <h3>Campus Biodiversity (Science 3.10A)</h3>
+                    <p style="font-size: 14px; margin-top: 10px; color: #555;">A field observation activity where students catalog plant and animal species relying on campus trees.</p>
+                    <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+                </div>
+
+                <div class="resource-card" style="border-left-color: #FF9800;">
+                    <h3>Math in the Shade (Math 5.8C)</h3>
+                    <p style="font-size: 14px; margin-top: 10px; color: #555;">Students measure tree shadows at different times of day to calculate angles and track sun patterns.</p>
+                    <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+                </div>
+
+                <div class="resource-card" style="border-left-color: #9C27B0;">
+                    <h3>Trees in our History (Social Studies 4.22A)</h3>
+                    <p style="font-size: 14px; margin-top: 10px; color: #555;">Examining the role of native trees in the development and history of the Rio Grande Valley.</p>
+                    <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+                </div>
+            </div>
+            
+            <div class="form-section" style="margin-top: 40px; background: #f9faec; border-left: 5px solid #abcb40;">
+                <h3 style="color: #689f38; margin-bottom: 10px;">Implementation Feedback</h3>
+                <p style="margin-bottom: 15px; font-size: 14px;">Have you utilized one of these lesson plans? Please share a quick reflection on how it went with your students.</p>
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="lessonSelect">Lesson Plan Used</label>
+                        <select id="lessonSelect" required>
+                            <option value="">-- Select Lesson --</option>
+                            <option value="canopy">The Urban Canopy</option>
+                            <option value="biodiversity">Campus Biodiversity</option>
+                            <option value="math">Math in the Shade</option>
+                            <option value="history">Trees in our History</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackText">Classroom Experience</label>
+                        <textarea id="feedbackText" rows="3" placeholder="How did the students engage with the material?" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" style="background: #8bc34a;">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="teks_lesson_plans.js"></script>
+</body>
+
+</html>

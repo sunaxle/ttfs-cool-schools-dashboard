@@ -1,0 +1,56 @@
+Transmittal Report:
+Created by AutoCAD eTransmit Monday, June 22, 2026, 10:05 AM.
+
+Drawing:
+This is a transmittal based on 25065_M.Rivas& Caceres_ Hard.dwg.
+
+Files:
+
+Root Drawing:
+	25065_M.Rivas& Caceres_ Hard.dwg
+
+AutoCAD Drawing (External) References:
+	01 & 02 M. Rivas Academy Elementary & Caceres Discovery Intermediate Academy\25065_xTree Rivas & Caceres.dwg
+
+JPG File References:
+	01 Donna ISD\M. Rivas Aerial.jpg
+
+AutoCAD Color-dependent Plot Style Table File References:
+	PlotCfgs\StudioOutside.ctb
+
+AutoCAD Plotter Configuration File References:
+	PlotCfgs\AutoCAD PDF (General Documentation).pc3
+
+The following files were excluded from the transmittal:
+	acad.fmp
+	Fonts\simplex.shx
+	Fonts\arial.ttf
+	Fonts\ltypeshp.shx
+	Fonts\ISOCP.shx
+	Fonts\archisty.shx
+	Fonts\techl___.ttf
+	Fonts\ARIALN.TTF
+
+The following files could not be located:
+	xref\25xxx_M. Rivas& Caceres_Existing_Base.dwg
+
+
+Notes for distribution:
+
+.DWG external reference files:
+External reference (xref) paths may be present.  Make sure these paths work or that the root drawing is using the correct references.
+eTransmit does not include files required by xrefs unless they are also required by the root drawing.  In particular, plot style tables and overlay xrefs that are not used by the root drawing are omitted
+
+Raster image files:
+Paths may be present on references to raster images.  Make sure these paths work or that the root drawing is using the correct references.
+
+.PC3 printer configuration files:
+Please copy these files to the AutoCAD Printer Configuration Search Path directory.
+
+.CTB/.STB plot style tables:
+Please copy these files to the AutoCAD Plot Style Table Search Path directory.
+
+The AutoCAD variable FONTALT was set to:
+C:\Users\AlexandriaDial\AppData\Roaming\Autodesk\AutoCAD 2026\R25.1\enu\support\simplex.shx
+Please make sure that the FONTALT variable is set to this file or an equivalent before opening any drawings.  All text styles with missing fonts are automatically set to this font.
+

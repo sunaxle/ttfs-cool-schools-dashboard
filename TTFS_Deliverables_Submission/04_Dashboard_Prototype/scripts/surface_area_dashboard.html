@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Schools - Surface Area Visualizer</title>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f3ef;
+            color: #1c211e;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 { color: #2e4d3c; text-align: center; }
+        .dropzone {
+            border: 3px dashed #2e4d3c;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            background: #fff;
+            color: #5b635e;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: background 0.3s;
+        }
+        .dropzone.dragover { background: #e8f5e9; }
+        .dashboard {
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .stats-table th, .stats-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .stats-table th { background: #f9f9f9; color: #5b635e; font-weight: 600; }
+        
+        #campusTitle { text-align: center; color: #2e4d3c; margin-bottom: 30px; font-size: 2rem;}
+    </style>
+</head>
+<body>
+
+    <h1>🌳 Surface Area Visualizer</h1>
+
+    <div class="dropzone" id="dropzone">
+        <p><strong>Drag & Drop your Campus *_Zones.json file here</strong></p>
+        <p style="font-size: 0.85rem">Or click to select a file.</p>
+        <input type="file" id="fileInput" style="display: none;" accept=".json">
+    </div>
+
+    <h2 id="campusTitle" style="display: none;">Campus Analysis</h2>
+
+    <div class="dashboard" id="dashboard">
+        <div class="card">
+            <h3>Surface Breakdown (Sq Ft)</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="card">
+            <h3>Metrics & Proportions</h3>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Zone Category</th>
+                        <th>Total Area (sq ft)</th>
+                        <th>% of Campus</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data injected here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        let chartInstance = null;
+
+        // UI Colors matching the Zoning Tool
+        const categoryColors = {
+            "Campus Boundary": "#ffffff",
+            "Rooftop": "#ff9999",
+            "Parking Lot": "#666666",
+            "Open Field": "#e6e600",
+            "Grass": "#99ff99",
+            "Tree Enclosed Area": "#2e4d3c",
+            "Shaded Area": "#99ccff",
+            "Unmapped Surface": "#ff0000"
+        };
+
+        dropzone.addEventListener('click', () => fileInput.click());
+        
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                processFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                processFile(e.target.files[0]);
+            }
+        });
+
+        // Automatically pre-load Donna ISD campus zones on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetch('../data/campus_zones.json')
+                .then(res => res.json())
+                .then(data => analyzeData(data))
+                .catch(() => {
+                    fetch('data/campus_zones.json')
+                        .then(res => res.json())
+                        .then(data => analyzeData(data))
+                        .catch(err => console.log("Manual upload required:", err));
+                });
+        });
+
+        function processFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    analyzeData(data);
+                } catch (error) {
+                    alert("Invalid JSON file.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function analyzeData(geoJson) {
+            const features = geoJson.features;
+            let campusName = "Unknown Campus";
+            if (features.length > 0) campusName = features[0].properties.campus;
+
+            document.getElementById('campusTitle').textContent = campusName + " Breakdown";
+            document.getElementById('campusTitle').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'grid';
+            
+            // Calculate Totals
+            let campusBoundaryArea = 0;
+            const categorySums = {};
+
+            features.forEach(f => {
+                const props = f.properties;
+                const cat = props.category;
+                const area = props.area_sqft || 0;
+
+                if (cat === "Individual Tree") return; // Skip points
+
+                if (cat === "Campus Boundary") {
+                    campusBoundaryArea = area;
+                } else {
+                    if (!categorySums[cat]) categorySums[cat] = 0;
+                    categorySums[cat] += area;
+                }
+            });
+
+            // Update Table
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            const labels = [];
+            const datasetData = [];
+            const backgroundColor = [];
+
+            // Add rows for sub-zones
+            for (const [cat, area] of Object.entries(categorySums)) {
+                let percentage = campusBoundaryArea > 0 ? ((area / campusBoundaryArea) * 100).toFixed(1) : "N/A";
+                
+                labels.push(cat);
+                datasetData.push(area);
+                backgroundColor.push(categoryColors[cat] || "#333");
+
+                tbody.insertAdjacentHTML('beforeend', `
+                    <tr>
+                        <td><strong>${cat}</strong></td>
+                        <td>${area.toLocaleString()}</td>
+                        <td>${percentage}%</td>
+                    </tr>
+                `);
+            }
+
+            // Total row
+            tbody.insertAdjacentHTML('beforeend', `
+                <tr style="background:#e8f5e9;">
+                    <td><strong>Total Campus Boundary</strong></td>
+                    <td><strong>${campusBoundaryArea.toLocaleString()}</strong></td>
+                    <td><strong>100%</strong></td>
+                </tr>
+            `);
+
+            // Render Chart
+            renderChart(labels, datasetData, backgroundColor);
+        }
+
+        function renderChart(labels, data, colors) {
+            const ctx = document.getElementById('pieChart').getContext('2d');
+            
+            if (chartInstance) chartInstance.destroy();
+
+            chartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: colors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

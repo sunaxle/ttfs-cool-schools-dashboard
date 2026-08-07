@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tree Sponsorship Portal | TTFS Cool Schools</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="tree_portal.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="brand-left"></div>
+        <div class="title">Community Tree Portal</div>
+        <div class="brand-right"></div>
+    </header>
+
+    <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
+            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
+            <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
+            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
+            <a class="nav-link" href="zoning.html">Site Zoning</a>
+            <a class="nav-link" href="protocols.html">SOP Protocols</a>
+            <a class="nav-link" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
+            <a class="nav-link active" href="tree_portal.html">Tree Sponsorship</a>
+            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
+            <a class="nav-link" href="economics.html">Economics / ROI</a>
+            <a class="nav-link" href="trails.html">Trails</a>
+            <a class="nav-link" href="wind.html">Wind</a>
+            <a class="nav-link" href="temperature.html">Temp</a>
+            <a class="nav-link" href="soil_moisture.html">Moisture</a>
+            <a class="nav-link" href="water_table.html">Water Table</a>
+            <a class="nav-link" href="soil_types.html">Soils</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+    </nav>
+
+    <main class="portal-container">
+        <!-- Left Side: Flyer / Information -->
+        <div class="portal-left">
+            <div class="flyer-content">
+                <h1 class="flyer-title">Adopt a Canopy Hero</h1>
+                <p class="flyer-subtitle">Join the TTFS Cool Schools initiative and claim a tree on your campus!</p>
+                <div class="flyer-image-placeholder">
+                    <div style="font-size: 80px; text-align: center; margin-top: 60px;">🌳</div>
+                </div>
+                <div class="flyer-details">
+                    <h3>Why Claim a Tree?</h3>
+                    <p>Claiming a tree builds a personal connection between our campus community and the urban canopy. By giving a tree a name and a dedicated class or individual to look after it, we ensure these trees grow strong for generations of students.</p>
+                    <ul style="text-align: left; margin-top: 15px;">
+                        <li>🌱 <strong>Connect:</strong> Learn about your tree's species and history.</li>
+                        <li>🌿 <strong>Steward:</strong> Report on its health and seasonal changes.</li>
+                        <li>🌳 <strong>Legacy:</strong> Leave your mark on the Cool Schools canopy.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Claiming Form -->
+        <div class="portal-right">
+            <div class="form-container">
+                <h2>Claim Your Tree</h2>
+                <p>Fill out this form to generate a unique name for your tree and submit your claim.</p>
+
+                <form id="sponsorshipForm">
+                    <div class="form-group">
+                        <label for="treeId">Select a Tree (ID):</label>
+                        <select id="treeId" required>
+                            <option value="">-- Choose a Tree --</option>
+                            <option value="Tree-001 (Oak)">Tree-001 (Oak)</option>
+                            <option value="Tree-002 (Elm)">Tree-002 (Elm)</option>
+                            <option value="Tree-003 (Pecan)">Tree-003 (Pecan)</option>
+                            <option value="Tree-004 (Mesquite)">Tree-004 (Mesquite)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Generated Tree Name:</label>
+                        <div class="madlibs-container">
+                            <input type="text" id="generatedName" readonly required placeholder="Click generate..." />
+                            <button type="button" id="generateBtn" class="btn-generate">🎲 Generate Name</button>
+                        </div>
+                        <small>Use our fun generator to give your tree a unique personality!</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sponsorType">Claiming As:</label>
+                        <select id="sponsorType" required>
+                            <option value="Classroom">Classroom / Grade Level (e.g. Mrs. Smith's 4th Grade)</option>
+                            <option value="Individual">Individual Adult / Alumni</option>
+                            <option value="Club">Student Club or Organization</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sponsorName">Display Name (Classroom, Club, or Individual Name):</label>
+                        <input type="text" id="sponsorName" required placeholder="e.g. Mrs. Ramirez's 4th Grade" />
+                    </div>
+
+                    <p class="privacy-notice">🔒 <strong>Privacy Note:</strong> This form will securely open your default email client to send your claim directly to the Texas Trees Foundation. We do not store your personal information on this dashboard.</p>
+
+                    <button type="submit" class="btn-submit">Submit Claim via Email</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="tree_portal.js"></script>
+</body>
+</html>

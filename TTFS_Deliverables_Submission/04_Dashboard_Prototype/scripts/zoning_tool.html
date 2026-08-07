@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Schools - Campus Zoning Digitizer</title>
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Leaflet Draw -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+    <!-- Turf.js for Area Calculations -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+
+    <style>
+        body { margin: 0; padding: 0; display: flex; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; height: 100vh; overflow: hidden; background: #f4f3ef; }
+        
+        #sidebar {
+            width: 350px;
+            background: #fff;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #d6d2c4;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: #2e4d3c;
+            color: white;
+        }
+        .sidebar-header h2 { margin: 0; font-size: 1.2rem; }
+        .sidebar-header p { margin: 5px 0 0 0; font-size: 0.85rem; opacity: 0.8; }
+
+        .form-section { padding: 20px; border-bottom: 1px solid #eee; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; color: #1c211e; }
+        .form-group select, .form-group input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; }
+
+        .instructions { font-size: 0.85rem; color: #5b635e; margin-bottom: 10px; line-height: 1.4; background: #faf9f6; padding: 10px; border-radius: 4px; border-left: 3px solid #2e4d3c; }
+
+        #feature-list-container { flex-grow: 1; overflow-y: auto; padding: 0; background: #faf9f6; }
+        .feature-item { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #fff;}
+        .feature-item:hover { background: #f9f9f9; }
+        .feature-info h4 { margin: 0 0 5px 0; font-size: 0.95rem; color: #2e4d3c;}
+        .feature-info p { margin: 0; font-size: 0.8rem; color: #666; }
+        .delete-btn { background: #C25C3A; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+        .delete-btn:hover { background: #a1492e; }
+
+        .export-section { padding: 20px; background: #fff; border-top: 1px solid #ddd; }
+        .btn { display: block; width: 100%; padding: 12px; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; text-align: center; color: white; transition: background 0.2s; }
+        .btn-primary { background: #2e4d3c; }
+        .btn-primary:hover { background: #1c211e; }
+        .btn-secondary { background: #C25C3A; margin-top: 10px; }
+        .btn-secondary:hover { background: #a1492e; }
+
+        #map { flex-grow: 1; height: 100%; position: relative; }
+
+        /* Custom Draw Controls */
+        .leaflet-draw-toolbar a { background-color: #2e4d3c !important; color: white !important; }
+
+        /* Popups */
+        .popup-form { display: flex; flex-direction: column; width: 200px; }
+        .popup-form h4 { margin: 0 0 10px 0; color: #2e4d3c; }
+        .popup-form label { font-size: 0.8rem; font-weight: bold; margin-bottom: 2px; color: #5b635e; }
+        .popup-form input, .popup-form textarea { width: 100%; box-sizing: border-box; margin-bottom: 10px; padding: 5px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit;}
+        .popup-form button { background: #2e4d3c; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; }
+        .popup-form button:hover { background: #1c211e; }
+
+        /* Stats Sidebar */
+        #stats-sidebar {
+            width: 350px;
+            background: #fff;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #d6d2c4;
+            position: absolute;
+            right: -350px; /* Hidden by default */
+            top: 0;
+            bottom: 0;
+            transition: right 0.3s ease;
+        }
+        #stats-sidebar.open {
+            right: 0;
+        }
+        .stats-header {
+            padding: 20px;
+            background: #1c211e;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stats-header h2 { margin: 0; font-size: 1.2rem; }
+        .close-stats-btn {
+            background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;
+        }
+        .stats-content {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+            background: #faf9f6;
+        }
+        .stat-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+        .stat-card.highlight {
+            border-left: 4px solid #C25C3A;
+            background: #fff5f2;
+        }
+        .stat-card h4 { margin: 0 0 5px 0; font-size: 0.9rem; color: #5b635e; }
+        .stat-card .value { margin: 0; font-size: 1.2rem; font-weight: bold; color: #1c211e; }
+        .stat-card .percentage { font-size: 0.85rem; color: #666; }
+
+        #toggle-stats-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            z-index: 1001;
+            background: #2e4d3c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        #toggle-stats-btn:hover { background: #1c211e; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h2>Campus Zoning Digitizer</h2>
+            <p>High-Fidelity Polygon Tool</p>
+        </div>
+
+        <div class="form-section">
+            <div class="instructions">
+                1. Select the Campus and Zone Category.<br>
+                2. Use the polygon tool on the map to trace the area.<br>
+                3. The surface area will calculate automatically.
+            </div>
+
+            <div class="form-group">
+                <label for="campus-select">Target Campus:</label>
+                <select id="campus-select">
+                    <option value="" disabled selected>Select a campus...</option>
+                    <optgroup label="Donna ISD">
+                        <option value="M. Rivas Primary">M. Rivas Primary</option>
+                        <option value="J.W. Caceres Intermediate">J.W. Caceres Intermediate</option>
+                        <option value="A.M. Ochoa Primary">A.M. Ochoa Primary</option>
+                        <option value="Captain D. Salinas II STEAM">Captain D. Salinas II STEAM</option>
+                        <option value="P.S. Garza Elementary">P.S. Garza Elementary</option>
+                        <option value="Singleterry Senior Elementary">Singleterry Senior Elementary</option>
+                        <option value="A.P. Solis Middle">A.P. Solis Middle</option>
+                        <option value="C. Stainke Intermediate">C. Stainke Intermediate</option>
+                    </optgroup>
+                    <optgroup label="Mercedes ISD">
+                        <option value="Mercedes Early College">Mercedes Early College</option>
+                        <option value="Sgt. William G. Chacon Middle">Sgt. William G. Chacon Middle</option>
+                        <option value="Kennedy / Harrell">Kennedy / Harrell</option>
+                        <option value="Mercedes High School">Mercedes High School</option>
+                        <option value="Ruben Hinojosa Elementary">Ruben Hinojosa Elementary</option>
+                        <option value="W.B. Travis Elementary">W.B. Travis Elementary</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="category-select">Zone Category:</label>
+                <select id="category-select">
+                    <option value="Campus Boundary">Campus Boundary (Total Property)</option>
+                    <option value="Rooftop">Rooftop / Building</option>
+                    <option value="Parking Lot">Parking Lot / Hardscape</option>
+                    <option value="Open Field">Open Field / Playground</option>
+                    <option value="Grass">Grass / Lawn</option>
+                    <option value="Tree Enclosed Area">Tree Enclosed Area (Canopy)</option>
+                    <option value="Shaded Area">Shaded Area (Man-made)</option>
+                    <option value="Individual Tree">Individual Tree (Point Logger)</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-secondary" id="jump-btn" style="padding:8px; font-size:0.85rem;">Jump to RGV Center</button>
+            <button class="btn btn-secondary" id="autofill-btn" style="padding:8px; font-size:0.85rem; background:#85754d; margin-top:10px;">Auto-Fill Unmapped Area</button>
+            <button class="btn btn-secondary" id="xray-btn" style="padding:8px; font-size:0.85rem; background:#5b635e; margin-top:10px;">🔍 Toggle X-Ray Mode (See Trees)</button>
+        </div>
+
+        <div id="feature-list-container">
+            <!-- Drawn features populate here -->
+        </div>
+
+        <div class="export-section">
+            <button id="import-btn" class="btn btn-secondary" style="margin-top:0; margin-bottom:10px; background:#5b635e;">Import GeoJSON (Load Work)</button>
+            <input type="file" id="file-import" accept=".json" style="display:none;">
+            <button id="export-btn" class="btn btn-primary">Export GeoJSON (Save Work)</button>
+        </div>
+    </div>
+
+    <div id="map">
+        <button id="toggle-stats-btn">📊 Live Calculations</button>
+    </div>
+
+    <div id="stats-sidebar">
+        <div class="stats-header">
+            <h2>Live Calculations</h2>
+            <button class="close-stats-btn" id="close-stats-btn">&times;</button>
+        </div>
+        <div class="stats-content" id="stats-content">
+            <p style="color: #666; font-size: 0.9rem;">Select a campus and draw a "Campus Boundary" to start calculating undefined space.</p>
+        </div>
+    </div>
+
+    <script>
+        // Campus Coordinates Database
+        const campusCoordinates = {
+            "M. Rivas Primary": [26.1682, -98.0722],
+            "J.W. Caceres Intermediate": [26.1750, -98.0500],
+            "A.M. Ochoa Primary": [26.1700, -98.0450],
+            "Captain D. Salinas II STEAM": [26.1800, -98.0700],
+            "P.S. Garza Elementary": [26.1950, -98.0650],
+            "Singleterry Senior Elementary": [26.2050, -98.0800],
+            "A.P. Solis Middle": [26.1720, -98.0480],
+            "C. Stainke Intermediate": [26.1680, -98.0400],
+            "Mercedes Early College": [26.1320, -97.9230],
+            "Sgt. William G. Chacon Middle": [26.1300, -97.9250],
+            "Kennedy / Harrell": [26.1580, -97.9050],
+            "Mercedes High School": [26.1350, -97.9080],
+            "Ruben Hinojosa Elementary": [26.1365, -97.9150],
+            "W.B. Travis Elementary": [26.1420, -97.9110]
+        };
+
+        // Initialize Map
+        const map = L.map('map').setView([26.1682, -98.0722], 18); // Default to M. Rivas area
+
+        // Handle Campus Selection Jump
+        document.getElementById('campus-select').addEventListener('change', function(e) {
+            const campus = e.target.value;
+            if (campusCoordinates[campus]) {
+                map.flyTo(campusCoordinates[campus], 18, {
+                    animate: true,
+                    duration: 1.5
+                });
+            }
+            updateStats();
+        });
+
+        // High-Res ESRI World Imagery (Satellite)
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+            maxZoom: 20
+        }).addTo(map);
+
+        // FeatureGroup to store editable layers
+        const drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        // Draw Control
+        const drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems,
+                remove: true
+            },
+            draw: {
+                polygon: {
+                    allowIntersection: false,
+                    showArea: true,
+                    shapeOptions: { color: '#C25C3A', weight: 3 }
+                },
+                polyline: false,
+                circle: false,
+                rectangle: false,
+                circlemarker: false,
+                marker: true
+            }
+        });
+        map.addControl(drawControl);
+
+        // Colors for categories
+        const categoryColors = {
+            "Campus Boundary": "#ffffff",
+            "Rooftop": "#ff9999",
+            "Parking Lot": "#666666",
+            "Open Field": "#e6e600",
+            "Grass": "#99ff99",
+            "Tree Enclosed Area": "#2e4d3c",
+            "Shaded Area": "#99ccff"
+        };
+
+        let featureData = []; // Array of GeoJSON features
+
+        // Handle Draw Creation
+        map.on(L.Draw.Event.CREATED, function (e) {
+            const type = e.layerType;
+            const layer = e.layer;
+            
+            const campus = document.getElementById('campus-select').value;
+            const category = document.getElementById('category-select').value;
+
+            if (!campus) {
+                alert("Please select a Campus first!");
+                return;
+            }
+
+            let areaSqMeters = 0;
+            let areaSqFeet = 0;
+            
+            if (type === 'polygon' || type === 'rectangle') {
+                const geojson = layer.toGeoJSON();
+                areaSqMeters = turf.area(geojson);
+                areaSqFeet = areaSqMeters * 10.7639;
+            }
+
+            // Convert to GeoJSON 
+            const geojson = layer.toGeoJSON();
+
+            // Add properties
+            geojson.properties = {
+                id: Date.now().toString(),
+                campus: campus,
+                category: category,
+                area_sqft: Math.round(areaSqFeet),
+                area_sqm: Math.round(areaSqMeters),
+                dateAdded: new Date().toISOString()
+            };
+
+            // Style the layer based on category
+            if (type === 'polygon' || type === 'rectangle') {
+                let color = categoryColors[category] || '#333';
+                let fillColor = color;
+                let borderColor = color;
+                if (category === "Tree Enclosed Area") {
+                    borderColor = "#ffd700"; // gold
+                    fillColor = "#228b22";   // green
+                }
+                layer.setStyle({ color: borderColor, fillColor: fillColor, fillOpacity: 0.5 });
+            }
+            layer.featureId = geojson.properties.id; // bind ID for deletion
+
+            drawnItems.addLayer(layer);
+            featureData.push(geojson);
+            
+            bindFeaturePopup(layer, geojson);
+            layer.openPopup();
+
+            updateSidebar();
+        });
+
+        // Feature Data Binding
+        function bindFeaturePopup(layer, feature) {
+            const props = feature.properties;
+            const id = props.id;
+            
+            if (props.category === "Individual Tree") {
+                const html = `
+                    <div class="popup-form">
+                        <h4>Tree Data Entry</h4>
+                        <label>Species</label>
+                        <input type="text" id="tree-species-${id}" value="${props.species || ''}" placeholder="e.g. Live Oak">
+                        <label>Canopy Height (ft)</label>
+                        <input type="number" id="tree-height-${id}" value="${props.height || ''}">
+                        <label>DBH (in)</label>
+                        <input type="number" id="tree-dbh-${id}" value="${props.dbh || ''}">
+                        <label>Flood Mitigation Notes</label>
+                        <textarea id="tree-flood-${id}">${props.floodNotes || ''}</textarea>
+                        <button onclick="saveTreeData('${id}')">Save Data</button>
+                    </div>
+                `;
+                layer.bindPopup(html);
+            } else {
+                const html = `
+                    <div class="popup-form">
+                        <h4>${props.category} Note</h4>
+                        <textarea id="poly-note-${id}" rows="3" placeholder="Add custom notes here...">${props.notes || ''}</textarea>
+                        <button onclick="savePolyNote('${id}')">Save Note</button>
+                    </div>
+                `;
+                layer.bindPopup(html);
+            }
+        }
+
+        // Global save functions
+        window.saveTreeData = function(id) {
+            const feature = featureData.find(f => f.properties.id === id);
+            if (feature) {
+                feature.properties.species = document.getElementById(`tree-species-${id}`).value;
+                feature.properties.height = document.getElementById(`tree-height-${id}`).value;
+                feature.properties.dbh = document.getElementById(`tree-dbh-${id}`).value;
+                feature.properties.floodNotes = document.getElementById(`tree-flood-${id}`).value;
+                
+                drawnItems.eachLayer(layer => {
+                    if (layer.featureId === id) layer.closePopup();
+                });
+                updateSidebar(); // to reflect changes if needed
+            }
+        };
+
+        window.savePolyNote = function(id) {
+            const feature = featureData.find(f => f.properties.id === id);
+            if (feature) {
+                feature.properties.notes = document.getElementById(`poly-note-${id}`).value;
+                
+                drawnItems.eachLayer(layer => {
+                    if (layer.featureId === id) layer.closePopup();
+                });
+            }
+        };
+
+        // Handle Map Edits
+        map.on(L.Draw.Event.EDITED, function (e) {
+            const layers = e.layers;
+            layers.eachLayer(function (layer) {
+                // Update turf area and coords
+                const updatedGeoJSON = layer.toGeoJSON();
+                const areaSqMeters = turf.area(updatedGeoJSON);
+                const areaSqFeet = areaSqMeters * 10.7639;
+
+                // Find matching feature in our array
+                const index = featureData.findIndex(f => f.properties.id === layer.featureId);
+                if(index > -1) {
+                    featureData[index].geometry = updatedGeoJSON.geometry;
+                    featureData[index].properties.area_sqft = Math.round(areaSqFeet);
+                    featureData[index].properties.area_sqm = Math.round(areaSqMeters);
+                }
+            });
+            updateSidebar();
+        });
+
+        // Handle Deletions
+        map.on(L.Draw.Event.DELETED, function (e) {
+            const layers = e.layers;
+            layers.eachLayer(function (layer) {
+                featureData = featureData.filter(f => f.properties.id !== layer.featureId);
+            });
+            updateSidebar();
+        });
+
+        function deleteFeature(id) {
+            featureData = featureData.filter(f => f.properties.id !== id);
+            
+            // Remove from Leaflet map
+            drawnItems.eachLayer(function (layer) {
+                if(layer.featureId === id) {
+                    drawnItems.removeLayer(layer);
+                }
+            });
+            updateSidebar();
+        }
+
+        function updateSidebar() {
+            const container = document.getElementById('feature-list-container');
+            container.innerHTML = '';
+
+            // Group by campus, then by category
+            // But for simplicity, just list them sorted newest first
+            [...featureData].reverse().forEach(feature => {
+                const props = feature.properties;
+                const areaDisplay = props.area_sqft > 0 ? `<p><strong>${props.area_sqft.toLocaleString()} sq ft</strong> (${props.area_sqm.toLocaleString()} sqm)</p>` : `<p><strong>Point Data</strong> [${feature.geometry.coordinates[1].toFixed(5)}, ${feature.geometry.coordinates[0].toFixed(5)}]</p>`;
+                
+                const html = `
+                    <div class="feature-item">
+                        <div class="feature-info">
+                            <h4>${props.category}</h4>
+                            <p>${props.campus}</p>
+                            ${areaDisplay}
+                        </div>
+                        <button class="delete-btn" onclick="deleteFeature('${props.id}')">Delete</button>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+
+            updateStats();
+        }
+
+        function updateStats() {
+            const statsContainer = document.getElementById('stats-content');
+            const campus = document.getElementById('campus-select').value;
+            
+            if (!campus || featureData.length === 0) {
+                statsContainer.innerHTML = '<p style="color: #666; font-size: 0.9rem;">Select a campus and start drawing to see live calculations.</p>';
+                return;
+            }
+
+            // Calculate Totals
+            let campusBoundaryArea = 0;
+            const categorySums = {};
+            let mappedSubArea = 0;
+
+            featureData.filter(f => f.properties.campus === campus).forEach(f => {
+                const props = f.properties;
+                const cat = props.category;
+                const area = props.area_sqft || 0;
+
+                if (cat === "Individual Tree") return; // Skip points
+                
+                // Exclude Auto-Filled "Unmapped Surface" from the sums so we don't double count
+                if (cat === "Unmapped Surface") return;
+
+                if (cat === "Campus Boundary") {
+                    campusBoundaryArea += area; // Handle case where they drew multiple pieces of boundary (rare but possible)
+                } else {
+                    if (!categorySums[cat]) categorySums[cat] = 0;
+                    categorySums[cat] += area;
+                    mappedSubArea += area;
+                }
+            });
+
+            if (campusBoundaryArea === 0) {
+                statsContainer.innerHTML = '<p style="color: #C25C3A; font-size: 0.9rem; font-weight:bold;">⚠️ Please draw the "Campus Boundary" first to calculate undefined space.</p>';
+                return;
+            }
+
+            const undefinedArea = campusBoundaryArea - mappedSubArea;
+            const undefinedPercentage = ((undefinedArea / campusBoundaryArea) * 100).toFixed(1);
+            const mappedPercentage = ((mappedSubArea / campusBoundaryArea) * 100).toFixed(1);
+
+            let html = `
+                <div class="stat-card highlight">
+                    <h4>Undefined / Unmapped Space</h4>
+                    <p class="value">${Math.max(0, undefinedArea).toLocaleString()} sq ft</p>
+                    <p class="percentage">${Math.max(0, undefinedPercentage)}% of total boundary</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h4>Total Campus Boundary</h4>
+                    <p class="value">${campusBoundaryArea.toLocaleString()} sq ft</p>
+                </div>
+                <hr style="border: 0; border-top: 1px solid #ddd; margin: 20px 0;">
+                <h3 style="font-size: 1rem; color: #2e4d3c; margin-top: 0;">Mapped Sub-Zones (${mappedPercentage}%)</h3>
+            `;
+
+            for (const [cat, area] of Object.entries(categorySums)) {
+                const perc = ((area / campusBoundaryArea) * 100).toFixed(1);
+                html += `
+                    <div class="stat-card">
+                        <h4>${cat}</h4>
+                        <p class="value">${area.toLocaleString()} sq ft</p>
+                        <p class="percentage">${perc}%</p>
+                    </div>
+                `;
+            }
+
+            statsContainer.innerHTML = html;
+        }
+
+        // Stats Sidebar Toggles
+        document.getElementById('toggle-stats-btn').addEventListener('click', () => {
+            document.getElementById('stats-sidebar').classList.add('open');
+        });
+        document.getElementById('close-stats-btn').addEventListener('click', () => {
+            document.getElementById('stats-sidebar').classList.remove('open');
+        });
+
+        // Jump to RGV Center
+        document.getElementById('jump-btn').addEventListener('click', () => {
+            map.setView([26.1750, -98.0500], 12);
+        });
+
+        // X-Ray Mode Toggle
+        let isXrayMode = false;
+        document.getElementById('xray-btn').addEventListener('click', (e) => {
+            isXrayMode = !isXrayMode;
+            if (isXrayMode) {
+                e.target.style.background = "#2e4d3c";
+                e.target.innerText = "🔍 Turn Off X-Ray Mode";
+                drawnItems.eachLayer(layer => {
+                    if (layer.setStyle && layer.featureId) { // check if it's a polygon
+                        layer.setStyle({ fillOpacity: 0, opacity: 0.3 });
+                    }
+                });
+            } else {
+                e.target.style.background = "#5b635e";
+                e.target.innerText = "🔍 Toggle X-Ray Mode (See Trees)";
+                drawnItems.eachLayer(layer => {
+                    if (layer.setStyle && layer.featureId) {
+                        const feature = featureData.find(f => f.properties.id === layer.featureId);
+                        if (feature) {
+                            const cat = feature.properties.category;
+                            let color = categoryColors[cat] || (cat === "Unmapped Surface" ? "#ff0000" : "#333");
+                            let fillColor = color;
+                            let borderColor = color;
+                            if (cat === "Tree Enclosed Area") {
+                                borderColor = "#ffd700";
+                                fillColor = "#228b22";
+                            }
+                            layer.setStyle({ fillOpacity: 0.5, opacity: 1, color: borderColor, fillColor: fillColor });
+                        }
+                    }
+                });
+            }
+        });
+
+        // Auto-Fill Unmapped Area logic
+        document.getElementById('autofill-btn').addEventListener('click', () => {
+            const campus = document.getElementById('campus-select').value;
+            if (!campus) {
+                alert("Please select a Campus first.");
+                return;
+            }
+
+            // Find Campus Boundary for this campus
+            const boundaryFeature = featureData.find(f => f.properties.campus === campus && f.properties.category === "Campus Boundary");
+            
+            if (!boundaryFeature) {
+                alert("You must draw the 'Campus Boundary' first before auto-filling unmapped areas!");
+                return;
+            }
+
+            let unmappedPolygon = boundaryFeature;
+
+            // Subtract all other polygons
+            const otherPolygons = featureData.filter(f => f.properties.campus === campus && f.properties.category !== "Campus Boundary" && f.geometry.type === "Polygon");
+
+            try {
+                otherPolygons.forEach(p => {
+                    unmappedPolygon = turf.difference(unmappedPolygon, p);
+                });
+            } catch (e) {
+                alert("Error computing difference. Make sure your polygons are valid and don't self-intersect.");
+                console.error(e);
+                return;
+            }
+
+            if (!unmappedPolygon) {
+                alert("Campus is fully mapped!");
+                return;
+            }
+
+            // Add the new feature
+            const areaSqMeters = turf.area(unmappedPolygon);
+            const areaSqFeet = areaSqMeters * 10.7639;
+
+            unmappedPolygon.properties = {
+                id: Date.now().toString(),
+                campus: campus,
+                category: "Unmapped Surface",
+                area_sqft: Math.round(areaSqFeet),
+                area_sqm: Math.round(areaSqMeters),
+                dateAdded: new Date().toISOString()
+            };
+
+            const layer = L.geoJSON(unmappedPolygon, {
+                style: { color: '#ff0000', fillColor: '#ff0000', fillOpacity: 0.5 }
+            }).getLayers()[0];
+            
+            layer.featureId = unmappedPolygon.properties.id;
+            drawnItems.addLayer(layer);
+            featureData.push(unmappedPolygon);
+            updateSidebar();
+        });
+
+        // Export Functionality
+        document.getElementById('export-btn').addEventListener('click', () => {
+            if(featureData.length === 0) {
+                alert("No zones drawn yet!");
+                return;
+            }
+
+            const geojsonCollection = {
+                type: "FeatureCollection",
+                features: featureData
+            };
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(geojsonCollection, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href",     dataStr);
+            // Default filename based on first feature's campus if exists
+            const campusName = featureData[0].properties.campus.replace(/ /g, '_') || "Campus";
+            downloadAnchorNode.setAttribute("download", `${campusName}_Zones.json`);
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        });
+
+        // Import Functionality
+        document.getElementById('import-btn').addEventListener('click', () => {
+            document.getElementById('file-import').click();
+        });
+
+        document.getElementById('file-import').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                try {
+                    const data = JSON.parse(evt.target.result);
+                    if (data.type === "FeatureCollection" && data.features) {
+                        // Clear existing
+                        featureData = [];
+                        drawnItems.clearLayers();
+
+                        // Add imported features
+                        data.features.forEach(feature => {
+                            featureData.push(feature);
+                            const layer = L.geoJSON(feature, {
+                                pointToLayer: function (feature, latlng) {
+                                    return L.marker(latlng);
+                                },
+                                style: function(f) {
+                                    const cat = f.properties.category;
+                                    let color = categoryColors[cat] || (cat === "Unmapped Surface" ? "#ff0000" : "#333");
+                                    let fillColor = color;
+                                    let borderColor = color;
+                                    if (cat === "Tree Enclosed Area") {
+                                        borderColor = "#ffd700";
+                                        fillColor = "#228b22";
+                                    }
+                                    return { color: borderColor, fillColor: fillColor, fillOpacity: isXrayMode ? 0 : 0.5, opacity: isXrayMode ? 0.3 : 1, weight: 3 };
+                                }
+                            }).getLayers()[0];
+                            
+                            layer.featureId = feature.properties.id;
+                            bindFeaturePopup(layer, feature);
+                            drawnItems.addLayer(layer);
+                        });
+
+                        // Set the campus dropdown before updating sidebar
+                        if (featureData.length > 0) {
+                            const firstCampus = featureData[0].properties.campus;
+                            if (campusCoordinates[firstCampus]) {
+                                document.getElementById('campus-select').value = firstCampus;
+                                map.flyTo(campusCoordinates[firstCampus], 18);
+                            }
+                        }
+
+                        updateSidebar();
+                        
+                    } else {
+                        alert("Invalid GeoJSON file format.");
+                    }
+                } catch (err) {
+                    alert("Error reading file.");
+                }
+                // Reset input
+                document.getElementById('file-import').value = '';
+            };
+            reader.readAsText(file);
+        });
+
+        // Automatically pre-load Donna ISD campus zones on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetch('../data/campus_zones.json')
+                .then(res => res.json())
+                .then(geoJson => loadGeoJson(geoJson))
+                .catch(() => {
+                    fetch('data/campus_zones.json')
+                        .then(res => res.json())
+                        .then(geoJson => loadGeoJson(geoJson))
+                        .catch(err => console.log("No default campus_zones.json found:", err));
+                });
+        });
+
+        function loadGeoJson(geoJson) {
+            if (geoJson && geoJson.features) {
+                geoJson.features.forEach(feature => {
+                    if (!feature.properties.id) {
+                        feature.properties.id = Date.now().toString() + Math.random().toString(36).substring(2, 5);
+                    }
+                    featureData.push(feature);
+
+                    const layer = L.geoJSON(feature, {
+                        style: function(f) {
+                            const cat = f.properties.category;
+                            let color = categoryColors[cat] || (cat === "Unmapped Surface" ? "#ff0000" : "#333");
+                            let fillColor = color;
+                            let borderColor = color;
+                            if (cat === "Tree Enclosed Area") {
+                                borderColor = "#ffd700";
+                                fillColor = "#228b22";
+                            }
+                            return { color: borderColor, fillColor: fillColor, fillOpacity: 0.4, opacity: 1, weight: 3 };
+                        }
+                    }).getLayers()[0];
+
+                    if (layer) {
+                        layer.featureId = feature.properties.id;
+                        bindFeaturePopup(layer, feature);
+                        drawnItems.addLayer(layer);
+                    }
+                });
+
+                if (featureData.length > 0) {
+                    const firstCampus = featureData[0].properties.campus;
+                    if (campusCoordinates[firstCampus]) {
+                        document.getElementById('campus-select').value = firstCampus;
+                        map.flyTo(campusCoordinates[firstCampus], 18);
+                    }
+                }
+                updateSidebar();
+            }
+        }
+    </script>
+</body>
+</html>

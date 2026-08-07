@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Wall - Cool Schools</title>
+    <!-- Use Google Fonts to create a clean, analog typographic feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Open+Sans:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="photo_wall.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>Cool Schools Project</h1>
+        <p>Urban Greening & Tree Canopy Tracking Dashboard</p>
+    </header>
+
+            <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="itree_ledger.html">i-Tree Eco Ledger <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="tree_3d.html">3D Shade Models <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="student_tracking.html">Student Tracking <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="zoning.html">Site Zoning <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="protocols.html">SOP Protocols <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
+            <a class="nav-link" href="trails.html">Trails</a>
+            <a class="nav-link" href="wind.html">Wind</a>
+            <a class="nav-link" href="temperature.html">Temp</a>
+            <a class="nav-link" href="soil_moisture.html">Moisture</a>
+            <a class="nav-link" href="water_table.html">Water Table</a>
+            <a class="nav-link" href="soil_types.html">Soils</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+    </nav>
+
+    <div class="split-screen-container">
+        <!-- Left Side: The Corkboard -->
+        <div class="corkboard-pane">
+            <div class="corkboard-header">
+                <h2>Campus Photo Wall</h2>
+                <button id="uploadMockBtn" class="upload-btn">Submit New Photo</button>
+            </div>
+            <div id="corkboardGrid" class="corkboard-grid">
+                <!-- Photos dynamically injected here -->
+            </div>
+        </div>
+
+        <!-- Right Side: The Field Notes (Sticky) -->
+        <div class="field-notes-pane">
+            <div id="fieldNotesContainer" class="field-notes-container">
+                <div class="empty-state">
+                    <h3>Field Notes</h3>
+                    <p>Select a photo from the wall to view the scientific field notes, campus origin, and tree diary details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="photo_data.js"></script>
+    <script src="photo_wall.js"></script>
+</body>
+</html>
