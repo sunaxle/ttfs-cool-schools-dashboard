@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Field Measurements | Quinta Mazatlan & McAllen ISD</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="split-container">
+        <!-- Left Pane: Fixed Overview -->
+        <div class="pane-left">
+            <div class="branding">
+                <h1>McAllen ISD <br><span style="color: var(--accent-sage); font-size: 2rem;">& Quinta Mazatlan</span></h1>
+                <p>Campus Ecological Sanctuary & Urban Heat Tracking Dashboard.</p>
+            </div>
+            
+            <div class="map-placeholder" style="background: url('https://placehold.co/600x400/2A322D/EAE5D9?text=Measurement+Zones+Map') center/cover no-repeat;">
+                <!-- Map placeholder -->
+            </div>
+            
+            <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border);">
+                <p style="font-size: 0.85rem; color: var(--accent-terra);">
+                    <strong>Safety Rule:</strong> Never record student names. Always use your designated Team Name (e.g. 'Blue Jays'). Stay within designated Measurement Zones.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Pane: Scrollable Data -->
+        <div class="pane-right">
+            <nav class="top-nav">
+                <a href="index.html">Overview</a>
+                <a href="field_measurements.html" class="active">Field Measurements</a>
+                <a href="teks_curriculum.html">TEKS Educator Portal</a>
+            </nav>
+
+            <h2 style="margin-bottom: 10px;">Log a "Thermal Walk"</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">Use your infrared thermometer and visual estimates to log data for your zone.</p>
+            
+            <div class="card" style="max-width: 500px;">
+                <form id="measurementForm">
+                    <div class="form-group">
+                        <label for="teamName">Team Identifier (No real names!)</label>
+                        <select id="teamName" required>
+                            <option value="">-- Select Team --</option>
+                            <option value="Team Ocelot">Team Ocelot</option>
+                            <option value="Team Mockingbird">Team Mockingbird</option>
+                            <option value="Team Blue Jay">Team Blue Jay</option>
+                            <option value="Team Mesquite">Team Mesquite</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="measurementZone">Measurement Zone on Campus</label>
+                        <select id="measurementZone" required>
+                            <option value="">-- Select Zone --</option>
+                            <option value="Zone A (Playground)">Zone A (Playground)</option>
+                            <option value="Zone B (Parking Lot Edge)">Zone B (Parking Lot Edge)</option>
+                            <option value="Zone C (Oak Grove)">Zone C (Oak Grove)</option>
+                            <option value="Zone D (Courtyard)">Zone D (Courtyard)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="surfaceType">Primary Surface Material</label>
+                        <select id="surfaceType" required>
+                            <option value="">-- Select Material --</option>
+                            <option value="Asphalt">Asphalt</option>
+                            <option value="Concrete">Concrete</option>
+                            <option value="Grass">Grass</option>
+                            <option value="Bare Soil">Bare Soil</option>
+                            <option value="Mulch">Mulch</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="surfaceTemp">Surface Temp (°F)</label>
+                            <input type="number" id="surfaceTemp" placeholder="e.g. 110" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="airTemp">Air Temp (°F)</label>
+                            <input type="number" id="airTemp" placeholder="e.g. 95" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="canopyCover">Estimated Canopy Coverage</label>
+                        <select id="canopyCover" required>
+                            <option value="0">0% (Full Sun)</option>
+                            <option value="25">~25% (Light Shade)</option>
+                            <option value="50">~50% (Dappled Shade)</option>
+                            <option value="75">~75% (Mostly Shaded)</option>
+                            <option value="100">100% (Full Shade)</option>
+                        </select>
+                    </div>
+
+                    <div id="successMessage" style="display: none; padding: 10px; background: var(--accent-sage); color: var(--bg-dark); border-radius: 4px; margin-bottom: 15px; font-weight: 600;">
+                        Measurement successfully logged!
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%;">Log Measurement</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
