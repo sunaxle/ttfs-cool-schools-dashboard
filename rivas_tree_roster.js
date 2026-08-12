@@ -1,10 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const mapArea = document.getElementById('mapArea');
+document.addEventListener('DOMContentLoaded', async () => {
     const rosterGrid = document.getElementById('rosterGrid');
     const claimedTreesEl = document.getElementById('claimedTrees');
+    const totalTreesEl = document.getElementById('totalTrees');
 
-    const TOTAL_TREES = 150;
-    
+    // Initialize Map
+    // Coordinates for Donna Rivas Elementary
+    const map = L.map('mapArea').setView([26.1668, -98.0705], 18);
+
+    // Google Satellite Basemap
+    L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        maxZoom: 22,
+        subdomains:['mt0','mt1','mt2','mt3']
+    }).addTo(map);
+
     // Families and Classrooms for simulation
     const families = ["The Garcia Family", "The Martinez Family", "The Johnson Family", "The Rodriguez Family", "The Smith Family", "The Lee Family", "The Treviño Family", "The Hernandez Family"];
     const classrooms = ["Mrs. Ramirez's 4th Grade", "Mr. Clark's 5th Grade", "Kindergarten Rockets", "Coach T's PE Class", "Ms. Gonzalez's 3rd Grade"];
@@ -14,71 +22,95 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mad-lib names
     const adjectives = ["Brave", "Wise", "Gentle", "Mighty", "Joyful", "Ancient", "Dancing", "Sunlit", "Noble", "Sturdy"];
     const nouns = ["Sapling", "Giant", "Guardian", "Wanderer", "Friend", "Hero", "Sentinel", "Sprout"];
-    
-    const speciesList = ["Cedar Elm", "Texas Red Oak", "Live Oak", "Pecan", "Honey Mesquite", "Mexican Sycamore"];
 
     let treesData = [];
     let activeTreeId = null;
     let claimedCount = 0;
+    
+    // Markers dictionary for clicking
+    const markers = {};
 
     function getRandom(arr) {
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    function generateTreeData() {
-        for (let i = 1; i <= TOTAL_TREES; i++) {
+    try {
+        // Load campus zones (boundary, buildings, etc.)
+        const zonesRes = await fetch('data/jason_m_rivas_zones.json');
+        const zonesGeoJSON = await zonesRes.json();
+        
+        L.geoJSON(zonesGeoJSON, {
+            style: function(feature) {
+                switch(feature.properties.category) {
+                    case 'Campus Boundary': return { color: '#ffcc00', weight: 3, fillOpacity: 0 };
+                    case 'Rooftop': return { color: '#ffffff', weight: 1, fillColor: '#ffffff', fillOpacity: 0.2 };
+                    case 'Open Field': return { color: '#66bb6a', weight: 1, fillOpacity: 0.1 };
+                    case 'Parking Lot': return { color: '#9e9e9e', weight: 1, fillOpacity: 0.3 };
+                    default: return { color: '#3388ff' };
+                }
+            }
+        }).addTo(map);
+
+        // Load actual trees
+        const treesRes = await fetch('data/mock_trees.json');
+        const treesGeoJSON = await treesRes.json();
+        
+        // Filter to Rivas trees (though they should all be Rivas in this mock, just to be safe)
+        const rivasTrees = treesGeoJSON.features;
+        totalTreesEl.textContent = rivasTrees.length;
+
+        // Process trees
+        rivasTrees.forEach((feature, index) => {
+            const id = feature.properties.id || (index + 1);
+            const species = feature.properties.species || "Unknown Species";
+            
             const isClaimed = Math.random() < 0.35; // ~35% claimed
             if (isClaimed) claimedCount++;
             
-            let name = isClaimed ? `The ${getRandom(adjectives)} ${getRandom(nouns)}` : `Tree #${i}`;
+            let name = isClaimed ? `The ${getRandom(adjectives)} ${getRandom(nouns)}` : `Tree #${id}`;
             let claimer = isClaimed ? getRandom(claimers) : null;
-            let species = getRandom(speciesList);
-            
-            // Random position in the map area (padding 5% from edges)
-            let top = 5 + (Math.random() * 90);
-            let left = 5 + (Math.random() * 90);
-            
-            // Assign a random emoji for the image
             let imageEmoji = getRandom(["🌳", "🌲", "🌴", "🪴", "🍃"]);
 
-            treesData.push({
-                id: i,
+            const treeObj = {
+                id: id,
                 isClaimed: isClaimed,
                 name: name,
                 claimer: claimer,
                 species: species,
-                top: top,
-                left: left,
-                imageEmoji: imageEmoji
-            });
-        }
-        
-        claimedTreesEl.textContent = claimedCount;
-    }
+                imageEmoji: imageEmoji,
+                latlng: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]
+            };
+            treesData.push(treeObj);
 
-    function renderMap() {
-        treesData.forEach(tree => {
-            const pin = document.createElement('div');
-            pin.className = `tree-pin ${tree.isClaimed ? 'claimed' : 'available'}`;
-            pin.id = `pin-${tree.id}`;
-            pin.style.top = `${tree.top}%`;
-            pin.style.left = `${tree.left}%`;
-            pin.title = tree.name;
+            // Create Leaflet CircleMarker
+            const markerColor = isClaimed ? '#a3e635' : '#ffffff';
+            const marker = L.circleMarker(treeObj.latlng, {
+                radius: 6,
+                fillColor: markerColor,
+                color: isClaimed ? '#ffffff' : '#2b5f3a',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+            }).addTo(map);
+
+            marker.bindTooltip(`<b>${treeObj.name}</b><br>${treeObj.species}`);
             
-            // Z-index based on Y position (pseudo-3D sorting)
-            pin.style.zIndex = Math.floor(tree.top);
-            
-            pin.addEventListener('click', () => {
-                activateTree(tree.id);
-                // Scroll gallery to this tree
-                const card = document.getElementById(`card-${tree.id}`);
+            marker.on('click', () => {
+                activateTree(treeObj.id);
+                const card = document.getElementById(`card-${treeObj.id}`);
                 if(card) {
                     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             });
-            
-            mapArea.appendChild(pin);
+
+            markers[treeObj.id] = marker;
         });
+
+        claimedTreesEl.textContent = claimedCount;
+        renderGallery();
+
+    } catch(err) {
+        console.error("Error loading GeoJSON data:", err);
     }
 
     function renderGallery() {
@@ -115,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             card.addEventListener('click', () => {
                 activateTree(tree.id);
+                map.flyTo(tree.latlng, 20, { duration: 0.5 });
             });
             
             rosterGrid.appendChild(card);
@@ -123,22 +156,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function activateTree(id) {
         if (activeTreeId) {
-            const oldPin = document.getElementById(`pin-${activeTreeId}`);
             const oldCard = document.getElementById(`card-${activeTreeId}`);
-            if(oldPin) oldPin.classList.remove('active');
             if(oldCard) oldCard.classList.remove('active');
+            
+            const oldMarker = markers[activeTreeId];
+            if(oldMarker) {
+                oldMarker.setStyle({ weight: 2, radius: 6 });
+            }
         }
         
         activeTreeId = id;
         
-        const newPin = document.getElementById(`pin-${activeTreeId}`);
         const newCard = document.getElementById(`card-${activeTreeId}`);
-        if(newPin) newPin.classList.add('active');
         if(newCard) newCard.classList.add('active');
+        
+        const newMarker = markers[activeTreeId];
+        if(newMarker) {
+            newMarker.setStyle({ weight: 4, radius: 8, color: '#ffeb3b' });
+            newMarker.bringToFront();
+        }
     }
-
-    // Initialize
-    generateTreeData();
-    renderMap();
-    renderGallery();
 });

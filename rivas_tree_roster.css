@@ -62,16 +62,11 @@
 .available-dot { background-color: #a3e635; border: 2px solid #fff; box-shadow: 0 0 0 1px #8bc92a; }
 
 .simulated-map {
-    flex: 1;
     position: relative;
-    overflow: hidden;
-    /* Simulated grass/campus texture */
-    background-image: 
-        radial-gradient(#d3e2ce 15%, transparent 16%),
-        radial-gradient(#d3e2ce 15%, transparent 16%);
-    background-size: 60px 60px;
-    background-position: 0 0, 30px 30px;
-    background-color: #e4efe0;
+    height: calc(100vh - 80px - 100px); /* Fill remaining space below header */
+    width: 100%;
+    background: #e9efe7;
+    z-index: 1; /* Leaflet needs this */
 }
 
 .tree-pin {
@@ -177,6 +172,9 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
 }
 
 .tree-card:hover {
