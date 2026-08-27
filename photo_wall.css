@@ -1,10 +1,81 @@
 /* photo_wall.css */
 
+/* --- Stewardship Badges Ribbon --- */
+.stewardship-ribbon {
+    background: #23272f;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 2px solid #3b4252;
+    flex-wrap: wrap;
+}
+
+.ribbon-title {
+    font-size: 0.85em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #a3e635;
+}
+
+.badges-container {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.badge-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.8em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.badge-pill:hover {
+    transform: translateY(-2px);
+}
+
+.badge-unlocked {
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid #10b981;
+    color: #34d399;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+.badge-locked {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed #6b7280;
+    color: #9ca3af;
+    opacity: 0.7;
+}
+
+.guide-link {
+    background: #3b82f6;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.guide-link:hover {
+    background: #2563eb;
+}
+
 /* --- Split Screen Layout --- */
 .split-screen-container {
     display: flex;
     flex-direction: row;
-    height: calc(100vh - 150px);
+    height: calc(100vh - 190px);
     background-color: #f4f1ea;
     overflow: hidden;
 }
@@ -25,9 +96,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255,255,255,0.8);
-    padding: 10px 20px;
-    border-radius: 4px;
+    background: rgba(255,255,255,0.9);
+    padding: 12px 20px;
+    border-radius: 6px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -35,23 +106,25 @@
 .corkboard-header h2 {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
-    color: #333;
+    color: #2b5c2d;
+    font-size: 1.3em;
 }
 
 .upload-btn {
-    background-color: #4CAF50;
+    background-color: #2b5c2d;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
+    padding: 9px 16px;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
     font-size: 0.9em;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.1s;
 }
 
 .upload-btn:hover {
-    background-color: #45a049;
+    background-color: #1e3f20;
+    transform: scale(1.02);
 }
 
 /* Grid for photos */
@@ -69,12 +142,12 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    width: 200px;
+    width: 220px;
     position: relative;
 }
 
 .polaroid:hover {
-    transform: scale(1.05) rotate(0deg) !important; /* overrides random inline rotation */
+    transform: scale(1.05) rotate(0deg) !important;
     box-shadow: 0 10px 15px rgba(0,0,0,0.4);
     z-index: 10;
 }
@@ -85,17 +158,19 @@
 
 .polaroid img {
     width: 100%;
-    height: 180px;
+    height: 170px;
     object-fit: cover;
     display: block;
+    border-radius: 2px;
 }
 
 .polaroid-caption {
     font-family: 'Caveat', cursive;
-    font-size: 1.3em;
+    font-size: 1.25em;
     text-align: center;
     margin-top: 10px;
     color: #333;
+    line-height: 1.2;
 }
 
 /* The thumbtack */
@@ -115,7 +190,7 @@
 /* --- Right Pane: Field Notes --- */
 .field-notes-pane {
     flex: 4;
-    background-color: #faf9f6; /* Paper color */
+    background-color: #faf9f6;
     padding: 30px;
     overflow-y: auto;
     border-left: 2px solid #ddd;
@@ -141,42 +216,160 @@
 .field-note-card h3 {
     font-family: 'Open Sans', sans-serif;
     color: #2b5c2d;
-    font-size: 1.8em;
+    font-size: 1.5em;
     border-bottom: 2px solid #2b5c2d;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
 }
 
 .note-meta {
-    font-size: 0.9em;
+    font-size: 0.88em;
     color: #555;
     margin-bottom: 15px;
     background: #f0ece1;
-    padding: 10px;
-    border-radius: 4px;
+    padding: 12px;
+    border-radius: 6px;
+    line-height: 1.6;
 }
 
-.note-meta strong {
-    color: #333;
+.board-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.board-stat-box {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    padding: 8px 4px;
+    border-radius: 6px;
+}
+
+.stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #2b5c2d;
+}
+
+.stat-label {
+    font-size: 0.75em;
+    color: #64748b;
+    text-transform: uppercase;
 }
 
 .note-body {
-    font-size: 1.1em;
+    font-size: 1.05em;
     line-height: 1.6;
     color: #222;
+    margin: 15px 0;
 }
 
 .approval-stamp {
-    margin-top: 30px;
+    margin-top: 25px;
     display: inline-block;
-    padding: 5px 15px;
+    padding: 6px 14px;
     border: 2px solid #2b5c2d;
     color: #2b5c2d;
     font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em;
     text-transform: uppercase;
-    transform: rotate(-5deg);
-    opacity: 0.7;
+    transform: rotate(-3deg);
+    opacity: 0.85;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-card {
+    background: #fff;
+    width: 90%;
+    max-width: 480px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    background: #2b5c2d;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.drop-zone {
+    border: 2px dashed #94a3b8;
+    background: #f8fafc;
+    border-radius: 6px;
+    padding: 25px 15px;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.85em;
+    cursor: pointer;
+}
+
+.drop-zone:hover {
+    border-color: #2b5c2d;
+    background: #f0fdf4;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
 }
 
 @keyframes fadeIn {
@@ -184,16 +377,8 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
 @media (max-width: 800px) {
-    .split-screen-container {
-        flex-direction: column;
-        height: auto;
-    }
-    .corkboard-pane {
-        height: 50vh;
-    }
-    .field-notes-pane {
-        height: 50vh;
-    }
+    .split-screen-container { flex-direction: column; height: auto; }
+    .corkboard-pane { height: 50vh; }
+    .field-notes-pane { height: 50vh; }
 }

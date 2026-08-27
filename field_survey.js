@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Construct Observation Object
         const observation = {
             id: 'obs_' + Date.now(),
-            observer: document.getElementById('observerName').value,
+            team_code: document.getElementById('observerTeam').value,
+            observer_team: document.getElementById('observerTeam').value,
             campus: document.getElementById('campusSelect').value,
             surfaceZone: document.getElementById('surfaceZone').value,
             lat: parseFloat(latInput.value),

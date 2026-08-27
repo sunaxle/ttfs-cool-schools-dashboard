@@ -1,15 +1,15 @@
-Campus,District,Lat,Lng,MeanTemp_C,MaxTemp_C,CanopyPct,ImperviousPct,BaselineYear
-Ruben Hinojosa Elementary,Mercedes ISD,26.1365,-97.9150,34.5,38.2,12.5,65.0,2025
-W.B. Travis Elementary,Mercedes ISD,26.1420,-97.9110,34.8,38.5,10.0,68.0,2025
-Sgt. Manuel Chacon Middle,Mercedes ISD,26.1300,-97.9250,35.0,38.9,8.5,72.0,2025
-Sgt. William G. Harrell Elementary,Mercedes ISD,26.1580,-97.9050,34.2,37.8,15.0,60.0,2025
-Mercedes High School,Mercedes ISD,26.1350,-97.9080,35.1,39.0,7.0,75.0,2025
-Mercedes Academic Academy,Mercedes ISD,26.1320,-97.9230,35.0,38.8,9.0,70.0,2025
-J.W. Caceres Discovery Intermediate,Donna ISD,26.1750,-98.0500,34.6,38.3,11.0,66.0,2025
-P.S. Garza Elementary,Donna ISD,26.1950,-98.0650,34.4,38.1,14.0,62.0,2025
-A.M. Ochoa Primary,Donna ISD,26.1700,-98.0450,34.9,38.6,9.5,69.0,2025
-M. Rivas Primary,Donna ISD,26.1760,-98.0510,34.7,38.4,10.5,67.0,2025
-Captain D. Salinas II STEAM,Donna ISD,26.1800,-98.0700,34.3,38.0,16.0,58.0,2025
-C. Stainke Intermediate,Donna ISD,26.1680,-98.0400,35.2,39.1,6.5,78.0,2025
-Daniel Singleterry Senior Elementary,Donna ISD,26.2050,-98.0800,34.5,38.2,13.5,63.0,2025
-A.P. Solis Middle,Donna ISD,26.1720,-98.0480,34.8,38.7,8.0,71.0,2025
+Campus,District,Lat,Lng,MeanTemp_C,MaxTemp_C,CanopyPct,ImperviousPct,BaselineYear,SiteArea_SF,GreenSpace_SF,TargetCanopy30_SF,ExistingCanopy_SF,TreesNeeded30Pct
+J.W. Caceres Discovery Intermediate,Donna ISD,26.1750,-98.0500,34.6,38.3,13.8,56.4,2025,711254,310213,93064,42824,38
+M. Rivas Primary,Donna ISD,26.1760,-98.0510,34.7,38.4,13.8,56.4,2025,711254,310213,93064,42824,38
+Captain D. Salinas II STEAM,Donna ISD,26.1800,-98.0700,34.3,38.0,1.0,29.7,2025,1052783,740375,222113,7715,163
+Daniel Singleterry Senior Elementary,Donna ISD,26.2050,-98.0800,34.5,38.2,8.2,43.8,2025,572971,322105,96631,26297,54
+C. Stainke Intermediate,Donna ISD,26.1680,-98.0400,35.2,39.1,7.0,52.4,2025,518386,246970,74091,17393,43
+A.M. Ochoa Primary,Donna ISD,26.1700,-98.0450,34.9,38.6,10.4,65.9,2025,438155,149131,44739,15567,22
+P.S. Garza Elementary,Donna ISD,26.1950,-98.0650,34.4,38.1,6.5,44.9,2025,620126,341987,102596,22362,61
+A.P. Solis Middle,Donna ISD,26.1720,-98.0480,34.8,38.7,5.7,59.4,2025,854776,346783,104035,19741,70
+Sgt. Manuel Chacon Middle,Mercedes ISD,26.1300,-97.9250,35.0,38.9,3.8,49.8,2025,1193342,599483,179845,22529,120
+Sgt. William G. Harrell Elementary,Mercedes ISD,26.1580,-97.9050,34.2,37.8,4.0,66.9,2025,461387,152835,45851,6045,30
+W.B. Travis Elementary,Mercedes ISD,26.1420,-97.9110,34.8,38.5,15.6,48.7,2025,420140,215359,64608,33579,24
+Ruben Hinojosa Elementary,Mercedes ISD,26.1365,-97.9150,34.5,38.2,8.3,65.9,2025,389167,132891,39867,10972,22
+Mercedes High School,Mercedes ISD,26.1350,-97.9080,35.1,39.0,36.9,77.2,2025,951666,216905,65072,80131,-11
+Mercedes Academic Academy,Mercedes ISD,26.1320,-97.9230,35.0,38.8,3.5,54.0,2025,265025,121875,36563,4246,25

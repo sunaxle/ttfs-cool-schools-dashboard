@@ -40,9 +40,9 @@
   function applyProfile(name) {
     const profiles = loadProfiles();
     const profile = profiles[name] || {};
-    profileCanopy.value = profile.canopy || "";
-    profileTrees.value = profile.trees || "";
-    profileNotes.value = profile.notes || "";
+    if (profileCanopy) profileCanopy.value = profile.canopy || "";
+    if (profileTrees) profileTrees.value = profile.trees || "";
+    if (profileNotes) profileNotes.value = profile.notes || "";
   }
 
   /**
@@ -52,80 +52,94 @@
   function storeProfile(name) {
     const profiles = loadProfiles();
     profiles[name] = {
-      canopy: profileCanopy.value,
-      trees: profileTrees.value,
-      notes: profileNotes.value
+      canopy: profileCanopy ? profileCanopy.value : "",
+      trees: profileTrees ? profileTrees.value : "",
+      notes: profileNotes ? profileNotes.value : ""
     };
     saveProfiles(profiles);
   }
 
-  saveProfile.addEventListener("click", () => {
-    const name = schoolSelect.value;
-    if (!name) return;
-    storeProfile(name);
-    const originalText = saveProfile.textContent;
-    saveProfile.textContent = "Saved!";
-    saveProfile.style.backgroundColor = "#4CAF50";
-    setTimeout(() => {
-      saveProfile.textContent = originalText;
-      saveProfile.style.backgroundColor = "";
-    }, 2000);
-  });
+  if (saveProfile) {
+    saveProfile.addEventListener("click", () => {
+      const name = schoolSelect ? schoolSelect.value : "";
+      if (!name) return;
+      storeProfile(name);
+      const originalText = saveProfile.textContent;
+      saveProfile.textContent = "Saved!";
+      saveProfile.style.backgroundColor = "#4CAF50";
+      setTimeout(() => {
+        saveProfile.textContent = originalText;
+        saveProfile.style.backgroundColor = "";
+      }, 2000);
+    });
+  }
 
-  window.require(
-    ["esri/Map", "esri/views/MapView", "esri/layers/FeatureLayer"],
-    (Map, MapView, FeatureLayer) => {
-      const map = new Map({ basemap: config?.map?.basemap || "streets-vector" });
-      const schoolsLayer = new FeatureLayer({
-        url: config.layers.schools.url,
-        title: "Schools"
-      });
-      map.add(schoolsLayer);
+  const uploadPhotoBtn = document.getElementById("uploadPhotoBtn");
+  if (uploadPhotoBtn) {
+    uploadPhotoBtn.addEventListener("click", () => {
+      alert("Community photo upload interface: Select your baseline reference angle and upload a new photo to track growth.");
+    });
+  }
 
-      const view = new MapView({
-        container: "schoolMap",
-        map,
-        center: config?.map?.center || [-97.96, 26.2],
-        zoom: config?.map?.zoom || 11
-      });
+  const schoolMap = document.getElementById("schoolMap");
+  if (window.require && schoolMap) {
+    window.require(
+      ["esri/Map", "esri/views/MapView", "esri/layers/FeatureLayer"],
+      (Map, MapView, FeatureLayer) => {
+        const map = new Map({ basemap: config?.map?.basemap || "streets-vector" });
+        const schoolsLayer = new FeatureLayer({
+          url: config?.layers?.schools?.url,
+          title: "Schools"
+        });
+        map.add(schoolsLayer);
 
-      schoolsLayer
-        .queryFeatures({
-          where: "1=1",
-          outFields: ["*"],
-          returnGeometry: false
-        })
-        .then((result) => {
-          const features = result.features || [];
-          features.forEach((feature) => {
-            const option = document.createElement("option");
-            option.value = feature.attributes[config.fields.schoolsName];
-            option.textContent = feature.attributes[config.fields.schoolsName];
-            schoolSelect.appendChild(option);
-          });
-          if (features.length) {
-            schoolSelect.value = features[0].attributes[config.fields.schoolsName];
-            schoolSelect.dispatchEvent(new Event("change"));
-          }
+        const view = new MapView({
+          container: "schoolMap",
+          map,
+          center: config?.map?.center || [-97.96, 26.2],
+          zoom: config?.map?.zoom || 11
         });
 
-      schoolSelect.addEventListener("change", async () => {
-        const name = schoolSelect.value;
-        if (!name) return;
-        const query = schoolsLayer.createQuery();
-        query.where = `${config.fields.schoolsName} = '${name.replace(/'/g, "''")}'`;
-        query.outFields = ["*"];
-        query.returnGeometry = true;
-        const results = await schoolsLayer.queryFeatures(query);
-        const feature = results.features[0];
-        if (!feature) return;
-        view.goTo(feature.geometry);
-        schoolName.textContent = name;
-        schoolAddress.textContent = feature.attributes.FullAddress || "--";
-        schoolCity.textContent = feature.attributes.City || "--";
-        schoolCanopy.textContent = "--";
-        applyProfile(name);
-      });
-    }
-  );
+        if (schoolSelect) {
+          schoolsLayer
+            .queryFeatures({
+              where: "1=1",
+              outFields: ["*"],
+              returnGeometry: false
+            })
+            .then((result) => {
+              const features = result.features || [];
+              if (features.length && !schoolSelect.disabled) {
+                features.forEach((feature) => {
+                  const option = document.createElement("option");
+                  option.value = feature.attributes[config.fields.schoolsName];
+                  option.textContent = feature.attributes[config.fields.schoolsName];
+                  schoolSelect.appendChild(option);
+                });
+                schoolSelect.value = features[0].attributes[config.fields.schoolsName];
+                schoolSelect.dispatchEvent(new Event("change"));
+              }
+            });
+
+          schoolSelect.addEventListener("change", async () => {
+            const name = schoolSelect.value;
+            if (!name) return;
+            const query = schoolsLayer.createQuery();
+            query.where = `${config.fields.schoolsName} = '${name.replace(/'/g, "''")}'`;
+            query.outFields = ["*"];
+            query.returnGeometry = true;
+            const results = await schoolsLayer.queryFeatures(query);
+            const feature = results.features[0];
+            if (!feature) return;
+            view.goTo(feature.geometry);
+            if (schoolName) schoolName.textContent = name;
+            if (schoolAddress) schoolAddress.textContent = feature.attributes.FullAddress || "--";
+            if (schoolCity) schoolCity.textContent = feature.attributes.City || "--";
+            if (schoolCanopy) schoolCanopy.textContent = "--";
+            applyProfile(name);
+          });
+        }
+      }
+    );
+  }
 })();

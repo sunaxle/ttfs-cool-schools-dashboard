@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Velocity, Time & Value Tracker | TTFS UTRGV Cool Schools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --primary: #10b981;
+            --primary-glow: rgba(16, 185, 129, 0.2);
+            --accent-blue: #38bdf8;
+            --accent-orange: #f59e0b;
+            --accent-purple: #a855f7;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 20px;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-title h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .header-title p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+
+        .badge-live {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-live::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px var(--primary);
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .metric-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-val {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 8px 0 4px 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .metric-sub { font-size: 12px; color: var(--text-muted); }
+        .val-green { color: var(--primary); }
+        .val-blue { color: var(--accent-blue); }
+        .val-orange { color: var(--accent-orange); }
+        .val-purple { color: var(--accent-purple); }
+
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        @media (max-width: 900px) { .split-grid { grid-template-columns: 1fr; } }
+
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .panel-title { font-size: 18px; font-weight: 700; color: var(--text-main); }
+
+        .comparison-box {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .comp-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-bg {
+            background: #334155;
+            height: 10px;
+            border-radius: 999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill { height: 100%; border-radius: 999px; transition: width 0.5s ease-out; }
+        .bg-green { background: linear-gradient(90deg, #10b981, #34d399); }
+        .bg-blue { background: linear-gradient(90deg, #38bdf8, #60a5fa); }
+        .bg-purple { background: linear-gradient(90deg, #a855f7, #c084fc); }
+        .bg-orange { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+
+        .calc-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid var(--border);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-glow);
+        }
+
+        .calc-result-box {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+        }
+
+        .res-item-lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
+        .res-item-val {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 4px;
+        }
+
+        .table-responsive { overflow-x: auto; margin-top: 15px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+        th, td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+        th {
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+        tr:hover td { background: rgba(255, 255, 255, 0.02); }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .tag { padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+        .tag-done { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .tag-active { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+        .tag-pending { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+
+        .cadence-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        .cadence-icon { font-size: 24px; line-height: 1; }
+        .cadence-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; color: var(--text-main); }
+        .cadence-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="header-title">
+            <h1>⏱️ Project Velocity, Time & Value Tracker</h1>
+            <p>TTFS UTRGV Project Cool Schools • Lifetime Codebase & Labor Economics Matrix</p>
+        </div>
+        <div>
+            <span class="badge-live">Month 3 Active • 53.3% Complete</span>
+        </div>
+    </header>
+
+    <!-- Top Key Metrics -->
+    <div class="metric-grid">
+        <div class="metric-card">
+            <div class="metric-label">Total Codebase Size</div>
+            <div class="metric-val val-blue">~78.4K</div>
+            <div class="metric-sub">Lines of Code & Docs (176 Files)</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-label">True Human Steering Time</div>
+            <div class="metric-val val-green">86.0 hrs</div>
+            <div class="metric-sub">~7.2 hrs/wk (Review, Meetings & Prep)</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-label">Human-Analog Equivalent</div>
+            <div class="metric-val val-orange">640.0 hrs</div>
+            <div class="metric-sub">1st-Year Grad Student Solo Effort</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-label">Velocity Multiplier</div>
+            <div class="metric-val val-purple">7.5x</div>
+            <div class="metric-sub">Executive Acceleration Ratio</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-label">Contract Billed to Date</div>
+            <div class="metric-val val-green">$84,041</div>
+            <div class="metric-sub">53.3% of $157,625 Total Contract</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-label">Commercial Market Value</div>
+            <div class="metric-val val-blue">$112,000</div>
+            <div class="metric-sub">At Commercial Agency Benchmark</div>
+        </div>
+    </div>
+
+    <!-- Middle Split: Labor Breakdown vs Interactive Calculator -->
+    <div class="split-grid">
+        <!-- Labor Breakdown -->
+        <div class="panel">
+            <div class="panel-header">
+                <div class="panel-title">🎓 Human-Analog Labor Breakdown (640 Hours)</div>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                Estimated hours required for a standard first-year graduate student or junior developer to build from scratch without AI:
+            </p>
+
+            <div class="comparison-box">
+                <div class="comp-header">
+                    <span>1. Frontend UI & Portals (49 Pages)</span>
+                    <span class="mono">195 hrs (30.5%)</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill bg-blue" style="width: 30.5%;"></div>
+                </div>
+            </div>
+
+            <div class="comparison-box">
+                <div class="comp-header">
+                    <span>2. Physics & Environmental Telemetry Engines</span>
+                    <span class="mono">110 hrs (17.2%)</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill bg-green" style="width: 17.2%;"></div>
+                </div>
+            </div>
+
+            <div class="comparison-box">
+                <div class="comp-header">
+                    <span>3. Architecture, Refactoring & Accessibility</span>
+                    <span class="mono">90 hrs (14.1%)</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill bg-purple" style="width: 14.1%;"></div>
+                </div>
+            </div>
+
+            <div class="comparison-box">
+                <div class="comp-header">
+                    <span>4. Custom GIS Spatial Zoning Tool & Math</span>
+                    <span class="mono">85 hrs (13.3%)</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill bg-orange" style="width: 13.3%;"></div>
+                </div>
+            </div>
+
+            <div class="comparison-box">
+                <div class="comp-header">
+                    <span>5. TEKS Curriculum, Slide Decks & SOPs</span>
+                    <span class="mono">85 hrs (13.3%)</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill bg-blue" style="width: 13.3%;"></div>
+                </div>
+            </div>
+
+            <div class="comparison-box">
+                <div class="comp-header">
+                    <span>6. Health Literature & Econometric Modeling</span>
+                    <span class="mono">75 hrs (11.7%)</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill bg-green" style="width: 11.7%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Value & Time Calculator -->
+        <div class="panel">
+            <div class="panel-header">
+                <div class="panel-title">🧮 Executive Steering & Value Calculator</div>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                Includes cognitive review, meeting prep, and client standing meetings:
+            </p>
+
+            <div class="calc-form">
+                <div class="form-group">
+                    <label>Total User Steering Hours</label>
+                    <input type="number" id="inputUserHours" value="86" min="1" step="1" oninput="recalc()">
+                </div>
+                <div class="form-group">
+                    <label>Active Project Weeks</label>
+                    <input type="number" id="inputWeeks" value="12" min="1" step="1" oninput="recalc()">
+                </div>
+                <div class="form-group">
+                    <label>Grad Student Benchmark ($/hr)</label>
+                    <input type="number" id="inputGradRate" value="32" min="15" step="1" oninput="recalc()">
+                </div>
+                <div class="form-group">
+                    <label>Agency Contractor Rate ($/hr)</label>
+                    <input type="number" id="inputAgencyRate" value="175" min="50" step="5" oninput="recalc()">
+                </div>
+            </div>
+
+            <div class="calc-result-box">
+                <div>
+                    <div class="res-item-lbl">Weekly Executive Time</div>
+                    <div class="res-item-val" id="resWeeklyHours">7.2 hrs/wk</div>
+                </div>
+                <div>
+                    <div class="res-item-lbl">Effective Hourly Return</div>
+                    <div class="res-item-val" id="resEffectiveRate">$977/hr</div>
+                </div>
+                <div>
+                    <div class="res-item-lbl">Agency Replacement</div>
+                    <div class="res-item-val" id="resAgencyTotal">$112,000</div>
+                </div>
+                <div>
+                    <div class="res-item-lbl">Client Surplus Value</div>
+                    <div class="res-item-val" id="resSurplus">+$27,959</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px;">
+                    <span style="color: var(--text-muted);">Contract Budget Burndown ($157,625 Total)</span>
+                    <span class="mono" style="color: var(--primary); font-weight: 600;">$84,041 Billed (53.3%)</span>
+                </div>
+                <div class="progress-bar-bg" style="height: 14px;">
+                    <div class="progress-bar-fill bg-green" style="width: 53.3%;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+                    <span>Earned to Date: $84,041 (Months 1–3)</span>
+                    <span>Remaining Contract: $73,584 (Months 4–19)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Operating Cadence Grid -->
+    <div class="panel">
+        <div class="panel-header">
+            <div class="panel-title">🗓️ Recommended Automated Operating Cadence</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div class="cadence-card">
+                <div class="cadence-icon">🎯</div>
+                <div>
+                    <div class="cadence-title">Monday 9:00 AM • Weekly Focus Pulse</div>
+                    <div class="cadence-desc">Review 1–2 top sprint priorities, check the velocity tracker, and set the week's rhythm in 10 minutes.</div>
+                </div>
+            </div>
+            <div class="cadence-card">
+                <div class="cadence-icon">📊</div>
+                <div>
+                    <div class="cadence-title">Wednesday 3:00 PM • Thursday Meeting Prep</div>
+                    <div class="cadence-desc">Auto-compiles progress highlights, demo links, and 3 talking points for Thursday's standing team meeting.</div>
+                </div>
+            </div>
+            <div class="cadence-card">
+                <div class="cadence-icon">📑</div>
+                <div>
+                    <div class="cadence-title">Monthly 25th • Pre-Invoice Aggregator</div>
+                    <div class="cadence-desc">Auto-generates the Monthly Progress Report (.docx & .md) and syncs the exact invoice amount due on the 5th.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Running Ledger Table -->
+    <div class="panel">
+        <div class="panel-header">
+            <div class="panel-title">📋 Monthly Time, Deliverables & Invoicing Ledger</div>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Billing Period</th>
+                        <th>User Steering</th>
+                        <th>Human-Analog Equiv</th>
+                        <th>Velocity Multiplier</th>
+                        <th>Milestone Allocation</th>
+                        <th>Cumulative Total</th>
+                        <th>Key Deliverables Completed</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Month 1 (Jun 2026)</strong></td>
+                        <td class="mono">32.0 hrs</td>
+                        <td class="mono">240.0 hrs</td>
+                        <td class="mono val-purple">7.5x</td>
+                        <td class="mono val-green">$42,143.00</td>
+                        <td class="mono">$42,143.00</td>
+                        <td>Kickoff, Remote Sensing Baseline, Dashboard Architecture, SOP v0.1</td>
+                        <td><span class="tag tag-done">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Month 2 (Jul 2026)</strong></td>
+                        <td class="mono">28.0 hrs</td>
+                        <td class="mono">210.0 hrs</td>
+                        <td class="mono val-purple">7.5x</td>
+                        <td class="mono val-green">$26,384.00</td>
+                        <td class="mono">$68,527.00</td>
+                        <td>GIS Digitizer Tool, M. Rivas 18 Polygons, iTree Ledger, Monitoring Docs v0.6</td>
+                        <td><span class="tag tag-done">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Month 3 (Aug 2026)</strong></td>
+                        <td class="mono">26.0 hrs</td>
+                        <td class="mono">190.0 hrs</td>
+                        <td class="mono val-purple">7.3x</td>
+                        <td class="mono val-green">$15,514.00</td>
+                        <td class="mono">$84,041.00</td>
+                        <td>Modeling Visuals Package, Training Deck v0.5, TA Log Schema, Dashboard v2 Memo</td>
+                        <td><span class="tag tag-done">Completed</span></td>
+                    </tr>
+                    <tr style="opacity: 0.75;">
+                        <td><strong>Month 4 (Sep 2026)</strong></td>
+                        <td class="mono">~10.0 hrs (est)</td>
+                        <td class="mono">~45.0 hrs</td>
+                        <td class="mono val-purple">4.5x</td>
+                        <td class="mono val-blue">$7,022.00</td>
+                        <td class="mono">$91,063.00</td>
+                        <td>Dashboard v2 Early Components, Figure Templates, Training Materials v0.8</td>
+                        <td><span class="tag tag-active">Active Sprint</span></td>
+                    </tr>
+                    <tr style="opacity: 0.5;">
+                        <td><strong>Month 5–19 (Oct 2026 – Dec 2027)</strong></td>
+                        <td class="mono">~45.0 hrs (est)</td>
+                        <td class="mono">~375.0 hrs</td>
+                        <td class="mono val-purple">8.3x</td>
+                        <td class="mono">$66,562.00</td>
+                        <td class="mono">$157,625.00</td>
+                        <td>Online Trainings #1 & #2, Reporting Support Memos, Client Handoff Package</td>
+                        <td><span class="tag tag-pending">Upcoming</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function recalc() {
+        const userHours = parseFloat(document.getElementById('inputUserHours').value) || 1;
+        const weeks = parseFloat(document.getElementById('inputWeeks').value) || 1;
+        const gradRate = parseFloat(document.getElementById('inputGradRate').value) || 32;
+        const agencyRate = parseFloat(document.getElementById('inputAgencyRate').value) || 175;
+
+        const humanEquivHours = 640;
+        const billedTotal = 84041;
+
+        const weekly = (userHours / weeks).toFixed(1);
+        const effectiveRate = Math.round(billedTotal / userHours);
+        const agencyTotal = Math.round(humanEquivHours * agencyRate);
+        const surplus = agencyTotal - billedTotal;
+
+        document.getElementById('resWeeklyHours').innerText = weekly + ' hrs/wk';
+        document.getElementById('resEffectiveRate').innerText = '$' + effectiveRate.toLocaleString() + '/hr';
+        document.getElementById('resAgencyTotal').innerText = '$' + agencyTotal.toLocaleString();
+        document.getElementById('resSurplus').innerText = (surplus >= 0 ? '+$' : '-$') + Math.abs(surplus).toLocaleString();
+    }
+
+    recalc();
+</script>
+
+</body>
+</html>

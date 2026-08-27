@@ -24,12 +24,23 @@
 - [ ] **Feature Concept 5 - "Living Tree Legacy (Time-Lapse Naming)":** An automated visual time-lapse showing individual trees growing over a decade. Every incoming UTRGV class names a tree via tag numbers; the visualization overlaps/morphs the tree's growth with its evolving names (a collage of names) over the years.
 
 
-## 🏗️ In Progress (Active Sprints)
-- [ ] **July Milestone - Baseline QA & Finalization:** Lock v1 tables & campus fact sheets.
-- [ ] **July Milestone - Monitoring Docs v0.8:** Internal review of updated Standard Operating Procedures.
-- [ ] **July Milestone - Training #1 Prep:** Prepare Training #1 outline and synthesize dashboard user notes.
-- [ ] **August Milestone - Dashboard v2 Planning:** Begin planning for v2 features and performance tweaks based on v1 feedback.
-- [ ] **August Milestone - Modeling Visuals Integration:** Start integrating heat/canopy projection visuals for reporting placeholders.
+## 🎯 Active Sprint: September 2026 TTFS Contract Deliverables
+- [ ] **1. Dashboard v2 Early Components:** Asset bundling, minification, and performance optimizations.
+- [ ] **2. Figure Templates & Caption Conventions:** Finalizing standardized publication-ready figure layouts.
+- [ ] **3. Dashboard Usability & Data Caveats Documentation:** Comprehensive data lineage and assumption documentation.
+- [ ] **4. Training Materials Progression (v0.8):** Incorporating teacher feedback into curriculum materials.
+
+## 📌 Bookmarked Initiatives (Future Sprints / UTRGV Expansion)
+- [ ] **UTRGV Campus Tree & Shade Dashboard:** Full standalone campus explorer (`utrgv_campus.html`) with UTRGV tree inventory, shade buffers, micro-climate cooling models, and student/faculty QR-code feedback loop. (See blueprint: [UTRGV_CAMPUS_DASHBOARD_BLUEPRINT.md](file:///Users/dr3/Documents/Antigravity%20Designs/work/TTFS_UTRGV_Project_Cool_Schools/docs/UTRGV_CAMPUS_DASHBOARD_BLUEPRINT.md)).
+
+## ✅ Recently Completed (August 2026 Milestone Deliverables - $15,514.00)
+- [x] **Month 3 Progress Report Package:** Compiled formal `Month_3_Progress_Report.docx` and `.md` documenting milestone completion across Deliverables A, B, and C.
+- [x] **Modeling Visuals & Figure Package:** Assembled diurnal heat surface profiles and 5/10-yr longitudinal canopy growth projections (`docs/Modeling_Visuals_Package.md` and `.docx`).
+- [x] **Training Materials v0.5 & TA Log Structure:** Finalized educator slide deck (`docs/donna_isd_presentation_slides.md`) and auditable TA log schema (`docs/Technical_Assistance_Log_v0.5.md`).
+- [x] **Dashboard v2 Planning Memo:** Synthesized stakeholder feedback, offline field caching roadmap, and new module specifications (`docs/Dashboard_v2_Planning_Memo.md`).
+
+
+## 🏗️ General Backlog
 
 ## ✅ Recently Completed
 - [x] **Phase 1 Production Readiness (Iter 30):** Holistic QA pass confirmed strict IIFE isolations, modular architecture, and zero inline scripts. Codebase officially production-ready!

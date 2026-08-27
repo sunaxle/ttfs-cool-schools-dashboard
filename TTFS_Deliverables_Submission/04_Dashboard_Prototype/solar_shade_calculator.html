@@ -1,0 +1,1317 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <meta name="description" content="UTRGV Cool Schools - Solar Geometry & Diurnal Shade Footprint Simulator" />
+    <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation" />
+    <title>Solar Geometry & Shade Physics Lab | Cool Schools</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #1b5e20;
+            --primary-light: #2e7d32;
+            --primary-dark: #0d3b13;
+            --accent: #f57c00;
+            --accent-light: #fff3e0;
+            --sun-gold: #fbc02d;
+            --sky-blue: #e3f2fd;
+            --surface-hot: #d32f2f;
+            --surface-cool: #1976d2;
+            --bg-light: #f8faf9;
+            --card-border: #e0e6e3;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: var(--bg-light);
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+
+        .calc-header {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .calc-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calc-header p {
+            margin: 4px 0 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .back-nav-btn {
+            background: rgba(255, 255, 255, 0.18);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .back-nav-btn:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .calc-container {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 20px;
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        @media (max-width: 1100px) {
+            .calc-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calc-card {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 0 0 14px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #eef2ef;
+            padding-bottom: 8px;
+        }
+
+        .control-group {
+            margin-bottom: 16px;
+        }
+
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 6px;
+        }
+
+        .control-val {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .range-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            outline: none;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .species-btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .species-btn {
+            background: #f1f5f3;
+            border: 1px solid #c8d9cf;
+            padding: 10px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .species-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary-dark);
+            box-shadow: 0 2px 6px rgba(27,94,32,0.3);
+        }
+
+        .time-player-box {
+            background: #f8faf9;
+            border: 1px solid #dbe5e0;
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .play-btn-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .btn-action {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            background: #e65100;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .metric-pill {
+            background: #f7faf8;
+            border: 1px solid #e1ebe5;
+            border-radius: 8px;
+            padding: 12px 10px;
+            text-align: center;
+        }
+
+        .metric-pill.highlight {
+            background: #e8f5e9;
+            border-color: #a5d6a7;
+        }
+
+        .metric-pill.hot {
+            background: #ffebee;
+            border-color: #ffcdd2;
+        }
+
+        .metric-pill.cool {
+            background: #e1f5fe;
+            border-color: #b3e5fc;
+        }
+
+        .metric-pill .lbl {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .metric-pill .val {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1e293b;
+        }
+
+        .metric-pill.highlight .val {
+            color: var(--primary);
+        }
+
+        .metric-pill.hot .val {
+            color: #c62828;
+        }
+
+        .metric-pill.cool .val {
+            color: #0277bd;
+        }
+
+        .visual-display-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .visual-display-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .canvas-box {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 10px;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+        }
+
+        .canvas-box h4 {
+            margin: 0 0 8px 0;
+            font-size: 13px;
+            color: #475569;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        canvas.render-canvas {
+            width: 100%;
+            height: 240px;
+            background: #fdfdfd;
+            border-radius: 6px;
+            display: block;
+        }
+
+        .chart-box {
+            height: 260px;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .pedagogy-tabs {
+            display: flex;
+            gap: 6px;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .ped-tab {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 6px 6px 0 0;
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid transparent;
+            border-bottom: none;
+            transition: all 0.2s;
+        }
+
+        .ped-tab.active {
+            background: white;
+            color: var(--primary);
+            border-color: #e2e8f0;
+            border-bottom: 2px solid white;
+            margin-bottom: -2px;
+            font-weight: 700;
+        }
+
+        .ped-content {
+            display: none;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #334155;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .ped-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .math-callout {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 6px 6px 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .math-callout-purple {
+            background: #faf5ff;
+            border-left: 4px solid #a855f7;
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 6px 6px 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 8px 10px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 700;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #fdfdfd;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="calc-header">
+        <div>
+            <h1>🌳 Solar Geometry & Diurnal Shade Physics Lab</h1>
+            <p>Mathematical Modeling of Tree Canopy Projection, Sun Angle Dynamics, and Microclimate Cooling</p>
+        </div>
+        <div>
+            <a href="tree_3d.html" class="back-nav-btn">← 3D Orbit Simulation</a>
+            <a href="canopy.html" class="back-nav-btn" style="margin-left:8px;">Canopy Over Time</a>
+        </div>
+    </header>
+
+    <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
+            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
+            <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
+            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
+            <a class="nav-link" href="zoning.html">Site Zoning</a>
+            <a class="nav-link" href="protocols.html">SOP Protocols</a>
+            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
+            <a class="nav-link" href="economics.html">Economics / ROI</a>
+            <a class="nav-link" href="trails.html">Trails</a>
+            <a class="nav-link" href="wind.html">Wind</a>
+            <a class="nav-link" href="temperature.html">Temp</a>
+            <a class="nav-link" href="soil_moisture.html">Moisture</a>
+            <a class="nav-link" href="water_table.html">Water Table</a>
+            <a class="nav-link" href="soil_types.html">Soils</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+        <div class="nav-section new-prototypes-section" style="border-left: 2px solid #9C27B0; padding-left: 10px; margin-left: 15px;">
+            <span class="nav-header-label" style="color: #9C27B0;">🆕 NEW PROTOTYPES (NOT DELIVERABLES)</span>
+            <a class="nav-link active" href="solar_shade_calculator.html">Solar Shade Math Lab</a>
+            <a class="nav-link" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
+            <a class="nav-link" href="biodiversity_analog_concept.html">Child-Friendly Biodiversity</a>
+            <a class="nav-link" href="rivas_tree_roster.html">Tree Sponsorship Roster</a>
+            <a class="nav-link" href="user_access_strategy.html">User Access Strategy</a>
+        </div>
+    </nav>
+
+    <main class="calc-container">
+        <!-- LEFT CONTROL SIDEBAR -->
+        <aside>
+            <!-- 1. TIME & SOLAR SLIDER -->
+            <div class="calc-card">
+                <div class="card-title">
+                    <span>⏰ Diurnal Time Controls</span>
+                    <span id="txtSolarPeriod" style="font-size:12px; color:var(--accent); font-weight:700;">Morning Solar Arc</span>
+                </div>
+
+                <div class="time-player-box">
+                    <div class="control-label">
+                        <span>Current Solar Time:</span>
+                        <span class="control-val" id="lblClockTime" style="font-size:16px;">12:00 PM (Solar Noon)</span>
+                    </div>
+                    <input type="range" id="timeSlider" class="range-slider" min="6.0" max="18.0" step="0.25" value="12.0" />
+                    
+                    <div class="play-btn-row">
+                        <button type="button" id="btnPlayCycle" class="btn-action">▶ Play Day Cycle (6 AM – 6 PM)</button>
+                        <button type="button" id="btnResetNoon" style="background:#e2e8f0; color:#334155; border:none; padding:8px 12px; border-radius:6px; font-weight:600; font-size:12px; cursor:pointer;">Reset Noon</button>
+                    </div>
+                </div>
+
+                <!-- 2. SPECIES SELECTOR -->
+                <div class="card-title" style="margin-top:20px;">
+                    <span>🌲 Species Canopy Presets (20-Year Maturity)</span>
+                </div>
+                <div class="species-btn-grid">
+                    <button type="button" class="species-btn active" id="btnSpeciesOak" onclick="selectSpecies('oak')">
+                        🌳 20-Yr Texas Live Oak<br><span style="font-size:10px; opacity:0.8;">Dense Dome • Radius 20 ft</span>
+                    </button>
+                    <button type="button" class="species-btn" id="btnSpeciesMesquite" onclick="selectSpecies('mesquite')">
+                        🌿 20-Yr Honey Mesquite<br><span style="font-size:10px; opacity:0.8;">Feathery Vase • Radius 14 ft</span>
+                    </button>
+                    <button type="button" class="species-btn" id="btnSpeciesCypress" onclick="selectSpecies('cypress')">
+                        🌲 20-Yr Montezuma Cypress<br><span style="font-size:10px; opacity:0.8;">Pyramidal • Radius 16 ft</span>
+                    </button>
+                    <button type="button" class="species-btn" id="btnSpeciesElm" onclick="selectSpecies('elm')">
+                        🌳 20-Yr Cedar Elm<br><span style="font-size:10px; opacity:0.8;">Vase Crown • Radius 15 ft</span>
+                    </button>
+                </div>
+
+                <!-- 3. PARAMETER FINE-TUNING -->
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Crown Radius R:</span>
+                        <span class="control-val" id="lblCrownRadius">20 ft</span>
+                    </div>
+                    <input type="range" id="sliderCrownRadius" class="range-slider" min="5" max="35" step="1" value="20" />
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Crown Height H:</span>
+                        <span class="control-val" id="lblTreeHeight">30 ft</span>
+                    </div>
+                    <input type="range" id="sliderTreeHeight" class="range-slider" min="10" max="60" step="1" value="30" />
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Leaf Area Index (LAI / Density):</span>
+                        <span class="control-val" id="lblLAI">4.5 (Dense Shade)</span>
+                    </div>
+                    <input type="range" id="sliderLAI" class="range-slider" min="1.0" max="6.0" step="0.1" value="4.5" />
+                </div>
+            </div>
+
+            <!-- LIVE CALCULATED METRICS -->
+            <div class="calc-card">
+                <div class="card-title">
+                    <span>📊 Real-Time Shadow Metrics</span>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-pill highlight">
+                        <div class="lbl">Ground Shade Area</div>
+                        <div class="val" id="valShadeArea">1,257 sq ft</div>
+                    </div>
+                    <div class="metric-pill">
+                        <div class="lbl">Shadow Length</div>
+                        <div class="val" id="valShadowLength">4.8 ft</div>
+                    </div>
+                    <div class="metric-pill">
+                        <div class="lbl">Sun Altitude (&alpha;)</div>
+                        <div class="val" id="valSunAltitude">81.2°</div>
+                    </div>
+                    <div class="metric-pill">
+                        <div class="lbl">Sun Azimuth (&psi;)</div>
+                        <div class="val" id="valSunAzimuth">180° S</div>
+                    </div>
+                    <div class="metric-pill hot">
+                        <div class="lbl">Exposed Asphalt</div>
+                        <div class="val" id="valTempExposed">108°F</div>
+                    </div>
+                    <div class="metric-pill cool">
+                        <div class="lbl">Canopy Understory</div>
+                        <div class="val" id="valTempShaded">86°F</div>
+                    </div>
+                </div>
+
+                <div style="background:#e8f5e9; border:1px solid #c8e6c9; border-radius:6px; padding:10px; font-size:12px; color:#1b5e20;">
+                    <strong>💡 The Noon Paradox:</strong> At 12:00 PM, shade ground footprint is at its <strong>MINIMUM</strong> area, but cooling efficiency (&Delta;T = 22°F) and direct solar energy interception (980 W/m²) are at their <strong>PEAK</strong>!
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT MAIN VISUALIZATION & PEDAGOGY AREA -->
+        <section>
+            <!-- REAL-TIME 2D RAY TRACER & TOP-DOWN PROJECTION MAP -->
+            <div class="calc-card" style="padding-bottom:10px;">
+                <div class="card-title">
+                    <span>☀️ Real-Time Solar Ray-Tracing & Ground Projection Map</span>
+                    <span style="font-size:12px; font-weight:normal; color:#64748b;">Interactive Physics Canvas</span>
+                </div>
+
+                <div class="visual-display-grid">
+                    <!-- Elevation Side-View Ray Tracer -->
+                    <div class="canvas-box">
+                        <h4>
+                            <span>Side Elevation: Sun Ray Slant</span>
+                            <span id="tagSideAngle" style="color:var(--accent); font-weight:800;">&alpha; = 81.2°</span>
+                        </h4>
+                        <canvas id="sideCanvas" class="render-canvas"></canvas>
+                    </div>
+
+                    <!-- Top-Down 2D Ground Shadow Projection -->
+                    <div class="canvas-box">
+                        <h4>
+                            <span>Top-Down Ground Shade Footprint</span>
+                            <span id="tagFootprintArea" style="color:var(--primary); font-weight:800;">1,257 sq ft</span>
+                        </h4>
+                        <canvas id="topCanvas" class="render-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DYNAMIC SYNCHRONIZED CHARTS -->
+            <div class="calc-card">
+                <div class="card-title">
+                    <span>📈 Diurnal Fluctuation Curves (6:00 AM – 6:00 PM)</span>
+                    <span style="font-size:12px; color:#64748b; font-weight:normal;">Live Cursor Tracks Selected Time</span>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                    <div class="canvas-box" style="height:auto;">
+                        <h4>Ground Shade Footprint Area (sq ft)</h4>
+                        <div class="chart-box">
+                            <canvas id="shadeAreaChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="canvas-box" style="height:auto;">
+                        <h4>Surface Temperature Differential (°F)</h4>
+                        <div class="chart-box">
+                            <canvas id="temperatureChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4-TIER PEDAGOGICAL BREAKDOWN (5-yr-old to Calculus) -->
+            <div class="calc-card">
+                <div class="card-title">
+                    <span>🎓 Multi-Tier Pedagogical Explanations</span>
+                    <span style="font-size:12px; color:#64748b; font-weight:600;">Choose Your Learning Level</span>
+                </div>
+
+                <div class="pedagogy-tabs">
+                    <div class="ped-tab active" onclick="switchPedagogy('age5')">👶 5-Year-Old (Flashlight & Giant Hat)</div>
+                    <div class="ped-tab" onclick="switchPedagogy('middle')">🎒 Middle School (Angle of Light & Ruler)</div>
+                    <div class="ped-tab" onclick="switchPedagogy('high')">📐 High School Senior (Trig & Solar Arc)</div>
+                    <div class="ped-tab" onclick="switchPedagogy('calculus')">∫ Calculus Student (Vector Flux & Jacobians)</div>
+                    <div class="ped-tab" onclick="switchPedagogy('species')">🌳 Live Oak vs. Mesquite Comparison</div>
+                </div>
+
+                <!-- 1. AGE 5 CONTENT -->
+                <div id="ped-age5" class="ped-content active">
+                    <h3 style="color:var(--primary); margin-top:0;">The Tale of the Morning Monster and the Tiny Noon Hat</h3>
+                    <p>Imagine holding a flashlight in a dark room and pointing it at a rubber ball or your favorite teddy bear on the floor:</p>
+                    <ul>
+                        <li><strong>In the early morning (8:00 AM):</strong> The sun is waking up low on the horizon, shining from the side like someone holding a flashlight near the carpet. The ball's shadow stretches out <em>super long</em>—like a giant, stretched-out monster shadow across your whole room!</li>
+                        <li><strong>At lunch time (12:00 Noon):</strong> The sun climbs directly above your head in the sky, pointing straight down like a lamp on the ceiling. The shadow has nowhere to stretch, so it shrinks into a <strong>tiny, neat little circle</strong> right under the tree, just like wearing a sun hat on your head!</li>
+                        <li><strong>In the evening (6:00 PM):</strong> The sun dips low again on the other side of the sky, and whoosh! The shadow stretches out into a long giant again, pointing east!</li>
+                    </ul>
+                    <div class="math-callout" style="font-family:inherit; font-size:14px; font-weight:600;">
+                        🌟 <strong>The Big Secret:</strong> The shadow is <em>smallest</em> when the sun is straight above you at noon, and <em>biggest</em> in the morning and evening! But the noon shadow is the coolest and darkest place to take a nap because it blocks the strongest sunburn rays!
+                    </div>
+                </div>
+
+                <!-- 2. MIDDLE SCHOOL CONTENT -->
+                <div id="ped-middle" class="ped-content">
+                    <h3 style="color:var(--primary); margin-top:0;">Sun Angles, Similar Triangles, and the Elongating Ellipse</h3>
+                    <p>When parallel rays of sunlight strike a round tree canopy, the shadow on the ground is formed by geometry and similar right triangles:</p>
+                    <ul>
+                        <li><strong>The Sun's Elevation Angle (&alpha;):</strong> This is the angle between the flat ground and the sun in the sky. At 6:00 AM, the angle is 0°. By 12:00 Noon, the angle reaches its peak (around 80° to 85° in South Texas in summer). By 8:00 PM, it drops back down to 0°.</li>
+                        <li><strong>Why the Shadow Stretches:</strong> The length of the shadow cast by the tree top is given by the tangent ratio:
+                            <br><code>Shadow Length L = Tree Height H / tan(&alpha;)</code><br>
+                            When the sun is low at 8:00 AM (&alpha; = 25°), tan(25°) &approx; 0.466. A 30-foot tree casts a shadow that is <code>30 / 0.466 &approx; 64.3 feet long</code>!<br>
+                            At 12:00 Noon (&alpha; = 82°), tan(82°) &approx; 7.11. The same 30-foot tree casts a shadow that is only <code>30 / 7.11 &approx; 4.2 feet long</code>!
+                        </li>
+                        <li><strong>Circle to Ellipse:</strong> At noon, the shadow is almost a perfect circle (Area = &pi; R²). As the sun lowers, that circle is stretched out in the direction of the sunlight, turning into an <strong>ellipse</strong> whose major axis gets longer and longer!</li>
+                    </ul>
+                    <div class="math-callout">
+                        Shadow Area at Angle &alpha; &approx; Canopy Area / sin(&alpha;) = &pi; R² / sin(&alpha;)
+                    </div>
+                </div>
+
+                <!-- 3. HIGH SCHOOL SENIOR CONTENT -->
+                <div id="ped-high" class="ped-content">
+                    <h3 style="color:var(--primary); margin-top:0;">Solar Coordinates, Trigonometric Projection, and Extinction Physics</h3>
+                    <p>To accurately calculate the shade of a 20-year-old tree throughout the day, we model the sun's position using spherical solar coordinates:</p>
+                    <ul>
+                        <li><strong>Solar Altitude Angle &alpha;(t) and Azimuth &psi;(t):</strong>
+                            <br><code>sin &alpha; = sin &phi; sin &delta; + cos &phi; cos &delta; cos &omega;(t)</code><br>
+                            where &phi; = 26.2° N (UTRGV Rio Grande Valley latitude), &delta; is the solar declination, and &omega;(t) = 15° &times; (t - 12) is the solar hour angle.
+                        </li>
+                        <li><strong>Planar Projection of an Ellipsoidal Canopy:</strong> Approximating the crown as a rotational ellipsoid with horizontal radius R and vertical semi-axis b, the boundary of the cast shadow on the ground plane is an ellipse with semi-minor axis a_s = R and elongated semi-major axis:
+                            <br><code>b_s(&alpha;) = sqrt(R² + (b / tan &alpha;)²)</code><br>
+                            The projected ground shadow area is:
+                            <br><code>A_ground(&alpha;) = &pi; a_s b_s = &pi; R sqrt(R² + b² cot² &alpha;)</code>
+                        </li>
+                        <li><strong>Beer-Lambert Canopy Light Extinction:</strong> The shade darkness and cooling power depend on the Leaf Area Index (LAI) and canopy optical depth:
+                            <br><code>I_understory = I_direct &times; exp(-k &times; LAI / sin &alpha;)</code><br>
+                            where k &approx; 0.65 for Live Oak and k &approx; 0.40 for Mesquite. At noon, I_direct &approx; 1000 W/m². The Live Oak intercepts &gt;94% of this energy, producing a &Delta;T &approx; 22-26°F surface drop on asphalt.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4. CALCULUS STUDENT CONTENT -->
+                <div id="ped-calculus" class="ped-content">
+                    <h3 style="color:var(--primary); margin-top:0;">Differential Geometry, Vector Flux Integrals, and Area Rate of Change</h3>
+                    <p>Let the tree canopy be bounded by the smooth surface S &sub; ℝ³. The parallel solar irradiance vector is given by the unit direction ŝ(t) = &lang; cos&alpha;cos&psi;, cos&alpha;sin&psi;, sin&alpha; &rang;.</p>
+                    
+                    <div class="math-callout-purple">
+                        <strong>1. Area Transformation via Jacobian Determinant:</strong><br>
+                        The projection mapping &Pi;: ℝ³ &rarr; Ground Plane (z=0) along direction ŝ satisfies the differential relation:
+                        <br><code>dA_ground = dA_&perp; / (ŝ &middot; k&#770;) = dA_&perp; / sin(&alpha;) = csc(&alpha;) dA_&perp;</code><br>
+                        where dA_&perp; is the cross-sectional area orthogonal to the solar rays. For a spherical canopy of radius R, A_&perp; = &pi; R² for all &alpha;, yielding:
+                        <br><code>A(t) = &pi; R² csc(&alpha;(t))</code>
+                    </div>
+
+                    <div class="math-callout-purple">
+                        <strong>2. Time Derivative and Critical Extremum:</strong><br>
+                        Applying the chain rule to compute the instantaneous rate of shade footprint expansion/contraction:
+                        <br><code>dA/dt = (dA/d&alpha;) &middot; (d&alpha;/dt) = (-&pi; R² csc &alpha; cot &alpha;) &middot; &alpha;'(t)</code><br>
+                        Setting dA/dt = 0 for critical points:
+                        <br><code>&alpha;'(t) = 0 &rArr; t = t_solar_noon</code><br>
+                        Since d²A/d&alpha;² = &pi; R² csc &alpha; (csc² &alpha; + cot² &alpha;) &gt; 0 for &alpha; &isin; (0, &pi;/2], and &alpha;''(t_noon) &lt; 0, the Second Derivative Test confirms that <strong>Ground Shade Area achieves a strict Global Minimum at Solar Noon</strong>:
+                        <br><code>A_min = A(t_noon) = &pi; R² csc(&alpha;_max)</code>
+                    </div>
+
+                    <div class="math-callout-purple">
+                        <strong>3. Total Diurnal Radiant Energy Interception Integral:</strong><br>
+                        The cumulative thermal solar energy intercepted by the tree crown from sunrise to sunset is:
+                        <br><code>E_total = &int; &int; I_0(t) (ŝ(t) &middot; n&#770;) dA dt = &int; I_0(t) &middot; &pi; R² dt &approx; 28.4 kWh/day</code>
+                    </div>
+                </div>
+
+                <!-- 5. SPECIES COMPARISON -->
+                <div id="ped-species" class="ped-content">
+                    <h3 style="color:var(--primary); margin-top:0;">20-Year Texas Live Oak vs. Honey Mesquite Shade Physics</h3>
+                    <p>How the two iconic South Texas species perform across the day at 20-year maturity:</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Characteristic</th>
+                                <th>🌳 Texas Live Oak (<em>Quercus virginiana</em>)</th>
+                                <th>🌿 Honey Mesquite (<em>Prosopis glandulosa</em>)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Canopy Architecture</strong></td>
+                                <td>Broad spreading decurrent dome, dense evergreen</td>
+                                <td>Open vase / umbrella, weeping bipinnate leaflets</td>
+                            </tr>
+                            <tr>
+                                <td><strong>20-Year Canopy Spread</strong></td>
+                                <td>40 to 45 ft diameter (R &approx; 20 ft)</td>
+                                <td>25 to 30 ft diameter (R &approx; 14 ft)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>20-Year Tree Height</strong></td>
+                                <td>30 to 35 ft</td>
+                                <td>20 to 24 ft</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Noon Shade Footprint</strong></td>
+                                <td>&approx; 1,260 sq ft (Dense, unbroken circle)</td>
+                                <td>&approx; 615 sq ft (Dappled, filtered circle)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>8:00 AM / 5:00 PM Shade Area</strong></td>
+                                <td>&approx; 2,980 sq ft (Massive campus cooling shield)</td>
+                                <td>&approx; 1,450 sq ft (Long feathery corridor)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Leaf Area Index (LAI)</strong></td>
+                                <td>4.2 - 5.5 (Heavy light interception)</td>
+                                <td>1.2 - 2.0 (Permeable solar filter)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Solar PAR Blocked</strong></td>
+                                <td>92% - 96% (Deep cooling umbra)</td>
+                                <td>45% - 65% (Filtered dappled light)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Noon Asphalt &Delta;T Relief</strong></td>
+                                <td>22°F to 28°F Cooler</td>
+                                <td>10°F to 15°F Cooler</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- SPECIES PRESETS & STATE ---
+        const speciesData = {
+            oak: { name: '20-Yr Texas Live Oak', radius: 20, height: 30, lai: 4.5, k: 0.65, shape: 'dome' },
+            mesquite: { name: '20-Yr Honey Mesquite', radius: 14, height: 22, lai: 1.8, k: 0.42, shape: 'vase' },
+            cypress: { name: '20-Yr Montezuma Cypress', radius: 16, height: 38, lai: 3.8, k: 0.58, shape: 'conic' },
+            elm: { name: '20-Yr Cedar Elm', radius: 15, height: 28, lai: 3.2, k: 0.52, shape: 'vase' }
+        };
+
+        let currentSpecies = 'oak';
+        let currentRadius = 20;
+        let currentHeight = 30;
+        let currentLAI = 4.5;
+        let currentTime = 12.0; // 12:00 PM
+        let isPlaying = false;
+        let playTimer = null;
+
+        // --- DOM REFS ---
+        const timeSlider = document.getElementById('timeSlider');
+        const lblClockTime = document.getElementById('lblClockTime');
+        const txtSolarPeriod = document.getElementById('txtSolarPeriod');
+        const btnPlayCycle = document.getElementById('btnPlayCycle');
+        const btnResetNoon = document.getElementById('btnResetNoon');
+
+        const sliderCrownRadius = document.getElementById('sliderCrownRadius');
+        const lblCrownRadius = document.getElementById('lblCrownRadius');
+        const sliderTreeHeight = document.getElementById('sliderTreeHeight');
+        const lblTreeHeight = document.getElementById('lblTreeHeight');
+        const sliderLAI = document.getElementById('sliderLAI');
+        const lblLAI = document.getElementById('lblLAI');
+
+        const valShadeArea = document.getElementById('valShadeArea');
+        const valShadowLength = document.getElementById('valShadowLength');
+        const valSunAltitude = document.getElementById('valSunAltitude');
+        const valSunAzimuth = document.getElementById('valSunAzimuth');
+        const valTempExposed = document.getElementById('valTempExposed');
+        const valTempShaded = document.getElementById('valTempShaded');
+
+        const tagSideAngle = document.getElementById('tagSideAngle');
+        const tagFootprintArea = document.getElementById('tagFootprintArea');
+
+        const sideCanvas = document.getElementById('sideCanvas');
+        const sideCtx = sideCanvas.getContext('2d');
+        const topCanvas = document.getElementById('topCanvas');
+        const topCtx = topCanvas.getContext('2d');
+
+        // --- SOLAR POSITION PHYSICS (UTRGV Latitude ~26.2°N Summer Solstice/Equinox avg) ---
+        function getSolarPosition(t) {
+            const solarHour = t - 12.0; // hour angle = solarHour * 15 deg
+            const lat = 26.2 * Math.PI / 180; // Edinburg/Donna TX
+            const declination = 18.0 * Math.PI / 180; // Summer solar declination
+            const hourAngle = solarHour * 15 * Math.PI / 180;
+
+            // Solar altitude alpha
+            const sinAlpha = Math.sin(lat) * Math.sin(declination) + Math.cos(lat) * Math.cos(declination) * Math.cos(hourAngle);
+            const rawAlphaRad = Math.asin(Math.max(-1.0, Math.min(1.0, sinAlpha)));
+            
+            // For ground projection between 6 AM and 6 PM, clamp effective alpha to >= 14° to prevent infinite asymptotes
+            const alphaRad = Math.max(14.0 * Math.PI / 180, rawAlphaRad);
+            const alphaDeg = (rawAlphaRad * 180 / Math.PI);
+
+            // Solar azimuth psi
+            const cosPsi = (Math.sin(declination) - Math.sin(lat) * Math.sin(rawAlphaRad)) / (Math.cos(lat) * Math.cos(rawAlphaRad));
+            let psiDeg = Math.acos(Math.max(-1, Math.min(1, cosPsi))) * 180 / Math.PI;
+            if (solarHour > 0) psiDeg = 360 - psiDeg; // afternoon azimuth
+
+            return {
+                altitudeDeg: Math.max(14.0, alphaDeg),
+                altitudeRad: alphaRad,
+                azimuthDeg: psiDeg,
+                isSunUp: true
+            };
+        }
+
+        // --- SHADOW & TEMPERATURE CALCULATIONS ---
+        function calculateShadow(t, R, H, lai) {
+            const solar = getSolarPosition(t);
+            const alpha = solar.altitudeRad;
+
+            // Physical shadow length along solar beam, clamped to max 3.2 * Height
+            const rawShadowLength = H / Math.tan(alpha);
+            const shadowLength = Math.min(rawShadowLength, H * 3.2);
+            
+            // Ellipse major axis & minor axis:
+            const semiMinor = R;
+            const semiMajor = Math.sqrt(R * R + Math.pow(shadowLength, 2));
+            const shadeArea = Math.PI * semiMinor * semiMajor; // sq ft
+
+            // Temperature calculations
+            const solarIntensity = Math.max(0, Math.sin(alpha)); // fraction of peak solar radiation
+            const baseAmbient = 78 + (16 * Math.sin((t - 8.5) / 11 * Math.PI)); // Diurnal ambient air temp
+            const exposedAsphalt = baseAmbient + (solarIntensity * 28); // Asphalt heats up to 110°F+
+            
+            // Canopy cooling delta (evapotranspiration + optical extinction)
+            const extinction = 1 - Math.exp(-speciesData[currentSpecies].k * lai / Math.sin(alpha));
+            const coolingDelta = (solarIntensity * 22 * extinction) + (lai > 3 ? 4 : 2);
+            const shadedGround = exposedAsphalt - coolingDelta;
+
+            return {
+                solar,
+                shadowLength,
+                semiMinor,
+                semiMajor,
+                shadeArea: Math.round(shadeArea),
+                exposedTemp: Math.round(exposedAsphalt),
+                shadedTemp: Math.round(shadedGround),
+                coolingDelta: Math.round(coolingDelta)
+            };
+        }
+
+        function formatHour(t) {
+            const hrs = Math.floor(t);
+            const mins = Math.round((t - hrs) * 60);
+            const ampm = hrs >= 12 ? 'PM' : 'AM';
+            const displayHr = hrs > 12 ? hrs - 12 : (hrs === 0 ? 12 : hrs);
+            const displayMin = mins < 10 ? '0' + mins : mins;
+            return `${displayHr}:${displayMin} ${ampm}`;
+        }
+
+        // --- CANVASES RENDERING ---
+        function renderCanvases() {
+            sideCanvas.width = sideCanvas.clientWidth * window.devicePixelRatio;
+            sideCanvas.height = sideCanvas.clientHeight * window.devicePixelRatio;
+            sideCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+            topCanvas.width = topCanvas.clientWidth * window.devicePixelRatio;
+            topCanvas.height = topCanvas.clientHeight * window.devicePixelRatio;
+            topCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+            const wSide = sideCanvas.clientWidth;
+            const hSide = sideCanvas.clientHeight;
+            const wTop = topCanvas.clientWidth;
+            const hTop = topCanvas.clientHeight;
+
+            const res = calculateShadow(currentTime, currentRadius, currentHeight, currentLAI);
+            const alpha = res.solar.altitudeRad;
+            const alphaDeg = res.solar.altitudeDeg.toFixed(1);
+
+            // 1. SIDE ELEVATION RAY TRACING
+            sideCtx.clearRect(0, 0, wSide, hSide);
+
+            const skyGrad = sideCtx.createLinearGradient(0, 0, 0, hSide);
+            const sunPeak = Math.sin(alpha);
+            skyGrad.addColorStop(0, `rgb(${Math.round(180 - sunPeak*50)}, ${Math.round(220 - sunPeak*20)}, 255)`);
+            skyGrad.addColorStop(1, '#ffffff');
+            sideCtx.fillStyle = skyGrad;
+            sideCtx.fillRect(0, 0, wSide, hSide);
+
+            const groundY = hSide - 40;
+            sideCtx.fillStyle = '#64748b';
+            sideCtx.fillRect(0, groundY, wSide, 40);
+            sideCtx.fillStyle = '#475569';
+            sideCtx.fillRect(0, groundY, wSide, 3);
+
+            const treeX = wSide / 2 - 10;
+            const scale = 3.2; // pixels per foot
+            const treeH_px = currentHeight * scale;
+            const crownR_px = currentRadius * scale;
+
+            // Draw Trunk
+            sideCtx.fillStyle = '#5c4033';
+            sideCtx.fillRect(treeX - 4, groundY - treeH_px * 0.45, 8, treeH_px * 0.45);
+
+            // Draw Foliage
+            sideCtx.fillStyle = currentSpecies === 'mesquite' ? 'rgba(120, 160, 100, 0.85)' : 'rgba(34, 139, 34, 0.9)';
+            sideCtx.beginPath();
+            sideCtx.ellipse(treeX, groundY - treeH_px * 0.7, crownR_px * 0.9, treeH_px * 0.4, 0, 0, Math.PI * 2);
+            sideCtx.fill();
+            sideCtx.strokeStyle = '#1b5e20';
+            sideCtx.lineWidth = 1.5;
+            sideCtx.stroke();
+
+            const isMorning = currentTime < 12;
+            const shadowDir = isMorning ? 1 : -1;
+            const shadowLen_px = (res.shadowLength * scale * 0.7);
+            const shadowStartX = treeX - (crownR_px * 0.5 * shadowDir);
+            const shadowEndX = treeX + (shadowLen_px * shadowDir);
+
+            // Draw Ground Shadow
+            sideCtx.fillStyle = 'rgba(15, 23, 42, 0.45)';
+            sideCtx.beginPath();
+            sideCtx.ellipse((shadowStartX + shadowEndX)/2, groundY + 1.5, Math.abs(shadowEndX - shadowStartX)/2, 6, 0, 0, Math.PI * 2);
+            sideCtx.fill();
+
+            // Draw Sun & Solar Rays
+            const sunDist = 130;
+            const sunX = treeX - (Math.cos(alpha) * sunDist * shadowDir);
+            const sunY = (groundY - treeH_px * 0.7) - (Math.sin(alpha) * sunDist);
+
+            sideCtx.fillStyle = '#f59e0b';
+            sideCtx.beginPath();
+            sideCtx.arc(sunX, sunY, 13, 0, Math.PI * 2);
+            sideCtx.fill();
+            sideCtx.strokeStyle = '#fbbf24';
+            sideCtx.lineWidth = 3;
+            sideCtx.stroke();
+
+            sideCtx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+            sideCtx.lineWidth = 1.5;
+            sideCtx.setLineDash([4, 4]);
+
+            sideCtx.beginPath();
+            sideCtx.moveTo(sunX, sunY);
+            sideCtx.lineTo(treeX + (crownR_px * 0.8 * shadowDir), groundY - treeH_px);
+            sideCtx.lineTo(shadowEndX, groundY);
+            sideCtx.stroke();
+
+            sideCtx.beginPath();
+            sideCtx.moveTo(sunX, sunY);
+            sideCtx.lineTo(treeX, groundY - treeH_px * 0.7);
+            sideCtx.lineTo((shadowStartX + shadowEndX)/2, groundY);
+            sideCtx.stroke();
+            sideCtx.setLineDash([]);
+
+            sideCtx.fillStyle = '#1e293b';
+            sideCtx.font = 'bold 11px sans-serif';
+            sideCtx.fillText(`Sun Alt: ${alphaDeg}°`, sunX - 25, Math.max(20, sunY - 18));
+            sideCtx.fillText(`Shadow Length: ${(res.shadowLength).toFixed(1)} ft`, Math.min(wSide - 120, Math.max(10, (shadowStartX + shadowEndX)/2 - 40)), groundY + 22);
+
+            // 2. TOP-DOWN 2D GROUND SHADOW PROJECTION
+            topCtx.clearRect(0, 0, wTop, hTop);
+
+            topCtx.fillStyle = '#f8fafc';
+            topCtx.fillRect(0, 0, wTop, hTop);
+
+            topCtx.strokeStyle = '#e2e8f0';
+            topCtx.lineWidth = 1;
+            for(let x=0; x<wTop; x+=30) {
+                topCtx.beginPath(); topCtx.moveTo(x, 0); topCtx.lineTo(x, hTop); topCtx.stroke();
+            }
+            for(let y=0; y<hTop; y+=30) {
+                topCtx.beginPath(); topCtx.moveTo(0, y); topCtx.lineTo(wTop, y); topCtx.stroke();
+            }
+
+            topCtx.fillStyle = '#94a3b8';
+            topCtx.font = '10px sans-serif';
+            topCtx.fillText('N', wTop/2 - 4, 15);
+            topCtx.fillText('S', wTop/2 - 4, hTop - 8);
+            topCtx.fillText('W', 10, hTop/2 + 4);
+            topCtx.fillText('E', wTop - 18, hTop/2 + 4);
+
+            const centerX = wTop / 2;
+            const centerY = hTop / 2;
+            const topScale = 2.2;
+
+            const azimRad = res.solar.azimuthDeg * Math.PI / 180;
+            const shadowOffsetLen = (res.shadowLength) * topScale * 0.35;
+            const shadowAngle = azimRad + Math.PI;
+
+            const shadowCenterOffsetX = Math.sin(shadowAngle) * shadowOffsetLen;
+            const shadowCenterOffsetY = -Math.cos(shadowAngle) * shadowOffsetLen;
+
+            const majorRadius_px = res.semiMajor * topScale * 0.45;
+            const minorRadius_px = res.semiMinor * topScale * 0.45;
+
+            topCtx.save();
+            topCtx.translate(centerX + shadowCenterOffsetX, centerY + shadowCenterOffsetY);
+            topCtx.rotate(shadowAngle);
+
+            topCtx.fillStyle = currentSpecies === 'mesquite' ? 'rgba(30, 41, 59, 0.35)' : 'rgba(15, 23, 42, 0.55)';
+            topCtx.beginPath();
+            topCtx.ellipse(0, 0, minorRadius_px, majorRadius_px, 0, 0, Math.PI * 2);
+            topCtx.fill();
+            topCtx.strokeStyle = 'rgba(15, 23, 42, 0.8)';
+            topCtx.lineWidth = 1.5;
+            topCtx.stroke();
+            topCtx.restore();
+
+            topCtx.fillStyle = currentSpecies === 'mesquite' ? 'rgba(74, 122, 60, 0.85)' : 'rgba(34, 139, 34, 0.9)';
+            topCtx.beginPath();
+            topCtx.arc(centerX, centerY, currentRadius * topScale * 0.45, 0, Math.PI * 2);
+            topCtx.fill();
+            topCtx.strokeStyle = '#1b5e20';
+            topCtx.lineWidth = 2;
+            topCtx.stroke();
+
+            topCtx.fillStyle = '#5c4033';
+            topCtx.beginPath();
+            topCtx.arc(centerX, centerY, 4, 0, Math.PI * 2);
+            topCtx.fill();
+
+            topCtx.fillStyle = '#0f172a';
+            topCtx.font = 'bold 11px sans-serif';
+            topCtx.fillText(`Canopy Area: ${Math.round(Math.PI * currentRadius * currentRadius)} sq ft`, 15, 25);
+            topCtx.fillText(`Ground Shade: ${res.shadeArea.toLocaleString()} sq ft`, 15, 42);
+        }
+
+        // --- CHART.JS INITIALIZATION ---
+        let areaChart, tempChart;
+
+        function initCharts() {
+            const timeLabels = [];
+            const areaData = [];
+            const exposedData = [];
+            const shadedData = [];
+
+            for (let t = 6.0; t <= 18.0; t += 0.5) {
+                timeLabels.push(formatHour(t));
+                const res = calculateShadow(t, currentRadius, currentHeight, currentLAI);
+                areaData.push(res.shadeArea);
+                exposedData.push(res.exposedTemp);
+                shadedData.push(res.shadedTemp);
+            }
+
+            const ctxArea = document.getElementById('shadeAreaChart').getContext('2d');
+            areaChart = new Chart(ctxArea, {
+                type: 'line',
+                data: {
+                    labels: timeLabels,
+                    datasets: [{
+                        label: 'Ground Shade Footprint (sq ft)',
+                        data: areaData,
+                        borderColor: '#1b5e20',
+                        backgroundColor: 'rgba(46, 125, 50, 0.15)',
+                        fill: true,
+                        tension: 0.35,
+                        borderWidth: 2.5,
+                        pointRadius: (ctx) => {
+                            const idx = ctx.dataIndex;
+                            const curIdx = Math.round((currentTime - 6.0) * 2);
+                            return idx === curIdx ? 7 : 3;
+                        },
+                        pointBackgroundColor: (ctx) => {
+                            const idx = ctx.dataIndex;
+                            const curIdx = Math.round((currentTime - 6.0) * 2);
+                            return idx === curIdx ? '#f57c00' : '#1b5e20';
+                        }
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `Shade Area: ${ctx.parsed.y.toLocaleString()} sq ft`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: 7000,
+                            title: { display: true, text: 'Ground Shade Area (sq ft)', font: { size: 11, weight: 'bold' } },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            ticks: { maxTicksLimit: 9, font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            const ctxTemp = document.getElementById('temperatureChart').getContext('2d');
+            tempChart = new Chart(ctxTemp, {
+                type: 'line',
+                data: {
+                    labels: timeLabels,
+                    datasets: [
+                        {
+                            label: 'Exposed Asphalt (°F)',
+                            data: exposedData,
+                            borderColor: '#d32f2f',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            pointRadius: 2
+                        },
+                        {
+                            label: 'Under Canopy Shade (°F)',
+                            data: shadedData,
+                            borderColor: '#0288d1',
+                            backgroundColor: 'rgba(2, 136, 209, 0.1)',
+                            fill: true,
+                            borderWidth: 2.5,
+                            tension: 0.3,
+                            pointRadius: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } }
+                    },
+                    scales: {
+                        y: {
+                            suggestedMin: 70,
+                            suggestedMax: 115,
+                            title: { display: true, text: 'Temperature (°F)', font: { size: 11, weight: 'bold' } },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            ticks: { maxTicksLimit: 9, font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateCharts() {
+            if (!areaChart || !tempChart) return;
+            const areaData = [];
+            const exposedData = [];
+            const shadedData = [];
+
+            for (let t = 6.0; t <= 18.0; t += 0.5) {
+                const res = calculateShadow(t, currentRadius, currentHeight, currentLAI);
+                areaData.push(res.shadeArea);
+                exposedData.push(res.exposedTemp);
+                shadedData.push(res.shadedTemp);
+            }
+
+            areaChart.data.datasets[0].data = areaData;
+            areaChart.update('none');
+
+            tempChart.data.datasets[0].data = exposedData;
+            tempChart.data.datasets[1].data = shadedData;
+            tempChart.update('none');
+        }
+
+        function updateUI() {
+            const res = calculateShadow(currentTime, currentRadius, currentHeight, currentLAI);
+
+            lblClockTime.textContent = formatHour(currentTime) + (currentTime === 12.0 ? ' (Solar Noon)' : '');
+            
+            if (currentTime < 10) txtSolarPeriod.textContent = '🌅 Morning Solar Arc (Elongated Footprint)';
+            else if (currentTime >= 10 && currentTime <= 14) txtSolarPeriod.textContent = '☀️ Solar Noon Arc (Minimum Footprint, Maximum Cooling Drop)';
+            else txtSolarPeriod.textContent = '🌤️ Afternoon Solar Arc (Elongating Eastward)';
+
+            valShadeArea.textContent = `${res.shadeArea.toLocaleString()} sq ft`;
+            valShadowLength.textContent = `${res.shadowLength.toFixed(1)} ft`;
+            valSunAltitude.textContent = `${res.solar.altitudeDeg.toFixed(1)}°`;
+            valSunAzimuth.textContent = `${res.solar.azimuthDeg.toFixed(0)}° (${getCompassDir(res.solar.azimuthDeg)})`;
+            valTempExposed.textContent = `${res.exposedTemp}°F`;
+            valTempShaded.textContent = `${res.shadedTemp}°F`;
+
+            tagSideAngle.innerHTML = `&alpha; = ${res.solar.altitudeDeg.toFixed(1)}°`;
+            tagFootprintArea.textContent = `${res.shadeArea.toLocaleString()} sq ft`;
+
+            renderCanvases();
+            updateCharts();
+        }
+
+        function getCompassDir(deg) {
+            if (deg >= 337.5 || deg < 22.5) return 'N';
+            if (deg >= 22.5 && deg < 67.5) return 'NE';
+            if (deg >= 67.5 && deg < 112.5) return 'E';
+            if (deg >= 112.5 && deg < 157.5) return 'SE';
+            if (deg >= 157.5 && deg < 202.5) return 'S';
+            if (deg >= 202.5 && deg < 247.5) return 'SW';
+            if (deg >= 247.5 && deg < 292.5) return 'W';
+            return 'NW';
+        }
+
+        timeSlider.addEventListener('input', (e) => {
+            currentTime = parseFloat(e.target.value);
+            updateUI();
+        });
+
+        sliderCrownRadius.addEventListener('input', (e) => {
+            currentRadius = parseFloat(e.target.value);
+            lblCrownRadius.textContent = `${currentRadius} ft`;
+            updateUI();
+        });
+
+        sliderTreeHeight.addEventListener('input', (e) => {
+            currentHeight = parseFloat(e.target.value);
+            lblTreeHeight.textContent = `${currentHeight} ft`;
+            updateUI();
+        });
+
+        sliderLAI.addEventListener('input', (e) => {
+            currentLAI = parseFloat(e.target.value);
+            lblLAI.textContent = `${currentLAI.toFixed(1)} (${currentLAI > 3.5 ? 'Dense' : 'Filtered'})`;
+            updateUI();
+        });
+
+        btnResetNoon.addEventListener('click', () => {
+            currentTime = 12.0;
+            timeSlider.value = 12.0;
+            if (isPlaying) togglePlay();
+            updateUI();
+        });
+
+        btnPlayCycle.addEventListener('click', togglePlay);
+
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                btnPlayCycle.textContent = '⏸ Pause Day Cycle';
+                btnPlayCycle.style.background = '#d32f2f';
+                playTimer = setInterval(() => {
+                    currentTime += 0.25;
+                    if (currentTime > 18.0) currentTime = 6.0;
+                    timeSlider.value = currentTime;
+                    updateUI();
+                }, 140);
+            } else {
+                btnPlayCycle.textContent = '▶ Play Day Cycle (6 AM – 6 PM)';
+                btnPlayCycle.style.background = 'var(--accent)';
+                clearInterval(playTimer);
+            }
+        }
+
+        function selectSpecies(key) {
+            currentSpecies = key;
+            const data = speciesData[key];
+            currentRadius = data.radius;
+            currentHeight = data.height;
+            currentLAI = data.lai;
+
+            sliderCrownRadius.value = currentRadius;
+            lblCrownRadius.textContent = `${currentRadius} ft`;
+            sliderTreeHeight.value = currentHeight;
+            lblTreeHeight.textContent = `${currentHeight} ft`;
+            sliderLAI.value = currentLAI;
+            lblLAI.textContent = `${currentLAI.toFixed(1)} (${currentLAI > 3.5 ? 'Dense' : 'Filtered'})`;
+
+            document.querySelectorAll('.species-btn').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.getElementById(`btnSpecies${key.charAt(0).toUpperCase() + key.slice(1)}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            updateUI();
+        }
+
+        function switchPedagogy(tabKey) {
+            document.querySelectorAll('.ped-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.ped-content').forEach(c => c.classList.remove('active'));
+
+            const activeTab = event.target;
+            activeTab.classList.add('active');
+            const targetContent = document.getElementById(`ped-${tabKey}`);
+            if (targetContent) targetContent.classList.add('active');
+        }
+
+        window.addEventListener('load', () => {
+            initCharts();
+            updateUI();
+        });
+        window.addEventListener('resize', renderCanvases);
+    </script>
+</body>
+</html>

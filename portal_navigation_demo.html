@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTFS Cool Schools - Portal Navigation Demo</title>
+    <style>
+        :root {
+            --primary: #2C5E3B; /* Forest Green */
+            --primary-hover: #1E4229;
+            --secondary: #E9F0EC;
+            --text-dark: #222222;
+            --text-light: #555555;
+            --bg-main: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --border: #E0E0E0;
+            --accent: #D29A46; /* Earthy Gold */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .portal-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .portal-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        select {
+            padding: 0.5rem 2rem 0.5rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background-color: var(--bg-card);
+            color: var(--text-dark);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23222222%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem top 50%;
+            background-size: 0.65rem auto;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Main Content Layout (Split Screen Favor) */
+        main {
+            flex: 1;
+            display: flex;
+            padding: 2rem;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .side-panel {
+            flex: 1;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .main-panel {
+            flex: 2;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .greeting {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Mock Navigation Links */
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-list li {
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: var(--bg-main);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-list li:hover {
+            border-color: var(--border);
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        /* Mock Widgets */
+        .widget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .widget {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            background-color: var(--bg-main);
+        }
+
+        .widget-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .widget-value {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            font-weight: 300;
+        }
+        
+        .alert {
+            background-color: #FFF8E1;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            color: #5D4037;
+            font-size: 0.95rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .privacy-note {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Hide logic */
+        .portal-view {
+            display: none;
+        }
+        .portal-view.active {
+            display: contents; /* Allows children to participate in the flex grid */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8"></path><path d="M12 14c-3.5 0-6-2.5-6-6 0-3.5 3.5-5 6-5s6 1.5 6 5c0 3.5-2.5 6-6 6z"></path><path d="M12 14c-1.5 0-3 1-3 3"></path><path d="M12 14c1.5 0 3 1 3 3"></path></svg>
+            Cool Schools
+        </div>
+        <div class="portal-selector">
+            <span class="portal-label">Viewing As:</span>
+            <select id="roleSelect" onchange="switchPortal()">
+                <option value="admin">Administration (TTFS/UTRGV)</option>
+                <option value="school">School (Principals/Admins)</option>
+                <option value="teacher">Teachers</option>
+                <option value="student">Students</option>
+                <option value="parent">Parents / Community</option>
+            </select>
+        </div>
+    </header>
+
+    <main id="mainContent">
+        <!-- ADMIN PORTAL -->
+        <div id="portal-admin" class="portal-view active">
+            <div class="side-panel">
+                <div>
+                    <h1 class="greeting">Program Administration</h1>
+                    <p class="description">Global overview and program management for TTFS and UTRGV coordinators.</p>
+                </div>
+                <ul class="nav-list">
+                    <li onclick="window.location.href='milestones.html'">Program Overview & Milestones</li>
+                    <li onclick="window.location.href='correlations.html'">Global Canopy Correlates</li>
+                    <li onclick="window.location.href='data_pipeline.html'">Master Data Pipeline</li>
+                    <li onclick="window.location.href='campuses.html'">Cross-Campus Logistics</li>
+                    <li onclick="window.location.href='user_access_strategy.html'">System Access & Governance</li>
+                </ul>
+                <div class="privacy-note">
+                    ✓ Data aggregated at the program level. PII restricted and auditable.
+                </div>
+            </div>
+            <div class="main-panel">
+                <h2>Global Impact Dashboard</h2>
+                <div class="widget-grid">
+                    <div class="widget">
+                        <div class="widget-title">Total Trees Planted</div>
+                        <div class="widget-value">1,402</div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-title">Participating Campuses</div>
+                        <div class="widget-value">12</div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-title">Avg. Canopy Increase</div>
+                        <div class="widget-value">+4.2%</div>
+                    </div>
+                </div>
+                <div class="alert">
+                    <strong>Notice:</strong> The month 1 progress report for the Donna ISD cohort is ready for review.
+                </div>
+            </div>
+        </div>
+
+        <!-- SCHOOL PORTAL -->
+        <div id="portal-school" class="portal-view">
+            <div class="side-panel">
+                <div>
+                    <h1 class="greeting">Campus Administration</h1>
+                    <p class="description">Manage local campus initiatives, maintenance, and overall progress.</p>
+                </div>
+                <ul class="nav-list">
+                    <li onclick="window.location.href='canopy_map.html'">Campus Canopy Map</li>
+                    <li onclick="window.location.href='maintenance.html'">Maintenance & Watering Schedules</li>
+                    <li onclick="window.location.href='correlations.html'">Health & Growth Correlations</li>
+                    <li onclick="window.location.href='index.html'">Teacher Engagement Metrics</li>
+                </ul>
+            </div>
+            <div class="main-panel">
+                <h2>Donna Rivas Elementary</h2>
+                <div class="widget-grid">
+                    <div class="widget">
+                        <div class="widget-title">Trees on Campus</div>
+                        <div class="widget-value">85</div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-title">Upcoming Maintenance</div>
+                        <div class="widget-value">3 tasks</div>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem; padding: 3rem; background: var(--secondary); text-align: center; border-radius: 4px; color: var(--primary);">
+                    [ Interactive Campus Map Placeholder ]
+                </div>
+            </div>
+        </div>
+
+        <!-- TEACHER PORTAL -->
+        <div id="portal-teacher" class="portal-view">
+            <div class="side-panel">
+                <div>
+                    <h1 class="greeting">Teacher Hub</h1>
+                    <p class="description">Resources, TEKS alignments, and anonymized class participation.</p>
+                </div>
+                <ul class="nav-list">
+                    <li onclick="window.location.href='teks_lesson_plans.html'">TEKS Lesson Plans Library</li>
+                    <li onclick="window.location.href='field_survey.html'">Field Survey Protocols</li>
+                    <li onclick="window.location.href='student_tracking.html'">Classroom Activity Tracker</li>
+                    <li onclick="window.location.href='toolkit_library.html'">Educational Resources</li>
+                </ul>
+                <div class="privacy-note">
+                    ✓ FERPA Compliant. Student activities are tracked at the class/cohort level. No student names recorded.
+                </div>
+            </div>
+            <div class="main-panel">
+                <h2>Classroom Activities (Grade 4 Science)</h2>
+                <div class="widget-grid">
+                    <div class="widget">
+                        <div class="widget-title">Lessons Completed</div>
+                        <div class="widget-value">4 / 12</div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-title">Recent Field Surveys</div>
+                        <div class="widget-value">2 logs</div>
+                    </div>
+                </div>
+                <div class="alert">
+                    <strong>Tip:</strong> New TEKS-aligned lesson plan available: "Soil Moisture and Root Systems".
+                </div>
+            </div>
+        </div>
+
+        <!-- STUDENT PORTAL -->
+        <div id="portal-student" class="portal-view">
+            <div class="side-panel">
+                <div>
+                    <h1 class="greeting">Student Explorer</h1>
+                    <p class="description">Interactive tracking and learning for students.</p>
+                </div>
+                <ul class="nav-list">
+                    <li onclick="window.location.href='tree_3d.html'">My Tree Diary</li>
+                    <li onclick="window.location.href='biodiversity.html'">Habitat Spotting</li>
+                    <li onclick="window.location.href='milestones.html'">Cool Schools Badges</li>
+                    <li onclick="window.location.href='eco_archive_rpg.html'">Nature Games & Facts</li>
+                </ul>
+                <div class="privacy-note">
+                    ✓ COPPA Compliant. No personally identifiable information is collected.
+                </div>
+            </div>
+            <div class="main-panel">
+                <h2>Welcome, Explorer!</h2>
+                <div class="widget-grid">
+                    <div class="widget">
+                        <div class="widget-title">Badges Earned</div>
+                        <div class="widget-value">3 🌟</div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-title">Trees Visited</div>
+                        <div class="widget-value">5 🌳</div>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem; padding: 2rem; background: #e3f2fd; border-radius: 8px; border: 1px solid #bbdefb;">
+                    <h3 style="color: #1565c0; margin-bottom: 0.5rem;">New Mission Available!</h3>
+                    <p style="color: #424242;">Find 3 different types of leaves on your campus and draw them in your Tree Diary.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PARENT PORTAL -->
+        <div id="portal-parent" class="portal-view">
+            <div class="side-panel">
+                <div>
+                    <h1 class="greeting">Community & Parents</h1>
+                    <p class="description">See the impact of the Cool Schools initiative in your community.</p>
+                </div>
+                <ul class="nav-list">
+                    <li onclick="window.location.href='impact_matrix.html'">Public Impact & Metrics</li>
+                    <li onclick="window.location.href='hub_intro.html'">Learn About Cool Schools</li>
+                    <li onclick="window.location.href='showcase.html'">Volunteer Opportunities</li>
+                    <li onclick="window.location.href='tree_portal.html'">Home Tree Care Guide</li>
+                </ul>
+            </div>
+            <div class="main-panel">
+                <h2>Community Impact</h2>
+                <p>Discover how the Texas Trees Foundation and UTRGV are transforming school campuses into cooler, greener learning environments.</p>
+                <div class="widget-grid">
+                    <div class="widget">
+                        <div class="widget-title">Community Trees Planted</div>
+                        <div class="widget-value">1,402</div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-title">Avg. Temperature Drop</div>
+                        <div class="widget-value">-1.2°F</div>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem; padding: 2rem; background: var(--secondary); border-radius: 8px;">
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Get Involved</h3>
+                    <p style="color: var(--text-dark);">Join our next weekend planting event at Donna ISD! Sign up to receive the newsletter.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchPortal() {
+            const selectedRole = document.getElementById('roleSelect').value;
+            
+            // Hide all portals
+            const portals = document.querySelectorAll('.portal-view');
+            portals.forEach(portal => {
+                portal.classList.remove('active');
+            });
+            
+            // Show selected portal
+            const activePortal = document.getElementById('portal-' + selectedRole);
+            if (activePortal) {
+                activePortal.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
