@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="All-Encompassing TEKS Forest Literacy Learning Architecture - Interactive Khan Academy-Style Knowledge Graph & Multi-Subject Outdoor Learning" />
+  <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation" />
+  <title>Forest Literacy Learning Architecture | TEKS Knowledge Graph</title>
+  
+  <!-- Preconnect and Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Top Application Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="brand-logo">🌳</div>
+        <div class="brand-title">
+          <h1>UTRGV <span>Cool Schools</span> · Forest Literacy</h1>
+          <p>State-Aligned K–12 TEKS, Community Workshops & Higher Ed Knowledge Graph</p>
+        </div>
+      </div>
+
+      <!-- Live Gamified Mastery Stats -->
+      <div class="mastery-stats-bar">
+        <div class="stat-item">
+          <span>Mastery:</span>
+          <span id="statCompletedCount" class="stat-value">0 / 24</span>
+        </div>
+        <div class="progress-track" title="Overall Knowledge Graph Completion">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <div class="stat-item">
+          <span>Points:</span>
+          <span id="statTotalPoints" class="stat-value">0 pts</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="header-actions">
+        <a href="story_report.html" class="btn-header" style="background: #e8f5e9; color: #1b5e20; border-color: #a5d6a7; font-weight: 700;" title="View Executive Story & TEKS Multiplier Report">
+          📰 Story Report
+        </a>
+        <a href="master_gap_assessment.html" class="btn-header" style="background: var(--primary-subtle); color: var(--primary-dark); font-weight: 700;" title="View Statewide TEKS Gap Assessment for All Subjects">
+          🎯 Master Gap Assessment
+        </a>
+        <button type="button" id="btnOpenCitations" class="btn-header" title="View Academic Citations & Historical Lineage">
+          📜 Academic Provenance
+        </button>
+        <button type="button" id="btnOpenPrint" class="btn-header" title="Printable Student Field Guides">
+          🖨️ Field Worksheets
+        </button>
+        <a href="../../index.html" class="btn-header" title="Return to Main Dashboard">
+          ← Main Dashboard
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-container">
+
+    <!-- Hero Introduction Banner -->
+    <section class="hero-banner">
+      <div class="hero-text">
+        <h2>Khan Academy-Style Forest Literacy Knowledge Architecture</h2>
+        <p>
+          Explore interconnected ecological concepts spanning <strong>Three-Dimensional Science TEKS (2024–2025)</strong>, real-world outdoor mathematics, indigenous ethnobotany, environmental justice, bilingual family shade planting, and graduate-level microclimate sensor calibration.
+        </p>
+        <div class="hero-badge-group">
+          <span class="hero-pill">✓ 2024–2025 Science TEKS (SEPs & RTCs)</span>
+          <span class="hero-pill">✓ Project Learning Tree (PLT) Themes 1–4</span>
+          <span class="hero-pill">✓ Bilingual Community Agroecology</span>
+          <span class="hero-pill">✓ Graduate Sensor Calibration & WBGT</span>
+          <span class="hero-pill">✓ Contemplative Shinrin-yoku</span>
+        </div>
+      </div>
+      <div>
+        <button type="button" id="btnResetProgress" class="btn-header" style="color: #c62828; border-color: #ef9a9a;">
+          🔄 Reset My Progress
+        </button>
+      </div>
+    </section>
+
+    <!-- Interactive Knowledge Graph (DAG Canvas) -->
+    <section class="graph-section">
+      <div class="section-header">
+        <h3>🗺️ Interactive Prerequisite Knowledge Graph (DAG)</h3>
+        <div class="graph-legend">
+          <div class="legend-item">
+            <div class="legend-dot dot-completed"></div>
+            <span>Mastered / Completed</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot dot-unlocked"></div>
+            <span>Ready / Unlocked</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot dot-locked"></div>
+            <span>Locked (Prerequisites Needed)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graph Canvas -->
+      <div class="graph-container">
+        <canvas id="knowledgeGraphCanvas"></canvas>
+        <div class="graph-controls">
+          <button type="button" id="btnGraphZoomIn" class="graph-btn" title="Zoom In">+</button>
+          <button type="button" id="btnGraphZoomOut" class="graph-btn" title="Zoom Out">−</button>
+          <button type="button" id="btnGraphFit" class="graph-btn" title="Reset View">⤢</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pathway Filter Tabs & Search Controls -->
+    <section class="filter-bar-container">
+      <!-- Tier Tabs -->
+      <div id="tierTabsContainer" class="tier-tabs-scroll">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Secondary Filters & Search -->
+      <div class="controls-sub-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="moduleSearchInput" class="search-input" placeholder="Search lessons, TEKS codes (e.g. 5.12B), mesquite, albedo, PM2.5..." />
+        </div>
+
+        <select id="subjectFilterSelect" class="filter-select">
+          <!-- Populated by app.js -->
+        </select>
+
+        <select id="themeFilterSelect" class="filter-select">
+          <!-- Populated by app.js -->
+        </select>
+      </div>
+    </section>
+
+    <!-- Modules Grid (Khan Academy Style) -->
+    <section id="modulesGrid" class="modules-grid">
+      <!-- Dynamic Module Cards rendered by app.js -->
+    </section>
+
+  </main>
+
+  <!-- Slide-Out Lesson Reader Drawer -->
+  <div id="lessonDrawerOverlay" class="lesson-drawer-overlay">
+    <div class="lesson-drawer">
+      <!-- Drawer Header -->
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <h2 id="drawerTitle">Lesson Title</h2>
+          <div id="drawerSubtitle" class="drawer-subtitle">Tier · Subject · Points</div>
+        </div>
+        <button type="button" id="drawerCloseBtn" class="btn-drawer-close" title="Close Drawer">✕</button>
+      </div>
+
+      <!-- Drawer Content -->
+      <div class="drawer-content">
+
+        <!-- 1. Inquiry Hook -->
+        <div class="lesson-block hook">
+          <div class="block-header">💡 Curiosity Inquiry / Hook</div>
+          <div id="drawerHook" class="block-body">...</div>
+        </div>
+
+        <!-- 2. Core Scientific & Conceptual Theory -->
+        <div class="lesson-block theory">
+          <div class="block-header">📖 Core Concept & Theory</div>
+          <div id="drawerTheory" class="block-body">...</div>
+        </div>
+
+        <!-- 3. 3D TEKS & SEP/RTC Matrix Box -->
+        <div class="teks-matrix-box">
+          <div class="teks-matrix-row">
+            <span class="teks-matrix-label">State TEKS Codes:</span>
+            <span id="drawerTeksCodes" class="teks-matrix-val">...</span>
+          </div>
+          <div class="teks-matrix-row">
+            <span class="teks-matrix-label">Recurring Theme (RTC):</span>
+            <span id="drawerRtc" class="teks-matrix-val">...</span>
+          </div>
+          <div class="teks-matrix-row">
+            <span class="teks-matrix-label">Practice (SEP):</span>
+            <span id="drawerSep" class="teks-matrix-val">...</span>
+          </div>
+        </div>
+
+        <!-- 4. Outdoor Lab & Hands-on Field Investigation -->
+        <div class="lesson-block lab">
+          <div id="drawerLabTitle" class="block-header">🌲 Outdoor Field Lab</div>
+          <div id="drawerLabDetails" class="block-body">...</div>
+        </div>
+
+        <!-- 5. Formative Mastery Check & Interactive Quiz -->
+        <div class="lesson-block quiz-block">
+          <div class="block-header">🎯 Formative Mastery Check</div>
+          <p id="drawerQuizQuestion" style="font-weight: 600; margin-bottom: 12px; color: var(--primary-dark);">...</p>
+          <div id="drawerQuizOptions" class="quiz-options-list">
+            <!-- Rendered by app.js -->
+          </div>
+          <div id="drawerQuizFeedback" class="quiz-feedback-box"></div>
+        </div>
+
+        <!-- 6. Academic Attribution & Lineage -->
+        <div class="citations-footer-box">
+          <strong>Historical Provenance & Research Citations:</strong>
+          <ul id="drawerCitations" style="margin-left: 18px; margin-top: 6px;"></ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Academic Citations & Provenance Modal -->
+  <div id="citationsModal" class="modal-overlay">
+    <div class="modal-box">
+      <button type="button" id="btnCloseCitations" class="modal-close-btn">✕</button>
+      <h2>📜 Academic Provenance & Attribution Archive</h2>
+      <div class="modal-body">
+        <p>
+          The <strong>Comprehensive TEKS Forest Literacy Learning Architecture</strong> is built upon decades of peer-reviewed research, state educational standards, and indigenous ethnobotanical scholarship:
+        </p>
+
+        <h4 style="color: var(--primary-dark);">1. Project Learning Tree (PLT) & Sustainable Forestry Initiative</h4>
+        <p>
+          All learning nodes are indexed against the national <em>Forest Literacy Framework</em> (Themes 1–4: What is a Forest, Why Forests Matter, How We Sustain Forests, and What is Our Responsibility).
+        </p>
+
+        <h4 style="color: var(--primary-dark);">2. Texas A&M Forest Service (TFS)</h4>
+        <p>
+          Dendrology identification keys and native South Texas thornscrub allometric biomass equations are adapted from the TFS <em>Trees of Texas</em> research database.
+        </p>
+
+        <h4 style="color: var(--primary-dark);">3. Texas Trees Foundation (TTF)</h4>
+        <p>
+          Cool Schools microforest planting protocols, 10-year growth projections, and urban heat island mitigation standards.
+        </p>
+
+        <h4 style="color: var(--primary-dark);">4. USDA Forest Service & Davey Tree Expert Co. (i-Tree Suite)</h4>
+        <p>
+          Peer-reviewed mathematical algorithms for carbon sequestration, stormwater interception, and air pollution filtration calculations.
+        </p>
+
+        <h4 style="color: var(--primary-dark);">5. Indigenous Ethnobotanical Heritage of South Texas</h4>
+        <p>
+          Traditional ecological knowledge of the Coahuiltecan, Karankawa, and Tamaulipan peoples regarding the Honey Mesquite (<em>Pechita</em>), Prickly Pear, and Rio Grande riverway ecosystems.
+        </p>
+
+        <div style="background: var(--bg-card-alt); padding: 12px; border-radius: 8px; border: 1px solid var(--border-light); font-size: 0.85rem;">
+          <strong>Governance & Compliance:</strong> All modules adhere strictly to <strong>COPPA / FERPA</strong> (zero individual student PII stored) and <strong>UTRGV AI Compliance Policy</strong> (human oversight and validated outputs).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Printable Field Guides Modal -->
+  <div id="printModal" class="modal-overlay">
+    <div class="modal-box">
+      <button type="button" id="btnClosePrint" class="modal-close-btn">✕</button>
+      <h2>🖨️ Printable Student Field Worksheets & Handouts</h2>
+      <div class="modal-body">
+        <p>
+          Download ready-to-print, high-contrast, human-analog field worksheets formatted for classroom clipboards and outdoor clipboards:
+        </p>
+
+        <ul style="margin-left: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <li><strong>Worksheet 1 (Grades K–2):</strong> <em>Tree Hugger Anatomy & Tactile Bark Rubbing Box</em></li>
+          <li><strong>Worksheet 2 (Grades 3–5):</strong> <em>Tree Geometry, Shadow Pacing & Infrared Temperature Audit</em></li>
+          <li><strong>Worksheet 3 (Grades 6–8):</strong> <em>DIY Clinometer Trigonometry & Sighting Log</em></li>
+          <li><strong>Worksheet 4 (Grades 9–12 / APES):</strong> <em>Whole-Forest Carbon Vault & Allometric Biomass Census</em></li>
+          <li><strong>Worksheet 5 (Parent / Community):</strong> <em>DIY Olla Pot Assembly & Soil Touch Test Guide</em></li>
+          <li><strong>Worksheet 6 (Contemplative & Ethics):</strong> <em>The Seven-Generations Letter to a Student in 2176</em></li>
+        </ul>
+
+        <div style="margin-top: 16px; text-align: center;">
+          <a href="lessons/student_field_worksheets.md" target="_blank" class="btn-header primary" style="padding: 10px 20px; font-size: 0.95rem;">
+            📄 Open Full Printable Markdown Packet
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>
+      <strong>UTRGV Agroecology Project & Texas Trees Foundation</strong> · Comprehensive Forest Literacy Learning Architecture  
+    </p>
+    <p style="font-size: 0.78rem; color: #888; margin-top: 4px;">
+      Privacy-First Architecture · COPPA / FERPA Compliant · Open Academic Distribution
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="graph/forest_literacy_knowledge_graph.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

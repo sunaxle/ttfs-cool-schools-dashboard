@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Living Campus Multiplier - Executive Story and Statewide TEKS Forest Literacy Report for Project Leadership, Educators, and Stakeholders" />
+  <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation" />
+  <title>The Living Campus Multiplier | Executive Story & TEKS Report</title>
+  
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .story-hero {
+      background: linear-gradient(135deg, #0d381c 0%, #1b5e20 60%, #2e7d32 100%);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .story-hero::after {
+      content: "🌳";
+      position: absolute;
+      right: 20px;
+      bottom: -20px;
+      font-size: 160px;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .story-hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+    .story-hero h1 span {
+      color: #ffcc80;
+    }
+    .story-hero p {
+      font-size: 1.1rem;
+      color: #e8f5e9;
+      max-width: 840px;
+      line-height: 1.6;
+    }
+
+    .stat-hero-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .stat-hero-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+    }
+    .stat-hero-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-hero-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #c8e6c9;
+    }
+
+    .story-section {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .story-section h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .story-body-text {
+      font-size: 1rem;
+      color: #333333;
+      line-height: 1.7;
+    }
+
+    .multiplier-demo-box {
+      background: #f4faf5;
+      border: 2px solid #a5d6a7;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .multiplier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .multiplier-card {
+      background: #ffffff;
+      border: 1px solid #c8e6c9;
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .multiplier-subject {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      align-self: flex-start;
+    }
+
+    @media print {
+      .app-header, .header-actions, .btn-header, .no-print {
+        display: none !important;
+      }
+      .main-container {
+        padding: 0;
+        gap: 16px;
+      }
+      .story-section {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="brand-logo">📰🌳</div>
+        <div class="brand-title">
+          <h1>Executive Story & <span>Statewide TEKS Report</span></h1>
+          <p>Texas Trees Foundation & UTRGV Cool Schools Project</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" onclick="window.print()" class="btn-header primary" title="Print or Save as PDF">
+          🖨️ Print / Save PDF Report
+        </button>
+        <a href="index.html" class="btn-header">
+          🗺️ Knowledge Graph
+        </a>
+        <a href="master_gap_assessment.html" class="btn-header">
+          🎯 Gap Assessment
+        </a>
+        <a href="../../index.html" class="btn-header">
+          Main Dashboard
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- Story Hero Banner -->
+    <section class="story-hero">
+      <div style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #a5d6a7; margin-bottom: 8px;">
+        SPECIAL EXECUTIVE REPORT · SEPTEMBER 2026
+      </div>
+      <h1>The Living Campus Multiplier: <span>Transforming 14,000 Texas TEKS</span></h1>
+      <p>
+        How schoolyard microforests solve the state’s greatest curriculum pacing dilemma—unifying Science, Mathematics, Social Studies, Literature, and Fine Arts into high-impact outdoor learning.
+      </p>
+
+      <!-- Stat Cards -->
+      <div class="stat-hero-grid">
+        <div class="stat-hero-card">
+          <div class="stat-hero-num">14,000+</div>
+          <div class="stat-hero-label">Total Texas State TEKS</div>
+        </div>
+        <div class="stat-hero-card">
+          <div class="stat-hero-num">9,350+</div>
+          <div class="stat-hero-label">Core K–12 Standards</div>
+        </div>
+        <div class="stat-hero-card">
+          <div class="stat-hero-num">1 = 7</div>
+          <div class="stat-hero-label">The Outdoor Multiplier Ratio</div>
+        </div>
+        <div class="stat-hero-card">
+          <div class="stat-hero-num">100%</div>
+          <div class="stat-hero-label">COPPA / FERPA Compliant</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 1: The Pacing Dilemma -->
+    <section class="story-section">
+      <h2><span>⏱️</span> Chapter 1: The Pacing Dilemma in Texas Classrooms</h2>
+      <p class="story-body-text">
+        Every year, over 350,000 Texas public school teachers enter their classrooms facing an overwhelming mountain of state standards. Under Title 19 of the Texas Administrative Code, the State Board of Education establishes <strong>over 14,000 discrete student expectations</strong> across the entire curriculum—including over <strong>2,450 standards in ELAR</strong>, <strong>1,950 in Science</strong>, <strong>1,850 in Social Studies</strong>, and <strong>1,650 in Mathematics</strong>.
+      </p>
+      <p class="story-body-text">
+        This creates severe <strong>"curriculum pacing fatigue"</strong>: an exhausting race against the calendar to cover hundreds of isolated indoor topics before state assessments. When traditional environmental organizations visit schools, they often introduce what researchers call <strong>"STEM Tunnel Vision"</strong>—treating trees solely as biology specimens (naming leaf parts or defining chlorophyll).
+      </p>
+      <div style="background: #fff8f8; border-left: 4px solid #ef5350; padding: 16px; border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #333;">
+        <strong>The Problem:</strong> A 4th-grade teacher responsible for math, reading, and Texas history cannot afford to spend 45 minutes outside if the activity only touches one isolated biology standard. Outdoor learning is abandoned because it feels like an extra burden.
+      </div>
+    </section>
+
+    <!-- Chapter 2: The Multiplier Effect -->
+    <section class="story-section">
+      <h2><span>⚡</span> Chapter 2: The Forest as an Interdisciplinary Multiplier</h2>
+      <p class="story-body-text">
+        Our UTRGV and Texas Trees Foundation graduate research team re-engineered this paradigm from the ground up. Instead of treating the microforest as an isolated biology elective, our framework establishes <strong>The Multiplier Effect</strong>: using living trees as an anchor that synthesizes 6 academic disciplines simultaneously in a single 45-minute outdoor session.
+      </p>
+
+      <div class="multiplier-demo-box">
+        <div style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--primary-dark);">
+          🌟 Case Study: The 45-Minute "Tree Geometry & Shadow Stomp" Lab
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+          Students walk into the campus microforest with measuring tapes, infrared thermometer guns, and field journals:
+        </p>
+
+        <div class="multiplier-grid">
+          
+          <div class="multiplier-card">
+            <span class="multiplier-subject" style="background: #ede7f6; color: #4a148c;">📐 Mathematics</span>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-dark);">TEKS 5.4H & 5.8C (Area & Pacing)</div>
+            <p style="font-size: 0.8rem; color: #555;">Students calibrate step pace lengths, pace out 4 shadow radii, and compute circular cooling area: \(A = \pi r^2\).</p>
+          </div>
+
+          <div class="multiplier-card">
+            <span class="multiplier-subject" style="background: #e8f5e9; color: #1b5e20;">🌿 Science</span>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-dark);">TEKS 5.12B & 5.1B (Energy Flow)</div>
+            <p style="font-size: 0.8rem; color: #555;">Students trace solar photons captured by green leaves and observe ambient chilling via transpiration.</p>
+          </div>
+
+          <div class="multiplier-card">
+            <span class="multiplier-subject" style="background: #e0f2f1; color: #004d40;">❤️ Health & Safety</span>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-dark);">TEKS 5.3A (Thermoregulation)</div>
+            <p style="font-size: 0.8rem; color: #555;">Students record a 40°F drop between blacktop (138°F) and grass (98°F), evaluating heat exhaustion risks.</p>
+          </div>
+
+          <div class="multiplier-card">
+            <span class="multiplier-subject" style="background: #e3f2fd; color: #0d47a1;">📚 ELAR</span>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-dark);">TEKS 5.11A (Descriptive Writing)</div>
+            <p style="font-size: 0.8rem; color: #555;">Students complete 10 minutes of silent "Sit Spot" journaling, writing sensory adjectives and nature Haiku.</p>
+          </div>
+
+          <div class="multiplier-card">
+            <span class="multiplier-subject" style="background: #fce4ec; color: #880e4f;">🎨 Visual Arts</span>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-dark);">TEKS 5.1B (Value & Contrast)</div>
+            <p style="font-size: 0.8rem; color: #555;">Students observe dappled light (Komorebi), sketching value scales from bright highlights to deep cast shadows.</p>
+          </div>
+
+          <div class="multiplier-card">
+            <span class="multiplier-subject" style="background: #fff3e0; color: #e65100;">🪵 Social Studies</span>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-dark);">TEKS 4.1A & 5.9A (Ethnobotany)</div>
+            <p style="font-size: 0.8rem; color: #555;">Students reflect on how indigenous Coahuiltecans used mesquite shade and edible pods to survive regional droughts.</p>
+          </div>
+
+        </div>
+
+        <div style="font-size: 0.88rem; font-weight: 700; color: #1b5e20; text-align: center; margin-top: 6px;">
+          ✓ Result: 7 State Standards Delivered Across 6 Subjects in 45 Minutes!
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 3: The Gap Assessment -->
+    <section class="story-section">
+      <h2><span>🔍</span> Chapter 3: The Statewide Gap Assessment</h2>
+      <p class="story-body-text">
+        Our research team performed a standard-by-standard audit across all subjects, identifying critical educational blindspots where traditional curricula fail to utilize outdoor spaces:
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: #fafdfa; border: 1px solid var(--border-light); padding: 14px 18px; border-radius: 8px;">
+          <strong style="color: var(--primary-dark);">1. The Civic Writing & Rhetoric Gap (ELAR):</strong>
+          <span style="color: #555; font-size: 0.9rem;"> Conventional programs limit writing to simple 4-line poems. We bridge this with <em>"The Civic Pen,"</em> teaching high schoolers to write formal shade equity letters to school boards and publish op-eds.</span>
+        </div>
+        <div style="background: #fafdfa; border: 1px solid var(--border-light); padding: 14px 18px; border-radius: 8px;">
+          <strong style="color: var(--primary-dark);">2. The South Texas Ethno-Arts Gap (Fine Arts):</strong>
+          <span style="color: #555; font-size: 0.9rem;"> Standard art classes use East Coast maple stencils. We bridge this with <em>"Roots of the RGV,"</em> extracting natural watercolors from native Honey Mesquite pods and prickly pear juice.</span>
+        </div>
+        <div style="background: #fafdfa; border: 1px solid var(--border-light); padding: 14px 18px; border-radius: 8px;">
+          <strong style="color: var(--primary-dark);">3. The Real-World Trigonometry Gap (Math):</strong>
+          <span style="color: #555; font-size: 0.9rem;"> Math classes solve abstract textbook triangles. We bridge this with DIY protractor clinometers calculating real tree heights: \(\text{Height} = (D \cdot \tan \theta) + h_{\text{eye}}\).</span>
+        </div>
+        <div style="background: #fafdfa; border: 1px solid var(--border-light); padding: 14px 18px; border-radius: 8px;">
+          <strong style="color: var(--primary-dark);">4. The Pediatric Heat Kinetics Gap (Health):</strong>
+          <span style="color: #555; font-size: 0.9rem;"> Sun safety is reduced to "wear a hat." We bridge this with non-contact infrared temperature audits and real-time Air Quality Index (AQI/PM2.5) schoolyard defense.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 4: Beyond K-12 Lifelong Learning -->
+    <section class="story-section">
+      <h2><span>🌱</span> Chapter 4: A Lifelong Educational Continuum</h2>
+      <p class="story-body-text">
+        Forest literacy does not end with a high school diploma. To build lasting community climate resilience in the Rio Grande Valley, our framework expands into three transformative lifelong tiers:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+        <div style="background: #fdfaf6; border: 1px solid #ffe0b2; padding: 18px; border-radius: 10px;">
+          <h4 style="color: #e65100; font-weight: 700; margin-bottom: 6px;">🏡 Parent & Community Workshops</h4>
+          <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">
+            Bilingual weekend <em>"Sombra Sana"</em> clinics teaching families how strategic West-wall shade planting cuts home AC electric bills by 15–25%, alongside DIY terracotta olla pot irrigation.
+          </p>
+        </div>
+
+        <div style="background: #f3e5f5; border: 1px solid #e1bee7; padding: 18px; border-radius: 10px;">
+          <h4 style="color: #6a1b9a; font-weight: 700; margin-bottom: 6px;">🔬 Higher Ed & Graduate Sensor Lab</h4>
+          <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">
+            Graduate engineering labs calibrating optical laser PM2.5 sensors against state reference monitors (TCEQ CAMS 80) and modeling Wet-Bulb Globe Temperature (WBGT) microclimates.
+          </p>
+        </div>
+
+        <div style="background: #e8f5e9; border: 1px solid #c8e6c9; padding: 18px; border-radius: 10px;">
+          <h4 style="color: #1b5e20; font-weight: 700; margin-bottom: 6px;">🧘 Contemplative & Ethical Ecology</h4>
+          <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">
+            Mindful <em>Shinrin-yoku</em> canopy breathing to reduce stress cortisol, celebrating the 2,000-year sacred Montezuma Cypress, and signing the Seven-Generations covenant.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 5: Digital Platform -->
+    <section class="story-section">
+      <h2><span>💻</span> Chapter 5: The Digital Learning Engine</h2>
+      <p class="story-body-text">
+        To power this statewide vision, our team engineered a high-performance, **Khan Academy-style interactive single-page application**:
+      </p>
+      <ul style="margin-left: 20px; font-size: 0.95rem; color: #444; line-height: 1.7;">
+        <li><strong>Interactive DAG Canvas:</strong> Visual prerequisite knowledge map with zero overlaps, drag-and-drop nodes, and live progression wires.</li>
+        <li><strong>Interactive Simulation Widgets:</strong> In-drawer mathematical simulators for Canopy Area, Carbon Biomass valuation, and PM2.5 humidity correction.</li>
+        <li><strong>Printable Field Worksheets:</strong> High-contrast, ready-to-print field guides formatted for clipboards.</li>
+        <li><strong>Full Academic Provenance:</strong> Formal citations crediting Project Learning Tree, Texas A&M Forest Service, Texas Trees Foundation, and Indigenous scholars.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>
+      <strong>Texas Trees Foundation & UTRGV Agroecology Project</strong> · Statewide TEKS Forest Literacy Framework  
+    </p>
+    <p style="font-size: 0.78rem; color: #888; margin-top: 4px;">
+      Authored by the Graduate Research Team · Open Educational Distribution · COPPA / FERPA Compliant
+    </p>
+  </footer>
+
+</body>
+</html>

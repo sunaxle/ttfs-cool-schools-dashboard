@@ -1,0 +1,889 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "framework_name": "Comprehensive TEKS Forest Literacy Learning Architecture",
+  "version": "2.0.0",
+  "state_standards_basis": "Texas Essential Knowledge and Skills (TEKS) - Revised 2024-2025 Science, Mathematics, Social Studies, ELAR, Fine Arts, Health",
+  "national_framework_basis": "Project Learning Tree (PLT) Forest Literacy Framework (Themes 1-4)",
+  "total_nodes": 24,
+  "nodes": [
+    {
+      "id": "k2_tree_anatomy",
+      "title": "Parts of a Tree: Roots, Trunk, Crown & Bark",
+      "tier": "k2",
+      "grade_band": "Kindergarten - Grade 2",
+      "subject": "Science",
+      "theme_plt": 1,
+      "theme_plt_label": "What is a Forest?",
+      "teks_codes": ["Science K.12A", "Science 1.12B", "Science 2.12B"],
+      "science_rtc": "Structure and Function",
+      "science_sep": "Planning and Conducting Descriptive Investigations",
+      "prerequisites": [],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Identify and label the four primary anatomical structures of a tree: roots, trunk, branches/crown, and leaves/bark.",
+        "Describe how roots absorb water and anchor the tree in soil.",
+        "Explain how bark functions like human skin to protect the tree from heat and insects."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Tree Hugger Sensory Anatomy Tour",
+        "duration_min": 30,
+        "equipment": ["Magnifying hand lens", "Crayon & paper for bark rubbing", "Sensory checklist"],
+        "procedure": "Students partner up to touch, inspect, and sketch the texture of native Honey Mesquite bark, look for surface root anchors, and observe leaf clusters in the canopy."
+      },
+      "formative_check": {
+        "question": "Which part of the tree acts like a giant sponge and anchor beneath the soil?",
+        "options": ["The green leaves", "The root system", "The upper branches", "The outer bark"],
+        "correct_index": 1,
+        "explanation": "Roots grow deep into the ground to anchor the tree securely and drink water and nutrients from the soil."
+      },
+      "citations": ["Project Learning Tree (2020) Theme 1: Concept 1.A.1", "Texas A&M Forest Service: Trees of Texas Guide"]
+    },
+    {
+      "id": "k2_leaf_detective",
+      "title": "Leaf Shapes, Textures & Simple Patterns",
+      "tier": "k2",
+      "grade_band": "Kindergarten - Grade 2",
+      "subject": "Science",
+      "theme_plt": 1,
+      "theme_plt_label": "What is a Forest?",
+      "teks_codes": ["Science 1.12A", "Science 2.12A"],
+      "science_rtc": "Patterns",
+      "science_sep": "Collecting and Recording Observational Data",
+      "prerequisites": ["k2_tree_anatomy"],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Sort fallen leaves by shape (oval, heart, compound bipinnate) and margin (smooth vs toothed).",
+        "Observe how desert-adapted native trees like Mesquite have tiny compound leaflets to prevent water loss in South Texas heat."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Fallen Leaf Scavenger Sort",
+        "duration_min": 35,
+        "equipment": ["Collection tray", "Sorting mat (Smooth vs Rough, Big vs Small)"],
+        "procedure": "Students collect 5 fallen leaves from the ground (never picking living leaves) and sort them into comparative categories."
+      },
+      "formative_check": {
+        "question": "Why do Honey Mesquite trees in South Texas have lots of tiny leaflets instead of one giant leaf?",
+        "options": ["To hide from birds", "To conserve water and stay cool in hot weather", "To catch heavier rain", "Because they are baby trees"],
+        "correct_index": 1,
+        "explanation": "Tiny leaflets reduce water loss from desert evaporation and allow cooling breezes to pass through easily."
+      },
+      "citations": ["TFS Trees of Texas Leaf Key", "PLT Activity 64: Looking at Leaves"]
+    },
+    {
+      "id": "k2_creature_habitats",
+      "title": "Who Lives in the Tree? Animal & Insect Homes",
+      "tier": "k2",
+      "grade_band": "Kindergarten - Grade 2",
+      "subject": "Science",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["Science K.13B", "Science 1.13A", "Science 2.13A"],
+      "science_rtc": "Systems and System Models",
+      "science_sep": "Communicating Explanations and Observations",
+      "prerequisites": ["k2_tree_anatomy"],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Identify at least three living organisms that rely on campus trees for food, shelter, or nesting (e.g., Green Jays, cicadas, honeybees).",
+        "Explain the difference between living organisms (biotic) and non-living elements (abiotic) in a microforest habitat."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Microforest Creature Detective",
+        "duration_min": 40,
+        "equipment": ["Binoculars", "Habitat tally clipboard"],
+        "procedure": "Students quietly observe the canopy for 10 minutes, logging birds, insects on bark, and lizards resting on branches."
+      },
+      "formative_check": {
+        "question": "Which of the following is an example of an animal using a tree for shelter?",
+        "options": ["A fish swimming in a pond", "A bird building a nest on a sturdy branch", "A rock sitting on the ground", "A cloud making rain"],
+        "correct_index": 1,
+        "explanation": "Trees provide physical shelter, shade, and protection from predators for nesting birds and small mammals."
+      },
+      "citations": ["PLT Activity 22: Trees as Habitats", "UTRGV Agroecology Campus Biodiversity Survey"]
+    },
+    {
+      "id": "k2_bark_rubbing_art",
+      "title": "Eco-Canvas: Bark Textures & Leaf Impressions",
+      "tier": "k2",
+      "grade_band": "Kindergarten - Grade 2",
+      "subject": "Fine Arts",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["Fine Arts 117.102.b.1.A", "Fine Arts 117.105.b.2.B"],
+      "science_rtc": "Patterns",
+      "science_sep": "Constructing Models and Artistic Artifacts",
+      "prerequisites": ["k2_tree_anatomy"],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Create tactile crayon rubbings showing distinct bark grooves of at least two native tree species.",
+        "Discuss how natural textures in the environment inspire artistic visual patterns."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Tactile Bark Gallery Creation",
+        "duration_min": 35,
+        "equipment": ["Newsprint paper", "Unwrapped wax crayons (earth tones)", "Masking tape"],
+        "procedure": "Students tape paper gently to tree trunks and rub sideways with crayons to produce high-contrast texture prints."
+      },
+      "formative_check": {
+        "question": "What happens when you rub a crayon flat across paper pressed against rough tree bark?",
+        "options": ["The paper turns into wood", "The raised ridges of the bark create a visible texture pattern", "The tree loses its bark", "The crayon disappears"],
+        "correct_index": 1,
+        "explanation": "The raised ridges of the bark resist the crayon pressure, transferring the tree's unique fingerprint onto paper."
+      },
+      "citations": ["PLT Activity 61: The Closer You Look", "Texas Trees Foundation Cool Schools Art Series"]
+    },
+    {
+      "id": "elem_food_webs",
+      "title": "Solar Energy Flow & Campus Food Webs",
+      "tier": "3_5",
+      "grade_band": "Grades 3 - 5",
+      "subject": "Science",
+      "theme_plt": 1,
+      "theme_plt_label": "What is a Forest?",
+      "teks_codes": ["Science 3.12B", "Science 4.12B", "Science 5.12B"],
+      "science_rtc": "Energy and Matter: Cycles and Conservation",
+      "science_sep": "Developing and Using Conceptual Models",
+      "prerequisites": ["k2_creature_habitats"],
+      "mastery_points": 150,
+      "learning_objectives": [
+        "Trace the flow of energy from sunlight to producers (trees), primary consumers (caterpillars), secondary consumers (birds), and decomposers (fungi/bacteria).",
+        "Construct a multi-tiered food web showing the ecological interdependence of South Texas native organisms."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Yarn Web of Life Simulation",
+        "duration_min": 45,
+        "equipment": ["Spool of green yarn", "Organism role cards (Sun, Mesquite, Texas Tortoise, Roadrunner, Decomposer)"],
+        "procedure": "Students stand in a circle holding organism cards, passing yarn to demonstrate energy transfers. When the 'tree' tugs the string, everyone feels the connected ecological ripple."
+      },
+      "formative_check": {
+        "question": "In a campus microforest ecosystem, what is the ultimate original source of all energy?",
+        "options": ["Soil fertilizer", "Sunlight captured by green leaves", "Rainwater puddles", "Decomposing leaf mulch"],
+        "correct_index": 1,
+        "explanation": "Photosynthesis captures radiant solar energy and transforms it into chemical glucose, feeding the entire food web."
+      },
+      "citations": ["2024-2025 Revised Science TEKS 5.12B", "PLT Activity 45: Web of Life"]
+    },
+    {
+      "id": "elem_canopy_geometry",
+      "title": "Tree Geometry: Pacing, Shade Area & Radius",
+      "tier": "3_5",
+      "grade_band": "Grades 3 - 5",
+      "subject": "Mathematics",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["Math 3.6C", "Math 4.8C", "Math 5.4H"],
+      "science_rtc": "Scale, Proportion, and Quantity",
+      "science_sep": "Using Mathematics and Computational Thinking",
+      "prerequisites": ["k2_tree_anatomy"],
+      "mastery_points": 150,
+      "learning_objectives": [
+        "Determine personal pace length (meters or feet per step) to measure real-world outdoor distances.",
+        "Calculate the approximate ground area of cooling shade cast by a campus tree using circle area approximations: Area ≈ π * r^2.",
+        "Estimate total playground square footage protected from direct solar radiation."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Ground Shade Shadow Stomp",
+        "duration_min": 45,
+        "equipment": ["Measuring tape", "Chalk", "Pacing calibration markers"],
+        "procedure": "Students measure their 10-step pace, walk out the four radii (North, South, East, West) of a tree's shadow, and compute the circular shade footprint."
+      },
+      "formative_check": {
+        "question": "If a mature Cedar Elm tree casts a circular shadow with a radius of 4 meters, approximately what is its shaded cooling ground area? (Use π ≈ 3.14)",
+        "options": ["12.5 sq meters", "25.1 sq meters", "50.2 sq meters", "100.5 sq meters"],
+        "correct_index": 2,
+        "explanation": "Area = π * r^2 = 3.14 * (4)^2 = 3.14 * 16 = 50.24 square meters."
+      },
+      "citations": ["Texas Trees Foundation Cool Schools Math Curriculum", "PLT Activity 67: How Big is Your Tree?"]
+    },
+    {
+      "id": "elem_indigenous_mesquite",
+      "title": "Roots of the RGV: Indigenous Ethnobotany & Mesquite",
+      "tier": "3_5",
+      "grade_band": "Grades 3 - 5",
+      "subject": "Social Studies",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["Social Studies 3.4A", "Social Studies 4.1A", "Social Studies 4.21A"],
+      "science_rtc": "Systems and System Models",
+      "science_sep": "Obtaining, Evaluating, and Communicating Information",
+      "prerequisites": ["k2_leaf_detective"],
+      "mastery_points": 150,
+      "learning_objectives": [
+        "Explain how historic indigenous peoples of South Texas (Coahuiltecans and Karankawas) utilized the Honey Mesquite as a 'Tree of Life' for nutrition, medicine, tools, and shelter.",
+        "Analyze how indigenous ecological adaptation to arid climates contrasts with modern water-intensive land practices."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Mesquite Pod Inspection & Bean Grinding Demo",
+        "duration_min": 40,
+        "equipment": ["Dried mesquite pods (pechita)", "Stone mortar and pestle / metate", "Tasting spoons"],
+        "procedure": "Students inspect ripe yellow mesquite pods, snap them to observe the high-sugar pulp, grind dried pods in a mortar, and taste natural sweet mesquite flour."
+      },
+      "formative_check": {
+        "question": "Why was the Honey Mesquite tree known as a vital 'Tree of Life' for indigenous South Texas tribes?",
+        "options": [
+          "It produced ripe nutrient-rich pods that could be stored and ground into sweet flour during hot dry summers",
+          "It made fast-growing paper for books",
+          "It only grew in freezing winter temperatures",
+          "It was the only tree that produced metal tools"
+        ],
+        "correct_index": 0,
+        "explanation": "Mesquite bean pods provided high-protein, sweet carbohydrates without requiring irrigation, sustaining indigenous communities through harsh droughts."
+      },
+      "citations": ["Tull, D. (2013) Edible and Useful Plants of Texas", "UTRGV Center for Mexican American Studies Ethnobotany Archive"]
+    },
+    {
+      "id": "elem_nature_journaling",
+      "title": "Sensory Nature Journaling & Tree Poetry",
+      "tier": "3_5",
+      "grade_band": "Grades 3 - 5",
+      "subject": "ELAR",
+      "theme_plt": 4,
+      "theme_plt_label": "What is Our Responsibility?",
+      "teks_codes": ["ELAR 3.11A", "ELAR 4.11A", "ELAR 5.11A"],
+      "science_rtc": "Patterns",
+      "science_sep": "Communicating Explanations and Scientific Ideas",
+      "prerequisites": ["k2_bark_rubbing_art"],
+      "mastery_points": 150,
+      "learning_objectives": [
+        "Write vivid descriptive observations using sensory adjectives (sight, sound, touch, smell) while sitting under schoolyard canopy.",
+        "Compose a structured poem (Haiku, Cinquain, or Free Verse) conveying the protective feeling of tree shade on a hot Texas day."
+      ],
+      "outdoor_lab_activity": {
+        "title": "15-Minute Sit Spot Writing Protocol",
+        "duration_min": 40,
+        "equipment": ["Field notebook", "Pencils", "Sensory word bank prompt card"],
+        "procedure": "Students choose an individual 'Sit Spot' under a tree, remain silent for 7 minutes tuning in to wind and rustling leaves, then write a sensory reflection."
+      },
+      "formative_check": {
+        "question": "Which sentence contains the strongest sensory imagery suitable for a field journal entry?",
+        "options": [
+          "I saw a tree outside.",
+          "The rough, checkered mesquite bark smelled like warm cedar as rustling leaves whispered in the southern breeze.",
+          "Trees have green leaves that make shade.",
+          "It was very hot today."
+        ],
+        "correct_index": 1,
+        "explanation": "Sentence 2 uses sensory details (rough/checkered touch, warm cedar smell, whispering sound) to vividly transport the reader to the outdoor setting."
+      },
+      "citations": ["PLT Activity 5: Poet-Tree", "John Muir Laws Nature Journaling Curriculum"]
+    },
+    {
+      "id": "elem_heat_safety",
+      "title": "Beat the Heat: Thermoregulation, Hydration & Shade",
+      "tier": "3_5",
+      "grade_band": "Grades 3 - 5",
+      "subject": "Health & PE",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["Health 3.1A", "Health 4.3B", "Health 5.3A"],
+      "science_rtc": "Cause and Effect: Mechanism and Explanation",
+      "science_sep": "Analyzing and Interpreting Observational Data",
+      "prerequisites": ["elem_canopy_geometry"],
+      "mastery_points": 150,
+      "learning_objectives": [
+        "Explain how the human body cools itself through perspiration and how extreme humidity slows evaporation.",
+        "Compare surface temperatures between unshaded blacktop asphalt and shaded grass beneath tree canopies.",
+        "Identify the warning signs of heat exhaustion (dizziness, nausea, heavy sweating) and formulate an outdoor play safety plan."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Infrared Surface Temperature Audit",
+        "duration_min": 40,
+        "equipment": ["Non-contact infrared (IR) thermometer guns", "Thermal audit record sheet"],
+        "procedure": "Students aim IR guns at three zones: blacktop basketball court, exposed synthetic turf, and grass beneath a dense tree canopy, recording 30°F+ differences."
+      },
+      "formative_check": {
+        "question": "If the asphalt playground surface reaches 135°F at 1:00 PM, what is the best proactive health strategy for students?",
+        "options": [
+          "Run faster on the blacktop",
+          "Move physical activities to the shaded microforest lawn and drink water frequently",
+          "Wear heavy black jackets",
+          "Stop drinking water"
+        ],
+        "correct_index": 1,
+        "explanation": "Moving to tree shade dramatically reduces radiant thermal load, while hydration replaces fluids lost to cooling sweat."
+      },
+      "citations": ["Texas DSHS Heat Safety in Schools Guide", "UTRGV Cool Schools Public Health Brief"]
+    },
+    {
+      "id": "ms_photosynthesis_carbon",
+      "title": "Photosynthesis Thermodynamics & Carbon Sequestration",
+      "tier": "6_8",
+      "grade_band": "Grades 6 - 8",
+      "subject": "Science",
+      "theme_plt": 1,
+      "theme_plt_label": "What is a Forest?",
+      "teks_codes": ["Science 6.12A", "Science 7.12C", "Science 8.12A"],
+      "science_rtc": "Energy and Matter: Cycles and Conservation",
+      "science_sep": "Constructing Explanations and Designing Solutions",
+      "prerequisites": ["elem_food_webs"],
+      "mastery_points": 200,
+      "learning_objectives": [
+        "Write and balance the chemical equation for oxygenic photosynthesis: 6 CO2 + 6 H2O + light -> C6H12O6 + 6 O2.",
+        "Calculate the annual carbon storage mass in kilograms for a tree given its DBH (Diameter at Breast Height) using USDA Forest Service allometric formulas.",
+        "Explain how urban microforests act as regional carbon sinks offsetting greenhouse gas emissions."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Tree Carbon Vault Calculator",
+        "duration_min": 50,
+        "equipment": ["Tree DBH calipers or flexible forestry diameter tapes", "Campus tree inventory map", "Allometric carbon worksheet"],
+        "procedure": "Students measure DBH at 4.5 feet off the ground, look up allometric multipliers for Honey Mesquite or Live Oak, and calculate total metric kilograms of sequestered carbon."
+      },
+      "formative_check": {
+        "question": "Where does the vast majority of the physical dry biomass (wood, branches, trunk) of a 10-year-old tree originate?",
+        "options": [
+          "From solid minerals absorbed through the dirt",
+          "From carbon dioxide gas captured directly from the surrounding air through stomata",
+          "From water droplets absorbed during heavy thunderstorms",
+          "From commercial chemical fertilizer"
+        ],
+        "correct_index": 1,
+        "explanation": "Trees build their solid cellular cellulose and lignin skeletons out of carbon atoms extracted directly from atmospheric CO2 gas during photosynthesis."
+      },
+      "citations": ["USDA Forest Service i-Tree Eco Equations", "Nowak et al. (2006) Carbon Storage and Sequestration"]
+    },
+    {
+      "id": "ms_microclimate_physics",
+      "title": "Microclimate Thermodynamics & Albedo Effects",
+      "tier": "6_8",
+      "grade_band": "Grades 6 - 8",
+      "subject": "Science",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["Science 6.9A", "Science 7.9A", "Science 8.9C"],
+      "science_rtc": "Systems and System Models",
+      "science_sep": "Planning and Carrying Out Controlled Investigations",
+      "prerequisites": ["elem_heat_safety", "ms_photosynthesis_carbon"],
+      "mastery_points": 200,
+      "learning_objectives": [
+        "Define albedo (reflectance coefficient) and explain how dark asphalt (albedo ~ 0.08) absorbs more shortwave solar radiation than vegetative canopies (albedo ~ 0.22).",
+        "Differentiate between latent heat flux (evapotranspirative cooling) and sensible heat flux (hot surface radiant warming).",
+        "Map thermal contours across a campus using digital temperature probes."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Campus Urban Heat Island Micro-Transect",
+        "duration_min": 50,
+        "equipment": ["Digital thermocouples / psychrometers", "Campus site map", "Surface albedo color cards"],
+        "procedure": "Students walk a 200-meter transect from the parking lot into the center of the Cool Schools microforest, recording ambient air temp, surface temp, and relative humidity every 25 meters."
+      },
+      "formative_check": {
+        "question": "How do tree leaves physically cool ambient air compared to a canvas shade sail?",
+        "options": [
+          "Leaves blow fans with their branches",
+          "Leaves undergo evapotranspiration, converting liquid water to water vapor and absorbing sensible heat as latent heat",
+          "Leaves are made of cold ice crystals",
+          "Leaves absorb all oxygen from the atmosphere"
+        ],
+        "correct_index": 1,
+        "explanation": "Unlike inert canvas, living trees transpire gallons of water daily through stomata; the phase change from liquid to vapor actively chills surrounding ambient air."
+      },
+      "citations": ["Oke, T. R. (1987) Boundary Layer Climates", "Texas Trees Foundation Urban Heat Study"]
+    },
+    {
+      "id": "ms_trig_tree_height",
+      "title": "Forestry Trigonometry: Clinometers & Tangent Ratios",
+      "tier": "6_8",
+      "grade_band": "Grades 6 - 8",
+      "subject": "Mathematics",
+      "theme_plt": 3,
+      "theme_plt_label": "How Do We Sustain Our Forests?",
+      "teks_codes": ["Math 7.5C", "Math 8.7C", "Math 8.8D"],
+      "science_rtc": "Scale, Proportion, and Quantity",
+      "science_sep": "Using Mathematics and Computational Thinking",
+      "prerequisites": ["elem_canopy_geometry"],
+      "mastery_points": 200,
+      "learning_objectives": [
+        "Construct a functioning cardboard clinometer using a protractor, weighted string, and sighting straw.",
+        "Apply right-triangle trigonometry principles: Height = (Distance to tree * tan(Angle)) + Eye Height.",
+        "Estimate the projected 10-year timber and shade growth of native schoolyard saplings."
+      ],
+      "outdoor_lab_activity": {
+        "title": "DIY Clinometer Height Sweep",
+        "duration_min": 45,
+        "equipment": ["Protractor clinometers", "50-meter fiberglass measuring tape", "Scientific calculators"],
+        "procedure": "Students stand exactly 15 meters from a tree base, sight the top branch through the clinometer straw, read the zenith angle, and solve for total tree height."
+      },
+      "formative_check": {
+        "question": "A student stands 10 meters away from a Live Oak. Her clinometer reads 45°. If her eye height is 1.4 meters, how tall is the tree? (tan 45° = 1.0)",
+        "options": ["10.0 meters", "11.4 meters", "14.0 meters", "15.4 meters"],
+        "correct_index": 1,
+        "explanation": "Height = (Distance * tan 45°) + Eye Height = (10 * 1.0) + 1.4 = 11.4 meters."
+      },
+      "citations": ["Texas A&M Forest Service Measuring Trees Field Guide", "PLT Activity 67"]
+    },
+    {
+      "id": "ms_urban_watersheds",
+      "title": "Urban Hydrology: Infiltration, Runoff & Root Porosity",
+      "tier": "6_8",
+      "grade_band": "Grades 6 - 8",
+      "subject": "Science",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["Science 6.10B", "Science 7.8C", "Science 8.11C"],
+      "science_rtc": "Systems and System Models",
+      "science_sep": "Planning and Carrying Out Investigations",
+      "prerequisites": ["ms_microclimate_physics"],
+      "mastery_points": 200,
+      "learning_objectives": [
+        "Measure soil percolation and hydraulic conductivity rates in compacted turf versus mulched tree basins.",
+        "Explain how tree roots create macro-pores in heavy clay soils, preventing localized campus flooding during subtropical flash storms.",
+        "Calculate rainfall volume intercepted by tree leaves before reaching stormwater drains."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Coffee-Can Soil Infiltration Infiltrometer Lab",
+        "duration_min": 50,
+        "equipment": ["Open-ended metal cylinders", "Stopwatch", "Graduated water cylinder (500 mL)"],
+        "procedure": "Students pound cylinders 5 cm into soil under dense trees versus exposed sports fields, pour 500 mL of water, and time the infiltration rate."
+      },
+      "formative_check": {
+        "question": "Why does rainwater soak into soil much faster under a mature tree canopy than on an open turf lawn?",
+        "options": [
+          "Trees attract magnets in the water",
+          "Root channels and organic leaf mulch create macro-pores that increase soil permeability and prevent soil compaction",
+          "Turf grass has deeper taproots than trees",
+          "Tree leaves boil the water into steam"
+        ],
+        "correct_index": 1,
+        "explanation": "Tree roots break up compacted clay, and decomposing leaf litter creates spongy organic loam that rapidly absorbs stormwater."
+      },
+      "citations": ["USDA Natural Resources Conservation Service Soil Health Guide", "i-Tree Hydro Technical Manual"]
+    },
+    {
+      "id": "hs_agroecology_systems",
+      "title": "Urban Agroecology & Tamaulipan Native Polycultures",
+      "tier": "9_12",
+      "grade_band": "Grades 9 - 12 (Biology / Environmental Systems)",
+      "subject": "Science",
+      "theme_plt": 3,
+      "theme_plt_label": "How Do We Sustain Our Forests?",
+      "teks_codes": ["Biology 112.34.c.12B", "Environmental Systems 112.37.c.4E", "Aquatic Science 112.36.c.5B"],
+      "science_rtc": "Systems and System Models",
+      "science_sep": "Designing Solutions and Evaluating Trade-offs",
+      "prerequisites": ["ms_photosynthesis_carbon", "ms_urban_watersheds"],
+      "mastery_points": 250,
+      "learning_objectives": [
+        "Evaluate the ecological resilience of multi-strata polycultures (canopy, sub-canopy, thornscrub, groundcover) compared to monoculture turf grass.",
+        "Analyze nitrogen-fixation mechanisms in leguminous Fabaceae species (Honey Mesquite, Texas Ebony, Retama) that enrich depleted urban soils without synthetic inputs.",
+        "Design a multi-tiered food forest layout tailored to the subtropical, semi-arid Rio Grande Valley biome."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Root Nodule & Polyculture Layer Audit",
+        "duration_min": 55,
+        "equipment": ["Soil corers", "Hand lenses", "Polyculture stratum assessment matrix"],
+        "procedure": "Students catalog vertical canopy layers in a microforest zone and extract gentle root samples of wild legumes to identify Rhizobium bacterial nodules."
+      },
+      "formative_check": {
+        "question": "How do native leguminous trees like Texas Ebony (*Ebenopsis ebano*) naturally fertilize poor urban soils?",
+        "options": [
+          "They absorb nitrogen through leaf stomata",
+          "They harbor symbiotic *Rhizobium* bacteria in root nodules that fix atmospheric N2 into bioavailable ammonium (NH4+)",
+          "They manufacture synthetic chemical pellets",
+          "They kill surrounding weeds with poison"
+        ],
+        "correct_index": 1,
+        "explanation": "Symbiotic bacteria in legume root nodules convert inert atmospheric N2 gas into nitrogen compounds that nourish the tree and adjacent plants."
+      },
+      "citations": ["Gliessman, S. R. (2014) Agroecology: The Ecology of Sustainable Food Systems", "UTRGV Agroecology Research Program"]
+    },
+    {
+      "id": "hs_environmental_justice",
+      "title": "Environmental Justice, Redlining & Urban Heat Equity",
+      "tier": "9_12",
+      "grade_band": "Grades 9 - 12 (World Geography / APES)",
+      "subject": "Social Studies",
+      "theme_plt": 4,
+      "theme_plt_label": "What is Our Responsibility?",
+      "teks_codes": ["World Geography 113.43.c.16C", "World History 113.42.c.28E", "Environmental Systems 112.37.c.9D"],
+      "science_rtc": "Cause and Effect: Mechanism and Explanation",
+      "science_sep": "Engaging in Argument from Evidence",
+      "prerequisites": ["ms_microclimate_physics"],
+      "mastery_points": 250,
+      "learning_objectives": [
+        "Analyze historical correlations between 20th-century municipal zoning, disinvestment, and modern tree canopy deficits in underserved neighborhoods.",
+        "Interpret GIS demographic layers showing higher daytime surface temperatures in low-income school districts across the Texas border region.",
+        "Draft a data-driven civic proposal for municipal shade equity and tree planting investments."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Neighborhood Canopy Disparity Mapping",
+        "duration_min": 55,
+        "equipment": ["Laptops/Tablets with ArcGIS StoryMaps / Google Earth Engine", "CDC SVI Census overlay"],
+        "procedure": "Students analyze satellite vegetation indices (NDVI) across Hidalgo County zip codes and correlate canopy percentage against household income and pediatric asthma rates."
+      },
+      "formative_check": {
+        "question": "What is a primary systemic cause of the 'tree canopy deficit' observed in many lower-income urban neighborhoods?",
+        "options": [
+          "Trees refuse to grow in certain soils",
+          "Decades of inequitable municipal infrastructure investment, redlining, and lack of green space zoning",
+          "Residents in low-income areas dislike trees",
+          "Lower-income neighborhoods receive less total sunlight"
+        ],
+        "correct_index": 1,
+        "explanation": "Historical redlining and unequal capital allocation produced neighborhoods with dense pavement and minimal municipal tree planting programs."
+      },
+      "citations": ["Hoffman et al. (2020) The Effects of Historical Housing Policies on Resident Exposure to Intra-Urban Heat", "Texas Trees Foundation Dallas Urban Forest Study"]
+    },
+    {
+      "id": "hs_allometric_carbon_modeling",
+      "title": "Advanced Biomass Allometry & i-Tree Engine Mathematics",
+      "tier": "9_12",
+      "grade_band": "Grades 9 - 12 (AP Environmental Science / Pre-Calculus)",
+      "subject": "Mathematics",
+      "theme_plt": 3,
+      "theme_plt_label": "How Do We Sustain Our Forests?",
+      "teks_codes": ["Pre-Calculus 111.42.c.2I", "Environmental Systems 112.37.c.2J", "Statistics 111.47.c.3A"],
+      "science_rtc": "Scale, Proportion, and Quantity",
+      "science_sep": "Using Mathematics and Computational Thinking",
+      "prerequisites": ["ms_trig_tree_height", "ms_photosynthesis_carbon"],
+      "mastery_points": 250,
+      "learning_objectives": [
+        "Formulate non-linear power-law and logarithmic regression equations modeling tree dry biomass: ln(M) = a + b*ln(DBH).",
+        "Calculate annual volumetric growth increment and calculate economic ecosystem service valuation using standard carbon offset market pricing ($/metric ton CO2e).",
+        "Perform sensitivity analysis on tree mortality versus canopy replacement timelines over a 10-year cycle."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Campus Whole-Forest Biomass Census",
+        "duration_min": 60,
+        "equipment": ["Forestry tree calipers", "Laser rangefinders", "Spreadsheet calculation model"],
+        "procedure": "Students survey 25 trees on campus, measure exact DBH and crown spread, compute dry biomass in kilograms, and monetize their annual air pollution filtration value."
+      },
+      "formative_check": {
+        "question": "If an allometric equation for Honey Mesquite is ln(M) = -2.13 + 2.45*ln(DBH), what happens to predicted dry biomass M if DBH doubles?",
+        "options": [
+          "Biomass exactly doubles (increases by 2x)",
+          "Biomass increases non-linearly by approximately 2^2.45 ≈ 5.46 times",
+          "Biomass stays constant",
+          "Biomass decreases"
+        ],
+        "correct_index": 1,
+        "explanation": "Because power-law scaling has an exponent greater than 2, a doubling of trunk diameter produces a more than five-fold increase in structural mass and carbon."
+      },
+      "citations": ["Chave et al. (2014) Improved allometric models to estimate the aboveground biomass of tropical forests", "USDA Forest Service General Technical Report"]
+    },
+    {
+      "id": "comm_sombra_sana",
+      "title": "Sombra Sana: Backyard Shade Placement & Energy Savings",
+      "tier": "community",
+      "grade_band": "Parent & Community Workshop",
+      "subject": "Interdisciplinary",
+      "theme_plt": 3,
+      "theme_plt_label": "How Do We Sustain Our Forests?",
+      "teks_codes": ["Community Lifelong Education"],
+      "science_rtc": "Energy and Matter",
+      "science_sep": "Designing Practical Engineering Solutions",
+      "prerequisites": [],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Determine optimal yard placement (South and West facing walls) to block intense afternoon solar radiant heat on residential homes.",
+        "Calculate estimated monthly electricity bill savings (15-25% reduction in AC load) from mature native shade trees.",
+        "Master the 'champagne glass' planting technique ensuring the root flare is never buried."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Community Tree Planting Demonstration",
+        "duration_min": 60,
+        "equipment": ["Shovels", "Native saplings (Cedar Elm / Texas Ebony)", "Wood-chip mulch", "Soaker hoses"],
+        "procedure": "Workshop participants work together to dig a planting hole 3x wider than the root ball, position the tree with root flare 1 inch above grade, and apply a 3-inch doughnut mulch ring."
+      },
+      "formative_check": {
+        "question": "Which side of a South Texas home receives the most intense, heating afternoon sunlight in July and August?",
+        "options": ["The North-facing wall", "The West-facing wall", "The East-facing wall at sunrise", "Directly under the foundation"],
+        "correct_index": 1,
+        "explanation": "West-facing exterior walls absorb punishing afternoon solar radiation when outdoor ambient temperatures peak, making West-side shade trees the most effective for lowering electric bills."
+      },
+      "citations": ["Texas Trees Foundation Residential Energy Study", "Texas A&M AgriLife Extension Tree Care Guide"]
+    },
+    {
+      "id": "comm_olla_irrigation",
+      "title": "Agua y Vida: Water-Wise Olla & Drip Irrigation",
+      "tier": "community",
+      "grade_band": "Parent & Community Workshop",
+      "subject": "Interdisciplinary",
+      "theme_plt": 3,
+      "theme_plt_label": "How Do We Sustain Our Forests?",
+      "teks_codes": ["Community Lifelong Education"],
+      "science_rtc": "Systems and System Models",
+      "science_sep": "Constructing Practical Solutions",
+      "prerequisites": ["comm_sombra_sana"],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Construct low-cost sub-surface clay pot (olla) irrigation systems using unglazed terracotta pots.",
+        "Explain how soil moisture tension draws water through micro-porous terracotta walls only when surrounding soil is dry, achieving 70%+ water savings compared to sprinklers.",
+        "Establish an emergency drought watering schedule for young neighborhood trees."
+      ],
+      "outdoor_lab_activity": {
+        "title": "DIY Olla Pot Assembly & Soil Burying Workshop",
+        "duration_min": 45,
+        "equipment": ["Unglazed terracotta pots & saucers", "100% silicone sealant", "Watering cans"],
+        "procedure": "Participants seal pot drain holes with silicone, bury the olla up to its neck adjacent to a young sapling root zone, fill with water, and cover with a lid."
+      },
+      "formative_check": {
+        "question": "Why is sub-surface olla irrigation significantly more efficient than overhead lawn sprinklers in South Texas?",
+        "options": [
+          "Ollas purify water with electricity",
+          "Water is released directly underground at the root zone with zero loss to surface air evaporation or wind drift",
+          "Terracotta pots make rain clouds form",
+          "Ollas use saltwater"
+        ],
+        "correct_index": 1,
+        "explanation": "Because water is released below ground only when soil tension demands it, evaporation loss is virtually zero."
+      },
+      "citations": ["Fanslow et al. (2018) Ancient Irrigation in Modern Arid Zones", "UTRGV Agroecology Water Conservation Lab"]
+    },
+    {
+      "id": "comm_pechita_kitchen",
+      "title": "La Cocina del Monte: Mesquite Pod Milling & Foraging",
+      "tier": "community",
+      "grade_band": "Parent & Community Workshop",
+      "subject": "Interdisciplinary",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["Community Cultural Heritage"],
+      "science_rtc": "Structure and Function",
+      "science_sep": "Obtaining and Communicating Traditional Ecological Knowledge",
+      "prerequisites": [],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Identify and safely harvest ripe, golden, crisp Honey Mesquite bean pods (pechita) during dry summer months.",
+        "Demonstrate the process of drying, hammer-milling, and sifting mesquite flour.",
+        "Prepare nutrient-dense, naturally sweet, low-glycemic traditional recipes (atole, mesquite energy bars)."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Community Pechita Harvest & Milling Bee",
+        "duration_min": 60,
+        "equipment": ["Harvest baskets", "High-power grain mill / Vitamix", "Flour sifting screens", "Recipe cards"],
+        "procedure": "Participants harvest clean pods from verified campus trees, test snap crispness, run pods through the mill, sift out fibrous seed coats, and package aromatic flour."
+      },
+      "formative_check": {
+        "question": "What is a key nutritional benefit of wild-harvested Honey Mesquite flour for families managing blood sugar?",
+        "options": [
+          "It contains pure high-fructose corn syrup",
+          "It is naturally sweet yet rich in soluble dietary fiber and protein with a low glycemic index",
+          "It contains artificial chemical sweeteners",
+          "It has zero calories"
+        ],
+        "correct_index": 1,
+        "explanation": "Mesquite flour contains complex polysaccharides and dietary fiber that slow carbohydrate absorption, preventing sharp blood sugar spikes."
+      },
+      "citations": ["Tull, D. (2013) Edible and Useful Plants of Texas", "Native Plant Society of Texas (NPSOT) South Texas Chapter"]
+    },
+    {
+      "id": "grad_sensor_calibration",
+      "title": "Low-Cost PM2.5 Sensor Metrology & Empirical RH Correction",
+      "tier": "college",
+      "grade_band": "Undergraduate / Graduate Laboratory",
+      "subject": "Environmental Engineering & Public Health",
+      "theme_plt": 3,
+      "theme_plt_label": "How Do We Sustain Our Forests?",
+      "teks_codes": ["UTRGV Graduate Agroecology / Engineering ENVR 6301"],
+      "science_rtc": "Systems and System Models",
+      "science_sep": "Analyzing and Interpreting Complex Data Sets",
+      "prerequisites": ["hs_allometric_carbon_modeling"],
+      "mastery_points": 300,
+      "learning_objectives": [
+        "Analyze the optical light-scattering physics of laser particle counters (Plantower PMS5003 / PurpleAir).",
+        "Derive hygroscopic growth correction curves when relative humidity exceeds 70%: PM2.5_cal = PM2.5_raw / (1 + a*(RH/(100-RH))^b).",
+        "Co-locate low-cost monitors with state reference stations (TCEQ CAMS 80) and compute linear regression coefficients (R^2, RMSE)."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Sensor Calibration & Data Pipeline Deployment",
+        "duration_min": 90,
+        "equipment": ["PMS5003 optical sensors", "ESP32 microcontrollers", "Reference BAM-1020 dataset", "Python Jupyter notebooks"],
+        "procedure": "Graduate researchers log 7 days of 1-minute raw sensor stream, filter humidity spikes, run non-linear regression, and deploy calibrated time-series feeds to the dashboard."
+      },
+      "formative_check": {
+        "question": "Why do uncalibrated low-cost optical particulate sensors report artificially high PM2.5 mass concentrations during humid morning hours in the Rio Grande Valley?",
+        "options": [
+          "Lasers lose power in humidity",
+          "Hygroscopic aerosols absorb ambient water vapor, swelling in diameter and scattering more laser light which the algorithm misinterprets as solid particulate mass",
+          "Moisture shorts out the electronic circuit board",
+          "Trees release heavy smoke in the morning"
+        ],
+        "correct_index": 1,
+        "explanation": "Hygroscopic particles grow in size due to water condensation, scattering more light and leading uncorrected algorithms to over-estimate actual solid dry mass."
+      },
+      "citations": ["Morawska et al. (2018) Atmospheric Environment", "EPA Air Sensor Guidebook (2021)"]
+    },
+    {
+      "id": "grad_wbgt_thermodynamics",
+      "title": "Microclimate Energy Budgets & Wet-Bulb Globe Temperature Modeling",
+      "tier": "college",
+      "grade_band": "Undergraduate / Graduate Laboratory",
+      "subject": "Atmospheric Physics & Agroecology",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["UTRGV Graduate Agroecology ENVR 6305"],
+      "science_rtc": "Energy and Matter: Fluxes and Conservation",
+      "science_sep": "Constructing Mathematical and Physical Models",
+      "prerequisites": ["ms_microclimate_physics", "grad_sensor_calibration"],
+      "mastery_points": 300,
+      "learning_objectives": [
+        "Model outdoor thermal comfort using the full Wet-Bulb Globe Temperature equation: WBGT = 0.7*Tnw + 0.2*Tg + 0.1*Tdb.",
+        "Quantify sensible heat flux reduction beneath a dense microforest canopy versus bare synthetic playground surfaces.",
+        "Calculate the mean radiant temperature (Tmrt) reduction achieved by multi-species thornscrub canopy foliage."
+      ],
+      "outdoor_lab_activity": {
+        "title": "High-Precision Micrometeorological Mast Profiling",
+        "duration_min": 90,
+        "equipment": ["Kestrel 5400 Heat Stress Trackers", "Black globe thermometers", "Thermal IR imaging cameras"],
+        "procedure": "Researchers set up paired stations over asphalt and microforest canopy, measuring continuous 1-second solar radiation, wind speed, dry-bulb, natural wet-bulb, and black globe metrics."
+      },
+      "formative_check": {
+        "question": "In the standard WBGT formula, why is natural wet-bulb temperature (Tnw) given the highest weighting (70%)?",
+        "options": [
+          "It measures the temperature of rain",
+          "It directly reflects the human body's physiological limit to cool itself through evaporative sweat dissipation in humid conditions",
+          "It is the easiest sensor to manufacture",
+          "It measures wind speed"
+        ],
+        "correct_index": 1,
+        "explanation": "Tnw reflects evaporative potential; when air is hot and saturated with moisture, sweat cannot evaporate, representing the greatest physiological risk for heat stroke."
+      },
+      "citations": ["Liljegren et al. (2008) Modeling the Wet Bulb Globe Temperature", "UT Southwestern Medical Center Pediatric Heat Study"]
+    },
+    {
+      "id": "grad_spatial_epidemiology",
+      "title": "Spatial Epidemiology & Pediatric Heat-Health Vulnerability",
+      "tier": "college",
+      "grade_band": "Graduate Seminar / Public Health",
+      "subject": "Environmental Epidemiology",
+      "theme_plt": 4,
+      "theme_plt_label": "What is Our Responsibility?",
+      "teks_codes": ["UTRGV School of Medicine / Public Health PUBH 6310"],
+      "science_rtc": "Cause and Effect: Mechanism and Explanation",
+      "science_sep": "Engaging in Evidence-Based Epidemiological Argument",
+      "prerequisites": ["hs_environmental_justice", "grad_wbgt_thermodynamics"],
+      "mastery_points": 300,
+      "learning_objectives": [
+        "Design an IRB-compliant, FERPA-adherent spatial epidemiological study investigating pediatric emergency department admissions for heat and asthma in Hidalgo County.",
+        "Conduct spatial bivariate Moran's I analysis correlating Landsat 9 surface thermal anomalies with school district absenteeism rates.",
+        "Evaluate the public health return-on-investment (ROI) of targeted urban afforestation in reducing pediatric thermal morbidity."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Geospatial Epidemiological Vulnerability Synthesis",
+        "duration_min": 75,
+        "equipment": ["QGIS / R Spatial packages", "Aggregated Texas DSHS health surveillance data", "Landsat 9 thermal rasters"],
+        "procedure": "Graduate researchers construct a multivariate regression model assessing whether a 10% increase in school campus canopy coverage is associated with a statistically significant decline in heat-related sick absences."
+      },
+      "formative_check": {
+        "question": "When designing an educational/public health dashboard under strict COPPA and FERPA mandates, how must pediatric health outcomes be reported?",
+        "options": [
+          "With individual student names and home addresses",
+          "Exclusively as de-identified, anonymized population rates aggregated at the campus or census tract level",
+          "Only using social security numbers",
+          "No health data can ever be analyzed by researchers"
+        ],
+        "correct_index": 1,
+        "explanation": "FERPA and COPPA require absolute protection of student privacy, mandating that all research data be stripped of PII and aggregated at the campus or tract level."
+      },
+      "citations": ["Texas DSHS Public Health Data Policies", "Harlan et al. (2006) Neighborhood Microclimates and Vulnerability"]
+    },
+    {
+      "id": "spirit_shinrin_yoku",
+      "title": "Shinrin-yoku: Contemplative Forest Bathing & Sensory Grounding",
+      "tier": "spiritual",
+      "grade_band": "Contemplative & Humanistic Practice",
+      "subject": "Contemplative Ecology & Well-being",
+      "theme_plt": 4,
+      "theme_plt_label": "What is Our Responsibility?",
+      "teks_codes": ["Mindfulness & Mental Well-being"],
+      "science_rtc": "Systems and Stability",
+      "science_sep": "Observing and Documenting Phenomenological Experience",
+      "prerequisites": [],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Practice mindful sensory immersion (Shinrin-yoku) beneath mature campus canopy to reduce sympathetic nervous system stress.",
+        "Identify phytoncides (natural aromatic antimicrobial organic compounds) released by native evergreen and thornscrub foliage.",
+        "Cultivate personal ecological attentiveness through silent sensory grounding."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Guided 20-Minute Sensory Forest Bathing Protocol",
+        "duration_min": 30,
+        "equipment": ["Sitting cushions or mats", "Silence bell", "Reflection cards"],
+        "procedure": "Participants enter the campus microforest in complete silence, focus on 5 things they can see (dappled light/komorebi), 4 things they can feel, 3 things they can hear, 2 things they can smell, and 1 slow breath."
+      },
+      "formative_check": {
+        "question": "What are 'phytoncides' and how do they benefit human health during a walk through a tree canopy?",
+        "options": [
+          "Artificial chemical sprays used for cleaning",
+          "Natural volatile aromatic compounds released by plants that have been shown to lower cortisol, blood pressure, and boost immune activity",
+          "Dangerous poisons produced by dead trees",
+          "Plastic microfibers floating in the air"
+        ],
+        "correct_index": 1,
+        "explanation": "Trees emit phytoncides to protect themselves from fungal and insect attack; inhaling these organic aerosols has been clinically shown to reduce human stress hormones and enhance immune function."
+      },
+      "citations": ["Li, Q. (2010) Shinrin-yoku (Forest Bathing) and Immune Function", "Kaplan & Kaplan (1989) Attention Restoration Theory"]
+    },
+    {
+      "id": "spirit_sacred_ahuehuete",
+      "title": "The Sacred Ahuehuete: Ancient Living Witnesses of the Rio Grande",
+      "tier": "spiritual",
+      "grade_band": "Cultural & Spiritual Heritage",
+      "subject": "Cultural Heritage & Philosophy",
+      "theme_plt": 2,
+      "theme_plt_label": "Why Do Forests Matter?",
+      "teks_codes": ["Regional Cultural Heritage"],
+      "science_rtc": "Stability and Change Over Deep Time",
+      "science_sep": "Synthesizing Historical, Cultural, and Ecological Records",
+      "prerequisites": ["elem_indigenous_mesquite"],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Explore the sacred cultural status of the Montezuma Cypress (*Taxodium mucronatum* / *Ahuehuete*) across pre-Columbian Mesoamerica and the South Texas borderlands.",
+        "Reflect on individual trees as 'Living Historical Archives' that endure for 1,000+ years, witnessing centuries of human cultural transformations.",
+        "Articulate the concept of reciprocal reverence between human communities and riparian old-growth ecosystems."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Living Witness Contemplation & Tree Biography",
+        "duration_min": 40,
+        "equipment": ["Charcoal sketch paper", "Historical timeline cards of the Rio Grande Valley (1000 CE - Present)"],
+        "procedure": "Standing before a mature Montezuma Cypress or Live Oak, participants map historical milestones that occurred during the tree's lifespan and compose an honorific biography."
+      },
+      "formative_check": {
+        "question": "What does the Nahuatl name 'Ahuehuete' translate to, and why is this ancient tree revered along the Rio Grande?",
+        "options": [
+          "It means 'Thorn of the Desert' and was used as a fence",
+          "It translates to 'Old Man of the Water', revered for its 1,000+ year lifespan and sacred presence along riverways",
+          "It translates to 'Fast Growing Weed'",
+          "It means 'Tree with Yellow Fruit'"
+        ],
+        "correct_index": 1,
+        "explanation": "Ahuehuete signifies 'old man of the water' in Nahuatl, honoring the tree's centuries-long lifespan, massive trunk buttresses, and essential riparian ecosystem guardianship."
+      },
+      "citations": ["Cavazos, R. (2016) Native Flora and Cultural Traditions of the RGV", "Mexican National Institute of Anthropology and History (INAH) Sacred Trees Archive"]
+    },
+    {
+      "id": "spirit_seven_generations",
+      "title": "The Seven-Generations Ethic: An Intergenerational Covenant",
+      "tier": "spiritual",
+      "grade_band": "Environmental Ethics & Civic Stewardship",
+      "subject": "Environmental Philosophy",
+      "theme_plt": 4,
+      "theme_plt_label": "What is Our Responsibility?",
+      "teks_codes": ["Environmental Ethics & Civic Stewardship"],
+      "science_rtc": "Systems, Stability, and Change",
+      "science_sep": "Communicating Ethical and Philosophical Frameworks",
+      "prerequisites": ["spirit_shinrin_yoku", "hs_environmental_justice"],
+      "mastery_points": 100,
+      "learning_objectives": [
+        "Articulate the Indigenous 'Seven-Generations' philosophy: evaluating current environmental actions by their impact on descendants living 150+ years in the future.",
+        "Examine the physical reality that a tree planted on a school campus today will provide its maximum shade and ecological value to students seven generations ahead.",
+        "Compose an archival 'Letter to a Student in 2176' establishing an intergenerational covenant of care."
+      ],
+      "outdoor_lab_activity": {
+        "title": "Seven-Generations Time Capsule & Dedication Ceremony",
+        "duration_min": 45,
+        "equipment": ["Archival parchment paper", "Waterproof capsule container", "Tree tag marker"],
+        "procedure": "Students write commitments to protect the young campus microforest and bury an archival dedication near a sapling to be preserved for future generations."
+      },
+      "formative_check": {
+        "question": "How does the 'Seven-Generations' principle change how a community views planting an oak or cypress sapling that takes 50 years to mature?",
+        "options": [
+          "It encourages people to cut down trees immediately for fast cash",
+          "It reframes tree planting as an act of selfless love and stewardship for descendants we will never meet",
+          "It suggests that only fast-growing annual weeds should be planted",
+          "It teaches that nature has no long-term value"
+        ],
+        "correct_index": 1,
+        "explanation": "The Seven-Generations philosophy reminds us that our ancestors planted shade for us, and our highest ecological duty is to plant canopy for descendants far into the future."
+      },
+      "citations": ["Kimmerer, R. W. (2013) Braiding Sweetgrass: Indigenous Wisdom, Scientific Knowledge and the Teachings of Plants", "Haudenosaunee Environmental Protection Philosophy"]
+    }
+  ]
+}

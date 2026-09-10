@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Comprehensive Multi-Subject TEKS Forest Literacy Gap Assessment across Science, Math, Social Studies, ELAR, Fine Arts, Health/PE, and Lifelong Learning" />
+  <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation" />
+  <title>Master Multi-Subject TEKS Gap Assessment | Forest Literacy</title>
+  
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .filter-chip {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .filter-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .filter-chip.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .master-gap-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .master-gap-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-border);
+    }
+
+    .subject-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+    }
+    .subject-pill.science { background: #e8f5e9; color: #1b5e20; }
+    .subject-pill.math { background: #ede7f6; color: #4a148c; }
+    .subject-pill.social { background: #fff3e0; color: #e65100; }
+    .subject-pill.elar { background: #e3f2fd; color: #0d47a1; }
+    .subject-pill.art { background: #fce4ec; color: #880e4f; }
+    .subject-pill.health { background: #e0f2f1; color: #004d40; }
+    .subject-pill.advanced { background: #f3e5f5; color: #6a1b9a; }
+
+    .blindspot-box {
+      background: #fff8f8;
+      border-left: 4px solid #ef5350;
+      padding: 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .solution-box {
+      background: #f4faf5;
+      border-left: 4px solid #2e7d32;
+      padding: 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: #1b2e21;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="brand-logo">🎓🌳</div>
+        <div class="brand-title">
+          <h1>Master <span>TEKS Gap Assessment</span></h1>
+          <p>All Subjects & All Grade Levels (K–12, Higher Ed & Community)</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a href="story_report.html" class="btn-header" style="background: #e8f5e9; color: #1b5e20; border-color: #a5d6a7; font-weight: 700;" title="View Executive Story & TEKS Multiplier Report">
+          📰 Story Report
+        </a>
+        <a href="index.html" class="btn-header">
+          🗺️ Knowledge Graph
+        </a>
+        <a href="elar_art_gap_assessment.html" class="btn-header">
+          📖 ELAR & Art Deep-Dive
+        </a>
+        <a href="../../index.html" class="btn-header primary">
+          Main Dashboard
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- Hero Introduction -->
+    <section class="hero-banner">
+      <div class="hero-text">
+        <h2>Cross-Disciplinary Standards Mapping & Gap Analysis</h2>
+        <p>
+          Most environmental programs suffer from "STEM Tunnel Vision," reducing trees to simple biology worksheets. This master matrix identifies <strong>untouched state standards across Science, Math, Social Studies, ELAR, Fine Arts, Health/PE, and Lifelong Education</strong>, showing how living schoolyard microforests bridge every academic domain.
+        </p>
+        <div class="hero-badge-group">
+          <span class="hero-pill">✓ 2024–2025 Science 3D TEKS</span>
+          <span class="hero-pill">✓ Real-World Mathematics & Trig</span>
+          <span class="hero-pill">✓ Social Studies & Heat Equity</span>
+          <span class="hero-pill">✓ ELAR 7 Integrated Strands</span>
+          <span class="hero-pill">✓ Fine Arts 4 Strands</span>
+          <span class="hero-pill">✓ Health & Heat Safety</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters Bar -->
+    <section class="filter-bar-container">
+      
+      <!-- Subject Filter Chips -->
+      <div class="flex flex-col gap-2">
+        <div class="text-xs font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Filter by Subject:</div>
+        <div class="flex gap-2 overflow-x-auto pb-1" id="subjectChips">
+          <button type="button" class="filter-chip active" data-subject="all">🌟 All Subjects</button>
+          <button type="button" class="filter-chip" data-subject="Science">🌿 Science (3D TEKS)</button>
+          <button type="button" class="filter-chip" data-subject="Mathematics">📐 Mathematics</button>
+          <button type="button" class="filter-chip" data-subject="Social Studies">🪵 Social Studies & History</button>
+          <button type="button" class="filter-chip" data-subject="ELAR">📚 ELAR & Literature</button>
+          <button type="button" class="filter-chip" data-subject="Fine Arts">🎨 Visual Arts</button>
+          <button type="button" class="filter-chip" data-subject="Health & PE">❤️ Health & Heat Safety</button>
+          <button type="button" class="filter-chip" data-subject="Lifelong">🔬 Lifelong & Graduate</button>
+        </div>
+      </div>
+
+      <!-- Grade Band Filter Chips -->
+      <div class="flex flex-col gap-2">
+        <div class="text-xs font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Filter by Grade Level:</div>
+        <div class="flex gap-2 overflow-x-auto pb-1" id="gradeChips">
+          <button type="button" class="filter-chip active" data-grade="all">All Grade Levels</button>
+          <button type="button" class="filter-chip" data-grade="k2">🌱 K–2 Primary</button>
+          <button type="button" class="filter-chip" data-grade="3_5">🌿 3–5 Elementary</button>
+          <button type="button" class="filter-chip" data-grade="6_8">🌳 6–8 Middle School</button>
+          <button type="button" class="filter-chip" data-grade="9_12">🌲 9–12 High School</button>
+          <button type="button" class="filter-chip" data-grade="advanced">🔬 College & Community</button>
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <div class="search-box" style="margin-top: 6px;">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="gapSearchInput" class="search-input" placeholder="Search by TEKS code (e.g. 5.12B, 8.7C), subject, clinometer, mesquite, albedo, redlining..." />
+      </div>
+
+    </section>
+
+    <!-- Master Gap Assessment Cards Grid -->
+    <section id="gapCardsGrid" class="modules-grid" style="grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));">
+      <!-- Populated dynamically by JavaScript below -->
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>
+      <strong>UTRGV Agroecology Project & Texas Trees Foundation</strong> · Master Multi-Subject TEKS Gap Assessment  
+    </p>
+    <p style="font-size: 0.78rem; color: #888; margin-top: 4px;">
+      Compliant with Texas Essential Knowledge and Skills (TEA) · Open Academic Distribution
+    </p>
+  </footer>
+
+  <!-- Script for Dynamic Filtering -->
+  <script>
+    const GAP_DATA = [
+      // 1. SCIENCE
+      {
+        subject: "Science",
+        subject_class: "science",
+        grade: "k2",
+        grade_label: "K–2 Primary",
+        teks: "Sci K.12A, 1.12B, 2.12B",
+        title: "Tree Bark Protective Armor & Structure",
+        blindspot: "Indoor worksheets name roots and leaves on flat paper without students experiencing how physical corky bark insulates internal cambium from extreme heat.",
+        solution_module: "Tree Hugger Sensory Anatomy Walk",
+        solution_desc: "Students inspect thick Honey Mesquite bark with hand lenses, observing how thick bark shields internal vascular highways from South Texas summer heat."
+      },
+      {
+        subject: "Science",
+        subject_class: "science",
+        grade: "3_5",
+        grade_label: "3–5 Elementary",
+        teks: "Sci 3.12B, 4.12B, 5.12B",
+        title: "Solar Photon Capture & Trophic Energy Flow",
+        blindspot: "Food webs are drawn as flat circular arrows without students understanding that all biomass and glucose originates from solar photon energy captured by green leaves.",
+        solution_module: "Yarn Web of Life & Solar Energy Flow",
+        solution_desc: "Students simulate multi-tiered trophic cascades from solar radiation to native producers, primary consumers, predators, and decomposers."
+      },
+      {
+        subject: "Science",
+        subject_class: "science",
+        grade: "6_8",
+        grade_label: "6–8 Middle School",
+        teks: "Sci 6.9A, 7.9A, 8.9C",
+        title: "Microclimate Thermodynamics & Albedo Transect",
+        blindspot: "Urban heat is taught as an abstract global concept without measuring micro-scale thermodynamic differences between asphalt and transpiring canopies.",
+        solution_module: "Campus Urban Heat Island Micro-Transect",
+        solution_desc: "Students walk 200m transects with digital thermocouples, measuring surface albedo reflection vs latent heat evapotranspiration cooling."
+      },
+      {
+        subject: "Science",
+        subject_class: "science",
+        grade: "9_12",
+        grade_label: "9–12 High School",
+        teks: "Bio 12B, EnvSys 4E, AquaticSci 5B",
+        title: "Native Legume Rhizobium Nitrogen Fixation",
+        blindspot: "Nutrient cycles are taught via synthetic chemical diagrams, ignoring symbiotic native polycultures that regenerate depleted urban soils naturally.",
+        solution_module: "Urban Agroecology & Polyculture Layer Audit",
+        solution_desc: "Students extract root cores of wild native legumes (Texas Ebony, Retama) to observe leghaemoglobin in Rhizobium nodules fixing atmospheric N2."
+      },
+
+      // 2. MATHEMATICS
+      {
+        subject: "Mathematics",
+        subject_class: "math",
+        grade: "k2",
+        grade_label: "K–2 Primary",
+        teks: "Math K.7A, 1.7B, 2.9D",
+        title: "Body Pacing & Tree Trunk Hug Measurements",
+        blindspot: "Measurement is taught with plastic rulers on flat classroom desks. Students do not learn to measure non-standard organic spatial distances outdoors.",
+        solution_module: "Body Pacing & Tree Trunk Hugs",
+        solution_desc: "Students use arm-spans and foot-paces to measure trunk circumference and shadow lengths, comparing standard vs non-standard measurement units."
+      },
+      {
+        subject: "Mathematics",
+        subject_class: "math",
+        grade: "3_5",
+        grade_label: "3–5 Elementary",
+        teks: "Math 3.6C, 4.8C, 5.4H",
+        title: "Tree Geometry & Circular Shade Footprint (Area = πr²)",
+        blindspot: "Area and perimeter are taught exclusively as rectangular squares on grid paper (A = l * w). Students never model real-world organic circular shapes in nature.",
+        solution_module: "Tree Geometry: Ground Shadow Stomp",
+        solution_desc: "Students calibrate personal pace length, pace out 4 shadow radii (N, S, E, W), and apply Area = π * r² to compute shaded cooling square footage."
+      },
+      {
+        subject: "Mathematics",
+        subject_class: "math",
+        grade: "6_8",
+        grade_label: "6–8 Middle School",
+        teks: "Math 7.5C, 8.7C, 8.8D",
+        title: "Forestry Trigonometry & Protractor Clinometer Tangents",
+        blindspot: "Right-triangle trigonometry and tangent ratios are taught as abstract textbook triangles with zero real-world forestry field applications.",
+        solution_module: "DIY Clinometer Height Sweep",
+        solution_desc: "Students construct protractor clinometers, sight canopy tops at a 15m baseline, and apply Height = (Distance * tan θ) + Eye Height."
+      },
+      {
+        subject: "Mathematics",
+        subject_class: "math",
+        grade: "9_12",
+        grade_label: "9–12 High School",
+        teks: "Pre-Calc 2I, EnvSys 2J, Stats 3A",
+        title: "Allometric Biomass & i-Tree Engine Logarithmic Models",
+        blindspot: "Advanced math (Algebra II, Pre-Calculus, Statistics) rarely connects with environmental economics or non-linear power-law biological allometry.",
+        solution_module: "Campus Whole-Forest Biomass Census",
+        solution_desc: "Students formulate power-law regressions ln(M) = a + b*ln(DBH), calculate dry biomass carbon stock, and monetize air filtration value ($/ton CO2e)."
+      },
+
+      // 3. SOCIAL STUDIES
+      {
+        subject: "Social Studies",
+        subject_class: "social",
+        grade: "k2",
+        grade_label: "K–2 Primary",
+        teks: "SS K.4B, 1.5A, 2.5A",
+        title: "Campus Neighborhood Physical Geography & Shade Maps",
+        blindspot: "Social studies focuses on abstract town maps, missing how trees create shared public common goods and safe microclimates on school grounds.",
+        solution_module: "Our Campus Neighborhood: Mapping Shade Sanctuaries",
+        solution_desc: "Students draw bird's-eye maps of their schoolyard, identifying sunny danger zones and shaded communal gathering places."
+      },
+      {
+        subject: "Social Studies",
+        subject_class: "social",
+        grade: "3_5",
+        grade_label: "3–5 Elementary",
+        teks: "SS 3.4A, 4.1A, 4.21A",
+        title: "Roots of the RGV: Indigenous Ethnobotany & Mesquite",
+        blindspot: "Texas History focuses on political figures, completely omitting how indigenous nations (Coahuiltecan, Karankawa) sustainably used native flora for millennia.",
+        solution_module: "Roots of the RGV: Pechita Harvest & Milling",
+        solution_desc: "Students explore the Honey Mesquite as a 'Tree of Life,' inspecting ripe bean pods and milling traditional sweet high-protein flour."
+      },
+      {
+        subject: "Social Studies",
+        subject_class: "social",
+        grade: "6_8",
+        grade_label: "6–8 Middle School",
+        teks: "SS 7.2A, 7.9A, 8.29C",
+        title: "Texas Agricultural History & Clear-Cutting Consequences",
+        blindspot: "History views 20th-century agriculture solely through mechanized irrigation, ignoring the environmental consequences of clear-cutting native thornscrub.",
+        solution_module: "From 'Nuisance Weed' to Keystone: Mesquite History",
+        solution_desc: "Students analyze historical agricultural records, evaluating how clear-cutting native deep-rooted scrub increased soil erosion and regional heat."
+      },
+      {
+        subject: "Social Studies",
+        subject_class: "social",
+        grade: "9_12",
+        grade_label: "9–12 High School",
+        teks: "World Geog 16C, World Hist 28E, Gov 14A",
+        title: "Environmental Justice, Redlining & Urban Heat Equity",
+        blindspot: "Geography and Government treat zoning as abstract lines, ignoring historical redlining and modern municipal canopy disparities in low-income districts.",
+        solution_module: "Neighborhood Canopy Disparity Mapping",
+        solution_desc: "Students overlay 1930s HOLC redlining maps with satellite thermal Landsat rasters to analyze modern intra-urban heat disparities."
+      },
+
+      // 4. ELAR
+      {
+        subject: "ELAR",
+        subject_class: "elar",
+        grade: "k2",
+        grade_label: "K–2 Primary",
+        teks: "ELAR K.1B, 1.1C, 2.1E",
+        title: "Oral Language & Multi-Sensory Outdoor Vocabulary",
+        blindspot: "Language instruction is confined indoors with flashcards. Students miss out on rich, sensory outdoor vocabulary acquisition.",
+        solution_module: "Tree Hugger Sensory Vocabulary Walk",
+        solution_desc: "Students acquire vivid, tactile vocabulary (furrowed, resinous, dappled, fragrant, rough) through direct physical contact with living trees."
+      },
+      {
+        subject: "ELAR",
+        subject_class: "elar",
+        grade: "3_5",
+        grade_label: "3–5 Elementary",
+        teks: "ELAR 3.11A, 4.11A, 5.11B",
+        title: "Tri-Lingual Nature Journaling & Haiku Poetry",
+        blindspot: "Nature writing is limited to generic rhyming poetry, ignoring multi-sensory field observation and regional tri-lingual vocabulary.",
+        solution_module: "Diario de la Naturaleza: Sit Spot Field Notebooks",
+        solution_desc: "Students practice 15-minute Sit Spot journaling using tri-lingual prompts (English, Español, TexMex) to compose descriptive reflections and Haiku."
+      },
+      {
+        subject: "ELAR",
+        subject_class: "elar",
+        grade: "6_8",
+        grade_label: "6–8 Middle School",
+        teks: "ELAR 6.12D, 7.9F, 8.12D",
+        title: "Campus Microclimate Investigative Research Brief",
+        blindspot: "Informational reading and inquiry are disconnected from campus reality. Students rarely conduct primary interviews or campus research.",
+        solution_module: "Campus Microclimate Investigative Report",
+        solution_desc: "Students formulate inquiry questions, gather playground temperature data, interview school staff, and draft a formal research report."
+      },
+      {
+        subject: "ELAR",
+        subject_class: "elar",
+        grade: "9_12",
+        grade_label: "9–12 High School",
+        teks: "Eng I.11C, Eng II.11C, Eng III.11C",
+        title: "The Civic Pen: Municipal Shade Advocacy & Op-Eds",
+        blindspot: "Argumentative writing is practiced on hypothetical prompts (e.g. uniforms), ignoring authentic civic writing for municipal change.",
+        solution_module: "The Civic Pen: Municipal Shade Advocacy",
+        solution_desc: "Students analyze neighborhood heat data, draft formal evidence-backed letters to school boards, and submit op-eds advocating for tree investments."
+      },
+
+      // 5. FINE ARTS
+      {
+        subject: "Fine Arts",
+        subject_class: "art",
+        grade: "k2",
+        grade_label: "K–2 Primary",
+        teks: "Art K.1A, 1.2B, 2.2B",
+        title: "Tactile Bark Rubbings & Leaf Topography Prints",
+        blindspot: "Art activities use generic store-bought plastic stencils rather than exploring natural biological textures and organic patterns.",
+        solution_module: "Eco-Canvas: Tactile Bark Gallery",
+        solution_desc: "Students tape newsprint to tree trunks and rub unwrapped earth-tone wax crayons to transfer unique bark topographical fingerprints into print."
+      },
+      {
+        subject: "Fine Arts",
+        subject_class: "art",
+        grade: "3_5",
+        grade_label: "3–5 Elementary",
+        teks: "Art 3.1B, 4.1B, 5.1B",
+        title: "Komorebi: Shaded Light & Cast Shadow Value Studies",
+        blindspot: "Drawing instruction focuses on flat 2D outlines without teaching how natural sunlight creates value, contrast, and cast shadow depth.",
+        solution_module: "Komorebi: Shaded Light & Shadow Value Studies",
+        solution_desc: "Students sit under a canopy observing dappled light (Komorebi) filtering through foliage, creating value scales from bright highlights to deep shadows."
+      },
+      {
+        subject: "Fine Arts",
+        subject_class: "art",
+        grade: "6_8",
+        grade_label: "6–8 Middle School",
+        teks: "Art 6.2A, 7.2A, 8.2A",
+        title: "Precision Botanical Illustration Plates of RGV Flora",
+        blindspot: "Art projects are purely decorative, missing the historical link between botanical science and scientific illustration plates.",
+        solution_module: "Botanical Plates of South Texas Thornscrub",
+        solution_desc: "Students use fine-line graphite and stippling techniques to draw proportioned scientific plates of Texas Ebony pods and Anacua foliage."
+      },
+      {
+        subject: "Fine Arts",
+        subject_class: "art",
+        grade: "9_12",
+        grade_label: "9–12 High School",
+        teks: "Art I.2C, Art III.3A, Art IV.3A",
+        title: "Wild Cochineal Pigments & Thermal Contour Eco-Art",
+        blindspot: "Art relies on synthetic acrylic paints, ignoring traditional sustainable media, natural earth pigments, and data-driven eco-art commentary.",
+        solution_module: "Wild Pigments & Thermal Contour Eco-Art",
+        solution_desc: "Students forage mesquite pods and prickly pear juice to make natural watercolors, combining thermal GIS data with tree-ring illustrations."
+      },
+
+      // 6. HEALTH & PE
+      {
+        subject: "Health & PE",
+        subject_class: "health",
+        grade: "k2",
+        grade_label: "K–2 Primary",
+        teks: "Health K.1A, 1.3B, 2.3A",
+        title: "The Thirsty Tree & Thirsty Me: Hydration Kinetics",
+        blindspot: "Sun safety is reduced to 'put on a hat' without teaching children to recognize their body's hydration needs and shade signals.",
+        solution_module: "The Thirsty Tree & Thirsty Me: Hydration Check",
+        solution_desc: "Students learn how both human bodies and tree roots need water to stay cool, practicing regular hydration habits during outdoor play."
+      },
+      {
+        subject: "Health & PE",
+        subject_class: "health",
+        grade: "3_5",
+        grade_label: "3–5 Elementary",
+        teks: "Health 3.1A, 4.3B, 5.3A",
+        title: "Infrared Surface Temperature Audit & Heat Safety",
+        blindspot: "Heat illness is taught in health textbooks, but students play on unshaded 135°F blacktop playgrounds without understanding heat exhaustion risks.",
+        solution_module: "Beat the Heat: Infrared Surface Temperature Audit",
+        solution_desc: "Students aim non-contact infrared thermometers at asphalt courts vs shaded grass, recognizing early symptoms of heat exhaustion."
+      },
+      {
+        subject: "Health & PE",
+        subject_class: "health",
+        grade: "6_8",
+        grade_label: "6–8 Middle School",
+        teks: "Health 6.3A, 7.3B, 8.3C",
+        title: "Air Defense: AQI, Particulates & Tree Canopy Filtration",
+        blindspot: "PE fitness tests occur outdoors in peak heat without monitoring real-time Air Quality Index (AQI) or localized particulate matter (PM2.5).",
+        solution_module: "Air Defense: AQI & Tree Particulate Filtration",
+        solution_desc: "Students analyze EPA AirNow / PurpleAir readings, correlating how dense tree foliage captures airborne particulate matter to protect developing lungs."
+      },
+      {
+        subject: "Health & PE",
+        subject_class: "health",
+        grade: "9_12",
+        grade_label: "9–12 High School",
+        teks: "Health I.1B, Lifetime Fitness 2A",
+        title: "Shinrin-yoku & Parasympathetic Stress Reduction",
+        blindspot: "Stress management is taught through indoor slides, ignoring the proven clinical benefits of outdoor nature immersion.",
+        solution_module: "Shinrin-yoku: Parasympathetic Stress Reduction",
+        solution_desc: "Students practice silent canopy immersion, learning how volatile phytoncides released by trees lower cortisol and blood pressure."
+      },
+
+      // 7. LIFELONG & GRADUATE
+      {
+        subject: "Lifelong",
+        subject_class: "advanced",
+        grade: "advanced",
+        grade_label: "Parent & Community",
+        teks: "Community Lifelong Education",
+        title: "Sombra Sana: Home Shade Placement & Olla Irrigation",
+        blindspot: "Schools treat parents as passive spectators rather than active partners in home environmental energy conservation.",
+        solution_module: "Sombra Sana: Backyard Shade & Olla Workshop",
+        solution_desc: "Bilingual weekend workshops teaching families how planting native trees on West-facing walls cuts electric bills by 20%+, plus DIY olla irrigation."
+      },
+      {
+        subject: "Lifelong",
+        subject_class: "advanced",
+        grade: "advanced",
+        grade_label: "Higher Ed & Graduate",
+        teks: "UTRGV Graduate ENVR 6301/6305",
+        title: "Low-Cost PM2.5 Sensor Metrology & WBGT Modeling",
+        blindspot: "University research remains locked in academic journals, never directly feeding into K–12 schoolyard microclimate monitoring.",
+        solution_module: "Optical PM2.5 Humidity Calibration & WBGT Masts",
+        solution_desc: "Graduate students deploy ESP32 IoT sensors, derive non-linear humidity correction curves, and model pediatric thermal morbidity reductions."
+      }
+    ];
+
+    let currentSubjectFilter = 'all';
+    let currentGradeFilter = 'all';
+    let currentSearchTerm = '';
+
+    const gridEl = document.getElementById('gapCardsGrid');
+    const searchEl = document.getElementById('gapSearchInput');
+
+    function renderGapCards() {
+      if (!gridEl) return;
+      gridEl.innerHTML = '';
+
+      const filtered = GAP_DATA.filter(item => {
+        const matchSub = (currentSubjectFilter === 'all' || item.subject === currentSubjectFilter);
+        const matchGrade = (currentGradeFilter === 'all' || item.grade === currentGradeFilter);
+        
+        let matchSearch = true;
+        if (currentSearchTerm.trim() !== '') {
+          const q = currentSearchTerm.toLowerCase();
+          matchSearch = item.title.toLowerCase().includes(q) ||
+                        item.teks.toLowerCase().includes(q) ||
+                        item.blindspot.toLowerCase().includes(q) ||
+                        item.solution_module.toLowerCase().includes(q) ||
+                        item.solution_desc.toLowerCase().includes(q);
+        }
+
+        return matchSub && matchGrade && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        gridEl.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 48px; background: #ffffff; border-radius: 12px; border: 1px dashed var(--border-light);">
+            <p style="font-size: 1.1rem; color: var(--text-muted); font-weight: 600;">No standards found matching current filters.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'master-gap-card';
+
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+            <span class="subject-pill ${item.subject_class}">${item.subject}</span>
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">${item.grade_label}</span>
+          </div>
+
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--primary-dark); line-height: 1.3;">
+            ${item.title}
+          </h3>
+
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--primary); background: #eef7ee; padding: 4px 8px; border-radius: 4px; border: 1px solid #cce8d0;">
+            Standards: <code>${item.teks}</code>
+          </div>
+
+          <div class="blindspot-box">
+            <strong style="color: #c62828; display: block; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2px;">⚠️ Conventional Educational Blindspot:</strong>
+            ${item.blindspot}
+          </div>
+
+          <div class="solution-box">
+            <strong style="color: #2e7d32; display: block; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2px;">✅ Forest Literacy Bridge (${item.solution_module}):</strong>
+            ${item.solution_desc}
+          </div>
+        `;
+
+        gridEl.appendChild(card);
+      });
+    }
+
+    // Bind Event Handlers
+    document.querySelectorAll('#subjectChips .filter-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#subjectChips .filter-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentSubjectFilter = btn.getAttribute('data-subject');
+        renderGapCards();
+      });
+    });
+
+    document.querySelectorAll('#gradeChips .filter-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#gradeChips .filter-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentGradeFilter = btn.getAttribute('data-grade');
+        renderGapCards();
+      });
+    });
+
+    if (searchEl) {
+      searchEl.addEventListener('input', (e) => {
+        currentSearchTerm = e.target.value;
+        renderGapCards();
+      });
+    }
+
+    // Initial render
+    renderGapCards();
+  </script>
+</body>
+</html>

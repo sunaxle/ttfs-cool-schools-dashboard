@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ELAR and Fine Arts TEKS Forest Literacy Integration, Pre-Existing Materials Survey, and Comprehensive Gap Assessment Matrix" />
+  <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation" />
+  <title>ELAR & Art TEKS Deep-Dive & Gap Assessment | Forest Literacy</title>
+  
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .gap-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .gap-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-border);
+    }
+    .gap-tag-missing {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ffcdd2;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+    }
+    .gap-tag-solved {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #c8e6c9;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+    }
+    .strand-nav-pill {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .strand-nav-pill:hover, .strand-nav-pill.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+    .split-pane {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .split-pane {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="brand-logo">📖🎨</div>
+        <div class="brand-title">
+          <h1>ELAR & Visual Arts <span>TEKS Gap Assessment</span></h1>
+          <p>State Standards Crosswalk, Pre-Existing Material Lineage & Untouched Objectives</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a href="story_report.html" class="btn-header" style="background: #e8f5e9; color: #1b5e20; border-color: #a5d6a7; font-weight: 700;" title="View Executive Story & TEKS Multiplier Report">
+          📰 Story Report
+        </a>
+        <a href="master_gap_assessment.html" class="btn-header">
+          🎯 Master Gap Matrix
+        </a>
+        <a href="index.html" class="btn-header">
+          🗺️ Knowledge Graph
+        </a>
+        <a href="../../index.html" class="btn-header primary">
+          Main Dashboard
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- Hero Introduction -->
+    <section class="hero-banner">
+      <div class="hero-text">
+        <h2>Language, Rhetoric & Creative Expression in the Forest</h2>
+        <p>
+          While environmental education often focuses narrowly on STEM biology, a child's relationship with trees is deeply <strong>linguistic, poetic, historical, and visual</strong>. This portal maps all <strong>7 Strands of Texas ELAR</strong> and <strong>4 Strands of Texas Fine Arts</strong>, identifies critical educational gaps, and surveys pre-existing historical curricula.
+        </p>
+        <div class="hero-badge-group">
+          <span class="hero-pill">✓ 19 TAC Chapter 110 (ELAR Strands 1–7)</span>
+          <span class="hero-pill">✓ 19 TAC Chapter 117 (Fine Arts Strands 1–4)</span>
+          <span class="hero-pill">✓ Pre-Existing Material Lineage (PLT, Muir Laws, Leopold)</span>
+          <span class="hero-pill">✓ Untouched TEKS Gap Solutions</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs between Strands -->
+    <div class="flex gap-2 overflow-x-auto pb-1" id="sectionTabs">
+      <button type="button" class="strand-nav-pill active" data-target="pane-gap-matrix">🎯 Critical Gap Assessment Matrix</button>
+      <button type="button" class="strand-nav-pill" data-target="pane-elar-strands">📚 The 7 ELAR Strands (K–12)</button>
+      <button type="button" class="strand-nav-pill" data-target="pane-art-strands">🎨 The 4 Visual Arts Strands (K–12)</button>
+      <button type="button" class="strand-nav-pill" data-target="pane-historical-lineage">📜 Pre-Existing Materials & Lineage</button>
+    </div>
+
+    <!-- PANE 1: Critical Gap Assessment Matrix -->
+    <div id="pane-gap-matrix" class="tab-pane active" style="display: flex; flex-direction: column; gap: 20px;">
+      
+      <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 20px;">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 6px;">
+          Four Major Educational Gaps in Environmental Pedagogy
+        </h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+          Our statewide curriculum audit revealed four primary areas where standard schoolyard activities fall short of meeting the full rigor of Texas ELAR and Fine Arts standards:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px;">
+
+        <!-- GAP 1: Civic Rhetoric & Inquiry -->
+        <div class="gap-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+            <span class="gap-tag-missing">⚠️ What Curricula Misses</span>
+            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">ELAR Strands 6 & 7</span>
+          </div>
+          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--primary-dark);">Gap 1: The Civic Writing & Environmental Rhetoric Gap</h4>
+          <p style="font-size: 0.88rem; color: #444; line-height: 1.55;">
+            Most environmental programs treat writing simply as "write a 4-line poem about a tree." Middle and High School students are rarely taught to use language as an authentic instrument of civic power, municipal advocacy, or investigative journalism.
+          </p>
+          <div style="background: #fdfaf6; border-left: 4px solid var(--utrgv-orange); padding: 12px; border-radius: 0 6px 6px 0; font-size: 0.82rem;">
+            <strong>Untouched TEKS:</strong> <code>ELAR 6.12D</code>, <code>ELAR 8.12D</code>, <code>Eng I.11C</code>, <code>Eng III.11C</code> (Argumentative & Civic Composition).
+          </div>
+          <div style="background: #f4faf5; border-left: 4px solid #2e7d32; padding: 12px; border-radius: 0 6px 6px 0; font-size: 0.82rem;">
+            <span class="gap-tag-solved">✓ Forest Literacy Solution</span>
+            <p style="margin-top: 6px; font-weight: 600; color: var(--primary-dark);">Module: "The Civic Pen: Municipal Shade Advocacy & Community Letters"</p>
+            <p style="margin-top: 4px; color: var(--text-muted);">Students analyze neighborhood heat disparities, draft formal evidence-based letters to school boards, and publish op-eds for shade equity.</p>
+          </div>
+        </div>
+
+        <!-- GAP 2: Regional Ethno-Arts of South Texas -->
+        <div class="gap-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+            <span class="gap-tag-missing">⚠️ What Curricula Misses</span>
+            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">Art Strand 3</span>
+          </div>
+          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--primary-dark);">Gap 2: The Regional Ethnobotanical & Indigenous Arts Gap</h4>
+          <p style="font-size: 0.88rem; color: #444; line-height: 1.55;">
+            Standard art curriculum relies almost exclusively on temperate East Coast/European flora (maples, oaks, apples). South Texas students are not taught the profound cultural art traditions of their own semi-arid thornscrub ecosystem.
+          </p>
+          <div style="background: #fdfaf6; border-left: 4px solid var(--utrgv-orange); padding: 12px; border-radius: 0 6px 6px 0; font-size: 0.82rem;">
+            <strong>Untouched TEKS:</strong> <code>Fine Arts 3.3A</code>, <code>Fine Arts 5.3B</code>, <code>Art II.3A</code> (Historical & Cultural Context in Visual Art).
+          </div>
+          <div style="background: #f4faf5; border-left: 4px solid #2e7d32; padding: 12px; border-radius: 0 6px 6px 0; font-size: 0.82rem;">
+            <span class="gap-tag-solved">✓ Forest Literacy Solution</span>
+            <p style="margin-top: 6px; font-weight: 600; color: var(--primary-dark);">Module: "Roots of the RGV: Coahuiltecan Pigments & Eco-Canvas"</p>
+            <p style="margin-top: 4px; color: var(--text-muted);">Students forage non-living mesquite pods and prickly pear juice to create non-toxic natural watercolors while exploring regional borderland folk art.</p>
+          </div>
+        </div>
+
+        <!-- GAP 3: Bilingual Multi-Sensory Field Journaling -->
+        <div class="gap-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+            <span class="gap-tag-missing">⚠️ What Curricula Misses</span>
+            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">ELAR Strands 1 & 3</span>
+          </div>
+          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--primary-dark);">Gap 3: The Bilingual & Sensory Journaling Gap</h4>
+          <p style="font-size: 0.88rem; color: #444; line-height: 1.55;">
+            Existing nature journaling materials are heavily monolingual English, ignoring the rich linguistic heritage of the Rio Grande Valley (English, Español, and regional TexMex) where dual-language vocabulary thrives.
+          </p>
+          <div style="background: #fdfaf6; border-left: 4px solid var(--utrgv-orange); padding: 12px; border-radius: 0 6px 6px 0; font-size: 0.82rem;">
+            <strong>Untouched TEKS:</strong> <code>ELAR K.1B</code>, <code>ELAR 2.1E</code>, <code>ELAR 4.7B</code> (Oral Language & Personal Response in Nature).
+          </div>
+          <div style="background: #f4faf5; border-left: 4px solid #2e7d32; padding: 12px; border-radius: 0 6px 6px 0; font-size: 0.82rem;">
+            <span class="gap-tag-solved">✓ Forest Literacy Solution</span>
+            <p style="margin-top: 6px; font-weight: 600; color: var(--primary-dark);">Module: "Diario de la Naturaleza: Tri-Lingual Sit Spot Field Notebooks"</p>
+            <p style="margin-top: 4px; color: var(--text-muted);">Provides rich dual-language sensory prompt banks (<em>fresco, áspero, sombra, crujiente</em>) encouraging authentic personal voice.</p>
+          </div>
+        </div>
+
+        <!-- GAP 4: Data-Driven Visual Eco-Art -->
+        <div class="gap-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+            <span class="gap-tag-missing">⚠️ What Curricula Misses</span>
+            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">Art Strands 1 & 2</span>
+          </div>
+          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--primary-dark);">Gap 4: The Data-Driven Visual Eco-Art Gap</h4>
+          <p style="font-size: 0.88rem; color: #444; line-height: 1.55;">
+            Art in schools is often isolated from scientific data. Students draw trees purely from imagination rather than translating real-world environmental measurements (thermal scans, growth rings) into visual form.
+          </p>
+          <div style="background: #fdfaf6; border-left: 4px solid var(--utrgv-orange); padding: 12px; border-radius: 0 6px 6px 0; font-size: 0.82rem;">
+            <strong>Untouched TEKS:</strong> <code>Fine Arts 6.2A</code>, <code>Fine Arts 8.2A</code>, <code>Art I.2C</code> (Translating Observation into Visual Media).
+          </div>
+          <div style="background: #f4faf5; border-left: 4px solid #2e7d32; padding: 12px; border-radius: 0 6px 6px 0; font-size: 0.82rem;">
+            <span class="gap-tag-solved">✓ Forest Literacy Solution</span>
+            <p style="margin-top: 6px; font-weight: 600; color: var(--primary-dark);">Module: "Thermal Topography & Tree Ring Scientific Art Plates"</p>
+            <p style="margin-top: 4px; color: var(--text-muted);">Students combine infrared temperature readings with tree-ring radial measurements to create scientific botanical plates.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PANE 2: The 7 ELAR Strands (K-12) -->
+    <div id="pane-elar-strands" class="tab-pane" style="display: none; flex-direction: column; gap: 20px;">
+      <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 24px;">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 8px;">
+          The 7 Integrated Strands of Texas ELAR (19 TAC Chapter 110)
+        </h3>
+        <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+          Texas law organizes reading, writing, speaking, and listening into seven interwoven strands across every grade level from Kindergarten through 12th grade:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <div style="background: #f8faf8; border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: var(--primary-dark); font-weight: 700;">Strand 1: Developing & Sustaining Foundational Language Skills</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Oral language, listening comprehension, phonics, and contextual vocabulary acquisition in physical outdoor settings.</p>
+            <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600; margin-top: 6px;">Forest Module: <em>Tree Hugger Sensory Vocabulary Walk (K–2)</em></div>
+          </div>
+
+          <div style="background: #f8faf8; border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: var(--primary-dark); font-weight: 700;">Strand 2: Comprehension Skills (Listening, Speaking, Reading & Writing)</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Deep reading of informational texts, asking self-directed questions, predicting outcomes, and synthesizing multi-paragraph forestry texts.</p>
+            <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600; margin-top: 6px;">Forest Module: <em>Roots of the RGV: Ethnobotany Reading & Text-to-World (3–5)</em></div>
+          </div>
+
+          <div style="background: #f8faf8; border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: var(--primary-dark); font-weight: 700;">Strand 3: Response Skills (Reflections & Evidence Citing)</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Expressing emotional, artistic, and analytical responses to nature in field notebooks, paraphrasing observations, and supporting ideas with evidence.</p>
+            <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600; margin-top: 6px;">Forest Module: <em>Sensory Nature Journaling & Sit Spot Field Records (3–5)</em></div>
+          </div>
+
+          <div style="background: #f8faf8; border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: var(--primary-dark); font-weight: 700;">Strand 4: Multiple Genres (Poetry, Memoirs, Informational, Folktales)</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Analyzing traditional indigenous stories, nature memoirs (Aldo Leopold), informational science articles, and structured poetry.</p>
+            <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600; margin-top: 6px;">Forest Module: <em>Indigenous Pechita Oral Histories & American Ecocriticism (6–12)</em></div>
+          </div>
+
+          <div style="background: #f8faf8; border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: var(--primary-dark); font-weight: 700;">Strand 5: Author's Purpose & Craft (Imagery, Tone, Rhetoric)</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Analyzing how writers use metaphors, sensory imagery, personification, and rhetorical tone to depict ecosystems and shape public environmental attitudes.</p>
+            <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600; margin-top: 6px;">Forest Module: <em>From 'Weed' to Keystone: Mesquite Rhetorical Analysis (6–8)</em></div>
+          </div>
+
+          <div style="background: #f8faf8; border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: var(--primary-dark); font-weight: 700;">Strand 6: Composition (Writing Process, Poetry & Argumentation)</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Drafting, revising, and editing personal memoirs, nature Haiku, and formal persuasive essays addressing public shade equity and tree preservation.</p>
+            <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600; margin-top: 6px;">Forest Module: <em>The Civic Pen: Municipal Shade Advocacy & Op-Eds (9–12)</em></div>
+          </div>
+
+          <div style="background: #f8faf8; border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: var(--primary-dark); font-weight: 700;">Strand 7: Inquiry & Research (Student-Driven Field Investigations)</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Formulating authentic scientific questions about campus microclimates, gathering primary field data, evaluating sources, and presenting conclusions.</p>
+            <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600; margin-top: 6px;">Forest Module: <em>Campus Shade Equity & Temperature Investigative Report (6–12)</em></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- PANE 3: The 4 Visual Arts Strands (K-12) -->
+    <div id="pane-art-strands" class="tab-pane" style="display: none; flex-direction: column; gap: 20px;">
+      <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 24px;">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 8px;">
+          The 4 Core Strands of Texas Visual Arts (19 TAC Chapter 117)
+        </h3>
+        <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+          Visual Arts standards build perceptual awareness, technical media skills, cultural appreciation, and reflective critique:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <div style="background: #fdfaf6; border-left: 4px solid #8e24aa; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: #6a1b9a; font-weight: 700;">Strand 1: Foundations: Observation & Perception</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Developing sensitivity to natural textures, branching angles, leaf venation, color variations in native bark, and dappled light values (*Komorebi*).</p>
+            <div style="font-size: 0.8rem; color: #6a1b9a; font-weight: 600; margin-top: 6px;">Forest Module: <em>Dappled Sunlight & Cast Shadow Value Studies (3–5)</em></div>
+          </div>
+
+          <div style="background: #fdfaf6; border-left: 4px solid #8e24aa; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: #6a1b9a; font-weight: 700;">Strand 2: Creative Expression (Media, Technique & Form)</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Creating artwork using graphite, watercolors, wax bark rubbings, natural plant dyes, and sustainable site-specific land art installations.</p>
+            <div style="font-size: 0.8rem; color: #6a1b9a; font-weight: 600; margin-top: 6px;">Forest Module: <em>Precision Botanical Scientific Illustration Plates (6–8)</em></div>
+          </div>
+
+          <div style="background: #fdfaf6; border-left: 4px solid #8e24aa; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: #6a1b9a; font-weight: 700;">Strand 3: Historical & Cultural Relevance</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Exploring how indigenous, Mexican-American, and regional South Texas cultures have represented trees and natural landscapes across centuries of history.</p>
+            <div style="font-size: 0.8rem; color: #6a1b9a; font-weight: 600; margin-top: 6px;">Forest Module: <em>Sacred Ahuehuete Iconography & Borderland Mural Traditions (6–12)</em></div>
+          </div>
+
+          <div style="background: #fdfaf6; border-left: 4px solid #8e24aa; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <h4 style="color: #6a1b9a; font-weight: 700;">Strand 4: Critical Evaluation & Response</h4>
+            <p style="font-size: 0.88rem; color: #444; margin-top: 4px;">Analyzing, critiquing, and curating schoolyard eco-art galleries; reflecting on how public landscape design influences emotional peace.</p>
+            <div style="font-size: 0.8rem; color: #6a1b9a; font-weight: 600; margin-top: 6px;">Forest Module: <em>Campus Microforest Eco-Gallery & Aesthetics Critique (9–12)</em></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- PANE 4: Pre-Existing Materials & Lineage -->
+    <div id="pane-historical-lineage" class="tab-pane" style="display: none; flex-direction: column; gap: 20px;">
+      <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 24px;">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 8px;">
+          Pre-Existing Educational Material Lineage & Attributions
+        </h3>
+        <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+          Giving formal academic and pedagogical credit to foundational programs in environmental literature and botanical arts:
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+          
+          <div style="border: 1px solid var(--border-light); border-radius: 10px; padding: 16px; background: #fafdfa;">
+            <h4 style="color: var(--primary-dark); font-weight: 700; margin-bottom: 6px;">Project Learning Tree (PLT)</h4>
+            <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">Pioneered foundational activities: <em>Poet-Tree</em> (Activity 5), <em>Adopt a Tree</em> (Activity 21), and <em>The Closer You Look</em> (Activity 61). Established early models of outdoor journaling.</p>
+            <div style="font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-top: 8px;">Citation: Project Learning Tree (2020) Forest Literacy Framework</div>
+          </div>
+
+          <div style="border: 1px solid var(--border-light); border-radius: 10px; padding: 16px; background: #fafdfa;">
+            <h4 style="color: var(--primary-dark); font-weight: 700; margin-bottom: 6px;">John Muir Laws Nature Journaling</h4>
+            <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">World-renowned visual journaling methodology (*"I Notice, I Wonder, It Reminds Me Of"*). Bridges scientific drawing with observational inquiry.</p>
+            <div style="font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-top: 8px;">Citation: Laws & Lygren (2020) How to Teach Nature Journaling</div>
+          </div>
+
+          <div style="border: 1px solid var(--border-light); border-radius: 10px; padding: 16px; background: #fafdfa;">
+            <h4 style="color: var(--primary-dark); font-weight: 700; margin-bottom: 6px;">Aldo Leopold Foundation</h4>
+            <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">*The Land Ethic* curriculum exploring environmental philosophy, ecological conscience, and the literary tradition of nature essays.</p>
+            <div style="font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-top: 8px;">Citation: Leopold, A. (1949) A Sand County Almanac</div>
+          </div>
+
+          <div style="border: 1px solid var(--border-light); border-radius: 10px; padding: 16px; background: #fafdfa;">
+            <h4 style="color: var(--primary-dark); font-weight: 700; margin-bottom: 6px;">Robin Wall Kimmerer</h4>
+            <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">Pioneered Indigenous Traditional Ecological Knowledge (TEK) in modern literature, examining linguistic kinship and reciprocal stewardship with flora.</p>
+            <div style="font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-top: 8px;">Citation: Kimmerer, R. W. (2013) Braiding Sweetgrass</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>
+      <strong>UTRGV Agroecology & Texas Trees Foundation</strong> · ELAR & Fine Arts TEKS Forest Literacy Framework  
+    </p>
+    <p style="font-size: 0.78rem; color: #888; margin-top: 4px;">
+      Privacy-First Architecture · COPPA / FERPA Compliant · Open Academic Distribution
+    </p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.strand-nav-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.strand-nav-pill').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
+        btn.classList.add('active');
+        const target = document.getElementById(btn.getAttribute('data-target'));
+        if (target) target.style.display = 'flex';
+      });
+    });
+  </script>
+</body>
+</html>
