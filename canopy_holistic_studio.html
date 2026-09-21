@@ -32,7 +32,7 @@
     </div>
     <div class="header-title-block">
       <h1>🌳 Holistic Canopy & Ecological Buffer Studio</h1>
-      <div class="header-subtitle">Texas A&M Forest Service Methodology • 5-Tier Spatial Analysis • Zero-QGIS Browser GIS</div>
+      <div class="header-subtitle">Texas A&M Forest Service Methodology • 500m Pedestrian Shed Inventory • Zero-QGIS Browser GIS</div>
     </div>
     <div class="brand-right">
       <img src="assets/texas-trees-foundation.png" alt="Texas Trees Foundation" class="brand-logo" onerror="this.style.display='none'" />
@@ -60,10 +60,10 @@
     </div>
   </nav>
 
-  <!-- Split Screen Workspace -->
+  <!-- Main Vertical Expansive Workspace -->
   <main class="holistic-workspace">
 
-    <!-- LEFT / CENTER MAP STAGE -->
+    <!-- TOP: GRAND EXPANSIVE MAP STAGE (FULL WIDTH) -->
     <section class="map-stage">
       <!-- Tier Layer Switcher Toolbar -->
       <div class="tier-toolbar">
@@ -75,7 +75,7 @@
           <span class="tier-badge">Tier 2</span> Perimeter (3,868 LF)
         </button>
         <button type="button" class="tier-btn" id="btnTier3" data-tier="3">
-          <span class="tier-badge">Tier 3</span> Sidewalks / Safe Routes
+          <span class="tier-badge">Tier 3</span> Sidewalks & Safe Routes (3.45 Mi)
         </button>
         <button type="button" class="tier-btn" id="btnTier4" data-tier="4">
           <span class="tier-badge">Tier 4</span> 500m Eco-Ring (194 Ac)
@@ -100,7 +100,7 @@
         <div class="legend-row"><span class="legend-color-box parking-box"></span> Parking & Hardscape</div>
         <div class="legend-row"><span class="legend-color-box perimeter-box"></span> Tier 2: Outside Perimeter (3,868 LF)</div>
         <div class="legend-row"><span class="legend-color-box street-box"></span> Surveyed Streets (OSM Centerlines)</div>
-        <div class="legend-row"><span class="legend-color-box sidewalk-box"></span> Tier 3: Pedestrian Sidewalk Corridors</div>
+        <div class="legend-row"><span class="legend-color-box sidewalk-box"></span> Tier 3: 500m Pedestrian Sidewalks</div>
         <div class="legend-row"><span class="legend-color-box crosswalk-box"></span> Tier 3: School Crosswalks & Plazas</div>
         <div class="legend-row"><span class="legend-color-box buffer-box"></span> Tier 4: 500m Eco Analysis Ring</div>
         <div class="legend-row"><span class="legend-color-box neighborhood-box"></span> Tier 5: Neighborhood Residential Sectors</div>
@@ -120,183 +120,311 @@
       </div>
     </section>
 
-    <!-- RIGHT ANALYTICAL DOSSIER & CALCULATOR -->
-    <aside class="analytical-panel">
+    <!-- BELOW MAP: EXPANSIVE FULL-WIDTH ANALYTICAL DASHBOARD -->
+    <div class="analytical-panel">
 
-      <!-- Campus Identity & Context Card -->
-      <section class="card campus-header-card">
-        <div class="campus-meta-badge">DIGITIZED DATA LOADED</div>
-        <h2>M. Rivas Primary</h2>
-        <div class="campus-sub">Donna ISD • Hidalgo County, Texas • 32 Geolocated Zones</div>
-        <div class="quick-facts-row">
-          <div class="q-fact">
-            <span class="q-label">Parcel Size:</span>
-            <span class="q-val">20.34 Acres</span>
-            <span class="q-sub">885,925 sq ft</span>
-          </div>
-          <div class="q-fact">
-            <span class="q-label">Outside Perimeter:</span>
-            <span class="q-val">3,868 LF</span>
-            <span class="q-sub">0.73 Miles</span>
-          </div>
-          <div class="q-fact">
-            <span class="q-label">500m Eco-Ring:</span>
-            <span class="q-val">194.1 Acres</span>
-            <span class="q-sub">Campus = 10.5%</span>
-          </div>
-        </div>
-      </section>
+      <!-- ROW 1: 3-COLUMN STRATEGIC SYNTHESIS GRID -->
+      <div class="dashboard-row-3col">
 
-      <!-- TFS CANOPY PERCENTAGE CALCULATOR (Carlos Garcia Patlan Methodology) -->
-      <section class="card tfs-calculator-card">
+        <!-- Card 1: Campus Identity & Scale -->
+        <section class="card campus-header-card">
+          <div class="campus-meta-badge">DIGITIZED DATA LOADED</div>
+          <h2>M. Rivas Primary</h2>
+          <div class="campus-sub">Donna ISD • Hidalgo County, Texas • 32 Geolocated Zones</div>
+          <div class="quick-facts-row">
+            <div class="q-fact">
+              <span class="q-label">Parcel Size:</span>
+              <span class="q-val">20.34 Acres</span>
+              <span class="q-sub">885,925 sq ft</span>
+            </div>
+            <div class="q-fact">
+              <span class="q-label">Outside Perimeter:</span>
+              <span class="q-val">3,868 LF</span>
+              <span class="q-sub">0.73 Miles</span>
+            </div>
+            <div class="q-fact">
+              <span class="q-label">500m Buffer:</span>
+              <span class="q-val">194.1 Acres</span>
+              <span class="q-sub">Campus = 10.5%</span>
+            </div>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 12px 0 0 0; line-height: 1.4;">
+            M. Rivas anchors the southern sector of Donna, serving as the largest contiguous open green space in the surrounding 500-meter residential fabric.
+          </p>
+        </section>
+
+        <!-- Card 2: ON-CAMPUS VS. OFF-CAMPUS CANOPY ANALYSIS (NEW SPECIFIC FEATURE) -->
+        <section class="card off-campus-card">
+          <div class="card-title-row">
+            <h3>🌐 On-Campus vs. Off-Campus Canopy Analysis</h3>
+            <span class="method-pill" style="background: #ede7f6; color: #4527a0; border-color: #d1c4e9;">500m Buffer Scope</span>
+          </div>
+          <p class="method-desc">
+            A school doesn't stand on its own. Comparing canopy inside the property line against the surrounding 500m community reveals deep shade inequity.
+          </p>
+
+          <div class="comparison-dual-metrics">
+            <div class="dual-metric-col on-camp-col">
+              <span class="dm-label">On-Campus Canopy</span>
+              <span class="dm-val">19.18%</span>
+              <span class="dm-sub">of plantable green space (10.45% parcel)</span>
+              <span class="dm-detail">92,578 sq ft canopy / 482,588 sq ft site</span>
+            </div>
+            <div class="dual-metric-col off-camp-col">
+              <span class="dm-label">Off-Campus Canopy</span>
+              <span class="dm-val" style="color: #c62828;">8.30%</span>
+              <span class="dm-sub">surrounding 500m neighborhood</span>
+              <span class="dm-detail">628,000 sq ft canopy / 7,568,022 sq ft area</span>
+            </div>
+          </div>
+
+          <div class="off-campus-deficit-box">
+            <div class="oc-stat-row">
+              <span>Off-Campus Neighborhood Area:</span>
+              <strong>7,568,022 sq ft (173.7 Acres)</strong>
+            </div>
+            <div class="oc-stat-row">
+              <span>Off-Campus Canopy Deficit (to 25% goal):</span>
+              <strong style="color: #c62828;">-1,264,000 sq ft</strong>
+            </div>
+            <div class="oc-stat-row">
+              <span>Street & Sidewalk Tree Potential:</span>
+              <strong style="color: #2e7d32;">~2,800–3,600 community trees</strong>
+            </div>
+          </div>
+        </section>
+
+        <!-- Card 3: TFS CANOPY PERCENTAGE & 30% GOAL CALCULATOR -->
+        <section class="card tfs-calculator-card">
+          <div class="card-title-row">
+            <h3>📐 Texas A&M Forest Service Math</h3>
+            <span class="method-pill" title="Follows TFS QGIS standard workflow">QGIS Equivalent</span>
+          </div>
+          <p class="method-desc">
+            Per TFS guidelines, canopy is calculated against <strong>accessible plantable green space</strong> rather than the whole parcel.
+          </p>
+
+          <!-- Metric Comparison Split Grid -->
+          <div class="metric-comparison-grid">
+            <div class="metric-box plantable-focus">
+              <div class="m-title">TFS Plantable Space Canopy</div>
+              <div class="m-val" id="valTfsPct">19.18%</div>
+              <div class="m-sub">92,578 sq ft / 482,588 sq ft</div>
+              <div class="m-tag plantable-tag">TFS Grant Baseline</div>
+            </div>
+            <div class="metric-box parcel-focus">
+              <div class="m-title">Whole Campus Canopy</div>
+              <div class="m-val" id="valParcelPct">10.45%</div>
+              <div class="m-sub">92,578 sq ft / 885,925 sq ft</div>
+              <div class="m-tag parcel-tag">Overall Property</div>
+            </div>
+          </div>
+
+          <!-- 30% Cool Schools Goal Progress Meter -->
+          <div class="goal-meter-container">
+            <div class="goal-labels">
+              <span>Current: <strong>19.18%</strong></span>
+              <span class="target-flag">🎯 Goal: <strong>30.0%</strong></span>
+            </div>
+            <div class="goal-track">
+              <div class="goal-fill" id="goalFillBar" style="width: 63.9%;"></div>
+              <div class="goal-marker" style="left: 100%;" title="30% Target"></div>
+            </div>
+            <div class="gap-callout" id="gapCallout">
+              <strong>Deficit to 30% Goal:</strong> <span class="gap-num">10.82%</span> (Needs <strong>+52,198 sq ft</strong> of canopy)
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ROW 2: 500-METER PEDESTRIAN SIDEWALK SHED INVENTORY & THERMAL ANALYSIS (FULL WIDTH) -->
+      <section class="card sidewalk-inventory-card">
         <div class="card-title-row">
-          <h3>📐 Texas A&M Forest Service Canopy Math</h3>
-          <span class="method-pill" title="Follows TFS QGIS standard workflow">QGIS Standard Equivalent</span>
-        </div>
-        <p class="method-desc">
-          Per TFS guidance, canopy percentage is calculated against the <strong>accessible plantable green space</strong> rather than the whole parcel, preventing building roofs and asphalt parking from artificially deflating the ratio.
-        </p>
-
-        <!-- Metric Comparison Split Grid -->
-        <div class="metric-comparison-grid">
-          <div class="metric-box plantable-focus">
-            <div class="m-title">TFS Plantable Space Canopy</div>
-            <div class="m-val" id="valTfsPct">19.18%</div>
-            <div class="m-sub">92,578 sq ft canopy / 482,588 sq ft site</div>
-            <div class="m-tag plantable-tag">TFS Grant Baseline</div>
+          <div>
+            <h3 style="font-size: 1.25rem; color: var(--forest-green); margin: 0 0 4px 0;">🚶 500-Meter Pedestrian Sidewalk Shed Inventory & Thermal Analysis</h3>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              All 19 pedestrian walking segments within the 500m analysis ring (18,236 linear feet / 3.45 miles). Click any row to highlight on the map.
+            </div>
           </div>
-          <div class="metric-box parcel-focus">
-            <div class="m-title">Whole Campus Canopy</div>
-            <div class="m-val" id="valParcelPct">10.45%</div>
-            <div class="m-sub">92,578 sq ft canopy / 885,925 sq ft parcel</div>
-            <div class="m-tag parcel-tag">Overall Property</div>
+          <div class="table-filter-pills" id="sidewalkFilters">
+            <button type="button" class="filter-pill active" data-filter="all">All Corridors (19)</button>
+            <button type="button" class="filter-pill" data-filter="frontage">School Frontage (3)</button>
+            <button type="button" class="filter-pill" data-filter="north">North Routes (6)</button>
+            <button type="button" class="filter-pill" data-filter="east">East Feeders (5)</button>
+            <button type="button" class="filter-pill" data-filter="crosswalk">Crosswalks & Plazas (4)</button>
           </div>
         </div>
 
-        <!-- 30% Cool Schools Goal Progress Meter -->
-        <div class="goal-meter-container">
-          <div class="goal-labels">
-            <span>Current Canopy: <strong>19.18%</strong></span>
-            <span class="target-flag">🎯 Cool Schools Goal: <strong>30.0%</strong></span>
-          </div>
-          <div class="goal-track">
-            <div class="goal-fill" id="goalFillBar" style="width: 63.9%;"></div>
-            <div class="goal-marker" style="left: 100%;" title="30% Target"></div>
-          </div>
-          <div class="gap-callout" id="gapCallout">
-            <strong>Deficit to 30% Goal:</strong> <span class="gap-num">10.82%</span> (Needs <strong>+52,198 sq ft</strong> of mature canopy)
-          </div>
-        </div>
-
-        <!-- Surface Partition Breakdown Table -->
-        <div class="surface-table-wrap">
-          <table class="surface-table">
+        <div class="table-responsive-wrap" style="margin-top: 14px;">
+          <table class="inventory-table" id="tblSidewalkInventory">
             <thead>
               <tr>
-                <th>Surface Classification</th>
-                <th>Polygons</th>
-                <th>Area (sq ft)</th>
-                <th>Share</th>
+                <th>Corridor Segment Name</th>
+                <th>Street Alignment</th>
+                <th>Classification</th>
+                <th>Length</th>
+                <th>Walk Time</th>
+                <th>Canopy Shade %</th>
+                <th>3 PM Surface Temp</th>
+                <th>Trees to 40% Shade</th>
+                <th>Priority</th>
+                <th>Map Action</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="highlight-green">
-                <td>🌿 Open Playfields & Turf</td>
-                <td>4</td>
-                <td>423,812</td>
-                <td>47.8%</td>
-              </tr>
-              <tr class="highlight-green">
-                <td>🌱 Grass Lawns & Margins</td>
-                <td>5</td>
-                <td>58,776</td>
-                <td>6.6%</td>
-              </tr>
-              <tr class="row-subtotal">
-                <td><strong>= Total Plantable Green Space</strong></td>
-                <td><strong>9</strong></td>
-                <td><strong>482,588</strong></td>
-                <td><strong>54.5%</strong></td>
-              </tr>
-              <tr class="highlight-canopy">
-                <td>🌳 Existing Tree Canopy Clusters</td>
-                <td>6</td>
-                <td>92,578</td>
-                <td>10.5%</td>
-              </tr>
-              <tr class="highlight-grey">
-                <td>🏢 Building Rooftops</td>
-                <td>9</td>
-                <td>138,381</td>
-                <td>15.6%</td>
-              </tr>
-              <tr class="highlight-grey">
-                <td>🚗 Parking Lots & Drives</td>
-                <td>4</td>
-                <td>98,069</td>
-                <td>11.1%</td>
-              </tr>
-              <tr>
-                <td>☂️ Man-Made Shade Sails</td>
-                <td>3</td>
-                <td>5,005</td>
-                <td>0.6%</td>
-              </tr>
-              <tr class="row-total">
-                <td><strong>Total Campus Parcel</strong></td>
-                <td><strong>32</strong></td>
-                <td><strong>885,925</strong></td>
-                <td><strong>100.0%</strong></td>
-              </tr>
+            <tbody id="tbodySidewalks">
+              <!-- Dynamically populated from RIVAS_SIDEWALKS_DATA -->
             </tbody>
           </table>
         </div>
-      </section>
 
-      <!-- WHAT-IF SIMULATOR: NATIVE TREE PLANTING SCENARIO -->
-      <section class="card simulation-card">
-        <h3>🌱 Interactive "What-If" Planting Simulator</h3>
-        <p class="sim-hint">Simulate planting native trees on M. Rivas open fields to see the canopy coverage and goal deficit update dynamically.</p>
-        
-        <div class="slider-control-block">
-          <div class="slider-header">
-            <span>Plant Native Trees:</span>
-            <span class="tree-count-readout"><strong id="lblTreeAddCount">0</strong> trees</span>
+        <div class="sidewalk-summary-bar">
+          <div class="sw-sum-item">
+            <span class="sw-sum-lbl">Total Sidewalk Network:</span>
+            <strong>18,236 Linear Feet (3.45 Miles)</strong>
           </div>
-          <input type="range" id="rngTreeCount" min="0" max="160" step="5" value="0" class="styled-range" />
-        </div>
-
-        <div class="species-select-block">
-          <label for="selTreeSpecies">Native Species Archetype:</label>
-          <select id="selTreeSpecies">
-            <option value="450" selected>Honey Mesquite / Cedar Elm (~450 sq ft crown / 12 ft radius)</option>
-            <option value="650">Live Oak / Montezuma Cypress (~650 sq ft crown / 14 ft radius)</option>
-            <option value="300">Anacua / Texas Ebony (~300 sq ft crown / 10 ft radius)</option>
-            <option value="180">Desert Willow / Huisache (~180 sq ft crown / 7.5 ft radius)</option>
-          </select>
-        </div>
-
-        <!-- Simulated Outcomes Box -->
-        <div class="sim-results-box">
-          <div class="sim-stat">
-            <span class="s-label">New Canopy Added:</span>
-            <span class="s-val" id="lblSimAddedSqFt">+0 sq ft</span>
+          <div class="sw-sum-item">
+            <span class="sw-sum-lbl">Currently Shaded Sidewalk:</span>
+            <strong style="color: #c62828;">Only 2,042 LF (11.2%)</strong>
           </div>
-          <div class="sim-stat">
-            <span class="s-label">Projected Canopy % (TFS Site):</span>
-            <span class="s-val highlight" id="lblSimNewPct">19.18%</span>
+          <div class="sw-sum-item">
+            <span class="sw-sum-lbl">Unshaded Heat Exposure:</span>
+            <strong>16,194 LF (88.8% exposed to 136°F–146°F)</strong>
           </div>
-          <div class="sim-stat">
-            <span class="s-label">Goal Status:</span>
-            <span class="s-val" id="lblSimGoalStatus" style="color: #c25c3a;">Deficit: -10.82%</span>
+          <div class="sw-sum-item">
+            <span class="sw-sum-lbl">Total Safe Routes Shade Trees Needed:</span>
+            <strong style="color: #2e7d32;">+519 Street & Parkway Trees</strong>
           </div>
         </div>
       </section>
 
-      <!-- 5-TIER HOLISTIC ANALYSIS DOSSIER -->
+      <!-- ROW 3: 2-COLUMN OPERATIONS GRID (SURFACE BREAKDOWN & WHAT-IF SIMULATOR) -->
+      <div class="dashboard-row-2col">
+
+        <!-- Column 1: Surface Partition Breakdown Table -->
+        <section class="card">
+          <h3 style="margin-top: 0; color: var(--forest-green);">📊 Campus Surface Partition Breakdown (32 Digitized Zones)</h3>
+          <p class="method-desc">Digitized polygon boundaries for M. Rivas Primary ground surfaces.</p>
+          
+          <div class="surface-table-wrap">
+            <table class="surface-table">
+              <thead>
+                <tr>
+                  <th>Surface Classification</th>
+                  <th>Polygons</th>
+                  <th>Area (sq ft)</th>
+                  <th>Area (Acres)</th>
+                  <th>Share of Campus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="highlight-green">
+                  <td>🌿 Open Playfields & Turf</td>
+                  <td>4</td>
+                  <td>423,812</td>
+                  <td>9.73 Ac</td>
+                  <td>47.8%</td>
+                </tr>
+                <tr class="highlight-green">
+                  <td>🌱 Grass Lawns & Margins</td>
+                  <td>5</td>
+                  <td>58,776</td>
+                  <td>1.35 Ac</td>
+                  <td>6.6%</td>
+                </tr>
+                <tr class="row-subtotal">
+                  <td><strong>= Total Plantable Green Space</strong></td>
+                  <td><strong>9</strong></td>
+                  <td><strong>482,588</strong></td>
+                  <td><strong>11.08 Ac</strong></td>
+                  <td><strong>54.5%</strong></td>
+                </tr>
+                <tr class="highlight-canopy">
+                  <td>🌳 Existing Tree Canopy Clusters</td>
+                  <td>6</td>
+                  <td>92,578</td>
+                  <td>2.13 Ac</td>
+                  <td>10.5%</td>
+                </tr>
+                <tr class="highlight-grey">
+                  <td>🏢 Building Rooftops</td>
+                  <td>9</td>
+                  <td>138,381</td>
+                  <td>3.18 Ac</td>
+                  <td>15.6%</td>
+                </tr>
+                <tr class="highlight-grey">
+                  <td>🚗 Parking Lots & Drives</td>
+                  <td>4</td>
+                  <td>98,069</td>
+                  <td>2.25 Ac</td>
+                  <td>11.1%</td>
+                </tr>
+                <tr>
+                  <td>☂️ Man-Made Shade Sails</td>
+                  <td>3</td>
+                  <td>5,005</td>
+                  <td>0.11 Ac</td>
+                  <td>0.6%</td>
+                </tr>
+                <tr class="row-total">
+                  <td><strong>Total Campus Parcel Boundary</strong></td>
+                  <td><strong>32</strong></td>
+                  <td><strong>885,925</strong></td>
+                  <td><strong>20.34 Ac</strong></td>
+                  <td><strong>100.0%</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Column 2: WHAT-IF SIMULATOR: NATIVE TREE PLANTING SCENARIO -->
+        <section class="card simulation-card">
+          <h3 style="margin-top: 0;">🌱 Interactive "What-If" Planting Simulator</h3>
+          <p class="sim-hint">Simulate planting native trees on M. Rivas open playfields to watch the canopy coverage and goal deficit update dynamically.</p>
+          
+          <div class="slider-control-block">
+            <div class="slider-header">
+              <span>Plant Native Trees:</span>
+              <span class="tree-count-readout"><strong id="lblTreeAddCount">0</strong> trees</span>
+            </div>
+            <input type="range" id="rngTreeCount" min="0" max="160" step="5" value="0" class="styled-range" />
+          </div>
+
+          <div class="species-select-block">
+            <label for="selTreeSpecies">Native Species Archetype:</label>
+            <select id="selTreeSpecies">
+              <option value="450" selected>Honey Mesquite / Cedar Elm (~450 sq ft crown / 12 ft radius)</option>
+              <option value="650">Live Oak / Montezuma Cypress (~650 sq ft crown / 14 ft radius)</option>
+              <option value="300">Anacua / Texas Ebony (~300 sq ft crown / 10 ft radius)</option>
+              <option value="180">Desert Willow / Huisache (~180 sq ft crown / 7.5 ft radius)</option>
+            </select>
+          </div>
+
+          <!-- Simulated Outcomes Box -->
+          <div class="sim-results-box">
+            <div class="sim-stat">
+              <span class="s-label">New Canopy Added:</span>
+              <span class="s-val" id="lblSimAddedSqFt">+0 sq ft</span>
+            </div>
+            <div class="sim-stat">
+              <span class="s-label">Projected Canopy % (TFS Site):</span>
+              <span class="s-val highlight" id="lblSimNewPct">19.18%</span>
+            </div>
+            <div class="sim-stat">
+              <span class="s-label">Goal Status:</span>
+              <span class="s-val" id="lblSimGoalStatus" style="color: #c25c3a;">Deficit: -10.82%</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ROW 4: 5-TIER HOLISTIC ANALYSIS DOSSIER & EXPORT -->
       <section class="card dossier-card">
-        <h3>🌐 5-Tier Holistic Ecological Calculations</h3>
-        <p class="dossier-intro">Because a school does not exist in isolation, these 5 concentric tiers evaluate the school's impact on safe transit, urban heat, and neighborhood ecological connectivity.</p>
+        <h3>🌐 5-Tier Holistic Ecological Calculations Dossier</h3>
+        <p class="dossier-intro">Concentric spatial framework evaluating schoolyard microclimate impact on student safety, urban heat, and regional community resilience.</p>
 
         <div class="accordion-group">
           <!-- Tier 1 Detail -->
@@ -330,15 +458,15 @@
           </details>
 
           <!-- Tier 3 Detail -->
-          <details class="tier-accordion">
+          <details open class="tier-accordion">
             <summary class="tier-sum">
-              <span class="tier-pill t3">Tier 3</span> Sidewalks & Safe Routes to School (1.2 Miles)
+              <span class="tier-pill t3">Tier 3</span> Sidewalks & Safe Routes to School (3.45 Miles / 18,236 LF)
             </summary>
             <div class="tier-body">
               <ul>
-                <li><strong>Pedestrian Walking Shed:</strong> Primary access corridors along Hester Ave and residential feeder streets.</li>
-                <li><strong>Heat Exposure Hazard:</strong> Unshaded concrete sidewalks in Donna regularly reach <strong>135°F–145°F</strong> during 3:00 PM school dismissals.</li>
-                <li><strong>Target Shade Coverage:</strong> A continuous sidewalk tree canopy lowers ambient walking temperatures by up to <strong>15°F–20°F</strong>, significantly improving safety for students walking or biking to school.</li>
+                <li><strong>19 Mapped Pedestrian Corridors:</strong> Covers South Hutto Rd frontage, Apollo Dr, Jennifer St, Tranquility Dr, and east feeder streets.</li>
+                <li><strong>Severe Thermal Exposure:</strong> 88.8% of pedestrian walking surfaces in Donna lack shade, reaching <strong>136°F–146°F</strong> during 3:00 PM school dismissals.</li>
+                <li><strong>Target Solution:</strong> Planting 519 parkway shade trees lowers pedestrian radiant temperatures by <strong>15°F–20°F</strong>, significantly improving transit safety for elementary students.</li>
               </ul>
             </div>
           </details>
@@ -361,26 +489,25 @@
           <!-- Tier 5 Detail -->
           <details class="tier-accordion">
             <summary class="tier-sum">
-              <span class="tier-pill t5">Tier 5</span> Surrounding Neighborhood Context & Tree Equity
+              <span class="tier-pill t5">Tier 5</span> Surrounding Neighborhood Context & Tree Equity (173.7 Acres Off-Campus)
             </summary>
             <div class="tier-body">
               <ul>
-                <li><strong>Neighborhood Canopy Deficit:</strong> The surrounding residential blocks currently have an estimated tree canopy of only 8%–12%, creating an Urban Heat Island pocket.</li>
+                <li><strong>Off-Campus Canopy Deficit:</strong> The surrounding residential blocks currently have a tree canopy of only <strong>8.30%</strong>, leaving a deficit of over 1.26 million sq ft of missing shade.</li>
                 <li><strong>Stepping-Stone Habitat:</strong> Transforming M. Rivas into a 30% canopy microforest provides migratory stopovers for resident South Texas birds and pollinators traversing the lower Rio Grande Valley corridor.</li>
                 <li><strong>Community Resilience:</strong> Enhances health and quality of life for families residing within the immediate walking shed.</li>
               </ul>
             </div>
           </details>
         </div>
+
+        <div style="margin-top: 20px; text-align: center;">
+          <button type="button" class="btn-print" onclick="window.print()">🖨️ Print / Save Holistic Dossier</button>
+          <p class="export-hint">Zero-QGIS browser calculation export for UTRGV Agroecology & Texas Trees Foundation handoff.</p>
+        </div>
       </section>
 
-      <!-- EXPORT / ACTION BAR -->
-      <section class="card action-card">
-        <button type="button" class="btn-print" onclick="window.print()">🖨️ Print / Save Holistic Dossier</button>
-        <p class="export-hint">Zero-QGIS browser calculation export for UTRGV Agroecology & Texas Trees Foundation handoff.</p>
-      </section>
-
-    </aside>
+    </div>
 
   </main>
 
