@@ -1,0 +1,3163 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-09-18T20:36:35Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "way",
+      "id": 15260734,
+      "nodes": [
+        151245726,
+        151245735,
+        151245741
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Muneca Drive",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15262803,
+      "nodes": [
+        151281261,
+        151281263,
+        151272256,
+        151272258
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Janneth Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15266090,
+      "nodes": [
+        151281263,
+        151303830,
+        151303832
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Cabana Drive",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15267829,
+      "nodes": [
+        151316878,
+        151316880
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Collins Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Collins",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71517645",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15268229,
+      "nodes": [
+        151355267,
+        151316878,
+        151319817,
+        151319819,
+        151319821
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Tranquility Drive",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Tranquility",
+        "tiger:name_type": "Dr",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71517637:71517641:71517643:71536053",
+        "tiger:zip_left": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15268246,
+      "nodes": [
+        151319983,
+        151319985
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Satsuma Court",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Satsuma",
+        "tiger:name_type": "Ct",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71532706"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15268300,
+      "nodes": [
+        151320229,
+        151320232
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Holly",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Holly",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71540204:71556635",
+        "tiger:upload_uuid": "bulk_upload.pl-c7e01251-f639-4317-aeb9-ba0793f7fbd2"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15268648,
+      "nodes": [
+        151322639,
+        13570526951,
+        151272256
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Oliveraz Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Oliveraz",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15268866,
+      "nodes": [
+        151323998,
+        151323999,
+        13440304915,
+        151324001
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "South Avenue & Antenna",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "South Ave & Antenna",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15269348,
+      "nodes": [
+        151326940,
+        151319817
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Aldrin Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Aldrin",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71517642",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15269569,
+      "nodes": [
+        151328174,
+        151328177
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Guava",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Guava",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71540207:71556964",
+        "tiger:upload_uuid": "bulk_upload.pl-c7e01251-f639-4317-aeb9-ba0793f7fbd2"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15269852,
+      "nodes": [
+        151330041,
+        151330043
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Bamboo",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Bamboo",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71517613",
+        "tiger:upload_uuid": "bulk_upload.pl-c7e01251-f639-4317-aeb9-ba0793f7fbd2"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15269934,
+      "nodes": [
+        151330589,
+        151245726
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Aldrin Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Aldrin",
+        "tiger:reviewed": "no",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15269935,
+      "nodes": [
+        151330590,
+        151330591,
+        151323024,
+        13071144367,
+        151330592,
+        359850834,
+        359850835,
+        151330610,
+        359850836
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Jennifer Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Jennifer",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15270203,
+      "nodes": [
+        151319730,
+        151332047,
+        151332048,
+        151332049,
+        151319985,
+        151332052,
+        151332053
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Cedar Drive",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Cedar",
+        "tiger:name_type": "Dr",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71532710:71532689:71532694:71532699:71532704:71532709"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15270235,
+      "nodes": [
+        151329844,
+        1604493397,
+        360090373,
+        151257203,
+        151326904,
+        151332233,
+        151331423,
+        151332234,
+        151332235,
+        151330503,
+        12016139601,
+        151328650,
+        12016139595,
+        151332237,
+        151299257,
+        151332238,
+        151332240,
+        151332241,
+        151332242,
+        11530204754,
+        11530204755,
+        11530204747,
+        151332243,
+        11692574468,
+        151332244,
+        13736954240,
+        151332246,
+        151310513,
+        151332247,
+        151319724,
+        11476515838,
+        11013872675,
+        11476515829,
+        1604493427,
+        151324001
+      ],
+      "tags": {
+        "highway": "tertiary",
+        "name": "South Avenue",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "South",
+        "tiger:name_type": "Ave",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15270454,
+      "nodes": [
+        151333600,
+        151332052
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Tangelo Court",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Tangelo",
+        "tiger:name_type": "Ct",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71532711"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15270533,
+      "nodes": [
+        151319819,
+        151334064
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Armstrong Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Armstrong",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71517639",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15270534,
+      "nodes": [
+        151245735,
+        151334067
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Armstrong Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Armstrong",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71532750"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15270824,
+      "nodes": [
+        151335664,
+        151335665,
+        151335667
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Apollo Circle",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Apollo",
+        "tiger:name_type": "Cir",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71536029"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15271457,
+      "nodes": [
+        151330592,
+        151339066
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Tyan Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Tyan",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71517658",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15271569,
+      "nodes": [
+        151339627,
+        151339629
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Ebony",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Ebony",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71540213:71556637",
+        "tiger:upload_uuid": "bulk_upload.pl-c7e01251-f639-4317-aeb9-ba0793f7fbd2"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15272054,
+      "nodes": [
+        151327722,
+        13457970874,
+        151341745,
+        151337892,
+        151330041,
+        359845385,
+        359845386,
+        151337384,
+        151341757,
+        151339627,
+        151341758,
+        151328177,
+        151320232
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Mesquite Road",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Mesquite",
+        "tiger:name_type": "Rd",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15272367,
+      "nodes": [
+        151341757,
+        151343229
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Dogwood",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Dogwood",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71540216:71552940",
+        "tiger:upload_uuid": "bulk_upload.pl-c7e01251-f639-4317-aeb9-ba0793f7fbd2"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15272714,
+      "nodes": [
+        151345116,
+        3909447708,
+        151345117
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Travis Court",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Travis",
+        "tiger:name_type": "Ct",
+        "tiger:reviewed": "no",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15273012,
+      "nodes": [
+        151341258,
+        151346659,
+        151346660,
+        151323026,
+        151345116,
+        151339066
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10c",
+        "highway": "residential",
+        "name": "Teri Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Teri",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71517650:71517651:71517659:71517663:71517665",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15273787,
+      "nodes": [
+        151335665,
+        151350641
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Apollo Lane",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Apollo",
+        "tiger:name_type": "Ln",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71532666",
+        "tiger:zip_left": "78537",
+        "tiger:zip_left_1": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15273933,
+      "nodes": [
+        151335664,
+        151351171
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Apollo Circle West",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Apollo Circle West",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71532664",
+        "tiger:upload_uuid": "bulk_upload.pl-c7e01251-f639-4317-aeb9-ba0793f7fbd2",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15274172,
+      "nodes": [
+        3891673014,
+        151319821,
+        151352169
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Lunar Street",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Lunar",
+        "tiger:name_type": "St",
+        "tiger:reviewed": "no",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15274440,
+      "nodes": [
+        151353705,
+        151332053
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Palm Court",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Palm",
+        "tiger:name_type": "Ct",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71532712"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15274494,
+      "nodes": [
+        151335667,
+        359850712,
+        151353922
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Apollo Circle East",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Apollo Circle East",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71536033",
+        "tiger:upload_uuid": "bulk_upload.pl-c7e01251-f639-4317-aeb9-ba0793f7fbd2",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15274801,
+      "nodes": [
+        151355266,
+        151355267,
+        151330610,
+        151355268,
+        151355269,
+        151355271,
+        151353922,
+        151355272,
+        151355276,
+        151350641,
+        151355277,
+        151351171,
+        151355278,
+        151342541
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Apollo Drive",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Apollo",
+        "tiger:name_type": "Dr",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71532668:71535067:71535068"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15274802,
+      "nodes": [
+        151355272,
+        151355280
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Apollo Drive",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Apollo",
+        "tiger:name_type": "Dr",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71535069"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15275991,
+      "nodes": [
+        151361443,
+        151361445,
+        151359104,
+        151319983,
+        151333600,
+        151353705
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Juniper Drive",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Juniper",
+        "tiger:name_type": "Dr",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15286610,
+      "nodes": [
+        151459463,
+        9021094639,
+        151459465,
+        9021094633,
+        151459469,
+        151324001
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "South Hutto Road",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Hutto",
+        "tiger:name_direction_prefix": "S",
+        "tiger:name_type": "Rd",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15287803,
+      "nodes": [
+        151245741,
+        151459486
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Lunar Drive",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Luna",
+        "tiger:reviewed": "no",
+        "tiger:zip_left": "78537",
+        "tiger:zip_right": "78537"
+      }
+    },
+    {
+      "type": "way",
+      "id": 15288696,
+      "nodes": [
+        151341758,
+        151466007
+      ],
+      "tags": {
+        "created_by": "Potlatch 0.10f",
+        "highway": "residential",
+        "name": "Fig",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Fig",
+        "tiger:reviewed": "no",
+        "tiger:separated": "no",
+        "tiger:source": "tiger_import_dch_v0.6_20070830",
+        "tiger:tlid": "71540209:71556636",
+        "tiger:upload_uuid": "bulk_upload.pl-ab2a96a3-eeed-43cb-a347-895137549bb7"
+      }
+    },
+    {
+      "type": "way",
+      "id": 104448736,
+      "nodes": [
+        151341260,
+        151303832,
+        3909447707,
+        10839351526,
+        151281261,
+        151342539,
+        151342541,
+        151297556,
+        151307573,
+        151245566,
+        10867997421,
+        1205077211,
+        151314081,
+        11748305046,
+        151272511
+      ],
+      "tags": {
+        "hgv": "yes",
+        "highway": "tertiary",
+        "name": "Valley View Road",
+        "ref": "FM 1423",
+        "source:hgv": "TxDOT\u2019s Sign Guidelines and Applications Manual, Chapter 5, Section 6 Truck Routes https://onlinemanuals.txdot.gov/TxDOTOnlineManuals/TxDOTManuals/smk/truck_routes.htm",
+        "tiger:name_base": "Valley View",
+        "tiger:name_type": "Rd"
+      }
+    },
+    {
+      "type": "way",
+      "id": 145954610,
+      "nodes": [
+        151324001,
+        1604493439,
+        10939841794,
+        1604493443,
+        10939841803,
+        1604493447,
+        10939876013,
+        10939876008,
+        1604493455,
+        151355266,
+        1604493458,
+        151316880,
+        1604493460,
+        151326940,
+        151330589,
+        151334064,
+        151334067,
+        151352169,
+        151459486,
+        1604493461,
+        151357897,
+        10941569590,
+        10941569571,
+        151320735
+      ],
+      "tags": {
+        "highway": "tertiary",
+        "name": "South Hutto Road",
+        "tiger:cfcc": "A41",
+        "tiger:county": "Hidalgo, TX",
+        "tiger:name_base": "Hutto",
+        "tiger:name_direction_prefix": "S",
+        "tiger:name_type": "Rd",
+        "tiger:reviewed": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 147226099,
+      "nodes": [
+        1604493441,
+        1604493443
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Chile Pequin Drive"
+      }
+    },
+    {
+      "type": "way",
+      "id": 147226102,
+      "nodes": [
+        1604493445,
+        1604493447
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Habanero Drive"
+      }
+    },
+    {
+      "type": "way",
+      "id": 147226103,
+      "nodes": [
+        1604493437,
+        1604493439
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Poblano Drive"
+      }
+    },
+    {
+      "type": "way",
+      "id": 147226107,
+      "nodes": [
+        1604493460,
+        1604493459
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Collins Street"
+      }
+    },
+    {
+      "type": "way",
+      "id": 147226108,
+      "nodes": [
+        1604493427,
+        1604493437,
+        1604493441,
+        1604493445,
+        1604493453
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Pepper Tree Drive"
+      }
+    },
+    {
+      "type": "way",
+      "id": 385833860,
+      "nodes": [
+        1604493459,
+        1604493456
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Topaz Street"
+      }
+    },
+    {
+      "type": "way",
+      "id": 385833861,
+      "nodes": [
+        151337384,
+        151337385
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Cedar",
+        "source": "Bing"
+      }
+    },
+    {
+      "type": "way",
+      "id": 385833863,
+      "nodes": [
+        1604493456,
+        1604493458
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Silver Court"
+      }
+    },
+    {
+      "type": "way",
+      "id": 385833897,
+      "nodes": [
+        1604493453,
+        1604493455
+      ],
+      "tags": {
+        "highway": "residential",
+        "name": "Jalapeno Drive"
+      }
+    },
+    {
+      "type": "way",
+      "id": 387700902,
+      "nodes": [
+        3909447707,
+        10839351524,
+        3909447706
+      ],
+      "tags": {
+        "access": "private",
+        "highway": "residential",
+        "oneway": "yes",
+        "source": "Bing"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1165351768,
+      "nodes": [
+        10839351525,
+        10839351527,
+        10839351526
+      ],
+      "tags": {
+        "access": "private",
+        "highway": "residential",
+        "oneway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592916,
+      "nodes": [
+        10939841803,
+        10939841802,
+        10939841804,
+        10939876030,
+        10939841801,
+        10939841800,
+        10939841799,
+        10939841798,
+        10939841797
+      ],
+      "tags": {
+        "highway": "service",
+        "oneway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592917,
+      "nodes": [
+        10939841797,
+        10939876033,
+        10939876006,
+        10939876007
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592918,
+      "nodes": [
+        10939876008,
+        10939876009,
+        10939876015,
+        10939876017,
+        10939876019,
+        10939876025,
+        10939876010,
+        10939876011,
+        10939876018,
+        10939876016,
+        10939876014,
+        10939876012,
+        10939876013
+      ],
+      "tags": {
+        "highway": "service",
+        "oneway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592919,
+      "nodes": [
+        10939876014,
+        10939876015
+      ],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592920,
+      "nodes": [
+        10939876016,
+        10939876017
+      ],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592921,
+      "nodes": [
+        10939876018,
+        10939876019
+      ],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592922,
+      "nodes": [
+        10939876020,
+        10939876021,
+        10939876010
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592923,
+      "nodes": [
+        10939876021,
+        10939876022,
+        10939876026,
+        10939876027,
+        10939876029,
+        10939876028,
+        10939876024
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592924,
+      "nodes": [
+        10939876015,
+        10939876023,
+        10939876024,
+        10939876025
+      ],
+      "tags": {
+        "highway": "service",
+        "oneway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592925,
+      "nodes": [
+        10939876022,
+        10939876024
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592926,
+      "nodes": [
+        10939876022,
+        10939876029
+      ],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592927,
+      "nodes": [
+        10939876030,
+        10939876031,
+        10939876032
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177592928,
+      "nodes": [
+        10939841794,
+        10939876005,
+        10939841795,
+        10939841796,
+        10939841797
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185694797,
+      "nodes": [
+        11013872679,
+        11013872712,
+        11013872719,
+        11013872680,
+        11013872681,
+        11013872720,
+        11013872728,
+        11013872727,
+        11013872735,
+        11013872682,
+        11013872683
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185694798,
+      "nodes": [
+        11013872696,
+        11013872697,
+        11013872698,
+        11013872699,
+        11013872700,
+        11013872701,
+        11013872683,
+        11013872684,
+        11013872685,
+        11013872686,
+        11013872687,
+        11013872693,
+        11013872694,
+        11013872695,
+        11013872688,
+        11013872689,
+        11013872690,
+        11013872691,
+        11013872692,
+        11013872696
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185694799,
+      "nodes": [
+        11013872679,
+        11013872702,
+        11013872703,
+        11013872676
+      ],
+      "tags": {
+        "highway": "service",
+        "oneway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185694800,
+      "nodes": [
+        11013872675,
+        11013872711,
+        11013872704,
+        11013872676
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185694801,
+      "nodes": [
+        11013872676,
+        11013872677,
+        11013872678,
+        11013872679
+      ],
+      "tags": {
+        "highway": "service",
+        "oneway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185694802,
+      "nodes": [
+        11013872704,
+        11013872705,
+        11013872706,
+        11013872707,
+        11013872708,
+        11013872709,
+        11013872710,
+        11013872711
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185694803,
+      "nodes": [
+        11013872712,
+        11013872713,
+        11013872714,
+        11013872715,
+        11013872716,
+        11013872717,
+        11013872718,
+        11013872719
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185694804,
+      "nodes": [
+        11013872720,
+        11013872721,
+        11013872722,
+        11013872723,
+        11013872724,
+        11013872725,
+        11013872726,
+        11013872727
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185694805,
+      "nodes": [
+        11013872728,
+        11013872729,
+        11013872730,
+        11013872731,
+        11013872732,
+        11013872733,
+        11013872734,
+        11013872735
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1236079252,
+      "nodes": [
+        11476515829,
+        12365401530,
+        12365401532,
+        12365401528,
+        11476515839,
+        11476515830,
+        11476515831,
+        11476515832,
+        11476515833,
+        11476515834,
+        12365401529,
+        11476515835,
+        11476515836,
+        11476515837,
+        12365401533,
+        12365401531,
+        11476515838
+      ],
+      "tags": {
+        "highway": "service",
+        "source": "maxar"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1336884412,
+      "nodes": [
+        12365401528,
+        11476515837
+      ],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1336884413,
+      "nodes": [
+        12365401530,
+        12365401531
+      ],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1336884414,
+      "nodes": [
+        12365401532,
+        12365401533
+      ],
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1465386488,
+      "nodes": [
+        13440304915,
+        13440304916
+      ],
+      "tags": {
+        "driveway": "pipestem",
+        "highway": "service",
+        "service": "driveway"
+      }
+    },
+    {
+      "type": "node",
+      "id": 151272511,
+      "lat": 26.1549962,
+      "lon": -98.0788206
+    },
+    {
+      "type": "node",
+      "id": 151314081,
+      "lat": 26.1572272,
+      "lon": -98.0784522
+    },
+    {
+      "type": "node",
+      "id": 11748305046,
+      "lat": 26.155589,
+      "lon": -98.0787185
+    },
+    {
+      "type": "node",
+      "id": 151245566,
+      "lat": 26.1617232,
+      "lon": -98.0776619
+    },
+    {
+      "type": "node",
+      "id": 1205077211,
+      "lat": 26.1602343,
+      "lon": -98.0779184
+    },
+    {
+      "type": "node",
+      "id": 10867997421,
+      "lat": 26.1603747,
+      "lon": -98.0778942
+    },
+    {
+      "type": "node",
+      "id": 151323998,
+      "lat": 26.165145,
+      "lon": -98.073025
+    },
+    {
+      "type": "node",
+      "id": 151323999,
+      "lat": 26.165132,
+      "lon": -98.072932
+    },
+    {
+      "type": "node",
+      "id": 151324001,
+      "lat": 26.1646172,
+      "lon": -98.0691074
+    },
+    {
+      "type": "node",
+      "id": 151459463,
+      "lat": 26.1594898,
+      "lon": -98.0700191
+    },
+    {
+      "type": "node",
+      "id": 151459465,
+      "lat": 26.1607081,
+      "lon": -98.0698034
+    },
+    {
+      "type": "node",
+      "id": 151459469,
+      "lat": 26.1621715,
+      "lon": -98.0695544
+    },
+    {
+      "type": "node",
+      "id": 9021094633,
+      "lat": 26.1610513,
+      "lon": -98.069745
+    },
+    {
+      "type": "node",
+      "id": 9021094639,
+      "lat": 26.1606739,
+      "lon": -98.0698094
+    },
+    {
+      "type": "node",
+      "id": 13440304915,
+      "lat": 26.1648912,
+      "lon": -98.071143
+    },
+    {
+      "type": "node",
+      "id": 151281261,
+      "lat": 26.1715471,
+      "lon": -98.075991
+    },
+    {
+      "type": "node",
+      "id": 151281263,
+      "lat": 26.1714673,
+      "lon": -98.0753861
+    },
+    {
+      "type": "node",
+      "id": 151297556,
+      "lat": 26.167653,
+      "lon": -98.0766405
+    },
+    {
+      "type": "node",
+      "id": 151307573,
+      "lat": 26.1662668,
+      "lon": -98.0768792
+    },
+    {
+      "type": "node",
+      "id": 151335664,
+      "lat": 26.1699995,
+      "lon": -98.0750347
+    },
+    {
+      "type": "node",
+      "id": 151342539,
+      "lat": 26.1711129,
+      "lon": -98.0760445
+    },
+    {
+      "type": "node",
+      "id": 151342541,
+      "lat": 26.1693181,
+      "lon": -98.0763536
+    },
+    {
+      "type": "node",
+      "id": 151351171,
+      "lat": 26.1691545,
+      "lon": -98.0751843
+    },
+    {
+      "type": "node",
+      "id": 151355277,
+      "lat": 26.1691006,
+      "lon": -98.0747379
+    },
+    {
+      "type": "node",
+      "id": 151355278,
+      "lat": 26.1692007,
+      "lon": -98.0754761
+    },
+    {
+      "type": "node",
+      "id": 151272256,
+      "lat": 26.1713271,
+      "lon": -98.0743233
+    },
+    {
+      "type": "node",
+      "id": 151272258,
+      "lat": 26.1712652,
+      "lon": -98.0738539
+    },
+    {
+      "type": "node",
+      "id": 151316878,
+      "lat": 26.169763,
+      "lon": -98.0715794
+    },
+    {
+      "type": "node",
+      "id": 151316880,
+      "lat": 26.1693185,
+      "lon": -98.0683194
+    },
+    {
+      "type": "node",
+      "id": 151319817,
+      "lat": 26.1704794,
+      "lon": -98.0714592
+    },
+    {
+      "type": "node",
+      "id": 151319819,
+      "lat": 26.1711881,
+      "lon": -98.0713476
+    },
+    {
+      "type": "node",
+      "id": 151326940,
+      "lat": 26.1700224,
+      "lon": -98.0681955
+    },
+    {
+      "type": "node",
+      "id": 151330589,
+      "lat": 26.1703714,
+      "lon": -98.0681381
+    },
+    {
+      "type": "node",
+      "id": 151330592,
+      "lat": 26.1705488,
+      "lon": -98.0725002
+    },
+    {
+      "type": "node",
+      "id": 151330610,
+      "lat": 26.1691882,
+      "lon": -98.072634
+    },
+    {
+      "type": "node",
+      "id": 151334064,
+      "lat": 26.1707182,
+      "lon": -98.0680772
+    },
+    {
+      "type": "node",
+      "id": 151335665,
+      "lat": 26.1698847,
+      "lon": -98.0742202
+    },
+    {
+      "type": "node",
+      "id": 151335667,
+      "lat": 26.1697715,
+      "lon": -98.0733937
+    },
+    {
+      "type": "node",
+      "id": 151339066,
+      "lat": 26.1706982,
+      "lon": -98.0734229
+    },
+    {
+      "type": "node",
+      "id": 151345116,
+      "lat": 26.1717195,
+      "lon": -98.0732797
+    },
+    {
+      "type": "node",
+      "id": 151345117,
+      "lat": 26.1716032,
+      "lon": -98.0728258
+    },
+    {
+      "type": "node",
+      "id": 151350641,
+      "lat": 26.1690466,
+      "lon": -98.0743549
+    },
+    {
+      "type": "node",
+      "id": 151353922,
+      "lat": 26.1690667,
+      "lon": -98.0734104
+    },
+    {
+      "type": "node",
+      "id": 151355266,
+      "lat": 26.1685999,
+      "lon": -98.0684407
+    },
+    {
+      "type": "node",
+      "id": 151355267,
+      "lat": 26.1690775,
+      "lon": -98.0717081
+    },
+    {
+      "type": "node",
+      "id": 151355268,
+      "lat": 26.1692128,
+      "lon": -98.0727658
+    },
+    {
+      "type": "node",
+      "id": 151355269,
+      "lat": 26.1692205,
+      "lon": -98.0728684
+    },
+    {
+      "type": "node",
+      "id": 151355271,
+      "lat": 26.1691866,
+      "lon": -98.0730833
+    },
+    {
+      "type": "node",
+      "id": 151355272,
+      "lat": 26.1689858,
+      "lon": -98.0735987
+    },
+    {
+      "type": "node",
+      "id": 151355276,
+      "lat": 26.1689765,
+      "lon": -98.0737904
+    },
+    {
+      "type": "node",
+      "id": 151355280,
+      "lat": 26.1688001,
+      "lon": -98.0735277
+    },
+    {
+      "type": "node",
+      "id": 359850712,
+      "lat": 26.1692412,
+      "lon": -98.073476
+    },
+    {
+      "type": "node",
+      "id": 359850834,
+      "lat": 26.1704255,
+      "lon": -98.0724975
+    },
+    {
+      "type": "node",
+      "id": 359850835,
+      "lat": 26.1700327,
+      "lon": -98.0724806
+    },
+    {
+      "type": "node",
+      "id": 359850836,
+      "lat": 26.1686946,
+      "lon": -98.0727173
+    },
+    {
+      "type": "node",
+      "id": 1604493439,
+      "lat": 26.1654786,
+      "lon": -98.0689608
+    },
+    {
+      "type": "node",
+      "id": 1604493443,
+      "lat": 26.1662808,
+      "lon": -98.0688242
+    },
+    {
+      "type": "node",
+      "id": 1604493447,
+      "lat": 26.1670891,
+      "lon": -98.0686866
+    },
+    {
+      "type": "node",
+      "id": 1604493455,
+      "lat": 26.1678814,
+      "lon": -98.0685517
+    },
+    {
+      "type": "node",
+      "id": 1604493458,
+      "lat": 26.1687262,
+      "lon": -98.0684176
+    },
+    {
+      "type": "node",
+      "id": 1604493460,
+      "lat": 26.1695605,
+      "lon": -98.0682754
+    },
+    {
+      "type": "node",
+      "id": 3909447708,
+      "lat": 26.1716671,
+      "lon": -98.0729144
+    },
+    {
+      "type": "node",
+      "id": 10939841794,
+      "lat": 26.1659917,
+      "lon": -98.0688734
+    },
+    {
+      "type": "node",
+      "id": 10939841795,
+      "lat": 26.1660682,
+      "lon": -98.0694474
+    },
+    {
+      "type": "node",
+      "id": 10939841796,
+      "lat": 26.1660934,
+      "lon": -98.0694934
+    },
+    {
+      "type": "node",
+      "id": 10939841797,
+      "lat": 26.1661385,
+      "lon": -98.0695384
+    },
+    {
+      "type": "node",
+      "id": 10939841798,
+      "lat": 26.1661954,
+      "lon": -98.0695533
+    },
+    {
+      "type": "node",
+      "id": 10939841799,
+      "lat": 26.1662471,
+      "lon": -98.0695501
+    },
+    {
+      "type": "node",
+      "id": 10939841800,
+      "lat": 26.1662817,
+      "lon": -98.0695321
+    },
+    {
+      "type": "node",
+      "id": 10939841801,
+      "lat": 26.166311,
+      "lon": -98.0694906
+    },
+    {
+      "type": "node",
+      "id": 10939841802,
+      "lat": 26.1664203,
+      "lon": -98.0689258
+    },
+    {
+      "type": "node",
+      "id": 10939841803,
+      "lat": 26.1664113,
+      "lon": -98.068802
+    },
+    {
+      "type": "node",
+      "id": 10939841804,
+      "lat": 26.1664123,
+      "lon": -98.0689688
+    },
+    {
+      "type": "node",
+      "id": 10939876005,
+      "lat": 26.1660126,
+      "lon": -98.0690419
+    },
+    {
+      "type": "node",
+      "id": 10939876006,
+      "lat": 26.1660914,
+      "lon": -98.0696448
+    },
+    {
+      "type": "node",
+      "id": 10939876007,
+      "lat": 26.166013,
+      "lon": -98.0701051
+    },
+    {
+      "type": "node",
+      "id": 10939876008,
+      "lat": 26.1677221,
+      "lon": -98.0685788
+    },
+    {
+      "type": "node",
+      "id": 10939876009,
+      "lat": 26.1676988,
+      "lon": -98.0687477
+    },
+    {
+      "type": "node",
+      "id": 10939876010,
+      "lat": 26.1675081,
+      "lon": -98.0695918
+    },
+    {
+      "type": "node",
+      "id": 10939876011,
+      "lat": 26.1670117,
+      "lon": -98.0694757
+    },
+    {
+      "type": "node",
+      "id": 10939876012,
+      "lat": 26.1671488,
+      "lon": -98.0688414
+    },
+    {
+      "type": "node",
+      "id": 10939876013,
+      "lat": 26.1671288,
+      "lon": -98.0686798
+    },
+    {
+      "type": "node",
+      "id": 10939876014,
+      "lat": 26.1671213,
+      "lon": -98.0689829
+    },
+    {
+      "type": "node",
+      "id": 10939876015,
+      "lat": 26.1676188,
+      "lon": -98.0691019
+    },
+    {
+      "type": "node",
+      "id": 10939876016,
+      "lat": 26.1670775,
+      "lon": -98.0691797
+    },
+    {
+      "type": "node",
+      "id": 10939876017,
+      "lat": 26.1675742,
+      "lon": -98.0692989
+    },
+    {
+      "type": "node",
+      "id": 10939876018,
+      "lat": 26.1670398,
+      "lon": -98.0693495
+    },
+    {
+      "type": "node",
+      "id": 10939876019,
+      "lat": 26.1675362,
+      "lon": -98.0694672
+    },
+    {
+      "type": "node",
+      "id": 10939876020,
+      "lat": 26.1673631,
+      "lon": -98.0697121
+    },
+    {
+      "type": "node",
+      "id": 10939876021,
+      "lat": 26.167478,
+      "lon": -98.069743
+    },
+    {
+      "type": "node",
+      "id": 10939876022,
+      "lat": 26.1675897,
+      "lon": -98.0697727
+    },
+    {
+      "type": "node",
+      "id": 10939876023,
+      "lat": 26.1677451,
+      "lon": -98.06914
+    },
+    {
+      "type": "node",
+      "id": 10939876024,
+      "lat": 26.1676483,
+      "lon": -98.0695783
+    },
+    {
+      "type": "node",
+      "id": 10939876025,
+      "lat": 26.1675189,
+      "lon": -98.069544
+    },
+    {
+      "type": "node",
+      "id": 10939876026,
+      "lat": 26.1675497,
+      "lon": -98.0699717
+    },
+    {
+      "type": "node",
+      "id": 10939876027,
+      "lat": 26.167861,
+      "lon": -98.0699923
+    },
+    {
+      "type": "node",
+      "id": 10939876028,
+      "lat": 26.1678145,
+      "lon": -98.0696228
+    },
+    {
+      "type": "node",
+      "id": 10939876029,
+      "lat": 26.1678381,
+      "lon": -98.0697885
+    },
+    {
+      "type": "node",
+      "id": 10939876030,
+      "lat": 26.1663695,
+      "lon": -98.0691895
+    },
+    {
+      "type": "node",
+      "id": 10939876031,
+      "lat": 26.1665066,
+      "lon": -98.0692272
+    },
+    {
+      "type": "node",
+      "id": 10939876032,
+      "lat": 26.166473,
+      "lon": -98.0694004
+    },
+    {
+      "type": "node",
+      "id": 10939876033,
+      "lat": 26.1661204,
+      "lon": -98.0695792
+    },
+    {
+      "type": "node",
+      "id": 13071144367,
+      "lat": 26.1705756,
+      "lon": -98.0723864
+    },
+    {
+      "type": "node",
+      "id": 13440304916,
+      "lat": 26.1655554,
+      "lon": -98.0710331
+    },
+    {
+      "type": "node",
+      "id": 151303830,
+      "lat": 26.1739535,
+      "lon": -98.0749783
+    },
+    {
+      "type": "node",
+      "id": 151303832,
+      "lat": 26.1740338,
+      "lon": -98.0755649
+    },
+    {
+      "type": "node",
+      "id": 151341260,
+      "lat": 26.1749949,
+      "lon": -98.0754004
+    },
+    {
+      "type": "node",
+      "id": 3909447706,
+      "lat": 26.1719674,
+      "lon": -98.0762425
+    },
+    {
+      "type": "node",
+      "id": 3909447707,
+      "lat": 26.1719261,
+      "lon": -98.0759256
+    },
+    {
+      "type": "node",
+      "id": 10839351524,
+      "lat": 26.1719544,
+      "lon": -98.0761429
+    },
+    {
+      "type": "node",
+      "id": 10839351525,
+      "lat": 26.1718722,
+      "lon": -98.076259
+    },
+    {
+      "type": "node",
+      "id": 10839351526,
+      "lat": 26.1718259,
+      "lon": -98.0759429
+    },
+    {
+      "type": "node",
+      "id": 10839351527,
+      "lat": 26.1718577,
+      "lon": -98.0761603
+    },
+    {
+      "type": "node",
+      "id": 151319821,
+      "lat": 26.1719045,
+      "lon": -98.0712275
+    },
+    {
+      "type": "node",
+      "id": 151322639,
+      "lat": 26.1746853,
+      "lon": -98.0737509
+    },
+    {
+      "type": "node",
+      "id": 151323024,
+      "lat": 26.1722358,
+      "lon": -98.0720944
+    },
+    {
+      "type": "node",
+      "id": 151323026,
+      "lat": 26.1724133,
+      "lon": -98.0731553
+    },
+    {
+      "type": "node",
+      "id": 151330590,
+      "lat": 26.1738326,
+      "lon": -98.0718188
+    },
+    {
+      "type": "node",
+      "id": 151330591,
+      "lat": 26.1730392,
+      "lon": -98.0719517
+    },
+    {
+      "type": "node",
+      "id": 151341258,
+      "lat": 26.1745071,
+      "lon": -98.072787
+    },
+    {
+      "type": "node",
+      "id": 151346659,
+      "lat": 26.173975,
+      "lon": -98.0728713
+    },
+    {
+      "type": "node",
+      "id": 151346660,
+      "lat": 26.1731999,
+      "lon": -98.0730205
+    },
+    {
+      "type": "node",
+      "id": 3891673014,
+      "lat": 26.1719718,
+      "lon": -98.0716273
+    },
+    {
+      "type": "node",
+      "id": 13570526951,
+      "lat": 26.1744647,
+      "lon": -98.0737885
+    },
+    {
+      "type": "node",
+      "id": 151319724,
+      "lat": 26.1639778,
+      "lon": -98.0645155
+    },
+    {
+      "type": "node",
+      "id": 151332247,
+      "lat": 26.1637236,
+      "lon": -98.0624556
+    },
+    {
+      "type": "node",
+      "id": 1604493427,
+      "lat": 26.1643767,
+      "lon": -98.0672309
+    },
+    {
+      "type": "node",
+      "id": 1604493437,
+      "lat": 26.1652079,
+      "lon": -98.0670873
+    },
+    {
+      "type": "node",
+      "id": 11013872675,
+      "lat": 26.16423,
+      "lon": -98.066232
+    },
+    {
+      "type": "node",
+      "id": 11013872676,
+      "lat": 26.1638976,
+      "lon": -98.0662743
+    },
+    {
+      "type": "node",
+      "id": 11013872677,
+      "lat": 26.1638692,
+      "lon": -98.0663072
+    },
+    {
+      "type": "node",
+      "id": 11013872678,
+      "lat": 26.1638065,
+      "lon": -98.0663167
+    },
+    {
+      "type": "node",
+      "id": 11013872679,
+      "lat": 26.1637799,
+      "lon": -98.066305
+    },
+    {
+      "type": "node",
+      "id": 11013872680,
+      "lat": 26.1634888,
+      "lon": -98.0663458
+    },
+    {
+      "type": "node",
+      "id": 11013872681,
+      "lat": 26.1630878,
+      "lon": -98.0664258
+    },
+    {
+      "type": "node",
+      "id": 11013872682,
+      "lat": 26.1626307,
+      "lon": -98.0665001
+    },
+    {
+      "type": "node",
+      "id": 11013872683,
+      "lat": 26.1625829,
+      "lon": -98.0665146
+    },
+    {
+      "type": "node",
+      "id": 11013872684,
+      "lat": 26.1625813,
+      "lon": -98.0665652
+    },
+    {
+      "type": "node",
+      "id": 11013872685,
+      "lat": 26.1625647,
+      "lon": -98.0666123
+    },
+    {
+      "type": "node",
+      "id": 11013872686,
+      "lat": 26.162535,
+      "lon": -98.0666506
+    },
+    {
+      "type": "node",
+      "id": 11013872687,
+      "lat": 26.1624957,
+      "lon": -98.0666758
+    },
+    {
+      "type": "node",
+      "id": 11013872688,
+      "lat": 26.1623355,
+      "lon": -98.0666161
+    },
+    {
+      "type": "node",
+      "id": 11013872689,
+      "lat": 26.1623181,
+      "lon": -98.0665714
+    },
+    {
+      "type": "node",
+      "id": 11013872690,
+      "lat": 26.1623144,
+      "lon": -98.0665228
+    },
+    {
+      "type": "node",
+      "id": 11013872691,
+      "lat": 26.1623249,
+      "lon": -98.0664754
+    },
+    {
+      "type": "node",
+      "id": 11013872692,
+      "lat": 26.1623484,
+      "lon": -98.0664343
+    },
+    {
+      "type": "node",
+      "id": 11013872693,
+      "lat": 26.1624511,
+      "lon": -98.066685
+    },
+    {
+      "type": "node",
+      "id": 11013872694,
+      "lat": 26.1624062,
+      "lon": -98.0666773
+    },
+    {
+      "type": "node",
+      "id": 11013872695,
+      "lat": 26.1623662,
+      "lon": -98.0666534
+    },
+    {
+      "type": "node",
+      "id": 11013872696,
+      "lat": 26.1623825,
+      "lon": -98.0664037
+    },
+    {
+      "type": "node",
+      "id": 11013872697,
+      "lat": 26.1624235,
+      "lon": -98.0663868
+    },
+    {
+      "type": "node",
+      "id": 11013872698,
+      "lat": 26.1624673,
+      "lon": -98.0663855
+    },
+    {
+      "type": "node",
+      "id": 11013872699,
+      "lat": 26.1625091,
+      "lon": -98.0663998
+    },
+    {
+      "type": "node",
+      "id": 11013872700,
+      "lat": 26.1625447,
+      "lon": -98.0664283
+    },
+    {
+      "type": "node",
+      "id": 11013872701,
+      "lat": 26.1625701,
+      "lon": -98.066468
+    },
+    {
+      "type": "node",
+      "id": 11013872702,
+      "lat": 26.1637969,
+      "lon": -98.0662735
+    },
+    {
+      "type": "node",
+      "id": 11013872703,
+      "lat": 26.1638629,
+      "lon": -98.0662621
+    },
+    {
+      "type": "node",
+      "id": 11013872704,
+      "lat": 26.1639088,
+      "lon": -98.0662728
+    },
+    {
+      "type": "node",
+      "id": 11013872705,
+      "lat": 26.1638907,
+      "lon": -98.0662308
+    },
+    {
+      "type": "node",
+      "id": 11013872706,
+      "lat": 26.1638903,
+      "lon": -98.066178
+    },
+    {
+      "type": "node",
+      "id": 11013872707,
+      "lat": 26.1639264,
+      "lon": -98.0661147
+    },
+    {
+      "type": "node",
+      "id": 11013872708,
+      "lat": 26.1639954,
+      "lon": -98.0660987
+    },
+    {
+      "type": "node",
+      "id": 11013872709,
+      "lat": 26.1640462,
+      "lon": -98.0661018
+    },
+    {
+      "type": "node",
+      "id": 11013872710,
+      "lat": 26.164068,
+      "lon": -98.0661319
+    },
+    {
+      "type": "node",
+      "id": 11013872711,
+      "lat": 26.1640878,
+      "lon": -98.0662501
+    },
+    {
+      "type": "node",
+      "id": 11013872712,
+      "lat": 26.1637548,
+      "lon": -98.0663085
+    },
+    {
+      "type": "node",
+      "id": 11013872713,
+      "lat": 26.1637817,
+      "lon": -98.0665028
+    },
+    {
+      "type": "node",
+      "id": 11013872714,
+      "lat": 26.1637784,
+      "lon": -98.0665207
+    },
+    {
+      "type": "node",
+      "id": 11013872715,
+      "lat": 26.1637632,
+      "lon": -98.0665446
+    },
+    {
+      "type": "node",
+      "id": 11013872716,
+      "lat": 26.1635596,
+      "lon": -98.0665729
+    },
+    {
+      "type": "node",
+      "id": 11013872717,
+      "lat": 26.163544,
+      "lon": -98.0665669
+    },
+    {
+      "type": "node",
+      "id": 11013872718,
+      "lat": 26.1635284,
+      "lon": -98.0665467
+    },
+    {
+      "type": "node",
+      "id": 11013872719,
+      "lat": 26.1634974,
+      "lon": -98.0663446
+    },
+    {
+      "type": "node",
+      "id": 11013872720,
+      "lat": 26.16302,
+      "lon": -98.0664368
+    },
+    {
+      "type": "node",
+      "id": 11013872721,
+      "lat": 26.1629854,
+      "lon": -98.0662458
+    },
+    {
+      "type": "node",
+      "id": 11013872722,
+      "lat": 26.1629695,
+      "lon": -98.066228
+    },
+    {
+      "type": "node",
+      "id": 11013872723,
+      "lat": 26.1629438,
+      "lon": -98.0662112
+    },
+    {
+      "type": "node",
+      "id": 11013872724,
+      "lat": 26.1628283,
+      "lon": -98.0662332
+    },
+    {
+      "type": "node",
+      "id": 11013872725,
+      "lat": 26.162816,
+      "lon": -98.0662456
+    },
+    {
+      "type": "node",
+      "id": 11013872726,
+      "lat": 26.1628037,
+      "lon": -98.0662651
+    },
+    {
+      "type": "node",
+      "id": 11013872727,
+      "lat": 26.1628327,
+      "lon": -98.0664672
+    },
+    {
+      "type": "node",
+      "id": 11013872728,
+      "lat": 26.1629874,
+      "lon": -98.0664421
+    },
+    {
+      "type": "node",
+      "id": 11013872729,
+      "lat": 26.1630136,
+      "lon": -98.0666311
+    },
+    {
+      "type": "node",
+      "id": 11013872730,
+      "lat": 26.1630075,
+      "lon": -98.0666617
+    },
+    {
+      "type": "node",
+      "id": 11013872731,
+      "lat": 26.162993,
+      "lon": -98.0666734
+    },
+    {
+      "type": "node",
+      "id": 11013872732,
+      "lat": 26.1628598,
+      "lon": -98.066687
+    },
+    {
+      "type": "node",
+      "id": 11013872733,
+      "lat": 26.162843,
+      "lon": -98.0666809
+    },
+    {
+      "type": "node",
+      "id": 11013872734,
+      "lat": 26.1628304,
+      "lon": -98.0666559
+    },
+    {
+      "type": "node",
+      "id": 11013872735,
+      "lat": 26.1628037,
+      "lon": -98.066472
+    },
+    {
+      "type": "node",
+      "id": 11476515829,
+      "lat": 26.1642944,
+      "lon": -98.0666705
+    },
+    {
+      "type": "node",
+      "id": 11476515837,
+      "lat": 26.1651946,
+      "lon": -98.0658382
+    },
+    {
+      "type": "node",
+      "id": 11476515838,
+      "lat": 26.1641975,
+      "lon": -98.0660107
+    },
+    {
+      "type": "node",
+      "id": 12365401530,
+      "lat": 26.1649487,
+      "lon": -98.0665629
+    },
+    {
+      "type": "node",
+      "id": 12365401531,
+      "lat": 26.1648515,
+      "lon": -98.0658976
+    },
+    {
+      "type": "node",
+      "id": 12365401532,
+      "lat": 26.1651154,
+      "lon": -98.0665354
+    },
+    {
+      "type": "node",
+      "id": 12365401533,
+      "lat": 26.1650196,
+      "lon": -98.0658685
+    },
+    {
+      "type": "node",
+      "id": 151310513,
+      "lat": 26.1635387,
+      "lon": -98.0612454
+    },
+    {
+      "type": "node",
+      "id": 151332241,
+      "lat": 26.1627644,
+      "lon": -98.0555993
+    },
+    {
+      "type": "node",
+      "id": 151332242,
+      "lat": 26.162912,
+      "lon": -98.056715
+    },
+    {
+      "type": "node",
+      "id": 151332243,
+      "lat": 26.1630842,
+      "lon": -98.0578894
+    },
+    {
+      "type": "node",
+      "id": 151332244,
+      "lat": 26.163232,
+      "lon": -98.059019
+    },
+    {
+      "type": "node",
+      "id": 151332246,
+      "lat": 26.1634,
+      "lon": -98.0601811
+    },
+    {
+      "type": "node",
+      "id": 11530204747,
+      "lat": 26.1630419,
+      "lon": -98.0576012
+    },
+    {
+      "type": "node",
+      "id": 11530204754,
+      "lat": 26.1629568,
+      "lon": -98.0570204
+    },
+    {
+      "type": "node",
+      "id": 11530204755,
+      "lat": 26.1629985,
+      "lon": -98.0573046
+    },
+    {
+      "type": "node",
+      "id": 11692574468,
+      "lat": 26.1631707,
+      "lon": -98.0585504
+    },
+    {
+      "type": "node",
+      "id": 13736954240,
+      "lat": 26.1633453,
+      "lon": -98.0598029
+    },
+    {
+      "type": "node",
+      "id": 151299257,
+      "lat": 26.1623538,
+      "lon": -98.0526037
+    },
+    {
+      "type": "node",
+      "id": 151328650,
+      "lat": 26.1619867,
+      "lon": -98.0498969
+    },
+    {
+      "type": "node",
+      "id": 151332237,
+      "lat": 26.1621366,
+      "lon": -98.0509666
+    },
+    {
+      "type": "node",
+      "id": 151332238,
+      "lat": 26.1624454,
+      "lon": -98.0532501
+    },
+    {
+      "type": "node",
+      "id": 151332240,
+      "lat": 26.1626035,
+      "lon": -98.0544154
+    },
+    {
+      "type": "node",
+      "id": 12016139595,
+      "lat": 26.162096,
+      "lon": -98.0506516
+    },
+    {
+      "type": "node",
+      "id": 12016139601,
+      "lat": 26.161938,
+      "lon": -98.0495394
+    },
+    {
+      "type": "node",
+      "id": 151257203,
+      "lat": 26.1613589,
+      "lon": -98.0452406
+    },
+    {
+      "type": "node",
+      "id": 151326904,
+      "lat": 26.1614486,
+      "lon": -98.0459045
+    },
+    {
+      "type": "node",
+      "id": 151329844,
+      "lat": 26.1612902,
+      "lon": -98.0443601
+    },
+    {
+      "type": "node",
+      "id": 151330503,
+      "lat": 26.1616459,
+      "lon": -98.0473973
+    },
+    {
+      "type": "node",
+      "id": 151331423,
+      "lat": 26.161525,
+      "lon": -98.0465142
+    },
+    {
+      "type": "node",
+      "id": 151332233,
+      "lat": 26.1614884,
+      "lon": -98.046201
+    },
+    {
+      "type": "node",
+      "id": 151332234,
+      "lat": 26.1615683,
+      "lon": -98.0468104
+    },
+    {
+      "type": "node",
+      "id": 151332235,
+      "lat": 26.1616079,
+      "lon": -98.0471098
+    },
+    {
+      "type": "node",
+      "id": 360090373,
+      "lat": 26.1612977,
+      "lon": -98.0448677
+    },
+    {
+      "type": "node",
+      "id": 1604493397,
+      "lat": 26.1612829,
+      "lon": -98.0446389
+    },
+    {
+      "type": "node",
+      "id": 151245726,
+      "lat": 26.1701405,
+      "lon": -98.0664982
+    },
+    {
+      "type": "node",
+      "id": 151245735,
+      "lat": 26.1708338,
+      "lon": -98.066378
+    },
+    {
+      "type": "node",
+      "id": 151245741,
+      "lat": 26.1715502,
+      "lon": -98.0662493
+    },
+    {
+      "type": "node",
+      "id": 151319730,
+      "lat": 26.1677448,
+      "lon": -98.0638889
+    },
+    {
+      "type": "node",
+      "id": 151319983,
+      "lat": 26.1694857,
+      "lon": -98.0650047
+    },
+    {
+      "type": "node",
+      "id": 151319985,
+      "lat": 26.1680914,
+      "lon": -98.0652451
+    },
+    {
+      "type": "node",
+      "id": 151320229,
+      "lat": 26.1694472,
+      "lon": -98.063846
+    },
+    {
+      "type": "node",
+      "id": 151320232,
+      "lat": 26.1697245,
+      "lon": -98.0658115
+    },
+    {
+      "type": "node",
+      "id": 151328174,
+      "lat": 26.1698016,
+      "lon": -98.0637688
+    },
+    {
+      "type": "node",
+      "id": 151328177,
+      "lat": 26.1700789,
+      "lon": -98.0657515
+    },
+    {
+      "type": "node",
+      "id": 151330041,
+      "lat": 26.1717351,
+      "lon": -98.0651936
+    },
+    {
+      "type": "node",
+      "id": 151330043,
+      "lat": 26.1714963,
+      "lon": -98.0634769
+    },
+    {
+      "type": "node",
+      "id": 151332047,
+      "lat": 26.1678757,
+      "lon": -98.0641207
+    },
+    {
+      "type": "node",
+      "id": 151332048,
+      "lat": 26.1679759,
+      "lon": -98.064464
+    },
+    {
+      "type": "node",
+      "id": 151332049,
+      "lat": 26.1680221,
+      "lon": -98.0648588
+    },
+    {
+      "type": "node",
+      "id": 151332052,
+      "lat": 26.16813,
+      "lon": -98.0655455
+    },
+    {
+      "type": "node",
+      "id": 151332053,
+      "lat": 26.1682224,
+      "lon": -98.0661806
+    },
+    {
+      "type": "node",
+      "id": 151333600,
+      "lat": 26.169532,
+      "lon": -98.0653309
+    },
+    {
+      "type": "node",
+      "id": 151334067,
+      "lat": 26.17107,
+      "lon": -98.0680206
+    },
+    {
+      "type": "node",
+      "id": 151337384,
+      "lat": 26.1714269,
+      "lon": -98.0655197
+    },
+    {
+      "type": "node",
+      "id": 151337385,
+      "lat": 26.1711573,
+      "lon": -98.063537
+    },
+    {
+      "type": "node",
+      "id": 151339627,
+      "lat": 26.1707568,
+      "lon": -98.0656313
+    },
+    {
+      "type": "node",
+      "id": 151339629,
+      "lat": 26.1704872,
+      "lon": -98.0636572
+    },
+    {
+      "type": "node",
+      "id": 151341757,
+      "lat": 26.1710957,
+      "lon": -98.0655712
+    },
+    {
+      "type": "node",
+      "id": 151341758,
+      "lat": 26.1704101,
+      "lon": -98.0656914
+    },
+    {
+      "type": "node",
+      "id": 151343229,
+      "lat": 26.1708184,
+      "lon": -98.0635971
+    },
+    {
+      "type": "node",
+      "id": 151352169,
+      "lat": 26.1714597,
+      "lon": -98.0679523
+    },
+    {
+      "type": "node",
+      "id": 151353705,
+      "lat": 26.1696167,
+      "lon": -98.0659403
+    },
+    {
+      "type": "node",
+      "id": 151359104,
+      "lat": 26.1694318,
+      "lon": -98.0646185
+    },
+    {
+      "type": "node",
+      "id": 151361443,
+      "lat": 26.1693343,
+      "lon": -98.0638898
+    },
+    {
+      "type": "node",
+      "id": 151361445,
+      "lat": 26.1693779,
+      "lon": -98.0642323
+    },
+    {
+      "type": "node",
+      "id": 151459486,
+      "lat": 26.171776,
+      "lon": -98.0678997
+    },
+    {
+      "type": "node",
+      "id": 151466007,
+      "lat": 26.1701482,
+      "lon": -98.0637173
+    },
+    {
+      "type": "node",
+      "id": 359845385,
+      "lat": 26.1716118,
+      "lon": -98.0652365
+    },
+    {
+      "type": "node",
+      "id": 359845386,
+      "lat": 26.1715271,
+      "lon": -98.065494
+    },
+    {
+      "type": "node",
+      "id": 1604493441,
+      "lat": 26.1660089,
+      "lon": -98.0669437
+    },
+    {
+      "type": "node",
+      "id": 1604493445,
+      "lat": 26.1668175,
+      "lon": -98.0668077
+    },
+    {
+      "type": "node",
+      "id": 1604493453,
+      "lat": 26.1676336,
+      "lon": -98.0666717
+    },
+    {
+      "type": "node",
+      "id": 1604493456,
+      "lat": 26.1684648,
+      "lon": -98.0667473
+    },
+    {
+      "type": "node",
+      "id": 1604493459,
+      "lat": 26.1693263,
+      "lon": -98.0666037
+    },
+    {
+      "type": "node",
+      "id": 11476515830,
+      "lat": 26.1654191,
+      "lon": -98.066448
+    },
+    {
+      "type": "node",
+      "id": 11476515831,
+      "lat": 26.1654521,
+      "lon": -98.0663936
+    },
+    {
+      "type": "node",
+      "id": 11476515832,
+      "lat": 26.1654631,
+      "lon": -98.0663345
+    },
+    {
+      "type": "node",
+      "id": 11476515833,
+      "lat": 26.1654612,
+      "lon": -98.0663013
+    },
+    {
+      "type": "node",
+      "id": 11476515834,
+      "lat": 26.1654129,
+      "lon": -98.0659507
+    },
+    {
+      "type": "node",
+      "id": 11476515835,
+      "lat": 26.1653565,
+      "lon": -98.0658503
+    },
+    {
+      "type": "node",
+      "id": 11476515836,
+      "lat": 26.165291,
+      "lon": -98.0658278
+    },
+    {
+      "type": "node",
+      "id": 11476515839,
+      "lat": 26.1653506,
+      "lon": -98.0664917
+    },
+    {
+      "type": "node",
+      "id": 12365401528,
+      "lat": 26.1652903,
+      "lon": -98.0665067
+    },
+    {
+      "type": "node",
+      "id": 12365401529,
+      "lat": 26.1653868,
+      "lon": -98.0658908
+    },
+    {
+      "type": "node",
+      "id": 151320735,
+      "lat": 26.1735625,
+      "lon": -98.0675836
+    },
+    {
+      "type": "node",
+      "id": 151327722,
+      "lat": 26.1730663,
+      "lon": -98.0649539
+    },
+    {
+      "type": "node",
+      "id": 151337892,
+      "lat": 26.1720817,
+      "lon": -98.0651249
+    },
+    {
+      "type": "node",
+      "id": 151341745,
+      "lat": 26.1723975,
+      "lon": -98.0650906
+    },
+    {
+      "type": "node",
+      "id": 151357897,
+      "lat": 26.1725266,
+      "lon": -98.0677642
+    },
+    {
+      "type": "node",
+      "id": 1604493461,
+      "lat": 26.1722497,
+      "lon": -98.0678117
+    },
+    {
+      "type": "node",
+      "id": 10941569571,
+      "lat": 26.173172,
+      "lon": -98.0676565
+    },
+    {
+      "type": "node",
+      "id": 10941569590,
+      "lat": 26.1729215,
+      "lon": -98.0676968
+    },
+    {
+      "type": "node",
+      "id": 13457970874,
+      "lat": 26.1726734,
+      "lon": -98.0650342
+    }
+  ]
+}

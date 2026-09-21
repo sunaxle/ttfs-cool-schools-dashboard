@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTRGV Milestone Invoice #3 — Texas Trees Foundation</title>
+  <meta name="description" content="Formal fixed-price milestone invoice #3 for August 2026 deliverables under the Texas Trees Foundation and UTRGV Project Cool Schools Agreement.">
+  <meta name="author" content="The University of Texas Rio Grande Valley">
+  <style>
+    @page {
+      size: letter portrait;
+      margin: 0.5in;
+    }
+    :root {
+      --utrgv-navy: #0C2340;
+      --utrgv-orange: #F05023;
+      --forest-green: #1B4D3E;
+      --card-border: #DDE2E5;
+      --white: #FFFFFF;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f8;
+      color: #2B2D42;
+      font-size: 10pt;
+      line-height: 1.4;
+    }
+    .invoice-container {
+      width: 8.5in;
+      min-height: 11in;
+      margin: 20px auto;
+      background: white;
+      padding: 0.6in;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid var(--utrgv-navy);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .logo-text h1 {
+      margin: 0 0 4px;
+      font-size: 18pt;
+      color: var(--utrgv-navy);
+      font-weight: 800;
+    }
+    .logo-text p {
+      margin: 0;
+      font-size: 9pt;
+      color: #555;
+    }
+    .invoice-meta {
+      text-align: right;
+    }
+    .invoice-meta h2 {
+      margin: 0 0 4px;
+      font-size: 18pt;
+      color: var(--utrgv-orange);
+      font-weight: 800;
+    }
+    .invoice-meta p {
+      margin: 2px 0;
+      font-size: 9pt;
+    }
+    .parties-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+      font-size: 9pt;
+    }
+    .party-card {
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      background: #fafbfc;
+    }
+    .party-card h3 {
+      margin: 0 0 6px;
+      font-size: 10pt;
+      color: var(--utrgv-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    table.invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 9pt;
+    }
+    table.invoice-table th, table.invoice-table td {
+      border: 1px solid var(--card-border);
+      padding: 8px 10px;
+      text-align: left;
+    }
+    table.invoice-table th {
+      background: #f1f5f9;
+      color: var(--utrgv-navy);
+      font-weight: 700;
+    }
+    table.invoice-table tr.total-row td {
+      background: #f8fafc;
+      font-weight: 800;
+      font-size: 10pt;
+    }
+    .amount-col {
+      text-align: right;
+    }
+    .due-box {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 24px;
+    }
+    .due-card {
+      background: #fff8e1;
+      border: 2px solid var(--utrgv-orange);
+      border-radius: 8px;
+      padding: 12px 24px;
+      text-align: right;
+    }
+    .due-card span {
+      display: block;
+      font-size: 9pt;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #666;
+    }
+    .due-card strong {
+      font-size: 20pt;
+      color: var(--utrgv-navy);
+    }
+    .remit-instructions {
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      background: #fafbfc;
+      font-size: 8.5pt;
+      margin-bottom: 24px;
+    }
+    .remit-instructions h4 {
+      margin: 0 0 4px;
+      color: var(--utrgv-navy);
+    }
+    .signature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+      font-size: 8.5pt;
+    }
+    .sig-line {
+      border-top: 1px solid #333;
+      padding-top: 4px;
+      margin-top: 36px;
+    }
+    .no-print {
+      text-align: center;
+      padding: 12px;
+      background: var(--utrgv-navy);
+      color: white;
+    }
+
+    @media print {
+      body { background: white; }
+      .no-print { display: none; }
+      .invoice-container { margin: 0; box-shadow: none; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print">
+    <span>🖨️ <strong>Official UTRGV Milestone Invoice:</strong> Calibrated for 8.5" × 11" Letter Portrait</span>
+    <button type="button" onclick="window.print()" style="margin-left: 12px; padding: 6px 14px; background: var(--utrgv-orange); color: white; border: none; border-radius: 4px; cursor: pointer;">Print Invoice</button>
+  </div>
+
+  <div class="invoice-container">
+    <header class="invoice-header">
+      <div class="logo-text">
+        <h1>The University of Texas Rio Grande Valley</h1>
+        <p>Division of Research, Graduate Studies & New Program Development<br>Office of Grants & Contracts • 1201 W. University Dr., Edinburg, TX 78539</p>
+      </div>
+      <div class="invoice-meta">
+        <h2>INVOICE #3</h2>
+        <p><strong>Invoice Date:</strong> September 5, 2026</p>
+        <p><strong>Billing Period:</strong> August 1 – August 31, 2026</p>
+        <p><strong>Contract Agreement:</strong> TTF_UTRGV_FINAL_05252026</p>
+      </div>
+    </header>
+
+    <div class="parties-grid">
+      <div class="party-card">
+        <h3>Billed To (Client / Sponsor):</h3>
+        <strong>Texas Trees Foundation</strong><br>
+        Attn: Beth Edwards, Chief Financial Officer<br>
+        3000 Pegasus Park Drive<br>
+        Dallas, TX 75247<br>
+        Email: beth@texastrees.org | accounting@texastrees.org
+      </div>
+      <div class="party-card">
+        <h3>Project / Grant Information:</h3>
+        <strong>Project:</strong> Environmental Impact Evaluation & Dashboard<br>
+        <strong>Grant:</strong> TFS Community Forestry #25065<br>
+        <strong>Principal Investigator:</strong> Dr. Alexis Racelis<br>
+        <strong>Account #:</strong> UTRGV-AG-2026-TTFS<br>
+        <strong>Terms:</strong> Fixed-Price Milestone (Net 30)
+      </div>
+    </div>
+
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>Deliverable SOW Description (Exhibit D)</th>
+          <th class="amount-col">Contract Total</th>
+          <th class="amount-col">Prior Billed</th>
+          <th class="amount-col">Current Invoice #3</th>
+          <th class="amount-col">Cumulative Total</th>
+          <th class="amount-col">% Earned</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>Deliverable A:</strong> Environmental Baseline Data Summary<br>
+            <span style="font-size: 8pt; color: #666;">Multi-campus GIS polygon digitization, surface fact sheets, and topological QA/QC across Donna & Mercedes ISDs.</span>
+          </td>
+          <td class="amount-col">$54,670.00</td>
+          <td class="amount-col">$37,938.00</td>
+          <td class="amount-col"><strong>$6,357.00</strong></td>
+          <td class="amount-col">$44,295.00</td>
+          <td class="amount-col">81.0%</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Deliverable B:</strong> Environmental Monitoring Documentation Package<br>
+            <span style="font-size: 8pt; color: #666;">Training Materials v0.5 release, auditable TFS Technical Assistance (TA) log schema, and Field Monitoring SOP v0.6.</span>
+          </td>
+          <td class="amount-col">$32,150.00</td>
+          <td class="amount-col">$15,172.00</td>
+          <td class="amount-col"><strong>$4,843.00</strong></td>
+          <td class="amount-col">$20,015.00</td>
+          <td class="amount-col">62.3%</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Deliverable C:</strong> Forecasting & Digital Dashboard Support<br>
+            <span style="font-size: 8pt; color: #666;">Diurnal heat curves, 10-yr canopy growth models, Dashboard v2 planning memo, and 4 interactive prototype portals.</span>
+          </td>
+          <td class="amount-col">$55,805.00</td>
+          <td class="amount-col">$15,417.00</td>
+          <td class="amount-col"><strong>$4,314.00</strong></td>
+          <td class="amount-col">$19,731.00</td>
+          <td class="amount-col">35.4%</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Deliverable D:</strong> Training & Technical Assistance Delivery<br>
+            <span style="font-size: 8pt; color: #666;">Facilitated district training sessions (scheduled for 2027 delivery target).</span>
+          </td>
+          <td class="amount-col">$15,000.00</td>
+          <td class="amount-col">$0.00</td>
+          <td class="amount-col"><strong>$0.00</strong></td>
+          <td class="amount-col">$0.00</td>
+          <td class="amount-col">0.0%</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL CONTRACT BILLING MILESTONES</td>
+          <td class="amount-col">$157,625.00</td>
+          <td class="amount-col">$68,527.00</td>
+          <td class="amount-col" style="color: var(--utrgv-orange); font-size: 11pt;">$15,514.00</td>
+          <td class="amount-col" style="color: var(--forest-green);">$84,041.00</td>
+          <td class="amount-col">53.3%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="due-box">
+      <div class="due-card">
+        <span>Total Amount Due This Invoice (#3):</span>
+        <strong>$15,514.00</strong>
+      </div>
+    </div>
+
+    <div class="remit-instructions">
+      <h4>Remittance Instructions:</h4>
+      <p style="margin: 2px 0;">
+        Please make checks payable to: <strong>The University of Texas Rio Grande Valley</strong><br>
+        Remit to: Office of Grants & Contracts, 1201 W. University Dr., Edinburg, TX 78539<br>
+        Direct ACH Wire Information available via Grants Accounting (grantsandcontracts@utrgv.edu).
+      </p>
+    </div>
+
+    <div class="signature-row">
+      <div>
+        <div class="sig-line">
+          <strong>Dr. Alexis Racelis</strong><br>
+          Principal Investigator, UTRGV Agroecology Lab
+        </div>
+      </div>
+      <div>
+        <div class="sig-line">
+          <strong>Suelema Gonzalez / Xin Yu</strong><br>
+          Office of Grants & Contracts, UTRGV
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

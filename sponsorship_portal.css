@@ -1,0 +1,945 @@
+/**
+ * Campus Tree Adoption & Environmental ROI Portal Stylesheet
+ * Texas Trees Foundation (TTFS) × UTRGV Project Cool Schools
+ * Human-Analog Parchment Aesthetic • Accessible ARIA • 8.5"x11" Printable Certificate
+ */
+
+:root {
+  --forest-green: #1B4D3E;
+  --forest-dark: #0D2D23;
+  --forest-light: #E8F2EC;
+  --utrgv-orange: #F05023;
+  --utrgv-orange-light: #FDEEE9;
+  --texas-saffron: #ECA100;
+  --earth-charcoal: #2B2D42;
+  --alabaster-bg: #FBFBF9;
+  --parchment-border: #D8D6CD;
+  --parchment-bg: #FFFDF9;
+  --card-shadow: 0 4px 16px rgba(27, 77, 62, 0.08);
+  --font-serif: "Georgia", "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--alabaster-bg);
+  color: var(--earth-charcoal);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sponsorship-portal-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sponsorship-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  width: 100%;
+}
+
+/* ========================================================================= */
+/* District KPI Banner                                                       */
+/* ========================================================================= */
+.district-kpi-banner {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  background: #FFFFFF;
+  border: 1px solid var(--parchment-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+@media (max-width: 1024px) {
+  .district-kpi-banner {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .district-kpi-banner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.kpi-banner-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kpi-banner-icon {
+  font-size: 26px;
+}
+
+.kpi-banner-item strong {
+  display: block;
+  font-size: 18px;
+  font-family: var(--font-serif);
+  color: var(--forest-dark);
+  line-height: 1.1;
+}
+
+.kpi-banner-item span {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6B7280;
+  margin-top: 2px;
+}
+
+.text-green {
+  color: #059669 !important;
+}
+
+.text-orange {
+  color: var(--utrgv-orange) !important;
+}
+
+/* ========================================================================= */
+/* Filter Controls Strip                                                     */
+/* ========================================================================= */
+.filter-strip {
+  background: #FFFFFF;
+  border: 1px solid var(--parchment-border);
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.filter-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-control label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--forest-green);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.human-select,
+.human-input,
+.human-textarea {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--earth-charcoal);
+  background-color: #FAFAFA;
+  border: 1.5px solid #CCD0D4;
+  border-radius: 6px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+}
+
+.human-select:focus,
+.human-input:focus,
+.human-textarea:focus {
+  outline: none;
+  border-color: var(--forest-green);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(27, 77, 62, 0.15);
+}
+
+/* ========================================================================= */
+/* Split-Screen Workspace                                                    */
+/* ========================================================================= */
+.split-workspace {
+  display: grid;
+  grid-template-columns: 48% 52%;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .split-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+.workspace-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pane-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.pane-title {
+  margin: 0;
+  font-size: 20px;
+  font-family: var(--font-serif);
+  color: var(--forest-dark);
+}
+
+.pane-subtitle {
+  font-size: 12px;
+  color: #6B7280;
+  display: block;
+  margin-top: 2px;
+}
+
+.badge-count {
+  background: var(--forest-light);
+  color: var(--forest-dark);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #C4DFC9;
+  white-space: nowrap;
+}
+
+/* ========================================================================= */
+/* Tree Grid Roster Cards                                                    */
+/* ========================================================================= */
+.tree-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  max-height: 820px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+@media (max-width: 640px) {
+  .tree-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tree-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--parchment-border);
+  border-radius: 8px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.tree-card:hover {
+  border-color: var(--forest-green);
+  box-shadow: 0 6px 18px rgba(27, 77, 62, 0.12);
+  transform: translateY(-2px);
+}
+
+.tree-card.active {
+  border-color: var(--forest-green);
+  background: var(--parchment-bg);
+  box-shadow: 0 0 0 2px var(--forest-green), 0 6px 20px rgba(27, 77, 62, 0.15);
+}
+
+.tree-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-tree-id {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--utrgv-orange);
+  background: var(--utrgv-orange-light);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.card-status-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.card-status-tag.available {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+.card-status-tag.adopted {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+}
+
+.tree-card-main {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.card-tree-emoji {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.card-tree-names {
+  flex: 1;
+}
+
+.card-tree-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--forest-dark);
+}
+
+.card-tree-species {
+  font-size: 11px;
+  color: #6B7280;
+  display: block;
+}
+
+.tree-card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: #F8FAFC;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 11px;
+}
+
+.stat-item {
+  color: #475569;
+}
+
+.stat-item strong {
+  color: var(--earth-charcoal);
+}
+
+.card-steward-line {
+  font-size: 11px;
+  color: #047857;
+  font-weight: 600;
+  border-top: 1px dashed #E2E8F0;
+  padding-top: 4px;
+}
+
+/* ========================================================================= */
+/* Selected Tree Card & ROI Engine                                           */
+/* ========================================================================= */
+.card {
+  background: #FFFFFF;
+  border: 1px solid var(--parchment-border);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.selected-tree-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--parchment-bg) 100%);
+  border: 2px solid var(--forest-green);
+}
+
+.selected-tree-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tree-badge-cluster {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.tree-avatar-emoji {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.tree-id-pill {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--utrgv-orange);
+  background: var(--utrgv-orange-light);
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.tree-display-name {
+  margin: 0;
+  font-size: 20px;
+  font-family: var(--font-serif);
+  color: var(--forest-dark);
+}
+
+.tree-botanical-name {
+  font-size: 12px;
+  color: #6B7280;
+  display: block;
+}
+
+.tree-status-badge {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.selected-tree-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid #E5E7EB;
+  padding-top: 10px;
+}
+
+.meta-pill {
+  background: #F3F4F6;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.meta-pill .meta-label {
+  color: #6B7280;
+}
+
+.meta-pill strong {
+  color: var(--forest-dark);
+}
+
+/* Growth Timeline Slider */
+.growth-slider-wrapper {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.slider-current-year {
+  font-weight: 700;
+  color: var(--forest-green);
+}
+
+.human-slider {
+  width: 100%;
+  accent-color: var(--forest-green);
+  cursor: pointer;
+}
+
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #94A3B8;
+  margin-top: 4px;
+}
+
+/* ROI Tile Grid */
+.roi-kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .roi-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roi-tile {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.roi-tile.full-width {
+  grid-column: span 2;
+  background: var(--parchment-bg);
+  border-color: #CBD5E1;
+}
+
+@media (max-width: 640px) {
+  .roi-tile.full-width {
+    grid-column: span 1;
+  }
+}
+
+.tile-icon-wrap {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.tile-val {
+  display: block;
+  font-size: 18px;
+  font-family: var(--font-serif);
+  color: var(--forest-dark);
+  line-height: 1.2;
+}
+
+.tile-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+  margin: 2px 0;
+}
+
+.tile-sub {
+  display: block;
+  font-size: 10px;
+  color: #64748B;
+  line-height: 1.3;
+}
+
+/* ========================================================================= */
+/* Sponsorship Tiers & Form                                                  */
+/* ========================================================================= */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .tier-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tier-option {
+  cursor: pointer;
+}
+
+.tier-option input[type="radio"] {
+  display: none;
+}
+
+.tier-card {
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 12px 10px;
+  text-align: center;
+  transition: all 0.2s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tier-price {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--forest-green);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.tier-card strong {
+  font-size: 12px;
+  color: var(--earth-charcoal);
+  display: block;
+}
+
+.tier-desc {
+  font-size: 10px;
+  color: #64748B;
+  display: block;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+.tier-option input[type="radio"]:checked + .tier-card {
+  border-color: var(--forest-green);
+  background: var(--forest-light);
+  box-shadow: 0 0 0 2px var(--forest-green);
+}
+
+.tier-option input[type="radio"]:checked + .tier-card strong {
+  color: var(--forest-dark);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.privacy-note {
+  display: block;
+  font-size: 10px;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
+.adoption-actions {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.submit-btn {
+  background: var(--forest-green);
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: var(--forest-dark);
+  box-shadow: 0 4px 12px rgba(27, 77, 62, 0.25);
+}
+
+/* ========================================================================= */
+/* Official Parchment Certificate                                            */
+/* ========================================================================= */
+.adoption-certificate-sheet {
+  background: var(--parchment-bg);
+  border: 1px solid var(--parchment-border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--card-shadow);
+}
+
+.cert-border-outer {
+  border: 4px double var(--forest-green);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.cert-border-inner {
+  border: 1px solid var(--texas-saffron);
+  padding: 24px 20px;
+  border-radius: 4px;
+  text-align: center;
+  background: radial-gradient(circle at center, #FFFFFF 0%, var(--parchment-bg) 100%);
+}
+
+.cert-header {
+  margin-bottom: 18px;
+}
+
+.cert-logos {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.cert-seal {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--forest-green);
+}
+
+.cert-seal.orange {
+  color: var(--utrgv-orange);
+}
+
+.cert-main-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: var(--forest-dark);
+  margin: 0 0 4px;
+  letter-spacing: 0.5px;
+}
+
+.cert-subtitle {
+  font-size: 12px;
+  color: #6B7280;
+  margin: 0;
+  font-style: italic;
+}
+
+.cert-intro {
+  font-size: 12px;
+  color: #555;
+  margin: 12px 0 4px;
+}
+
+.cert-honoree {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--utrgv-orange);
+  margin: 0 0 6px;
+  border-bottom: 1.5px solid var(--parchment-border);
+  display: inline-block;
+  padding: 0 20px 4px;
+}
+
+.cert-dedication-text {
+  font-size: 12px;
+  font-style: italic;
+  color: #4B5563;
+  max-width: 580px;
+  margin: 6px auto 14px;
+}
+
+.cert-statement {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.cert-tree-badge {
+  background: #FFFFFF;
+  border: 1px solid var(--parchment-border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  max-width: 520px;
+  margin: 0 auto 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cert-tree-name {
+  font-size: 16px;
+  color: var(--forest-dark);
+  font-family: var(--font-serif);
+}
+
+.cert-tree-species {
+  font-size: 12px;
+  color: #6B7280;
+  font-style: italic;
+}
+
+.cert-tree-loc {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--forest-green);
+}
+
+.cert-tree-gps {
+  font-size: 10px;
+  color: #94A3B8;
+}
+
+/* Impact Table */
+.cert-impact-table-wrap {
+  margin: 16px 0 20px;
+}
+
+.cert-table-title {
+  font-size: 12px;
+  color: var(--forest-green);
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cert-impact-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  background: #FFFFFF;
+}
+
+.cert-impact-table th {
+  background: var(--forest-light);
+  color: var(--forest-dark);
+  border: 1px solid #CBD5E1;
+  padding: 6px 8px;
+  font-weight: 700;
+}
+
+.cert-impact-table td {
+  border: 1px solid #CBD5E1;
+  padding: 6px 8px;
+  font-weight: 600;
+}
+
+/* Signatures Row */
+.cert-signatures-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 24px;
+  padding-top: 14px;
+}
+
+.sig-block {
+  text-align: center;
+  min-width: 180px;
+}
+
+.sig-line {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--forest-dark);
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  margin-bottom: 2px;
+}
+
+.sig-title {
+  font-size: 10px;
+  color: #64748B;
+  display: block;
+}
+
+.cert-stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px dashed var(--utrgv-orange);
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: var(--utrgv-orange);
+}
+
+.stamp-icon {
+  font-size: 18px;
+}
+
+.stamp-text {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.cert-actions-bar {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* ========================================================================= */
+/* DUAL-PLATFORM PRINT STYLES (8.5" x 11" Letter Certificate)                */
+/* ========================================================================= */
+@media print {
+  @page {
+    size: letter landscape;
+    margin: 0.4in;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 10pt;
+  }
+
+  .app-header,
+  .app-nav,
+  .district-kpi-banner,
+  .filter-strip,
+  .roster-pane,
+  .selected-tree-card,
+  .roi-engine-card,
+  .adoption-form-card,
+  .cert-actions-bar,
+  .portal-footer,
+  .no-print,
+  #coolschools-pwa-badge,
+  #pwa-diagnostics-modal {
+    display: none !important;
+  }
+
+  .sponsorship-container {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .split-workspace {
+    display: block !important;
+  }
+
+  .roi-pane {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .adoption-certificate-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+  }
+
+  .cert-border-outer {
+    border: 3px double #000000 !important;
+    padding: 8px !important;
+  }
+
+  .cert-border-inner {
+    border: 1px solid #666666 !important;
+    padding: 16px !important;
+    background: #FFFFFF !important;
+  }
+
+  .cert-impact-table th {
+    background: #E5E5E5 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive TEKS Science Sandbox | TTFS × UTRGV Cool Schools</title>
+  <meta name="description" content="Interactive student laboratory sandbox for plotting playground surface heat, calculating canopy cooling deltas, and exporting TEKS-aligned science lab reports.">
+  <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="teks_sandbox.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="sandbox-container">
+    <!-- Top Classroom Header -->
+    <header class="sandbox-header">
+      <div class="header-brand">
+        <span class="badge-pill">TEKS SCIENCE LAB 3.9A • 4.9A • 5.9B</span>
+        <h1>Playground Microclimate Science Sandbox</h1>
+        <p>Interactive student lab for measuring, graphing, and analyzing solar heat radiation vs. tree canopy cooling.</p>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn primary" id="loadSampleDataBtn">📊 Load Sample Donna ISD Lab Data</button>
+        <button type="button" class="btn secondary" id="clearDataBtn">🗑️ Clear Table</button>
+        <button type="button" class="btn primary" onclick="window.print()">🖨️ Print Student Lab Report</button>
+      </div>
+    </header>
+
+    <!-- Lab Information Bar -->
+    <div class="lab-meta-bar">
+      <div class="meta-field">
+        <label for="studentNameInput">Classroom / Student Team:</label>
+        <input type="text" id="studentNameInput" placeholder="e.g. 4th Grade Eco-Detectives (Room 204)" value="4th Grade Eco-Detectives (Room 204)">
+      </div>
+      <div class="meta-field">
+        <label for="schoolSelect">Campus:</label>
+        <select id="schoolSelect">
+          <option value="J.W. Caceres Discovery Intermediate">Donna ISD — J.W. Caceres Discovery</option>
+          <option value="M. Rivas Primary">Donna ISD — M. Rivas Primary</option>
+          <option value="Salinas STEAM Elementary">Donna ISD — Salinas Elementary</option>
+          <option value="W.B. Travis Elementary">Mercedes ISD — Travis Elementary</option>
+        </select>
+      </div>
+      <div class="meta-field">
+        <label for="labDateInput">Investigation Date:</label>
+        <input type="date" id="labDateInput">
+      </div>
+    </div>
+
+    <!-- Main 2-Column Lab Workspace -->
+    <main class="sandbox-grid">
+      <!-- Left Column: Data Entry & Math Station -->
+      <section class="station-card">
+        <div class="station-title-row">
+          <h2>📍 Station 1: Thermometer Field Readings</h2>
+          <button type="button" class="add-row-btn" id="addRowBtn">➕ Add Reading</button>
+        </div>
+        <p class="station-desc">Input infrared surface thermometer readings (°F) taken across unshaded play areas vs. tree canopy shade.</p>
+
+        <div class="table-wrap">
+          <table class="reading-table" id="readingTable">
+            <thead>
+              <tr>
+                <th>Location / Zone</th>
+                <th>Sunny Temp (°F)</th>
+                <th>Shaded Temp (°F)</th>
+                <th>Cooling Delta (&Delta;T)</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="readingTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Math Station -->
+        <div class="math-stats-box">
+          <h3>📐 TEKS Math & Science Calculated Statistics</h3>
+          <div class="stats-row">
+            <div class="stat-pill">
+              <span class="lbl">Avg Sunny Ground</span>
+              <span class="num orange" id="avgSunTemp">--°F</span>
+            </div>
+            <div class="stat-pill">
+              <span class="lbl">Avg Shaded Ground</span>
+              <span class="num green" id="avgShadeTemp">--°F</span>
+            </div>
+            <div class="stat-pill">
+              <span class="lbl">Mean Cooling Delta</span>
+              <span class="num highlight" id="meanDeltaTemp">--°F</span>
+            </div>
+            <div class="stat-pill">
+              <span class="lbl">Max Temp Drop</span>
+              <span class="num" id="maxDeltaTemp">--°F</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Live Graph & Science Reflection -->
+      <section class="station-card">
+        <h2>📊 Station 2: Real-Time Temperature Histogram</h2>
+        <div class="chart-box">
+          <canvas id="tempCompareChart"></canvas>
+        </div>
+
+        <!-- Science Reflection Station -->
+        <div class="reflection-section">
+          <h3>🧠 Scientific Reflection & Hypothesis Analysis</h3>
+          <div class="prompt-item">
+            <label for="hypothesisInput"><strong>1. What caused the temperature difference between sun and shade?</strong></label>
+            <textarea id="hypothesisInput" rows="2" placeholder="Explain using vocabulary: solar radiation, tree canopy, transpiration, and shade barrier..."></textarea>
+          </div>
+          <div class="prompt-item">
+            <label for="ecosystemImpactInput"><strong>2. How does this cooling effect help students and wildlife on campus?</strong></label>
+            <textarea id="ecosystemImpactInput" rows="2" placeholder="How do cooler play areas prevent heat stress and invite pollinators?"></textarea>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="sandbox-footer">
+      <a href="portals/v5/index.html" class="nav-back">← Back to Master Portal Hub v5</a>
+      <span>Texas Trees Foundation × UTRGV Agroecology • TEKS Science Curriculum Sandbox</span>
+    </footer>
+  </div>
+
+  <script src="js/offline_sync.js"></script>
+  <script src="teks_sandbox.js"></script>
+</body>
+</html>

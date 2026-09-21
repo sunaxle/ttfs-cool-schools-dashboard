@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson: Tree Stewardship & Health Tracking — TTFS × UTRGV Cool Schools</title>
+  <meta name="description" content="Official Texas Trees Foundation elementary lesson and field tracking sheet for long-term tree stewardship, DBH measurement, soil moisture monitoring, and health tracking across RGV campuses.">
+  <meta name="author" content="Texas Trees Foundation Education Department & UTRGV Agroecology">
+  
+  <!-- PWA & Favicon -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png">
+  <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png">
+  <meta name="theme-color" content="#1B4D3E">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tree_stewardship.css">
+</head>
+<body>
+  <div class="stewardship-app-root">
+    
+    <!-- Top Executive Header -->
+    <header class="app-header">
+      <div class="brand-left">
+        <img src="assets/texas-trees-foundation.png" alt="Texas Trees Foundation Logo" class="brand-logo">
+      </div>
+      <div class="title">
+        <span class="header-pretitle">TEXAS TREES FOUNDATION × UTRGV AGROECOLOGY</span>
+        <h1>Tree Stewardship & Health Tracking</h1>
+        <span class="header-subtitle">Elementary Schoolyard Forest Stewardship (TEKS 3.9A • 4.9A • 5.9A)</span>
+      </div>
+      <div class="brand-right">
+        <img src="assets/utrgv-agroecology.png" alt="UTRGV Agroecology Logo" class="brand-logo">
+      </div>
+    </header>
+
+    <!-- Navigation Breadcrumbs & Portal Links -->
+    <nav class="app-nav" aria-label="Curriculum Navigation">
+      <div class="nav-section deliverables-section">
+        <span class="nav-header-label">🌟 CURRICULUM PORTALS</span>
+        <a class="nav-link active" href="tree_stewardship.html" aria-current="page">🌳 Tree Stewardship</a>
+        <a class="nav-link" href="birding_biodiversity.html">🦜 Birding & Biodiversity</a>
+        <a class="nav-link" href="teks_lesson_plans.html">TEKS Curriculum Lab</a>
+        <a class="nav-link" href="tree_diary.html">Tree Diary & Legacy</a>
+        <a class="nav-link" href="schoolyard_planner.html">3D Campus Planner</a>
+        <a class="nav-link" href="portals/v5/index.html">Executive Hub v5</a>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="stewardship-main" id="mainContent">
+      
+      <!-- Top Control Toolbar: Campus Selection, Mode Switcher & Print -->
+      <section class="toolbar-strip" aria-label="Lesson Controls">
+        <div class="toolbar-left">
+          <label for="campusSelect" class="toolbar-label">
+            <span class="icon">🏫</span> Active Campus:
+          </label>
+          <select id="campusSelect" class="human-select" aria-label="Select Elementary Campus">
+            <optgroup label="Donna ISD Campuses">
+              <option value="donna_rivas" selected>Donna ISD — Jason M. Rivas Elementary</option>
+              <option value="donna_caceres">Donna ISD — J.W. Caceres Elementary</option>
+              <option value="donna_garza">Donna ISD — Garza Elementary</option>
+              <option value="donna_singleterry">Donna ISD — Singleterry Elementary</option>
+              <option value="donna_salinas">Donna ISD — Salinas Elementary</option>
+              <option value="donna_solis">Donna ISD — Solis Elementary</option>
+              <option value="donna_ochoa">Donna ISD — Ochoa Elementary</option>
+              <option value="donna_stainke">Donna ISD — Stainke Elementary</option>
+            </optgroup>
+            <optgroup label="Mercedes ISD Campuses">
+              <option value="mercedes_travis">Mercedes ISD — Travis Elementary</option>
+              <option value="mercedes_chacon">Mercedes ISD — Chacon Elementary</option>
+              <option value="mercedes_harrell">Mercedes ISD — Harrell Elementary</option>
+              <option value="mercedes_hinojosa">Mercedes ISD — Hinojosa Elementary</option>
+              <option value="mercedes_high">Mercedes ISD — Mercedes High School</option>
+              <option value="mercedes_academy">Mercedes ISD — Mercedes Academic Academy</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Dual Mode Switcher -->
+        <div class="mode-toggle-group" role="tablist" aria-label="View Mode">
+          <button type="button" class="mode-btn active" id="btnModeDoc" role="tab" aria-selected="true" data-mode="document">
+            <span class="mode-icon">📄</span> Official TTFS Document & Sheet
+          </button>
+          <button type="button" class="mode-btn" id="btnModeLab" role="tab" aria-selected="false" data-mode="interactive">
+            <span class="mode-icon">🌟</span> Interactive Digital Field Lab
+          </button>
+        </div>
+
+        <div class="toolbar-right">
+          <button type="button" class="print-action-btn" id="printBtn">
+            <span class="print-icon">🖨️</span> Print 8.5" × 11" Field Sheet
+          </button>
+        </div>
+      </section>
+
+      <!-- VIEW 1: OFFICIAL TTFS LESSON & TRACKING SHEET (100% Faithful to Word Docs) -->
+      <div id="viewDocument" class="view-panel active">
+        
+        <!-- Document Header Card -->
+        <article class="doc-card lesson-guide-card">
+          <div class="doc-badge-pill">TEXAS TREES FOUNDATION • EDUCATION DEPARTMENT</div>
+          <h2 class="doc-main-title">Lesson: Tree Stewardship</h2>
+          
+          <!-- Connected Lessons & Videos Box -->
+          <div class="metadata-callout-grid">
+            <div class="callout-box">
+              <h3 class="callout-heading">🔗 Connected Lessons</h3>
+              <p class="callout-text">Tree Journaling • Tree Measurement • Nature Journaling • Tree Detectives • Trees and Parasitism</p>
+            </div>
+            <div class="callout-box">
+              <h3 class="callout-heading">🎥 Connected Videos</h3>
+              <p class="callout-text">Tree Height • Tree Measurement (Tree Age) • Nature Journaling • Tree Care • Mindfulness in Nature • How Leaves help us Identify Plant Species • Plant ID with iNat</p>
+            </div>
+          </div>
+
+          <!-- Objective & Overview -->
+          <section class="doc-section">
+            <h3 class="section-title">🎯 Objective</h3>
+            <p class="section-body">Students learn to observe, monitor, and report on the health of trees over time, developing ongoing stewardship skills and ecological awareness.</p>
+          </section>
+
+          <section class="doc-section">
+            <h3 class="section-title">📖 Overview</h3>
+            <p class="section-body">Studying a tree over time will allow students to observe seasonal changes and growth patterns from a specific tree species. In this activity, students/classes choose a tree (or a few trees) and spend the year recording observations and researching information.</p>
+            <p class="section-body">Students/classes will record weekly observations to build a record that can be compared back to the baseline data. The tracking sheet will be sent to UTRGV to help organize the data.</p>
+          </section>
+
+          <section class="doc-section">
+            <h3 class="section-title">📦 Materials</h3>
+            <ul class="doc-list">
+              <li>Measuring tape (for DBH)</li>
+              <li>Class observation log/journal</li>
+              <li>Pencil / clipboard</li>
+              <li><em>Optional:</em> Soil measuring probe</li>
+            </ul>
+          </section>
+
+          <!-- Method Section -->
+          <section class="doc-section">
+            <h3 class="section-title">🔬 Method</h3>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">Step 1</span>
+                <h4>Observations (Within the First Two Weeks of School)</h4>
+              </div>
+              <p class="step-note"><strong>Note:</strong> Record trees weekly (or at least biweekly).</p>
+              
+              <div class="method-subgrid">
+                <div class="substep-box">
+                  <h5>🌱 Identification</h5>
+                  <p>Classes will use the school tree planting plan or research the type of tree using iNaturalist. <em>Optional: Classes can choose their own nickname for their tree (be creative!).</em></p>
+                </div>
+
+                <div class="substep-box">
+                  <h5>📏 Tree Measurements</h5>
+                  <p><strong>Diameter (DBH):</strong> Measure diameter at breast height (4.5 ft above ground). <em>Optional: Have students hug the tree or use the string technique.</em></p>
+                  <p><strong>Height:</strong> Measure height (watch the <em>Tree Height Video</em> for triangulation & shadow techniques).</p>
+                </div>
+
+                <div class="substep-box">
+                  <h5>🩺 Tree Health Checkpoint</h5>
+                  <p>How happy and healthy does your tree seem? (<strong>Happy / Good</strong>, <strong>Medium / Fair</strong>, <strong>Sad / Bad</strong>).</p>
+                  <ul>
+                    <li>Do the leaves appear bright green, dark green, or brown?</li>
+                    <li>Do all the branches have leaves?</li>
+                  </ul>
+                </div>
+
+                <div class="substep-box">
+                  <h5>💧 Soil Moisture Check</h5>
+                  <p>Test moisture beneath the canopy and within the <strong>critical root zone (drip line)</strong>, using fingers or a moisture probe.</p>
+                  <p>Check: Are leaves/mulch covering the soil around the trunk of the tree?</p>
+                </div>
+              </div>
+
+              <div class="growth-notes-box">
+                <h5>🌿 Growth & Wildlife Notes</h5>
+                <p>Note any flowers, fruits, seeds, or new green leaves. <strong>Important:</strong> If the tree appears unhealthy at any point, students report it to the teacher immediately.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">Step 2</span>
+                <h4>Reporting</h4>
+              </div>
+              <p class="section-body">After recording your observations — add them to the school bulletin board and the UTRGV dashboard. <em>(Note: You can upload a picture or log entries directly into the dashboard below).</em></p>
+            </div>
+          </section>
+        </article>
+
+        <!-- Official Tracking Sheet Table (Print-Optimized) -->
+        <article class="doc-card print-sheet-card" id="officialTrackingSheet">
+          <div class="sheet-top-banner">
+            <div>
+              <span class="sheet-badge">TEXAS TREES FOUNDATION × UTRGV</span>
+              <h2 class="sheet-title">Tree Stewardship Tracking Sheet</h2>
+              <p class="sheet-subtitle">Campus Field Log • Send to UTRGV Agroecology / TTFS Education</p>
+            </div>
+            <div class="sheet-meta-fields">
+              <div class="meta-field-item"><span>School:</span> <strong id="sheetSchoolName">Donna ISD — Jason M. Rivas Elementary</strong></div>
+              <div class="meta-field-item"><span>Semester/Year:</span> <strong>2026–2027 Academic Year</strong></div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="stewardship-table" id="stewardshipTable">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 10%;">Date</th>
+                  <th scope="col" style="width: 14%;">Tree (Nickname)</th>
+                  <th scope="col" style="width: 12%;">Classroom</th>
+                  <th scope="col" style="width: 16%;">Species</th>
+                  <th scope="col" style="width: 14%;">Health Check<br><span class="th-hint">(Good, Medium, Bad)</span></th>
+                  <th scope="col" style="width: 9%;">DBH<br><span class="th-hint">(inches)</span></th>
+                  <th scope="col" style="width: 9%;">Height<br><span class="th-hint">(feet)</span></th>
+                  <th scope="col" style="width: 16%;">Moisture Check<br><span class="th-hint">(Drip Line / Mulch)</span></th>
+                </tr>
+              </thead>
+              <tbody id="stewardshipTableBody">
+                <!-- Pre-populated baseline rows -->
+                <tr>
+                  <td>09/08/2026</td>
+                  <td><strong>The Montezuma King</strong></td>
+                  <td>Room 301 (Gomez)</td>
+                  <td>Montezuma Cypress (Ahuehuete)</td>
+                  <td><span class="health-badge good">Good (Happy 😊)</span></td>
+                  <td>3.4 in</td>
+                  <td>8.5 ft</td>
+                  <td>Damp / Mulched 2"</td>
+                </tr>
+                <tr>
+                  <td>09/15/2026</td>
+                  <td><strong>The Montezuma King</strong></td>
+                  <td>Room 301 (Gomez)</td>
+                  <td>Montezuma Cypress (Ahuehuete)</td>
+                  <td><span class="health-badge good">Good (Happy 😊)</span></td>
+                  <td>3.4 in</td>
+                  <td>8.6 ft</td>
+                  <td>Moist (Recent Rain)</td>
+                </tr>
+                <tr>
+                  <td>09/10/2026</td>
+                  <td><strong>Shadow Maker</strong></td>
+                  <td>Room 405 (Garza)</td>
+                  <td>Texas Ebony (Ebano)</td>
+                  <td><span class="health-badge medium">Medium (Fair 😐)</span></td>
+                  <td>2.8 in</td>
+                  <td>6.2 ft</td>
+                  <td>Dry / Needs Mulch</td>
+                </tr>
+                <tr>
+                  <td>09/17/2026</td>
+                  <td><strong>Shadow Maker</strong></td>
+                  <td>Room 405 (Garza)</td>
+                  <td>Texas Ebony (Ebano)</td>
+                  <td><span class="health-badge good">Good (Happy 😊)</span></td>
+                  <td>2.9 in</td>
+                  <td>6.3 ft</td>
+                  <td>Watered / Mulch Added</td>
+                </tr>
+                <tr>
+                  <td>09/12/2026</td>
+                  <td><strong>Sunny Live Oak</strong></td>
+                  <td>Room 502 (Treviño)</td>
+                  <td>Escarpment Live Oak</td>
+                  <td><span class="health-badge good">Good (Happy 😊)</span></td>
+                  <td>4.1 in</td>
+                  <td>11.0 ft</td>
+                  <td>Moist beneath canopy</td>
+                </tr>
+                <!-- Blank rows for printed clipboards -->
+                <tr class="print-only-blank-row">
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr class="print-only-blank-row">
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr class="print-only-blank-row">
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="sheet-footer">
+            <p class="footer-note">📌 <em>Teacher Guidance: Send filled tracking sheet to UTRGV Agroecology / TTFS Dashboard coordinator or use the Interactive Lab entry mode.</em></p>
+          </div>
+        </article>
+      </div>
+
+      <!-- VIEW 2: INTERACTIVE DIGITAL FIELD LAB (The Enhanced Experience) -->
+      <div id="viewInteractive" class="view-panel">
+        
+        <div class="lab-split-layout">
+          <!-- Left Column: Digital Measurement & Stewardship Input Form -->
+          <section class="lab-form-container">
+            <div class="lab-card-header">
+              <span class="lab-tag">🌱 DIGITAL OBSERVATION LOGGER</span>
+              <h2>Log Tree Stewardship Check</h2>
+              <p class="lab-sub">Zero PII • Classroom-level aggregated field observation</p>
+            </div>
+
+            <form id="stewardshipLogForm" class="stewardship-form">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="logDate">Observation Date</label>
+                  <input type="date" id="logDate" class="human-input" required>
+                </div>
+                <div class="form-group">
+                  <label for="logClassroom">Classroom Nickname</label>
+                  <input type="text" id="logClassroom" class="human-input" placeholder="e.g. Room 301 — Tree Rangers" required>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="logTreeSelect">Adopted Campus Tree</label>
+                  <select id="logTreeSelect" class="human-select" required>
+                    <option value="Montezuma Cypress|The Montezuma King|TR-01">TR-01: Montezuma Cypress ("The Montezuma King")</option>
+                    <option value="Texas Ebony|Shadow Maker|TR-02">TR-02: Texas Ebony ("Shadow Maker")</option>
+                    <option value="Escarpment Live Oak|Sunny Live Oak|TR-03">TR-03: Live Oak ("Sunny Live Oak")</option>
+                    <option value="Cedar Elm|The Whispering Elm|TR-04">TR-04: Cedar Elm ("The Whispering Elm")</option>
+                    <option value="Sugar Hackberry|Palo Blanco Explorer|TR-05">TR-05: Sugar Hackberry ("Palo Blanco Explorer")</option>
+                    <option value="Anacua|Sandpaper Tree|TR-06">TR-06: Anacua ("Sandpaper Tree")</option>
+                    <option value="Custom">➕ Add Custom Tree Nickname...</option>
+                  </select>
+                </div>
+                <div class="form-group" id="customTreeGroup" style="display: none;">
+                  <label for="customTreeInput">Custom Tree Nickname & Species</label>
+                  <input type="text" id="customTreeInput" class="human-input" placeholder="e.g. Room 204's Green Giant (Ahuehuete)">
+                </div>
+              </div>
+
+              <!-- Health Check Status Emojis -->
+              <div class="form-group">
+                <label class="section-label">🩺 Tree Health Checkpoint</label>
+                <div class="health-btn-group" role="radiogroup" aria-label="Health Check">
+                  <label class="health-radio-card good selected">
+                    <input type="radio" name="healthRadio" value="Good" checked>
+                    <span class="emoji">😊</span>
+                    <strong>Good / Happy</strong>
+                    <span class="desc">Vibrant leaves, full canopy</span>
+                  </label>
+                  <label class="health-radio-card medium">
+                    <input type="radio" name="healthRadio" value="Medium">
+                    <span class="emoji">😐</span>
+                    <strong>Medium / Fair</strong>
+                    <span class="desc">Some yellowing or dry twigs</span>
+                  </label>
+                  <label class="health-radio-card bad">
+                    <input type="radio" name="healthRadio" value="Bad">
+                    <span class="emoji">😟</span>
+                    <strong>Sad / Needs Care</strong>
+                    <span class="desc">Brown leaves, wilting, alert teacher!</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Measurements (DBH & Height) -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="logDbh">Diameter at Breast Height (DBH)</label>
+                  <div class="input-unit-wrap">
+                    <input type="number" id="logDbh" step="0.1" min="0.5" max="60" class="human-input" placeholder="3.5" required>
+                    <span class="unit-badge">inches</span>
+                  </div>
+                  <span class="input-hint">Tape measurement at 4.5 ft above soil</span>
+                </div>
+                <div class="form-group">
+                  <label for="logHeight">Estimated Tree Height</label>
+                  <div class="input-unit-wrap">
+                    <input type="number" id="logHeight" step="0.1" min="1" max="100" class="human-input" placeholder="8.5" required>
+                    <span class="unit-badge">feet</span>
+                  </div>
+                  <span class="input-hint">Using shadow or pencil triangulation</span>
+                </div>
+              </div>
+
+              <!-- Soil Moisture Check (Drip Line) -->
+              <div class="form-group">
+                <label for="logMoisture">💧 Soil Moisture Check (Beneath Critical Root Zone / Drip Line)</label>
+                <select id="logMoisture" class="human-select" required>
+                  <option value="Damp & Spongey (Healthy)">🌧️ Damp & Spongey (Healthy Soil Sponge)</option>
+                  <option value="Slightly Moist (Good)">🌱 Slightly Moist (Good)</option>
+                  <option value="Dry like a Cracker (Needs Water)">☀️ Dry like a Cracker (Needs Water!)</option>
+                  <option value="Saturated / Standing Puddle">🌊 Saturated / Standing Water Puddle</option>
+                </select>
+                <div class="mulch-checkbox-wrap">
+                  <input type="checkbox" id="mulchCheck" checked>
+                  <label for="mulchCheck">Leaves or 2–3" woodchip mulch are covering soil around trunk</label>
+                </div>
+              </div>
+
+              <!-- Wildlife & Growth Notes -->
+              <div class="form-group">
+                <label for="logNotes">🌿 Growth, Flowers, Seeds & Wildlife Activity Notes</label>
+                <textarea id="logNotes" class="human-textarea" rows="2" placeholder="e.g. New bright green leaf shoots sprouting; saw a ladybug and a green anole lizard on the lower trunk."></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="submit-entry-btn" id="submitLogBtn">
+                  <span>➕</span> Record Observation & Sync with Dashboard
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Right Column: Visual Tree State & Campus Stewardship Activity Feed -->
+          <section class="lab-display-container">
+            
+            <!-- Visual Tree Status Card -->
+            <div class="interactive-tree-card">
+              <div class="card-top">
+                <span class="badge-status" id="activeTreeStatusBadge">● HEALTH STATUS: VIBRANT</span>
+                <h3 id="activeTreeCardTitle">TR-01: Montezuma Cypress</h3>
+                <p id="activeTreeCardSub">Classroom: Room 301 (Gomez) • "The Montezuma King"</p>
+              </div>
+
+              <!-- 2D Canvas Graphic of Tree & Soil Zone -->
+              <div class="tree-graphic-stage">
+                <div class="tree-avatar-wrap">
+                  <div class="tree-canopy-graphic" id="treeCanopyVisual"></div>
+                  <div class="tree-trunk-graphic" id="treeTrunkVisual"></div>
+                  <div class="tree-dripline-zone" id="treeDripLine">
+                    <span class="dripline-label">Critical Root Zone (Drip Line)</span>
+                  </div>
+                </div>
+                <div class="tree-quick-stats">
+                  <div class="quick-stat-box">
+                    <span class="stat-num" id="displayDbh">3.4"</span>
+                    <span class="stat-lbl">Current DBH</span>
+                  </div>
+                  <div class="quick-stat-box">
+                    <span class="stat-num" id="displayHeight">8.6'</span>
+                    <span class="stat-lbl">Current Height</span>
+                  </div>
+                  <div class="quick-stat-box">
+                    <span class="stat-num" id="displayMoisture">Damp</span>
+                    <span class="stat-lbl">Soil Moisture</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Campus Feed -->
+            <div class="activity-feed-card">
+              <div class="feed-header">
+                <h3>📋 Recent Campus Observations</h3>
+                <span class="live-pill">Live Feed</span>
+              </div>
+              <div class="feed-list" id="stewardshipFeedList">
+                <!-- Injected via tree_stewardship.js -->
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <p>© 2026 Texas Trees Foundation × UTRGV Agroecology • Schoolyard Forests Program</p>
+        <p class="footer-sub">Compliant with State of Texas TEC §25.081, COPPA, and FERPA Zero-PII Protocols.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="tree_stewardship.js"></script>
+</body>
+</html>

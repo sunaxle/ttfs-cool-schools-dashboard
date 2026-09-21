@@ -1,0 +1,294 @@
+/* ==========================================================================
+   📊 Multi-Campus Comparative Analytics Stylesheet
+   TTFS × UTRGV Project Cool Schools
+   ========================================================================== */
+
+:root {
+  --utrgv-navy: #0C2340;
+  --utrgv-orange: #F05023;
+  --forest-green: #1B4D3E;
+  --forest-light: #EBF4F0;
+  --texas-saffron: #ECA100;
+  --earth-charcoal: #2B2D42;
+  --sand-bg: #F4F6F8;
+  --card-border: #DDE2E5;
+  --white: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--sand-bg);
+  color: var(--earth-charcoal);
+}
+
+.matrix-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.matrix-header {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 24px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.badge-pill {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--forest-green);
+  background: var(--forest-light);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.header-cluster h1 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  color: var(--utrgv-navy);
+}
+
+.header-cluster p {
+  margin: 0;
+  font-size: 13px;
+  color: #6c757d;
+  max-width: 680px;
+}
+
+.header-export-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.export-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.export-btn.primary {
+  background: var(--forest-green);
+  color: var(--white);
+}
+
+.export-btn.primary:hover {
+  background: #143a2e;
+}
+
+.export-btn.secondary {
+  background: #f1f5f9;
+  color: var(--utrgv-navy);
+  border: 1px solid var(--card-border);
+}
+
+.export-btn.secondary:hover {
+  background: #e2e8f0;
+}
+
+/* KPI Banner */
+.kpi-banner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.kpi-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.kpi-card .lbl {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #6c757d;
+  margin-bottom: 4px;
+}
+
+.kpi-card .val {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--utrgv-navy);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.kpi-card .val.orange { color: var(--utrgv-orange); }
+.kpi-card .val.green { color: var(--forest-green); }
+
+.kpi-card .sub {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* Toolbar */
+.matrix-toolbar {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 14px 20px;
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--utrgv-navy);
+  text-transform: uppercase;
+}
+
+.filter-group select {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--card-border);
+  font-size: 13px;
+  background: #fafbfc;
+}
+
+/* Grid */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.table-panel, .chart-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.table-panel .panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.table-panel h2, .chart-card h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--utrgv-navy);
+}
+
+.note-pill {
+  font-size: 10px;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #64748b;
+}
+
+.table-scroll-wrap {
+  overflow-x: auto;
+  max-height: 520px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.comparison-table th, .comparison-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.comparison-table th {
+  background: #f8fafc;
+  color: var(--utrgv-navy);
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.comparison-table tr:hover td {
+  background: #f8faf9;
+  cursor: pointer;
+}
+
+.status-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.status-tag.critical { background: #fee2e2; color: #dc2626; }
+.status-tag.moderate { background: #fef3c7; color: #d97706; }
+.status-tag.good { background: #dcfce7; color: #16a34a; }
+
+.charts-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chart-container {
+  height: 220px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.matrix-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--card-border);
+  font-size: 12px;
+}
+
+.footer-nav {
+  font-weight: 700;
+  color: var(--forest-green);
+  text-decoration: none;
+}
+
+.footer-copy {
+  color: #94a3b8;
+}
+
+@media print {
+  body { background: white; }
+  .header-export-actions, .matrix-toolbar, .matrix-footer { display: none !important; }
+  .matrix-grid { grid-template-columns: 1fr; }
+  .table-scroll-wrap { max-height: none; overflow: visible; }
+  .matrix-header, .table-panel, .chart-card { border: 1px solid #ccc; box-shadow: none; break-inside: avoid; }
+}

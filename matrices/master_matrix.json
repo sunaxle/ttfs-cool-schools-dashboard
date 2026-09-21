@@ -1,0 +1,649 @@
+{
+  "project": "Texas Trees Foundation (TTFS) \u00d7 UTRGV Project Cool Schools",
+  "version": "5.0.0",
+  "contract_total": 157625.0,
+  "cumulative_billed": 84041.0,
+  "last_audit": "2026-09-13T09:25:00",
+  "nodes": [
+    {
+      "id": "SYS-01",
+      "title": "Master System Schema & Constraints",
+      "category": "core_system",
+      "phase": 3,
+      "contract_milestone": "System Architecture",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "00-system/SCHEMA.md",
+        "00-system/CONSTRAINTS.md"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.586631"
+      }
+    },
+    {
+      "id": "SYS-02",
+      "title": "Mechanical Gate Validator",
+      "category": "core_system",
+      "phase": 4,
+      "contract_milestone": "System Architecture",
+      "status": "verified",
+      "dependencies": [
+        "SYS-01"
+      ],
+      "files": [
+        "00-system/validator_gate.py"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.587053"
+      }
+    },
+    {
+      "id": "SKILL-01",
+      "title": "Specialized Worker Skill Suite",
+      "category": "core_system",
+      "phase": 5,
+      "contract_milestone": "System Architecture",
+      "status": "verified",
+      "dependencies": [
+        "SYS-01"
+      ],
+      "files": [
+        "20-skills/agroecology_researcher/SKILL.md",
+        "20-skills/ui_analog_architect/SKILL.md",
+        "20-skills/governance_compliance_auditor/SKILL.md",
+        "20-skills/print_media_publisher/SKILL.md"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.587852"
+      }
+    },
+    {
+      "id": "DELIV-A01",
+      "title": "Multi-Campus GIS Digitization & Surface Fact Sheets",
+      "category": "deliverable_a",
+      "phase": 1,
+      "contract_milestone": "Deliverable A ($54,670.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "zoning.html",
+        "campuses.html",
+        "campuses.js"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.590673"
+      }
+    },
+    {
+      "id": "DELIV-A02",
+      "title": "Surface Area & Diurnal Baseline Matrices",
+      "category": "deliverable_a",
+      "phase": 1,
+      "contract_milestone": "Deliverable A ($54,670.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "surface_area.html",
+        "correlations.html",
+        "Month_1_HeatMap_Summary.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.592568"
+      }
+    },
+    {
+      "id": "DELIV-A03",
+      "title": "Soil & Eco-Sensor Baseline Pipelines",
+      "category": "deliverable_a",
+      "phase": 1,
+      "contract_milestone": "Deliverable A ($54,670.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "soil_types.html",
+        "soil_moisture.html",
+        "water_table.html",
+        "albedo.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.595104"
+      }
+    },
+    {
+      "id": "DELIV-B01",
+      "title": "Field Monitoring SOPs & Data Dictionaries",
+      "category": "deliverable_b",
+      "phase": 2,
+      "contract_milestone": "Deliverable B ($32,150.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "docs/Monitoring_SOP_v0.6.md",
+        "docs/Data_Dictionary.md",
+        "docs/Field_Forms.md"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.596279"
+      }
+    },
+    {
+      "id": "DELIV-B02",
+      "title": "Educator Onboarding Deck & Facilitator Guide",
+      "category": "deliverable_b",
+      "phase": 2,
+      "contract_milestone": "Deliverable B ($32,150.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "docs/donna_isd_presentation_slides.md",
+        "docs/Training_Session_Facilitator_Guide.md"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.597895"
+      }
+    },
+    {
+      "id": "DELIV-B03",
+      "title": "TFS Grant Technical Assistance Log Schema",
+      "category": "deliverable_b",
+      "phase": 2,
+      "contract_milestone": "Deliverable B ($32,150.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "docs/Technical_Assistance_Log_v0.5.md"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.598458"
+      }
+    },
+    {
+      "id": "DELIV-C01",
+      "title": "Interactive Schoolyard Planner (2D/3D)",
+      "category": "deliverable_c",
+      "phase": 3,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "schoolyard_planner.html",
+        "schoolyard_planner.js",
+        "schoolyard_planner.css"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.607011"
+      }
+    },
+    {
+      "id": "DELIV-C02",
+      "title": "i-Tree Ecological Benefit Engine & Ledger",
+      "category": "deliverable_c",
+      "phase": 3,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "itree_ledger.html",
+        "itree_engine.js"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.608614"
+      }
+    },
+    {
+      "id": "DELIV-C03",
+      "title": "3D Solar Shade & Montezuma Canopy Physics",
+      "category": "deliverable_c",
+      "phase": 3,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "solar_shade_calculator.html",
+        "tree_3d.html",
+        "campus_3d.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.613072"
+      }
+    },
+    {
+      "id": "DELIV-C04",
+      "title": "Modeling Visuals Package & Diurnal Profiles",
+      "category": "deliverable_c",
+      "phase": 3,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "docs/Modeling_Visuals_Package.md",
+        "docs/Dashboard_v2_Planning_Memo.md"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.613980"
+      }
+    },
+    {
+      "id": "FEAT-01",
+      "title": "Tree Diary & Living Tree Legacy Module",
+      "category": "deliverable_c",
+      "phase": 8,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02",
+        "DELIV-C01"
+      ],
+      "files": [
+        "tree_diary.html",
+        "tree_diary.css",
+        "tree_diary.js",
+        "portfolio/tree_namer/index.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.615964"
+      }
+    },
+    {
+      "id": "FEAT-02",
+      "title": "Campus Care Quests Gamified Maintenance",
+      "category": "deliverable_c",
+      "phase": 8,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02"
+      ],
+      "files": [
+        "campus_quests.html",
+        "portfolio/campus_quests/index.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.617330"
+      }
+    },
+    {
+      "id": "FEAT-03",
+      "title": "Child-Friendly Habitat Spotter Module",
+      "category": "deliverable_c",
+      "phase": 8,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02"
+      ],
+      "files": [
+        "biodiversity_analog_concept.html",
+        "portfolio/habitat_spotter/index.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.618451"
+      }
+    },
+    {
+      "id": "FEAT-04",
+      "title": "Time Machine 5- and 10-Year Canopy Slider",
+      "category": "deliverable_c",
+      "phase": 8,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02",
+        "DELIV-C03"
+      ],
+      "files": [
+        "time_machine.html",
+        "portfolio/time_machine/index.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.619743"
+      }
+    },
+    {
+      "id": "FEAT-05",
+      "title": "UTRGV Standalone Campus Shade Explorer",
+      "category": "deliverable_c",
+      "phase": 8,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02",
+        "DELIV-A01"
+      ],
+      "files": [
+        "utrgv_campus.html",
+        "utrgv_campus.css",
+        "utrgv_campus.js"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.621121"
+      }
+    },
+    {
+      "id": "PORTAL-01",
+      "title": "Master Unified Navigation Hub v5",
+      "category": "portal_hub",
+      "phase": 11,
+      "contract_milestone": "Executive Hub",
+      "status": "verified",
+      "dependencies": [
+        "FEAT-01",
+        "FEAT-02",
+        "FEAT-03",
+        "FEAT-04",
+        "FEAT-05"
+      ],
+      "files": [
+        "portals/v5/index.html",
+        "portals/v5/portal.css",
+        "portals/v5/portal.js"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.622635"
+      }
+    },
+    {
+      "id": "PORTAL-02",
+      "title": "Role-Based Access Control & FERPA Gateway",
+      "category": "portal_hub",
+      "phase": 11,
+      "contract_milestone": "Executive Hub",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "user_access_strategy.html",
+        "portal_navigation_demo.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.624495"
+      }
+    },
+    {
+      "id": "PORTAL-03",
+      "title": "TEKS Curriculum & Forest Literacy Portal",
+      "category": "portal_hub",
+      "phase": 11,
+      "contract_milestone": "Deliverable D ($15,000.00)",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "teks_lesson_plans.html",
+        "subprojects/teks_forest_literacy/index.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.626876"
+      }
+    },
+    {
+      "id": "PRINT-01",
+      "title": "Donna ISD Cool Schools Executive Dossier (8.5x11)",
+      "category": "print_media",
+      "phase": 12,
+      "contract_milestone": "Deliverable B ($32,150.00)",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02"
+      ],
+      "files": [
+        "print_media/donna_isd_cool_schools_dossier.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.627726"
+      }
+    },
+    {
+      "id": "PRINT-02",
+      "title": "Educator Outdoor Lab Field Guide (8.5x11)",
+      "category": "print_media",
+      "phase": 12,
+      "contract_milestone": "Deliverable B ($32,150.00)",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02"
+      ],
+      "files": [
+        "print_media/educator_outdoor_lab_field_guide.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.628303"
+      }
+    },
+    {
+      "id": "PRINT-03",
+      "title": "Campus Shade Satisfaction Kiosk Flyer (8.5x11)",
+      "category": "print_media",
+      "phase": 12,
+      "contract_milestone": "Deliverable B ($32,150.00)",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02"
+      ],
+      "files": [
+        "print_media/campus_shade_satisfaction_kiosk_flyer.html"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.628700"
+      }
+    },
+    {
+      "id": "REV-01",
+      "title": "Month 3 Progress Report Package",
+      "category": "revenue_invoice",
+      "phase": 14,
+      "contract_milestone": "Executive Submission",
+      "status": "verified",
+      "dependencies": [],
+      "files": [
+        "docs/Month_3_Progress_Report.md",
+        "TTFS_Deliverables_Submission/01_Progress_Reports/Month_3_Progress_Report.docx"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.629139"
+      }
+    },
+    {
+      "id": "REV-02",
+      "title": "Month 3 Milestone Invoice #3 ($15,514.00) Package",
+      "category": "revenue_invoice",
+      "phase": 14,
+      "contract_milestone": "Invoice #3 ($15,514.00)",
+      "status": "verified",
+      "dependencies": [
+        "REV-01"
+      ],
+      "files": [
+        "invoices/Invoice_003_August_2026_TTFS_UTRGV.html",
+        "invoices/Invoice_003_August_2026_TTFS_UTRGV.md"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.630018"
+      }
+    },
+    {
+      "id": "PWA-01",
+      "title": "Progressive Web App Offline Service Worker & IndexedDB Field Sync",
+      "category": "core_system",
+      "phase": 13,
+      "contract_milestone": "System Architecture",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02"
+      ],
+      "files": [
+        "manifest.json",
+        "sw.js",
+        "js/offline_sync.js"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.631202"
+      }
+    },
+    {
+      "id": "DELIV-A04",
+      "title": "Multi-Campus Environmental Equity Matrix & Analytics",
+      "category": "deliverable_a",
+      "phase": 1,
+      "contract_milestone": "Deliverable A ($54,670.00)",
+      "status": "verified",
+      "dependencies": [
+        "DELIV-A01"
+      ],
+      "files": [
+        "district_comparison.html",
+        "district_comparison.css",
+        "district_comparison.js"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": true,
+        "timestamp": "2026-09-15T11:24:36.632437"
+      }
+    },
+    {
+      "id": "DELIV-D01",
+      "title": "Interactive TEKS Science Lab Sandbox",
+      "category": "deliverable_d",
+      "phase": 11,
+      "contract_milestone": "Deliverable D ($15,000.00)",
+      "status": "verified",
+      "dependencies": [
+        "PORTAL-03"
+      ],
+      "files": [
+        "teks_sandbox.html",
+        "teks_sandbox.css",
+        "teks_sandbox.js"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": true,
+        "timestamp": "2026-09-15T11:24:36.633588"
+      }
+    },
+    {
+      "id": "DELIV-C05",
+      "title": "3D Montezuma Cypress Seasonal Foliage Shader & Solar Angle Calculator",
+      "category": "deliverable_c",
+      "phase": 3,
+      "contract_milestone": "Deliverable C ($55,805.00)",
+      "status": "verified",
+      "dependencies": [
+        "DELIV-C03"
+      ],
+      "files": [
+        "js/seasonal_tree_shader.js"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.633873"
+      }
+    },
+    {
+      "id": "SYS-03",
+      "title": "Automated E2E Asset & Link Integrity Certification",
+      "category": "core_system",
+      "phase": 9,
+      "contract_milestone": "QA & Governance",
+      "status": "verified",
+      "dependencies": [
+        "SYS-02"
+      ],
+      "files": [
+        "scripts/e2e_crawler.py",
+        "docs/AGENT_EXPERIENCE_AND_POLISH_NOTES.md"
+      ],
+      "verification": {
+        "gate_passed": true,
+        "zero_pii_checked": true,
+        "print_ready_checked": false,
+        "timestamp": "2026-09-15T11:24:36.634766"
+      }
+    }
+  ]
+}

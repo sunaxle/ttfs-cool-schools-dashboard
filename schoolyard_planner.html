@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <meta name="description" content="TTFS UTRGV Cool Schools Landscape Architecture Studio - Interactive 2D/3D planting design, FLIR thermal heatmap simulation, and 10-year canopy planner." />
+    <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation" />
+    <title>Landscape Architecture Studio | TTFS UTRGV Cool Schools</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="schoolyard_planner.css" />
+</head>
+
+<body>
+    <!-- Top Brand Header -->
+    <header class="app-header">
+        <div class="brand-left">
+            <img src="assets/utrgv-agroecology.png" alt="UTRGV Agroecology" class="brand-logo" />
+        </div>
+        <div class="header-title-block">
+            <h1>🌳 Schoolyard Microforest & Landscape Architecture Studio</h1>
+            <div class="header-subtitle">Interactive RGV Native Design, FLIR Thermal Heatmap & 10-Year Canopy Simulator</div>
+        </div>
+        <div class="brand-right">
+            <img src="assets/texas-trees-foundation.png" alt="Texas Trees Foundation" class="brand-logo" />
+        </div>
+    </header>
+
+    <!-- Global Project Navigation Strip -->
+    <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 SIMULATIONS & TOOLS</span>
+            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
+            <a class="nav-link" href="tree_3d.html">3D Single Tree</a>
+            <a class="nav-link" href="campus_3d.html">3D Campus Explorer</a>
+            <a class="nav-link" href="solar_shade_calculator.html">Solar Shade Math Lab</a>
+            <a class="nav-link active" href="schoolyard_planner.html" style="background:#2e7d32; color:#ffffff; font-weight:bold;">🌿 Landscape Studio</a>
+            <a class="nav-link" href="biodiversity_analog_concept.html">Classroom Tally</a>
+            <a class="nav-link" href="teks_lesson_plans.html">TEKS Plans</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+    </nav>
+
+    <!-- Main 2-Pane Split Workspace -->
+    <main class="split-workspace">
+
+        <!-- ==========================================================================
+             LEFT PANE: Interactive Canvas Studio Stage (58%+)
+             ========================================================================== -->
+        <section class="studio-stage-pane">
+            <!-- Stage Header Toolbar -->
+            <div class="stage-top-bar">
+                <div class="mode-pills-group">
+                    <button type="button" class="mode-pill-btn active" id="btnMode3D" data-mode="3d">
+                        <span>🌳 3D Studio (BloomsEye)</span>
+                    </button>
+                    <button type="button" class="mode-pill-btn" id="btnMode2D" data-mode="2d">
+                        <span>📐 2D Masterplan</span>
+                    </button>
+                    <button type="button" class="mode-pill-btn" id="btnModeThermal" data-mode="thermal">
+                        <span>🔥 FLIR Thermal IR</span>
+                    </button>
+                    <button type="button" class="mode-pill-btn" id="btnModePhoto" data-mode="photo">
+                        <span>📸 Photo Overlay</span>
+                    </button>
+                </div>
+
+                <div class="stage-actions-group">
+                    <button type="button" class="btn-stage-tool" id="btnUploadCustomPhoto" title="Upload real schoolyard photo">
+                        📷 Upload Photo
+                    </button>
+                    <input type="file" id="photoFileInput" accept="image/*" style="display:none;" />
+
+                    <button type="button" class="btn-stage-tool" id="btnUndo" title="Undo last placement">
+                        ↺ Undo
+                    </button>
+                    <button type="button" class="btn-stage-tool" id="btnClearCanvas" title="Clear all placed plants">
+                        🗑️ Clear
+                    </button>
+                </div>
+            </div>
+
+            <!-- Architectural Layer Toggle Strip -->
+            <div class="stage-layer-bar">
+                <div class="layer-switches">
+                    <label><input type="checkbox" id="toggleMulchBeds" checked /> 🟫 Mulch Beds</label>
+                    <label><input type="checkbox" id="toggleWalkways" checked /> 🪨 Flagstone Paths</label>
+                    <label><input type="checkbox" id="toggleCallouts" checked /> 📍 Designer Callout Pins</label>
+                    <label><input type="checkbox" id="toggleShadows" checked /> ☀️ Solar Shadows</label>
+                    <label><input type="checkbox" id="toggleSpacing" checked /> ⭕ Spacing Guide</label>
+                </div>
+                <div class="thermal-legend-pill" id="thermalLegendBar" style="display:none;">
+                    <span>FLIR Scale:</span>
+                    <div class="thermal-bar-gradient"></div>
+                    <span>80°F (Cool) → 162°F (Hot)</span>
+                </div>
+            </div>
+
+            <!-- Canvas Viewport Box -->
+            <div class="canvas-viewport-box" id="canvasViewportWrapper">
+                <!-- 2D High-DPI Canvas (Hidden in 3D mode) -->
+                <canvas id="plannerCanvas" width="960" height="540" style="display:none;"></canvas>
+
+                <!-- 3D Three.js WebGL Container (Active by Default) -->
+                <div id="threeCanvasContainer" style="display:block;"></div>
+
+                <!-- Floating 3D Camera Controls Bar (Shown in 3D mode) -->
+                <div class="three-camera-bar" id="threeCameraBar" style="display:flex;">
+                    <button type="button" class="btn-cam-preset active" data-cam="isometric">🦅 45° Orbit</button>
+                    <button type="button" class="btn-cam-preset" data-cam="ground">🏫 Student Walkthrough</button>
+                    <button type="button" class="btn-cam-preset" data-cam="topdown">📐 Top-Down Plan</button>
+                    <button type="button" class="btn-cam-preset" id="btnToggle3DRotate">🔄 Auto-Rotate</button>
+                </div>
+
+                <!-- Floating 3D Raycast Inspection HUD (Shown on hover/click) -->
+                <div class="three-inspect-hud" id="threeInspectHud">
+                    <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.85rem;" id="hud3DPlantName">Bur Oak</div>
+                    <div style="font-style: italic; color: #64748b; font-size: 0.72rem; margin-bottom: 4px;" id="hud3DPlantBot">Quercus macrocarpa</div>
+                    <div style="font-size: 0.75rem; color: #15803d; font-weight: 600;" id="hud3DPlantState">🌸 Active Spring Foliage & Blooms</div>
+                    <div style="font-size: 0.72rem; color: #475569; margin-top: 4px;" id="hud3DPlantMetrics">Height: 18 ft | Spread: 14 ft</div>
+                    <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;" id="hud3DPlantSpec">Spec: 30-gal Container ($175)</div>
+                </div>
+
+                <!-- Floating Designer Callout Popover Card -->
+                <div class="callout-popover" id="calloutPopover">
+                    <div class="callout-popover-header">
+                        <span id="popoverTitle">Landscape Architecture Callout</span>
+                        <button type="button" id="btnClosePopover" style="background:none; border:none; cursor:pointer; font-weight:bold; font-size:14px;">✕</button>
+                    </div>
+                    <div class="callout-popover-desc" id="popoverDesc">Description</div>
+                    <div class="callout-popover-rationale" id="popoverRationale">Rationale</div>
+                </div>
+
+                <!-- Floating 3D Direct Planting Instruction Banner -->
+                <div class="three-planting-banner" id="threePlantingBanner" style="display:none;">
+                    <span>🌱 <strong>Direct 3D Planting Mode:</strong> Click anywhere on the courtyard to plant <span id="plantingBannerSpecies" style="font-weight:700; color:#84cc16;">Bur Oak</span></span>
+                    <button type="button" id="btnCancelPlanting" class="btn-cancel-plant" title="Exit planting mode">Cancel ✕</button>
+                </div>
+
+                <!-- Floating 3D Selected Plant Quick Action Card -->
+                <div class="three-selected-card" id="threeSelectedCard" style="display:none;">
+                    <div class="sel-card-header">
+                        <span id="selPlantName">🌳 Bur Oak</span>
+                        <button type="button" id="btnDeselect3D" class="btn-close-sel" title="Deselect">✕</button>
+                    </div>
+                    <div class="sel-card-body" id="selPlantDetails">
+                        <div>Height: 45 ft | Spread: 52 ft</div>
+                        <div style="color: #15803d; font-weight: 600;">Year 10 Canopy • $220.00 Spec</div>
+                    </div>
+                    <div class="sel-card-actions">
+                        <button type="button" id="btnDuplicate3DPlant" class="btn-sel-tool">📋 Clone</button>
+                        <button type="button" id="btnDelete3DPlant" class="btn-sel-tool danger">🗑️ Delete</button>
+                    </div>
+                </div>
+
+                <!-- Compass Badge -->
+                <div class="compass-badge">
+                    <span>⬆ N (Solar South Orbit)</span>
+                </div>
+
+                <!-- Live HUD Badges -->
+                <div class="stage-hud-overlay">
+                    <div class="hud-pill highlight">
+                        <span id="hudPlacedCount">15 Plants Placed</span>
+                    </div>
+                    <div class="hud-pill">
+                        <span id="hudCurrentMonth">🌸 April (Spring Flowering Peak)</span>
+                    </div>
+                    <div class="hud-pill">
+                        <span id="hudCurrentStage">⏳ Year 10 (Mature Microforest)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage Bottom Integrated Studio Timeline -->
+            <div class="stage-bottom-panel">
+                <!-- 12-Month Bloom Timeline -->
+                <div class="timeline-slider-box">
+                    <div class="timeline-header-row">
+                        <span style="color: var(--primary-dark);">📅 Seasonal Bloom & Pollinator Timeline:</span>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span id="currentMonthLabel" style="color: #d97706; font-weight: 800;">April (Spring Flowering)</span>
+                            <button type="button" id="btnPlaySeasons" class="btn-play-seasons" title="Auto-cycle seasons Jan to Dec">▶ Play Seasons</button>
+                        </div>
+                    </div>
+                    <input type="range" id="monthSlider" class="timeline-slider" min="1" max="12" step="1" value="4" />
+                    <div class="timeline-month-ticks" id="monthsBarContainer">
+                        <span class="month-tick" data-month="1">Jan</span>
+                        <span class="month-tick" data-month="2">Feb</span>
+                        <span class="month-tick" data-month="3">Mar</span>
+                        <span class="month-tick active" data-month="4">Apr</span>
+                        <span class="month-tick" data-month="5">May</span>
+                        <span class="month-tick" data-month="6">Jun</span>
+                        <span class="month-tick" data-month="7">Jul</span>
+                        <span class="month-tick" data-month="8">Aug</span>
+                        <span class="month-tick" data-month="9">Sep</span>
+                        <span class="month-tick" data-month="10">Oct</span>
+                        <span class="month-tick" data-month="11">Nov</span>
+                        <span class="month-tick" data-month="12">Dec</span>
+                    </div>
+                </div>
+
+                <!-- 10-Year Growth Time Machine -->
+                <div class="growth-horizon-box">
+                    <div class="timeline-header-row">
+                        <span style="color: var(--primary-dark);">⏳ Canopy Growth:</span>
+                        <span id="growthStageBadge" style="color: #15803d; font-weight: 800;">Year 10 (2036)</span>
+                    </div>
+                    <div class="growth-horizon-strip">
+                        <button type="button" class="btn-growth-pill" data-year="1">Yr 1 <small>(Sapling)</small></button>
+                        <button type="button" class="btn-growth-pill" data-year="3">Yr 3 <small>(Young)</small></button>
+                        <button type="button" class="btn-growth-pill" data-year="5">Yr 5 <small>(Expanding)</small></button>
+                        <button type="button" class="btn-growth-pill active" data-year="10">Yr 10 <small>(Mature)</small></button>
+                    </div>
+                </div>
+
+                <!-- Solar Time-of-Day Arc Slider -->
+                <div class="sun-arc-box">
+                    <div class="timeline-header-row">
+                        <span style="color: var(--primary-dark);">☀️ Solar Shadow Arc:</span>
+                        <span id="sunTimeLabel" style="color: #b45309; font-weight: 800;">12:00 PM (Noon)</span>
+                    </div>
+                    <input type="range" id="sunTimeSlider" class="timeline-slider sun-slider" min="8" max="18" step="0.5" value="12" />
+                    <div class="sun-time-ticks">
+                        <span>8 AM <small>(Morning)</small></span>
+                        <span>12 PM <small>(Noon Peak)</small></span>
+                        <span>6 PM <small>(Golden Hour)</small></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             RIGHT PANE: Architectural Studio Dossier (42%)
+             ========================================================================== -->
+        <aside class="studio-dossier-pane">
+            <!-- Dossier Tab Selector -->
+            <div class="dossier-tab-bar">
+                <button type="button" class="dossier-tab-btn active" data-dossier-tab="showcase">
+                    <span>🏆 Case Studies</span>
+                    <small>Showcase</small>
+                </button>
+                <button type="button" class="dossier-tab-btn" data-dossier-tab="palette">
+                    <span>🌿 Plant Box</span>
+                    <small>16 RGV Species</small>
+                </button>
+                <button type="button" class="dossier-tab-btn" data-dossier-tab="impact">
+                    <span>📊 Live Impact</span>
+                    <small>Thermal & Eco</small>
+                </button>
+                <button type="button" class="dossier-tab-btn" data-dossier-tab="blueprint">
+                    <span>📋 Blueprint</span>
+                    <small>Procurement</small>
+                </button>
+            </div>
+
+            <!-- Dossier Scrollable Content Area -->
+            <div class="dossier-content-area">
+
+                <!-- -------------------------------------------------------------
+                     TAB 1: SHOWCASE CASE STUDIES
+                     ------------------------------------------------------------- -->
+                <div id="dossierContentShowcase" class="dossier-tab-pane">
+                    <div class="dossier-section-title">
+                        <span>🏆 Landscape Designer Showcase Cases</span>
+                    </div>
+                    <p class="dossier-intro-text">
+                        Select an actual certified TTFS urban forestry pilot project to load its complete CAD zoning, plant list, and thermal cooling data:
+                    </p>
+
+                    <div class="showcase-cards-list" style="margin-top: 10px;">
+                        <!-- Case 1: Donna ISD M. Rivas -->
+                        <div class="showcase-card active" data-case="case_rivas_steam_oasis">
+                            <div class="showcase-card-top">
+                                <div>
+                                    <div class="showcase-card-title">1. Donna ISD M. Rivas Primary STEAM Oasis</div>
+                                    <small style="color: var(--text-muted);">J.S. Adame / M. Rivas Campus (Donna, TX)</small>
+                                </div>
+                                <span class="showcase-badge">Flagship STEAM</span>
+                            </div>
+                            <p class="showcase-narrative">
+                                Retrofits a 114°F reverberant concrete courtyard with 4 canopy Bur Oaks, Montezuma Cypress roof bioswales, and an understory hummingbird garden with a 30-student log circle.
+                            </p>
+                            <div class="showcase-stats-row">
+                                <div class="showcase-stat-item">
+                                    <div class="showcase-stat-lbl">Cooling Drop</div>
+                                    <div class="showcase-stat-val cooling">↓ 29.5°F</div>
+                                </div>
+                                <div class="showcase-stat-item">
+                                    <div class="showcase-stat-lbl">Canopy Area</div>
+                                    <div class="showcase-stat-val">6,850 sq ft</div>
+                                </div>
+                                <div class="showcase-stat-item">
+                                    <div class="showcase-stat-lbl">Stormwater</div>
+                                    <div class="showcase-stat-val">5,400 gal/yr</div>
+                                </div>
+                            </div>
+                            <div class="showcase-card-actions">
+                                <button type="button" class="btn-load-case" data-case="case_rivas_steam_oasis">✓ Load This Case</button>
+                                <button type="button" class="btn-tour-case" id="btnCaseTour">🎬 ▶ Auto-Tour</button>
+                            </div>
+                        </div>
+
+                        <!-- Case 2: Donna Garza Blacktop -->
+                        <div class="showcase-card" data-case="case_garza_blacktop_shield">
+                            <div class="showcase-card-top">
+                                <div>
+                                    <div class="showcase-card-title">2. Donna ISD Garza Blacktop Solar Shield</div>
+                                    <small style="color: var(--text-muted);">Garza Elementary (Donna, TX)</small>
+                                </div>
+                                <span class="showcase-badge" style="background:#fee2e2; color:#b91c1c;">Heat Island Buster</span>
+                            </div>
+                            <p class="showcase-narrative">
+                                Neutralizes 132°F baking blacktop parking and bus queues with high-transpiration Mexican Sycamores, deep-rooted Pecans, and particulate-filtering Cypress fronds.
+                            </p>
+                            <div class="showcase-stats-row">
+                                <div class="showcase-stat-item">
+                                    <div class="showcase-stat-lbl">Cooling Drop</div>
+                                    <div class="showcase-stat-val cooling">↓ 43.0°F</div>
+                                </div>
+                                <div class="showcase-stat-item">
+                                    <div class="showcase-stat-lbl">Canopy Area</div>
+                                    <div class="showcase-stat-val">8,400 sq ft</div>
+                                </div>
+                                <div class="showcase-stat-item">
+                                    <div class="showcase-stat-lbl">Stormwater</div>
+                                    <div class="showcase-stat-val">6,800 gal/yr</div>
+                                </div>
+                            </div>
+                            <div class="showcase-card-actions">
+                                <button type="button" class="btn-load-case" data-case="case_garza_blacktop_shield">Load This Case</button>
+                            </div>
+                        </div>
+
+                        <!-- Case 3: Mercedes Chacon Sensory -->
+                        <div class="showcase-card" data-case="case_chacon_sensory_lab">
+                            <div class="showcase-card-top">
+                                <div>
+                                    <div class="showcase-card-title">3. Mercedes ISD Chacon Pre-K Sensory Lab</div>
+                                    <small style="color: var(--text-muted);">Chacon Early Childhood (Mercedes, TX)</small>
+                                </div>
+                                <span class="showcase-badge" style="background:#fce7f3; color:#9d174d;">Sensory Pre-K</span>
+                            </div>
+                            <p class="showcase-narrative">
+                                100% thornless, tactile sensory exploration park for early childhood with sandpaper Anacua leaves, sweet grape-soda Mountain Laurel, and butterfly puddling pans.
+                            </p>
+                            <div class="showcase-stats-row">
+                                <div class="showcase-stat-item">
+                                    <div class="showcase-stat-lbl">Cooling Drop</div>
+                                    <div class="showcase-stat-val cooling">↓ 25.0°F</div>
+                                </div>
+                                <div class="showcase-stat-item">
+                                    <div class="showcase-stat-lbl">Canopy Area</div>
+                                    <div class="showcase-stat-val">5,200 sq ft</div>
+                                </div>
+                                <div class="showcase-stat-item">
+                                    <div class="showcase-stat-lbl">Stormwater</div>
+                                    <div class="showcase-stat-val">3,900 gal/yr</div>
+                                </div>
+                            </div>
+                            <div class="showcase-card-actions">
+                                <button type="button" class="btn-load-case" data-case="case_chacon_sensory_lab">Load This Case</button>
+                            </div>
+                        </div>
+
+                        <!-- Blank Custom Plan -->
+                        <div class="showcase-card" data-case="custom_blank">
+                            <div class="showcase-card-top">
+                                <div>
+                                    <div class="showcase-card-title">📄 Blank Custom Design Canvas</div>
+                                    <small style="color: var(--text-muted);">Start from scratch for any campus</small>
+                                </div>
+                            </div>
+                            <div class="showcase-card-actions" style="margin-top:8px;">
+                                <button type="button" class="btn-load-case" data-case="custom_blank">Start Blank Plan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------------
+                     TAB 2: RGV NATIVE PLANT PALETTE
+                     ------------------------------------------------------------- -->
+                <div id="dossierContentPalette" class="dossier-tab-pane" style="display:none;">
+                    <div class="dossier-section-title">
+                        <span>🌿 RGV Native Species Palette</span>
+                        <span style="font-size:0.75rem; color:var(--text-muted);">16 Native Species</span>
+                    </div>
+                    <p class="dossier-intro-text">
+                        Click or drag any native species onto the canvas to place it in the schoolyard:
+                    </p>
+
+                    <div class="palette-search-row" style="margin-top: 8px;">
+                        <input type="text" id="paletteSearch" placeholder="🔍 Search species, blooms, containers..." style="width:100%; padding:6px 10px; font-size:0.78rem; border:1px solid var(--border-dark); border-radius:6px;" />
+                    </div>
+
+                    <div class="palette-category-pills" style="margin-top: 6px;">
+                        <button type="button" class="category-pill-btn active" data-category="all">All (16)</button>
+                        <button type="button" class="category-pill-btn" data-category="canopy">🌳 Canopy</button>
+                        <button type="button" class="category-pill-btn" data-category="understory">🌿 Understory</button>
+                        <button type="button" class="category-pill-btn" data-category="shrub">🌺 Shrubs</button>
+                        <button type="button" class="category-pill-btn" data-category="pollinator">🦋 Blooms</button>
+                    </div>
+
+                    <div class="palette-cards-grid" id="paletteListContainer">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------------
+                     TAB 3: LIVE ECOLOGICAL IMPACT
+                     ------------------------------------------------------------- -->
+                <div id="dossierContentImpact" class="dossier-tab-pane" style="display:none;">
+                    <div class="dossier-section-title">
+                        <span>📊 Live Ecological & Microclimate Impact</span>
+                    </div>
+
+                    <!-- Hero Temperature Delta Card -->
+                    <div class="impact-hero-card">
+                        <div class="impact-hero-label">🌡️ Active Surface Cooling Effect</div>
+                        <div class="impact-hero-temp-row">
+                            <div class="impact-hero-delta" id="metricCoolingDelta">↓ 29.5°F</div>
+                            <div style="text-align:right;">
+                                <div style="font-size:0.72rem; color:#cbd5e1;">Pavement Temp Drop:</div>
+                                <div style="font-size:1.1rem; font-weight:800;"><span id="metricHotTemp" style="color:#f87171;">114°F</span> ➔ <span id="metricCoolTemp" style="color:#38bdf8;">84.5°F</span></div>
+                            </div>
+                        </div>
+                        <div class="impact-hero-sub">Transforms dangerous concrete solar ovens into safe shaded student play pockets.</div>
+                    </div>
+
+                    <!-- Metrics Grid -->
+                    <div class="impact-metrics-grid">
+                        <div class="impact-metric-box green">
+                            <div class="impact-metric-lbl">Total Shaded Canopy</div>
+                            <div class="impact-metric-val" id="metricCanopySqFt">6,850 sq ft</div>
+                            <div class="impact-metric-sub"><span id="metricCanopyRatio">37.0%</span> of courtyard</div>
+                        </div>
+                        <div class="impact-metric-box blue">
+                            <div class="impact-metric-lbl">Stormwater Intercepted</div>
+                            <div class="impact-metric-val" id="metricStormwaterGal">5,400 gal/yr</div>
+                            <div class="impact-metric-sub">Living bioswale sponge</div>
+                        </div>
+                    </div>
+
+                    <!-- 12-Month Continuous Bloom Audit -->
+                    <div class="bloom-audit-card">
+                        <div class="audit-header">
+                            <span>🐝 12-Month Bloom Corridor Audit:</span>
+                            <span class="audit-badge perfect" id="auditStatusBadge">Continuous Forage! 🌟</span>
+                        </div>
+                        <p style="font-size:0.72rem; color:#64748b; margin-top:4px;" id="auditDescText">
+                            Your planting plan provides non-stop flowers & nectar from March through November.
+                        </p>
+                        <div class="bloom-mini-strip" id="bloomMiniStrip">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Attracted Wildlife & Pollinators -->
+                    <div class="bloom-audit-card">
+                        <div class="audit-header">
+                            <span>🦋 Visiting Wildlife & Pollinators:</span>
+                        </div>
+                        <div class="wildlife-visitors-list" id="visitorsListContainer">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------------
+                     TAB 4: SUBMITTAL BLUEPRINT & PROCUREMENT
+                     ------------------------------------------------------------- -->
+                <div id="dossierContentBlueprint" class="dossier-tab-pane" style="display:none;">
+                    <div class="dossier-section-title">
+                        <span>📋 Submittal Blueprint & Procurement</span>
+                    </div>
+                    <p class="dossier-intro-text">
+                        Generate official landscape architecture submittals, nursery procurement specs, and TEKS science guides:
+                    </p>
+
+                    <!-- Classroom Tag Selector -->
+                    <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:8px; padding:10px; margin-top:6px;">
+                        <label style="display:block; font-size:0.7rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Classroom / Student Group:</label>
+                        <select id="teamSelect" class="team-select" style="width:100%; margin-top:4px; padding:6px; border:1px solid var(--border-dark); border-radius:6px;">
+                            <option value="Team Monarch">🦋 Team Monarch (3rd Grade STEAM)</option>
+                            <option value="Team Ocelot">🐆 Team Ocelot (4th Grade Science)</option>
+                            <option value="Team Green Jay">🦜 Team Green Jay (5th Grade Botany)</option>
+                            <option value="Eco Club">🌱 Campus Eco & Garden Club</option>
+                            <option value="UTRGV Research">🔬 UTRGV Agroecology Field Team</option>
+                            <option value="TTFS Arborists">🌳 TTFS Urban Forestry Studio</option>
+                        </select>
+                    </div>
+
+                    <!-- Mini BOM Summary -->
+                    <h4 style="font-size:0.8rem; margin-top:10px; color:var(--primary-dark);">🌿 Species Bill of Materials Summary</h4>
+                    <table class="bom-summary-table">
+                        <thead>
+                            <tr>
+                                <th>Species</th>
+                                <th>Qty</th>
+                                <th>Container</th>
+                                <th>Est. Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dossierBomSummaryBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+
+                    <!-- Dossier Action Buttons -->
+                    <div class="dossier-actions-bottom">
+                        <button type="button" class="btn-dossier-primary" id="btnOpenBlueprint">
+                            📋 Open Full Landscape Submittal Package
+                        </button>
+                        <button type="button" class="btn-dossier-secondary" id="btnExportImage">
+                            🖼️ Export High-Res Design (PNG)
+                        </button>
+                        <button type="button" class="btn-dossier-secondary" id="btnSavePlanLocal">
+                            💾 Save Plan to Browser Storage
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+    </main>
+
+    <!-- MODAL: Professional Landscape Blueprint & Nursery Submittal Package -->
+    <div class="modal-overlay" id="blueprintModal">
+        <div class="blueprint-modal">
+            <div class="blueprint-header">
+                <div>
+                    <h3 id="bpModalTitle">📋 Landscape Architecture Blueprint & Submittal Package</h3>
+                    <small style="color: var(--lime-bright);" id="bpModalSubtitle">Donna ISD M. Rivas Primary STEAM Oasis</small>
+                </div>
+                <button type="button" class="btn-stage-tool" id="btnCloseBlueprint" style="color:#ffffff; background:rgba(255,255,255,0.2); border:none;">✕ Close</button>
+            </div>
+
+            <!-- Modal Navigation Tabs -->
+            <div class="modal-tabs">
+                <button type="button" class="modal-tab-btn active" data-tab="tabBom">1. Planting Bill of Materials (BOM)</button>
+                <button type="button" class="modal-tab-btn" data-tab="tabNursery">2. Nursery Procurement & Soil Spec</button>
+                <button type="button" class="modal-tab-btn" data-tab="tabMaintenance">3. 2-Year Irrigation & Maintenance</button>
+            </div>
+
+            <div class="blueprint-content">
+                <!-- TAB 1: Planting BOM & TEKS -->
+                <div id="tabContentBom">
+                    <div class="blueprint-meta-box">
+                        <div><strong>Project:</strong> TTFS UTRGV Cool Schools</div>
+                        <div><strong>Classroom / Team:</strong> <span id="bpGroupVal">Team Monarch</span></div>
+                        <div><strong>Horizon:</strong> <span id="bpYearVal">Year 10 Mature (2036)</span></div>
+                        <div><strong>Total Plants:</strong> <span id="bpPlantCountVal">15</span></div>
+                        <div><strong>Canopy Area:</strong> <span id="bpShadeAreaVal">6,850 sq ft</span></div>
+                        <div><strong>Surface Cooling:</strong> <span id="bpCoolingVal">↓ 29.5°F</span></div>
+                    </div>
+
+                    <h4 style="margin-top: 10px;">🌿 Planting Bill of Materials (BOM)</h4>
+                    <table class="species-bom-table">
+                        <thead>
+                            <tr>
+                                <th>Common Name</th>
+                                <th>Botanical (Taxonomic) Name</th>
+                                <th>Qty</th>
+                                <th>Spec Container</th>
+                                <th>Bloom Schedule</th>
+                                <th>Est. Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bpBomTableBody">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+
+                    <div style="background: #eef2ff; border-left: 4px solid #6366f1; padding: 12px; border-radius: 6px; font-size: 0.8rem; margin-top: 10px;">
+                        <strong>🎓 TEKS Science Curriculum Alignment (Grades 3–5):</strong>
+                        <p style="margin-top: 4px;">
+                            1. <em>Organisms and Environments (TEKS 5.9A):</em> Observe how canopy trees (Bur Oak, Live Oak) create thermal microclimates enabling understory shade plants (Turk's Cap) and hummingbird waystations.<br>
+                            2. <em>Earth Systems & Energy (TEKS 4.8A):</em> Quantify how living tree canopies absorb solar irradiance compared to adjacent bare blacktop surfaces.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Nursery Procurement & Soil Spec -->
+                <div id="tabContentNursery" style="display:none;">
+                    <h4>🚜 Nursery Standards & Soil Remediation Protocol</h4>
+                    <p style="font-size: 0.8rem; color: #475569;">Conforms to ANSI Z60.1 American Standard for Nursery Stock & TTFS Urban Forestry guidelines.</p>
+                    
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; font-size: 0.8rem; margin-top: 8px;">
+                        <strong>🌱 RGV Harlingen Heavy Clay Soil Protocol:</strong>
+                        <p id="bpSoilPrepText" style="margin-top: 4px; color: #334155;"></p>
+                    </div>
+
+                    <h4 style="margin-top: 14px;">📦 Estimated Procurement Budget</h4>
+                    <table class="species-bom-table">
+                        <thead>
+                            <tr>
+                                <th>Material / Service Item</th>
+                                <th>Spec</th>
+                                <th>Est. Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bpNurseryBudgetBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- TAB 3: 2-Year Irrigation & Maintenance -->
+                <div id="tabContentMaintenance" style="display:none;">
+                    <h4>💧 2-Year Establishment & Irrigation Schedule</h4>
+                    <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 12px; border-radius: 6px; font-size: 0.8rem;">
+                        <strong>🚰 Irrigation Regimen (Drip System):</strong>
+                        <p id="bpIrrigationText" style="margin-top: 4px; color: #166534;"></p>
+                    </div>
+
+                    <h4 style="margin-top: 14px;">🛠️ Seasonal Maintenance Checklist (Classroom & Facilities)</h4>
+                    <table class="species-bom-table">
+                        <thead>
+                            <tr>
+                                <th>Season</th>
+                                <th>Maintenance Task</th>
+                                <th>Responsible Party</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Spring (Mar–May)</strong></td>
+                                <td>Replenish 3" hardwood mulch ring; check drip emitters for silt clogs; observe initial flower flush.</td>
+                                <td>Campus Eco Club & Facilities</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Summer (Jun–Aug)</strong></td>
+                                <td>Increase deep-root watering to twice weekly during 100°F heatwaves; inspect for spider mites.</td>
+                                <td>District Grounds Crew</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Autumn (Sep–Nov)</strong></td>
+                                <td>Prune deadwood; harvest pecan nuts and anacua berries for classroom seed-starting labs.</td>
+                                <td>STEAM Teachers & Students</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Winter (Dec–Feb)</strong></td>
+                                <td>Dormant pruning; apply thin layer of organic compost around root dripline.</td>
+                                <td>TTFS Certified Arborist</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px;">
+                    <button type="button" class="btn-dossier-primary" style="width: auto; padding: 8px 16px;" onclick="window.print();">🖨️ Print Landscape Submittal / PDF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Three.js + OrbitControls (Local High-Performance Offline & Portable) -->
+    <script src="js/three.min.js"></script>
+    <script src="js/OrbitControls.js"></script>
+
+    <!-- RGV Native Plant & Tree Palette Data -->
+    <script src="data/rgv_plant_palette.js"></script>
+
+    <!-- Professional Landscape Designer Showcase Cases -->
+    <script src="data/landscape_designer_cases.js"></script>
+
+    <!-- Core Interactive Planner Engine -->
+    <script src="schoolyard_planner.js"></script>
+</body>
+
+</html>

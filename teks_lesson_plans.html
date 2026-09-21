@@ -1,141 +1,591 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
-    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
-    <meta name="description" content="UTRGV Agroecology Project Dashboard - TEKS-Aligned Lesson Plans" />
-    <meta name="author" content="UTRGV Agroecology" />
-    <title>TEKS-Aligned Lesson Plans | UTRGV Agroecology</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="protocols.css" />
-    <link rel="stylesheet" href="teks_lesson_plans.css" />
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elementary Science TEKS Curriculum Lab — TTFS × UTRGV Cool Schools</title>
+  <meta name="description" content="TEKS-aligned elementary outdoor science curriculum (3.9A, 4.9A, 5.9A) connecting Rio Grande Valley schoolyard canopy data with hands-on microclimate experiments.">
+  <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation">
+  
+  <!-- PWA & Favicon -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png">
+  <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png">
+  <meta name="theme-color" content="#1B4D3E">
 
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="teks_lesson_plans.css">
+</head>
 <body>
+  <div class="teks-portal-root">
+    
+    <!-- Top Executive & Academic Header -->
     <header class="app-header">
-        <div class="brand-left"></div>
-        <div class="title">Texas Tree Foundation: TEKS Lesson Plans</div>
-        <div class="brand-right"></div>
+      <div class="brand-left">
+        <img src="assets/texas-trees-foundation.png" alt="Texas Trees Foundation Logo" class="brand-logo">
+      </div>
+      <div class="title">
+        <span class="header-pretitle">TEXAS TREES FOUNDATION × UTRGV AGROECOLOGY</span>
+        <h1>Elementary Science TEKS Curriculum & Field Lab</h1>
+        <span class="header-subtitle">Standards-Aligned Outdoor Learning (TEKS 3.9A • 4.9A • 5.9A)</span>
+      </div>
+      <div class="brand-right">
+        <img src="assets/utrgv-agroecology.png" alt="UTRGV Agroecology Logo" class="brand-logo">
+      </div>
     </header>
 
-    <nav class="app-nav">
-        <div class="nav-section deliverables-section">
-            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
-            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
-            <a class="nav-link" href="campuses.html">Select Campus</a>
-            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
-            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
-        </div>
-        <div class="nav-section simulations-section">
-            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
-            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
-            <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
-            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
-            <a class="nav-link" href="zoning.html">Site Zoning</a>
-            <a class="nav-link" href="protocols.html">SOP Protocols</a>
-            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
-            <a class="nav-link" href="economics.html">Economics / ROI</a>
-            <a class="nav-link" href="trails.html">Trails</a>
-            <a class="nav-link" href="wind.html">Wind</a>
-            <a class="nav-link" href="temperature.html">Temp</a>
-            <a class="nav-link" href="soil_moisture.html">Moisture</a>
-            <a class="nav-link" href="water_table.html">Water Table</a>
-            <a class="nav-link" href="soil_types.html">Soils</a>
-            <a class="nav-link" href="index.html">Impact</a>
-        </div>
-        <div class="nav-section new-prototypes-section" style="border-left: 2px solid #9C27B0; padding-left: 10px; margin-left: 15px;">
-            <span class="nav-header-label" style="color: #9C27B0;">🆕 NEW PROTOTYPES (NOT DELIVERABLES)</span>
-            <a class="nav-link active" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
-            <a class="nav-link" href="biodiversity_analog_concept.html">Child-Friendly Biodiversity</a>
-            <a class="nav-link" href="rivas_tree_roster.html">Tree Sponsorship Roster</a>
-            <a class="nav-link" href="user_access_strategy.html">User Access Strategy</a>
-        </div>
+    <!-- Navigation Breadcrumbs & Portal Links -->
+    <nav class="app-nav" aria-label="Portal Navigation">
+      <div class="nav-section deliverables-section">
+        <span class="nav-header-label">🌟 CURRICULUM & FIELD PORTALS</span>
+        <a class="nav-link active" href="teks_lesson_plans.html" aria-current="page">TEKS Lesson Plans</a>
+        <a class="nav-link" href="tree_stewardship.html">🌳 Tree Stewardship</a>
+        <a class="nav-link" href="birding_biodiversity.html">🦜 Birding & Biodiversity</a>
+        <a class="nav-link" href="tree_diary.html">Tree Diary & Legacy</a>
+        <a class="nav-link" href="schoolyard_planner.html">3D Schoolyard Planner</a>
+        <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
+        <a class="nav-link" href="portals/v5/index.html">Executive Hub v5</a>
+      </div>
     </nav>
 
-    <main class="page-container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
-        <div style="margin-bottom: 40px; text-align: center;">
-            <p style="font-size: 18px; color: var(--text);">Access Texas Tree Foundation's TEKS-aligned educational resources for your classroom. These lesson plans incorporate outdoor learning and urban canopy concepts.</p>
+    <!-- Main Workspace Container -->
+    <main class="curriculum-container" id="mainContent">
+      
+      <!-- Top Control Strip: Campus & Standard Switcher -->
+      <section class="control-strip" aria-label="Curriculum Controls">
+        <div class="control-group campus-group">
+          <label for="campusSelect" class="control-label">
+            <span class="control-icon">🏫</span> Active RGV Campus:
+          </label>
+          <select id="campusSelect" class="human-select" aria-label="Select Elementary Campus">
+            <optgroup label="Donna ISD Campuses">
+              <option value="donna_rivas" selected>Donna ISD — Jason M. Rivas Elementary</option>
+              <option value="donna_garza">Donna ISD — Garza Elementary</option>
+              <option value="donna_singleterry">Donna ISD — Singleterry Elementary</option>
+              <option value="donna_salinas">Donna ISD — Salinas Elementary</option>
+              <option value="donna_solis">Donna ISD — Solis Elementary</option>
+              <option value="donna_ochoa">Donna ISD — Ochoa Elementary</option>
+              <option value="donna_stainke">Donna ISD — Stainke Elementary</option>
+              <option value="donna_jw_caceres">Donna ISD — J.W. Caceres Elementary</option>
+            </optgroup>
+            <optgroup label="Mercedes ISD Campuses">
+              <option value="mercedes_travis">Mercedes ISD — Travis Elementary</option>
+              <option value="mercedes_chacon">Mercedes ISD — Chacon Elementary</option>
+              <option value="mercedes_harrell">Mercedes ISD — Harrell Elementary</option>
+              <option value="mercedes_hinojosa">Mercedes ISD — Hinojosa Elementary</option>
+              <option value="mercedes_high">Mercedes ISD — Mercedes High School</option>
+              <option value="mercedes_academy">Mercedes ISD — Mercedes Academic Academy</option>
+            </optgroup>
+          </select>
         </div>
 
-        <div id="passwordSection" class="form-section" style="max-width: 500px; margin: 0 auto 50px;">
-            <h2 style="margin-bottom: 20px; color: var(--primary); text-align: center;">Secure Educator Access</h2>
-            <p style="text-align: center; margin-bottom: 25px; color: #555;">Please enter the educator access code provided by your campus administrator to unlock lesson plans.</p>
-            <form id="authForm">
+        <!-- Grade & TEKS Tab Navigation -->
+        <div class="tabs-wrapper" role="tablist" aria-label="TEKS Science Standards">
+          <button class="teks-tab active" id="tab-grade3" role="tab" aria-selected="true" aria-controls="panel-grade3" data-target="grade3">
+            <span class="tab-badge">Grade 3</span>
+            <strong>TEKS 3.9A</strong>
+            <span class="tab-desc">Microclimates & Habitats</span>
+          </button>
+          <button class="teks-tab" id="tab-grade4" role="tab" aria-selected="false" aria-controls="panel-grade4" data-target="grade4">
+            <span class="tab-badge">Grade 4</span>
+            <strong>TEKS 4.9A</strong>
+            <span class="tab-desc">Producers & Transpiration</span>
+          </button>
+          <button class="teks-tab" id="tab-grade5" role="tab" aria-selected="false" aria-controls="panel-grade5" data-target="grade5">
+            <span class="tab-badge">Grade 5</span>
+            <strong>TEKS 5.9A</strong>
+            <span class="tab-desc">Soil Sponge & Living Interactions</span>
+          </button>
+          <button class="teks-tab" id="tab-transect" role="tab" aria-selected="false" aria-controls="panel-transect" data-target="transect">
+            <span class="tab-badge">All Grades</span>
+            <strong>Campus Transect</strong>
+            <span class="tab-desc">Integrated Field Lab</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Split-Screen Interactive Layout -->
+      <div class="split-workspace">
+
+        <!-- ================================================================= -->
+        <!-- LEFT COLUMN: Standard Explorer & Interactive Scientific Simulator -->
+        <!-- ================================================================= -->
+        <section class="workspace-pane simulator-pane" aria-labelledby="simulatorHeading">
+          
+          <!-- Standard Banner Card -->
+          <div class="standard-banner" id="standardBanner">
+            <div class="banner-header">
+              <span class="standard-tag" id="currentStandardCode">TEKS 3.9A (Science)</span>
+              <span class="tea-badge">Texas Essential Knowledge and Skills</span>
+            </div>
+            <h2 id="standardTitle" class="standard-title">Ecosystem Physical Characteristics & Microclimate Support</h2>
+            <p id="standardDescription" class="standard-text">
+              The student is expected to observe and describe the physical characteristics of environments and how they support populations and communities within an ecosystem.
+            </p>
+            <div class="learning-target">
+              <strong>🎯 Student Learning Objective:</strong>
+              <span id="learningObjectiveText">
+                Students will use infrared thermal sensors and canopy tree surveys to measure how native trees create shaded microclimates that lower ground temperatures by over 20°F to support living organisms.
+              </span>
+            </div>
+          </div>
+
+          <!-- Live Campus Microclimate Telemetry Card -->
+          <div class="card campus-telemetry-card">
+            <div class="card-header">
+              <span class="card-icon">📡</span>
+              <h3>Live Campus Telemetry (<span id="telemetryCampusName">Jason M. Rivas Elementary</span>)</h3>
+            </div>
+            <div class="telemetry-grid">
+              <div class="telemetry-metric">
+                <span class="metric-val" id="metricCanopyCover">18.4%</span>
+                <span class="metric-label">Schoolyard Canopy</span>
+              </div>
+              <div class="telemetry-metric">
+                <span class="metric-val" id="metricTreeCount">124</span>
+                <span class="metric-label">Native Trees</span>
+              </div>
+              <div class="telemetry-metric">
+                <span class="metric-val text-orange" id="metricCoolingDelta">-24.2°F</span>
+                <span class="metric-label">Shade Thermal Δ</span>
+              </div>
+              <div class="telemetry-metric">
+                <span class="metric-val" id="metricStormwater">148,200</span>
+                <span class="metric-label">Gal Runoff Intercepted/yr</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Interactive Lab Simulator Box -->
+          <div class="card interactive-lab-card" id="interactiveLabWrapper">
+            <div class="card-header">
+              <span class="card-icon">🧪</span>
+              <h3 id="labSimulatorTitle">Interactive Lab Simulator: Surface Temperature & Microclimate Probe</h3>
+            </div>
+
+            <!-- Grade 3 Simulator: Thermal Surface Probe -->
+            <div class="sim-view" id="simViewGrade3">
+              <p class="sim-intro">
+                Click a schoolyard surface zone below to position the infrared probe. Observe how physical surfaces absorb solar radiation differently and how tree shade protects living communities.
+              </p>
+              
+              <div class="surface-probe-grid">
+                <button type="button" class="surface-btn" data-temp="142" data-surface="Black Asphalt Parking" data-albedo="0.08" data-note="Hot surface; absorbs 92% of solar radiation. Lethal to ground organisms.">
+                  <span class="surface-emoji">🚗</span>
+                  <strong>Black Asphalt</strong>
+                  <span class="surface-preview-temp">142°F</span>
+                </button>
+                <button type="button" class="surface-btn" data-temp="134" data-surface="Playground Artificial Turf" data-albedo="0.12" data-note="Plastic fibers retain intense heat; unsafe for bare skin in summer.">
+                  <span class="surface-emoji">⚽</span>
+                  <strong>Playground Turf</strong>
+                  <span class="surface-preview-temp">134°F</span>
+                </button>
+                <button type="button" class="surface-btn" data-temp="108" data-surface="Unshaded Sunlit Bermudagrass" data-albedo="0.22" data-note="Living grass transpires water, but direct sun heats soil to 108°F.">
+                  <span class="surface-emoji">☀️</span>
+                  <strong>Open Lawn</strong>
+                  <span class="surface-preview-temp">108°F</span>
+                </button>
+                <button type="button" class="surface-btn active" data-temp="88" data-surface="Native Live Oak Canopy Shade" data-albedo="0.35" data-note="Tree leaf canopy intercepts 85% of solar rays, creating a protected microclimate!">
+                  <span class="surface-emoji">🌳</span>
+                  <strong>Oak Tree Shade</strong>
+                  <span class="surface-preview-temp">88°F</span>
+                </button>
+              </div>
+
+              <!-- Thermal Probe Readout Instrument -->
+              <div class="probe-display-panel">
+                <div class="probe-gauge">
+                  <div class="probe-mercury-bar">
+                    <div class="mercury-level" id="mercuryLevel" style="height: 48%;"></div>
+                  </div>
+                  <div class="probe-readout">
+                    <span class="temp-number" id="probeTempDisplay">88°F</span>
+                    <span class="temp-sublabel" id="probeSurfaceName">Native Live Oak Canopy Shade</span>
+                  </div>
+                </div>
+                <div class="probe-details">
+                  <div class="probe-row">
+                    <span class="detail-label">Surface Albedo (Reflectance):</span>
+                    <strong id="probeAlbedo">0.35</strong>
+                  </div>
+                  <div class="probe-row">
+                    <span class="detail-label">Cooling Buffer vs Asphalt:</span>
+                    <strong class="text-green" id="probeDelta">-54.0°F Cooler</strong>
+                  </div>
+                  <div class="probe-row">
+                    <span class="detail-label">Ecological Observation:</span>
+                    <span id="probeObservation" class="observation-text">
+                      Tree leaf canopy intercepts 85% of solar rays, creating a protected microclimate!
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grade 4 Simulator: Producer Biomass & Evapotranspiration Calculator -->
+            <div class="sim-view" id="simViewGrade4" style="display: none;">
+              <p class="sim-intro">
+                Explore how native South Texas tree species act as solar-powered producers. Adjust species and sunlight hours to calculate photosynthetic carbon capture and cooling water transpiration.
+              </p>
+              
+              <div class="sim-inputs-grid">
                 <div class="form-group">
-                    <label for="educatorPassword">Access Code</label>
-                    <input type="password" id="educatorPassword" placeholder="Enter password..." required>
+                  <label for="producerSpeciesSelect">Select Native Producer Species:</label>
+                  <select id="producerSpeciesSelect" class="human-select">
+                    <option value="live_oak" selected>Texas Live Oak (Quercus virginiana) — High Leaf Area</option>
+                    <option value="texas_ebony">Texas Ebony (Ebenopsis ebano) — Drought Hardy Legume</option>
+                    <option value="honey_mesquite">Honey Mesquite (Prosopis glandulosa) — Nitrogen Fixer</option>
+                    <option value="montezuma_cypress">Montezuma Cypress / Ahuehuete — Riparian Giant</option>
+                    <option value="cedar_elm">Cedar Elm (Ulmus crassifolia) — Dense Shade Crown</option>
+                  </select>
                 </div>
-                <div id="authError" style="color: #f44336; margin-bottom: 15px; display: none; text-align: center;">Incorrect access code. Please try again.</div>
-                <button type="submit" class="submit-btn">Unlock Resources</button>
-            </form>
-        </div>
+                <div class="form-group">
+                  <label for="solarHoursRange">Daily Sunlight Exposure: <strong id="solarHoursVal">8 hrs</strong></label>
+                  <input type="range" id="solarHoursRange" min="2" max="12" step="1" value="8" class="human-slider">
+                </div>
+              </div>
 
-        <div id="secureContent" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: var(--primary);">TEKS-Aligned Lesson Plans</h2>
-                <button id="lockBtn" class="submit-btn" style="width: auto; background: #9E9E9E; padding: 8px 15px;">Lock Access</button>
+              <!-- Producer Output Calculation Card -->
+              <div class="producer-results-card">
+                <div class="producer-kpi">
+                  <span class="kpi-icon">🍃</span>
+                  <div>
+                    <strong id="transpirationGalDay">28.4 Gallons</strong>
+                    <span>Daily Water Transpired (Evaporative Cooling)</span>
+                  </div>
+                </div>
+                <div class="producer-kpi">
+                  <span class="kpi-icon">💨</span>
+                  <div>
+                    <strong id="co2AbsorbedYear">48.6 lbs</strong>
+                    <span>Annual CO₂ Absorbed into Tree Biomass</span>
+                  </div>
+                </div>
+                <div class="producer-kpi">
+                  <span class="kpi-icon">❄️</span>
+                  <div>
+                    <strong id="btuCoolingVal">14,200 BTU</strong>
+                    <span>Natural Air Conditioning Equivalent / Day</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="protocols-grid">
-                <div class="resource-card" style="border-left-color: #4CAF50;">
-                    <h3>The Urban Canopy (Science 4.9B)</h3>
-                    <p style="font-size: 14px; margin-top: 10px; color: #555;">Students explore how trees affect local temperatures and the concept of the urban heat island effect.</p>
-                    <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
-                </div>
+            <!-- Grade 5 Simulator: Soil Stormwater Sponge & Living Interactions -->
+            <div class="sim-view" id="simViewGrade5" style="display: none;">
+              <p class="sim-intro">
+                Simulate a heavy South Texas thunderstorm event (1.5" to 4.0" rainfall). Compare how root networks interact with nonliving soil minerals to sponge runoff and create biodiversity corridors.
+              </p>
 
-                <div class="resource-card" style="border-left-color: #2196F3;">
-                    <h3>Campus Biodiversity (Science 3.10A)</h3>
-                    <p style="font-size: 14px; margin-top: 10px; color: #555;">A field observation activity where students catalog plant and animal species relying on campus trees.</p>
-                    <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+              <div class="sim-inputs-grid">
+                <div class="form-group">
+                  <label for="rainEventSelect">Rainfall Event Intensity:</label>
+                  <select id="rainEventSelect" class="human-select">
+                    <option value="1.0">Standard Rain Shower (1.0 inch)</option>
+                    <option value="2.5" selected>Heavy Subtropical Downpour (2.5 inches)</option>
+                    <option value="4.0">Tropical Storm Deluge (4.0 inches)</option>
+                  </select>
                 </div>
+                <div class="form-group">
+                  <label for="groundCoverSelect">Ground Cover & Root Depth:</label>
+                  <select id="groundCoverSelect" class="human-select">
+                    <option value="compacted">Compacted Bare Dirt (Zero Tree Roots)</option>
+                    <option value="turf">Standard Mowed Grass (Shallow 2" Roots)</option>
+                    <option value="canopy" selected>Native Agroforestry Microforest (Deep 8ft Roots + Leaf Litter)</option>
+                  </select>
+                </div>
+              </div>
 
-                <div class="resource-card" style="border-left-color: #FF9800;">
-                    <h3>Math in the Shade (Math 5.8C)</h3>
-                    <p style="font-size: 14px; margin-top: 10px; color: #555;">Students measure tree shadows at different times of day to calculate angles and track sun patterns.</p>
-                    <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+              <!-- Soil Sponge Results -->
+              <div class="sponge-results-grid">
+                <div class="sponge-card">
+                  <span class="sponge-label">Water Infiltrated into Ground:</span>
+                  <strong class="text-green" id="waterInfiltratedPct">86% (Sponged)</strong>
+                  <span class="sponge-sub" id="waterInfiltratedGal">18,500 Gallons Recharged</span>
                 </div>
-
-                <div class="resource-card" style="border-left-color: #9C27B0;">
-                    <h3>Trees in our History (Social Studies 4.22A)</h3>
-                    <p style="font-size: 14px; margin-top: 10px; color: #555;">Examining the role of native trees in the development and history of the Rio Grande Valley.</p>
-                    <a href="#" class="pdf-download-link" role="button" tabindex="0">⬇ Download PDF</a>
+                <div class="sponge-card">
+                  <span class="sponge-label">Surface Flood Runoff:</span>
+                  <strong class="text-orange" id="waterRunoffPct">14% (Minimal)</strong>
+                  <span class="sponge-sub" id="waterRunoffGal">3,010 Gallons Flowed to Drains</span>
                 </div>
+                <div class="sponge-card full-width">
+                  <span class="sponge-label">Living Organisms Supported in Root/Canopy Web:</span>
+                  <div class="wildlife-badges" id="wildlifeBadgesContainer">
+                    <span class="wildlife-tag">🦋 Monarch Butterfly (Danaus plexippus)</span>
+                    <span class="wildlife-tag">🦎 Texas Spiny Lizard (Sceloporus olivaceus)</span>
+                    <span class="wildlife-tag">🐦 Green Jay (Cyanocorax yncas)</span>
+                    <span class="wildlife-tag">🪱 Soil Mycorrhizal Fungi & Earthworms</span>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- Integrated Campus Transect View -->
+            <div class="sim-view" id="simViewTransect" style="display: none;">
+              <p class="sim-intro">
+                Cross-grade campus canopy survey. Follow the 100-meter schoolyard transect line from the asphalt bus drop-off to the native outdoor classroom grove.
+              </p>
+              <div class="transect-visual">
+                <div class="transect-step" data-step="1">
+                  <span class="step-marker">0m</span>
+                  <span class="step-title">Bus Loop Asphalt</span>
+                  <span class="step-stat">138°F • 0% Shade</span>
+                </div>
+                <div class="transect-arrow">➔</div>
+                <div class="transect-step" data-step="2">
+                  <span class="step-marker">35m</span>
+                  <span class="step-title">Playground Bleachers</span>
+                  <span class="step-stat">122°F • 5% Shade</span>
+                </div>
+                <div class="transect-arrow">➔</div>
+                <div class="transect-step" data-step="3">
+                  <span class="step-marker">70m</span>
+                  <span class="step-title">Sapling Plant Row</span>
+                  <span class="step-stat">102°F • 30% Shade</span>
+                </div>
+                <div class="transect-arrow">➔</div>
+                <div class="transect-step highlight" data-step="4">
+                  <span class="step-marker">100m</span>
+                  <span class="step-title">Thornscrub Grove</span>
+                  <span class="step-stat">87°F • 88% Shade</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scientific Vocabulary Bank -->
+          <div class="card vocab-card">
+            <div class="card-header">
+              <span class="card-icon">📖</span>
+              <h3>Core Scientific Vocabulary (Bilingual Support / Glosario)</h3>
+            </div>
+            <div class="vocab-grid">
+              <div class="vocab-item">
+                <dt>Microclimate (Microclima)</dt>
+                <dd>The climate of a small, specific area (like under a tree) that differs from the surrounding area.</dd>
+              </div>
+              <div class="vocab-item">
+                <dt>Albedo (Albedo)</dt>
+                <dd>The fraction of solar energy reflected from a surface back into space (dark asphalt = low; light surfaces = high).</dd>
+              </div>
+              <div class="vocab-item">
+                <dt>Transpiration (Transpiración)</dt>
+                <dd>The process where plants release water vapor through leaf stomata, cooling the surrounding air.</dd>
+              </div>
+              <div class="vocab-item">
+                <dt>Biomass (Biomasa)</dt>
+                <dd>The total mass of living organisms (wood, leaves, roots) that stores carbon captured from the air.</dd>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- RIGHT COLUMN: Student Field Lab Notebook & Printable Worksheet -->
+        <!-- ================================================================= -->
+        <section class="workspace-pane notebook-pane" aria-labelledby="notebookHeading">
+          
+          <div class="notebook-sheet" id="printableFieldSheet">
             
-            <div class="form-section" style="margin-top: 40px; background: #f9faec; border-left: 5px solid #abcb40;">
-                <h3 style="color: #689f38; margin-bottom: 10px;">Implementation Feedback</h3>
-                <p style="margin-bottom: 15px; font-size: 14px;">Have you utilized one of these lesson plans? Please share a quick reflection on how it went with your students.</p>
-                <form id="feedbackForm">
-                    <div class="form-group">
-                        <label for="lessonSelect">Lesson Plan Used</label>
-                        <select id="lessonSelect" required>
-                            <option value="">-- Select Lesson --</option>
-                            <option value="canopy">The Urban Canopy</option>
-                            <option value="biodiversity">Campus Biodiversity</option>
-                            <option value="math">Math in the Shade</option>
-                            <option value="history">Trees in our History</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="feedbackText">Classroom Experience</label>
-                        <textarea id="feedbackText" rows="3" placeholder="How did the students engage with the material?" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn" style="background: #8bc34a;">Submit Feedback</button>
-                </form>
+            <!-- Worksheet Header (Optimized for 8.5x11 Print) -->
+            <div class="worksheet-header">
+              <div class="worksheet-seal-row">
+                <span class="badge-print">TEXAS TREES FOUNDATION • UTRGV AGROECOLOGY LAB</span>
+                <span class="print-teks-code" id="worksheetTeksCode">TEKS 3.9A LAB</span>
+              </div>
+              <h2 class="worksheet-title" id="worksheetTitle">Outdoor Science Investigation: Campus Canopy Microclimates</h2>
+              
+              <!-- Anonymous Student/Group Metadata (Zero PII - FERPA/COPPA Compliant) -->
+              <div class="worksheet-meta-grid">
+                <div class="meta-field">
+                  <label for="fieldTeamName">Classroom / Team Code:</label>
+                  <input type="text" id="fieldTeamName" class="human-input" value="Team Monarch (Homeroom 3A)" placeholder="e.g. Team Monarch / Room 4B">
+                </div>
+                <div class="meta-field">
+                  <label for="fieldDate">Observation Date:</label>
+                  <input type="date" id="fieldDate" class="human-input" value="2026-09-15">
+                </div>
+                <div class="meta-field">
+                  <label for="fieldWeather">Ambient Weather:</label>
+                  <input type="text" id="fieldWeather" class="human-input" value="94°F • Sunny • Light Breeze" placeholder="e.g. 95°F, Sunny">
+                </div>
+              </div>
             </div>
-        </div>
+
+            <!-- Lab Section 1: Hypothesis Formulation -->
+            <div class="worksheet-section">
+              <h3 class="section-title">1. Scientific Question & Hypothesis</h3>
+              <p class="section-prompt" id="hypothesisPrompt">
+                How does tree canopy shade affect the physical temperature of schoolyard ground surfaces?
+              </p>
+              <div class="hypothesis-box">
+                <label for="hypothesisInput"><strong>Hypothesis:</strong> If we measure the surface temperature under native tree shade compared to black asphalt, then the tree shade will be...</label>
+                <textarea id="hypothesisInput" class="human-textarea" rows="2" placeholder="Write your hypothesis here (e.g. significantly cooler because tree leaves intercept sunlight and transpire moisture)...">significantly cooler (by at least 20°F) because the dense leaves block sunlight and release water vapor into the air.</textarea>
+              </div>
+            </div>
+
+            <!-- Lab Section 2: Outdoor Data Collection Table -->
+            <div class="worksheet-section">
+              <h3 class="section-title">2. Campus Field Data Collection</h3>
+              <p class="section-prompt">
+                Record infrared temperature readings and habitat observations at 4 different schoolyard stations:
+              </p>
+              
+              <div class="table-responsive">
+                <table class="field-table" id="fieldDataTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Station / Location</th>
+                      <th scope="col">Surface Material</th>
+                      <th scope="col">Measured Temp (°F)</th>
+                      <th scope="col">Living Organisms Observed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Station 1: Parking Area</td>
+                      <td>Black Asphalt</td>
+                      <td><input type="number" class="table-input" value="142" aria-label="Station 1 Temp"></td>
+                      <td><input type="text" class="table-input" value="None (too hot)" aria-label="Station 1 Organisms"></td>
+                    </tr>
+                    <tr>
+                      <td>Station 2: Playground</td>
+                      <td>Artificial Turf</td>
+                      <td><input type="number" class="table-input" value="134" aria-label="Station 2 Temp"></td>
+                      <td><input type="text" class="table-input" value="Ants crossing edge" aria-label="Station 2 Organisms"></td>
+                    </tr>
+                    <tr>
+                      <td>Station 3: Open Field</td>
+                      <td>Unshaded Bermudagrass</td>
+                      <td><input type="number" class="table-input" value="108" aria-label="Station 3 Temp"></td>
+                      <td><input type="text" class="table-input" value="Grasshopper, dandelion" aria-label="Station 3 Organisms"></td>
+                    </tr>
+                    <tr>
+                      <td>Station 4: Tree Canopy</td>
+                      <td>Live Oak Shade & Mulch</td>
+                      <td><input type="number" class="table-input" value="88" aria-label="Station 4 Temp"></td>
+                      <td><input type="text" class="table-input" value="Lizard, butterflies, earthworms" aria-label="Station 4 Organisms"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Lab Section 3: Data Analysis & Mathematical Difference -->
+            <div class="worksheet-section">
+              <h3 class="section-title">3. Data Analysis & Mathematical Δ</h3>
+              <div class="calc-row">
+                <div class="calc-box">
+                  <span class="calc-label">Maximum Surface Temp (Asphalt):</span>
+                  <span class="calc-val" id="calcMaxTemp">142°F</span>
+                </div>
+                <div class="calc-operator">−</div>
+                <div class="calc-box">
+                  <span class="calc-label">Tree Canopy Temp (Shade):</span>
+                  <span class="calc-val" id="calcMinTemp">88°F</span>
+                </div>
+                <div class="calc-operator">=</div>
+                <div class="calc-box highlight">
+                  <span class="calc-label">Total Thermal Reduction:</span>
+                  <span class="calc-val text-green" id="calcDeltaTemp">-54°F</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lab Section 4: Evidence-Based Conclusion -->
+            <div class="worksheet-section">
+              <h3 class="section-title">4. Evidence-Based Conclusion & Reflection</h3>
+              <div class="conclusion-box">
+                <label for="conclusionInput"><strong>Conclusion:</strong> Based on the data collected, explain how native trees change their physical environment to support the school community:</label>
+                <textarea id="conclusionInput" class="human-textarea" rows="3" placeholder="Explain your findings...">Our data proved our hypothesis: native tree shade cooled ground surfaces by 54°F compared to asphalt. The cool microclimate allowed lizards, insects, and students to use the schoolyard safely during peak afternoon heat.</textarea>
+              </div>
+            </div>
+
+            <!-- Printable Footer Sign-Off -->
+            <div class="worksheet-footer print-only">
+              <div><strong>Lead Investigator Signature:</strong> ___________________________</div>
+              <div><strong>Verified by Teacher / Lab Advisor:</strong> ___________________________</div>
+            </div>
+          </div>
+
+          <!-- Notebook Controls Bar -->
+          <div class="notebook-actions-bar no-print">
+            <button type="button" class="action-btn btn-primary" id="btnPrintWorksheet">
+              <span>🖨️</span> Print Student Field Lab Sheet (8.5×11)
+            </button>
+            <button type="button" class="action-btn btn-secondary" id="btnExportCsv">
+              <span>📊</span> Export Lab Data (CSV)
+            </button>
+            <button type="button" class="action-btn btn-outline" id="btnResetWorksheet">
+              <span>🔄</span> Reset Form
+            </button>
+          </div>
+
+          <!-- Educator Anonymous Implementation Feedback -->
+          <div class="card feedback-card no-print">
+            <div class="card-header">
+              <span class="card-icon">📝</span>
+              <h3>Educator Classroom Reflection (Anonymous FERPA/COPPA Compliant)</h3>
+            </div>
+            <p class="feedback-intro">
+              Used this lesson plan in your classroom? Share a 30-second anonymous reflection to help UTRGV Agroecology researchers track curriculum effectiveness across the Valley.
+            </p>
+            <form id="educatorFeedbackForm" class="feedback-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="feedbackGradeLevel">Grade Level Taught:</label>
+                  <select id="feedbackGradeLevel" class="human-select" required>
+                    <option value="3rd Grade">3rd Grade (TEKS 3.9A)</option>
+                    <option value="4th Grade">4th Grade (TEKS 4.9A)</option>
+                    <option value="5th Grade">5th Grade (TEKS 5.9A)</option>
+                    <option value="Multi-Grade">Multi-Grade / STEM Club</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="feedbackEngagement">Student Engagement Rating:</label>
+                  <select id="feedbackEngagement" class="human-select" required>
+                    <option value="5">⭐⭐⭐⭐⭐ Highly Engaged (Loved outdoor thermal probe)</option>
+                    <option value="4">⭐⭐⭐⭐ Active Participation</option>
+                    <option value="3">⭐⭐⭐ Moderate Interest</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="feedbackComments">Classroom Observation Notes (No Student Names):</label>
+                <textarea id="feedbackComments" class="human-textarea" rows="2" placeholder="e.g. Students were amazed that asphalt was over 140°F while live oak shade was under 90°F..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn" id="btnSubmitFeedback">
+                <span>📨</span> Submit Anonymous Reflection
+              </button>
+              <div id="feedbackStatusMsg" class="status-msg" aria-live="polite"></div>
+            </form>
+          </div>
+
+        </section>
+      </div>
     </main>
 
-    <script src="config.js"></script>
-    <script src="teks_lesson_plans.js"></script>
-</body>
+    <!-- Footer -->
+    <footer class="portal-footer no-print">
+      <div class="footer-inner">
+        <div>
+          <strong>Texas Trees Foundation × UTRGV Agroecology Lab</strong><br>
+          Principal Investigator: Dr. Alexis Racelis • SOW Fixed-Price Agreement ($157,625.00 Total)<br>
+          Standards: Texas Education Agency (TEA) Science TEKS 2024–2026 Standards
+        </div>
+        <div class="compliance-badges">
+          <span class="badge">🔒 FERPA & COPPA Compliant</span>
+          <span class="badge">🌳 TFS Grant #25065</span>
+          <span class="badge">⚡ 100% Offline PWA Ready</span>
+        </div>
+      </div>
+    </footer>
+  </div>
 
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="sw-register.js"></script>
+  <script src="teks_lesson_plans.js"></script>
+</body>
 </html>

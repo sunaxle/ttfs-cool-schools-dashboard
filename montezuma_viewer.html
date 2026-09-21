@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montezuma Cypress (Ahuehuete) - 3D Interactive Web Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0b1329;
+            color: #f8fafc;
+        }
+
+        #viewer-container {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .hud-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 20px 24px;
+            max-width: 380px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hud-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #4ade80;
+            margin: 0 0 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hud-subtitle {
+            font-size: 13px;
+            color: #94a3b8;
+            margin: 0 0 16px 0;
+            line-height: 1.4;
+        }
+
+        .variant-switch {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .btn-variant {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #1e293b;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-variant.active {
+            background: #15803d;
+            border-color: #4ade80;
+            color: #ffffff;
+            box-shadow: 0 0 14px rgba(74, 222, 128, 0.35);
+        }
+
+        .hud-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .control-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+
+        .control-btn {
+            background: #334155;
+            border: none;
+            color: #f8fafc;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .control-btn:hover {
+            background: #475569;
+        }
+
+        .species-badges {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .badge-tag {
+            display: inline-block;
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+
+        #loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #4ade80;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 20;
+            pointer-events: none;
+            background: rgba(15, 23, 42, 0.92);
+            padding: 16px 28px;
+            border-radius: 12px;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .back-nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-nav {
+            display: inline-block;
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(8px);
+            color: #f8fafc;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav:hover {
+            background: #334155;
+            border-color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div id="viewer-container"></div>
+
+    <div class="hud-overlay">
+        <h1 class="hud-title">🌳 Montezuma Cypress</h1>
+        <p class="hud-subtitle"><em>Taxodium mucronatum</em> (Ahuehuete / Sabino)<br>Rio Grande Valley Native Riparian 3D Model</p>
+
+        <div class="variant-switch">
+            <button class="btn-variant active" id="btn-mature" onclick="selectVariant('mature')">
+                🏫 Mature Campus (12.5m)
+            </button>
+            <button class="btn-variant" id="btn-giant" onclick="selectVariant('giant')">
+                👑 Old-Growth Giant (16m)
+            </button>
+        </div>
+
+        <div class="hud-controls">
+            <div class="control-row">
+                <span>Auto-Rotation:</span>
+                <button class="control-btn" id="btn-rotate" onclick="toggleAutoRotate()">Pause Orbit</button>
+            </div>
+            <div class="control-row">
+                <span>Sun Altitude:</span>
+                <button class="control-btn" onclick="toggleLighting()">Toggle Sun Angle</button>
+            </div>
+            <div class="control-row">
+                <span>Camera Reset:</span>
+                <button class="control-btn" onclick="resetCamera()">Reset View</button>
+            </div>
+        </div>
+
+        <div class="species-badges">
+            <span class="badge-tag">No Aerial Knees</span>
+            <span class="badge-tag">Harmonic Fluting Base</span>
+            <span class="badge-tag">Weeping Branchlets</span>
+            <span class="badge-tag">Semi-Evergreen</span>
+            <div>Click & drag to orbit 360° • Scroll to zoom • Right-click to pan</div>
+        </div>
+    </div>
+
+    <div class="back-nav">
+        <a href="tree_3d.html" class="btn-nav">← Back to 3D Shade Lab</a>
+    </div>
+
+    <div id="loading-spinner">🌿 Loading 3D Cypress Model...</div>
+
+    <!-- Base64 Embedded Models (100% offline & local file:// compatible) -->
+    <script src="assets/3d/montezuma_cypress/montezuma_models_base64.js"></script>
+
+    <!-- Three.js + GLTFLoader + OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+    <script>
+        let scene, camera, renderer, controls, loader;
+        let currentModel = null;
+        let sunLight, ambientLight;
+        let isRotating = true;
+        let sunHigh = false;
+        let activeVariant = 'mature';
+
+        const container = document.getElementById('viewer-container');
+        const spinner = document.getElementById('loading-spinner');
+
+        function base64ToArrayBuffer(base64) {
+            const binary_string = window.atob(base64);
+            const len = binary_string.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binary_string.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function init() {
+            // Scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0b1329);
+            scene.fog = new THREE.FogExp2(0x0b1329, 0.012);
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 500);
+            camera.position.set(22, 10, 24);
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.15;
+            container.appendChild(renderer.domElement);
+
+            // Orbit Controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.maxPolarAngle = Math.PI / 2 - 0.02; // Prevent going beneath ground
+            controls.minDistance = 5;
+            controls.maxDistance = 70;
+            controls.target.set(0, 5.5, 0);
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.9;
+
+            // Lights
+            ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+
+            sunLight = new THREE.DirectionalLight(0xfff5e6, 2.0);
+            sunLight.position.set(22, 28, 16);
+            sunLight.castShadow = true;
+            sunLight.shadow.mapSize.width = 2048;
+            sunLight.shadow.mapSize.height = 2048;
+            sunLight.shadow.camera.near = 0.5;
+            sunLight.shadow.camera.far = 80;
+            const d = 20;
+            sunLight.shadow.camera.left = -d;
+            sunLight.shadow.camera.right = d;
+            sunLight.shadow.camera.top = d;
+            sunLight.shadow.camera.bottom = -d;
+            sunLight.shadow.bias = -0.0004;
+            scene.add(sunLight);
+
+            // Soft Sky Fill
+            const fillLight = new THREE.DirectionalLight(0x93c5fd, 0.7);
+            fillLight.position.set(-18, 12, -22);
+            scene.add(fillLight);
+
+            // Subtle Ground Grid
+            const grid = new THREE.GridHelper(60, 60, 0x334155, 0x1e293b);
+            grid.position.y = 0;
+            scene.add(grid);
+
+            // GLTF Loader
+            loader = new THREE.GLTFLoader();
+
+            // Load default
+            selectVariant('mature');
+
+            // Resize listener
+            window.addEventListener('resize', onWindowResize);
+
+            animate();
+        }
+
+        function selectVariant(type) {
+            activeVariant = type;
+            spinner.style.display = 'flex';
+
+            document.querySelectorAll('.btn-variant').forEach(b => b.classList.remove('active'));
+            if (type === 'mature') {
+                document.getElementById('btn-mature').classList.add('active');
+            } else {
+                document.getElementById('btn-giant').classList.add('active');
+            }
+
+            if (currentModel) {
+                scene.remove(currentModel);
+                currentModel = null;
+            }
+
+            // Check if Base64 model is available (works everywhere including file://)
+            const b64Data = (type === 'mature') ? window.MONTEZUMA_CAMPUS_GLB_BASE64 : window.MONTEZUMA_OLD_GROWTH_GLB_BASE64;
+
+            if (b64Data) {
+                try {
+                    const buffer = base64ToArrayBuffer(b64Data);
+                    loader.parse(buffer, '', (gltf) => {
+                        displayLoadedModel(gltf);
+                    }, (err) => {
+                        console.error("Base64 Parse Error:", err);
+                        fallbackUrlLoad(type);
+                    });
+                } catch (e) {
+                    console.error("Buffer error:", e);
+                    fallbackUrlLoad(type);
+                }
+            } else {
+                fallbackUrlLoad(type);
+            }
+        }
+
+        function fallbackUrlLoad(type) {
+            const url = (type === 'mature') 
+                ? 'assets/3d/montezuma_cypress/montezuma_cypress.glb' 
+                : 'assets/3d/montezuma_cypress/montezuma_cypress_old_growth.glb';
+                
+            loader.load(url, (gltf) => {
+                displayLoadedModel(gltf);
+            }, undefined, (error) => {
+                console.error("Error loading GLB:", error);
+                spinner.textContent = "⚠️ Error loading 3D model.";
+            });
+        }
+
+        function displayLoadedModel(gltf) {
+            currentModel = gltf.scene;
+            currentModel.traverse((node) => {
+                if (node.isMesh) {
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                    if (node.material) {
+                        node.material.side = THREE.DoubleSide;
+                        node.material.needsUpdate = true;
+                    }
+                }
+            });
+            scene.add(currentModel);
+            spinner.style.display = 'none';
+        }
+
+        function toggleAutoRotate() {
+            isRotating = !isRotating;
+            controls.autoRotate = isRotating;
+            document.getElementById('btn-rotate').textContent = isRotating ? 'Pause Orbit' : 'Resume Orbit';
+        }
+
+        function toggleLighting() {
+            sunHigh = !sunHigh;
+            if (sunHigh) {
+                sunLight.position.set(5, 38, 5);
+                sunLight.intensity = 2.4;
+            } else {
+                sunLight.position.set(22, 28, 16);
+                sunLight.intensity = 2.0;
+            }
+        }
+
+        function resetCamera() {
+            camera.position.set(22, 10, 24);
+            controls.target.set(0, 5.5, 0);
+            controls.update();
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TTFS × UTRGV Cool Schools — Executive Master Portal Hub v5</title>
+  <meta name="description" content="Unified executive portal hub for Texas Trees Foundation and UTRGV Project Cool Schools environmental evaluation, interactive models, and deliverables.">
+  <meta name="author" content="Dr. Alexis Racelis & Texas Trees Foundation">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+  <div class="portal-root">
+    <!-- Top Executive Header -->
+    <header class="executive-header">
+      <div class="header-main-row">
+        <div class="brand-cluster">
+          <div class="brand-badge-pill">TEXAS TREES FOUNDATION × UTRGV AGROECOLOGY</div>
+          <h1>Project Cool Schools — Digital Evaluation Ecosystem</h1>
+          <p class="grant-tag">Funded by Texas A&M Forest Service (TFS) • Community Forestry Schoolyard Forests Program</p>
+        </div>
+        <div class="financial-ticker-card">
+          <div class="ticker-col">
+            <span class="ticker-label">Contract Valuation</span>
+            <span class="ticker-val">$157,625.00</span>
+          </div>
+          <div class="ticker-col">
+            <span class="ticker-label">Cumulative Billed</span>
+            <span class="ticker-val green">$84,041.00</span>
+          </div>
+          <div class="ticker-col">
+            <span class="ticker-label">Milestone Progress</span>
+            <span class="ticker-val orange">53.3% (Ahead)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick KPI Strip -->
+      <div class="kpi-strip">
+        <div class="kpi-item">
+          <span class="kpi-icon">🏫</span>
+          <div>
+            <strong>14 Campuses</strong>
+            <span>Donna & Mercedes ISDs</span>
+          </div>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-icon">🌳</span>
+          <div>
+            <strong>1,240 Native Trees</strong>
+            <span>Ahuehuete, Ebony, Live Oak</span>
+          </div>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-icon">🌡️</span>
+          <div>
+            <strong>-42.6°F Peak Cooling</strong>
+            <span>Ground Thermal Reduction</span>
+          </div>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-icon">🌧️</span>
+          <div>
+            <strong>125k Gal Runoff / yr</strong>
+            <span>Stormwater Interception</span>
+          </div>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-icon">🛡️</span>
+          <div>
+            <strong>100% FERPA/COPPA</strong>
+            <span>Zero PII Campus Aggregation</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Navigation Content -->
+    <main class="portal-body">
+      <!-- Search and Filter Bar -->
+      <div class="filter-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="portalSearchInput" placeholder="Search 49+ tools, models, reports, and curriculum modules...">
+        </div>
+        <div class="category-pills" id="categoryPills">
+          <button type="button" class="pill-btn active" data-cat="all">All Modules (49+)</button>
+          <button type="button" class="pill-btn" data-cat="interactive">3D Planners & Physics</button>
+          <button type="button" class="pill-btn" data-cat="science">Eco & GIS Science</button>
+          <button type="button" class="pill-btn" data-cat="elementary">Student & Teacher Tools</button>
+          <button type="button" class="pill-btn" data-cat="governance">Governance & Invoices</button>
+          <button type="button" class="pill-btn" data-cat="print">Print Publications (8.5x11)</button>
+        </div>
+      </div>
+
+      <!-- Module Grid -->
+      <div class="module-grid" id="moduleGrid">
+        <!-- 1. Interactive Planning & 3D Physics -->
+        <article class="module-card" data-cat="interactive">
+          <div class="card-icon-wrap bg-green">🎨</div>
+          <div class="card-content">
+            <span class="cat-label">INTERACTIVE DESIGNER</span>
+            <h3>Schoolyard Microforest Planner</h3>
+            <p>2D/3D campus planting designer, real school photo overlay, 12-month bloom timeline, and TEKS classroom printout.</p>
+            <div class="card-actions">
+              <a href="../../schoolyard_planner.html" class="card-btn primary" target="_blank">Open 3D Planner ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="interactive">
+          <div class="card-icon-wrap bg-orange">☀️</div>
+          <div class="card-content">
+            <span class="cat-label">PHYSICS & SUN ORBIT</span>
+            <h3>Solar Shade Calculator</h3>
+            <p>Calculates exact hourly shade footprint polygons, azimuth, and elevation across Donna and Mercedes ISDs.</p>
+            <div class="card-actions">
+              <a href="../../solar_shade_calculator.html" class="card-btn primary" target="_blank">Launch Solar Orbit ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="interactive">
+          <div class="card-icon-wrap bg-navy">🏛️</div>
+          <div class="card-content">
+            <span class="cat-label">3D EXPLORER</span>
+            <h3>3D Campus Forest Model</h3>
+            <p>Three.js interactive spatial rendering of campus buildings, tree clusters, and canopy growth dynamics.</p>
+            <div class="card-actions">
+              <a href="../../campus_3d.html" class="card-btn secondary" target="_blank">Open 3D Campus ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Eco & GIS Science -->
+        <article class="module-card" data-cat="science">
+          <div class="card-icon-wrap bg-green">📊</div>
+          <div class="card-content">
+            <span class="cat-label">I-TREE ECO SUITE</span>
+            <h3>i-Tree Ecological Benefit Ledger</h3>
+            <p>Calculates stormwater interception, carbon sequestration, and CTLA structural asset values for RGV species.</p>
+            <div class="card-actions">
+              <a href="../../itree_ledger.html" class="card-btn primary" target="_blank">View i-Tree Ledger ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="science">
+          <div class="card-icon-wrap bg-navy">🗺️</div>
+          <div class="card-content">
+            <span class="cat-label">GIS & REMOTE SENSING</span>
+            <h3>Multi-Campus Zoning & GIS Analyzer</h3>
+            <p>High-resolution satellite polygon digitization with Turf.js topological consistency checks across Donna & Mercedes.</p>
+            <div class="card-actions">
+              <a href="../../zoning.html" class="card-btn secondary" target="_blank">Open GIS Zoning ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="science">
+          <div class="card-icon-wrap bg-orange">🌡️</div>
+          <div class="card-content">
+            <span class="cat-label">THERMAL DYNAMICS</span>
+            <h3>Diurnal Thermal Profiles & Heat Map</h3>
+            <p>Diurnal heat curves at 9 AM, 1 PM peak (138°F asphalt vs 87°F shade), and 5 PM heat retention analysis.</p>
+            <div class="card-actions">
+              <a href="../../Month_1_HeatMap_Summary.html" class="card-btn secondary" target="_blank">View Heat Curves ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="science">
+          <div class="card-icon-wrap bg-green">📊</div>
+          <div class="card-content">
+            <span class="cat-label">EQUITY & BENCHMARKING</span>
+            <h3>Multi-Campus Environmental Equity Matrix</h3>
+            <p>14-campus comparative ranking for Heat Vulnerability, canopy deficits, and 1-click CSV/GeoJSON export.</p>
+            <div class="card-actions">
+              <a href="../../district_comparison.html" class="card-btn primary" target="_blank">Open Equity Matrix ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Student & Teacher Tools -->
+        <article class="module-card" data-cat="elementary">
+          <div class="card-icon-wrap bg-green">🌱</div>
+          <div class="card-content">
+            <span class="cat-label">10-YEAR STEWARDSHIP</span>
+            <h3>Living Tree Legacy & Tree Diary</h3>
+            <p>Kid-friendly caliper measurement log and cohort tree naming timeline linking student classes to individual trees.</p>
+            <div class="card-actions">
+              <a href="../../tree_diary.html" class="card-btn primary" target="_blank">Open Tree Diary ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="elementary">
+          <div class="card-icon-wrap bg-orange">🎒</div>
+          <div class="card-content">
+            <span class="cat-label">GAMIFIED MAINTENANCE</span>
+            <h3>Campus Care Quests</h3>
+            <p>Farmer-talk maintenance checklists ("Is the dirt dry like a cracker?") with campus-wide badge unlocks.</p>
+            <div class="card-actions">
+              <a href="../../campus_quests.html" class="card-btn primary" target="_blank">Launch Quests ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="elementary">
+          <div class="card-icon-wrap bg-green">🦋</div>
+          <div class="card-content">
+            <span class="cat-label">BIODIVERSITY MONITOR</span>
+            <h3>Child-Friendly Habitat Spotter</h3>
+            <p>Tactile observation logger for pollinators, birds, and insects with zero-PII campus aggregations.</p>
+            <div class="card-actions">
+              <a href="../../biodiversity_analog_concept.html" class="card-btn secondary" target="_blank">Open Habitat Spotter ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="elementary">
+          <div class="card-icon-wrap bg-navy">⏳</div>
+          <div class="card-content">
+            <span class="cat-label">FUTURE FORECAST</span>
+            <h3>Time Machine Canopy Slider</h3>
+            <p>Interactive 5- and 10-year growth scrubber showing shade expansion and cooling benefits through graduation.</p>
+            <div class="card-actions">
+              <a href="../../time_machine.html" class="card-btn primary" target="_blank">Launch Time Machine ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="elementary">
+          <div class="card-icon-wrap bg-navy">📚</div>
+          <div class="card-content">
+            <span class="cat-label">TEKS CURRICULUM</span>
+            <h3>TEKS Lesson Plans & Forest Literacy</h3>
+            <p>Grades 3–5 curriculum repository, TEKS alignment matrices, educator handouts, and outdoor lab guides.</p>
+            <div class="card-actions">
+              <a href="../../teks_lesson_plans.html" class="card-btn secondary" target="_blank">View Curriculum ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="elementary">
+          <div class="card-icon-wrap bg-green">🌳</div>
+          <div class="card-content">
+            <span class="cat-label">TTFS CURRICULUM & TRACKING</span>
+            <h3>Tree Stewardship & Health Tracking</h3>
+            <p>Official TTFS lesson module and dual-mode field sheet for weekly tree health, DBH growth, and soil moisture drip line checks.</p>
+            <div class="card-actions">
+              <a href="../../tree_stewardship.html" class="card-btn primary" target="_blank">Open Stewardship ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="elementary">
+          <div class="card-icon-wrap bg-green">🦜</div>
+          <div class="card-content">
+            <span class="cat-label">TTFS BIODIVERSITY LAB</span>
+            <h3>Birding & Biodiversity Field Lab</h3>
+            <p>Official TTFS observation lesson, Cowboy bird anatomy explorer, "Chachalaca & Friends" audio guide, and printable tally sheet.</p>
+            <div class="card-actions">
+              <a href="../../birding_biodiversity.html" class="card-btn primary" target="_blank">Open Birding Lab ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="elementary">
+          <div class="card-icon-wrap bg-orange">🔬</div>
+          <div class="card-content">
+            <span class="cat-label">TEKS SCIENCE LAB</span>
+            <h3>Interactive Science Sandbox</h3>
+            <p>Classroom tool for plotting sun vs. shade thermometer readings, delta histograms, and printable lab sheets.</p>
+            <div class="card-actions">
+              <a href="../../teks_sandbox.html" class="card-btn primary" target="_blank">Open Science Sandbox ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Governance, Campus Expansion & Invoices -->
+        <article class="module-card" data-cat="governance">
+          <div class="card-icon-wrap bg-orange">🌳</div>
+          <div class="card-content">
+            <span class="cat-label">CAMPUS EXPANSION</span>
+            <h3>UTRGV Green Campus Explorer</h3>
+            <p>Interactive geospatial tree inventory and microclimate cooling dashboard for UTRGV Edinburg & Brownsville.</p>
+            <div class="card-actions">
+              <a href="../../utrgv_campus.html" class="card-btn primary" target="_blank">Explore Campus Map ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="governance">
+          <div class="card-icon-wrap bg-navy">🛡️</div>
+          <div class="card-content">
+            <span class="cat-label">COMPLIANCE & RBAC</span>
+            <h3>Role-Based Access & FERPA Gateway</h3>
+            <p>3-tier clearance model (Public/Student, Educator/Principal, Admin/TTFS) with explicit COPPA/FERPA compliance.</p>
+            <div class="card-actions">
+              <a href="../../user_access_strategy.html" class="card-btn secondary" target="_blank">View Security Rules ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="governance">
+          <div class="card-icon-wrap bg-green">💵</div>
+          <div class="card-content">
+            <span class="cat-label">REVENUE & INVOICING</span>
+            <h3>Month 3 Milestone Invoice #3 ($15,514.00)</h3>
+            <p>Auditable invoice submission package, line-item milestone breakdown, and cumulative billing ledger ($84,041.00 / 53.3%).</p>
+            <div class="card-actions">
+              <a href="../../invoices/Invoice_003_August_2026_TTFS_UTRGV.html" class="card-btn primary" target="_blank">View Invoice #3 ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Publication Print Media -->
+        <article class="module-card" data-cat="print">
+          <div class="card-icon-wrap bg-navy">📄</div>
+          <div class="card-content">
+            <span class="cat-label">PRINT MEDIA (8.5x11)</span>
+            <h3>Donna ISD Cool Schools Executive Dossier</h3>
+            <p>Publication-grade print-ready briefing brochure for Donna ISD school board, principals, and district leadership.</p>
+            <div class="card-actions">
+              <a href="../../print_media/donna_isd_cool_schools_dossier.html" class="card-btn primary" target="_blank">Open Print Dossier ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="print">
+          <div class="card-icon-wrap bg-green">📋</div>
+          <div class="card-content">
+            <span class="cat-label">PRINT MEDIA (8.5x11)</span>
+            <h3>Educator Outdoor Lab Field Guide</h3>
+            <p>Printable classroom field activity guide for elementary teachers conducting outdoor canopy investigations.</p>
+            <div class="card-actions">
+              <a href="../../print_media/educator_outdoor_lab_field_guide.html" class="card-btn secondary" target="_blank">Open Field Guide ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="module-card" data-cat="print">
+          <div class="card-icon-wrap bg-orange">📌</div>
+          <div class="card-content">
+            <span class="cat-label">PRINT MEDIA (8.5x11)</span>
+            <h3>Campus Shade Satisfaction Kiosk Flyer</h3>
+            <p>Print-ready bulletin board flyer with QR code link for anonymous campus-wide shade feedback.</p>
+            <div class="card-actions">
+              <a href="../../print_media/campus_shade_satisfaction_kiosk_flyer.html" class="card-btn secondary" target="_blank">Open Flyer ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+      <div class="footer-inner">
+        <div>
+          <strong>Texas Trees Foundation × UTRGV Agroecology Lab</strong><br>
+          Principal Investigator: Dr. Alexis Racelis • SOW Fixed-Price Agreement ($157,625.00 Total)
+        </div>
+        <div class="compliance-badges">
+          <span class="badge">🔒 FERPA & COPPA Compliant</span>
+          <span class="badge">🌳 TFS Grant #25065</span>
+          <span class="badge">⚡ Production-Ready Static Architecture</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../js/offline_sync.js"></script>
+  <script src="portal.js"></script>
+</body>
+</html>

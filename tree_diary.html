@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tree Diary & Living Tree Legacy | TTFS × UTRGV Cool Schools</title>
+  <meta name="description" content="Kid-friendly tree growth and cohort naming log tracking 10-year canopy milestones across Donna and Mercedes ISDs.">
+  <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tree_diary.css">
+</head>
+<body>
+  <div class="analog-app-container">
+    <!-- Split Screen Left: Master Tree Roster & Timeline -->
+    <aside class="analog-sidebar" aria-label="Tree Diary Navigator">
+      <div class="brand-badge">
+        <span class="badge-tag">🌱 LIVING TREE LEGACY</span>
+        <h1>Tree Diary & Growth Log</h1>
+        <p class="subtitle">Track 10-year schoolyard forest growth across RGV campuses.</p>
+      </div>
+
+      <div class="filter-controls">
+        <label for="campusSelect">Select Campus:</label>
+        <select id="campusSelect" class="analog-select">
+          <option value="all">All Participating Campuses</option>
+          <option value="donna_caceres" selected>Donna ISD — J.W. Caceres Discovery</option>
+          <option value="donna_rivas">Donna ISD — M. Rivas Primary</option>
+          <option value="donna_salinas">Donna ISD — Salinas Elementary</option>
+          <option value="mercedes_travis">Mercedes ISD — Travis Elementary</option>
+        </select>
+      </div>
+
+      <div class="tree-roster-header">
+        <h2>Campus Tree Cohorts</h2>
+        <span class="count-pill" id="treeCountPill">8 Trees Logged</span>
+      </div>
+
+      <div class="tree-card-list" id="treeListContainer" role="list">
+        <!-- Injected via tree_diary.js -->
+      </div>
+
+      <div class="sidebar-footer">
+        <a href="tree_stewardship.html" class="nav-back-btn" style="margin-bottom: 6px;">🌳 Tree Stewardship Lesson</a>
+        <a href="birding_biodiversity.html" class="nav-back-btn" style="margin-bottom: 6px;">🦜 Birding & Biodiversity</a>
+        <a href="portals/v5/index.html" class="nav-back-btn">← Back to Master Portal Hub</a>
+      </div>
+    </aside>
+
+    <!-- Split Screen Right: Living Legacy Canvas & Measurement Log -->
+    <main class="analog-main-panel">
+      <!-- Top Banner Status -->
+      <header class="panel-header">
+        <div>
+          <span class="status-indicator live">● ACTIVE TEN-YEAR COHORT</span>
+          <h2 id="activeTreeTitle">The Great Green Giant (Tag #TR-2026-01)</h2>
+          <p id="activeTreeMeta">Species: Montezuma Cypress (Ahuehuete) • Planted: Fall 2026</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="action-btn primary" id="openLogModalBtn">➕ Add Measurement Log</button>
+          <button type="button" class="action-btn secondary" id="printReportBtn">🖨️ Print Diary Page</button>
+        </div>
+      </header>
+
+      <!-- Grid of Cards -->
+      <div class="panel-content-grid">
+        <!-- Card 1: 10-Year Growth Visualizer -->
+        <section class="diary-card growth-visualizer-card">
+          <div class="card-header">
+            <h3>🌳 10-Year Growth Morph & Time Machine</h3>
+            <span class="year-indicator" id="currentYearLabel">Year 1 (2026)</span>
+          </div>
+          <div class="growth-stage-display">
+            <div class="tree-silhouette-box" id="silhouetteBox">
+              <div class="tree-canopy-blob" id="canopyBlob"></div>
+              <div class="tree-trunk-bar" id="trunkBar"></div>
+              <div class="tree-roots-graphic"></div>
+            </div>
+            <div class="growth-stats-overlay">
+              <div class="stat-bubble">
+                <span class="stat-label">Tree Height</span>
+                <span class="stat-value" id="statHeight">6.5 ft</span>
+              </div>
+              <div class="stat-bubble">
+                <span class="stat-label">Trunk Caliper</span>
+                <span class="stat-value" id="statCaliper">1.5 in</span>
+              </div>
+              <div class="stat-bubble">
+                <span class="stat-label">Shade Diameter</span>
+                <span class="stat-value" id="statShade">4.0 ft</span>
+              </div>
+              <div class="stat-bubble">
+                <span class="stat-label">Cooling Effect</span>
+                <span class="stat-value highlight" id="statCooling">-1.2°F</span>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-slider-wrapper">
+            <label for="growthSlider">Slide Timeline (Years 0 to 10):</label>
+            <input type="range" id="growthSlider" min="0" max="10" value="0" step="1" class="analog-slider">
+            <div class="slider-markers">
+              <span>Planted (2026)</span>
+              <span>Year 3 (2029)</span>
+              <span>Year 5 (2031)</span>
+              <span>Year 10 (2036)</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Card 2: Living Legacy Class Naming Timeline -->
+        <section class="diary-card cohort-naming-card">
+          <div class="card-header">
+            <h3>🏷️ Living Legacy Class Naming Wall</h3>
+            <span class="sub-badge">Zero PII • Room-Level Only</span>
+          </div>
+          <p class="section-desc">Each school year, the incoming class stewardship team names the tree and records an annual journal entry.</p>
+          <div class="cohort-timeline" id="cohortTimeline">
+            <!-- Dynamic entries -->
+          </div>
+        </section>
+
+        <!-- Card 3: Elementary Kid-Friendly Field Log -->
+        <section class="diary-card kid-observations-card">
+          <div class="card-header">
+            <h3>🔬 Elementary Field Observations</h3>
+            <span class="sub-badge">Science TEKS 3.9A / 4.9A / 5.9A</span>
+          </div>
+          <div class="observations-table-container">
+            <table class="analog-table" id="observationsTable">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Class / Grade</th>
+                  <th>Dirt Moisture</th>
+                  <th>Leaf Color</th>
+                  <th>Wildlife Visitors</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="observationsTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal for Adding Log -->
+  <div class="analog-modal-backdrop hidden" id="logModal">
+    <div class="analog-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Record Student Tree Observation</h3>
+        <button type="button" class="close-modal-btn" id="closeModalBtn">&times;</button>
+      </div>
+      <form id="observationForm" class="analog-form">
+        <div class="form-group">
+          <label for="obsClass">Grade & Classroom / Team:</label>
+          <input type="text" id="obsClass" placeholder="e.g. 4th Grade Eco-Explorers (Room 204)" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="obsSoil">Soil Condition ("Farmer Talk"):</label>
+            <select id="obsSoil" required>
+              <option value="Dry like a cracker (Needs water!)">Dry like a cracker (Needs water!)</option>
+              <option value="Just damp like a wrung sponge (Healthy)">Just damp like a wrung sponge (Healthy)</option>
+              <option value="Muddy puddle (Too much water)">Muddy puddle (Too much water)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="obsLeaves">Leaf Condition:</label>
+            <select id="obsLeaves" required>
+              <option value="Vibrant Dark Green">Vibrant Dark Green</option>
+              <option value="Lime Green (New Growth)">Lime Green (New Growth)</option>
+              <option value="Yellow / Wilting">Yellow / Wilting</option>
+              <option value="Winter Dormant">Winter Dormant</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="obsWildlife">Wildlife Spotted Near Tree:</label>
+          <input type="text" id="obsWildlife" placeholder="e.g. Monarch butterfly, Green anole, Honeybees">
+        </div>
+        <div class="form-group">
+          <label for="obsNotes">Class Journal Observation:</label>
+          <textarea id="obsNotes" rows="3" placeholder="What did the students notice about the tree shade and branches today?"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="action-btn secondary" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="action-btn primary">Save Observation to Ledger</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/offline_sync.js"></script>
+  <script src="tree_diary.js"></script>
+</body>
+</html>

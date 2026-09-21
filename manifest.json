@@ -1,0 +1,22 @@
+{
+  "name": "TTFS × UTRGV Cool Schools Dashboard",
+  "short_name": "CoolSchools",
+  "description": "Environmental impact evaluation, schoolyard forest planning, and 10-year tree growth tracking across Rio Grande Valley school campuses.",
+  "start_url": "/portals/v5/index.html",
+  "display": "standalone",
+  "background_color": "#0C2340",
+  "theme_color": "#1B4D3E",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/utrgv-agroecology.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/utrgv-agroecology.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Stewardship - Topographic Trail Map</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tree_stewardship_trail.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png">
+</head>
+<body class="trail-mode">
+    <!-- UI Controls -->
+    <div class="top-controls">
+        <button id="toggle-view" class="ranger-badge">
+            <span class="badge-text">Switch to Official Document</span>
+        </button>
+        <button id="print-btn" class="stamp-btn">
+            <span class="stamp-icon">🖨️</span>
+            <span>Print Field Sheet</span>
+        </button>
+    </div>
+
+    <!-- Official TTFS Document View (Hidden by default in trail mode) -->
+    <div id="document-view" class="view-section hidden">
+        <div class="doc-container">
+            <h1>Tree Stewardship</h1>
+            <h3>Connected lessons:</h3>
+            <p>Tree Journaling, Tree Measurement, Nature Journaling, Tree Detectives, Trees and Parasitism</p>
+            <h3>Connected videos:</h3>
+            <p>Tree Height, Tree Measurement (Tree Age), Nature Journaling, Tree Care, Mindfulness in Nature, How Leaves help us Identify Plant Species, Plant ID with iNat</p>
+            
+            <h3>Objective:</h3>
+            <p>Students learn to observe, monitor, and report on the health of trees over time, developing ongoing stewardship skills and ecological awareness.</p>
+            
+            <h3>Overview:</h3>
+            <p>Studying a tree over time will allow students to observe seasonal changes and growth patterns from a specific tree species. In this activity, students/classes choose a tree (or a few trees) and spend the year recording observations and researching information. Students/classes will record weekly observations to build a record that can be compared back to the baseline data. The tracking sheet will be sent to UTRGV to help organize the data.</p>
+            
+            <h3>Materials:</h3>
+            <p>Measuring tape (for DBH), Class observation log/journal, Pencil/clipboard, Optional: soil measuring probe</p>
+            
+            <h3>Method Step 1 - Observations (within first two weeks of school):</h3>
+            <ul>
+                <li><strong>Identification:</strong> classes use school tree planting plan or iNaturalist. Optional: choose a nickname.</li>
+                <li><strong>Tree Measurements:</strong> Diameter (DBH) at breast height. Optional: hug tree or string technique. Height via Tree Height Video technique.</li>
+                <li><strong>Tree Health:</strong> happy/medium/sad checkpoint. Leaf color (bright green/dark green/brown). Branch leaf coverage.</li>
+                <li><strong>Soil moisture:</strong> Test beneath canopy at critical root zone (drip line) using fingers or probe. Check mulch/leaf coverage.</li>
+                <li><strong>Growth & wildlife:</strong> Note flowers, fruits, seeds, new leaves. Report unhealthy trees immediately.</li>
+            </ul>
+            
+            <h3>Method Step 2 - Reporting:</h3>
+            <p>Add observations to school bulletin board and UTRGV dashboard.</p>
+        </div>
+    </div>
+
+    <!-- Trail Map View -->
+    <div id="trail-view" class="view-section active">
+        <!-- Background Topo SVG -->
+        <div class="topo-bg"></div>
+
+        <!-- Compass Rose Navigation -->
+        <div class="compass-rose">
+            <div class="compass-center"></div>
+            <a href="portals/v5/index.html" class="compass-point north" title="Home">N</a>
+            <a href="birding_biodiversity.html" class="compass-point east" title="Birding">E</a>
+            <a href="tree_diary.html" class="compass-point south" title="Tree Diary">S</a>
+            <a href="teks_lesson_plans.html" class="compass-point west" title="TEKS Lab">W</a>
+        </div>
+
+        <svg class="trail-svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+            <path id="trail-path" d="M 100 100 Q 300 150 200 400 T 500 500 T 800 700 Q 900 800 850 900" fill="none" stroke="#6B4226" stroke-width="6" stroke-dasharray="15, 10" />
+            <path id="trail-progress" d="M 100 100 Q 300 150 200 400 T 500 500 T 800 700 Q 900 800 850 900" fill="none" stroke="#A0522D" stroke-width="6" />
+        </svg>
+
+        <div class="waypoint-container">
+            <!-- Station 1 -->
+            <div class="waypoint" style="top: 10%; left: 10%;">
+                <div class="pin" data-station="1">🌿</div>
+                <span class="waypoint-label">Station 1 — 0.0 mi</span>
+                <div class="station-card hidden">
+                    <h3>Station 1: Tree Identification</h3>
+                    <p>Identify your adopted tree using iNaturalist or the school planting plan. Choose a creative nickname!</p>
+                    <button class="mark-complete">Mark Complete</button>
+                </div>
+            </div>
+            
+            <!-- Station 2 -->
+            <div class="waypoint" style="top: 35%; left: 22%;">
+                <div class="pin" data-station="2">📏</div>
+                <span class="waypoint-label">Station 2 — 0.5 mi</span>
+                <div class="station-card hidden">
+                    <h3>Station 2: Take Measurements</h3>
+                    <p>Measure DBH at 4.5ft with tape. Estimate height using shadow/triangulation technique.</p>
+                    <button class="mark-complete">Mark Complete</button>
+                </div>
+            </div>
+
+            <!-- Station 3 -->
+            <div class="waypoint" style="top: 50%; left: 50%;">
+                <div class="pin" data-station="3">🩺</div>
+                <span class="waypoint-label">Station 3 — 1.2 mi</span>
+                <div class="station-card hidden">
+                    <h3>Station 3: Health Checkpoint</h3>
+                    <p>Rate tree health: Happy 😊 / Fair 😐 / Sad 😟. Check leaf color, branch coverage.</p>
+                    <button class="mark-complete">Mark Complete</button>
+                </div>
+            </div>
+
+            <!-- Station 4 -->
+            <div class="waypoint" style="top: 60%; left: 65%;">
+                <div class="pin" data-station="4">💧</div>
+                <span class="waypoint-label">Station 4 — 1.8 mi</span>
+                <div class="station-card hidden">
+                    <h3>Station 4: Soil & Root Zone Probe</h3>
+                    <p>Test soil moisture at drip line. Check mulch coverage around trunk base.</p>
+                    <button class="mark-complete">Mark Complete</button>
+                </div>
+            </div>
+
+            <!-- Station 5 -->
+            <div class="waypoint" style="top: 75%; left: 80%;">
+                <div class="pin" data-station="5">🌱</div>
+                <span class="waypoint-label">Station 5 — 2.4 mi</span>
+                <div class="station-card hidden">
+                    <h3>Station 5: Wildlife & Growth Notes</h3>
+                    <p>Record flowers, fruits, seeds, new growth. Report unhealthy trees immediately.</p>
+                    <button class="mark-complete">Mark Complete</button>
+                </div>
+            </div>
+
+            <!-- Station 6 -->
+            <div class="waypoint" style="top: 90%; left: 85%;">
+                <div class="pin" data-station="6">📋</div>
+                <span class="waypoint-label">Base Camp — 3.0 mi</span>
+                <div class="station-card hidden">
+                    <h3>Station 6: Base Camp - Report & Sync</h3>
+                    <p>Add observations to school bulletin board and UTRGV dashboard.</p>
+                    <button class="mark-complete">Mark Complete</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="map-legend">
+            <h4>Trail Legend</h4>
+            <ul>
+                <li><span>🌿</span> Tree ID</li>
+                <li><span>📏</span> Measurement</li>
+                <li><span>🩺</span> Health</li>
+                <li><span>💧</span> Soil Probe</li>
+                <li><span>🌱</span> Wildlife Notes</li>
+                <li><span>📋</span> Base Camp</li>
+            </ul>
+        </div>
+
+        <!-- Scale Bar -->
+        <div class="scale-bar">
+            <div class="ruler"></div>
+            <span>0</span><span>1 mi</span><span>2 mi</span><span>3 mi</span>
+        </div>
+        
+        <!-- Elevation Profile -->
+        <div class="elevation-profile">
+            <div class="elevation-chart"></div>
+            <span>Terrain Difficulty</span>
+        </div>
+
+        <!-- Field Station Log -->
+        <div class="field-log-container">
+            <h2 class="stamped-header">FIELD STATION LOG</h2>
+            <form id="field-log-form">
+                <input type="date" id="log-date" required>
+                <input type="text" id="log-tree" placeholder="Tree Nickname" required>
+                <input type="text" id="log-room" placeholder="Classroom" required>
+                <input type="text" id="log-species" placeholder="Species" required>
+                <select id="log-health">
+                    <option value="Good">Good</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Bad">Bad</option>
+                </select>
+                <input type="text" id="log-dbh" placeholder="DBH (in)">
+                <input type="text" id="log-height" placeholder="Height (ft)">
+                <input type="text" id="log-moisture" placeholder="Moisture">
+                <button type="submit" class="stamp-btn">LOG ENTRY</button>
+            </form>
+            <div class="log-table-wrapper">
+                <table id="log-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Tree</th>
+                            <th>Classroom</th>
+                            <th>Species</th>
+                            <th>Health</th>
+                            <th>DBH</th>
+                            <th>Height</th>
+                            <th>Moisture</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Entries added via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="tree_stewardship_trail.js"></script>
+</body>
+</html>

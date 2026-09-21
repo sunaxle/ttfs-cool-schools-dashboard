@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson: Birding and Biodiversity — TTFS × UTRGV Cool Schools</title>
+  <meta name="description" content="Official Texas Trees Foundation elementary lesson and field tracking sheet for observing schoolyard trees as living ecosystems, bird tallying, insect checks, and RGV wildlife stewardship.">
+  <meta name="author" content="Texas Trees Foundation Education Department & UTRGV Agroecology">
+  
+  <!-- PWA & Favicon -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png">
+  <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png">
+  <meta name="theme-color" content="#1B4D3E">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="birding_biodiversity.css">
+</head>
+<body>
+  <div class="birding-app-root">
+    
+    <!-- Top Executive Header -->
+    <header class="app-header">
+      <div class="brand-left">
+        <img src="assets/texas-trees-foundation.png" alt="Texas Trees Foundation Logo" class="brand-logo">
+      </div>
+      <div class="title">
+        <span class="header-pretitle">TEXAS TREES FOUNDATION × UTRGV AGROECOLOGY</span>
+        <h1>Birding & Biodiversity Field Lab</h1>
+        <span class="header-subtitle">Living Ecosystems & Schoolyard Habitat Scouting (TEKS 3.9A • 4.9A • 5.9A)</span>
+      </div>
+      <div class="brand-right">
+        <img src="assets/utrgv-agroecology.png" alt="UTRGV Agroecology Logo" class="brand-logo">
+      </div>
+    </header>
+
+    <!-- Navigation Breadcrumbs & Portal Links -->
+    <nav class="app-nav" aria-label="Curriculum Navigation">
+      <div class="nav-section deliverables-section">
+        <span class="nav-header-label">🌟 CURRICULUM PORTALS</span>
+        <a class="nav-link" href="tree_stewardship.html">🌳 Tree Stewardship</a>
+        <a class="nav-link active" href="birding_biodiversity.html" aria-current="page">🦜 Birding & Biodiversity</a>
+        <a class="nav-link" href="teks_lesson_plans.html">TEKS Curriculum Lab</a>
+        <a class="nav-link" href="biodiversity_analog_concept.html">Habitat Spotter</a>
+        <a class="nav-link" href="tree_diary.html">Tree Diary & Legacy</a>
+        <a class="nav-link" href="portals/v5/index.html">Executive Hub v5</a>
+      </div>
+    </nav>
+
+    <!-- Main Workspace Container -->
+    <main class="birding-main" id="mainContent">
+      
+      <!-- Top Control Toolbar: Campus Selection, Mode Switcher & Print -->
+      <section class="toolbar-strip" aria-label="Lesson Controls">
+        <div class="toolbar-left">
+          <label for="campusSelect" class="toolbar-label">
+            <span class="icon">🏫</span> Active Campus:
+          </label>
+          <select id="campusSelect" class="human-select" aria-label="Select Elementary Campus">
+            <optgroup label="Donna ISD Campuses">
+              <option value="donna_rivas" selected>Donna ISD — Jason M. Rivas Elementary</option>
+              <option value="donna_caceres">Donna ISD — J.W. Caceres Elementary</option>
+              <option value="donna_garza">Donna ISD — Garza Elementary</option>
+              <option value="donna_singleterry">Donna ISD — Singleterry Elementary</option>
+              <option value="donna_salinas">Donna ISD — Salinas Elementary</option>
+              <option value="donna_solis">Donna ISD — Solis Elementary</option>
+              <option value="donna_ochoa">Donna ISD — Ochoa Elementary</option>
+              <option value="donna_stainke">Donna ISD — Stainke Elementary</option>
+            </optgroup>
+            <optgroup label="Mercedes ISD Campuses">
+              <option value="mercedes_travis">Mercedes ISD — Travis Elementary</option>
+              <option value="mercedes_chacon">Mercedes ISD — Chacon Elementary</option>
+              <option value="mercedes_harrell">Mercedes ISD — Harrell Elementary</option>
+              <option value="mercedes_hinojosa">Mercedes ISD — Hinojosa Elementary</option>
+              <option value="mercedes_high">Mercedes ISD — Mercedes High School</option>
+              <option value="mercedes_academy">Mercedes ISD — Mercedes Academic Academy</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Dual Mode Switcher -->
+        <div class="mode-toggle-group" role="tablist" aria-label="View Mode">
+          <button type="button" class="mode-btn active" id="btnModeDoc" role="tab" aria-selected="true" data-mode="document">
+            <span class="mode-icon">📄</span> Official TTFS Document & Sheet
+          </button>
+          <button type="button" class="mode-btn" id="btnModeLab" role="tab" aria-selected="false" data-mode="interactive">
+            <span class="mode-icon">🌟</span> Interactive Habitat Lab & Cowboy ID
+          </button>
+        </div>
+
+        <div class="toolbar-right">
+          <button type="button" class="print-action-btn" id="printBtn">
+            <span class="print-icon">🖨️</span> Print 8.5" × 11" Tally Sheet
+          </button>
+        </div>
+      </section>
+
+      <!-- VIEW 1: OFFICIAL TTFS LESSON & TALLY SHEET (100% Faithful to Word Docs) -->
+      <div id="viewDocument" class="view-panel active">
+        
+        <!-- Document Header Card -->
+        <article class="doc-card lesson-guide-card">
+          <div class="doc-badge-pill">TEXAS TREES FOUNDATION • EDUCATION DEPARTMENT</div>
+          <h2 class="doc-main-title">Lesson: Birding and Biodiversity</h2>
+          
+          <!-- Connected Lessons & Videos Box -->
+          <div class="metadata-callout-grid">
+            <div class="callout-box">
+              <h3 class="callout-heading">🔗 Connected Lessons</h3>
+              <p class="callout-text">Bioblitz • Trees and the Food Chain • Superheroes to the Rescue • Pesky Pests Matching Game • Nature Journaling</p>
+            </div>
+            <div class="callout-box">
+              <h3 class="callout-heading">🎥 Connected Videos</h3>
+              <p class="callout-text">Trees and Ecosystem • Bioblitz</p>
+            </div>
+          </div>
+
+          <!-- Objective & Overview -->
+          <section class="doc-section">
+            <h3 class="section-title">🎯 Objective</h3>
+            <p class="section-body">Students will observe a tree as a living ecosystem, identifying signs of plant growth, insect activity, and bird life and understanding a tree’s role as primary producer.</p>
+          </section>
+
+          <section class="doc-section">
+            <h3 class="section-title">📖 Overview</h3>
+            <p class="section-body">Observing nature with curiosity can help students cultivate a sense of stewardship for the land and its ecosystems. As they track their observations, students will practice key skills such as note-taking, research, drawing, and inquiry.</p>
+          </section>
+
+          <section class="doc-section">
+            <h3 class="section-title">📦 Materials</h3>
+            <ul class="doc-list">
+              <li>Clipboards</li>
+              <li>Birding and Biodiversity tracking chart</li>
+              <li>Pencils, colored pencils, or crayons</li>
+              <li><em>Optional:</em> Magnifying glasses</li>
+              <li><em>Optional:</em> Binoculars</li>
+            </ul>
+          </section>
+
+          <!-- Method Section -->
+          <section class="doc-section">
+            <h3 class="section-title">🔬 Method</h3>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">Introduction</span>
+                <h4>Schoolyard Tree Habitat Discussion</h4>
+              </div>
+              <p class="section-body">Visit a tree on your schoolyard campus. (<em>Ideally — one of the trees that your class has "adopted" as a part of the Tree Stewardship lesson</em>).</p>
+              <p class="section-body"><strong>Class discussion:</strong> What do you think lives in this tree? Connect to vocabulary: <strong>habitat</strong>, <strong>primary producer</strong>, <strong>observation</strong>.</p>
+              <p class="section-body">Remind students that trees produce their own food from sunlight and that many birds, animals, and insects rely on trees for food and shelter.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">Observation</span>
+                <h4>Field Scouting Checklist</h4>
+              </div>
+
+              <div class="method-subgrid">
+                <div class="substep-box">
+                  <h5>🐛 Insect Check</h5>
+                  <p>How many insects can you find on your tree?</p>
+                  <p><em>If possible: Take a photo of the insect and identify using iNaturalist.</em></p>
+                </div>
+
+                <div class="substep-box">
+                  <h5>🐦 Bird Check</h5>
+                  <p>Do you see any birds on your tree or nearby? They might be <strong>perching</strong>, <strong>singing</strong>, <strong>eating</strong>, or <strong>nesting</strong> in your tree.</p>
+                  <p>Identify the species and count how many. <em>If possible: Use Merlin Bird ID to identify using sound.</em></p>
+                </div>
+
+                <div class="substep-box">
+                  <h5>🦎 Animal Check</h5>
+                  <p>Have you seen any animals (lizards, squirrels, butterflies) near your tree?</p>
+                  <p><em>If possible: Identify using iNaturalist.</em></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">Recording</span>
+                <h4>Nature Journaling & Dashboard Entry</h4>
+              </div>
+              <p class="section-body">Create a nature journal with a page dedicated to the nature that was observed today. Have students use the <em>Nature Journaling video</em> as an example.</p>
+              <p class="section-body">Ask students to draw the birds or insects that they have observed, paying special attention to their <strong>size, shape, and color patterns</strong>.</p>
+              <p class="section-body">Once back inside, record all observations on the class chart and into the UTRGV dashboard.</p>
+            </div>
+
+            <!-- Extension & Tips -->
+            <div class="extension-callout-box">
+              <div class="extension-header">
+                <span class="ext-icon">💡</span>
+                <h4>Extension & Habitat Enhancement</h4>
+              </div>
+              <p>Enhancing your school’s habitat for birds with proper nesting sites (like the installed birdhouses or nest boxes), food and water resources will promote bird activity and increase opportunities for observation. Learning more about the birds you may encounter in hands-on activities will help foster a greater appreciation for them and can promote better engagement while observing habitats.</p>
+              <p class="merlin-tip-box"><strong>TIP:</strong> The <em>Merlin Bird ID app</em> is a fun, free resource that can be helpful in identifying birds! It features photos, bird calls, and general information about the bird.</p>
+            </div>
+
+          </section>
+        </article>
+
+        <!-- Official Tally Sheet Table (Print-Optimized) -->
+        <article class="doc-card print-sheet-card" id="officialTallySheet">
+          <div class="sheet-top-banner">
+            <div>
+              <span class="sheet-badge">TEXAS TREES FOUNDATION × UTRGV</span>
+              <h2 class="sheet-title">Birding and Biodiversity Tracking Sheet</h2>
+              <p class="sheet-subtitle">Field Tally & Observation Sheet • Classroom Schoolyard BioBlitz</p>
+            </div>
+            <div class="sheet-meta-fields">
+              <div class="meta-field-item"><span>School:</span> <strong id="sheetSchoolName">Donna ISD — Jason M. Rivas Elementary</strong></div>
+              <div class="meta-field-item"><span>Classroom / Cohort:</span> <strong>Room 301 — Tree Rangers</strong></div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="tally-table" id="tallyTable">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 22%;">Species<br><span class="th-hint">(Bird / Insect / Animal)</span></th>
+                  <th scope="col" style="width: 14%;">Tally Mark<br><span class="th-hint">(How many seen)</span></th>
+                  <th scope="col" style="width: 10%;">Count</th>
+                  <th scope="col" style="width: 12%;">Date</th>
+                  <th scope="col" style="width: 24%;">Actions<br><span class="th-hint">(What is the species doing?)</span></th>
+                  <th scope="col" style="width: 18%;">Insects / Micro-habitat</th>
+                </tr>
+              </thead>
+              <tbody id="tallyTableBody">
+                <!-- Pre-populated baseline rows -->
+                <tr>
+                  <td><strong>Plain Chachalaca</strong><br><span class="species-sci">Ortalis vetula</span></td>
+                  <td><span class="tally-marks">||||</span></td>
+                  <td><strong>4</strong></td>
+                  <td>09/16/2026</td>
+                  <td>Foraging in high branches, calling</td>
+                  <td>Eating mesquite bean pods</td>
+                </tr>
+                <tr>
+                  <td><strong>Great Kiskadee</strong><br><span class="species-sci">Pitangus sulphuratus</span></td>
+                  <td><span class="tally-marks">||</span></td>
+                  <td><strong>2</strong></td>
+                  <td>09/16/2026</td>
+                  <td>Perching on top branch, singing "kis-ka-dee"</td>
+                  <td>Caught a grasshopper</td>
+                </tr>
+                <tr>
+                  <td><strong>Green Jay</strong><br><span class="species-sci">Cyanocorax yncas</span></td>
+                  <td><span class="tally-marks">|||</span></td>
+                  <td><strong>3</strong></td>
+                  <td>09/14/2026</td>
+                  <td>Hopping through lower canopy</td>
+                  <td>Searching under bark flakes</td>
+                </tr>
+                <tr>
+                  <td><strong>Ladybug Beetle</strong><br><span class="species-sci">Coccinellidae</span></td>
+                  <td><span class="tally-marks">|||| |</span></td>
+                  <td><strong>6</strong></td>
+                  <td>09/16/2026</td>
+                  <td>Crawling on live oak leaves</td>
+                  <td>Feeding on aphids under leaf</td>
+                </tr>
+                <tr>
+                  <td><strong>Green Anole Lizard</strong><br><span class="species-sci">Anolis carolinensis</span></td>
+                  <td><span class="tally-marks">|</span></td>
+                  <td><strong>1</strong></td>
+                  <td>09/15/2026</td>
+                  <td>Basking in morning sun on trunk</td>
+                  <td>Critical root zone mulch</td>
+                </tr>
+                <!-- Blank printable rows for clipboards -->
+                <tr class="print-only-blank-row">
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr class="print-only-blank-row">
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr class="print-only-blank-row">
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Nature Journaling Sketch Box (For Print) -->
+          <div class="print-journal-frame">
+            <div class="journal-frame-header">
+              <span>🎨 Student Field Journal Drawing Box (Size, Shape & Color Patterns)</span>
+              <span>Observed Species: _________________________</span>
+            </div>
+            <div class="journal-canvas-placeholder">
+              <span class="canvas-hint-text">Students draw observed birds, beak shapes, or insects here using colored pencils or crayons</span>
+            </div>
+          </div>
+
+          <div class="sheet-footer">
+            <p class="footer-note">📌 <em>Teacher Guidance: Record observations during outdoor field scouting and sync with the UTRGV Cool Schools dashboard.</em></p>
+          </div>
+        </article>
+      </div>
+
+      <!-- VIEW 2: INTERACTIVE HABITAT LAB (The Enhanced Experience) -->
+      <div id="viewInteractive" class="view-panel">
+        
+        <!-- SECTION A: "PARTS OF A COWBOY" BIRD ANATOMY EXPLORER -->
+        <section class="interactive-lab-card cowboy-explorer-card">
+          <div class="lab-card-header">
+            <div class="badge-row">
+              <span class="lab-tag bg-brown">🤠 SOUTH TEXAS BIRDING METAPHOR</span>
+              <span class="lab-sub-pill">Pedagogical Visual Analogy</span>
+            </div>
+            <h2>"Parts of a Cowboy" Bird Anatomy Explorer</h2>
+            <p class="lab-sub">Comparing bird anatomical field marks to parts of a South Texas cowboy outfit for memorable elementary inquiry!</p>
+          </div>
+
+          <div class="cowboy-grid">
+            <div class="cowboy-card" data-part="hat">
+              <div class="cowboy-icon">🤠</div>
+              <div class="cowboy-title">The Cowboy Hat</div>
+              <div class="bird-analog-title">➔ Crown & Crest</div>
+              <p class="cowboy-desc">Like a cowboy tipping his Stetson, birds raise their crown feathers to show excitement, make calls, or spot friends!</p>
+              <div class="bird-example-tag">Example: Great Kiskadee, Northern Cardinal</div>
+            </div>
+
+            <div class="cowboy-card" data-part="bandana">
+              <div class="cowboy-icon">🧣</div>
+              <div class="cowboy-title">The Silk Bandana</div>
+              <div class="bird-analog-title">➔ Throat Patch & Gorget</div>
+              <p class="cowboy-desc">A bright neckerchief around the throat that shines in sunlight to identify species and signal other scouts.</p>
+              <div class="bird-example-tag">Example: Ruby-throated & Buff-bellied Hummingbird</div>
+            </div>
+
+            <div class="cowboy-card" data-part="lasso">
+              <div class="cowboy-icon">🪢</div>
+              <div class="cowboy-title">The Rope / Lasso</div>
+              <div class="bird-analog-title">➔ Beak Adaptation & Tool</div>
+              <p class="cowboy-desc">A specialized ranch tool! Hooked for cracking thick mesquite seed pods, pointed for probing nectar, or chisel-sharp for wood boring.</p>
+              <div class="bird-example-tag">Example: Chachalaca (curved), Woodpecker (chisel)</div>
+            </div>
+
+            <div class="cowboy-card" data-part="boots">
+              <div class="cowboy-icon">👢</div>
+              <div class="cowboy-title">Boots & Spurs</div>
+              <div class="bird-analog-title">➔ Talons & Perching Feet</div>
+              <p class="cowboy-desc">Sturdy gripping gear built for walking through thorny brush or clamping tightly to high canopy twigs during Rio Grande winds.</p>
+              <div class="bird-example-tag">Example: Green Jay (perching), Harris's Hawk (talons)</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION B: "CHACHALACA & FRIENDS" BIRDING BY EAR AUDIO GUIDE -->
+        <section class="interactive-lab-card chachalaca-guide-card">
+          <div class="lab-card-header">
+            <div class="badge-row">
+              <span class="lab-tag bg-green">🦜 CHACHALACA & FRIENDS</span>
+              <span class="lab-sub-pill">Rio Grande Valley Signature Species</span>
+            </div>
+            <h2>Birding by Ear & Visual Field ID</h2>
+            <p class="lab-sub">Click the sound button to practice identifying signature Rio Grande Valley birds by ear before heading outside!</p>
+          </div>
+
+          <div class="bird-cards-grid" id="birdCardsGrid">
+            
+            <!-- Bird 1: Plain Chachalaca -->
+            <div class="bird-spot-card" data-bird="chachalaca">
+              <div class="bird-card-top">
+                <span class="bird-emoji">🦃</span>
+                <div>
+                  <h4>Plain Chachalaca</h4>
+                  <span class="bird-sci">Ortalis vetula</span>
+                </div>
+              </div>
+              <p class="bird-fun-fact"><strong>RGV Star:</strong> Loud raucous chorus early in the morning! Love eating berries from native Anacua and Sugar Hackberry trees.</p>
+              <div class="bird-action-row">
+                <button type="button" class="bird-audio-btn" data-sound="chachalaca">
+                  <span class="sound-icon">🔊</span> Play Call ("Cha-cha-lac!")
+                </button>
+                <button type="button" class="bird-tally-quick-btn" data-species="Plain Chachalaca">
+                  ➕ Add to Field Tally
+                </button>
+              </div>
+            </div>
+
+            <!-- Bird 2: Great Kiskadee -->
+            <div class="bird-spot-card" data-bird="kiskadee">
+              <div class="bird-card-top">
+                <span class="bird-emoji">🟡</span>
+                <div>
+                  <h4>Great Kiskadee</h4>
+                  <span class="bird-sci">Pitangus sulphuratus</span>
+                </div>
+              </div>
+              <p class="bird-fun-fact"><strong>Bandit Mask:</strong> Bright yellow chest with black and white head stripes. Shouts its own name: <em>"Kis-ka-DEE!"</em></p>
+              <div class="bird-action-row">
+                <button type="button" class="bird-audio-btn" data-sound="kiskadee">
+                  <span class="sound-icon">🔊</span> Play Call ("Kis-ka-DEE!")
+                </button>
+                <button type="button" class="bird-tally-quick-btn" data-species="Great Kiskadee">
+                  ➕ Add to Field Tally
+                </button>
+              </div>
+            </div>
+
+            <!-- Bird 3: Green Jay -->
+            <div class="bird-spot-card" data-bird="greenjay">
+              <div class="bird-card-top">
+                <span class="bird-emoji">🦜</span>
+                <div>
+                  <h4>Green Jay</h4>
+                  <span class="bird-sci">Cyanocorax yncas</span>
+                </div>
+              </div>
+              <p class="bird-fun-fact"><strong>Canopy Gem:</strong> Vibrant green body, bright blue crown, and yellow outer tail feathers. Very smart acorn cachers!</p>
+              <div class="bird-action-row">
+                <button type="button" class="bird-audio-btn" data-sound="greenjay">
+                  <span class="sound-icon">🔊</span> Play Call ("Cheep-Cheep-Rattle")
+                </button>
+                <button type="button" class="bird-tally-quick-btn" data-species="Green Jay">
+                  ➕ Add to Field Tally
+                </button>
+              </div>
+            </div>
+
+            <!-- Bird 4: Golden-fronted Woodpecker -->
+            <div class="bird-spot-card" data-bird="woodpecker">
+              <div class="bird-card-top">
+                <span class="bird-emoji">🪵</span>
+                <div>
+                  <h4>Golden-fronted Woodpecker</h4>
+                  <span class="bird-sci">Melanerpes aurifrons</span>
+                </div>
+              </div>
+              <p class="bird-fun-fact"><strong>Trunk Inspector:</strong> Zebra-striped back with golden yellow nape. Pecks tree bark to find hidden beetles and caterpillars!</p>
+              <div class="bird-action-row">
+                <button type="button" class="bird-audio-btn" data-sound="woodpecker">
+                  <span class="sound-icon">🔊</span> Play Call ("Churr-Churr-Tap!")
+                </button>
+                <button type="button" class="bird-tally-quick-btn" data-species="Golden-fronted Woodpecker">
+                  ➕ Add to Field Tally
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION C: DIGITAL FIELD TALLY LOGGER -->
+        <section class="interactive-lab-card digital-tally-section">
+          <div class="lab-card-header">
+            <span class="lab-tag bg-blue">📊 DIGITAL BIOBLITZ LOGGER</span>
+            <h2>Log Species Tally & Actions</h2>
+            <p class="lab-sub">Zero PII • Classroom-level aggregated habitat sightings</p>
+          </div>
+
+          <form id="tallyLogForm" class="tally-log-form">
+            <div class="form-row-3">
+              <div class="form-group">
+                <label for="tallySpecies">Observed Species</label>
+                <input type="text" id="tallySpecies" class="human-input" placeholder="e.g. Plain Chachalaca or Monarch Butterfly" required>
+              </div>
+              <div class="form-group">
+                <label for="tallyCount">Count / Tally Marks</label>
+                <div class="tally-counter-wrap">
+                  <button type="button" class="counter-btn" id="btnCountMinus">➖</button>
+                  <input type="number" id="tallyCount" class="human-input counter-input" value="1" min="1" max="100" required>
+                  <button type="button" class="counter-btn" id="btnCountPlus">➕</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="tallyCategory">Category</label>
+                <select id="tallyCategory" class="human-select" required>
+                  <option value="Bird">🐦 Bird Species</option>
+                  <option value="Insect">🐛 Insect / Pollinator</option>
+                  <option value="Animal">🦎 Reptile / Small Mammal</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Action Tag Checkboxes -->
+            <div class="form-group">
+              <label class="section-label">🎯 Action Observed (What was the species doing?)</label>
+              <div class="action-pills-group">
+                <label class="action-pill-label">
+                  <input type="checkbox" name="actionCheck" value="Perching on branches" checked>
+                  <span>🪶 Perching / Resting</span>
+                </label>
+                <label class="action-pill-label">
+                  <input type="checkbox" name="actionCheck" value="Singing / Calling">
+                  <span>🎶 Singing / Calling</span>
+                </label>
+                <label class="action-pill-label">
+                  <input type="checkbox" name="actionCheck" value="Eating berries/seeds/bugs">
+                  <span>🍎 Eating / Foraging</span>
+                </label>
+                <label class="action-pill-label">
+                  <input type="checkbox" name="actionCheck" value="Nesting / Carrying twigs">
+                  <span>🪹 Nesting / In Nest Box</span>
+                </label>
+                <label class="action-pill-label">
+                  <input type="checkbox" name="actionCheck" value="Basking on trunk/soil">
+                  <span>☀️ Basking on Trunk / Mulch</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="tallyMicrohabitat">🌿 Micro-Habitat & Tree Location Details</label>
+              <input type="text" id="tallyMicrohabitat" class="human-input" placeholder="e.g. High in Montezuma Cypress canopy, or under mulch drip line">
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="submit-entry-btn">
+                <span>➕</span> Record BioBlitz Sighting & Sync with Dashboard
+              </button>
+            </div>
+          </form>
+        </section>
+
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <p>© 2026 Texas Trees Foundation × UTRGV Agroecology • Schoolyard Forests Program</p>
+        <p class="footer-sub">Compliant with State of Texas TEC §25.081, COPPA, and FERPA Zero-PII Protocols.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="birding_biodiversity.js"></script>
+</body>
+</html>

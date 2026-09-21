@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png" />
+    <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png" />
+    <meta name="description" content="3D Campus Microclimate & Tree Canopy Explorer - Donna ISD M. Rivas Primary Pilot" />
+    <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation" />
+    <title>3D Campus Canopy Explorer | M. Rivas Primary</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="campus_3d.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="brand-left">
+            <img src="assets/utrgv-agroecology.png" alt="UTRGV Agroecology" class="brand-logo" />
+        </div>
+        <div class="title">3D Campus Canopy & Shade Explorer</div>
+        <div class="brand-right">
+            <img src="assets/texas-trees-foundation.png" alt="Texas Trees Foundation" class="brand-logo" />
+        </div>
+    </header>
+
+    <nav class="app-nav">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
+            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
+            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
+            <a class="nav-link" href="tree_3d.html">3D Single Tree</a>
+            <a class="nav-link active" href="campus_3d.html" style="background:#2e7d32; color:#ffffff; font-weight:bold;">🏫 3D Campus Explorer</a>
+            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
+            <a class="nav-link" href="zoning.html">Site Zoning</a>
+            <a class="nav-link" href="protocols.html">SOP Protocols</a>
+            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
+            <a class="nav-link" href="economics.html">Economics / ROI</a>
+            <a class="nav-link" href="trails.html">Trails</a>
+            <a class="nav-link" href="wind.html">Wind</a>
+            <a class="nav-link" href="temperature.html">Temp</a>
+            <a class="nav-link" href="soil_moisture.html">Moisture</a>
+            <a class="nav-link" href="water_table.html">Water Table</a>
+            <a class="nav-link" href="soil_types.html">Soils</a>
+            <a class="nav-link" href="index.html">Impact</a>
+        </div>
+        <div class="nav-section new-prototypes-section" style="border-left: 2px solid #9C27B0; padding-left: 10px; margin-left: 15px;">
+            <span class="nav-header-label" style="color: #9C27B0;">🆕 NEW PROTOTYPES (NOT DELIVERABLES)</span>
+            <a class="nav-link" href="schoolyard_planner.html" style="color: #10b981; font-weight: bold;">🌿 Microforest Planner</a>
+            <a class="nav-link" href="solar_shade_calculator.html">Solar Shade Math Lab</a>
+            <a class="nav-link" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
+            <a class="nav-link" href="biodiversity_analog_concept.html">Child-Friendly Biodiversity</a>
+            <a class="nav-link" href="rivas_tree_roster.html">Tree Sponsorship Roster</a>
+            <a class="nav-link" href="user_access_strategy.html">User Access Strategy</a>
+        </div>
+    </nav>
+
+    <main class="campus-layout">
+        <!-- Left Control & Analytics Sidebar -->
+        <aside class="control-panel">
+            <section class="card pilot-card">
+                <div class="pilot-header">
+                    <span class="pilot-tag">TEST PILOT MODEL</span>
+                    <h2>M. Rivas Primary Campus</h2>
+                </div>
+                <p class="pilot-desc">
+                    Extruded from 2D CAD planting & site engineering plans. Features <strong>9 campus buildings</strong>, parking/bus loops, and <strong>158 trees</strong> across 5 distinct native Rio Grande Valley species archetypes.
+                </p>
+            </section>
+
+            <!-- Time & Solar Controls -->
+            <section class="card time-card">
+                <div class="section-title-row">
+                    <h3>☀️ Solar Arc & Time of Day</h3>
+                    <span id="timeDisplayBadge" class="time-badge">12:00 PM</span>
+                </div>
+                <p class="hint">Scrub to simulate real-time solar elevation, sun azimuth, and building/canopy shadow cast for Donna, TX.</p>
+                <div class="slider-wrapper">
+                    <input type="range" id="sunTimeSlider" min="7" max="18" step="0.25" value="12" />
+                    <div class="slider-ticks">
+                        <span>7 AM</span>
+                        <span>10 AM</span>
+                        <span>12 PM</span>
+                        <span>3 PM</span>
+                        <span>6 PM</span>
+                    </div>
+                </div>
+                <div class="time-actions">
+                    <button type="button" id="btnPlaySun" class="btn-primary">▶ Play Solar Orbit</button>
+                    <button type="button" id="btnResetSun" class="btn-secondary">Reset (12 PM)</button>
+                </div>
+            </section>
+
+            <!-- Microclimate Thermal Readout -->
+            <section class="card temp-card">
+                <h3>🌡️ South Texas Microclimate Impact</h3>
+                <div class="temp-readouts-grid">
+                    <div class="temp-box hot">
+                        <span class="t-lbl">Exposed Asphalt / Roof</span>
+                        <strong class="t-val" id="tempExposedVal">102°F</strong>
+                        <span class="t-sub">Direct Solar Heat Island</span>
+                    </div>
+                    <div class="temp-box cool">
+                        <span class="t-lbl">Under Canopy Shade</span>
+                        <strong class="t-val" id="tempShadedVal">88°F</strong>
+                        <span class="t-sub">Evapotranspirative Buffer</span>
+                    </div>
+                </div>
+                <div class="temp-diff-banner" id="tempDiffBanner">
+                    ↓ 14°F Active Campus Cooling
+                </div>
+            </section>
+
+            <!-- Canopy Growth Horizon (Time Machine) -->
+            <section class="card growth-card">
+                <div class="section-title-row">
+                    <h3>⏳ Canopy Growth Horizon</h3>
+                    <span id="growthStageLabel" class="stage-badge">Year 10 (2036)</span>
+                </div>
+                <p class="hint">Watch tree canopies expand from sapling planting to mature interconnected microforest shade:</p>
+                <div class="growth-btn-group">
+                    <button type="button" class="btn-growth" data-stage="1">
+                        <strong>Year 1</strong>
+                        <small>2026 Sapling</small>
+                    </button>
+                    <button type="button" class="btn-growth" data-stage="5">
+                        <strong>Year 5</strong>
+                        <small>2031 Young Tree</small>
+                    </button>
+                    <button type="button" class="btn-growth active" data-stage="10">
+                        <strong>Year 10</strong>
+                        <small>2036 Mature</small>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Species Legend & Geometry Archetypes -->
+            <section class="card species-card">
+                <h3>🌳 Native Species & 3D Shapes</h3>
+                <p class="hint">Click any species to highlight its 3D geometry in the campus model:</p>
+                <div class="species-list">
+                    <div class="species-item" data-species="Bur Oak">
+                        <span class="species-swatch" style="background:#1b4332;"></span>
+                        <div class="species-info">
+                            <strong>Bur Oak</strong> (Broad Sprawling Dome)
+                            <small>32 Trees • Max Spread: 51 ft</small>
+                        </div>
+                        <span class="species-count">32</span>
+                    </div>
+                    <div class="species-item" data-species="Montezuma Bald Cypress">
+                        <span class="species-swatch" style="background:#2d6a4f;"></span>
+                        <div class="species-info">
+                            <strong>Montezuma Cypress</strong> (Conical/Pyramid)
+                            <small>28 Trees • Max Spread: 50 ft</small>
+                        </div>
+                        <span class="species-count">28</span>
+                    </div>
+                    <div class="species-item" data-species="Mexican Sycamore">
+                        <span class="species-swatch" style="background:#52b788;"></span>
+                        <div class="species-info">
+                            <strong>Mexican Sycamore</strong> (Tiered Vase Crown)
+                            <small>36 Trees • Max Spread: 45 ft</small>
+                        </div>
+                        <span class="species-count">36</span>
+                    </div>
+                    <div class="species-item" data-species="Texas Pecan">
+                        <span class="species-swatch" style="background:#74c69d;"></span>
+                        <div class="species-info">
+                            <strong>Texas Pecan</strong> (Upright Ovate Canopy)
+                            <small>30 Trees • Max Spread: 55 ft</small>
+                        </div>
+                        <span class="species-count">30</span>
+                    </div>
+                    <div class="species-item" data-species="Live Oak">
+                        <span class="species-swatch" style="background:#2d5a27;"></span>
+                        <div class="species-info">
+                            <strong>Live Oak</strong> (Low Wide Umbrella)
+                            <small>32 Trees • Max Spread: 38 ft</small>
+                        </div>
+                        <span class="species-count">32</span>
+                    </div>
+                </div>
+                <button type="button" id="btnShowAllSpecies" class="btn-text" style="margin-top:8px;">Show All 158 Trees</button>
+            </section>
+
+            <!-- Building & Elevation Controls -->
+            <section class="card layers-card">
+                <h3>🏢 Campus Geometry Settings</h3>
+                <div class="setting-row">
+                    <label for="buildingHeightSlider">Building Extrusion Height:</label>
+                    <span id="bldgHeightVal">18 ft (5.5m)</span>
+                </div>
+                <input type="range" id="buildingHeightSlider" min="10" max="32" step="1" value="18" />
+
+                <div class="checkbox-row" style="margin-top:12px;">
+                    <label><input type="checkbox" id="toggleShadows" checked /> Cast Real-Time Dynamic Shadows</label>
+                </div>
+                <div class="checkbox-row">
+                    <label><input type="checkbox" id="toggleAutoRotate" /> Auto-Rotate Campus Orbit</label>
+                </div>
+                <div class="checkbox-row">
+                    <label><input type="checkbox" id="toggleZones" checked /> Show Pavement & Field Zoning</label>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Main 3D Canvas Area -->
+        <section class="viewport-area">
+            <!-- Floating Overlay Bar for Camera Presets -->
+            <div class="viewport-overlay-top">
+                <div class="preset-title">📸 Camera Presets:</div>
+                <button type="button" class="btn-preset active" data-preset="aerial">🦅 Aerial Overview (45°)</button>
+                <button type="button" class="btn-preset" data-preset="courtyard">🏫 Main Courtyard</button>
+                <button type="button" class="btn-preset" data-preset="microforest">🌳 West Microforest</button>
+                <button type="button" class="btn-preset" data-preset="dropoff">🚗 Drop-off & Parking</button>
+                <button type="button" class="btn-preset" data-preset="topdown">📐 Top-Down 2D CAD Align</button>
+            </div>
+
+            <!-- 3D WebGL Canvas Container -->
+            <div id="campusCanvasContainer"></div>
+
+            <!-- Bottom Floating HUD Banner -->
+            <div class="viewport-overlay-bottom">
+                <div class="hud-stat">
+                    <span class="hud-label">Total Campus Area</span>
+                    <strong class="hud-value">20.3 Acres (885,925 sq ft)</strong>
+                </div>
+                <div class="hud-stat">
+                    <span class="hud-label">Building Roof Cover</span>
+                    <strong class="hud-value">9 Buildings (138,400 sq ft)</strong>
+                </div>
+                <div class="hud-stat">
+                    <span class="hud-label">Trees Modeled</span>
+                    <strong class="hud-value">158 Native Trees</strong>
+                </div>
+                <div class="hud-stat">
+                    <span class="hud-label">Mature Canopy Area</span>
+                    <strong class="hud-value" id="hudCanopyArea">~245,000 sq ft</strong>
+                </div>
+                <div class="hud-stat">
+                    <span class="hud-label">Solar Altitude</span>
+                    <strong class="hud-value" id="hudSolarAlt">78.5° (Zenith)</strong>
+                </div>
+            </div>
+
+            <!-- Inspect Tooltip Popover -->
+            <div id="inspectorTooltip" class="inspector-tooltip hidden">
+                <div class="tooltip-header" id="tooltipHeader">Tree Inspection</div>
+                <div class="tooltip-body" id="tooltipBody">Click any tree or building to inspect metadata.</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Jump Navigation Banner -->
+    <div class="section-jump-banner">
+        <a href="#sectionComparison" class="jump-btn fire-jump">🔥 Jump to Baseline Heat Island vs. 10-Yr Cool Canopy Slider ⬇</a>
+    </div>
+
+    <!-- SECTION 2: DUAL-MODEL COMPARATIVE HEAT ISLAND SLIDER -->
+    <section id="sectionComparison" class="comparison-section">
+        <div class="comparison-header">
+            <div class="header-left">
+                <span class="badge-fire">🔥 THERMAL IMPACT SIMULATION</span>
+                <h2>Baseline Urban Heat Island vs. 10-Year Cool Canopy Target</h2>
+                <p class="comparison-subtitle">
+                    Slide between Donna ISD's current <strong>barren baseline</strong> (2.8% canopy, severe heat island hazard, 162°F blacktop) and the Texas Trees Foundation's <strong>10-year target</strong> (28.5% canopy, cool shaded microforest corridors).
+                </p>
+            </div>
+            <div class="header-quick-modes">
+                <span class="mode-label">Quick Overlay Modes:</span>
+                <button type="button" class="btn-mode btn-live-play" id="btnLivePlayWipe">🎬 ▶ Auto-Play Live Wipe & 360° Orbit</button>
+                <button type="button" class="btn-mode" id="btnModeBaseline">🔥 100% Barren Heat Island</button>
+                <button type="button" class="btn-mode active" id="btnModeSplit">⚡ 50/50 Curtain Wipe</button>
+                <button type="button" class="btn-mode" id="btnModeTarget">🌳 100% Cool Canopy Target</button>
+                <button type="button" class="btn-mode" id="btnModeSideBySide">↔️ Side-by-Side View</button>
+            </div>
+        </div>
+
+        <!-- Slider Bar & Interactive Drag Handle -->
+        <div class="slider-control-bar">
+            <div class="slider-label-left">
+                <strong>🔥 Current Baseline</strong>
+                <span>Barren Campus • 162°F Heat Flare</span>
+            </div>
+            <div class="slider-track-container">
+                <input type="range" id="splitWipeSlider" min="0" max="100" value="50" step="0.5" />
+                <div class="slider-status-pill" id="sliderStatusPill">50% Split Overlay</div>
+            </div>
+            <div class="slider-label-right">
+                <strong>🌳 10-Year Target Oasis</strong>
+                <span>158 Trees • 89°F Shaded Canopy</span>
+            </div>
+        </div>
+
+        <!-- Viewport Container for Dual Synchronized 3D Canvases -->
+        <div class="comparison-viewport-wrapper" id="comparisonViewportWrapper">
+            <!-- Canvas 1: Baseline Barren Heat Island (with Red Thermal Flare) -->
+            <div class="comp-layer layer-baseline" id="layerBaseline">
+                <div class="layer-badge badge-baseline">🔥 BASELINE: Barren Campus & Heat Hazard (162°F)</div>
+                <div id="canvasContainerBaseline" class="comp-canvas"></div>
+            </div>
+
+            <!-- Canvas 2: 10-Year Cool Canopy Target (Clipped by slider curtain) -->
+            <div class="comp-layer layer-target" id="layerTarget">
+                <div class="layer-badge badge-target">🌳 TARGET: 158-Tree Microforest Canopy (89°F)</div>
+                <div id="canvasContainerTarget" class="comp-canvas"></div>
+            </div>
+
+            <!-- Draggable Divider Line / Handle -->
+            <div class="split-divider-line" id="splitDividerLine">
+                <div class="divider-knob">
+                    <span>◀ ▶</span>
+                </div>
+            </div>
+
+            <!-- Floating Overlay Badges on Viewport -->
+            <div class="thermal-danger-banner">
+                <span class="pulse-dot"></span>
+                <strong>THERMAL INFRARED OVERLAY:</strong> Unshaded asphalt & roofs reach <span class="hot-text">162°F</span>. Tree canopy delivers <span class="cool-text">↓ 73°F Surface Cooling</span>.
+            </div>
+        </div>
+
+        <!-- Comparative KPI Scorecard Cards -->
+        <div class="comparison-scorecard-grid">
+            <div class="scorecard-card">
+                <div class="sc-title">Canopy Coverage Ratio</div>
+                <div class="sc-val-row">
+                    <div class="sc-before"><span class="sc-tag">Baseline</span> 2.8% <small>(24.8k sq ft)</small></div>
+                    <div class="sc-arrow">➔</div>
+                    <div class="sc-after"><span class="sc-tag target">Target</span> 28.5% <small>(252.5k sq ft)</small></div>
+                </div>
+                <div class="sc-impact-pill positive">📈 +10.1x Canopy Growth</div>
+            </div>
+
+            <div class="scorecard-card">
+                <div class="sc-title">Peak Pavement Surface Heat</div>
+                <div class="sc-val-row">
+                    <div class="sc-before hot"><span class="sc-tag danger">Baseline</span> 162°F <small>Severe Hazard</small></div>
+                    <div class="sc-arrow">➔</div>
+                    <div class="sc-after cool"><span class="sc-tag safe">Target</span> 89°F <small>Shaded Pocket</small></div>
+                </div>
+                <div class="sc-impact-pill positive">❄️ ↓ 73°F Max Surface Cooling</div>
+            </div>
+
+            <div class="scorecard-card">
+                <div class="sc-title">Unshaded Exposed Blacktop Area</div>
+                <div class="sc-val-row">
+                    <div class="sc-before hot"><span class="sc-tag danger">Baseline</span> 97.2% <small>Baking Blacktop</small></div>
+                    <div class="sc-arrow">➔</div>
+                    <div class="sc-after cool"><span class="sc-tag safe">Target</span> 38.4% <small>Canopy Protected</small></div>
+                </div>
+                <div class="sc-impact-pill positive">🛡️ 58.8% Direct Sun Reduction</div>
+            </div>
+
+            <div class="scorecard-card">
+                <div class="sc-title">Cooled Air Shield Volume</div>
+                <div class="sc-val-row">
+                    <div class="sc-before"><span class="sc-tag">Baseline</span> 28,000 <small>cu ft</small></div>
+                    <div class="sc-arrow">➔</div>
+                    <div class="sc-after cool"><span class="sc-tag safe">Target</span> 615,000 <small>cu ft</small></div>
+                </div>
+                <div class="sc-impact-pill positive">🌬️ +22.0x Thermal Buffer Pocket</div>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="#campusCanvasContainer" class="jump-btn return-jump">⬆ Return to Full 3D Campus Explorer</a>
+        </div>
+    </section>
+
+    <!-- Three.js + OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- Preloaded GIS & Tree Datasets -->
+    <script src="data/jason_m_rivas_zones_data.js"></script>
+    <script src="data/mock_trees_data.js"></script>
+
+    <!-- Campus 3D Model Logic -->
+    <script src="campus_3d.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,331 @@
+/* ==========================================================================
+   🔬 Interactive TEKS Science Sandbox Stylesheet
+   TTFS × UTRGV Project Cool Schools
+   ========================================================================== */
+
+:root {
+  --utrgv-navy: #0C2340;
+  --utrgv-orange: #F05023;
+  --forest-green: #1B4D3E;
+  --forest-light: #EBF4F0;
+  --texas-saffron: #ECA100;
+  --earth-charcoal: #2B2D42;
+  --sand-bg: #F4F6F8;
+  --card-border: #DDE2E5;
+  --white: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--sand-bg);
+  color: var(--earth-charcoal);
+}
+
+.sandbox-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.sandbox-header {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 24px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.badge-pill {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--forest-green);
+  background: var(--forest-light);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.header-brand h1 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  color: var(--utrgv-navy);
+}
+
+.header-brand p {
+  margin: 0;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn.primary {
+  background: var(--forest-green);
+  color: var(--white);
+}
+
+.btn.primary:hover {
+  background: #143a2e;
+}
+
+.btn.secondary {
+  background: #f1f5f9;
+  color: var(--utrgv-navy);
+  border: 1px solid var(--card-border);
+}
+
+.btn.secondary:hover {
+  background: #e2e8f0;
+}
+
+/* Meta Bar */
+.lab-meta-bar {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 14px 20px;
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.meta-field {
+  flex: 1;
+}
+
+.meta-field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--utrgv-navy);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.meta-field input, .meta-field select {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+/* Grid */
+.sandbox-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.station-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.station-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.station-card h2 {
+  margin: 0;
+  font-size: 17px;
+  color: var(--utrgv-navy);
+}
+
+.station-desc {
+  margin: 0 0 14px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.add-row-btn {
+  background: var(--forest-light);
+  color: var(--forest-green);
+  border: 1px solid #cce3d8;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.reading-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.reading-table th, .reading-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.reading-table th {
+  background: #f8fafc;
+  color: var(--utrgv-navy);
+  font-weight: 700;
+}
+
+.reading-table input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.delete-row-btn {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Math Stats Box */
+.math-stats-box {
+  background: #f8faf9;
+  border: 1px solid #d9e6e0;
+  border-radius: 8px;
+  padding: 14px;
+  margin-top: auto;
+}
+
+.math-stats-box h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--utrgv-navy);
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.stat-pill {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+}
+
+.stat-pill .lbl {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.stat-pill .num {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--utrgv-navy);
+}
+
+.stat-pill .num.orange { color: var(--utrgv-orange); }
+.stat-pill .num.green { color: var(--forest-green); }
+.stat-pill .num.highlight { color: #16a34a; }
+
+/* Chart & Reflection */
+.chart-box {
+  height: 240px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.reflection-section {
+  border-top: 1px solid var(--card-border);
+  padding-top: 16px;
+}
+
+.reflection-section h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--utrgv-navy);
+}
+
+.prompt-item {
+  margin-bottom: 12px;
+}
+
+.prompt-item label {
+  display: block;
+  font-size: 12px;
+  color: var(--utrgv-navy);
+  margin-bottom: 4px;
+}
+
+.prompt-item textarea {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.sandbox-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--card-border);
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.nav-back {
+  font-weight: 700;
+  color: var(--forest-green);
+  text-decoration: none;
+}
+
+@media print {
+  body { background: white; font-size: 10pt; }
+  .header-actions, .add-row-btn, .delete-row-btn, .sandbox-footer { display: none !important; }
+  .sandbox-grid { grid-template-columns: 1fr; }
+  .station-card, .sandbox-header, .lab-meta-bar { border: 1px solid #ccc; box-shadow: none; break-inside: avoid; }
+}

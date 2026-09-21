@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Stewardship - Naturalist's Field Journal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tree_stewardship_journal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&family=Georgia&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png">
+</head>
+<body>
+    <nav class="global-nav">
+        <a href="tree_stewardship_journal.html">📓 Field Journal</a>
+        <a href="birding_biodiversity_bulletin.html">📌 Bulletin Board</a>
+        <a href="tree_diary.html">Tree Diary</a>
+    </nav>
+
+    <div class="view-toggle">
+        <button id="btn-official">Official TTFS Document View</button>
+        <button id="btn-interactive" class="active">Naturalist's Field Journal</button>
+    </div>
+
+    <!-- Official TTFS Document View -->
+    <div id="official-view" class="hidden document-view">
+        <h1>Tree Stewardship Lesson</h1>
+        <p><strong>Connected lessons:</strong> Tree Journaling, Tree Measurement, Nature Journaling, Tree Detectives, Trees and Parasitism</p>
+        <p><strong>Connected videos:</strong> Tree Height, Tree Measurement (Tree Age), Nature Journaling, Tree Care, Mindfulness in Nature, How Leaves help us Identify Plant Species, Plant ID with iNat</p>
+        <p><strong>Objective:</strong> Students learn to observe, monitor, and report on the health of trees over time, developing ongoing stewardship skills and ecological awareness.</p>
+        <p><strong>Overview:</strong> Studying a tree over time will allow students to observe seasonal changes and growth patterns from a specific tree species. In this activity, students/classes choose a tree (or a few trees) and spend the year recording observations and researching information. Students/classes will record weekly observations to build a record that can be compared back to the baseline data. The tracking sheet will be sent to UTRGV to help organize the data.</p>
+        <p><strong>Materials:</strong> Measuring tape (for DBH), Class observation log/journal, Pencil/clipboard, Optional: soil measuring probe</p>
+        <p><strong>Method Step 1 - Observations (within first two weeks of school):</strong> Note: record trees weekly (or at least biweekly)</p>
+        <ul>
+            <li>Identification: classes will use the school tree planting plan or research the type of tree using iNaturalist. Optional: classes can choose their own nickname for their tree (be creative!)</li>
+            <li>Tree Measurements: Diameter (DBH) - Optional: have students hug the tree or use the string technique. Height (watch the Tree Height Video for technique)</li>
+            <li>Tree Health: Checkpoint: how happy and healthy does your tree seem (sad, medium, happy). Do the leaves appear bright green, dark green or brown? Do all the branches have leaves?</li>
+            <li>Soil moisture check: Test moisture beneath the canopy and within the critical root zone (drip line), using fingers or a moisture probe. leaves/mulch covering the soil around the trunk of the tree?</li>
+            <li>Growth & wildlife activity: Note any flowers, fruits, seeds, or new green leaves. If the tree appears unhealthy at any point, students report it to the teacher immediately.</li>
+        </ul>
+        <p><strong>Method Step 2 - Reporting:</strong> After recording your observations - add them to the school bulletin board and the UTRGV dashboard. Note: can upload a picture or directly into the dashboard</p>
+        <p><strong>Tracking Table columns:</strong> Date, Tree (Nickname), Classroom, Species, Health Check (Good/Medium/Bad), DBH (inches), Height (feet), Moisture Check</p>
+    </div>
+
+    <!-- Interactive Journal View -->
+    <div id="interactive-view">
+        <div class="desk-background">
+            <div class="journal-wrapper">
+                <div class="journal-tabs">
+                    <button id="tab-read" class="active">📄 Read Lesson</button>
+                    <button id="tab-log">🌟 Log Observation</button>
+                </div>
+                <button id="print-btn" class="paperclip-btn" title="Print Field Sheet">📎 Print</button>
+                
+                <div class="journal-book">
+                    <div class="leather-cover"></div>
+                    <div class="spine-stitching"></div>
+                    
+                    <div class="page-spread">
+                        <!-- Left Page: Lesson -->
+                        <div class="page left-page" id="page-lesson">
+                            <div class="coffee-stain"></div>
+                            <h1 class="handwriting">Tree Stewardship Lesson</h1>
+                            <div class="date-entry handwriting">Entry Date: <span class="current-date"></span></div>
+                            
+                            <div class="entry-section">
+                                <p class="pencil-annotation">Connected lessons: Tree Journaling, Tree Measurement, Nature Journaling, Tree Detectives, Trees and Parasitism</p>
+                                <p class="pencil-annotation">Connected videos: Tree Height, Tree Measurement (Tree Age), Nature Journaling, Tree Care, Mindfulness in Nature, How Leaves help us Identify Plant Species, Plant ID with iNat</p>
+                            </div>
+
+                            <div class="entry-section">
+                                <h3>Objective</h3>
+                                <p>Students learn to observe, monitor, and report on the health of trees over time, developing ongoing stewardship skills and ecological awareness.</p>
+                            </div>
+
+                            <div class="entry-section">
+                                <h3>Overview</h3>
+                                <p>Studying a tree over time will allow students to observe seasonal changes and growth patterns from a specific tree species. In this activity, students/classes choose a tree (or a few trees) and spend the year recording observations and researching information. Students/classes will record weekly observations to build a record that can be compared back to the baseline data. The tracking sheet will be sent to UTRGV to help organize the data.</p>
+                            </div>
+
+                            <div class="entry-section materials-list">
+                                <h3>Materials</h3>
+                                <ul>
+                                    <li><span class="checkbox-doodle"></span> Measuring tape (for DBH)</li>
+                                    <li><span class="checkbox-doodle"></span> Class observation log/journal</li>
+                                    <li><span class="checkbox-doodle"></span> Pencil/clipboard</li>
+                                    <li><span class="checkbox-doodle"></span> Optional: soil measuring probe</li>
+                                </ul>
+                            </div>
+
+                            <div class="entry-section method-steps">
+                                <h3>Method Step 1 - Observations</h3>
+                                <p class="pencil-annotation">Note: record trees weekly (or at least biweekly)</p>
+                                <ul>
+                                    <li><strong>Identification:</strong> classes will use the school tree planting plan or research the type of tree using iNaturalist. Optional: classes can choose their own nickname for their tree (be creative!)</li>
+                                    <li>
+                                        <strong>Tree Measurements:</strong> Diameter (DBH) - Optional: have students hug the tree or use the string technique. Height (watch the Tree Height Video for technique)
+                                        <div class="ink-sketch tree-sketch"></div>
+                                    </li>
+                                    <li><strong>Tree Health:</strong> Checkpoint: how happy and healthy does your tree seem (sad, medium, happy). Do the leaves appear bright green, dark green or brown? Do all the branches have leaves?</li>
+                                    <li><strong>Soil moisture check:</strong> Test moisture beneath the canopy and within the critical root zone (drip line), using fingers or a moisture probe. leaves/mulch covering the soil around the trunk of the tree?</li>
+                                    <li><strong>Growth & wildlife activity:</strong> Note any flowers, fruits, seeds, or new green leaves. If the tree appears unhealthy at any point, students report it to the teacher immediately.</li>
+                                </ul>
+
+                                <h3>Method Step 2 - Reporting</h3>
+                                <p>After recording your observations - add them to the school bulletin board and the UTRGV dashboard. Note: can upload a picture or directly into the dashboard</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Left Page: Log Form -->
+                        <div class="page left-page hidden" id="page-form">
+                            <h2 class="handwriting">New Observation</h2>
+                            <form id="observation-form" class="pencil-form">
+                                <label>Date: <input type="date" id="obs-date" required></label>
+                                <label>Tree (Nickname): <input type="text" id="obs-nickname" required></label>
+                                <label>Classroom: <input type="text" id="obs-classroom" required></label>
+                                <label>Species: <input type="text" id="obs-species" required></label>
+                                <label>Health Check: 
+                                    <select id="obs-health">
+                                        <option value="happy">Happy 😊</option>
+                                        <option value="medium">Medium 😐</option>
+                                        <option value="sad">Sad ☹️</option>
+                                    </select>
+                                </label>
+                                <label>DBH (inches): <input type="number" id="obs-dbh" step="0.1"></label>
+                                <label>Height (feet): <input type="number" id="obs-height" step="0.1"></label>
+                                <label>Moisture Check: <input type="text" id="obs-moisture"></label>
+                                <button type="submit" class="handwriting-btn">Record Entry</button>
+                            </form>
+                        </div>
+
+                        <!-- Right Page -->
+                        <div class="page right-page graph-paper" id="page-tracking">
+                            <h2 class="handwriting center-align">Tracking Log</h2>
+                            <table class="hand-drawn-table" id="tracking-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Tree</th>
+                                        <th>Classroom</th>
+                                        <th>Species</th>
+                                        <th>Health</th>
+                                        <th>DBH (in)</th>
+                                        <th>Ht (ft)</th>
+                                        <th>Moisture</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="pencil-row">
+                                        <td>10/12/23</td>
+                                        <td>Oakie</td>
+                                        <td>Rm 102</td>
+                                        <td>Live Oak</td>
+                                        <td><div class="sticky-note happy" onclick="toggleHealth(this)">😊</div></td>
+                                        <td>12.5</td>
+                                        <td>25</td>
+                                        <td>Moist</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="page-curl"></div>
+                            <div class="pressed-leaf"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="tree_stewardship_journal.js"></script>
+</body>
+</html>

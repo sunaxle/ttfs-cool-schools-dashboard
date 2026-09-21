@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>September 2026 Milestone Updates | TTFS UTRGV Cool Schools</title>
+  <meta name="description" content="Executive Presentation of Month 4 milestone deliveries, offline PWA architecture, publication standards, and curriculum portals under Texas A&M Forest Service Grant #25065.">
+  <link rel="stylesheet" href="presentation_september_2026_updates.css">
+</head>
+<body>
+
+  <!-- Top Context Header -->
+  <header class="pres-header">
+    <div class="pres-header__brand">
+      <span>🌳 Texas Trees Foundation & UTRGV</span>
+      <span class="pres-header__badge">Grant #25065</span>
+      <span style="color: var(--text-muted); font-size: 0.85rem;">| Month 4 Milestone Delivery</span>
+    </div>
+    <div class="pres-header__controls">
+      <button type="button" class="pres-btn" id="btn-notes" title="Toggle Speaker Notes (N)">
+        <span>📝 Speaker Notes</span>
+      </button>
+      <button type="button" class="pres-btn" id="btn-fullscreen" title="Toggle Fullscreen (F)">
+        <span>⛶ Fullscreen</span>
+      </button>
+      <a href="portals/v5/index.html" class="pres-btn" style="text-decoration: none;">
+        <span>🏠 Exit to Hub</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Canvas -->
+  <main class="pres-canvas">
+    <div class="slide-container">
+
+      <!-- SLIDE 1: Title -->
+      <section class="slide active" data-slide="0">
+        <div class="slide__tag">Executive Presentation • September 2026</div>
+        <h1 class="slide__title">Cool Schools RGV: Month 4 Milestone Delivery</h1>
+        <p class="slide__subtitle">Transitioning from Research Prototype to Field-Resilient, Curriculum-Integrated Infrastructure</p>
+        <div class="slide__body">
+          <div class="grid-3col">
+            <div class="stat-box">
+              <div class="stat-box__num">100%</div>
+              <div class="stat-box__label">Month 4 Milestones Met</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box__num">$7,022</div>
+              <div class="stat-box__label">September Earnings</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box__num">$91,063</div>
+              <div class="stat-box__label">Cumulative Billing (57.8%)</div>
+            </div>
+          </div>
+          <div style="margin-top: 24px; padding: 16px; background: rgba(0, 95, 75, 0.2); border-left: 4px solid var(--secondary); border-radius: 6px;">
+            <p style="font-size: 0.95rem; line-height: 1.5; color: #E2E8F0;">
+              <strong>Principal Investigators:</strong> Dr. Alexis Racelis (UTRGV Agroecology Lab) & Anabel Castillo-Soto (Texas Trees Foundation)<br>
+              <strong>Target Districts:</strong> Donna Independent School District & Mercedes Independent School District
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: Milestone Scorecard -->
+      <section class="slide" data-slide="1">
+        <div class="slide__tag">Financial Operations & Compliance</div>
+        <h2 class="slide__title">Month 4 Milestone Scorecard (Exhibit D)</h2>
+        <p class="slide__subtitle">Formal contract allocation breakdown under Texas A&M Forest Service Agreement</p>
+        <div class="slide__body">
+          <table class="pres-table">
+            <thead>
+              <tr>
+                <th>Deliverable Component</th>
+                <th>Prior Billed (M1-3)</th>
+                <th>Month 4 (Sep 2026)</th>
+                <th>Cumulative Billed</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>A: Baseline Data & Map Summary</strong></td>
+                <td>$44,295.00</td>
+                <td>$3,390.00</td>
+                <td>$47,685.00</td>
+                <td><span class="badge badge--green">✅ Complete</span></td>
+              </tr>
+              <tr>
+                <td><strong>B: Environmental Monitoring Docs</strong></td>
+                <td>$20,015.00</td>
+                <td>$0.00</td>
+                <td>$20,015.00</td>
+                <td><span class="badge badge--green">✅ v0.8 Finalized</span></td>
+              </tr>
+              <tr>
+                <td><strong>C: Dashboard v2 & Modeling Support</strong></td>
+                <td>$19,731.00</td>
+                <td>$3,632.00</td>
+                <td>$23,363.00</td>
+                <td><span class="badge badge--green">✅ Complete</span></td>
+              </tr>
+              <tr>
+                <td><strong>D: Training & Technical Assistance</strong></td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td><span class="badge badge--orange">⏳ Q1 2027 Target</span></td>
+              </tr>
+              <tr style="font-weight: 700; background: rgba(240, 80, 35, 0.08);">
+                <td>TOTAL CONTRACT PROGRESS</td>
+                <td>$84,041.00</td>
+                <td>$7,022.00</td>
+                <td>$91,063.00</td>
+                <td><strong>57.8% Earned</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: Ground-Truthing Global Science -->
+      <section class="slide" data-slide="2">
+        <div class="slide__tag">Scientific Foundation & Validation</div>
+        <h2 class="slide__title">Harmonizing Campus Data with Global Science</h2>
+        <p class="slide__subtitle">Operationalizing the findings of <em>Nature Communications</em> (McDonald et al., 2026)</p>
+        <div class="slide__body">
+          <div class="grid-3col">
+            <div class="card card--forest">
+              <div class="card__icon">🎯</div>
+              <div class="card__title">Closing the 1-km Gap</div>
+              <div class="card__desc">Global models average over 1 km grids, missing extreme local microclimates. Our 8-station campus arrays provide sub-meter empirical ground truth on school playgrounds.</div>
+            </div>
+            <div class="card card--forest">
+              <div class="card__icon">☀️</div>
+              <div class="card__title">Semi-Arid Efficiency</div>
+              <div class="card__desc">McDonald et al. proved Tree Cooling Efficiency (TCE) is highest in semi-arid and dense urban cores. Donna ISD and Mercedes ISD are prime real-world models.</div>
+            </div>
+            <div class="card card--forest">
+              <div class="card__icon">🌡️</div>
+              <div class="card__title">3.1x WBGT Shading</div>
+              <div class="card__desc">Solar radiation interception reduces Wet Bulb Globe Temperature (WBGT) 3.1x more than air temperature, dropping black globe heat by 25°F–40°F.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: Offline PWA Architecture -->
+      <section class="slide" data-slide="3">
+        <div class="slide__tag">Deliverable C: Technology & Infrastructure</div>
+        <h2 class="slide__title">Offline PWA Architecture (sw.js v2.0.0)</h2>
+        <p class="slide__subtitle">Guaranteed field reliability for tablets in rural schoolyards without cellular reception</p>
+        <div class="slide__body">
+          <div class="grid-2col">
+            <div class="card card--highlight">
+              <div class="card__title">⚡ Service Worker Caching Strategy</div>
+              <div class="card__desc">
+                • <strong>Cache-First / Stale-While-Revalidate:</strong> Pre-caches all 49 HTML pages, GeoJSON campus polygons, and local tree rosters.<br><br>
+                • <strong>Pre-Cached Core CDNs:</strong> Pre-caches ArcGIS API 4.29, D3.js v7, Chart.js, and Three.js r128 for offline vector rendering.<br><br>
+                • <strong>Fault-Tolerant Registration:</strong> Uses <code>Promise.allSettled</code> to guarantee offline activation even on spotty field networks.
+              </div>
+            </div>
+            <div class="card card--highlight">
+              <div class="card__title">📱 Field Technician Experience</div>
+              <div class="card__desc">
+                • <strong>Visual Status Pill:</strong> Discrete <code>#coolschools-pwa-badge</code> displays <em>"Field PWA: Online"</em> vs <em>"Field Offline Mode (Cached)"</em>.<br><br>
+                • <strong>Zero Cellular Drops:</strong> Arborists and teachers can log caliper readings and view solar shade buffers anywhere along outer fence lines.<br><br>
+                • <strong>Interactive Diagnostics:</strong> Built-in modal for 1-click cache purges and updates.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: Curriculum & Sponsorship Portals -->
+      <section class="slide" data-slide="4">
+        <div class="slide__tag">Deliverable C: Interactive Portals</div>
+        <h2 class="slide__title">TEKS Lesson Plans & Tree Sponsorship ROI</h2>
+        <p class="slide__subtitle">Connecting classrooms to live science and engaging community benefactors</p>
+        <div class="slide__body">
+          <div class="grid-2col">
+            <div class="card card--forest">
+              <div class="card__title">🎓 TEKS Lesson Plan Portal (teks_lesson_plans.html)</div>
+              <div class="card__desc">
+                • <strong>Standards Aligned:</strong> Direct integration with TEKS 3.9A, 4.9A, and 5.9A.<br>
+                • <strong>Interactive Simulators:</strong> Surface Temp Mercury Probe (142°F asphalt vs 88°F shade), Transpiration Calculator, and Stormwater Sponge.<br>
+                • <strong>Printable Lab Sheets:</strong> 8.5" × 11" Letter formatting for classroom handouts.
+              </div>
+            </div>
+            <div class="card card--forest">
+              <div class="card__title">🌳 Tree Sponsorship Portal (sponsorship_portal.html)</div>
+              <div class="card__desc">
+                • <strong>USDA i-Tree Eco v6.0 Engine:</strong> Computes gallons of stormwater intercepted, lbs of CO₂ sequestered, sq ft of shade, and A/C energy savings.<br>
+                • <strong>4 Sponsorship Tiers:</strong> $50 Seedling Guardian to $1,500 Legacy Grove.<br>
+                • <strong>Parchment Certificate:</strong> Generates official printable Stewardship Certificates.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: Figure Templates & Caption Standards -->
+      <section class="slide" data-slide="5">
+        <div class="slide__tag">Deliverable A: Cartography & Visuals</div>
+        <h2 class="slide__title">Publication-Grade Figure Standards</h2>
+        <p class="slide__subtitle">Standardized 300 DPI vector layouts and accessible color ramps for baseline reporting</p>
+        <div class="slide__body">
+          <div class="grid-2col">
+            <div class="card">
+              <div class="card__title">🎨 CVD & WCAG 2.1 AAA Palettes</div>
+              <div class="card__desc">
+                • <strong>Land Surface Temp (LST):</strong> Continuous 6-tier thermal gradient (<code>#2C7BB6</code> to <code>#7A0177</code>).<br>
+                • <strong>Air Temp Anomaly (ΔT):</strong> Diverging 7-tier scale (<code>#2166AC</code> to <code>#B2182B</code>).<br>
+                • <strong>NDVI Vegetation Density:</strong> Ecological canopy gradient (<code>#E5E0D8</code> to <code>#00441B</code>).<br>
+                • <strong>WBGT Safety Flags:</strong> 5-tier OSHA/NWS safety flags (Green, Yellow, Orange, Red, Black).
+              </div>
+            </div>
+            <div class="card">
+              <div class="card__title">📐 Standardized Layout Templates</div>
+              <div class="card__desc">
+                • <strong>Figure 1:</strong> Campus Heat & Albedo Baseline 3-panel spatial overlay.<br>
+                • <strong>Figure 2:</strong> 14-hour Diurnal Cooling Curve with student recess occupancy bands.<br>
+                • <strong>Figure 3:</strong> 10-Year Longitudinal Canopy Growth contrasting optimal native palette vs. ornamental mix (exposing the 42.4% "Palm Penalty").
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: Data Caveats Dossier & ADA Protection -->
+      <section class="slide" data-slide="6">
+        <div class="slide__tag">Deliverable C: Science & Policy</div>
+        <h2 class="slide__title">Usability Dossier & Protecting District ADA</h2>
+        <p class="slide__subtitle">Data provenance and making the fiscal case for Title I school superintendents</p>
+        <div class="slide__body">
+          <div class="grid-2col">
+            <div class="card card--highlight">
+              <div class="card__title">📚 Rigorous Data Lineage</div>
+              <div class="card__desc">
+                • <strong>Satellite Provenance:</strong> LandScan 2020 ambient population, ESA WorldCover 10m v100, MODIS Aqua daily LST (1:30 PM overpass), NASA NEX GDDP CMIP6 downscaling.<br>
+                • <strong>Thermodynamics:</strong> Penman-Monteith latent heat flux ($257.6\text{ kWh/day/tree}$) and USDA i-Tree Eco stormwater algorithms.
+              </div>
+            </div>
+            <div class="card card--highlight">
+              <div class="card__title">💰 Preserving State ADA Revenues</div>
+              <div class="card__desc">
+                • <strong>$34.22 / Student / Day:</strong> Texas Foundation School Program funding loss for each absent student.<br>
+                • <strong>$664,140 Heat Wave Risk:</strong> Donna ISD projected revenue loss during an extended 30-day extreme heat wave.<br>
+                • <strong>2.1 Year Payback:</strong> 661-tree regional planting plan pays for itself while generating <strong>$15.13M in 10-year environmental capital</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: Training Materials Progression (v0.8) -->
+      <section class="slide" data-slide="7">
+        <div class="slide__tag">Deliverable B: Educational Field Materials</div>
+        <h2 class="slide__title">Training Materials v0.8 & Field Monitoring SOP</h2>
+        <p class="slide__subtitle">Turnkey slide decks, student lab sheets, and rigorous calibration protocols</p>
+        <div class="slide__body">
+          <div class="grid-3col">
+            <div class="card">
+              <div class="card__title">👩‍🏫 Teacher Deck v0.8</div>
+              <div class="card__desc">4 comprehensive modules with verbatim scripts, RGV native botanical profiles (<em>Ahuehuete</em>, <em>Ebano</em>, <em>Anacua</em>, <em>Live Oak</em>), and teacher objection FAQs.</div>
+            </div>
+            <div class="card">
+              <div class="card__title">📋 Student Field Sheets</div>
+              <div class="card__desc">Printable 8.5" × 11" Letter worksheets structured around 5 cooperative student roles (<em>Thermal Scout</em>, <em>Caliper Tech</em>, <em>Canopy Pacer</em>, <em>Field Scribe</em>, <em>Wildlife Spotter</em>).</div>
+            </div>
+            <div class="card">
+              <div class="card__title">📐 Monitoring SOP v0.8</div>
+              <div class="card__desc">Detailed standard operating procedure including monthly ice-bath IR thermometer calibration ($32.0^\circ\text{F} \pm 1.0^\circ\text{F}$), DBH caliper standards, and triplicate sampling.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9: Governance & Compliance -->
+      <section class="slide" data-slide="8">
+        <div class="slide__tag">Governance, Ethics & Privacy</div>
+        <h2 class="slide__title">Privacy-First Architecture & Clean Handoff</h2>
+        <p class="slide__subtitle">Full compliance with state statutes, university rules, and foundation directives</p>
+        <div class="slide__body">
+          <div class="grid-3col">
+            <div class="card card--forest">
+              <div class="card__icon">🔒</div>
+              <div class="card__title">Zero-PII Architecture</div>
+              <div class="card__desc">Strictly COPPA & FERPA compliant. Zero student names, timestamps, or student photos stored. All observations aggregated at campus level.</div>
+            </div>
+            <div class="card card--forest">
+              <div class="card__icon">🏛️</div>
+              <div class="card__title">UTRGV AI Compliance</div>
+              <div class="card__desc">Dec 1, 2025 mandate: 100% human-in-the-loop validation, approved enterprise tools only, and deterministic data rendering.</div>
+            </div>
+            <div class="card card--forest">
+              <div class="card__icon">📦</div>
+              <div class="card__title">The Handoff Mandate</div>
+              <div class="card__desc">Pure static HTML5/CSS3/ES6 code with zero vendor lock-in, ready for seamless hosting transfer to Texas Trees Foundation servers.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10: October 2026 Outlook -->
+      <section class="slide" data-slide="9">
+        <div class="slide__tag">Project Horizon • Next Sprint</div>
+        <h2 class="slide__title">Looking Ahead: October 2026 (Month 5)</h2>
+        <p class="slide__subtitle">Advancing Dashboard v2 integration and preparing for 2027 district training</p>
+        <div class="slide__body">
+          <div class="grid-2col">
+            <div class="card card--highlight">
+              <div class="card__title">🎯 Month 5 Targets ($6,272.00 Allocation)</div>
+              <div class="card__desc">
+                • <strong>Dashboard v2 Near-Final Build:</strong> Complete ingestion & styling documentation with offline SQLite/IndexedDB export.<br><br>
+                • <strong>2027 Reporting Workplan:</strong> Prepare formal review cycles, district milestones, and role assignments.<br><br>
+                • <strong>Training Session #1 Logistics:</strong> Finalize district educator schedules and online platform configuration.
+              </div>
+            </div>
+            <div class="card">
+              <div class="card__title">📈 Financial Milestone Trajectory</div>
+              <div class="card__desc">
+                • <strong>Current Billed:</strong> $91,063.00 (57.8%)<br>
+                • <strong>October Billing Target:</strong> $6,272.00 (Month 5)<br>
+                • <strong>Projected Oct 31 Cumulative:</strong> <strong>$97,335.00 (61.8%)</strong><br><br>
+                <em>On schedule, on budget, and fully verified across all mechanical gates.</em>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Speaker Notes Drawer (Toggled by Button / 'N' Key) -->
+  <aside class="notes-drawer" id="notes-drawer">
+    <div class="notes-drawer__title">🎙️ Speaker Notes & Talking Points</div>
+    <div class="notes-drawer__content" id="notes-content">
+      Loading notes...
+    </div>
+  </aside>
+
+  <!-- Footer Navigation Controls -->
+  <footer class="pres-footer">
+    <div>
+      <button type="button" class="pres-btn" id="btn-prev">‹ Previous</button>
+      <button type="button" class="pres-btn" id="btn-next">Next ›</button>
+    </div>
+    <div class="pres-progress">
+      <div class="pres-progress__bar" id="progress-bar"></div>
+    </div>
+    <div class="pres-counter" id="slide-counter">1 / 10</div>
+  </footer>
+
+  <script src="presentation_september_2026_updates.js"></script>
+</body>
+</html>

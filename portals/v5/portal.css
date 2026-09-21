@@ -1,0 +1,343 @@
+/* ==========================================================================
+   🏛️ Master Unified Executive Portal Hub v5 Stylesheet
+   TTFS × UTRGV Project Cool Schools
+   ========================================================================== */
+
+:root {
+  --utrgv-orange: #F05023;
+  --utrgv-navy: #0C2340;
+  --forest-green: #1B4D3E;
+  --forest-light: #EBF4F0;
+  --texas-saffron: #ECA100;
+  --earth-charcoal: #2B2D42;
+  --sand-bg: #F4F6F8;
+  --card-border: #DDE2E5;
+  --white: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--sand-bg);
+  color: var(--earth-charcoal);
+}
+
+.portal-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Executive Header */
+.executive-header {
+  background: linear-gradient(135deg, var(--utrgv-navy) 0%, #15325b 100%);
+  color: var(--white);
+  padding: 32px 40px 24px;
+  border-bottom: 3px solid var(--utrgv-orange);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.header-main-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.brand-badge-pill {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--texas-saffron);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.brand-cluster h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.grant-tag {
+  margin: 0;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+/* Financial Ticker Card */
+.financial-ticker-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  gap: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.ticker-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticker-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.ticker-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.ticker-val.green { color: #4ade80; }
+.ticker-val.orange { color: var(--texas-saffron); }
+
+/* KPI Strip */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.kpi-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kpi-icon {
+  font-size: 24px;
+}
+
+.kpi-item strong {
+  display: block;
+  font-size: 14px;
+  color: var(--white);
+}
+
+.kpi-item span {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* Body Area */
+.portal-body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: var(--white);
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--card-border);
+  background: var(--white);
+  color: var(--utrgv-navy);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill-btn:hover {
+  border-color: var(--utrgv-navy);
+}
+
+.pill-btn.active {
+  background: var(--utrgv-navy);
+  color: var(--white);
+  border-color: var(--utrgv-navy);
+}
+
+/* Module Grid */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.module-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  gap: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  transition: all 0.2s ease;
+}
+
+.module-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  border-color: #cbd5e1;
+}
+
+.card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.card-icon-wrap.bg-green { background-color: var(--forest-light); color: var(--forest-green); }
+.card-icon-wrap.bg-orange { background-color: #fff3ed; color: var(--utrgv-orange); }
+.card-icon-wrap.bg-navy { background-color: #e8f0fe; color: var(--utrgv-navy); }
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cat-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.card-content h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  color: var(--utrgv-navy);
+}
+
+.card-content p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.card-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.card-btn.primary {
+  background: var(--forest-green);
+  color: var(--white);
+}
+
+.card-btn.primary:hover {
+  background: #133a2f;
+}
+
+.card-btn.secondary {
+  background: #f1f5f9;
+  color: var(--utrgv-navy);
+}
+
+.card-btn.secondary:hover {
+  background: #e2e8f0;
+}
+
+/* Footer */
+.portal-footer {
+  background: var(--white);
+  border-top: 1px solid var(--card-border);
+  padding: 24px 40px;
+  margin-top: auto;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #64748b;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.compliance-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.compliance-badges .badge {
+  background: #f1f5f9;
+  border: 1px solid var(--card-border);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--utrgv-navy);
+}
+
+@media print {
+  body { background: white; }
+  .filter-bar, .card-actions, .portal-footer { display: none !important; }
+  .module-grid { grid-template-columns: 1fr 1fr; }
+  .module-card { border: 1px solid #ccc; break-inside: avoid; }
+}

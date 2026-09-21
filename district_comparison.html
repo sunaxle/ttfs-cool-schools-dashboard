@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Campus Comparative Analytics & Equity Matrix | TTFS × UTRGV</title>
+  <meta name="description" content="Cross-district multi-campus heat vulnerability, canopy deficit, and ecological ROI benchmarking across Donna ISD and Mercedes ISD.">
+  <meta name="author" content="Dr. Alexis Racelis & Texas Trees Foundation">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="district_comparison.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="matrix-container">
+    <!-- Top Executive Header -->
+    <header class="matrix-header">
+      <div class="header-cluster">
+        <div class="badge-pill">REGIONAL FORESTRY BENCHMARKING • DELIVERABLE A</div>
+        <h1>Multi-Campus Environmental Equity Matrix</h1>
+        <p>Comparative baseline canopy deficit, heat island vulnerability, and 10-year reforestation ROI across Donna ISD & Mercedes ISD.</p>
+      </div>
+      <div class="header-export-actions">
+        <button type="button" class="export-btn primary" id="exportCsvBtn">📥 Export CSV Dataset</button>
+        <button type="button" class="export-btn secondary" id="exportGeoJsonBtn">🌐 Export GeoJSON</button>
+        <button type="button" class="export-btn secondary" onclick="window.print()">🖨️ Print Matrix (8.5x11)</button>
+      </div>
+    </header>
+
+    <!-- Top KPI Strip -->
+    <div class="kpi-banner">
+      <div class="kpi-card">
+        <span class="lbl">Total Campuses Evaluated</span>
+        <span class="val">14 Campuses</span>
+        <span class="sub">Donna & Mercedes ISDs</span>
+      </div>
+      <div class="kpi-card">
+        <span class="lbl">Avg Baseline Canopy</span>
+        <span class="val orange" id="avgCanopyVal">10.3%</span>
+        <span class="sub">Target: 30.0% Standard</span>
+      </div>
+      <div class="kpi-card">
+        <span class="lbl">Total Trees Needed</span>
+        <span class="val green" id="totalTreesNeededVal">644 Trees</span>
+        <span class="sub">To Reach 30% Canopy</span>
+      </div>
+      <div class="kpi-card">
+        <span class="lbl">Peak Surface Heat Range</span>
+        <span class="val">37.8°C – 39.1°C</span>
+        <span class="sub">100.0°F – 102.4°F Ambient</span>
+      </div>
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="matrix-toolbar">
+      <div class="filter-group">
+        <label for="districtFilter">Filter by District:</label>
+        <select id="districtFilter">
+          <option value="all">All Districts (14 Campuses)</option>
+          <option value="Donna ISD">Donna ISD (8 Campuses)</option>
+          <option value="Mercedes ISD">Mercedes ISD (6 Campuses)</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="sortBySelect">Sort Ranking By:</label>
+        <select id="sortBySelect">
+          <option value="hvi">Heat Island Vulnerability (Highest First)</option>
+          <option value="canopy_asc">Current Canopy % (Lowest First)</option>
+          <option value="trees_desc">Trees Needed to Reach 30% (Most First)</option>
+          <option value="name">Campus Alphabetical</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Two Column: Chart & Table -->
+    <main class="matrix-grid">
+      <!-- Left Column: Data Table -->
+      <section class="table-panel">
+        <div class="panel-header">
+          <h2>Campus Environmental Rankings</h2>
+          <span class="note-pill">Click any row to inspect in chart</span>
+        </div>
+        <div class="table-scroll-wrap">
+          <table class="comparison-table" id="campusTable">
+            <thead>
+              <tr>
+                <th>Campus Name</th>
+                <th>District</th>
+                <th>Canopy %</th>
+                <th>Impervious %</th>
+                <th>Heat Index</th>
+                <th>Trees Needed</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="campusTableBody">
+              <!-- Dynamically rendered -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Right Column: Visual Charts -->
+      <section class="charts-panel">
+        <div class="chart-card">
+          <div class="card-header">
+            <h3>🌡️ Urban Heat Vulnerability vs. Existing Canopy</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="heatScatterChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="card-header">
+            <h3>🌳 Reforestation Deficit (Trees to Reach 30%)</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="treesBarChart"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="matrix-footer">
+      <a href="portals/v5/index.html" class="footer-nav">← Back to Master Executive Hub v5</a>
+      <span class="footer-copy">Texas Trees Foundation × UTRGV Agroecology Lab • SOW Deliverable A Baseline Support</span>
+    </footer>
+  </div>
+
+  <script src="js/offline_sync.js"></script>
+  <script src="district_comparison.js"></script>
+</body>
+</html>

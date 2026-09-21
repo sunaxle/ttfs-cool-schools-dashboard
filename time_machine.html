@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Machine Canopy Slider | TTFS × UTRGV Cool Schools</title>
+  <meta name="description" content="Interactive 5- and 10-year schoolyard canopy growth time machine modeling shade coverage, albedo cooling, and stormwater savings.">
+  <meta name="author" content="UTRGV Agroecology & Texas Trees Foundation">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --utrgv-orange: #F05023;
+      --utrgv-navy: #0C2340;
+      --forest-green: #1B4D3E;
+      --forest-light: #EBF4F0;
+      --texas-saffron: #ECA100;
+      --sand-bg: #F4F6F8;
+      --card-border: #DDE2E5;
+      --white: #FFFFFF;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--sand-bg);
+      color: #2B2D42;
+    }
+    .tm-container {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .tm-sidebar {
+      width: 420px;
+      background: var(--white);
+      border-right: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      padding: 28px 24px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    .badge-pill {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--forest-green);
+      background: var(--forest-light);
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .tm-sidebar h1 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      color: var(--utrgv-navy);
+    }
+    .tm-sidebar p.sub {
+      margin: 0 0 20px;
+      font-size: 13px;
+      color: #6c757d;
+      line-height: 1.4;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--utrgv-navy);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .form-group select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      font-size: 14px;
+      background: #fafbfc;
+    }
+    .scrubber-card {
+      background: #f8faf9;
+      border: 1px solid #dbe7e1;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+    .scrubber-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .scrubber-header h3 {
+      margin: 0;
+      font-size: 15px;
+      color: var(--utrgv-navy);
+    }
+    .year-tag {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--utrgv-orange);
+      background: #fff3ed;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+    .time-slider {
+      width: 100%;
+      accent-color: var(--forest-green);
+      cursor: pointer;
+    }
+    .time-markers {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #6c757d;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .metric-box {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .metric-box .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #6c757d;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .metric-box .val {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--utrgv-navy);
+    }
+    .metric-box .val.green {
+      color: #28a745;
+    }
+    .fun-fact-box {
+      background: #fff8e1;
+      border-left: 4px solid var(--texas-saffron);
+      padding: 12px 14px;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    .sidebar-nav {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+    }
+    .sidebar-nav a {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--forest-green);
+      text-decoration: none;
+    }
+
+    /* Main Canvas Area */
+    .tm-viewport {
+      flex: 1;
+      background: #111a24;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .viewport-header {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      background: rgba(12, 35, 64, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .viewport-header h2 {
+      margin: 0 0 4px;
+      font-size: 18px;
+    }
+    .viewport-header p {
+      margin: 0;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    .campus-canvas-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    #campusCanvas {
+      background: #1e293b;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="tm-container">
+    <!-- Sidebar Controls -->
+    <aside class="tm-sidebar">
+      <span class="badge-pill">⏳ DECADE SHADE SIMULATOR</span>
+      <h1>Time Machine Canopy Growth</h1>
+      <p class="sub">Slide through the 10-year lifecycle to see the projected canopy shade, surface cooling, and i-Tree Eco savings.</p>
+
+      <div class="form-group">
+        <label for="campusSelect">Select School Campus:</label>
+        <select id="campusSelect">
+          <option value="caceres">Donna ISD — J.W. Caceres Discovery Academy</option>
+          <option value="rivas">Donna ISD — M. Rivas Primary School</option>
+          <option value="salinas">Donna ISD — Salinas Elementary</option>
+          <option value="travis">Mercedes ISD — Travis Elementary</option>
+        </select>
+      </div>
+
+      <div class="scrubber-card">
+        <div class="scrubber-header">
+          <h3>Time Machine Scrubber</h3>
+          <span class="year-tag" id="activeYearTag">Year 0 (2026)</span>
+        </div>
+        <input type="range" id="timeSlider" min="0" max="10" value="0" step="1" class="time-slider">
+        <div class="time-markers">
+          <span>Planting (2026)</span>
+          <span>5-Yr (2031)</span>
+          <span>10-Yr (2036)</span>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-box">
+          <span class="label">Canopy Cover</span>
+          <span class="val green" id="canopyCoverVal">7.8%</span>
+        </div>
+        <div class="metric-box">
+          <span class="label">Total Shade Area</span>
+          <span class="val" id="shadeAreaVal">14,200 sq ft</span>
+        </div>
+        <div class="metric-box">
+          <span class="label">Asphalt Cooling</span>
+          <span class="val green" id="coolingVal">-12.4°F</span>
+        </div>
+        <div class="metric-box">
+          <span class="label">Stormwater Intercept</span>
+          <span class="val" id="runoffVal">28,400 gal/yr</span>
+        </div>
+      </div>
+
+      <div class="fun-fact-box" id="studentQuote">
+        <strong>🎓 High School Graduation Milestone:</strong><br>
+        "When today's 1st graders graduate high school in 2036, these trees will provide over 48,000 sq ft of shade covering 35% of the courtyard!"
+      </div>
+
+      <div class="sidebar-nav">
+        <a href="portals/v5/index.html">← Back to Master Hub</a>
+        <a href="schoolyard_planner.html">Open 3D Planner →</a>
+      </div>
+    </aside>
+
+    <!-- Canvas Simulation -->
+    <main class="tm-viewport">
+      <div class="viewport-header">
+        <h2 id="canvasTitle">Donna ISD — J.W. Caceres Discovery</h2>
+        <p>Interactive Schoolyard Footprint • Green Rings = Expanding Tree Canopy</p>
+      </div>
+      <div class="campus-canvas-container">
+        <canvas id="campusCanvas" width="800" height="600"></canvas>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function() {
+      const slider = document.getElementById('timeSlider');
+      const activeYearTag = document.getElementById('activeYearTag');
+      const canopyCoverVal = document.getElementById('canopyCoverVal');
+      const shadeAreaVal = document.getElementById('shadeAreaVal');
+      const coolingVal = document.getElementById('coolingVal');
+      const runoffVal = document.getElementById('runoffVal');
+      const studentQuote = document.getElementById('studentQuote');
+      const canvas = document.getElementById('campusCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Campus Tree Locations on Canvas
+      const trees = [
+        { x: 220, y: 180, r0: 12, maxR: 48, species: 'Montezuma Cypress' },
+        { x: 300, y: 160, r0: 10, maxR: 44, species: 'Montezuma Cypress' },
+        { x: 380, y: 190, r0: 12, maxR: 50, species: 'Montezuma Cypress' },
+        { x: 260, y: 340, r0: 14, maxR: 55, species: 'Texas Ebony' },
+        { x: 340, y: 360, r0: 14, maxR: 52, species: 'Texas Ebony' },
+        { x: 500, y: 250, r0: 16, maxR: 62, species: 'Live Oak' },
+        { x: 580, y: 280, r0: 15, maxR: 58, species: 'Live Oak' },
+        { x: 640, y: 340, r0: 12, maxR: 46, species: 'Anacua' },
+        { x: 180, y: 440, r0: 10, maxR: 42, species: 'Cedar Elm' },
+        { x: 250, y: 460, r0: 12, maxR: 45, species: 'Cedar Elm' },
+        { x: 440, y: 440, r0: 14, maxR: 50, species: 'Texas Sabal Palm' },
+        { x: 520, y: 460, r0: 14, maxR: 50, species: 'Texas Sabal Palm' }
+      ];
+
+      function drawCampus(years) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Ground / Grass
+        ctx.fillStyle = '#1e293b';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // School Building Polygon
+        ctx.fillStyle = '#334155';
+        ctx.fillRect(150, 100, 260, 180);
+        ctx.fillRect(450, 120, 220, 140);
+        
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '14px sans-serif';
+        ctx.fillText('Main Classroom Wing', 190, 190);
+        ctx.fillText('Gymnasium & Cafeteria', 480, 190);
+
+        // Asphalt Courtyard & Play Area
+        ctx.fillStyle = '#0f172a';
+        ctx.fillRect(200, 300, 420, 200);
+        ctx.strokeStyle = '#38bdf8';
+        ctx.setLineDash([6, 6]);
+        ctx.strokeRect(200, 300, 420, 200);
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#64748b';
+        ctx.fillText('Central Courtyard & Play Area (Target Heat Zone)', 240, 400);
+
+        // Trees & Canopy Circles
+        const progress = years / 10;
+        trees.forEach(t => {
+          const currentRadius = t.r0 + (t.maxR - t.r0) * progress;
+
+          // Shade Shadow
+          ctx.beginPath();
+          ctx.arc(t.x + 8, t.y + 12, currentRadius, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+          ctx.fill();
+
+          // Canopy Green
+          const grad = ctx.createRadialGradient(t.x, t.y, 2, t.x, t.y, currentRadius);
+          grad.addColorStop(0, '#4ade80');
+          grad.addColorStop(0.8, '#16a34a');
+          grad.addColorStop(1, '#14532d');
+
+          ctx.beginPath();
+          ctx.arc(t.x, t.y, currentRadius, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+
+          // Trunk Center
+          ctx.beginPath();
+          ctx.arc(t.x, t.y, 3, 0, Math.PI * 2);
+          ctx.fillStyle = '#78350f';
+          ctx.fill();
+        });
+      }
+
+      function update(years) {
+        const y = parseInt(years, 10);
+        activeYearTag.textContent = `Year ${y} (${2026 + y})`;
+
+        const canopyPct = (7.8 + (34.2 - 7.8) * (y / 10)).toFixed(1);
+        const shadeSqFt = Math.round(14200 + (62500 - 14200) * (y / 10));
+        const cooling = (-12.4 - (42.6 - 12.4) * (y / 10)).toFixed(1);
+        const runoff = Math.round(28400 + (125000 - 28400) * (y / 10));
+
+        canopyCoverVal.textContent = `${canopyPct}%`;
+        shadeAreaVal.textContent = `${shadeSqFt.toLocaleString()} sq ft`;
+        coolingVal.textContent = `${cooling}°F`;
+        runoffVal.textContent = `${runoff.toLocaleString()} gal/yr`;
+
+        if (y === 0) {
+          studentQuote.innerHTML = '<strong>🌱 Baseline Planting (2026):</strong><br>"Initial planting established with young native rootstocks and automated drip irrigation."';
+        } else if (y <= 5) {
+          studentQuote.innerHTML = `<strong>🌿 Year ${y} (Intermediate Stage):</strong><br>"Canopy has doubled in spread, shading the playground walkways and dropping ground temps by ${Math.abs(cooling)}°F!"`;
+        } else {
+          studentQuote.innerHTML = `<strong>🎓 Year ${y} (High School Graduation Milestone):</strong><br>"When today's primary students reach high school, this microforest provides over ${shadeSqFt.toLocaleString()} sq ft of continuous shade!"`;
+        }
+
+        drawCampus(y);
+      }
+
+      slider.addEventListener('input', (e) => update(e.target.value));
+      update(0);
+    })();
+  </script>
+</body>
+</html>

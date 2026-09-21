@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTRGV Green Campus Explorer & Shade Dashboard | UTRGV Agroecology</title>
+  <meta name="description" content="Interactive geospatial campus tree inventory and shade analytics for UTRGV Edinburg and Brownsville campuses.">
+  <meta name="author" content="Dr. Alexis Racelis & UTRGV Agroecology Lab">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="utrgv_campus.css">
+  <!-- Leaflet CSS for geospatial map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+<body>
+  <div class="utrgv-dashboard-container">
+    <!-- Left Panel: Split Screen Map View -->
+    <main class="utrgv-map-panel">
+      <div class="map-overlay-header">
+        <div class="brand-line">
+          <span class="univ-tag">UTRGV AGROECOLOGY RESEARCH</span>
+          <span class="live-pill">● LIVE INVENTORY</span>
+        </div>
+        <h1>UTRGV Green Campus Explorer</h1>
+        <p>Interactive tree canopy, microclimate cooling, & shade buffer mapping.</p>
+      </div>
+
+      <div class="map-controls-bar">
+        <div class="btn-group">
+          <button type="button" class="map-mode-btn active" id="btnEdinburg">Edinburg Quad (Main)</button>
+          <button type="button" class="map-mode-btn" id="btnBrownsville">Brownsville Resaca Campus</button>
+        </div>
+        <div class="layer-toggles">
+          <label><input type="checkbox" id="toggleShade" checked> Shade Buffers</label>
+          <label><input type="checkbox" id="toggleHeat"> Heat Heatmap</label>
+        </div>
+      </div>
+
+      <div id="utrgvMap" class="leaflet-map-frame" role="region" aria-label="UTRGV Campus Tree Map"></div>
+
+      <div class="map-legend">
+        <div class="legend-item"><span class="color-dot tree-dot"></span> Native Tree</div>
+        <div class="legend-item"><span class="color-dot shade-dot"></span> Solar Shade Projection (1:00 PM)</div>
+        <div class="legend-item"><span class="color-dot quad-dot"></span> Student Gathering Quad</div>
+      </div>
+    </main>
+
+    <!-- Right Panel: Tree Factsheet & Eco-Ledger -->
+    <aside class="utrgv-sidebar">
+      <!-- Top Ledger Stats -->
+      <section class="ledger-card">
+        <h2>🏛️ Campus Eco-Ledger</h2>
+        <div class="ledger-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-lbl">Total Inventoried</span>
+            <span class="metric-num" id="totalTreesCount">1,480 Trees</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-lbl">Canopy Cover</span>
+            <span class="metric-num" id="canopyCoverPct">21.4%</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-lbl">Carbon Sequestered</span>
+            <span class="metric-num highlight">48.6 Tons/yr</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-lbl">Stormwater Diverted</span>
+            <span class="metric-num">380,000 Gal/yr</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Selected Tree Factsheet -->
+      <section class="factsheet-card" id="factsheetCard">
+        <div class="factsheet-header">
+          <span class="species-badge" id="treeTag">Tag #UTRGV-ED-104</span>
+          <h3 id="treeCommonName">Montezuma Cypress (Ahuehuete)</h3>
+          <p class="scientific-name" id="treeScientificName">Taxodium mucronatum</p>
+        </div>
+
+        <div class="factsheet-grid">
+          <div class="detail-row">
+            <span>Location / Quad:</span>
+            <strong id="treeLocation">Science Building Courtyard</strong>
+          </div>
+          <div class="detail-row">
+            <span>Height / DBH:</span>
+            <strong id="treeDimensions">32 ft • 14.2 in DBH</strong>
+          </div>
+          <div class="detail-row">
+            <span>Canopy Spread:</span>
+            <strong id="treeSpread">640 sq ft</strong>
+          </div>
+          <div class="detail-row">
+            <span>Microclimate Cooling:</span>
+            <strong class="cooling-text" id="treeCooling">-18.5°F Surface Drop</strong>
+          </div>
+          <div class="detail-row">
+            <span>Annual Eco-Savings:</span>
+            <strong class="savings-text" id="treeSavings">$142.80 / yr</strong>
+          </div>
+        </div>
+
+        <div class="research-notes-box">
+          <h4>🧪 Agroecology Lab Research Notes</h4>
+          <p id="treeNotes">Montezuma Cypress exhibits exceptional drought tolerance and nitrogen fixation potential in regional clay-loam soils, providing critical thermal relief for outdoor student pedestrian corridors.</p>
+        </div>
+      </section>
+
+      <!-- 30-Sec Quick Observation Form (No PII) -->
+      <section class="feedback-card">
+        <h3>💬 Report Campus Tree Observation (30 Sec)</h3>
+        <form id="campusFeedbackForm">
+          <div class="form-group">
+            <label for="feedbackType">Observation Type:</label>
+            <select id="feedbackType">
+              <option value="shade">Excellent Shade Spot (Studying/Resting)</option>
+              <option value="maintenance">Needs Watering / Broken Branch</option>
+              <option value="wildlife">Wildlife / Bird Nesting Sighting</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="feedbackComment">Notes (Zero PII • Campus Level):</label>
+            <input type="text" id="feedbackComment" placeholder="e.g. Great shade breeze between classes!">
+          </div>
+          <button type="submit" class="submit-feedback-btn">Submit Field Observation</button>
+        </form>
+      </section>
+
+      <div class="sidebar-nav-footer">
+        <a href="portals/v5/index.html" class="footer-link">← Master Portal Hub</a>
+        <a href="tree_diary.html" class="footer-link">Tree Diary →</a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="utrgv_campus.js"></script>
+</body>
+</html>

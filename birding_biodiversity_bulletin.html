@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranger Station Bulletin Board — Birding & Biodiversity</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="birding_biodiversity_bulletin.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&family=Special+Elite&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Global Nav -->
+    <nav class="site-nav">
+        <a href="birding_biodiversity.html">🌟 Standard View</a>
+        <a href="tree_stewardship_journal.html">📓 Field Journal</a>
+        <a href="tree_diary.html">Tree Diary</a>
+    </nav>
+
+    <!-- Wood frame around board -->
+    <div class="wood-frame">
+        
+        <!-- Controls Bar on Top/Bottom of Frame -->
+        <div class="frame-controls">
+            <div class="light-switch" id="modeToggle" title="Flip to Official TTFS Document View">
+                <div class="switch-plate">
+                    <div class="switch-toggle up" id="switchToggle"></div>
+                </div>
+                <span class="switch-label">BULLETIN / OFFICIAL DOC</span>
+            </div>
+            
+            <div class="print-pin" id="printBtn" title="Print 8.5x11 Field Sheet">
+                <span class="pin-head"></span>
+                <span>🖨️ PRINT SHEET</span>
+            </div>
+        </div>
+
+        <!-- The Cork Board Canvas -->
+        <div class="cork-board" id="corkBoard">
+            
+            <!-- SVG String Connections Layer -->
+            <svg class="string-layer" id="stringLayer" aria-hidden="true">
+                <path d="M 280 200 Q 420 280 520 180" class="red-string" />
+                <path d="M 680 320 Q 780 440 860 360" class="red-string" />
+            </svg>
+
+            <!-- VIEW 1: OFFICIAL TTFS DOCUMENT VIEW (Hidden by default, toggleable via switch) -->
+            <div class="official-doc hidden" id="officialDoc">
+                <div class="doc-header-stamp">TEXAS TREES FOUNDATION • EDUCATION DEPARTMENT</div>
+                <h1>Lesson: Birding and Biodiversity</h1>
+                <div class="doc-meta-box">
+                    <p><strong>Connected lessons:</strong> Bioblitz, Trees and the Food Chain, Superheroes to the Rescue, Pesky Pests Matching Game, Nature Journaling</p>
+                    <p><strong>Connected videos:</strong> Trees and Ecosystem, Bioblitz</p>
+                </div>
+                
+                <h2>🎯 Objective</h2>
+                <p>Students will observe a tree as a living ecosystem, identifying signs of plant growth, insect activity, and bird life and understanding a tree's role as primary producer.</p>
+                
+                <h2>📖 Overview</h2>
+                <p>Observing nature with curiosity can help students cultivate a sense of stewardship for the land and its ecosystems. As they track their observations, students will practice key skills such as note-taking, research, drawing, and inquiry.</p>
+                
+                <h2>📦 Materials</h2>
+                <ul>
+                    <li>Clipboards</li>
+                    <li>Birding and Biodiversity tracking chart</li>
+                    <li>Pencils, colored pencils, or crayons</li>
+                    <li><em>Optional:</em> Magnifying glasses</li>
+                    <li><em>Optional:</em> Binoculars</li>
+                </ul>
+                
+                <h2>🔬 Method</h2>
+                <h3>Step 1: Introduction</h3>
+                <p>Visit a tree on your schoolyard campus (ideally one of the trees that your class has 'adopted' as a part of the Tree Stewardship lesson). Class discussion: What do you think lives in this tree? Connect to vocabulary: <em>habitat</em>, <em>primary producer</em>, <em>observation</em>. Remind students that trees produce their own food from sunlight and that many birds, animals, and insects rely on trees for food and shelter.</p>
+                
+                <h3>Step 2: Observation</h3>
+                <p><strong>Insect Check:</strong> How many insects can you find on your tree? If possible: take a photo of the insect and identify using iNaturalist.</p>
+                <p><strong>Bird Check:</strong> Do you see any birds on your tree or nearby? They might be perching, singing, eating or nesting in your tree. Identify the species and count how many. If possible: use Merlin bird ID to identify using sound.</p>
+                <p><strong>Animal Check:</strong> Have you seen any animals near your tree? If possible: identify using iNaturalist.</p>
+                
+                <h3>Step 3: Recording</h3>
+                <p>Create a nature journal with a page dedicated to the nature that was observed today. Have students use the Nature Journaling video as an example. Ask students to draw the birds or insects that they have observed, paying special attention to their size, shape, and color patterns. Once back inside, record all observations on the class chart and into the UTRGV dashboard.</p>
+                
+                <h2>💡 Extension & Helpful Tips</h2>
+                <p>Enhancing your school's habitat for birds with proper nesting sites (like the installed birdhouses or nest boxes), food and water resources will promote bird activity and increase opportunities for observation.</p>
+                <p><strong>TIP:</strong> The <em>Merlin Bird ID app</em> is a fun, free resource that can be helpful in identifying birds! It features photos, bird calls and general information about the bird.</p>
+            </div>
+
+            <!-- VIEW 2: REDESIGNED BULLETIN BOARD (Natural Structured Pinned Layout) -->
+            <div class="pinned-board-layout" id="redesignBoard">
+                
+                <!-- TOP HEADER ZONE -->
+                <header class="board-header-zone">
+                    <!-- Title Banner (Kraft Paper Strip with Masking Tape) -->
+                    <div class="pinned-card kraft-banner" data-expandable="true">
+                        <div class="tape top-left"></div>
+                        <div class="tape top-right"></div>
+                        <div class="tack center-top"></div>
+                        <span class="banner-sub">TEXAS TREES FOUNDATION • RANGER STATION HABITAT LAB</span>
+                        <h1>BIRDING & BIODIVERSITY</h1>
+                        <span class="banner-tagline">Schoolyard Forest Ecosystem & Wildlife Field Scout</span>
+                    </div>
+                </header>
+
+                <!-- MAIN BOARD GRID -->
+                <div class="board-grid-zones">
+                    
+                    <!-- LEFT COLUMN: LESSON SCRAPS & OBJECTIVES -->
+                    <div class="board-col col-left">
+                        
+                        <!-- Objective Note (Lined Yellow Legal Paper) -->
+                        <div class="pinned-card lined-paper tilt-left" data-expandable="true">
+                            <div class="tack tack-red"></div>
+                            <div class="card-label">🎯 LESSON OBJECTIVE</div>
+                            <p class="handwriting-lead">Students will observe a tree as a <strong>living ecosystem</strong>, identifying signs of plant growth, insect activity, and bird life, and understanding a tree's role as a <strong>primary producer</strong>.</p>
+                        </div>
+
+                        <!-- Introduction & Vocabulary Card -->
+                        <div class="pinned-card notebook-scrap tilt-right" data-expandable="true">
+                            <div class="tack tack-blue"></div>
+                            <div class="card-label">🌱 FIELD INTRO & VOCAB</div>
+                            <p><strong>Location:</strong> Visit your adopted schoolyard tree.</p>
+                            <p><strong>Class Discussion:</strong> What lives in this tree canopy?</p>
+                            <div class="vocab-pills">
+                                <span>Habitat</span>
+                                <span>Primary Producer</span>
+                                <span>Observation</span>
+                            </div>
+                            <p class="note-foot">💡 Remind students: Trees make food from sunlight; birds, bugs & lizards depend on them!</p>
+                        </div>
+
+                        <!-- Connected Lessons & Videos (Torn Kraft Scrap) -->
+                        <div class="pinned-card torn-kraft-scrap tilt-left" data-expandable="true">
+                            <div class="tape center-tape"></div>
+                            <div class="card-label">🔗 CONNECTED LESSONS & VIDEOS</div>
+                            <ul class="mini-list">
+                                <li>BioBlitz & Nature Journaling</li>
+                                <li>Trees & The Food Chain</li>
+                                <li>Superheroes to the Rescue</li>
+                                <li>Pesky Pests Matching Game</li>
+                            </ul>
+                            <div class="video-tag">🎥 Videos: Trees & Ecosystem • BioBlitz</div>
+                        </div>
+
+                        <!-- Tip Sticky Note (Blue Post-It) -->
+                        <div class="pinned-card sticky-note-blue tilt-right" data-expandable="true">
+                            <div class="tack tack-yellow"></div>
+                            <strong>📱 MERLIN BIRD ID TIP</strong>
+                            <p>The Merlin Bird ID app identifies bird calls live using your microphone. Listen for the raucous morning chatter of our Rio Grande Valley natives!</p>
+                        </div>
+
+                    </div>
+
+                    <!-- CENTER COLUMN: "PARTS OF A COWBOY" & RGV SIGNATURE BIRDS -->
+                    <div class="board-col col-center">
+                        
+                        <!-- Cowboy Bird Anatomy Card (Manila Cardstock) -->
+                        <div class="pinned-card cowboy-card" data-expandable="true">
+                            <div class="tape top-left"></div>
+                            <div class="tape top-right"></div>
+                            <div class="tack tack-green"></div>
+                            
+                            <div class="card-label-badge">🤠 SOUTH TEXAS BIRDING METAPHOR</div>
+                            <h2>"Parts of a Cowboy" Bird Anatomy</h2>
+                            <p class="cowboy-sub">An unforgettable way to identify bird field marks on the schoolyard!</p>
+                            
+                            <div class="cowboy-parts-grid">
+                                <div class="cowboy-item">
+                                    <div class="cowboy-icon">🤠</div>
+                                    <div class="cowboy-text">
+                                        <strong>The Cowboy Hat</strong>
+                                        <span class="arrow">&rarr;</span> <em>Crown & Crest</em>
+                                        <p>Raised crest feathers showing excitement or making calls (e.g. Great Kiskadee, Cardinal).</p>
+                                    </div>
+                                </div>
+
+                                <div class="cowboy-item">
+                                    <div class="cowboy-icon">🧣</div>
+                                    <div class="cowboy-text">
+                                        <strong>The Silk Bandana</strong>
+                                        <span class="arrow">&rarr;</span> <em>Throat Patch / Gorget</em>
+                                        <p>Shimmering throat patch identifying species (e.g. Hummingbirds & Green Jays).</p>
+                                    </div>
+                                </div>
+
+                                <div class="cowboy-item">
+                                    <div class="cowboy-icon">🪢</div>
+                                    <div class="cowboy-text">
+                                        <strong>The Rope / Lasso</strong>
+                                        <span class="arrow">&rarr;</span> <em>Beak Tool Adaptation</em>
+                                        <p>Curved seed-cracker, insect probe, or wood chisel (e.g. Chachalaca, Woodpecker).</p>
+                                    </div>
+                                </div>
+
+                                <div class="cowboy-item">
+                                    <div class="cowboy-icon">👢</div>
+                                    <div class="cowboy-text">
+                                        <strong>Boots & Spurs</strong>
+                                        <span class="arrow">&rarr;</span> <em>Talons & Perching Feet</em>
+                                        <p>Grasping feet built for locking onto high thorny branches during gusty RGV winds.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- "Chachalaca & Friends" Polaroids Grid -->
+                        <div class="polaroid-row-container">
+                            <div class="row-title">
+                                <span>🦜 CHACHALACA & FRIENDS (RGV SIGNATURE SPECIES)</span>
+                                <span class="audio-hint">Click 🔊 to hear their call!</span>
+                            </div>
+
+                            <div class="polaroids-grid">
+                                
+                                <!-- Bird 1: Plain Chachalaca -->
+                                <div class="pinned-card polaroid-card" data-bird="chachalaca">
+                                    <div class="tack tack-red"></div>
+                                    <div class="polaroid-photo chachalaca-art">
+                                        <div class="bird-avatar">🦃</div>
+                                        <span class="species-badge">RGV NATIVE</span>
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <strong>Plain Chachalaca</strong>
+                                        <span class="sci-name">Ortalis vetula</span>
+                                        <p>Loud morning chorus! Loves native Anacua & Hackberry berries.</p>
+                                        <button type="button" class="radio-sound-btn" data-sound="chachalaca">
+                                            <span>🔊</span> "Cha-cha-lac!"
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Bird 2: Great Kiskadee -->
+                                <div class="polaroid-card" data-bird="kiskadee">
+                                    <div class="tape top-center-tape"></div>
+                                    <div class="polaroid-photo kiskadee-art">
+                                        <div class="bird-avatar">🟡</div>
+                                        <span class="species-badge">CANOPY SCOUT</span>
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <strong>Great Kiskadee</strong>
+                                        <span class="sci-name">Pitangus sulphuratus</span>
+                                        <p>Yellow chest & bandit mask. Shouts its name: <em>"Kis-ka-DEE!"</em></p>
+                                        <button type="button" class="radio-sound-btn" data-sound="kiskadee">
+                                            <span>🔊</span> "Kis-ka-DEE!"
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Bird 3: Green Jay -->
+                                <div class="polaroid-card" data-bird="greenjay">
+                                    <div class="tack tack-blue"></div>
+                                    <div class="polaroid-photo greenjay-art">
+                                        <div class="bird-avatar">🦜</div>
+                                        <span class="species-badge">ACORN CACHER</span>
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <strong>Green Jay</strong>
+                                        <span class="sci-name">Cyanocorax yncas</span>
+                                        <p>Vibrant green & blue plumage. Smart schoolyard acorn collector!</p>
+                                        <button type="button" class="radio-sound-btn" data-sound="greenjay">
+                                            <span>🔊</span> "Cheep-Rattle"
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Bird 4: Golden-fronted Woodpecker -->
+                                <div class="polaroid-card" data-bird="woodpecker">
+                                    <div class="tape top-right-tape"></div>
+                                    <div class="polaroid-photo woodpecker-art">
+                                        <div class="bird-avatar">🪵</div>
+                                        <span class="species-badge">TRUNK INSPECTOR</span>
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <strong>Golden-fronted Woodpecker</strong>
+                                        <span class="sci-name">Melanerpes aurifrons</span>
+                                        <p>Zebra back & golden nape. Pecks tree bark for hidden beetles.</p>
+                                        <button type="button" class="radio-sound-btn" data-sound="woodpecker">
+                                            <span>🔊</span> "Churr-Tap!"
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN: TRACKING TABLE & DIGITAL LOGGER CLIPBOARD -->
+                    <div class="board-col col-right">
+                        
+                        <!-- Digital Logger Clipboard -->
+                        <div class="pinned-card clipboard-container" id="clipboardCard">
+                            <div class="metal-clip-bar"></div>
+                            <div class="clipboard-inner-sheet">
+                                <div class="clip-header">
+                                    <span class="clip-tag">📋 LIVE FIELD LOG</span>
+                                    <h2>BioBlitz Logger</h2>
+                                    <span class="zero-pii">Zero PII • Classroom Level</span>
+                                </div>
+
+                                <form id="loggerForm" class="logger-form">
+                                    <div class="form-field">
+                                        <label for="logSpecies">Observed Species:</label>
+                                        <input type="text" id="logSpecies" class="clip-input" placeholder="e.g. Plain Chachalaca or Monarch" required>
+                                    </div>
+
+                                    <div class="form-field-row">
+                                        <div class="form-field">
+                                            <label>Tally Count:</label>
+                                            <div class="tally-box">
+                                                <button type="button" class="tally-btn" id="btnCountDec">−</button>
+                                                <span class="count-display" id="logCountVal">1</span>
+                                                <button type="button" class="tally-btn" id="btnCountInc">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="form-field">
+                                            <label for="logCategory">Category:</label>
+                                            <select id="logCategory" class="clip-select">
+                                                <option value="Bird">🐦 Bird</option>
+                                                <option value="Insect">🐛 Insect</option>
+                                                <option value="Animal">🦎 Animal</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label for="logActions">Behavior / Action:</label>
+                                        <input type="text" id="logActions" class="clip-input" placeholder="e.g. Perching on mesquite branch, calling">
+                                    </div>
+
+                                    <button type="submit" class="stamp-submit-btn">
+                                        <span>📮</span> SUBMIT TO UTRGV LEDGER
+                                    </button>
+                                </form>
+
+                                <div id="logSuccessStamp" class="success-stamp hidden">
+                                    ✓ LOGGED TO CAMPUS LEDGER!
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Official Tracking Sheet on Graph Paper -->
+                        <div class="pinned-card graph-paper-card" id="trackingTableCard" data-expandable="true">
+                            <div class="tack tack-red tack-tl"></div>
+                            <div class="tack tack-blue tack-tr"></div>
+                            <div class="tack tack-green tack-bl"></div>
+                            <div class="tack tack-yellow tack-br"></div>
+                            
+                            <div class="graph-header">
+                                <span class="graph-tag">📊 OFFICIAL FIELD LOG</span>
+                                <h3>Class Observation Tally</h3>
+                            </div>
+
+                            <div class="table-wrap">
+                                <table class="graph-tally-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Species</th>
+                                            <th>Tally</th>
+                                            <th>Date</th>
+                                            <th>Action</th>
+                                            <th>Insects / Notes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bulletinTableBody">
+                                        <tr>
+                                            <td><strong>Plain Chachalaca</strong></td>
+                                            <td><span class="tally-marks">||||</span> (4)</td>
+                                            <td>09/16</td>
+                                            <td>Calling</td>
+                                            <td>Eating hackberries</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Great Kiskadee</strong></td>
+                                            <td><span class="tally-marks">||</span> (2)</td>
+                                            <td>09/16</td>
+                                            <td>Perching</td>
+                                            <td>Caught grasshopper</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Green Jay</strong></td>
+                                            <td><span class="tally-marks">|||</span> (3)</td>
+                                            <td>09/14</td>
+                                            <td>Foraging</td>
+                                            <td>Acorn search</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Ladybug Beetle</strong></td>
+                                            <td><span class="tally-marks">|||| |</span> (6)</td>
+                                            <td>09/16</td>
+                                            <td>Crawling</td>
+                                            <td>Under oak leaves</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Extension Post-It (Yellow) -->
+                        <div class="pinned-card sticky-note-yellow tilt-left" data-expandable="true">
+                            <div class="tack tack-red"></div>
+                            <strong>🌿 HABITAT ENHANCEMENT</strong>
+                            <p>Installed birdhouses, nest boxes, and water basins give students 3× more wildlife spotting opportunities!</p>
+                        </div>
+
+                    </div>
+
+                </div> <!-- end board-grid-zones -->
+
+            </div> <!-- end pinned-board-layout -->
+
+        </div> <!-- end cork-board -->
+    </div> <!-- end wood-frame -->
+    
+    <!-- Focused Modal Overlay for Enlarged Items -->
+    <div id="focusOverlay" class="focus-overlay hidden">
+        <button type="button" class="close-focus" id="closeFocusBtn">✕ Close</button>
+        <div id="focusContainer" class="focus-container"></div>
+    </div>
+
+    <script src="birding_biodiversity_bulletin.js"></script>
+</body>
+</html>

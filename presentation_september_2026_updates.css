@@ -1,0 +1,359 @@
+/* Presentation September 2026 Updates Stylesheet */
+:root {
+  --primary: #F05023; /* UTRGV Orange */
+  --primary-dark: #C43B14;
+  --secondary: #005F4B; /* TTFS Forest Green */
+  --secondary-light: #0A8267;
+  --accent-gold: #D97706;
+  --bg-dark: #0F172A;
+  --bg-card: #1E293B;
+  --bg-slide: #0F172A;
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --border-color: #334155;
+  --font-serif: Harding, Palatino, Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-mono: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+/* Header Context Bar */
+.pres-header {
+  height: 56px;
+  background-color: #0A0F1D;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 100;
+}
+
+.pres-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pres-header__badge {
+  background-color: var(--secondary);
+  color: #E6F4EA;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pres-header__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pres-btn {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.pres-btn:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.pres-btn--active {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+/* Main Presentation Canvas */
+.pres-canvas {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: radial-gradient(circle at center, #1E293B 0%, #0F172A 100%);
+}
+
+.slide-container {
+  width: 100%;
+  max-width: 1200px;
+  height: 90%;
+  max-height: 720px;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-color: #131E30;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.98);
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  z-index: 10;
+}
+
+/* Slide Content Typography */
+.slide__tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.slide__title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  line-height: 1.2;
+  color: #FFF;
+  margin-bottom: 8px;
+}
+
+.slide__subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.slide__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Multi-column Grid Layouts */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card--highlight {
+  border-left: 4px solid var(--primary);
+}
+
+.card--forest {
+  border-left: 4px solid var(--secondary);
+}
+
+.card__icon {
+  font-size: 1.8rem;
+}
+
+.card__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.card__desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.stat-box {
+  background: rgba(240, 80, 35, 0.1);
+  border: 1px solid rgba(240, 80, 35, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-box__num {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-family: var(--font-mono);
+}
+
+.stat-box__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Data Tables inside Slides */
+.pres-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+
+.pres-table th {
+  background-color: #0A0F1D;
+  color: var(--text-main);
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.pres-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-color);
+  color: #E2E8F0;
+}
+
+.pres-table tr:hover td {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.badge--green {
+  background-color: #064E3B;
+  color: #6EE7B7;
+}
+
+.badge--orange {
+  background-color: #7C2D12;
+  color: #FDBA74;
+}
+
+/* Speaker Notes Drawer */
+.notes-drawer {
+  position: absolute;
+  bottom: 60px;
+  left: 24px;
+  right: 24px;
+  background-color: rgba(10, 15, 29, 0.95);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  max-height: 180px;
+  overflow-y: auto;
+  display: none;
+  backdrop-filter: blur(8px);
+}
+
+.notes-drawer.open {
+  display: block;
+}
+
+.notes-drawer__title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.notes-drawer__content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #E2E8F0;
+}
+
+/* Footer Navigation Bar */
+.pres-footer {
+  height: 60px;
+  background-color: #0A0F1D;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 100;
+}
+
+.pres-progress {
+  flex: 1;
+  max-width: 400px;
+  height: 6px;
+  background-color: var(--bg-card);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 0 24px;
+}
+
+.pres-progress__bar {
+  height: 100%;
+  width: 10%;
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  transition: width 0.3s ease;
+}
+
+.pres-counter {
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}

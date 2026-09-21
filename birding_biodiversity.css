@@ -1,0 +1,801 @@
+/* Birding & Biodiversity Field Lab Stylesheet */
+
+.birding-app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f9f6;
+  color: #1a1a1a;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Header Subtitles */
+.header-pretitle {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #1b4d2b;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.header-subtitle {
+  display: block;
+  font-size: 13px;
+  color: #4a5568;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Main Container */
+.birding-main {
+  flex: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+/* Toolbar Control Strip */
+.toolbar-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toolbar-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.human-select, .human-input, .human-textarea {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  color: #1e293b;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.human-select:focus, .human-input:focus, .human-textarea:focus {
+  border-color: #2f6b3f;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(47, 107, 63, 0.15);
+}
+
+/* Mode Switcher */
+.mode-toggle-group {
+  display: inline-flex;
+  background: #e2e8f0;
+  padding: 4px;
+  border-radius: 30px;
+  gap: 4px;
+}
+
+.mode-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+  color: #1e293b;
+}
+
+.mode-btn.active {
+  background: #1b4d2b;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(27, 77, 43, 0.3);
+}
+
+.print-action-btn {
+  background: #2f6b3f;
+  color: #ffffff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s ease;
+}
+
+.print-action-btn:hover {
+  background: #1b4d2b;
+}
+
+/* View Panels */
+.view-panel {
+  display: none;
+}
+
+.view-panel.active {
+  display: block;
+}
+
+/* Document Cards */
+.doc-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px 36px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+}
+
+.doc-badge-pill {
+  display: inline-block;
+  background: #dce9df;
+  color: #1b4d2b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.doc-main-title {
+  font-size: 26px;
+  color: #1b4d2b;
+  margin: 0 0 16px;
+  font-family: 'Georgia', serif;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+}
+
+.metadata-callout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.callout-box {
+  background: #fdfbf7;
+  border-left: 4px solid #c59b27;
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  border-top: 1px solid #f1ece1;
+  border-right: 1px solid #f1ece1;
+  border-bottom: 1px solid #f1ece1;
+}
+
+.callout-heading {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #78350f;
+  font-weight: 700;
+}
+
+.callout-text {
+  margin: 0;
+  font-size: 13px;
+  color: #451a03;
+  line-height: 1.5;
+}
+
+.doc-section {
+  margin-top: 24px;
+}
+
+.section-title {
+  font-size: 18px;
+  color: #1b4d2b;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.section-body {
+  font-size: 15px;
+  color: #334155;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+.doc-list {
+  margin: 8px 0 16px 20px;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Method Steps */
+.step-card {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 18px;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.step-number {
+  background: #1b4d2b;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 14px;
+  text-transform: uppercase;
+}
+
+.step-header h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+.method-subgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.substep-box {
+  background: #ffffff;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.substep-box h5 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #1b4d2b;
+  font-weight: 700;
+}
+
+.substep-box p {
+  margin: 0;
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* Extension & Merlin Tip */
+.extension-callout-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-top: 20px;
+}
+
+.extension-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.extension-header h4 {
+  margin: 0;
+  font-size: 15px;
+  color: #166534;
+}
+
+.extension-callout-box p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #14532d;
+  line-height: 1.5;
+}
+
+.merlin-tip-box {
+  background: #dbeafe;
+  border-left: 4px solid #2563eb;
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  color: #1e40af !important;
+  font-size: 13px !important;
+  margin: 10px 0 0 !important;
+}
+
+/* Official Tally Sheet Card */
+.print-sheet-card {
+  border: 2px solid #cbd5e1;
+  background: #ffffff;
+}
+
+.sheet-top-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid #1b4d2b;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+
+.sheet-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: #1b4d2b;
+  letter-spacing: 1.5px;
+}
+
+.sheet-title {
+  font-size: 22px;
+  color: #1b4d2b;
+  margin: 4px 0 2px;
+  font-family: 'Georgia', serif;
+}
+
+.sheet-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+.sheet-meta-fields {
+  font-size: 13px;
+  color: #334155;
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* Tally Table */
+.tally-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.tally-table th {
+  background: #1b4d2b;
+  color: #ffffff;
+  padding: 10px 12px;
+  font-weight: 700;
+  border: 1px solid #1b4d2b;
+  vertical-align: middle;
+}
+
+.tally-table td {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.species-sci {
+  font-size: 11px;
+  color: #64748b;
+  font-style: italic;
+}
+
+.tally-marks {
+  font-family: monospace;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #1b4d2b;
+  font-weight: 900;
+}
+
+/* Journal Frame Sketch Box */
+.print-journal-frame {
+  margin-top: 20px;
+  border: 1.5px dashed #94a3b8;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fdfdfd;
+}
+
+.journal-frame-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.journal-canvas-placeholder {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* VIEW 2: INTERACTIVE LAB STYLING */
+.interactive-lab-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 24px;
+}
+
+.lab-card-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 12px;
+}
+
+.badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.lab-tag {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 12px;
+  letter-spacing: 1px;
+}
+
+.bg-brown {
+  background: #fed7aa;
+  color: #9a3412;
+}
+
+.bg-green {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.bg-blue {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.lab-sub-pill {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.lab-card-header h2 {
+  font-size: 20px;
+  color: #1b4d2b;
+  margin: 6px 0 2px;
+}
+
+.lab-sub {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Cowboy Grid */
+.cowboy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.cowboy-card {
+  background: #fffbf5;
+  border: 1.5px solid #fed7aa;
+  border-radius: 10px;
+  padding: 18px 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cowboy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(154, 52, 18, 0.1);
+}
+
+.cowboy-icon {
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.cowboy-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #9a3412;
+}
+
+.bird-analog-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1b4d2b;
+  margin-bottom: 8px;
+}
+
+.cowboy-desc {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.bird-example-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #78350f;
+  background: #fef3c7;
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* Chachalaca & Friends Birds Grid */
+.bird-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.bird-spot-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bird-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.bird-emoji {
+  font-size: 28px;
+}
+
+.bird-card-top h4 {
+  margin: 0;
+  font-size: 15px;
+  color: #1e293b;
+}
+
+.bird-sci {
+  font-size: 11px;
+  color: #64748b;
+  font-style: italic;
+}
+
+.bird-fun-fact {
+  font-size: 12px;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+.bird-action-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bird-audio-btn {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.bird-audio-btn:hover {
+  background: #bfdbfe;
+}
+
+.bird-tally-quick-btn {
+  background: #2f6b3f;
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.bird-tally-quick-btn:hover {
+  background: #1b4d2b;
+}
+
+/* Digital Tally Form */
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.tally-counter-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.counter-btn {
+  background: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.counter-btn:hover {
+  background: #cbd5e1;
+}
+
+.counter-input {
+  text-align: center;
+  font-weight: 800;
+  font-size: 16px;
+  width: 60px;
+}
+
+/* Action Checkboxes */
+.action-pills-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.action-pill-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-pill-label:hover {
+  border-color: #2f6b3f;
+}
+
+.action-pill-label input:checked + span {
+  font-weight: 700;
+}
+
+.submit-entry-btn {
+  width: 100%;
+  background: #1b4d2b;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(27, 77, 43, 0.2);
+  transition: background 0.2s ease;
+}
+
+.submit-entry-btn:hover {
+  background: #143820;
+}
+
+/* PRINT MEDIA STYLESHEET (8.5" x 11" Optimization) */
+@media print {
+  body {
+    background: #ffffff !important;
+    font-size: 10pt;
+  }
+  .app-header, .app-nav, .toolbar-strip, .app-footer, .mode-toggle-group, .print-action-btn, #viewInteractive {
+    display: none !important;
+  }
+  .birding-main {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #viewDocument {
+    display: block !important;
+  }
+  .doc-card {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 18pt !important;
+    page-break-after: always;
+  }
+  .print-sheet-card {
+    border: 1pt solid #000000 !important;
+    padding: 10pt !important;
+    page-break-inside: avoid;
+  }
+  .tally-table th {
+    background: #e2e8f0 !important;
+    color: #000000 !important;
+    border: 1pt solid #000000 !important;
+  }
+  .tally-table td {
+    border: 1pt solid #000000 !important;
+    color: #000000 !important;
+  }
+  .print-only-blank-row {
+    height: 36pt !important;
+  }
+  .print-journal-frame {
+    border: 1pt dashed #000000 !important;
+    height: 180pt !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .form-row-3 {
+    grid-template-columns: 1fr;
+  }
+  .toolbar-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .mode-toggle-group {
+    justify-content: center;
+  }
+  .metadata-callout-grid {
+    grid-template-columns: 1fr;
+  }
+}

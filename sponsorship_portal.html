@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Tree Adoption & Environmental ROI Calculator — TTFS × UTRGV</title>
+  <meta name="description" content="Adopt a native schoolyard tree and calculate authentic USDA i-Tree Eco environmental ROI across Rio Grande Valley elementary school campuses.">
+  <meta name="author" content="Texas Trees Foundation & UTRGV Agroecology">
+
+  <!-- PWA & Favicon -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png">
+  <link rel="icon" type="image/png" href="assets/utrgv-agroecology.png">
+  <meta name="theme-color" content="#1B4D3E">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sponsorship_portal.css">
+</head>
+<body>
+  <div class="sponsorship-portal-root">
+    
+    <!-- Top Executive Header -->
+    <header class="app-header">
+      <div class="brand-left">
+        <img src="assets/texas-trees-foundation.png" alt="Texas Trees Foundation Logo" class="brand-logo">
+      </div>
+      <div class="title">
+        <span class="header-pretitle">TEXAS TREES FOUNDATION × UTRGV AGROECOLOGY</span>
+        <h1>Campus Tree Adoption & Environmental ROI Portal</h1>
+        <span class="header-subtitle">Community Stewardship • USDA i-Tree Eco Benefit Engine • Donna & Mercedes ISDs</span>
+      </div>
+      <div class="brand-right">
+        <img src="assets/utrgv-agroecology.png" alt="UTRGV Agroecology Logo" class="brand-logo">
+      </div>
+    </header>
+
+    <!-- Navigation Breadcrumbs -->
+    <nav class="app-nav" aria-label="Portal Navigation">
+      <div class="nav-section deliverables-section">
+        <span class="nav-header-label">🌟 STEWARDSHIP & PLANNING PORTALS</span>
+        <a class="nav-link active" href="sponsorship_portal.html" aria-current="page">Tree Adoption & ROI</a>
+        <a class="nav-link" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
+        <a class="nav-link" href="schoolyard_planner.html">3D Schoolyard Planner</a>
+        <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
+        <a class="nav-link" href="campuses.html">Select Campus</a>
+        <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+        <a class="nav-link" href="portals/v5/index.html">Executive Hub v5</a>
+      </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="sponsorship-container" id="mainContent">
+
+      <!-- Executive District KPI Banner -->
+      <section class="district-kpi-banner" aria-label="District Stewardship Metrics">
+        <div class="kpi-banner-item">
+          <span class="kpi-banner-icon">🌳</span>
+          <div>
+            <strong id="kpiTotalDistrictTrees">1,240</strong>
+            <span>Total Schoolyard Trees</span>
+          </div>
+        </div>
+        <div class="kpi-banner-item">
+          <span class="kpi-banner-icon">💚</span>
+          <div>
+            <strong id="kpiAdoptedTrees" class="text-green">438</strong>
+            <span>Adopted by Stewards (35.3%)</span>
+          </div>
+        </div>
+        <div class="kpi-banner-item">
+          <span class="kpi-banner-icon">🌧️</span>
+          <div>
+            <strong id="kpiDistrictStormwater">1.48M Gal</strong>
+            <span>Stormwater Intercepted / yr</span>
+          </div>
+        </div>
+        <div class="kpi-banner-item">
+          <span class="kpi-banner-icon">💨</span>
+          <div>
+            <strong id="kpiDistrictCarbon">482,000 lbs</strong>
+            <span>Lifetime CO₂ Sequestered</span>
+          </div>
+        </div>
+        <div class="kpi-banner-item">
+          <span class="kpi-banner-icon">💰</span>
+          <div>
+            <strong id="kpiDistrictAssetValue" class="text-orange">$384,500</strong>
+            <span>CTLA Public Asset Valuation</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter Controls Strip -->
+      <section class="filter-strip" aria-label="Tree Search and Filter Controls">
+        <div class="filter-control">
+          <label for="campusFilter"><span class="icon">🏫</span> Campus:</label>
+          <select id="campusFilter" class="human-select" aria-label="Filter by Campus">
+            <optgroup label="Donna ISD Campuses">
+              <option value="all_donna">All Donna ISD Campuses (8 Schools)</option>
+              <option value="donna_rivas" selected>Donna ISD — Jason M. Rivas Elementary</option>
+              <option value="donna_garza">Donna ISD — Garza Elementary</option>
+              <option value="donna_singleterry">Donna ISD — Singleterry Elementary</option>
+              <option value="donna_salinas">Donna ISD — Salinas Elementary</option>
+              <option value="donna_solis">Donna ISD — Solis Elementary</option>
+              <option value="donna_ochoa">Donna ISD — Ochoa Elementary</option>
+              <option value="donna_stainke">Donna ISD — Stainke Elementary</option>
+              <option value="donna_jw_caceres">Donna ISD — J.W. Caceres Elementary</option>
+            </optgroup>
+            <optgroup label="Mercedes ISD Campuses">
+              <option value="all_mercedes">All Mercedes ISD Campuses (6 Schools)</option>
+              <option value="mercedes_travis">Mercedes ISD — Travis Elementary</option>
+              <option value="mercedes_chacon">Mercedes ISD — Chacon Elementary</option>
+              <option value="mercedes_harrell">Mercedes ISD — Harrell Elementary</option>
+              <option value="mercedes_hinojosa">Mercedes ISD — Hinojosa Elementary</option>
+              <option value="mercedes_high">Mercedes ISD — Mercedes High School</option>
+              <option value="mercedes_academy">Mercedes ISD — Mercedes Academic Academy</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="filter-control">
+          <label for="speciesFilter"><span class="icon">🌿</span> Species:</label>
+          <select id="speciesFilter" class="human-select" aria-label="Filter by Species">
+            <option value="all" selected>All Native Species</option>
+            <option value="Texas Live Oak">Texas Live Oak (Quercus virginiana)</option>
+            <option value="Honey Mesquite">Honey Mesquite (Prosopis glandulosa)</option>
+            <option value="Texas Ebony">Texas Ebony (Ebenopsis ebano)</option>
+            <option value="Montezuma Cypress">Montezuma Cypress (Taxodium mucronatum)</option>
+            <option value="Cedar Elm">Cedar Elm (Ulmus crassifolia)</option>
+            <option value="Anacua">Anacua (Ehretia anacua)</option>
+            <option value="Mexican Sycamore">Mexican Sycamore (Platanus mexicana)</option>
+            <option value="Retama">Retama / Jerusalem Thorn (Parkinsonia aculeata)</option>
+          </select>
+        </div>
+
+        <div class="filter-control">
+          <label for="statusFilter"><span class="icon">🏷️</span> Status:</label>
+          <select id="statusFilter" class="human-select" aria-label="Filter by Status">
+            <option value="all" selected>All Trees (124 Shown)</option>
+            <option value="available">Available for Adoption</option>
+            <option value="adopted">Adopted / Sponsored</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Split-Screen Workspace -->
+      <div class="split-workspace">
+
+        <!-- ================================================================= -->
+        <!-- LEFT COLUMN: Interactive Tree Inventory Roster & Map Explorer      -->
+        <!-- ================================================================= -->
+        <section class="workspace-pane roster-pane" aria-labelledby="rosterHeading">
+          <div class="pane-header">
+            <div>
+              <h2 id="rosterHeading" class="pane-title">Schoolyard Tree Grove Inventory</h2>
+              <span class="pane-subtitle">Select any tree to inspect environmental metrics, simulate 10-year growth, and generate adoption certificate.</span>
+            </div>
+            <span class="badge-count" id="treeMatchCount">Showing 124 Trees</span>
+          </div>
+
+          <!-- Tree Cards Grid -->
+          <div class="tree-grid" id="treeGridContainer" role="region" aria-label="Adoptable Tree Cards">
+            <!-- Dynamically populated by sponsorship_portal.js -->
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- RIGHT COLUMN: Environmental ROI Engine & Certificate Generator   -->
+        <!-- ================================================================= -->
+        <section class="workspace-pane roi-pane" aria-labelledby="roiHeading">
+          
+          <!-- Selected Tree Profile Card -->
+          <div class="card selected-tree-card" id="selectedTreeCard">
+            <div class="selected-tree-header">
+              <div class="tree-badge-cluster">
+                <span class="tree-avatar-emoji" id="selectedTreeEmoji">🌳</span>
+                <div>
+                  <span class="tree-id-pill" id="selectedTreeIdTag">TREE #TTFS-042</span>
+                  <h3 class="tree-display-name" id="selectedTreeName">The Mighty Live Oak</h3>
+                  <span class="tree-botanical-name" id="selectedTreeSpecies">Texas Live Oak (Quercus virginiana)</span>
+                </div>
+              </div>
+              <div class="tree-status-badge" id="selectedTreeStatusBadge">
+                <span class="status-dot">●</span> <span id="selectedTreeStatusText">Available for Adoption</span>
+              </div>
+            </div>
+
+            <div class="selected-tree-meta-row">
+              <div class="meta-pill">
+                <span class="meta-label">Campus Zone:</span>
+                <strong id="selectedTreeZone">West Playground Shade Cluster</strong>
+              </div>
+              <div class="meta-pill">
+                <span class="meta-label">GPS Anchor:</span>
+                <strong id="selectedTreeGps">26.1672° N, 98.0710° W</strong>
+              </div>
+              <div class="meta-pill">
+                <span class="meta-label">Planting Year:</span>
+                <strong id="selectedTreePlantYear">2024 (Year 2 Growth)</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Environmental ROI Calculator -->
+          <div class="card roi-engine-card">
+            <div class="card-header">
+              <span class="card-icon">🧮</span>
+              <h3 id="roiHeading">USDA i-Tree Eco Environmental Benefit Engine</h3>
+            </div>
+
+            <!-- Growth Timeline Slider -->
+            <div class="growth-slider-wrapper">
+              <div class="slider-header">
+                <label for="simulationYearSlider"><strong>Simulated Tree Maturity Horizon:</strong></label>
+                <span class="slider-current-year" id="currentSimYearLabel">Year 10 (2034) — Established Canopy</span>
+              </div>
+              <input type="range" id="simulationYearSlider" min="2024" max="2050" step="1" value="2034" class="human-slider" aria-label="Simulation Year Slider">
+              <div class="slider-ticks">
+                <span>2024 (Planting)</span>
+                <span>2028 (Year 4)</span>
+                <span>2034 (Year 10)</span>
+                <span>2042 (Mature)</span>
+                <span>2050 (Heritage)</span>
+              </div>
+            </div>
+
+            <!-- Dynamic ROI KPI Tiles -->
+            <div class="roi-kpi-grid">
+              <div class="roi-tile">
+                <div class="tile-icon-wrap">🌧️</div>
+                <div class="tile-content">
+                  <strong class="tile-val" id="calcStormwaterGal">1,420 Gal / yr</strong>
+                  <span class="tile-label">Stormwater Interception</span>
+                  <span class="tile-sub" id="calcStormwaterUsd">Avoids $12.64 in municipal treatment/yr</span>
+                </div>
+              </div>
+
+              <div class="roi-tile">
+                <div class="tile-icon-wrap">💨</div>
+                <div class="tile-content">
+                  <strong class="tile-val" id="calcCarbonLbs">52.4 lbs / yr</strong>
+                  <span class="tile-label">Annual CO₂ Sequestration</span>
+                  <span class="tile-sub" id="calcLifetimeCarbon">524 lbs cumulative biomass stored</span>
+                </div>
+              </div>
+
+              <div class="roi-tile">
+                <div class="tile-icon-wrap">☂️</div>
+                <div class="tile-content">
+                  <strong class="tile-val text-green" id="calcShadeSqFt">615 Sq Ft</strong>
+                  <span class="tile-label">Direct Ground Shade Canopy</span>
+                  <span class="tile-sub" id="calcThermalReduction">-32.4°F ground temperature reduction</span>
+                </div>
+              </div>
+
+              <div class="roi-tile">
+                <div class="tile-icon-wrap">⚡</div>
+                <div class="tile-content">
+                  <strong class="tile-val" id="calcEnergyKwh">522 kWh / yr</strong>
+                  <span class="tile-label">Classroom A/C Load Savings</span>
+                  <span class="tile-sub" id="calcEnergyUsd">Saves $65.25 in school electricity costs/yr</span>
+                </div>
+              </div>
+
+              <div class="roi-tile full-width">
+                <div class="tile-icon-wrap">🏛️</div>
+                <div class="tile-content">
+                  <strong class="tile-val text-orange" id="calcCtlaValue">$2,840.00</strong>
+                  <span class="tile-label">CTLA Structural Replacement Asset Value</span>
+                  <span class="tile-sub">Council of Tree & Landscape Appraisers (CTLA) trunk cross-section valuation added to public schoolyard</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sponsorship Tier & Interactive Adoption Form -->
+          <div class="card adoption-form-card no-print">
+            <div class="card-header">
+              <span class="card-icon">🌱</span>
+              <h3>Tree Adoption & Community Sponsorship Suite</h3>
+            </div>
+
+            <form id="treeAdoptionForm" class="adoption-form">
+              <!-- Tier Selection Cards -->
+              <div class="form-group">
+                <label class="form-section-label">Select Sponsorship Level:</label>
+                <div class="tier-grid">
+                  <label class="tier-option">
+                    <input type="radio" name="sponsorTier" value="50" checked>
+                    <div class="tier-card">
+                      <span class="tier-price">$50</span>
+                      <strong>Seedling Guardian</strong>
+                      <span class="tier-desc">Drip line setup, cedar mulch ring & initial NFC biometric tag.</span>
+                    </div>
+                  </label>
+
+                  <label class="tier-option">
+                    <input type="radio" name="sponsorTier" value="150">
+                    <div class="tier-card">
+                      <span class="tier-price">$150</span>
+                      <strong>Canopy Champion</strong>
+                      <span class="tier-desc">3-year structural pruning, compost biosolid aeration & shade canopy care.</span>
+                    </div>
+                  </label>
+
+                  <label class="tier-option">
+                    <input type="radio" name="sponsorTier" value="500">
+                    <div class="tier-card">
+                      <span class="tier-price">$500</span>
+                      <strong>Microforest Benefactor</strong>
+                      <span class="tier-desc">Multi-species pocket grove cluster with native pollinator understory.</span>
+                    </div>
+                  </label>
+
+                  <label class="tier-option">
+                    <input type="radio" name="sponsorTier" value="1500">
+                    <div class="tier-card">
+                      <span class="tier-price">$1,500</span>
+                      <strong>Schoolyard Legacy Grove</strong>
+                      <span class="tier-desc">Endows a 10-year research tree with automated microclimate telemetry tag.</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Sponsor / Classroom Dedication (Zero PII - FERPA Compliant) -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="sponsorName">Adopted By / Dedication Name (No Individual Student Names):</label>
+                  <input type="text" id="sponsorName" class="human-input" value="The Treviño Family" placeholder="e.g. The Treviño Family / Room 4B Monarchs / RGV Lions Club" required>
+                  <span class="privacy-note">🔒 FERPA/COPPA Notice: Use family, classroom, or group names only.</span>
+                </div>
+                <div class="form-group">
+                  <label for="customTreeNickname">Tree Honorary Name:</label>
+                  <input type="text" id="customTreeNickname" class="human-input" value="The Mighty Live Oak" placeholder="e.g. The Ancient Guardian" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="sponsorDedication">Stewardship Dedication Message:</label>
+                <textarea id="sponsorDedication" class="human-textarea" rows="2" placeholder="e.g. Dedicated to the future scientists, nature explorers, and leaders of the Rio Grande Valley.">Dedicated in honor of Rio Grande Valley elementary students and the teachers fostering outdoor science literacy.</textarea>
+              </div>
+
+              <div class="adoption-actions">
+                <button type="submit" class="submit-btn" id="btnAdoptTree">
+                  <span>💚</span> Confirm Tree Adoption & Update Registry
+                </button>
+                <div id="adoptionSuccessMsg" class="status-msg" aria-live="polite"></div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Official Printable Adoption Certificate -->
+          <div class="adoption-certificate-sheet" id="printableCertificate">
+            <div class="cert-border-outer">
+              <div class="cert-border-inner">
+                
+                <!-- Certificate Header -->
+                <div class="cert-header">
+                  <div class="cert-logos">
+                    <span class="cert-seal">🌿 TEXAS TREES FOUNDATION</span>
+                    <span class="cert-seal orange">UTRGV AGROECOLOGY LAB</span>
+                  </div>
+                  <h2 class="cert-main-title">Certificate of Environmental Stewardship</h2>
+                  <p class="cert-subtitle">Community Forest Canopy & Schoolyard Cooling Endowment</p>
+                </div>
+
+                <!-- Certificate Body -->
+                <div class="cert-body">
+                  <p class="cert-intro">This official certificate attests that</p>
+                  <h3 class="cert-honoree" id="certHonoree">The Treviño Family</h3>
+                  <p class="cert-dedication-text" id="certDedicationText">
+                    "Dedicated in honor of Rio Grande Valley elementary students and the teachers fostering outdoor science literacy."
+                  </p>
+                  
+                  <p class="cert-statement">
+                    has proudly adopted and endowed the 10-year stewardship of schoolyard tree
+                  </p>
+
+                  <div class="cert-tree-badge">
+                    <strong class="cert-tree-name" id="certTreeName">The Mighty Live Oak</strong>
+                    <span class="cert-tree-species" id="certTreeSpecies">Texas Live Oak (Quercus virginiana)</span>
+                    <span class="cert-tree-loc" id="certTreeLocation">Donna ISD — Jason M. Rivas Elementary • Zone: West Playground Shade Cluster</span>
+                    <span class="cert-tree-gps" id="certTreeGps">GPS Coordinates: 26.1672° N, 98.0710° W</span>
+                  </div>
+
+                  <!-- 10-Year Projected Ecological Impact Table -->
+                  <div class="cert-impact-table-wrap">
+                    <h4 class="cert-table-title">10-Year Certified Environmental Return on Investment (i-Tree Eco v6.0)</h4>
+                    <table class="cert-impact-table">
+                      <thead>
+                        <tr>
+                          <th>Stormwater Intercepted</th>
+                          <th>Carbon Sequestered</th>
+                          <th>Shade Area Created</th>
+                          <th>Classroom Energy Saved</th>
+                          <th>CTLA Asset Valuation</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td id="certStormwater">14,200 Gallons</td>
+                          <td id="certCarbon">524 lbs CO₂</td>
+                          <td id="certShade">615 Sq Ft</td>
+                          <td id="certEnergy">5,220 kWh ($652.50)</td>
+                          <td id="certAssetVal">$2,840.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- Signatures Row -->
+                <div class="cert-signatures-row">
+                  <div class="sig-block">
+                    <div class="sig-line">Dr. Alexis Racelis</div>
+                    <span class="sig-title">Principal Investigator, UTRGV Agroecology</span>
+                  </div>
+                  <div class="cert-stamp">
+                    <span class="stamp-icon">🛡️</span>
+                    <span class="stamp-text">OFFICIAL TFS GRANT #25065</span>
+                  </div>
+                  <div class="sig-block">
+                    <div class="sig-line">Texas Trees Foundation</div>
+                    <span class="sig-title">Urban Forestry Director, Project Cool Schools</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions Bar -->
+          <div class="cert-actions-bar no-print">
+            <button type="button" class="action-btn btn-primary" id="btnPrintCertificate">
+              <span>🖨️</span> Print Official Stewardship Certificate (8.5×11)
+            </button>
+            <button type="button" class="action-btn btn-secondary" id="btnExportAdoptionLog">
+              <span>📋</span> Export Campus Adoption Registry (CSV)
+            </button>
+          </div>
+
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="portal-footer no-print">
+      <div class="footer-inner">
+        <div>
+          <strong>Texas Trees Foundation × UTRGV Agroecology Lab</strong><br>
+          Principal Investigator: Dr. Alexis Racelis • SOW Fixed-Price Agreement ($157,625.00 Total)<br>
+          USDA Forest Service i-Tree Eco v6.0 Ecological Return on Investment Engine
+        </div>
+        <div class="compliance-badges">
+          <span class="badge">🔒 FERPA & COPPA Compliant</span>
+          <span class="badge">🌳 TFS Grant #25065</span>
+          <span class="badge">⚡ 100% Offline PWA Ready</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="itree_engine.js"></script>
+  <script src="sw-register.js"></script>
+  <script src="sponsorship_portal.js"></script>
+</body>
+</html>

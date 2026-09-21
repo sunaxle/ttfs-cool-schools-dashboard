@@ -1,29 +1,1093 @@
-/* TEKS Lesson Plans Specific Styles */
+/**
+ * TEKS Elementary Science Curriculum & Microclimate Lab Stylesheet
+ * Texas Trees Foundation (TTFS) × UTRGV Project Cool Schools
+ * Human-Analog UI • Accessible • 8.5"x11" Dual-Platform Print Layout
+ */
 
-#passwordSection {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border-top: 5px solid var(--primary);
+:root {
+  --forest-green: #1B4D3E;
+  --forest-dark: #0D2D23;
+  --forest-light: #E8F2EC;
+  --utrgv-orange: #F05023;
+  --utrgv-orange-light: #FDEEE9;
+  --texas-saffron: #ECA100;
+  --earth-charcoal: #2B2D42;
+  --alabaster-bg: #FBFBF9;
+  --parchment-border: #D8D6CD;
+  --card-shadow: 0 4px 16px rgba(27, 77, 62, 0.08);
+  --font-serif: "Georgia", "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-#authForm {
+/* Base resets & layout */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--alabaster-bg);
+  color: var(--earth-charcoal);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.teks-portal-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header customization */
+.header-pretitle {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--utrgv-orange);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.header-subtitle {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* Main Container */
+.curriculum-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  width: 100%;
+}
+
+/* Control Strip */
+.control-strip {
+  background: #FFFFFF;
+  border: 1px solid var(--parchment-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--forest-green);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.human-select,
+.human-input,
+.human-textarea {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--earth-charcoal);
+  background-color: #FAFAFA;
+  border: 1.5px solid #CCD0D4;
+  border-radius: 6px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+}
+
+.human-select:focus,
+.human-input:focus,
+.human-textarea:focus {
+  outline: none;
+  border-color: var(--forest-green);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(27, 77, 62, 0.15);
+}
+
+/* TEKS Tabs */
+.tabs-wrapper {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.teks-tab {
+  background: #F3F4F6;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.teks-tab .tab-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6B7280;
+}
+
+.teks-tab strong {
+  font-size: 13px;
+  color: var(--earth-charcoal);
+}
+
+.teks-tab .tab-desc {
+  font-size: 11px;
+  color: #6B7280;
+}
+
+.teks-tab:hover {
+  background: #EBF3EE;
+  border-color: var(--forest-green);
+}
+
+.teks-tab.active {
+  background: var(--forest-green);
+  border-color: var(--forest-dark);
+  color: #FFFFFF;
+}
+
+.teks-tab.active .tab-badge {
+  color: var(--texas-saffron);
+}
+
+.teks-tab.active strong {
+  color: #FFFFFF;
+}
+
+.teks-tab.active .tab-desc {
+  color: #E2E8F0;
+}
+
+/* Split-Screen Workspace */
+.split-workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .split-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+.workspace-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cards */
+.card {
+  background: #FFFFFF;
+  border: 1px solid var(--parchment-border);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  border-bottom: 1.5px solid #F0F0EE;
+  padding-bottom: 10px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--forest-green);
+}
+
+.card-icon {
+  font-size: 18px;
+}
+
+/* Standard Banner */
+.standard-banner {
+  background: linear-gradient(135deg, var(--forest-green) 0%, var(--forest-dark) 100%);
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 4px 18px rgba(13, 45, 35, 0.2);
+}
+
+.banner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.standard-tag {
+  background: var(--utrgv-orange);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.tea-badge {
+  font-size: 11px;
+  color: #D1E5DA;
+  font-weight: 500;
+}
+
+.standard-title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-family: var(--font-serif);
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.standard-text {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #E2ECE6;
+}
+
+.learning-target {
+  background: rgba(255, 255, 255, 0.12);
+  border-left: 3px solid var(--texas-saffron);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  font-size: 13px;
+  color: #FFFFFF;
+}
+
+/* Live Telemetry Grid */
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .telemetry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.telemetry-metric {
+  background: var(--alabaster-bg);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.metric-val {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--forest-green);
+  font-family: var(--font-serif);
+}
+
+.metric-val.text-orange {
+  color: var(--utrgv-orange);
+}
+
+.metric-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
+/* Lab Simulator Components */
+.sim-intro {
+  font-size: 13px;
+  color: #4B5563;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.surface-probe-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .surface-probe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.surface-btn {
+  background: #FFFFFF;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 10px 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.surface-btn .surface-emoji {
+  font-size: 22px;
+}
+
+.surface-btn strong {
+  font-size: 12px;
+  color: var(--earth-charcoal);
+}
+
+.surface-btn .surface-preview-temp {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6B7280;
+}
+
+.surface-btn:hover {
+  border-color: var(--forest-green);
+  background: #F0FDF4;
+}
+
+.surface-btn.active {
+  border-color: var(--forest-green);
+  background: var(--forest-light);
+  box-shadow: 0 0 0 2px var(--forest-green);
+}
+
+.surface-btn.active strong {
+  color: var(--forest-dark);
+}
+
+.surface-btn.active .surface-preview-temp {
+  color: var(--forest-green);
+}
+
+/* Thermal Probe Instrument Panel */
+.probe-display-panel {
+  background: #1A202C;
+  color: #FFFFFF;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.probe-gauge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-right: 1px solid #374151;
+  padding-right: 18px;
+}
+
+.probe-mercury-bar {
+  width: 14px;
+  height: 90px;
+  background: #374151;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.mercury-level {
+  width: 100%;
+  background: linear-gradient(180deg, #EF4444 0%, #F59E0B 50%, #10B981 100%);
+  border-radius: 10px;
+  transition: height 0.4s ease;
+}
+
+.probe-readout {
+  display: flex;
+  flex-direction: column;
+}
+
+.temp-number {
+  font-size: 32px;
+  font-weight: 900;
+  font-family: var(--font-serif);
+  color: #F87171;
+  line-height: 1;
+}
+
+.temp-sublabel {
+  font-size: 11px;
+  color: #9CA3AF;
+  margin-top: 4px;
+  max-width: 120px;
+}
+
+.probe-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.probe-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.detail-label {
+  color: #9CA3AF;
+}
+
+.text-green {
+  color: #34D399;
+}
+
+.observation-text {
+  color: #F3F4F6;
+  font-style: italic;
+}
+
+/* Grade 4 & 5 Simulators */
+.sim-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .sim-inputs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.human-slider {
+  width: 100%;
+  accent-color: var(--forest-green);
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.producer-results-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .producer-results-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.producer-kpi {
+  background: var(--forest-light);
+  border: 1px solid #C4DFC9;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.producer-kpi .kpi-icon {
+  font-size: 24px;
+}
+
+.producer-kpi strong {
+  display: block;
+  font-size: 16px;
+  color: var(--forest-dark);
+}
+
+.producer-kpi span {
+  font-size: 11px;
+  color: #4B5563;
+  line-height: 1.3;
+  display: block;
+}
+
+/* Soil Sponge Results */
+.sponge-results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sponge-card {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.sponge-card.full-width {
+  grid-column: span 2;
+}
+
+@media (max-width: 640px) {
+  .sponge-card.full-width {
+    grid-column: span 1;
+  }
+}
+
+.sponge-label {
+  display: block;
+  font-size: 12px;
+  color: #4B5563;
+  margin-bottom: 4px;
+}
+
+.sponge-card strong {
+  display: block;
+  font-size: 18px;
+  font-family: var(--font-serif);
+}
+
+.sponge-sub {
+  display: block;
+  font-size: 11px;
+  color: #6B7280;
+  margin-top: 2px;
+}
+
+.wildlife-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.wildlife-tag {
+  background: #E8F5E9;
+  color: #2E7D32;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #C8E6C9;
+}
+
+/* Transect Visualizer */
+.transect-visual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #FAFAFA;
+  border: 1px dashed #CBD5E1;
+  border-radius: 8px;
+  padding: 16px 12px;
+  overflow-x: auto;
+}
+
+.transect-step {
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 8px 10px;
+  text-align: center;
+  min-width: 100px;
+}
+
+.transect-step.highlight {
+  border-color: var(--forest-green);
+  background: var(--forest-light);
+}
+
+.step-marker {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--utrgv-orange);
+}
+
+.step-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--earth-charcoal);
+  margin: 2px 0;
+}
+
+.step-stat {
+  display: block;
+  font-size: 10px;
+  color: #64748B;
+}
+
+.transect-arrow {
+  color: #94A3B8;
+  font-weight: 800;
+}
+
+/* Vocabulary Grid */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .vocab-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vocab-item {
+  background: #FDFDFD;
+  border-left: 3px solid var(--texas-saffron);
+  padding: 8px 12px;
+  border-radius: 0 6px 6px 0;
+}
+
+.vocab-item dt {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--forest-dark);
+}
+
+.vocab-item dd {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* ========================================================================= */
+/* RIGHT COLUMN: Printable Student Notebook Sheet */
+/* ========================================================================= */
+.notebook-sheet {
+  background: #FFFFFF;
+  border: 2px solid var(--parchment-border);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.worksheet-header {
+  border-bottom: 2px solid var(--forest-green);
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+}
+
+.worksheet-seal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.badge-print {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--forest-green);
+}
+
+.print-teks-code {
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--utrgv-orange);
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.worksheet-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--forest-dark);
+  margin: 0 0 14px;
+}
+
+.worksheet-meta-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .worksheet-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.meta-field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.worksheet-section {
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--forest-green);
+  margin: 0 0 4px;
+  border-bottom: 1px dashed #E2E8F0;
+  padding-bottom: 4px;
+}
+
+.section-prompt {
+  font-size: 12px;
+  color: #555;
+  margin: 4px 0 8px;
+}
+
+.hypothesis-box label,
+.conclusion-box label {
+  display: block;
+  font-size: 12px;
+  color: var(--earth-charcoal);
+  margin-bottom: 6px;
+}
+
+.human-textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+/* Field Data Collection Table */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.field-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.field-table th {
+  background: #F1F5F9;
+  color: var(--earth-charcoal);
+  padding: 8px 10px;
+  border: 1px solid #CBD5E1;
+  text-align: left;
+  font-weight: 700;
+}
+
+.field-table td {
+  padding: 6px 8px;
+  border: 1px solid #E2E8F0;
+}
+
+.table-input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Mathematical Calculation Row */
+.calc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.calc-box {
+  text-align: center;
+}
+
+.calc-label {
+  display: block;
+  font-size: 11px;
+  color: #64748B;
+}
+
+.calc-val {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--font-serif);
+  color: var(--earth-charcoal);
+}
+
+.calc-operator {
+  font-size: 20px;
+  font-weight: 900;
+  color: #94A3B8;
+}
+
+.calc-box.highlight .calc-val {
+  color: #059669;
+}
+
+/* Notebook Actions Bar */
+.notebook-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.action-btn {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--forest-green);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background: var(--forest-dark);
+}
+
+.btn-secondary {
+  background: var(--utrgv-orange);
+  color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+  background: #D84218;
+}
+
+.btn-outline {
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
+  color: #475569;
+}
+
+.btn-outline:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+}
+
+/* Educator Feedback Card */
+.feedback-intro {
+  font-size: 12px;
+  color: #555;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.feedback-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 640px) {
+  .feedback-form .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feedback-form label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4B5563;
+  margin-bottom: 2px;
+}
+
+.feedback-form .submit-btn {
+  background: var(--forest-green);
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s;
+}
+
+.feedback-form .submit-btn:hover {
+  background: var(--forest-dark);
+}
+
+.status-msg {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 8px;
+  display: none;
+}
+
+.status-msg.success {
+  display: block;
+  color: #059669;
+}
+
+/* Footer & Badges */
+.portal-footer {
+  margin-top: auto;
+  background: #FFFFFF;
+  border-top: 2px solid var(--forest-green);
+  padding: 24px 20px;
+  font-size: 12px;
+  color: #666;
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.compliance-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.print-only {
+  display: none;
+}
+
+/* ========================================================================= */
+/* DUAL-PLATFORM PRINT STYLES (8.5" x 11" Letter Classroom Worksheets)       */
+/* ========================================================================= */
+@media print {
+  @page {
+    size: letter portrait;
+    margin: 0.5in;
+  }
+
+  body {
+    background: #FFFFFF;
+    color: #000000;
+    font-size: 11pt;
+  }
+
+  .app-header,
+  .app-nav,
+  .control-strip,
+  .simulator-pane,
+  .no-print,
+  .portal-footer,
+  #coolschools-pwa-badge,
+  #pwa-diagnostics-modal {
+    display: none !important;
+  }
+
+  .curriculum-container {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .split-workspace {
+    display: block !important;
+  }
+
+  .notebook-pane {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .notebook-sheet {
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+    padding: 0.3in !important;
+  }
+
+  .worksheet-header {
+    border-bottom: 2px solid #000000 !important;
+  }
+
+  .badge-print {
+    color: #000000 !important;
+  }
+
+  .print-teks-code {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-only {
+    display: block !important;
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid #000000;
     display: flex;
-    flex-direction: column;
-}
+    justify-content: space-between;
+    font-size: 9pt;
+  }
 
-#secureContent {
-    animation: fadeIn 0.5s ease-in-out;
-}
+  .human-input,
+  .human-textarea,
+  .table-input {
+    border: 1px solid #444 !important;
+    background: transparent !important;
+    color: #000000 !important;
+  }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  .field-table th {
+    background: #E5E5E5 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }
