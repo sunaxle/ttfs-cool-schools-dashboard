@@ -120,6 +120,21 @@
       </div>
     </section>
 
+    <!-- Studio Dashboard Navigation Strip & Jump Bar -->
+    <div class="dashboard-jump-bar">
+      <div class="jump-title">
+        <span>📊 <strong>Calculations & Data Below Map:</strong></span>
+      </div>
+      <div class="jump-links">
+        <a href="#cardCampusHeader" class="jump-btn">🏫 Campus Identity</a>
+        <a href="#cardTfsMath" class="jump-btn">📐 TFS Canopy Math (30% Goal)</a>
+        <a href="#cardOffCampus" class="jump-btn">🌐 Off-Campus 500m Buffer</a>
+        <a href="#secSidewalks" class="jump-btn">🚶 500m Sidewalk Shed (19 Segments)</a>
+        <a href="#secSimulator" class="jump-btn">🌱 What-If Simulator</a>
+        <a href="#secDossier" class="jump-btn">📋 5-Tier Dossier</a>
+      </div>
+    </div>
+
     <!-- BELOW MAP: EXPANSIVE FULL-WIDTH ANALYTICAL DASHBOARD -->
     <div class="analytical-panel">
 
@@ -127,7 +142,7 @@
       <div class="dashboard-row-3col">
 
         <!-- Card 1: Campus Identity & Scale -->
-        <section class="card campus-header-card">
+        <section class="card campus-header-card" id="cardCampusHeader">
           <div class="campus-meta-badge">DIGITIZED DATA LOADED</div>
           <h2>M. Rivas Primary</h2>
           <div class="campus-sub">Donna ISD • Hidalgo County, Texas • 32 Geolocated Zones</div>
@@ -153,8 +168,50 @@
           </p>
         </section>
 
-        <!-- Card 2: ON-CAMPUS VS. OFF-CAMPUS CANOPY ANALYSIS (NEW SPECIFIC FEATURE) -->
-        <section class="card off-campus-card">
+        <!-- Card 2: TFS CANOPY PERCENTAGE & 30% GOAL CALCULATOR -->
+        <section class="card tfs-calculator-card" id="cardTfsMath">
+          <div class="card-title-row">
+            <h3>📐 Texas A&M Forest Service Canopy Math</h3>
+            <span class="method-pill" title="Follows TFS QGIS standard workflow">QGIS Standard Equivalent</span>
+          </div>
+          <p class="method-desc">
+            Per TFS guidance, canopy percentage is calculated against the <strong>accessible plantable green space</strong> rather than the whole parcel, preventing building roofs and asphalt parking from artificially deflating the ratio.
+          </p>
+
+          <!-- Metric Comparison Split Grid -->
+          <div class="metric-comparison-grid">
+            <div class="metric-box plantable-focus">
+              <div class="m-title">TFS Plantable Space Canopy</div>
+              <div class="m-val" id="valTfsPct">19.18%</div>
+              <div class="m-sub">92,578 sq ft canopy / 482,588 sq ft site</div>
+              <div class="m-tag plantable-tag">TFS Grant Baseline</div>
+            </div>
+            <div class="metric-box parcel-focus">
+              <div class="m-title">Whole Campus Canopy</div>
+              <div class="m-val" id="valParcelPct">10.45%</div>
+              <div class="m-sub">92,578 sq ft canopy / 885,925 sq ft parcel</div>
+              <div class="m-tag parcel-tag">Overall Property</div>
+            </div>
+          </div>
+
+          <!-- 30% Cool Schools Goal Progress Meter -->
+          <div class="goal-meter-container">
+            <div class="goal-labels">
+              <span>Current Canopy: <strong>19.18%</strong></span>
+              <span class="target-flag">🎯 Cool Schools Goal: <strong>30.0%</strong></span>
+            </div>
+            <div class="goal-track">
+              <div class="goal-fill" id="goalFillBar" style="width: 63.9%;"></div>
+              <div class="goal-marker" style="left: 100%;" title="30% Target"></div>
+            </div>
+            <div class="gap-callout" id="gapCallout">
+              <strong>Deficit to 30% Goal:</strong> <span class="gap-num">10.82%</span> (Needs <strong>+52,198 sq ft</strong> of canopy)
+            </div>
+          </div>
+        </section>
+
+        <!-- Card 3: ON-CAMPUS VS. OFF-CAMPUS CANOPY ANALYSIS -->
+        <section class="card off-campus-card" id="cardOffCampus">
           <div class="card-title-row">
             <h3>🌐 On-Campus vs. Off-Campus Canopy Analysis</h3>
             <span class="method-pill" style="background: #ede7f6; color: #4527a0; border-color: #d1c4e9;">500m Buffer Scope</span>
@@ -193,53 +250,10 @@
             </div>
           </div>
         </section>
-
-        <!-- Card 3: TFS CANOPY PERCENTAGE & 30% GOAL CALCULATOR -->
-        <section class="card tfs-calculator-card">
-          <div class="card-title-row">
-            <h3>📐 Texas A&M Forest Service Math</h3>
-            <span class="method-pill" title="Follows TFS QGIS standard workflow">QGIS Equivalent</span>
-          </div>
-          <p class="method-desc">
-            Per TFS guidelines, canopy is calculated against <strong>accessible plantable green space</strong> rather than the whole parcel.
-          </p>
-
-          <!-- Metric Comparison Split Grid -->
-          <div class="metric-comparison-grid">
-            <div class="metric-box plantable-focus">
-              <div class="m-title">TFS Plantable Space Canopy</div>
-              <div class="m-val" id="valTfsPct">19.18%</div>
-              <div class="m-sub">92,578 sq ft / 482,588 sq ft</div>
-              <div class="m-tag plantable-tag">TFS Grant Baseline</div>
-            </div>
-            <div class="metric-box parcel-focus">
-              <div class="m-title">Whole Campus Canopy</div>
-              <div class="m-val" id="valParcelPct">10.45%</div>
-              <div class="m-sub">92,578 sq ft / 885,925 sq ft</div>
-              <div class="m-tag parcel-tag">Overall Property</div>
-            </div>
-          </div>
-
-          <!-- 30% Cool Schools Goal Progress Meter -->
-          <div class="goal-meter-container">
-            <div class="goal-labels">
-              <span>Current: <strong>19.18%</strong></span>
-              <span class="target-flag">🎯 Goal: <strong>30.0%</strong></span>
-            </div>
-            <div class="goal-track">
-              <div class="goal-fill" id="goalFillBar" style="width: 63.9%;"></div>
-              <div class="goal-marker" style="left: 100%;" title="30% Target"></div>
-            </div>
-            <div class="gap-callout" id="gapCallout">
-              <strong>Deficit to 30% Goal:</strong> <span class="gap-num">10.82%</span> (Needs <strong>+52,198 sq ft</strong> of canopy)
-            </div>
-          </div>
-        </section>
-
       </div>
 
       <!-- ROW 2: 500-METER PEDESTRIAN SIDEWALK SHED INVENTORY & THERMAL ANALYSIS (FULL WIDTH) -->
-      <section class="card sidewalk-inventory-card">
+      <section class="card sidewalk-inventory-card" id="secSidewalks">
         <div class="card-title-row">
           <div>
             <h3 style="font-size: 1.25rem; color: var(--forest-green); margin: 0 0 4px 0;">🚶 500-Meter Pedestrian Sidewalk Shed Inventory & Thermal Analysis</h3>
@@ -380,7 +394,7 @@
         </section>
 
         <!-- Column 2: WHAT-IF SIMULATOR: NATIVE TREE PLANTING SCENARIO -->
-        <section class="card simulation-card">
+        <section class="card simulation-card" id="secSimulator">
           <h3 style="margin-top: 0;">🌱 Interactive "What-If" Planting Simulator</h3>
           <p class="sim-hint">Simulate planting native trees on M. Rivas open playfields to watch the canopy coverage and goal deficit update dynamically.</p>
           
@@ -422,7 +436,7 @@
       </div>
 
       <!-- ROW 4: 5-TIER HOLISTIC ANALYSIS DOSSIER & EXPORT -->
-      <section class="card dossier-card">
+      <section class="card dossier-card" id="secDossier">
         <h3>🌐 5-Tier Holistic Ecological Calculations Dossier</h3>
         <p class="dossier-intro">Concentric spatial framework evaluating schoolyard microclimate impact on student safety, urban heat, and regional community resilience.</p>
 

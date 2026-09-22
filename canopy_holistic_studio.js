@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const solarShadeLayer = L.layerGroup();
 
   let boundaryBounds = null;
+  const sidewalkLayersById = {};
 
   // 3. Category Color & Styling Logic
   function getCategoryStyle(category) {
@@ -208,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.RIVAS_SIDEWALKS_DATA.features.forEach(feat => {
       const p = feat.properties;
       const coords = feat.geometry.coordinates.map(pt => [pt[1], pt[0]]);
-      const type = p.type;
+      const type = p.corridor_type;
 
       if (type === "Designated School Crosswalk") {
         // High visibility yellow striped crosswalk across South Hutto Rd
@@ -221,14 +222,15 @@ document.addEventListener("DOMContentLoaded", () => {
         crosswalk.bindPopup(`
           <div style="font-family:sans-serif; font-size:12px; line-height:1.4;">
             <strong style="color:#f57f17; font-size:13px;">🚸 ${p.name}</strong><br/>
-            <strong>Type:</strong> ${p.type} (${p.width_ft} ft width)<br/>
-            <strong>Surface:</strong> ${p.surface}<br/>
+            <strong>Type:</strong> ${p.corridor_type} (${p.length_ft} ft length)<br/>
+            <strong>Surface:</strong> Thermoplastic striping across ${p.street}<br/>
             <strong>Afternoon Surface Temp:</strong> <span style="color:#c62828; font-weight:bold;">${p.unshaded_temp_f}°F</span> (Full Sun)<br/>
             <strong>Safe Routes Priority:</strong> Designated student crossing point connecting east subdivisions to M. Rivas Primary.
           </div>
         `);
         crosswalk.bindTooltip(`🚸 ${p.name}`, { sticky: true });
         tier3Layer.addLayer(crosswalk);
+        sidewalkLayersById[p.id] = crosswalk;
 
       } else if (type === "Campus Arrival Walkway") {
         // Mint green safe campus entry walkway
@@ -241,14 +243,14 @@ document.addEventListener("DOMContentLoaded", () => {
         walkway.bindPopup(`
           <div style="font-family:sans-serif; font-size:12px; line-height:1.4;">
             <strong style="color:#00897b; font-size:13px;">🚶 ${p.name}</strong><br/>
-            <strong>Type:</strong> ${p.type} (${p.width_ft} ft width)<br/>
-            <strong>Surface:</strong> ${p.surface}<br/>
-            <strong>Current Shade:</strong> ${p.shade_coverage_pct}% • <strong>Temp:</strong> ${p.unshaded_temp_f}°F<br/>
+            <strong>Type:</strong> ${p.corridor_type} (${p.length_ft} ft)<br/>
+            <strong>Current Shade:</strong> ${p.current_canopy_pct}% • <strong>Temp:</strong> ${p.unshaded_temp_f}°F<br/>
             <strong>Function:</strong> Connects street pedestrian flow safely into M. Rivas courtyards away from vehicular traffic.
           </div>
         `);
         walkway.bindTooltip(`🚶 ${p.name}`, { sticky: true });
         tier3Layer.addLayer(walkway);
+        sidewalkLayersById[p.id] = walkway;
 
       } else {
         // Regular sidewalk corridor with glowing casing & crisp electric cyan
@@ -266,11 +268,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const popupHtml = `
           <div style="font-family:sans-serif; font-size:12px; line-height:1.4;">
             <strong style="color:#0097a7; font-size:13px;">🚶 ${p.name}</strong><br/>
-            <strong>Corridor Type:</strong> ${p.type} (${p.side} side)<br/>
-            <strong>Width:</strong> ${p.width_ft} ft • <strong>Surface:</strong> ${p.surface}<br/>
-            <strong>Current Shade Coverage:</strong> <span style="color:#c62828; font-weight:bold;">${p.shade_coverage_pct}%</span> (Severe deficit)<br/>
+            <strong>Corridor:</strong> ${p.street} (${p.length_ft} ft / ~${p.walk_time_min} min walk)<br/>
+            <strong>Current Overhead Shade:</strong> <span style="color:#c62828; font-weight:bold;">${p.current_canopy_pct}%</span> (Severe deficit)<br/>
             <strong>Unshaded Radiant Temp:</strong> <span style="color:#c62828; font-weight:bold;">${p.unshaded_temp_f}°F</span> during 3 PM dismissal<br/>
-            <strong>Target Solution:</strong> Continuous street tree parkway to drop walking surface temps by <strong>15°F–20°F</strong>.
+            <strong>Safe Routes Recommendation:</strong> Plant ${p.trees_needed} street shade trees to achieve 40% walking shade.
           </div>
         `;
         ribbon.bindPopup(popupHtml);
@@ -278,6 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         tier3Layer.addLayer(casing);
         tier3Layer.addLayer(ribbon);
+        sidewalkLayersById[p.id] = ribbon;
       }
     });
   }
@@ -543,16 +545,120 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 12. Center Campus Reset Button
-  document.getElementById("btnResetView").addEventListener("click", () => {
-    if (boundaryBounds) {
-      map.fitBounds(boundaryBounds, { padding: [40, 40] });
-    } else {
-      map.setView(CAMPUS_CENTER, 17);
+  // 13. Populate 500m Pedestrian Sidewalk Shed Table & Filters
+  function populateSidewalkTable() {
+    const tbody = document.getElementById("tbodySidewalks");
+    if (!tbody || !window.RIVAS_SIDEWALKS_DATA || !window.RIVAS_SIDEWALKS_DATA.features) return;
+
+    const data = window.RIVAS_SIDEWALKS_DATA.features;
+
+    function renderRows(filterCategory) {
+      tbody.innerHTML = "";
+
+      data.forEach(feat => {
+        const p = feat.properties;
+        const id = p.id;
+
+        // Filtering
+        if (filterCategory === "frontage" && !id.startsWith("sw_01") && !id.startsWith("sw_02") && !id.startsWith("sw_03") && !id.startsWith("sw_04")) {
+          return;
+        }
+        if (filterCategory === "north" && !id.startsWith("sw_05") && !id.startsWith("sw_06") && !id.startsWith("sw_07") && !id.startsWith("sw_08") && !id.startsWith("sw_09")) {
+          return;
+        }
+        if (filterCategory === "east" && !id.startsWith("sw_10") && !id.startsWith("sw_11") && !id.startsWith("sw_12") && !id.startsWith("sw_13") && !id.startsWith("sw_14")) {
+          return;
+        }
+        if (filterCategory === "crosswalk" && !id.startsWith("cw_") && !id.startsWith("arr_")) {
+          return;
+        }
+
+        let pClass = "p-med";
+        if (p.priority === "Urgent") pClass = "p-urgent";
+        else if (p.priority === "High") pClass = "p-high";
+        else if (p.priority.includes("Enhanced") || p.priority.includes("Completed")) pClass = "p-done";
+
+        const tr = document.createElement("tr");
+        tr.setAttribute("data-sidewalk-id", id);
+        tr.innerHTML = `
+          <td><strong>${p.name}</strong></td>
+          <td>${p.street}</td>
+          <td><span style="font-size:0.75rem; color:#555;">${p.corridor_type}</span></td>
+          <td><strong>${p.length_ft.toLocaleString()} ft</strong> (${p.length_m} m)</td>
+          <td>~${p.walk_time_min} min</td>
+          <td><strong style="color: ${p.current_canopy_pct < 15 ? '#c62828' : '#2e7d32'};">${p.current_canopy_pct}%</strong></td>
+          <td><span style="color:#c62828; font-weight:bold;">${p.unshaded_temp_f}°F</span></td>
+          <td><strong style="color:#2e7d32;">+${p.trees_needed} trees</strong></td>
+          <td><span class="p-tag ${pClass}">${p.priority}</span></td>
+          <td><button type="button" class="btn-row-action" data-sw-id="${id}">🔍 View Map</button></td>
+        `;
+
+        tr.addEventListener("click", () => focusSidewalkOnMap(id));
+        tbody.appendChild(tr);
+      });
     }
-  });
+
+    renderRows("all");
+
+    // Filter Buttons
+    const filterPills = document.querySelectorAll("#sidewalkFilters .filter-pill");
+    filterPills.forEach(pill => {
+      pill.addEventListener("click", (e) => {
+        e.stopPropagation();
+        filterPills.forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        renderRows(pill.getAttribute("data-filter"));
+      });
+    });
+  }
+
+  // Focus and highlight specific sidewalk on map
+  function focusSidewalkOnMap(sidewalkId) {
+    if (!window.RIVAS_SIDEWALKS_DATA) return;
+    const feat = window.RIVAS_SIDEWALKS_DATA.features.find(f => f.properties.id === sidewalkId);
+    if (!feat) return;
+
+    // Activate Tier 3
+    const tier3Btn = document.getElementById("btnTier3");
+    if (tier3Btn) {
+      document.querySelectorAll(".tier-btn").forEach(b => b.classList.remove("active"));
+      tier3Btn.classList.add("active");
+      activateTier("3");
+    }
+
+    const coords = feat.geometry.coordinates.map(pt => [pt[1], pt[0]]);
+    const polyline = L.polyline(coords);
+    const bounds = polyline.getBounds();
+
+    map.fitBounds(bounds, { padding: [80, 80], maxZoom: 18 });
+
+    // Open popup if layer exists
+    if (sidewalkLayersById[sidewalkId]) {
+      setTimeout(() => {
+        sidewalkLayersById[sidewalkId].openPopup();
+      }, 300);
+    }
+
+    // Scroll up smoothly to map if scrolled down
+    const mapStage = document.querySelector(".map-stage");
+    if (mapStage && window.scrollY > 200) {
+      mapStage.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Temporary highlight flash
+    const highlightLine = L.polyline(coords, {
+      color: "#ffeb3b",
+      weight: 10,
+      opacity: 0.95
+    }).addTo(map);
+
+    setTimeout(() => {
+      map.removeLayer(highlightLine);
+    }, 2800);
+  }
 
   // Initial Load
   loadZonesData();
+  populateSidewalkTable();
   updateSimulation();
 });
