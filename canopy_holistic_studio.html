@@ -14,14 +14,67 @@
   
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-  <link rel="stylesheet" href="canopy_holistic_studio.css" />
+  <link rel="stylesheet" href="canopy_holistic_studio.css?v=20260921_layout_fix_v3" />
+
+  <style>
+    /* CRITICAL INLINE OVERRIDES: Guarantee Full-Width Top Map and Vertical Below-Map Flow */
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+
+    main.holistic-workspace {
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 100vh !important;
+    }
+
+    .map-stage {
+      width: 100% !important;
+      height: 780px !important;
+      min-height: 700px !important;
+      position: relative !important;
+      display: block !important;
+      border-bottom: 4px solid #1b5e20 !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+    }
+
+    #holisticMap {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .dashboard-jump-bar {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 999 !important;
+    }
+
+    .analytical-panel {
+      width: 100% !important;
+      max-width: 1560px !important;
+      margin: 0 auto !important;
+      padding: 30px 24px 80px 24px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 24px !important;
+    }
+  </style>
 
   <!-- Turf.js for zero-QGIS browser spatial geometry math -->
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
   <!-- Pre-digitized Rivas Zones GeoJSON fallback data -->
   <script src="data/jason_m_rivas_zones_data.js"></script>
   <!-- Curated OpenStreetMap Surveyed Roads & Precision Sidewalk Network -->
-  <script src="data/rivas_holistic_network.js"></script>
+  <script src="data/rivas_holistic_network.js?v=20260921_layout_fix_v3"></script>
 </head>
 
 <body>
@@ -526,7 +579,7 @@
   </main>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="canopy_holistic_studio.js"></script>
+  <script src="canopy_holistic_studio.js?v=20260921_layout_fix_v3"></script>
 </body>
 
 </html>
