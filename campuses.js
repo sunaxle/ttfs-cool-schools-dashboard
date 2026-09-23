@@ -422,8 +422,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="val" style="color:#d84315;">${campus.canopy.targetPercent}%</div>
               </div>
             </div>
+          <div style="display:flex; gap:6px; margin-top:8px; flex-wrap:wrap;">
+            ${btnHtml}
+            <a href="birding_biodiversity_bulletin.html?campus=${campus.id}" class="campus-action" style="background:#9a3412; color:#fff; text-decoration:none; text-align:center; padding:8px 12px; font-size:12px; border-radius:4px; flex:1; min-width:140px; display:inline-block;">📌 Birding Bulletin</a>
           </div>
-          ${btnHtml}
         </div>
       `;
       gridContainer.insertAdjacentHTML('beforeend', html);

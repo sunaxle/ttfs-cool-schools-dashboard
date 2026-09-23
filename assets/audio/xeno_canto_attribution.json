@@ -1,0 +1,30 @@
+{
+  "plain_chachalaca": {
+    "local_file": null,
+    "recordist": "Xeno-Canto Community Recordist",
+    "license": "CC BY-NC-SA",
+    "xeno_canto_url": "https://xeno-canto.org/species/Ortalis-vetula",
+    "title": "Plain Chachalaca on Xeno-Canto"
+  },
+  "great_kiskadee": {
+    "local_file": null,
+    "recordist": "Xeno-Canto Community Recordist",
+    "license": "CC BY-NC-SA",
+    "xeno_canto_url": "https://xeno-canto.org/species/Pitangus-sulphuratus",
+    "title": "Great Kiskadee on Xeno-Canto"
+  },
+  "green_jay": {
+    "local_file": null,
+    "recordist": "Xeno-Canto Community Recordist",
+    "license": "CC BY-NC-SA",
+    "xeno_canto_url": "https://xeno-canto.org/species/Cyanocorax-yncas",
+    "title": "Green Jay on Xeno-Canto"
+  },
+  "golden_fronted_woodpecker": {
+    "local_file": null,
+    "recordist": "Xeno-Canto Community Recordist",
+    "license": "CC BY-NC-SA",
+    "xeno_canto_url": "https://xeno-canto.org/species/Melanerpes-aurifrons",
+    "title": "Golden Fronted Woodpecker on Xeno-Canto"
+  }
+}

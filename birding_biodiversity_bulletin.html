@@ -18,23 +18,56 @@
         <a href="birding_biodiversity.html">🌟 Standard View</a>
         <a href="tree_stewardship_journal.html">📓 Field Journal</a>
         <a href="tree_diary.html">Tree Diary</a>
+        <a href="campuses.html">Select Campus</a>
+        <a href="portals/v5/index.html">Master Hub v5</a>
     </nav>
 
     <!-- Wood frame around board -->
     <div class="wood-frame">
         
-        <!-- Controls Bar on Top/Bottom of Frame -->
+        <!-- Controls Bar on Top of Frame: Campus Selector & Actions -->
         <div class="frame-controls">
-            <div class="light-switch" id="modeToggle" title="Flip to Official TTFS Document View">
-                <div class="switch-plate">
-                    <div class="switch-toggle up" id="switchToggle"></div>
-                </div>
-                <span class="switch-label">BULLETIN / OFFICIAL DOC</span>
-            </div>
             
-            <div class="print-pin" id="printBtn" title="Print 8.5x11 Field Sheet">
-                <span class="pin-head"></span>
-                <span>🖨️ PRINT SHEET</span>
+            <!-- Dynamic Campus Switcher -->
+            <div class="campus-control-cluster">
+                <label for="campusSelectDropdown" class="campus-control-label">
+                    <span class="pin-icon">📍</span> Active Campus Bulletin:
+                </label>
+                <select id="campusSelectDropdown" class="campus-select-input" aria-label="Select Campus Bulletin Board">
+                    <optgroup label="Donna ISD Campuses">
+                        <option value="donna_rivas" selected>Donna ISD — M. Rivas Primary</option>
+                        <option value="donna_caceres">Donna ISD — J.W. Caceres Discovery</option>
+                        <option value="donna_garza">Donna ISD — Garza Elementary</option>
+                        <option value="donna_singleterry">Donna ISD — Singleterry Elementary</option>
+                        <option value="donna_salinas">Donna ISD — Salinas Elementary</option>
+                        <option value="donna_solis">Donna ISD — Solis Elementary</option>
+                        <option value="donna_ochoa">Donna ISD — Ochoa Elementary</option>
+                        <option value="donna_stainke">Donna ISD — Stainke Elementary</option>
+                    </optgroup>
+                    <optgroup label="Mercedes ISD Campuses">
+                        <option value="mercedes_travis">Mercedes ISD — Travis Elementary</option>
+                        <option value="mercedes_chacon">Mercedes ISD — Chacon Middle School</option>
+                        <option value="mercedes_harrell">Mercedes ISD — Harrell Elementary</option>
+                        <option value="mercedes_hinojosa">Mercedes ISD — Hinojosa Elementary</option>
+                        <option value="mercedes_high">Mercedes ISD — Mercedes High School</option>
+                        <option value="mercedes_academy">Mercedes ISD — Mercedes Academic Academy</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <!-- Mode Switch & Print Buttons -->
+            <div class="action-buttons-cluster">
+                <div class="light-switch" id="modeToggle" title="Flip to Official TTFS Document View">
+                    <div class="switch-plate">
+                        <div class="switch-toggle up" id="switchToggle"></div>
+                    </div>
+                    <span class="switch-label">BULLETIN / OFFICIAL DOC</span>
+                </div>
+                
+                <div class="print-pin" id="printBtn" title="Print 8.5x11 Field Sheet">
+                    <span class="pin-head"></span>
+                    <span>🖨️ PRINT SHEET</span>
+                </div>
             </div>
         </div>
 
@@ -52,6 +85,7 @@
                 <div class="doc-header-stamp">TEXAS TREES FOUNDATION • EDUCATION DEPARTMENT</div>
                 <h1>Lesson: Birding and Biodiversity</h1>
                 <div class="doc-meta-box">
+                    <p><strong>Active Campus:</strong> <span id="docActiveCampusName">Donna ISD — M. Rivas Primary</span></p>
                     <p><strong>Connected lessons:</strong> Bioblitz, Trees and the Food Chain, Superheroes to the Rescue, Pesky Pests Matching Game, Nature Journaling</p>
                     <p><strong>Connected videos:</strong> Trees and Ecosystem, Bioblitz</p>
                 </div>
@@ -98,9 +132,15 @@
                         <div class="tape top-left"></div>
                         <div class="tape top-right"></div>
                         <div class="tack center-top"></div>
-                        <span class="banner-sub">TEXAS TREES FOUNDATION • RANGER STATION HABITAT LAB</span>
+                        <span class="banner-sub">TEXAS TREES FOUNDATION × UTRGV AGROECOLOGY</span>
                         <h1>BIRDING & BIODIVERSITY</h1>
-                        <span class="banner-tagline">Schoolyard Forest Ecosystem & Wildlife Field Scout</span>
+                        
+                        <!-- Dynamic Campus Badge on Banner -->
+                        <div class="active-campus-badge-banner">
+                            <span class="badge-dot">●</span>
+                            <span id="bannerCampusLabel">Donna ISD — M. Rivas Primary</span>
+                            <span class="badge-district-tag" id="bannerDistrictTag">Donna ISD</span>
+                        </div>
                     </div>
                 </header>
 
@@ -205,11 +245,11 @@
                             </div>
                         </div>
 
-                        <!-- "Chachalaca & Friends" Polaroids Grid -->
+                        <!-- "Chachalaca & Friends" Polaroids Grid with Real Open-Licensed Photos -->
                         <div class="polaroid-row-container">
                             <div class="row-title">
-                                <span>🦜 CHACHALACA & FRIENDS (RGV SIGNATURE SPECIES)</span>
-                                <span class="audio-hint">Click 🔊 to hear their call!</span>
+                                <span>🦜 CHACHALACA & FRIENDS (REAL RGV WILDLIFE PHOTOS & XENO-CANTO SOUNDS)</span>
+                                <span class="audio-hint">Click 🔊 to play / Xeno-Canto links!</span>
                             </div>
 
                             <div class="polaroids-grid">
@@ -217,68 +257,112 @@
                                 <!-- Bird 1: Plain Chachalaca -->
                                 <div class="pinned-card polaroid-card" data-bird="chachalaca">
                                     <div class="tack tack-red"></div>
-                                    <div class="polaroid-photo chachalaca-art">
-                                        <div class="bird-avatar">🦃</div>
+                                    <div class="polaroid-photo">
+                                        <img src="assets/birds/plain_chachalaca.jpg" alt="Plain Chachalaca in South Texas brush" class="real-bird-img" loading="lazy">
                                         <span class="species-badge">RGV NATIVE</span>
                                     </div>
                                     <div class="polaroid-caption">
                                         <strong>Plain Chachalaca</strong>
                                         <span class="sci-name">Ortalis vetula</span>
                                         <p>Loud morning chorus! Loves native Anacua & Hackberry berries.</p>
-                                        <button type="button" class="radio-sound-btn" data-sound="chachalaca">
-                                            <span>🔊</span> "Cha-cha-lac!"
-                                        </button>
+                                        
+                                        <div class="sound-action-box">
+                                            <button type="button" class="radio-sound-btn" data-sound="chachalaca">
+                                                <span>🔊</span> "Cha-cha-lac!"
+                                            </button>
+                                            <a href="https://xeno-canto.org/species/Ortalis-vetula" target="_blank" rel="noopener" class="xeno-link" title="Open Xeno-Canto Catalog">
+                                                🎵 Xeno-Canto ↗
+                                            </a>
+                                        </div>
+
+                                        <!-- Photo Citation -->
+                                        <div class="photo-attribution">
+                                            <span>📷 Photo: Amado Demesa (<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>)</span>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Bird 2: Great Kiskadee -->
-                                <div class="polaroid-card" data-bird="kiskadee">
+                                <div class="pinned-card polaroid-card" data-bird="kiskadee">
                                     <div class="tape top-center-tape"></div>
-                                    <div class="polaroid-photo kiskadee-art">
-                                        <div class="bird-avatar">🟡</div>
+                                    <div class="polaroid-photo">
+                                        <img src="assets/birds/great_kiskadee.jpg" alt="Great Kiskadee perched on branch" class="real-bird-img" loading="lazy">
                                         <span class="species-badge">CANOPY SCOUT</span>
                                     </div>
                                     <div class="polaroid-caption">
                                         <strong>Great Kiskadee</strong>
                                         <span class="sci-name">Pitangus sulphuratus</span>
                                         <p>Yellow chest & bandit mask. Shouts its name: <em>"Kis-ka-DEE!"</em></p>
-                                        <button type="button" class="radio-sound-btn" data-sound="kiskadee">
-                                            <span>🔊</span> "Kis-ka-DEE!"
-                                        </button>
+                                        
+                                        <div class="sound-action-box">
+                                            <button type="button" class="radio-sound-btn" data-sound="kiskadee">
+                                                <span>🔊</span> "Kis-ka-DEE!"
+                                            </button>
+                                            <a href="https://xeno-canto.org/species/Pitangus-sulphuratus" target="_blank" rel="noopener" class="xeno-link" title="Open Xeno-Canto Catalog">
+                                                🎵 Xeno-Canto ↗
+                                            </a>
+                                        </div>
+
+                                        <!-- Photo Citation -->
+                                        <div class="photo-attribution">
+                                            <span>📷 Photo: Giles Laurent (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>)</span>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Bird 3: Green Jay -->
-                                <div class="polaroid-card" data-bird="greenjay">
+                                <div class="pinned-card polaroid-card" data-bird="greenjay">
                                     <div class="tack tack-blue"></div>
-                                    <div class="polaroid-photo greenjay-art">
-                                        <div class="bird-avatar">🦜</div>
+                                    <div class="polaroid-photo">
+                                        <img src="assets/birds/green_jay.jpg" alt="Green Jay in South Texas" class="real-bird-img" loading="lazy">
                                         <span class="species-badge">ACORN CACHER</span>
                                     </div>
                                     <div class="polaroid-caption">
                                         <strong>Green Jay</strong>
                                         <span class="sci-name">Cyanocorax yncas</span>
                                         <p>Vibrant green & blue plumage. Smart schoolyard acorn collector!</p>
-                                        <button type="button" class="radio-sound-btn" data-sound="greenjay">
-                                            <span>🔊</span> "Cheep-Rattle"
-                                        </button>
+                                        
+                                        <div class="sound-action-box">
+                                            <button type="button" class="radio-sound-btn" data-sound="greenjay">
+                                                <span>🔊</span> "Cheep-Rattle"
+                                            </button>
+                                            <a href="https://xeno-canto.org/species/Cyanocorax-yncas" target="_blank" rel="noopener" class="xeno-link" title="Open Xeno-Canto Catalog">
+                                                🎵 Xeno-Canto ↗
+                                            </a>
+                                        </div>
+
+                                        <!-- Photo Citation -->
+                                        <div class="photo-attribution">
+                                            <span>📷 Photo: Niels Krabbe (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>)</span>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Bird 4: Golden-fronted Woodpecker -->
-                                <div class="polaroid-card" data-bird="woodpecker">
+                                <div class="pinned-card polaroid-card" data-bird="woodpecker">
                                     <div class="tape top-right-tape"></div>
-                                    <div class="polaroid-photo woodpecker-art">
-                                        <div class="bird-avatar">🪵</div>
+                                    <div class="polaroid-photo">
+                                        <img src="assets/birds/golden_fronted_woodpecker.jpg" alt="Golden-fronted Woodpecker inspecting tree trunk" class="real-bird-img" loading="lazy">
                                         <span class="species-badge">TRUNK INSPECTOR</span>
                                     </div>
                                     <div class="polaroid-caption">
                                         <strong>Golden-fronted Woodpecker</strong>
                                         <span class="sci-name">Melanerpes aurifrons</span>
                                         <p>Zebra back & golden nape. Pecks tree bark for hidden beetles.</p>
-                                        <button type="button" class="radio-sound-btn" data-sound="woodpecker">
-                                            <span>🔊</span> "Churr-Tap!"
-                                        </button>
+                                        
+                                        <div class="sound-action-box">
+                                            <button type="button" class="radio-sound-btn" data-sound="woodpecker">
+                                                <span>🔊</span> "Churr-Tap!"
+                                            </button>
+                                            <a href="https://xeno-canto.org/species/Melanerpes-aurifrons" target="_blank" rel="noopener" class="xeno-link" title="Open Xeno-Canto Catalog">
+                                                🎵 Xeno-Canto ↗
+                                            </a>
+                                        </div>
+
+                                        <!-- Photo Citation -->
+                                        <div class="photo-attribution">
+                                            <span>📷 Photo: Chuck Homler (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>)</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -296,11 +380,16 @@
                             <div class="clipboard-inner-sheet">
                                 <div class="clip-header">
                                     <span class="clip-tag">📋 LIVE FIELD LOG</span>
-                                    <h2>BioBlitz Logger</h2>
-                                    <span class="zero-pii">Zero PII • Classroom Level</span>
+                                    <h2 id="clipboardSchoolTitle">BioBlitz Logger</h2>
+                                    <span class="zero-pii" id="clipboardScopeTag">Logging for: Donna ISD — M. Rivas Primary</span>
                                 </div>
 
                                 <form id="loggerForm" class="logger-form">
+                                    <div class="form-field">
+                                        <label for="logClassroomName">Classroom / Team Name:</label>
+                                        <input type="text" id="logClassroomName" class="clip-input" placeholder="e.g. Room 204 — Jaguar Scouts" required>
+                                    </div>
+
                                     <div class="form-field">
                                         <label for="logSpecies">Observed Species:</label>
                                         <input type="text" id="logSpecies" class="clip-input" placeholder="e.g. Plain Chachalaca or Monarch" required>
@@ -331,7 +420,7 @@
                                     </div>
 
                                     <button type="submit" class="stamp-submit-btn">
-                                        <span>📮</span> SUBMIT TO UTRGV LEDGER
+                                        <span>📮</span> SUBMIT TO CAMPUS LEDGER
                                     </button>
                                 </form>
 
@@ -350,49 +439,22 @@
                             
                             <div class="graph-header">
                                 <span class="graph-tag">📊 OFFICIAL FIELD LOG</span>
-                                <h3>Class Observation Tally</h3>
+                                <h3 id="tableCampusHeader">M. Rivas Primary Observation Tally</h3>
                             </div>
 
                             <div class="table-wrap">
                                 <table class="graph-tally-table">
                                     <thead>
                                         <tr>
+                                            <th>Class / Team</th>
                                             <th>Species</th>
                                             <th>Tally</th>
                                             <th>Date</th>
-                                            <th>Action</th>
-                                            <th>Insects / Notes</th>
+                                            <th>Action / Notes</th>
                                         </tr>
                                     </thead>
                                     <tbody id="bulletinTableBody">
-                                        <tr>
-                                            <td><strong>Plain Chachalaca</strong></td>
-                                            <td><span class="tally-marks">||||</span> (4)</td>
-                                            <td>09/16</td>
-                                            <td>Calling</td>
-                                            <td>Eating hackberries</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Great Kiskadee</strong></td>
-                                            <td><span class="tally-marks">||</span> (2)</td>
-                                            <td>09/16</td>
-                                            <td>Perching</td>
-                                            <td>Caught grasshopper</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Green Jay</strong></td>
-                                            <td><span class="tally-marks">|||</span> (3)</td>
-                                            <td>09/14</td>
-                                            <td>Foraging</td>
-                                            <td>Acorn search</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Ladybug Beetle</strong></td>
-                                            <td><span class="tally-marks">|||| |</span> (6)</td>
-                                            <td>09/16</td>
-                                            <td>Crawling</td>
-                                            <td>Under oak leaves</td>
-                                        </tr>
+                                        <!-- Hydrated dynamically per campus from JavaScript -->
                                     </tbody>
                                 </table>
                             </div>

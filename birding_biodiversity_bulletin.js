@@ -1,10 +1,57 @@
 /**
  * Ranger Station Bulletin Board Logic
- * Birding & Biodiversity Field Lab
+ * Multi-Campus Scoped & Open Media Integration
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Elements
+    // Campus Catalog
+    const campusDirectory = {
+        'donna_rivas': { name: 'M. Rivas Primary Discovery Academy', short: 'M. Rivas Primary', district: 'Donna ISD' },
+        'donna_caceres': { name: 'J.W. Caceres Discovery Academy', short: 'J.W. Caceres', district: 'Donna ISD' },
+        'donna_garza': { name: 'Garza Elementary School', short: 'Garza Elementary', district: 'Donna ISD' },
+        'donna_singleterry': { name: 'Singleterry Elementary School', short: 'Singleterry Elementary', district: 'Donna ISD' },
+        'donna_salinas': { name: 'Salinas Elementary School', short: 'Salinas Elementary', district: 'Donna ISD' },
+        'donna_solis': { name: 'Solis Elementary School', short: 'Solis Elementary', district: 'Donna ISD' },
+        'donna_ochoa': { name: 'Ochoa Elementary School', short: 'Ochoa Elementary', district: 'Donna ISD' },
+        'donna_stainke': { name: 'Stainke Elementary School', short: 'Stainke Elementary', district: 'Donna ISD' },
+        'mercedes_travis': { name: 'W.B. Travis Elementary School', short: 'Travis Elementary', district: 'Mercedes ISD' },
+        'mercedes_chacon': { name: 'Sgt. Manuel Chacon Middle School', short: 'Chacon Middle', district: 'Mercedes ISD' },
+        'mercedes_harrell': { name: 'Harrell Elementary School', short: 'Harrell Elementary', district: 'Mercedes ISD' },
+        'mercedes_hinojosa': { name: 'Ruben Hinojosa Elementary School', short: 'Hinojosa Elementary', district: 'Mercedes ISD' },
+        'mercedes_high': { name: 'Mercedes High School', short: 'Mercedes High', district: 'Mercedes ISD' },
+        'mercedes_academy': { name: 'Mercedes Academic Academy', short: 'Mercedes Academy', district: 'Mercedes ISD' }
+    };
+
+    // Pre-seeded baseline observations per campus
+    const baselineCampusObservations = {
+        'donna_rivas': [
+            { classroom: 'Room 204 (Scouts)', species: 'Plain Chachalaca', count: 4, tallyStr: '||||', date: '09/16', action: 'Calling in canopy', notes: 'Eating hackberries' },
+            { classroom: 'Room 301 (Gomez)', species: 'Great Kiskadee', count: 2, tallyStr: '||', date: '09/16', action: 'Perching', notes: 'Grasshopper hunt' },
+            { classroom: 'Room 105 (Rios)', species: 'Green Jay', count: 3, tallyStr: '|||', date: '09/14', action: 'Foraging', notes: 'Under live oak' },
+            { classroom: 'Team Monarch', species: 'Ladybug Beetle', count: 6, tallyStr: '|||| |', date: '09/16', action: 'Crawling', notes: 'Aphid check' }
+        ],
+        'donna_caceres': [
+            { classroom: 'Room 402 (Eco-Scouts)', species: 'Green Jay', count: 5, tallyStr: '||||', date: '09/17', action: 'Acorn caching', notes: 'Near mesquite cluster' },
+            { classroom: 'Room 101 (Flores)', species: 'Golden-fronted Woodpecker', count: 2, tallyStr: '||', date: '09/15', action: 'Pecking trunk', notes: 'Sugar Hackberry' },
+            { classroom: 'Room 205 (Nature Team)', species: 'Plain Chachalaca', count: 3, tallyStr: '|||', date: '09/12', action: 'Morning chorus', notes: 'Thicket habitat' }
+        ],
+        'mercedes_travis': [
+            { classroom: 'Room 303 (Tigers)', species: 'Great Kiskadee', count: 3, tallyStr: '|||', date: '09/18', action: 'Singing', notes: 'Schoolyard flagpole tree' },
+            { classroom: 'Room 201 (Forestry)', species: 'Plain Chachalaca', count: 2, tallyStr: '||', date: '09/17', action: 'Eating seeds', notes: 'Ebony tree canopy' },
+            { classroom: 'Room 404 (BioBlitz)', species: 'Monarch Butterfly', count: 4, tallyStr: '||||', date: '09/15', action: 'Nectar feeding', notes: 'Pollinator garden' }
+        ]
+    };
+
+    // DOM Elements
+    const campusSelectDropdown = document.getElementById('campusSelectDropdown');
+    const bannerCampusLabel = document.getElementById('bannerCampusLabel');
+    const bannerDistrictTag = document.getElementById('bannerDistrictTag');
+    const docActiveCampusName = document.getElementById('docActiveCampusName');
+    const clipboardSchoolTitle = document.getElementById('clipboardSchoolTitle');
+    const clipboardScopeTag = document.getElementById('clipboardScopeTag');
+    const tableCampusHeader = document.getElementById('tableCampusHeader');
+    const bulletinTableBody = document.getElementById('bulletinTableBody');
+
     const modeToggle = document.getElementById('modeToggle');
     const switchToggle = document.getElementById('switchToggle');
     const officialDoc = document.getElementById('officialDoc');
@@ -12,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const stringLayer = document.getElementById('stringLayer');
     const printBtn = document.getElementById('printBtn');
     
+    const logClassroomName = document.getElementById('logClassroomName');
     const logSpeciesInput = document.getElementById('logSpecies');
     const logCountVal = document.getElementById('logCountVal');
     const btnCountDec = document.getElementById('btnCountDec');
@@ -20,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const logActions = document.getElementById('logActions');
     const loggerForm = document.getElementById('loggerForm');
     const logSuccessStamp = document.getElementById('logSuccessStamp');
-    const bulletinTableBody = document.getElementById('bulletinTableBody');
 
     const focusOverlay = document.getElementById('focusOverlay');
     const focusContainer = document.getElementById('focusContainer');
@@ -28,43 +75,144 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentCount = 1;
     let isOfficialDoc = false;
+    let activeCampusId = 'donna_rivas';
 
-    // 1. Dual-Mode Switch Toggle (Light Switch)
-    modeToggle.addEventListener('click', () => {
-        isOfficialDoc = !isOfficialDoc;
-        if (isOfficialDoc) {
-            switchToggle.classList.remove('up');
-            switchToggle.classList.add('down');
-            officialDoc.classList.remove('hidden');
-            redesignBoard.classList.add('hidden');
-            if (stringLayer) stringLayer.classList.add('hidden');
-        } else {
-            switchToggle.classList.remove('down');
-            switchToggle.classList.add('up');
-            officialDoc.classList.add('hidden');
-            redesignBoard.classList.remove('hidden');
-            if (stringLayer) stringLayer.classList.remove('hidden');
+    // 1. Resolve Active Campus (URL Parameter -> LocalStorage -> Default)
+    function resolveInitialCampus() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const paramCampus = urlParams.get('campus');
+        if (paramCampus && campusDirectory[paramCampus]) {
+            return paramCampus;
         }
-    });
+        const savedCampus = localStorage.getItem('ttfs_active_campus_id');
+        if (savedCampus && campusDirectory[savedCampus]) {
+            return savedCampus;
+        }
+        return 'donna_rivas';
+    }
 
-    // 2. Print Pin Action
-    printBtn.addEventListener('click', () => {
-        // Temporarily switch to official doc for clean 8.5x11 print
-        const wasDoc = isOfficialDoc;
-        if (!wasDoc) {
-            officialDoc.classList.remove('hidden');
-            redesignBoard.classList.add('hidden');
+    function setActiveCampus(campusId, updateUrl = true) {
+        if (!campusDirectory[campusId]) campusId = 'donna_rivas';
+        activeCampusId = campusId;
+        localStorage.setItem('ttfs_active_campus_id', campusId);
+
+        const info = campusDirectory[campusId];
+        
+        // Update UI Badges
+        if (campusSelectDropdown) campusSelectDropdown.value = campusId;
+        if (bannerCampusLabel) bannerCampusLabel.textContent = `${info.district} — ${info.short}`;
+        if (bannerDistrictTag) bannerDistrictTag.textContent = info.district;
+        if (docActiveCampusName) docActiveCampusName.textContent = `${info.district} — ${info.name}`;
+        if (clipboardScopeTag) clipboardScopeTag.textContent = `Logging for: ${info.short}`;
+        if (tableCampusHeader) tableCampusHeader.textContent = `${info.short} Observation Tally`;
+
+        // Update URL query string without reloading page
+        if (updateUrl) {
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('campus', campusId);
+            window.history.replaceState({}, '', newUrl);
         }
-        setTimeout(() => {
-            window.print();
-            if (!wasDoc) {
+
+        // Hydrate observation table for this campus
+        renderCampusObservations();
+    }
+
+    // 2. Campus-Scoped Storage & Hydration
+    function getCampusStorageKey(campusId) {
+        return `ttfs_bulletin_logs_${campusId}`;
+    }
+
+    function loadCampusLogs(campusId) {
+        const key = getCampusStorageKey(campusId);
+        try {
+            const saved = localStorage.getItem(key);
+            if (saved) return JSON.parse(saved);
+        } catch (e) {
+            console.warn('Storage read error:', e);
+        }
+
+        // Fallback to pre-seeded baseline
+        if (baselineCampusObservations[campusId]) {
+            return baselineCampusObservations[campusId];
+        }
+
+        // Generic default seed
+        const genericSeed = [
+            { classroom: 'Team Monarch', species: 'Plain Chachalaca', count: 2, tallyStr: '||', date: '09/15', action: 'Perching', notes: 'Native tree canopy' },
+            { classroom: 'Team Ocelot', species: 'Great Kiskadee', count: 1, tallyStr: '|', date: '09/16', action: 'Singing', notes: 'Schoolyard boundary' }
+        ];
+        return genericSeed;
+    }
+
+    function saveCampusLog(campusId, entry) {
+        const logs = loadCampusLogs(campusId);
+        logs.unshift(entry);
+        try {
+            localStorage.setItem(getCampusStorageKey(campusId), JSON.stringify(logs));
+        } catch (e) {
+            console.warn('Storage write error:', e);
+        }
+    }
+
+    function renderCampusObservations() {
+        if (!bulletinTableBody) return;
+        const logs = loadCampusLogs(activeCampusId);
+        bulletinTableBody.innerHTML = logs.map(entry => `
+            <tr>
+                <td><strong>${entry.classroom || 'Class Team'}</strong></td>
+                <td>${entry.species}</td>
+                <td><span class="tally-marks">${entry.tallyStr}</span> (${entry.count})</td>
+                <td>${entry.date}</td>
+                <td>${entry.action || 'Observing'}${entry.notes ? ` • <em>${entry.notes}</em>` : ''}</td>
+            </tr>
+        `).join('');
+    }
+
+    if (campusSelectDropdown) {
+        campusSelectDropdown.addEventListener('change', (e) => {
+            setActiveCampus(e.target.value, true);
+        });
+    }
+
+    // 3. Dual-Mode Switch Toggle (Light Switch)
+    if (modeToggle) {
+        modeToggle.addEventListener('click', () => {
+            isOfficialDoc = !isOfficialDoc;
+            if (isOfficialDoc) {
+                switchToggle.classList.remove('up');
+                switchToggle.classList.add('down');
+                officialDoc.classList.remove('hidden');
+                redesignBoard.classList.add('hidden');
+                if (stringLayer) stringLayer.classList.add('hidden');
+            } else {
+                switchToggle.classList.remove('down');
+                switchToggle.classList.add('up');
                 officialDoc.classList.add('hidden');
                 redesignBoard.classList.remove('hidden');
+                if (stringLayer) stringLayer.classList.remove('hidden');
             }
-        }, 150);
-    });
+        });
+    }
 
-    // 3. Web Audio API Bird Call Synthesizer
+    // 4. Print Pin Action (8.5x11 Clean View)
+    if (printBtn) {
+        printBtn.addEventListener('click', () => {
+            const wasDoc = isOfficialDoc;
+            if (!wasDoc) {
+                officialDoc.classList.remove('hidden');
+                redesignBoard.classList.add('hidden');
+            }
+            setTimeout(() => {
+                window.print();
+                if (!wasDoc) {
+                    officialDoc.classList.add('hidden');
+                    redesignBoard.classList.remove('hidden');
+                }
+            }, 150);
+        });
+    }
+
+    // 5. Bird Sound Synthesizer (Web Audio API Fallback)
     const audioCtx = (window.AudioContext || window.webkitAudioContext) ? new (window.AudioContext || window.webkitAudioContext)() : null;
 
     function playBirdSound(birdKey) {
@@ -152,13 +300,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const soundBtns = document.querySelectorAll('.radio-sound-btn');
     soundBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); // prevent modal open
+            e.stopPropagation();
             const soundKey = btn.getAttribute('data-sound');
             playBirdSound(soundKey);
         });
     });
 
-    // 4. Tally Counter Controls
+    // 6. Tally Counter Controls
     if (btnCountDec) {
         btnCountDec.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -178,7 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Tally Marks Formatter
     function formatTallyMarks(num) {
         let res = '';
         let rem = num;
@@ -192,27 +339,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return res.trim();
     }
 
-    // 6. Logger Form Submission & Persistence
-    const STORAGE_KEY = 'ttfs_bulletin_bird_logs_v1';
-
-    function loadLogs() {
-        try {
-            return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        } catch (e) {
-            return [];
-        }
-    }
-
-    function saveLog(entry) {
-        const logs = loadLogs();
-        logs.unshift(entry);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
-    }
-
+    // 7. Logger Form Submission (Scoped to Active Campus)
     if (loggerForm) {
         loggerForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
+            const classroom = logClassroomName.value.trim() || 'Classroom Team';
             const species = logSpeciesInput.value.trim();
             const count = currentCount;
             const category = logCategory.value;
@@ -221,6 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tallyStr = formatTallyMarks(count);
 
             const entry = {
+                classroom,
                 species,
                 count,
                 tallyStr,
@@ -229,30 +362,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 notes: `${category} sighting`
             };
 
-            saveLog(entry);
+            // Save to active campus
+            saveCampusLog(activeCampusId, entry);
 
-            // Prepend to Graph Paper Table
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td><strong>${entry.species}</strong></td>
-                <td><span class="tally-marks">${entry.tallyStr}</span> (${entry.count})</td>
-                <td>${entry.date}</td>
-                <td>${entry.action}</td>
-                <td>${entry.notes}</td>
-            `;
-            if (bulletinTableBody) {
-                bulletinTableBody.insertBefore(tr, bulletinTableBody.firstChild);
-            }
+            // Re-render table
+            renderCampusObservations();
 
             // Show success stamp
             if (logSuccessStamp) {
+                const info = campusDirectory[activeCampusId];
+                logSuccessStamp.textContent = `✓ LOGGED TO ${info.short.toUpperCase()} LEDGER!`;
                 logSuccessStamp.classList.remove('hidden');
                 setTimeout(() => {
                     logSuccessStamp.classList.add('hidden');
-                }, 3000);
+                }, 3500);
             }
 
-            // Reset
+            // Reset inputs
             logSpeciesInput.value = '';
             logActions.value = '';
             currentCount = 1;
@@ -260,11 +386,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Click to Focus/Enlarge Pinned Cards
+    // 8. Click to Focus/Enlarge Pinned Cards
     const expandableCards = document.querySelectorAll('.pinned-card[data-expandable="true"]');
     expandableCards.forEach(card => {
         card.addEventListener('click', (e) => {
-            // Don't expand if clicking input/button
             if (['BUTTON', 'INPUT', 'SELECT', 'A'].includes(e.target.tagName)) return;
             
             focusContainer.innerHTML = '';
@@ -275,7 +400,6 @@ document.addEventListener('DOMContentLoaded', () => {
             focusContainer.appendChild(clone);
             focusOverlay.classList.remove('hidden');
 
-            // Wire up buttons in clone
             const cloneSoundBtns = clone.querySelectorAll('.radio-sound-btn');
             cloneSoundBtns.forEach(b => {
                 b.addEventListener('click', () => {
@@ -298,4 +422,8 @@ document.addEventListener('DOMContentLoaded', () => {
             focusContainer.innerHTML = '';
         }
     });
+
+    // Initialize Campus on load
+    const initialCampus = resolveInitialCampus();
+    setActiveCampus(initialCampus, false);
 });
