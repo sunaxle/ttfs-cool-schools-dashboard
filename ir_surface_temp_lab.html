@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IR Surface Temperature & Tree Shade Heat Relief Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ir_surface_temp_lab.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/utrgv-agroecology.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&family=Special+Elite&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Global Nav -->
+    <nav class="site-nav">
+        <a href="birding_biodiversity_bulletin.html">📌 Birding Bulletin</a>
+        <a href="tree_stewardship_journal.html">📓 Field Journal</a>
+        <a href="tree_diary.html">Tree Diary</a>
+        <a href="campuses.html">Select Campus</a>
+        <a href="portals/v5/index.html">Master Hub v5</a>
+    </nav>
+
+    <!-- Wood frame around board -->
+    <div class="wood-frame">
+        
+        <!-- Controls Bar on Top of Frame: Campus Selector & Actions -->
+        <div class="frame-controls">
+            
+            <!-- Dynamic Campus Switcher -->
+            <div class="campus-control-cluster">
+                <label for="campusSelectDropdown" class="campus-control-label">
+                    <span class="pin-icon">📍</span> Active Campus Lab:
+                </label>
+                <select id="campusSelectDropdown" class="campus-select-input" aria-label="Select Campus">
+                    <optgroup label="Donna ISD Campuses">
+                        <option value="donna_rivas" selected>Donna ISD — M. Rivas Primary</option>
+                        <option value="donna_caceres">Donna ISD — J.W. Caceres Discovery</option>
+                        <option value="donna_garza">Donna ISD — Garza Elementary</option>
+                        <option value="donna_singleterry">Donna ISD — Singleterry Elementary</option>
+                        <option value="donna_salinas">Donna ISD — Salinas Elementary</option>
+                        <option value="donna_solis">Donna ISD — Solis Elementary</option>
+                        <option value="donna_ochoa">Donna ISD — Ochoa Elementary</option>
+                        <option value="donna_stainke">Donna ISD — Stainke Elementary</option>
+                    </optgroup>
+                    <optgroup label="Mercedes ISD Campuses">
+                        <option value="mercedes_travis">Mercedes ISD — Travis Elementary</option>
+                        <option value="mercedes_chacon">Mercedes ISD — Chacon Middle School</option>
+                        <option value="mercedes_harrell">Mercedes ISD — Harrell Elementary</option>
+                        <option value="mercedes_hinojosa">Mercedes ISD — Hinojosa Elementary</option>
+                        <option value="mercedes_high">Mercedes ISD — Mercedes High School</option>
+                        <option value="mercedes_academy">Mercedes ISD — Mercedes Academic Academy</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <!-- Mode Switch & Print Buttons -->
+            <div class="action-buttons-cluster">
+                <div class="light-switch" id="modeToggle" title="Flip between Interactive Lab and Official TTFS Document">
+                    <div class="switch-plate">
+                        <div class="switch-toggle up" id="switchToggle"></div>
+                    </div>
+                    <span class="switch-label">THERMAL LAB / LESSON DOC</span>
+                </div>
+                
+                <div class="print-pin" id="printBtn" title="Print 8.5x11 Field Sheet">
+                    <span class="pin-head"></span>
+                    <span>🖨️ PRINT LAB SHEET</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Cork Board Canvas -->
+        <div class="cork-board" id="corkBoard">
+            
+            <!-- SVG String Layer -->
+            <svg class="string-layer" id="stringLayer" aria-hidden="true">
+                <path d="M 320 220 Q 460 300 560 210" class="red-string" />
+                <path d="M 700 340 Q 820 460 900 370" class="red-string" />
+            </svg>
+
+            <!-- VIEW 1: OFFICIAL TTFS DOCUMENT VIEW (Hidden by default) -->
+            <div class="official-doc hidden" id="officialDoc">
+                <div class="doc-header-stamp">TEXAS TREES FOUNDATION • TEKS OUTDOOR SCIENCE LAB</div>
+                <h1>Lesson: Infrared (IR) Surface Temperature & Tree Canopy Heat Relief</h1>
+                
+                <div class="doc-meta-box">
+                    <p><strong>Active Campus:</strong> <span id="docActiveCampusName">Donna ISD — M. Rivas Primary</span></p>
+                    <p><strong>TEKS Alignment:</strong> Science 3.6A (Thermal Energy), 4.6A (Energy Transfer & Conservation), 5.6A (Light & Thermal Energy), 5.9B (Organisms & Environment), MS 6.9A (Thermal Heat Transfer)</p>
+                    <p><strong>Key Concepts:</strong> Solar Radiation Absorption, Surface Albedo, Thermal Mass, Evapotranspiration, Microclimate Cooling Delta</p>
+                </div>
+                
+                <h2>🎯 Objective</h2>
+                <p>Students will use non-contact Infrared (IR) Thermometers to measure, compare, and analyze the surface temperatures of various schoolyard materials (asphalt, rubber turf, concrete, bare soil, grass). Students will quantify the cooling relief provided by tree shade and understand how tree canopies mitigate the Urban Heat Island effect.</p>
+                
+                <h2>📦 Materials Needed</h2>
+                <ul>
+                    <li>Non-contact Infrared (IR) Temperature Guns (1 per small group)</li>
+                    <li>Chalk (for marking test zones on pavement and soil)</li>
+                    <li>Clipboards and printed Field Data Sheets</li>
+                    <li>Pencils / Erasers</li>
+                    <li>Safety Rules Agreement (Class II Laser safety)</li>
+                </ul>
+
+                <h2>⚠️ IR Thermometer Safety & Protocol Rules</h2>
+                <ol>
+                    <li><strong>Laser Safety:</strong> Never point the IR laser pointer at anyone's eyes, faces, or reflective mirrors. Keep fingers off the trigger when walking.</li>
+                    <li><strong>Measurement Distance:</strong> Hold the gun 12 to 18 inches away from the surface (at a 90° perpendicular angle) for the most accurate surface reading.</li>
+                    <li><strong>Paired Sampling:</strong> Always measure the *exact same material* in two conditions: ☀️ in Direct Full Sun vs. 🌲 in Deep Tree Shade.</li>
+                </ol>
+                
+                <h2>🔬 Method & Investigation Steps</h2>
+                <h3>Step 1: Hypothesis & Prediction</h3>
+                <p>Before stepping outside, have student teams rank which schoolyard materials they think will absorb the most heat (Asphalt vs. Rubber vs. Concrete vs. Soil vs. Turf). Predict the temperature difference (Delta) that tree shade will provide.</p>
+                
+                <h3>Step 2: Field Data Collection</h3>
+                <p>Visit designated test stations on your campus. For each material, take three separate IR trigger readings and record the average:</p>
+                <ul>
+                    <li><strong>Blacktop / Asphalt:</strong> Direct sun vs. Tree canopy shaded section.</li>
+                    <li><strong>Playground Rubber Matting:</strong> Unshaded playground base vs. shaded perimeter.</li>
+                    <li><strong>Concrete Walkway:</strong> Open sidewalk vs. tree-covered sidewalk.</li>
+                    <li><strong>Schoolyard Soil:</strong> Bare dirt vs. shaded mulch beneath the drip line.</li>
+                    <li><strong>Living Turfgrass:</strong> Sunlit lawn vs. grassy area beneath an adopted campus tree.</li>
+                </ul>
+
+                <h3>Step 3: Calculating the Cooling Delta (ΔT)</h3>
+                <p>Apply the microclimate cooling formula: <code>Cooling Relief (°F) = Full Sun Temp (°F) − Shaded Temp (°F)</code>. Calculate the percentage of heat reduced by the tree canopy.</p>
+                
+                <h3>Step 4: Class Discussion & Environmental Analysis</h3>
+                <p><strong>Guiding Questions:</strong></p>
+                <ul>
+                    <li>Why does dark rubber/asphalt get significantly hotter than living grass even in the same sunlight? (<em>Concept: Albedo & Thermal Mass</em>)</li>
+                    <li>How does a living tree cool the air beyond just blocking sunlight? (<em>Concept: Evapotranspiration — trees pull moisture from roots and release water vapor through leaves</em>)</li>
+                    <li>What would happen to our playground surface temperatures if we plant 20 new native shade trees?</li>
+                </ul>
+            </div>
+
+            <!-- VIEW 2: REDESIGNED INTERACTIVE THERMAL LAB -->
+            <div class="pinned-board-layout" id="redesignBoard">
+                
+                <!-- TOP HEADER BANNER -->
+                <header class="board-header-zone">
+                    <div class="pinned-card kraft-banner" data-expandable="true">
+                        <div class="tape top-left"></div>
+                        <div class="tape top-right"></div>
+                        <div class="tack center-top"></div>
+                        <span class="banner-sub">TEXAS TREES FOUNDATION × UTRGV AGROECOLOGY • TEKS FIELD LAB</span>
+                        <h1>INFRARED (IR) THERMAL SCOUT</h1>
+                        
+                        <div class="active-campus-badge-banner">
+                            <span class="badge-dot">●</span>
+                            <span id="bannerCampusLabel">Donna ISD — M. Rivas Primary</span>
+                            <span class="badge-district-tag" id="bannerDistrictTag">Donna ISD</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- MAIN 3-COLUMN BOARD GRID -->
+                <div class="board-grid-zones">
+                    
+                    <!-- LEFT COLUMN: LESSON PROTOCOL & SAFETY POST-ITS -->
+                    <div class="board-col col-left">
+                        
+                        <!-- Objective Card (Yellow Legal Paper) -->
+                        <div class="pinned-card lined-paper tilt-left" data-expandable="true">
+                            <div class="tack tack-red"></div>
+                            <div class="card-label">🎯 LAB OBJECTIVE</div>
+                            <p class="handwriting-lead">Measure schoolyard surface temperatures with non-contact <strong>Infrared (IR) Thermometers</strong> to discover how dark materials trap heat and calculate the <strong>dramatic cooling relief</strong> of tree canopy shade!</p>
+                        </div>
+
+                        <!-- Safety Rules Card -->
+                        <div class="pinned-card safety-warning-card tilt-right" data-expandable="true">
+                            <div class="tack tack-blue"></div>
+                            <div class="card-label-alert">⚠️ IR GUN SAFETY RULES</div>
+                            <ul class="safety-list">
+                                <li>🚫 <strong>NEVER point laser at eyes</strong> or faces!</li>
+                                <li>📏 Hold gun <strong>12–18 inches</strong> from surface.</li>
+                                <li>📐 Aim straight down at a <strong>90° angle</strong>.</li>
+                                <li>🎯 Always compare: <strong>Sun vs. Tree Shade!</strong></li>
+                            </ul>
+                        </div>
+
+                        <!-- TEKS Science Concepts Scrap -->
+                        <div class="pinned-card torn-kraft-scrap tilt-left" data-expandable="true">
+                            <div class="tape center-tape"></div>
+                            <div class="card-label">🔬 KEY SCIENCE CONCEPTS</div>
+                            <div class="concept-item"><strong>Albedo:</strong> Light surfaces reflect heat; dark surfaces absorb it.</div>
+                            <div class="concept-item"><strong>Thermal Mass:</strong> Rubber and asphalt store heat long after sunset.</div>
+                            <div class="concept-item"><strong>Evapotranspiration:</strong> Tree leaves sweat water vapor, acting as nature's swamp cooler!</div>
+                        </div>
+
+                        <!-- Science Tip Post-it -->
+                        <div class="pinned-card sticky-note-blue tilt-right" data-expandable="true">
+                            <div class="tack tack-yellow"></div>
+                            <strong>💡 COOLING FORMULA</strong>
+                            <p><code>ΔT (Relief) = Full Sun Temp − Shaded Temp</code></p>
+                            <p>A 40°F–50°F drop makes outdoor play safe from burn injuries!</p>
+                        </div>
+
+                    </div>
+
+                    <!-- CENTER COLUMN: VIRTUAL IR GUN SIMULATOR & SURFACE TARGETS -->
+                    <div class="board-col col-center">
+                        
+                        <!-- The IR Temp Gun Digital Hardware Simulator -->
+                        <div class="pinned-card ir-gun-station-card">
+                            <div class="tape top-left"></div>
+                            <div class="tape top-right"></div>
+                            <div class="tack tack-green"></div>
+                            
+                            <div class="station-header">
+                                <span class="badge-ir-label">🔫 VIRTUAL IR THERMOMETER GUN</span>
+                                <span class="emissivity-tag">Emissivity: ε = 0.95</span>
+                            </div>
+
+                            <!-- Interactive LCD Display -->
+                            <div class="ir-gun-housing">
+                                <div class="lcd-screen-container">
+                                    <div class="lcd-top-bar">
+                                        <span class="lcd-indicator" id="lcdHoldTag">HOLD</span>
+                                        <span class="lcd-laser-icon">⚡ LASER ON</span>
+                                        <span class="lcd-battery">🔋 98%</span>
+                                    </div>
+
+                                    <div class="lcd-temp-display">
+                                        <span class="temp-digits" id="lcdTempDigits">138.4</span>
+                                        <span class="temp-unit" id="lcdTempUnit">°F</span>
+                                    </div>
+
+                                    <div class="lcd-target-desc" id="lcdTargetLabel">
+                                        Target: Black Asphalt Pavement (Full Sun)
+                                    </div>
+                                </div>
+
+                                <!-- Trigger Action Button -->
+                                <button type="button" class="ir-trigger-btn" id="pullTriggerBtn">
+                                    <span class="laser-dot">🔴</span> PULL TRIGGER (TAKE READING)
+                                </button>
+                            </div>
+
+                            <!-- Thermal Color Gradient Gauge -->
+                            <div class="thermal-spectrum-container">
+                                <div class="spectrum-label-row">
+                                    <span>70°F (Comfort Oasis)</span>
+                                    <span>95°F (Warm)</span>
+                                    <span>115°F (Caution)</span>
+                                    <span>145°F+ (Burn Hazard!)</span>
+                                </div>
+                                <div class="thermal-spectrum-bar">
+                                    <div class="spectrum-needle" id="spectrumNeedle" style="left: 88%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Schoolyard Surface Targets Grid -->
+                        <div class="surface-targets-section">
+                            <div class="row-title">
+                                <span>🎯 SELECT A SCHOOLYARD SURFACE TARGET:</span>
+                                <span class="hint-tag">Click to aim IR laser</span>
+                            </div>
+
+                            <div class="targets-grid" id="targetsGrid">
+                                
+                                <!-- Target 1: Black Asphalt -->
+                                <div class="target-card active" data-surface="asphalt" data-sun-temp="138.4" data-shade-temp="92.1" data-name="Black Asphalt Pavement">
+                                    <div class="target-icon">🚗</div>
+                                    <div class="target-info">
+                                        <strong>Black Asphalt</strong>
+                                        <span class="target-sub">Parking Lot / Basketball Court</span>
+                                    </div>
+                                    <div class="target-temps">
+                                        <span class="temp-sun">☀️ 138.4°F</span>
+                                        <span class="temp-shade">🌲 92.1°F</span>
+                                    </div>
+                                </div>
+
+                                <!-- Target 2: Rubber Play Turf -->
+                                <div class="target-card" data-surface="rubber" data-sun-temp="146.2" data-shade-temp="94.5" data-name="Rubber Playground Matting">
+                                    <div class="target-icon">🛝</div>
+                                    <div class="target-info">
+                                        <strong>Rubber Play Matting</strong>
+                                        <span class="target-sub">Poured Playground Base</span>
+                                    </div>
+                                    <div class="target-temps">
+                                        <span class="temp-sun">☀️ 146.2°F</span>
+                                        <span class="temp-shade">🌲 94.5°F</span>
+                                    </div>
+                                </div>
+
+                                <!-- Target 3: Concrete Sidewalk -->
+                                <div class="target-card" data-surface="concrete" data-sun-temp="122.5" data-shade-temp="89.3" data-name="Concrete Sidewalk">
+                                    <div class="target-icon">🧱</div>
+                                    <div class="target-info">
+                                        <strong>Concrete Sidewalk</strong>
+                                        <span class="target-sub">Light Gray Walkway</span>
+                                    </div>
+                                    <div class="target-temps">
+                                        <span class="temp-sun">☀️ 122.5°F</span>
+                                        <span class="temp-shade">🌲 89.3°F</span>
+                                    </div>
+                                </div>
+
+                                <!-- Target 4: Bare Soil -->
+                                <div class="target-card" data-surface="dirt" data-sun-temp="118.0" data-shade-temp="86.2" data-name="Bare Compacted Soil">
+                                    <div class="target-icon">🪨</div>
+                                    <div class="target-info">
+                                        <strong>Bare Compacted Dirt</strong>
+                                        <span class="target-sub">Playfield Boundary</span>
+                                    </div>
+                                    <div class="target-temps">
+                                        <span class="temp-sun">☀️ 118.0°F</span>
+                                        <span class="temp-shade">🌲 86.2°F</span>
+                                    </div>
+                                </div>
+
+                                <!-- Target 5: Living Turfgrass -->
+                                <div class="target-card" data-surface="grass" data-sun-temp="104.2" data-shade-temp="84.0" data-name="Living Turfgrass Lawn">
+                                    <div class="target-icon">🌿</div>
+                                    <div class="target-info">
+                                        <strong>Living Turfgrass</strong>
+                                        <span class="target-sub">Open Schoolyard Lawn</span>
+                                    </div>
+                                    <div class="target-temps">
+                                        <span class="temp-sun">☀️ 104.2°F</span>
+                                        <span class="temp-shade">🌲 84.0°F</span>
+                                    </div>
+                                </div>
+
+                                <!-- Target 6: Native Tree Canopy Shade -->
+                                <div class="target-card" data-surface="canopy" data-sun-temp="92.1" data-shade-temp="78.5" data-name="Montezuma Cypress Shade & Bark">
+                                    <div class="target-icon">🌳</div>
+                                    <div class="target-info">
+                                        <strong>Tree Trunk & Roots</strong>
+                                        <span class="target-sub">Montezuma Cypress / Live Oak</span>
+                                    </div>
+                                    <div class="target-temps">
+                                        <span class="temp-sun">🌲 Bark: 81.2°F</span>
+                                        <span class="temp-shade">🍃 Drip: 78.5°F</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Live Cooling Delta Calculation Station -->
+                        <div class="pinned-card delta-calculator-card" data-expandable="true">
+                            <div class="card-label-badge">🌡️ LIVE MICROCLIMATE COOLING DELTA</div>
+                            <h3>Tree Shade Thermal Benefit</h3>
+                            
+                            <div class="delta-calc-display">
+                                <div class="delta-box delta-sun">
+                                    <span class="box-lbl">☀️ FULL SUN TEMP</span>
+                                    <span class="box-val" id="deltaSunVal">138.4°F</span>
+                                </div>
+
+                                <div class="delta-operator">−</div>
+
+                                <div class="delta-box delta-shade">
+                                    <span class="box-lbl">🌲 TREE SHADE TEMP</span>
+                                    <span class="box-val" id="deltaShadeVal">92.1°F</span>
+                                </div>
+
+                                <div class="delta-operator">=</div>
+
+                                <div class="delta-box delta-relief">
+                                    <span class="box-lbl">❄️ TREE COOLING RELIEF</span>
+                                    <span class="box-val" id="deltaResultVal">−46.3°F</span>
+                                </div>
+                            </div>
+
+                            <div class="cooling-summary-pill" id="coolingSummaryPill">
+                                🌲 Tree canopy cools this surface by <strong>46.3°F (33% heat reduction)</strong>!
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN: DIGITAL LOGGER CLIPBOARD & DATA LEDGER -->
+                    <div class="board-col col-right">
+                        
+                        <!-- Digital Thermal Logger Clipboard -->
+                        <div class="pinned-card clipboard-container" id="clipboardCard">
+                            <div class="metal-clip-bar"></div>
+                            <div class="clipboard-inner-sheet">
+                                <div class="clip-header">
+                                    <span class="clip-tag">📋 LIVE THERMAL LOG</span>
+                                    <h2 id="clipboardSchoolTitle">IR Temp Logger</h2>
+                                    <span class="zero-pii" id="clipboardScopeTag">Logging for: Donna ISD — M. Rivas Primary</span>
+                                </div>
+
+                                <form id="thermalLoggerForm" class="logger-form">
+                                    <div class="form-field">
+                                        <label for="logTeamName">Classroom / Scout Team:</label>
+                                        <input type="text" id="logTeamName" class="clip-input" placeholder="e.g. Room 302 — Thermal Detectives" required>
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label for="logSurfaceSelect">Surface Material:</label>
+                                        <select id="logSurfaceSelect" class="clip-select">
+                                            <option value="Black Asphalt Pavement">🚗 Black Asphalt Pavement</option>
+                                            <option value="Rubber Playground Matting">🛝 Rubber Playground Matting</option>
+                                            <option value="Concrete Sidewalk">🧱 Concrete Sidewalk</option>
+                                            <option value="Bare Compacted Soil">🪨 Bare Compacted Dirt</option>
+                                            <option value="Living Turfgrass Lawn">🌿 Living Turfgrass Lawn</option>
+                                            <option value="Tree Trunk / Understory">🌳 Tree Trunk / Understory</option>
+                                            <option value="Custom Surface">✏️ Custom Field Surface</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-field-row">
+                                        <div class="form-field">
+                                            <label for="logSunTemp">Sun Temp (°F):</label>
+                                            <input type="number" step="0.1" id="logSunTemp" class="clip-input" value="138.4" required>
+                                        </div>
+                                        <div class="form-field">
+                                            <label for="logShadeTemp">Shade Temp (°F):</label>
+                                            <input type="number" step="0.1" id="logShadeTemp" class="clip-input" value="92.1" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label for="logNotes">Observations / Notes:</label>
+                                        <input type="text" id="logNotes" class="clip-input" placeholder="e.g. Rubber surface was burning to touch">
+                                    </div>
+
+                                    <button type="submit" class="stamp-submit-btn">
+                                        <span>📮</span> STAMP TO CAMPUS LEDGER
+                                    </button>
+                                </form>
+
+                                <div id="logSuccessStamp" class="success-stamp hidden">
+                                    ✓ LOGGED TO CAMPUS LEDGER!
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Official Tracking Sheet on Graph Paper -->
+                        <div class="pinned-card graph-paper-card" id="trackingTableCard" data-expandable="true">
+                            <div class="tack tack-red tack-tl"></div>
+                            <div class="tack tack-blue tack-tr"></div>
+                            <div class="tack tack-green tack-bl"></div>
+                            <div class="tack tack-yellow tack-br"></div>
+                            
+                            <div class="graph-header">
+                                <span class="graph-tag">📊 OFFICIAL FIELD LOG</span>
+                                <h3 id="tableCampusHeader">M. Rivas Primary Thermal Ledger</h3>
+                            </div>
+
+                            <div class="table-wrap">
+                                <table class="graph-tally-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Team</th>
+                                            <th>Surface</th>
+                                            <th>Sun °F</th>
+                                            <th>Shade °F</th>
+                                            <th>Δ Cooling</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="thermalTableBody">
+                                        <!-- Hydrated dynamically per campus from JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Urban Forest Benefit Post-It -->
+                        <div class="pinned-card sticky-note-yellow tilt-left" data-expandable="true">
+                            <div class="tack tack-red"></div>
+                            <strong>🌳 WHY TREE SHADE WINS</strong>
+                            <p>Unlike shade sails or metal roofs, tree canopies transpire water vapor, cooling the ambient surrounding air by up to <strong>9°F</strong> in addition to blocking direct infrared rays!</p>
+                        </div>
+
+                    </div>
+
+                </div> <!-- end board-grid-zones -->
+
+            </div> <!-- end pinned-board-layout -->
+
+        </div> <!-- end cork-board -->
+    </div> <!-- end wood-frame -->
+    
+    <!-- Focused Modal Overlay for Enlarged Items -->
+    <div id="focusOverlay" class="focus-overlay hidden">
+        <button type="button" class="close-focus" id="closeFocusBtn">✕ Close</button>
+        <div id="focusContainer" class="focus-container"></div>
+    </div>
+
+    <script src="ir_surface_temp_lab.js"></script>
+</body>
+</html>
