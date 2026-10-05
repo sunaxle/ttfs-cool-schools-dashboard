@@ -146,14 +146,126 @@
                     <span>🦜 SECTION 1: BIODIVERSITY & BIRDING SCOUT</span>
                 </div>
 
-                <!-- 4 SIGNATURE BIRD CARDS WITH LIVE QUICK TALLY COUNTERS -->
+                <!-- 1A: BIOBLITZ LOGGER CLIPBOARD + GRAPH PAPER TALLY BOARD -->
+                <div class="board-two-col-grid">
+                    
+                    <!-- BioBlitz Logger Clipboard with Big Blue 4th Grade Counter Button -->
+                    <div class="pinned-card clipboard-container" id="birdClipboardCard">
+                        <div class="metal-clip-bar"></div>
+                        <div class="clipboard-inner-sheet">
+                            <div class="clip-header">
+                                <span class="clip-tag">📋 4th GRADE & ALL-CAMPUS BIOBLITZ</span>
+                                <h2>Log Wildlife Sighting</h2>
+                                <span class="zero-pii" id="birdScopeTag">Logging for: Donna ISD — M. Rivas Primary</span>
+                            </div>
+
+                            <!-- BIG BLUE GENERAL BIRD COUNTER BUTTON -->
+                            <div class="general-bird-counter-box">
+                                <span class="general-counter-header">⚡ QUICK TAP: SEE A BIRD? TAP TO COUNT!</span>
+                                <button type="button" class="big-blue-bird-btn" id="btnBigBlueBird">
+                                    <span class="blue-btn-icon">🐦</span>
+                                    <span class="blue-btn-text">
+                                        <strong>+1 BIRD SPOTTED!</strong>
+                                        <small>Tap whenever you see any bird on campus</small>
+                                    </span>
+                                    <span class="blue-btn-badge" id="generalBirdTotalBadge">0</span>
+                                </button>
+                            </div>
+
+                            <!-- Detailed Sighting Form -->
+                            <form id="bioblitzForm" class="logger-form">
+                                <div class="form-field">
+                                    <label for="logTeamName">Classroom / Scout Team:</label>
+                                    <input type="text" id="logTeamName" class="clip-input" placeholder="e.g. 4th Grade Team Alpha (Room 204)" required>
+                                </div>
+
+                                <div class="form-field-row">
+                                    <div class="form-field">
+                                        <label for="logSpeciesSelect">Specific Species / Wildlife:</label>
+                                        <select id="logSpeciesSelect" class="clip-select">
+                                            <option value="General Bird Sighting" selected>🐦 General Bird (Any Species)</option>
+                                            <option value="Plain Chachalaca">🦃 Plain Chachalaca</option>
+                                            <option value="Great Kiskadee">🟡 Great Kiskadee</option>
+                                            <option value="Green Jay">🦜 Green Jay</option>
+                                            <option value="Golden-fronted Woodpecker">🪵 Golden-fronted Woodpecker</option>
+                                            <option value="Buff-bellied Hummingbird">🌺 Buff-bellied Hummingbird</option>
+                                            <option value="Monarch Butterfly">🦋 Monarch Butterfly</option>
+                                            <option value="Ladybug / Beetle">🐞 Ladybug / Beetle</option>
+                                            <option value="Texas Spiny Lizard">🦎 Texas Spiny Lizard</option>
+                                            <option value="Other Species">🔍 Other Sighting</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label>Tally Count:</label>
+                                        <div class="tally-box">
+                                            <button type="button" class="tally-btn" id="btnCountDec">−</button>
+                                            <span class="count-display" id="logCountVal">1</span>
+                                            <button type="button" class="tally-btn" id="btnCountInc">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="logActions">Behavior / Habitat Notes:</label>
+                                    <input type="text" id="logActions" class="clip-input" placeholder="e.g. Perched on live oak branch, singing">
+                                </div>
+
+                                <button type="submit" class="stamp-submit-btn">
+                                    <span>📮</span> STAMP TO BIODIVERSITY LEDGER
+                                </button>
+                            </form>
+
+                            <div id="birdSuccessStamp" class="success-stamp hidden">
+                                ✓ LOGGED TO CAMPUS LEDGER!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Biodiversity Graph Paper Tally Table -->
+                    <div class="pinned-card graph-paper-card" id="birdTableCard" data-expandable="true">
+                        <div class="tack tack-red tack-tl"></div>
+                        <div class="tack tack-blue tack-tr"></div>
+                        <div class="tack tack-green tack-bl"></div>
+                        <div class="tack tack-yellow tack-br"></div>
+                        
+                        <div class="graph-header">
+                            <span class="graph-tag">📊 CAMPUS BIODIVERSITY CENSUS</span>
+                            <h3 id="birdTableCampusHeader">M. Rivas Primary Observation Tally</h3>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table class="graph-tally-table">
+                                <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>Species</th>
+                                        <th>Tally</th>
+                                        <th>Date</th>
+                                        <th>Behavior / Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bulletinTableBody">
+                                    <!-- Hydrated dynamically from JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 1B: 4 SIGNATURE BIRD SPECIES CARDS (PLACED BELOW LOG & TALLY BOARD) -->
+                <div class="signature-birds-header-row">
+                    <span class="signature-label">📸 RIO GRANDE VALLEY SIGNATURE BIRD FIELD SCOUT & SOUNDS:</span>
+                </div>
+
                 <div class="birds-quick-deck">
                     
                     <!-- Bird 1: Plain Chachalaca -->
                     <div class="pinned-card bird-tally-card" data-species="Plain Chachalaca">
                         <div class="tack tack-red"></div>
                         <div class="bird-card-media">
-                            <img src="assets/birds/plain_chachalaca.jpg" alt="Plain Chachalaca" class="real-bird-thumb" loading="lazy">
+                            <img src="assets/birds/plain_chachalaca.jpg" alt="Plain Chachalaca in South Texas brush" class="real-bird-thumb" loading="lazy">
                             <span class="species-badge">RGV NATIVE</span>
                         </div>
                         <div class="bird-card-body">
@@ -185,7 +297,7 @@
                     <div class="pinned-card bird-tally-card" data-species="Great Kiskadee">
                         <div class="tape top-center-tape"></div>
                         <div class="bird-card-media">
-                            <img src="assets/birds/great_kiskadee.jpg" alt="Great Kiskadee" class="real-bird-thumb" loading="lazy">
+                            <img src="assets/birds/great_kiskadee.jpg" alt="Great Kiskadee perched on branch" class="real-bird-thumb" loading="lazy">
                             <span class="species-badge">CANOPY SCOUT</span>
                         </div>
                         <div class="bird-card-body">
@@ -213,11 +325,11 @@
                         </div>
                     </div>
 
-                    <!-- Bird 3: Green Jay -->
+                    <!-- Bird 3: Green Jay (Real Photo) -->
                     <div class="pinned-card bird-tally-card" data-species="Green Jay">
                         <div class="tack tack-blue"></div>
                         <div class="bird-card-media">
-                            <img src="assets/birds/green_jay.jpg" alt="Green Jay" class="real-bird-thumb" loading="lazy">
+                            <img src="assets/birds/green_jay.jpg" alt="Green Jay in South Texas" class="real-bird-thumb" loading="lazy">
                             <span class="species-badge">ACORN CACHER</span>
                         </div>
                         <div class="bird-card-body">
@@ -249,7 +361,7 @@
                     <div class="pinned-card bird-tally-card" data-species="Golden-fronted Woodpecker">
                         <div class="tape top-right-tape"></div>
                         <div class="bird-card-media">
-                            <img src="assets/birds/golden_fronted_woodpecker.jpg" alt="Golden-fronted Woodpecker" class="real-bird-thumb" loading="lazy">
+                            <img src="assets/birds/golden_fronted_woodpecker.jpg" alt="Golden-fronted Woodpecker on trunk" class="real-bird-thumb" loading="lazy">
                             <span class="species-badge">TRUNK INSPECTOR</span>
                         </div>
                         <div class="bird-card-body">
@@ -274,99 +386,6 @@
                                     <button type="button" class="btn-tally-step btn-inc" data-species="Golden-fronted Woodpecker">+</button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- BIODIVERSITY LOGGER & GRAPH PAPER TALLY -->
-                <div class="board-two-col-grid">
-                    
-                    <!-- BioBlitz Logger Clipboard -->
-                    <div class="pinned-card clipboard-container" id="birdClipboardCard">
-                        <div class="metal-clip-bar"></div>
-                        <div class="clipboard-inner-sheet">
-                            <div class="clip-header">
-                                <span class="clip-tag">📋 BIOBLITZ ENTRY</span>
-                                <h2>Log Wildlife Sighting</h2>
-                                <span class="zero-pii" id="birdScopeTag">Logging for: Donna ISD — M. Rivas Primary</span>
-                            </div>
-
-                            <form id="bioblitzForm" class="logger-form">
-                                <div class="form-field">
-                                    <label for="logTeamName">Classroom / Scout Team:</label>
-                                    <input type="text" id="logTeamName" class="clip-input" placeholder="e.g. Room 204 — Eco Scouts" required>
-                                </div>
-
-                                <div class="form-field-row">
-                                    <div class="form-field">
-                                        <label for="logSpeciesSelect">Species / Wildlife:</label>
-                                        <select id="logSpeciesSelect" class="clip-select">
-                                            <option value="Plain Chachalaca">🦃 Plain Chachalaca</option>
-                                            <option value="Great Kiskadee">🟡 Great Kiskadee</option>
-                                            <option value="Green Jay">🦜 Green Jay</option>
-                                            <option value="Golden-fronted Woodpecker">🪵 Golden-fronted Woodpecker</option>
-                                            <option value="Buff-bellied Hummingbird">🌺 Buff-bellied Hummingbird</option>
-                                            <option value="Monarch Butterfly">🦋 Monarch Butterfly</option>
-                                            <option value="Ladybug / Beetle">🐞 Ladybug / Beetle</option>
-                                            <option value="Texas Spiny Lizard">🦎 Texas Spiny Lizard</option>
-                                            <option value="Other Species">🔍 Other Sighting</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-field">
-                                        <label>Tally Count:</label>
-                                        <div class="tally-box">
-                                            <button type="button" class="tally-btn" id="btnCountDec">−</button>
-                                            <span class="count-display" id="logCountVal">1</span>
-                                            <button type="button" class="tally-btn" id="btnCountInc">+</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-field">
-                                    <label for="logActions">Behavior / Habitat Notes:</label>
-                                    <input type="text" id="logActions" class="clip-input" placeholder="e.g. Foraging on hackberries in adopted live oak">
-                                </div>
-
-                                <button type="submit" class="stamp-submit-btn">
-                                    <span>📮</span> STAMP TO BIODIVERSITY LEDGER
-                                </button>
-                            </form>
-
-                            <div id="birdSuccessStamp" class="success-stamp hidden">
-                                ✓ LOGGED TO CAMPUS LEDGER!
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Biodiversity Graph Paper Tally -->
-                    <div class="pinned-card graph-paper-card" id="birdTableCard" data-expandable="true">
-                        <div class="tack tack-red tack-tl"></div>
-                        <div class="tack tack-blue tack-tr"></div>
-                        <div class="tack tack-green tack-bl"></div>
-                        <div class="tack tack-yellow tack-br"></div>
-                        
-                        <div class="graph-header">
-                            <span class="graph-tag">📊 CAMPUS BIODIVERSITY CENSUS</span>
-                            <h3 id="birdTableCampusHeader">M. Rivas Primary Observation Tally</h3>
-                        </div>
-
-                        <div class="table-wrap">
-                            <table class="graph-tally-table">
-                                <thead>
-                                    <tr>
-                                        <th>Team</th>
-                                        <th>Species</th>
-                                        <th>Tally</th>
-                                        <th>Date</th>
-                                        <th>Behavior / Notes</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="bulletinTableBody">
-                                    <!-- Hydrated dynamically from JS -->
-                                </tbody>
-                            </table>
                         </div>
                     </div>
 

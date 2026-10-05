@@ -424,152 +424,79 @@ body {
 .tape.top-right-tape { width: 45px; height: 16px; top: -8px; right: -8px; transform: rotate(25deg); }
 
 /* ==========================================================================
-   4 BIRD QUICK-TALLY DECK (HORIZONTAL GRID)
+   BIG BLUE GENERAL BIRD COUNTER BUTTON (4TH GRADE / ALL CAMPUS)
    ========================================================================== */
 
-.birds-quick-deck {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-
-.bird-tally-card {
-    background: #ffffff;
-    border-radius: 4px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-.bird-card-media {
-    height: 120px;
-    border-radius: 3px;
-    overflow: hidden;
-    position: relative;
-    background: #1e293b;
-}
-
-.real-bird-thumb {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-}
-.bird-tally-card:hover .real-bird-thumb {
-    transform: scale(1.04);
-}
-
-.species-badge {
-    position: absolute;
-    bottom: 4px;
-    left: 4px;
-    font-family: 'Special Elite', monospace;
-    font-size: 8px;
-    font-weight: bold;
-    color: #fff;
-    background: rgba(0,0,0,0.7);
-    padding: 1px 5px;
-    border-radius: 4px;
-}
-
-.bird-card-body {
-    padding-top: 8px;
+.general-bird-counter-box {
+    background: #eff6ff;
+    border: 2px dashed #3b82f6;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 14px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
 }
-
-.bird-card-body h4 {
-    margin: 0;
-    font-size: 14px;
-    color: #1e293b;
-}
-.sci-name {
-    font-size: 10px;
-    color: #64748b;
-    font-style: italic;
-}
-
-.sound-row {
-    display: flex;
-    gap: 6px;
-    margin: 4px 0 6px;
-}
-
-.mini-sound-btn {
-    flex: 1.4;
-    background: #1e293b;
-    color: #f8fafc;
-    border: 1px solid #0f172a;
-    border-radius: 12px;
-    padding: 3px 6px;
+.general-counter-header {
     font-family: 'Special Elite', monospace;
-    font-size: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #1d4ed8;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 6px;
+}
+.big-blue-bird-btn {
+    width: 100%;
+    background: linear-gradient(145deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    border: 2px solid #1e40af;
+    border-radius: 8px;
+    padding: 12px 16px;
     cursor: pointer;
-}
-.mini-sound-btn:hover { background: #334155; }
-
-.mini-xeno-link {
-    flex: 1;
-    background: #0284c7;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 12px;
-    padding: 3px 6px;
-    font-family: 'Special Elite', monospace;
-    font-size: 9px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.mini-xeno-link:hover { background: #0369a1; }
-
-/* Quick Counter Component */
-.quick-counter-wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #f1f5f9;
-    border: 1.5px solid #cbd5e1;
-    border-radius: 6px;
-    padding: 3px 6px;
-    margin-top: 2px;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    transition: all 0.15s ease;
 }
-.counter-lbl {
+.big-blue-bird-btn:hover {
+    background: linear-gradient(145deg, #3b82f6, #2563eb);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5);
+}
+.big-blue-bird-btn:active {
+    transform: translateY(2px) scale(0.99);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+}
+.blue-btn-icon {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+.blue-btn-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+.blue-btn-text strong {
+    font-family: 'Special Elite', Impact, sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+.blue-btn-text small {
     font-size: 11px;
-    font-weight: bold;
-    color: #475569;
+    color: #dbeafe;
 }
-.mini-tally-controls {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-.btn-tally-step {
-    background: #e2e8f0;
-    border: 1px solid #94a3b8;
-    width: 24px;
-    height: 24px;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.btn-tally-step:hover { background: #cbd5e1; }
-.btn-tally-step:active { transform: scale(0.95); }
-.species-count-val {
+.blue-btn-badge {
+    background: #fef08a;
+    color: #854d0e;
     font-family: monospace;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
-    color: #1e293b;
-    min-width: 18px;
-    text-align: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 2px solid #eab308;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
 /* ==========================================================================
@@ -578,7 +505,7 @@ body {
 
 .board-two-col-grid {
     display: grid;
-    grid-template-columns: 440px 1fr;
+    grid-template-columns: 460px 1fr;
     gap: 22px;
     align-items: start;
 }
@@ -801,6 +728,167 @@ body {
     font-weight: bold;
     letter-spacing: 1.5px;
     color: #1b4d2b;
+}
+
+/* ==========================================================================
+   4 BIRD QUICK-TALLY DECK (POSITIONED BELOW TABLES)
+   ========================================================================== */
+
+.signature-birds-header-row {
+    margin: 12px 0 2px;
+    padding: 0 4px;
+}
+.signature-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    font-weight: bold;
+    color: #451a03;
+    letter-spacing: 0.5px;
+}
+
+.birds-quick-deck {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.bird-tally-card {
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.bird-card-media {
+    height: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    background: #1e293b;
+}
+
+.real-bird-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.bird-tally-card:hover .real-bird-thumb {
+    transform: scale(1.04);
+}
+
+.species-badge {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    font-family: 'Special Elite', monospace;
+    font-size: 8px;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0,0,0,0.7);
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+.bird-card-body {
+    padding-top: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bird-card-body h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #1e293b;
+}
+.sci-name {
+    font-size: 10px;
+    color: #64748b;
+    font-style: italic;
+}
+
+.sound-row {
+    display: flex;
+    gap: 6px;
+    margin: 4px 0 6px;
+}
+
+.mini-sound-btn {
+    flex: 1.4;
+    background: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #0f172a;
+    border-radius: 12px;
+    padding: 3px 6px;
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    cursor: pointer;
+}
+.mini-sound-btn:hover { background: #334155; }
+
+.mini-xeno-link {
+    flex: 1;
+    background: #0284c7;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 3px 6px;
+    font-family: 'Special Elite', monospace;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mini-xeno-link:hover { background: #0369a1; }
+
+/* Quick Counter Component */
+.quick-counter-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f1f5f9;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 3px 6px;
+    margin-top: 2px;
+}
+.counter-lbl {
+    font-size: 11px;
+    font-weight: bold;
+    color: #475569;
+}
+.mini-tally-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.btn-tally-step {
+    background: #e2e8f0;
+    border: 1px solid #94a3b8;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-tally-step:hover { background: #cbd5e1; }
+.btn-tally-step:active { transform: scale(0.95); }
+.species-count-val {
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e293b;
+    min-width: 18px;
+    text-align: center;
 }
 
 /* Focus Modal Overlay */

@@ -66,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const birdTableCampusHeader = document.getElementById('birdTableCampusHeader');
     const bulletinTableBody = document.getElementById('bulletinTableBody');
 
+    const btnBigBlueBird = document.getElementById('btnBigBlueBird');
+    const generalBirdTotalBadge = document.getElementById('generalBirdTotalBadge');
+
     const treeScopeTag = document.getElementById('treeScopeTag');
     const treeTableCampusHeader = document.getElementById('treeTableCampusHeader');
     const treeTableBody = document.getElementById('treeTableBody');
@@ -210,15 +213,62 @@ document.addEventListener('DOMContentLoaded', () => {
             'Golden-fronted Woodpecker': 0
         };
 
+        let totalBirdSightings = 0;
+
         logs.forEach(l => {
+            const countNum = parseInt(l.count) || 1;
             if (totals[l.species] !== undefined) {
-                totals[l.species] += (parseInt(l.count) || 1);
+                totals[l.species] += countNum;
+            }
+            // Count towards overall bird total if species is avian
+            const isAvian = ['General Bird Sighting', 'Plain Chachalaca', 'Great Kiskadee', 'Green Jay', 'Golden-fronted Woodpecker', 'Buff-bellied Hummingbird'].includes(l.species) || (l.species && l.species.toLowerCase().includes('bird'));
+            if (isAvian) {
+                totalBirdSightings += countNum;
             }
         });
 
         Object.keys(quickCounters).forEach(sp => {
             if (quickCounters[sp]) {
                 quickCounters[sp].textContent = totals[sp] || 0;
+            }
+        });
+
+        if (generalBirdTotalBadge) {
+            generalBirdTotalBadge.textContent = totalBirdSightings;
+        }
+    }
+
+    // Big Blue Bird Counter Button (+1 Bird)
+    if (btnBigBlueBird) {
+        btnBigBlueBird.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Audio chirp
+            playBirdSound('kiskadee');
+
+            // Visual bounce feedback
+            btnBigBlueBird.classList.add('active-pulse');
+            setTimeout(() => btnBigBlueBird.classList.remove('active-pulse'), 300);
+
+            const today = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' });
+            const entry = {
+                classroom: '4th Grade Quick Scout',
+                species: 'General Bird Sighting',
+                count: 1,
+                tallyStr: '|',
+                date: today,
+                notes: '⚡ Quick tap from lab counter button'
+            };
+
+            saveBirdLog(activeCampusId, entry);
+            renderBirdObservations();
+            updateBirdCardCounts();
+
+            if (birdSuccessStamp) {
+                const info = campusDirectory[activeCampusId];
+                birdSuccessStamp.textContent = `✓ +1 BIRD RECORDED FOR ${info.short.toUpperCase()}!`;
+                birdSuccessStamp.classList.remove('hidden');
+                setTimeout(() => birdSuccessStamp.classList.add('hidden'), 2500);
             }
         });
     }
