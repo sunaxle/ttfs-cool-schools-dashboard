@@ -1,10 +1,10 @@
 /**
- * Ranger Station Bulletin Board Logic
- * Multi-Campus Scoped & Open Media Integration
+ * Schoolyard Living Ecosystem & Tree Stewardship Bulletin Board Logic
+ * Unified Biodiversity Scout + Tree Health Tracker
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Campus Catalog
+    // Campus Directory
     const campusDirectory = {
         'donna_rivas': { name: 'M. Rivas Primary Discovery Academy', short: 'M. Rivas Primary', district: 'Donna ISD' },
         'donna_caceres': { name: 'J.W. Caceres Discovery Academy', short: 'J.W. Caceres', district: 'Donna ISD' },
@@ -23,22 +23,36 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Pre-seeded baseline observations per campus
-    const baselineCampusObservations = {
+    const baselineBirdObservations = {
         'donna_rivas': [
-            { classroom: 'Room 204 (Scouts)', species: 'Plain Chachalaca', count: 4, tallyStr: '||||', date: '09/16', action: 'Calling in canopy', notes: 'Eating hackberries' },
-            { classroom: 'Room 301 (Gomez)', species: 'Great Kiskadee', count: 2, tallyStr: '||', date: '09/16', action: 'Perching', notes: 'Grasshopper hunt' },
-            { classroom: 'Room 105 (Rios)', species: 'Green Jay', count: 3, tallyStr: '|||', date: '09/14', action: 'Foraging', notes: 'Under live oak' },
-            { classroom: 'Team Monarch', species: 'Ladybug Beetle', count: 6, tallyStr: '|||| |', date: '09/16', action: 'Crawling', notes: 'Aphid check' }
+            { classroom: 'Room 204 (Scouts)', species: 'Plain Chachalaca', count: 4, tallyStr: '||||', date: '09/16', notes: 'Calling in live oak canopy' },
+            { classroom: 'Room 301 (Gomez)', species: 'Great Kiskadee', count: 2, tallyStr: '||', date: '09/16', notes: 'Perched on flagpole branch' },
+            { classroom: 'Room 105 (Rios)', species: 'Green Jay', count: 3, tallyStr: '|||', date: '09/14', notes: 'Caching acorns under mulch' },
+            { classroom: 'Team Monarch', species: 'Ladybug / Beetle', count: 6, tallyStr: '|||| |', date: '09/16', notes: 'Aphid check on leaves' }
         ],
         'donna_caceres': [
-            { classroom: 'Room 402 (Eco-Scouts)', species: 'Green Jay', count: 5, tallyStr: '||||', date: '09/17', action: 'Acorn caching', notes: 'Near mesquite cluster' },
-            { classroom: 'Room 101 (Flores)', species: 'Golden-fronted Woodpecker', count: 2, tallyStr: '||', date: '09/15', action: 'Pecking trunk', notes: 'Sugar Hackberry' },
-            { classroom: 'Room 205 (Nature Team)', species: 'Plain Chachalaca', count: 3, tallyStr: '|||', date: '09/12', action: 'Morning chorus', notes: 'Thicket habitat' }
+            { classroom: 'Room 402 (Eco-Scouts)', species: 'Green Jay', count: 5, tallyStr: '||||', date: '09/17', notes: 'Near mesquite cluster' },
+            { classroom: 'Room 101 (Flores)', species: 'Golden-fronted Woodpecker', count: 2, tallyStr: '||', date: '09/15', notes: 'Pecking hackberry bark' }
         ],
         'mercedes_travis': [
-            { classroom: 'Room 303 (Tigers)', species: 'Great Kiskadee', count: 3, tallyStr: '|||', date: '09/18', action: 'Singing', notes: 'Schoolyard flagpole tree' },
-            { classroom: 'Room 201 (Forestry)', species: 'Plain Chachalaca', count: 2, tallyStr: '||', date: '09/17', action: 'Eating seeds', notes: 'Ebony tree canopy' },
-            { classroom: 'Room 404 (BioBlitz)', species: 'Monarch Butterfly', count: 4, tallyStr: '||||', date: '09/15', action: 'Nectar feeding', notes: 'Pollinator garden' }
+            { classroom: 'Room 303 (Tigers)', species: 'Great Kiskadee', count: 3, tallyStr: '|||', date: '09/18', notes: 'Schoolyard boundary' },
+            { classroom: 'Room 201 (Forestry)', species: 'Plain Chachalaca', count: 2, tallyStr: '||', date: '09/17', notes: 'Ebony tree canopy' }
+        ]
+    };
+
+    const baselineTreeObservations = {
+        'donna_rivas': [
+            { nickname: 'The Montezuma King', classroom: 'Room 301', species: 'Montezuma Cypress', dbh: 3.4, height: 8.5, health: 'Good', moisture: 'Damp & Well-Mulched', date: '09/16' },
+            { nickname: 'Shadow Maker', classroom: 'Room 204', species: 'Texas Ebony', dbh: 2.8, height: 6.2, health: 'Good', moisture: 'Damp & Well-Mulched', date: '09/16' },
+            { nickname: 'Sunny Live Oak', classroom: 'Room 105', species: 'Escarpment Live Oak', dbh: 4.1, height: 11.0, health: 'Medium', moisture: 'Dry / Needs Watering', date: '09/14' }
+        ],
+        'donna_caceres': [
+            { nickname: 'Discovery Cypress', classroom: 'Room 402', species: 'Montezuma Cypress', dbh: 3.6, height: 9.0, health: 'Good', moisture: 'Damp & Well-Mulched', date: '09/17' },
+            { nickname: 'Hackberry Haven', classroom: 'Room 101', species: 'Sugar Hackberry', dbh: 4.8, height: 13.5, health: 'Good', moisture: 'Damp & Well-Mulched', date: '09/15' }
+        ],
+        'mercedes_travis': [
+            { nickname: 'Tiger Ebony #1', classroom: 'Room 303', species: 'Texas Ebony', dbh: 3.1, height: 7.2, health: 'Good', moisture: 'Damp & Well-Mulched', date: '09/18' },
+            { nickname: 'Courtyard Live Oak', classroom: 'Room 201', species: 'Escarpment Live Oak', dbh: 5.2, height: 14.0, health: 'Good', moisture: 'Damp & Well-Mulched', date: '09/17' }
         ]
     };
 
@@ -47,10 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const bannerCampusLabel = document.getElementById('bannerCampusLabel');
     const bannerDistrictTag = document.getElementById('bannerDistrictTag');
     const docActiveCampusName = document.getElementById('docActiveCampusName');
-    const clipboardSchoolTitle = document.getElementById('clipboardSchoolTitle');
-    const clipboardScopeTag = document.getElementById('clipboardScopeTag');
-    const tableCampusHeader = document.getElementById('tableCampusHeader');
+    
+    const birdScopeTag = document.getElementById('birdScopeTag');
+    const birdTableCampusHeader = document.getElementById('birdTableCampusHeader');
     const bulletinTableBody = document.getElementById('bulletinTableBody');
+
+    const treeScopeTag = document.getElementById('treeScopeTag');
+    const treeTableCampusHeader = document.getElementById('treeTableCampusHeader');
+    const treeTableBody = document.getElementById('treeTableBody');
 
     const modeToggle = document.getElementById('modeToggle');
     const switchToggle = document.getElementById('switchToggle');
@@ -58,36 +76,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const redesignBoard = document.getElementById('redesignBoard');
     const stringLayer = document.getElementById('stringLayer');
     const printBtn = document.getElementById('printBtn');
-    
-    const logClassroomName = document.getElementById('logClassroomName');
-    const logSpeciesInput = document.getElementById('logSpecies');
+
+    // BioBlitz Form Elements
+    const bioblitzForm = document.getElementById('bioblitzForm');
+    const logTeamName = document.getElementById('logTeamName');
+    const logSpeciesSelect = document.getElementById('logSpeciesSelect');
     const logCountVal = document.getElementById('logCountVal');
     const btnCountDec = document.getElementById('btnCountDec');
     const btnCountInc = document.getElementById('btnCountInc');
-    const logCategory = document.getElementById('logCategory');
     const logActions = document.getElementById('logActions');
-    const loggerForm = document.getElementById('loggerForm');
-    const logSuccessStamp = document.getElementById('logSuccessStamp');
+    const birdSuccessStamp = document.getElementById('birdSuccessStamp');
 
-    const focusOverlay = document.getElementById('focusOverlay');
-    const focusContainer = document.getElementById('focusContainer');
-    const closeFocusBtn = document.getElementById('closeFocusBtn');
+    // Tree Stewardship Form Elements
+    const treeStewardshipForm = document.getElementById('treeStewardshipForm');
+    const treeNicknameInput = document.getElementById('treeNicknameInput');
+    const treeClassroomInput = document.getElementById('treeClassroomInput');
+    const treeSpeciesSelect = document.getElementById('treeSpeciesSelect');
+    const treeDbhInput = document.getElementById('treeDbhInput');
+    const treeHeightInput = document.getElementById('treeHeightInput');
+    const treeMoistureSelect = document.getElementById('treeMoistureSelect');
+    const treeSuccessStamp = document.getElementById('treeSuccessStamp');
 
-    let currentCount = 1;
-    let isOfficialDoc = false;
+    // Quick Counters on Bird Cards
+    const quickCounters = {
+        'Plain Chachalaca': document.getElementById('count_chachalaca'),
+        'Great Kiskadee': document.getElementById('count_kiskadee'),
+        'Green Jay': document.getElementById('count_greenjay'),
+        'Golden-fronted Woodpecker': document.getElementById('count_woodpecker')
+    };
+
     let activeCampusId = 'donna_rivas';
+    let isOfficialDoc = false;
+    let bioblitzCount = 1;
 
-    // 1. Resolve Active Campus (URL Parameter -> LocalStorage -> Default)
+    // 1. Campus Scoping Engine
     function resolveInitialCampus() {
         const urlParams = new URLSearchParams(window.location.search);
         const paramCampus = urlParams.get('campus');
-        if (paramCampus && campusDirectory[paramCampus]) {
-            return paramCampus;
-        }
+        if (paramCampus && campusDirectory[paramCampus]) return paramCampus;
         const savedCampus = localStorage.getItem('ttfs_active_campus_id');
-        if (savedCampus && campusDirectory[savedCampus]) {
-            return savedCampus;
-        }
+        if (savedCampus && campusDirectory[savedCampus]) return savedCampus;
         return 'donna_rivas';
     }
 
@@ -97,75 +125,26 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('ttfs_active_campus_id', campusId);
 
         const info = campusDirectory[campusId];
-        
-        // Update UI Badges
         if (campusSelectDropdown) campusSelectDropdown.value = campusId;
         if (bannerCampusLabel) bannerCampusLabel.textContent = `${info.district} — ${info.short}`;
         if (bannerDistrictTag) bannerDistrictTag.textContent = info.district;
         if (docActiveCampusName) docActiveCampusName.textContent = `${info.district} — ${info.name}`;
-        if (clipboardScopeTag) clipboardScopeTag.textContent = `Logging for: ${info.short}`;
-        if (tableCampusHeader) tableCampusHeader.textContent = `${info.short} Observation Tally`;
+        
+        if (birdScopeTag) birdScopeTag.textContent = `Logging for: ${info.short}`;
+        if (birdTableCampusHeader) birdTableCampusHeader.textContent = `${info.short} Observation Tally`;
 
-        // Update URL query string without reloading page
+        if (treeScopeTag) treeScopeTag.textContent = `Adopted Tree for: ${info.short}`;
+        if (treeTableCampusHeader) treeTableCampusHeader.textContent = `${info.short} Tree Stewardship Ledger`;
+
         if (updateUrl) {
             const newUrl = new URL(window.location);
             newUrl.searchParams.set('campus', campusId);
             window.history.replaceState({}, '', newUrl);
         }
 
-        // Hydrate observation table for this campus
-        renderCampusObservations();
-    }
-
-    // 2. Campus-Scoped Storage & Hydration
-    function getCampusStorageKey(campusId) {
-        return `ttfs_bulletin_logs_${campusId}`;
-    }
-
-    function loadCampusLogs(campusId) {
-        const key = getCampusStorageKey(campusId);
-        try {
-            const saved = localStorage.getItem(key);
-            if (saved) return JSON.parse(saved);
-        } catch (e) {
-            console.warn('Storage read error:', e);
-        }
-
-        // Fallback to pre-seeded baseline
-        if (baselineCampusObservations[campusId]) {
-            return baselineCampusObservations[campusId];
-        }
-
-        // Generic default seed
-        const genericSeed = [
-            { classroom: 'Team Monarch', species: 'Plain Chachalaca', count: 2, tallyStr: '||', date: '09/15', action: 'Perching', notes: 'Native tree canopy' },
-            { classroom: 'Team Ocelot', species: 'Great Kiskadee', count: 1, tallyStr: '|', date: '09/16', action: 'Singing', notes: 'Schoolyard boundary' }
-        ];
-        return genericSeed;
-    }
-
-    function saveCampusLog(campusId, entry) {
-        const logs = loadCampusLogs(campusId);
-        logs.unshift(entry);
-        try {
-            localStorage.setItem(getCampusStorageKey(campusId), JSON.stringify(logs));
-        } catch (e) {
-            console.warn('Storage write error:', e);
-        }
-    }
-
-    function renderCampusObservations() {
-        if (!bulletinTableBody) return;
-        const logs = loadCampusLogs(activeCampusId);
-        bulletinTableBody.innerHTML = logs.map(entry => `
-            <tr>
-                <td><strong>${entry.classroom || 'Class Team'}</strong></td>
-                <td>${entry.species}</td>
-                <td><span class="tally-marks">${entry.tallyStr}</span> (${entry.count})</td>
-                <td>${entry.date}</td>
-                <td>${entry.action || 'Observing'}${entry.notes ? ` • <em>${entry.notes}</em>` : ''}</td>
-            </tr>
-        `).join('');
+        renderBirdObservations();
+        renderTreeObservations();
+        updateBirdCardCounts();
     }
 
     if (campusSelectDropdown) {
@@ -174,7 +153,336 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Dual-Mode Switch Toggle (Light Switch)
+    // 2. Bird Observations Engine
+    function getBirdStorageKey(campusId) { return `ttfs_bulletin_logs_${campusId}`; }
+
+    function loadBirdLogs(campusId) {
+        try {
+            const saved = localStorage.getItem(getBirdStorageKey(campusId));
+            if (saved) return JSON.parse(saved);
+        } catch (e) {
+            console.warn(e);
+        }
+        if (baselineBirdObservations[campusId]) return baselineBirdObservations[campusId];
+        return [
+            { classroom: 'Team Monarch', species: 'Plain Chachalaca', count: 2, tallyStr: '||', date: '09/15', notes: 'Native canopy' }
+        ];
+    }
+
+    function saveBirdLog(campusId, entry) {
+        const logs = loadBirdLogs(campusId);
+        logs.unshift(entry);
+        try {
+            localStorage.setItem(getBirdStorageKey(campusId), JSON.stringify(logs));
+        } catch (e) {
+            console.warn(e);
+        }
+    }
+
+    function formatTallyMarks(num) {
+        let res = '';
+        let rem = num;
+        while (rem >= 5) { res += '|||| '; rem -= 5; }
+        if (rem > 0) res += '|'.repeat(rem);
+        return res.trim();
+    }
+
+    function renderBirdObservations() {
+        if (!bulletinTableBody) return;
+        const logs = loadBirdLogs(activeCampusId);
+        bulletinTableBody.innerHTML = logs.map(entry => `
+            <tr>
+                <td><strong>${entry.classroom || 'Scout Team'}</strong></td>
+                <td>${entry.species}</td>
+                <td><span class="tally-marks">${entry.tallyStr}</span> (${entry.count})</td>
+                <td>${entry.date}</td>
+                <td>${entry.notes || 'Observing'}</td>
+            </tr>
+        `).join('');
+    }
+
+    function updateBirdCardCounts() {
+        const logs = loadBirdLogs(activeCampusId);
+        const totals = {
+            'Plain Chachalaca': 0,
+            'Great Kiskadee': 0,
+            'Green Jay': 0,
+            'Golden-fronted Woodpecker': 0
+        };
+
+        logs.forEach(l => {
+            if (totals[l.species] !== undefined) {
+                totals[l.species] += (parseInt(l.count) || 1);
+            }
+        });
+
+        Object.keys(quickCounters).forEach(sp => {
+            if (quickCounters[sp]) {
+                quickCounters[sp].textContent = totals[sp] || 0;
+            }
+        });
+    }
+
+    // Quick Counters (+ / -) on Bird Cards
+    document.querySelectorAll('.btn-tally-step').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const species = btn.getAttribute('data-species');
+            const isInc = btn.classList.contains('btn-inc');
+            const today = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' });
+
+            if (isInc) {
+                const entry = {
+                    classroom: 'Quick Scout Tally',
+                    species: species,
+                    count: 1,
+                    tallyStr: '|',
+                    date: today,
+                    notes: 'Quick sighting from bulletin board'
+                };
+                saveBirdLog(activeCampusId, entry);
+                renderBirdObservations();
+                updateBirdCardCounts();
+            } else {
+                // Remove one instance of this species from current logs
+                const logs = loadBirdLogs(activeCampusId);
+                const idx = logs.findIndex(l => l.species === species);
+                if (idx !== -1) {
+                    if (logs[idx].count > 1) {
+                        logs[idx].count--;
+                        logs[idx].tallyStr = formatTallyMarks(logs[idx].count);
+                    } else {
+                        logs.splice(idx, 1);
+                    }
+                    localStorage.setItem(getBirdStorageKey(activeCampusId), JSON.stringify(logs));
+                    renderBirdObservations();
+                    updateBirdCardCounts();
+                }
+            }
+        });
+    });
+
+    // BioBlitz Form Submission
+    if (btnCountDec) {
+        btnCountDec.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bioblitzCount > 1) {
+                bioblitzCount--;
+                logCountVal.textContent = bioblitzCount;
+            }
+        });
+    }
+    if (btnCountInc) {
+        btnCountInc.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bioblitzCount < 50) {
+                bioblitzCount++;
+                logCountVal.textContent = bioblitzCount;
+            }
+        });
+    }
+
+    if (bioblitzForm) {
+        bioblitzForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const classroom = logTeamName.value.trim() || 'Classroom Team';
+            const species = logSpeciesSelect.value;
+            const count = bioblitzCount;
+            const action = logActions.value.trim() || 'Foraging / Perching';
+            const today = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' });
+            const tallyStr = formatTallyMarks(count);
+
+            const entry = {
+                classroom,
+                species,
+                count,
+                tallyStr,
+                date: today,
+                notes: action
+            };
+
+            saveBirdLog(activeCampusId, entry);
+            renderBirdObservations();
+            updateBirdCardCounts();
+
+            if (birdSuccessStamp) {
+                const info = campusDirectory[activeCampusId];
+                birdSuccessStamp.textContent = `✓ LOGGED TO ${info.short.toUpperCase()} LEDGER!`;
+                birdSuccessStamp.classList.remove('hidden');
+                setTimeout(() => birdSuccessStamp.classList.add('hidden'), 3500);
+            }
+
+            logActions.value = '';
+            bioblitzCount = 1;
+            logCountVal.textContent = '1';
+        });
+    }
+
+    // 3. Tree Stewardship Engine
+    function getTreeStorageKey(campusId) { return `ttfs_tree_stewardship_logs_${campusId}`; }
+
+    function loadTreeLogs(campusId) {
+        try {
+            const saved = localStorage.getItem(getTreeStorageKey(campusId));
+            if (saved) return JSON.parse(saved);
+        } catch (e) {
+            console.warn(e);
+        }
+        if (baselineTreeObservations[campusId]) return baselineTreeObservations[campusId];
+        return [
+            { nickname: 'Campus Tree #1', classroom: 'Room 201', species: 'Montezuma Cypress', dbh: 3.2, height: 7.8, health: 'Good', moisture: 'Damp & Well-Mulched', date: '09/16' }
+        ];
+    }
+
+    function saveTreeLog(campusId, entry) {
+        const logs = loadTreeLogs(campusId);
+        logs.unshift(entry);
+        try {
+            localStorage.setItem(getTreeStorageKey(campusId), JSON.stringify(logs));
+        } catch (e) {
+            console.warn(e);
+        }
+    }
+
+    function renderTreeObservations() {
+        if (!treeTableBody) return;
+        const logs = loadTreeLogs(activeCampusId);
+        treeTableBody.innerHTML = logs.map(entry => {
+            let healthBadge = '😊 Good';
+            if (entry.health === 'Medium') healthBadge = '😐 Fair';
+            if (entry.health === 'Bad') healthBadge = '😟 Stressed';
+
+            return `
+                <tr>
+                    <td><strong>${entry.nickname}</strong><br><small style="color:#64748b;">${entry.classroom}</small></td>
+                    <td>${entry.species}</td>
+                    <td>${entry.dbh}" / ${entry.height}'</td>
+                    <td><strong>${healthBadge}</strong></td>
+                    <td>${entry.moisture}</td>
+                    <td>${entry.date}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    if (treeStewardshipForm) {
+        treeStewardshipForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nickname = treeNicknameInput.value.trim();
+            const classroom = treeClassroomInput.value.trim();
+            const species = treeSpeciesSelect.value;
+            const dbh = parseFloat(treeDbhInput.value) || 3.0;
+            const height = parseFloat(treeHeightInput.value) || 8.0;
+            const moisture = treeMoistureSelect.value;
+            const healthRadio = document.querySelector('input[name="treeHealthRadio"]:checked');
+            const health = healthRadio ? healthRadio.value : 'Good';
+            const today = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' });
+
+            const entry = {
+                nickname,
+                classroom,
+                species,
+                dbh,
+                height,
+                health,
+                moisture,
+                date: today
+            };
+
+            saveTreeLog(activeCampusId, entry);
+            renderTreeObservations();
+
+            if (treeSuccessStamp) {
+                const info = campusDirectory[activeCampusId];
+                treeSuccessStamp.textContent = `✓ TREE HEALTH LOGGED FOR ${info.short.toUpperCase()}!`;
+                treeSuccessStamp.classList.remove('hidden');
+                setTimeout(() => treeSuccessStamp.classList.add('hidden'), 3500);
+            }
+        });
+    }
+
+    // 4. Web Audio Synthesizer Bird Calls
+    const audioCtx = (window.AudioContext || window.webkitAudioContext) ? new (window.AudioContext || window.webkitAudioContext)() : null;
+
+    function playBirdSound(birdKey) {
+        if (!audioCtx) return;
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+
+        if (birdKey === 'chachalaca') {
+            for (let i = 0; i < 3; i++) {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(450 + i * 120, now + i * 0.16);
+                osc.frequency.exponentialRampToValueAtTime(280, now + i * 0.16 + 0.12);
+                gain.gain.setValueAtTime(0.25, now + i * 0.16);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.16 + 0.14);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now + i * 0.16);
+                osc.stop(now + i * 0.16 + 0.15);
+            }
+        } else if (birdKey === 'kiskadee') {
+            const freqs = [1200, 1050, 1550];
+            const durations = [0.12, 0.1, 0.28];
+            let t = now;
+            freqs.forEach((f, idx) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(f, t);
+                if (idx === 2) osc.frequency.exponentialRampToValueAtTime(1300, t + durations[idx]);
+                gain.gain.setValueAtTime(0.3, t);
+                gain.gain.exponentialRampToValueAtTime(0.01, t + durations[idx]);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(t);
+                osc.stop(t + durations[idx]);
+                t += durations[idx] + 0.05;
+            });
+        } else if (birdKey === 'greenjay') {
+            for (let i = 0; i < 4; i++) {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(2200 + (i % 2) * 400, now + i * 0.08);
+                osc.frequency.exponentialRampToValueAtTime(1600, now + i * 0.08 + 0.06);
+                gain.gain.setValueAtTime(0.22, now + i * 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.08 + 0.07);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now + i * 0.08);
+                osc.stop(now + i * 0.08 + 0.07);
+            }
+        } else if (birdKey === 'woodpecker') {
+            for (let i = 0; i < 6; i++) {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(800, now + i * 0.04);
+                gain.gain.setValueAtTime(0.18, now + i * 0.04);
+                gain.gain.exponentialRampToValueAtTime(0.005, now + i * 0.04 + 0.03);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now + i * 0.04);
+                osc.stop(now + i * 0.04 + 0.035);
+            }
+        }
+    }
+
+    document.querySelectorAll('.mini-sound-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const soundKey = btn.getAttribute('data-sound');
+            playBirdSound(soundKey);
+        });
+    });
+
+    // 5. Dual-Mode Switch Toggle
     if (modeToggle) {
         modeToggle.addEventListener('click', () => {
             isOfficialDoc = !isOfficialDoc;
@@ -194,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Print Pin Action (8.5x11 Clean View)
+    // 6. Print Pin Action
     if (printBtn) {
         printBtn.addEventListener('click', () => {
             const wasDoc = isOfficialDoc;
@@ -212,218 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Bird Sound Synthesizer (Web Audio API Fallback)
-    const audioCtx = (window.AudioContext || window.webkitAudioContext) ? new (window.AudioContext || window.webkitAudioContext)() : null;
-
-    function playBirdSound(birdKey) {
-        if (!audioCtx) return;
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-
-        const now = audioCtx.currentTime;
-
-        if (birdKey === 'chachalaca') {
-            // Raucous 3-syllable coarse pulse "Cha-cha-lac!"
-            for (let i = 0; i < 3; i++) {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(450 + i * 120, now + i * 0.16);
-                osc.frequency.exponentialRampToValueAtTime(280, now + i * 0.16 + 0.12);
-                
-                gain.gain.setValueAtTime(0.25, now + i * 0.16);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.16 + 0.14);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now + i * 0.16);
-                osc.stop(now + i * 0.16 + 0.15);
-            }
-        } else if (birdKey === 'kiskadee') {
-            // "Kis - ka - DEEE!" pattern
-            const freqs = [1200, 1050, 1550];
-            const durations = [0.12, 0.1, 0.28];
-            let t = now;
-            freqs.forEach((f, idx) => {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(f, t);
-                if (idx === 2) {
-                    osc.frequency.exponentialRampToValueAtTime(1300, t + durations[idx]);
-                }
-                gain.gain.setValueAtTime(0.3, t);
-                gain.gain.exponentialRampToValueAtTime(0.01, t + durations[idx]);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(t);
-                osc.stop(t + durations[idx]);
-                t += durations[idx] + 0.05;
-            });
-        } else if (birdKey === 'greenjay') {
-            // High-pitched bright chatter
-            for (let i = 0; i < 4; i++) {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(2200 + (i % 2) * 400, now + i * 0.08);
-                osc.frequency.exponentialRampToValueAtTime(1600, now + i * 0.08 + 0.06);
-
-                gain.gain.setValueAtTime(0.22, now + i * 0.08);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.08 + 0.07);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now + i * 0.08);
-                osc.stop(now + i * 0.08 + 0.07);
-            }
-        } else if (birdKey === 'woodpecker') {
-            // Rolling tap / rattle
-            for (let i = 0; i < 6; i++) {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'square';
-                osc.frequency.setValueAtTime(800, now + i * 0.04);
-                gain.gain.setValueAtTime(0.18, now + i * 0.04);
-                gain.gain.exponentialRampToValueAtTime(0.005, now + i * 0.04 + 0.03);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now + i * 0.04);
-                osc.stop(now + i * 0.04 + 0.035);
-            }
-        }
-    }
-
-    const soundBtns = document.querySelectorAll('.radio-sound-btn');
-    soundBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const soundKey = btn.getAttribute('data-sound');
-            playBirdSound(soundKey);
-        });
-    });
-
-    // 6. Tally Counter Controls
-    if (btnCountDec) {
-        btnCountDec.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (currentCount > 1) {
-                currentCount--;
-                logCountVal.textContent = currentCount;
-            }
-        });
-    }
-    if (btnCountInc) {
-        btnCountInc.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (currentCount < 100) {
-                currentCount++;
-                logCountVal.textContent = currentCount;
-            }
-        });
-    }
-
-    function formatTallyMarks(num) {
-        let res = '';
-        let rem = num;
-        while (rem >= 5) {
-            res += '|||| ';
-            rem -= 5;
-        }
-        if (rem > 0) {
-            res += '|'.repeat(rem);
-        }
-        return res.trim();
-    }
-
-    // 7. Logger Form Submission (Scoped to Active Campus)
-    if (loggerForm) {
-        loggerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const classroom = logClassroomName.value.trim() || 'Classroom Team';
-            const species = logSpeciesInput.value.trim();
-            const count = currentCount;
-            const category = logCategory.value;
-            const action = logActions.value.trim() || 'Observing';
-            const today = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' });
-            const tallyStr = formatTallyMarks(count);
-
-            const entry = {
-                classroom,
-                species,
-                count,
-                tallyStr,
-                date: today,
-                action,
-                notes: `${category} sighting`
-            };
-
-            // Save to active campus
-            saveCampusLog(activeCampusId, entry);
-
-            // Re-render table
-            renderCampusObservations();
-
-            // Show success stamp
-            if (logSuccessStamp) {
-                const info = campusDirectory[activeCampusId];
-                logSuccessStamp.textContent = `✓ LOGGED TO ${info.short.toUpperCase()} LEDGER!`;
-                logSuccessStamp.classList.remove('hidden');
-                setTimeout(() => {
-                    logSuccessStamp.classList.add('hidden');
-                }, 3500);
-            }
-
-            // Reset inputs
-            logSpeciesInput.value = '';
-            logActions.value = '';
-            currentCount = 1;
-            logCountVal.textContent = '1';
-        });
-    }
-
-    // 8. Click to Focus/Enlarge Pinned Cards
-    const expandableCards = document.querySelectorAll('.pinned-card[data-expandable="true"]');
-    expandableCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            if (['BUTTON', 'INPUT', 'SELECT', 'A'].includes(e.target.tagName)) return;
-            
-            focusContainer.innerHTML = '';
-            const clone = card.cloneNode(true);
-            clone.style.transform = 'none';
-            clone.style.position = 'relative';
-            clone.style.margin = '0 auto';
-            focusContainer.appendChild(clone);
-            focusOverlay.classList.remove('hidden');
-
-            const cloneSoundBtns = clone.querySelectorAll('.radio-sound-btn');
-            cloneSoundBtns.forEach(b => {
-                b.addEventListener('click', () => {
-                    const sound = b.getAttribute('data-sound');
-                    playBirdSound(sound);
-                });
-            });
-        });
-    });
-
-    if (closeFocusBtn) {
-        closeFocusBtn.addEventListener('click', () => {
-            focusOverlay.classList.add('hidden');
-            focusContainer.innerHTML = '';
-        });
-    }
-    focusOverlay.addEventListener('click', (e) => {
-        if (e.target === focusOverlay) {
-            focusOverlay.classList.add('hidden');
-            focusContainer.innerHTML = '';
-        }
-    });
-
-    // Initialize Campus on load
+    // Initialize Campus & Tables on load
     const initialCampus = resolveInitialCampus();
     setActiveCampus(initialCampus, false);
 });

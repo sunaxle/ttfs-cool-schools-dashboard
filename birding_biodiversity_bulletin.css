@@ -1,4 +1,4 @@
-/* Ranger Station Bulletin Board Stylesheet - Handcrafted & Multi-Campus Scoped */
+/* Schoolyard Ecosystem & Tree Stewardship Bulletin Board Stylesheet */
 
 :root {
     --cork-base: #c29b68;
@@ -196,12 +196,8 @@ body {
     gap: 8px;
     transition: transform 0.1s;
 }
-.print-pin:hover {
-    background: #f0f0f0;
-}
-.print-pin:active {
-    transform: scale(0.98);
-}
+.print-pin:hover { background: #f0f0f0; }
+.print-pin:active { transform: scale(0.98); }
 
 /* Cork Board Interior Canvas */
 .cork-board {
@@ -210,14 +206,13 @@ body {
         radial-gradient(circle at 15% 25%, var(--cork-dark) 2px, transparent 3px),
         radial-gradient(circle at 75% 65%, var(--cork-light) 2.5px, transparent 4px),
         radial-gradient(circle at 45% 85%, var(--cork-dark) 1.5px, transparent 3px),
-        radial-gradient(circle at 85% 15%, var(--cork-light) 2px, transparent 3px),
-        radial-gradient(circle at 30% 50%, rgba(0,0,0,0.06) 1px, transparent 2px);
+        radial-gradient(circle at 85% 15%, var(--cork-light) 2px, transparent 3px);
     background-size: 50px 50px;
     box-shadow: inset 0 0 50px rgba(0,0,0,0.65), inset 0 0 10px rgba(0,0,0,0.8);
     border-radius: 6px;
     padding: 24px;
     position: relative;
-    min-height: 860px;
+    min-height: 980px;
 }
 
 /* SVG String Layer */
@@ -262,7 +257,7 @@ body {
     margin-bottom: 12px;
 }
 .official-doc h1 {
-    font-size: 28px;
+    font-size: 26px;
     color: #1b4d2b;
     margin: 0 0 12px;
 }
@@ -285,12 +280,10 @@ body {
     color: #334155;
     margin-top: 16px;
 }
-.hidden {
-    display: none !important;
-}
+.hidden { display: none !important; }
 
 /* ==========================================================================
-   REDESIGNED BULLETIN BOARD STRUCTURED GRID LAYOUT
+   UNIFIED BULLETIN BOARD STRUCTURED GRID
    ========================================================================== */
 
 .pinned-board-layout {
@@ -298,10 +291,10 @@ body {
     z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
 }
 
-/* Top Header Zone: Kraft Paper Banner */
+/* Top Header Kraft Paper Banner */
 .board-header-zone {
     display: flex;
     justify-content: center;
@@ -315,7 +308,7 @@ body {
     text-align: center;
     position: relative;
     box-shadow: 0 6px 16px rgba(0,0,0,0.35);
-    max-width: 820px;
+    max-width: 860px;
     width: 100%;
 }
 .banner-sub {
@@ -328,14 +321,13 @@ body {
 }
 .kraft-banner h1 {
     font-family: 'Special Elite', Impact, sans-serif;
-    font-size: 32px;
+    font-size: 30px;
     color: #2b1404;
     margin: 4px 0;
     letter-spacing: 2px;
     text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
 }
 
-/* Dynamic Campus Badge on Banner */
 .active-campus-badge-banner {
     display: inline-flex;
     align-items: center;
@@ -351,10 +343,7 @@ body {
     margin-top: 4px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
-.badge-dot {
-    color: #15803d;
-    font-size: 16px;
-}
+.badge-dot { color: #15803d; font-size: 16px; }
 .badge-district-tag {
     background: #1b4d2b;
     color: #ffffff;
@@ -364,21 +353,33 @@ body {
     text-transform: uppercase;
 }
 
-/* Main 3-Column Board Grid */
-.board-grid-zones {
-    display: grid;
-    grid-template-columns: 320px 1fr 400px;
-    gap: 22px;
-    align-items: start;
-}
-
-.board-col {
+/* Section Header Badges */
+.section-divider-tag {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0 -8px;
+}
+.section-divider-tag span {
+    background: #451a03;
+    color: #fde68a;
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    border: 1.5px dashed #d4a373;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.tree-section-tag span {
+    background: #14532d;
+    color: #bbf7d0;
+    border-color: #4ade80;
+    margin-top: 12px;
 }
 
-/* Generic Pinned Card Styling */
+/* Generic Pinned Card */
 .pinned-card {
     position: relative;
     box-shadow: 3px 8px 18px rgba(0,0,0,0.28);
@@ -387,16 +388,12 @@ body {
     border-radius: 2px;
 }
 .pinned-card:hover {
-    transform: translateY(-3px) scale(1.01) !important;
-    box-shadow: 6px 16px 28px rgba(0,0,0,0.4) !important;
-    z-index: 30;
+    transform: translateY(-2px) !important;
+    box-shadow: 5px 14px 24px rgba(0,0,0,0.35) !important;
+    z-index: 20;
 }
 
-/* Rotations for Handcrafted Aesthetic */
-.tilt-left { transform: rotate(-1.2deg); }
-.tilt-right { transform: rotate(1.4deg); }
-
-/* Realistic Fasteners: Pushpins & Tape */
+/* Fasteners */
 .tack {
     width: 14px;
     height: 14px;
@@ -410,7 +407,6 @@ body {
 .tack-green { background: radial-gradient(circle at 35% 35%, #22c55e, #15803d); top: 8px; left: 50%; transform: translateX(-50%); }
 .tack-yellow { background: radial-gradient(circle at 35% 35%, #eab308, #854d0e); top: 8px; right: 12px; }
 .tack.center-top { top: -6px; left: 50%; transform: translateX(-50%); background: radial-gradient(circle at 35% 35%, #f59e0b, #78350f); }
-
 .tack-tl { top: 8px; left: 8px; }
 .tack-tr { top: 8px; right: 8px; }
 .tack-bl { bottom: 8px; left: 8px; }
@@ -424,339 +420,170 @@ body {
 }
 .tape.top-left { width: 50px; height: 18px; top: -8px; left: -14px; transform: rotate(-35deg); }
 .tape.top-right { width: 50px; height: 18px; top: -8px; right: -14px; transform: rotate(35deg); }
-.tape.center-tape { width: 65px; height: 20px; top: -10px; left: 50%; transform: translateX(-50%) rotate(2deg); }
 .tape.top-center-tape { width: 45px; height: 16px; top: -8px; left: 50%; transform: translateX(-50%) rotate(-3deg); }
 .tape.top-right-tape { width: 45px; height: 16px; top: -8px; right: -8px; transform: rotate(25deg); }
 
-/* Paper Stock 1: Yellow Legal Lined Paper */
-.lined-paper {
-    background: var(--legal-yellow);
-    background-image: repeating-linear-gradient(transparent, transparent 24px, #fde68a 25px);
-    line-height: 25px;
-    padding: 24px 20px 20px 24px;
-    border-left: 3px solid #f87171;
-    font-size: 15px;
-}
-.card-label {
-    font-family: 'Special Elite', monospace;
-    font-size: 11px;
-    font-weight: bold;
-    color: #991b1b;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-}
-.handwriting-lead {
-    font-size: 16px;
-    line-height: 1.55;
-    margin: 0;
-    color: #1e293b;
-}
+/* ==========================================================================
+   4 BIRD QUICK-TALLY DECK (HORIZONTAL GRID)
+   ========================================================================== */
 
-/* Paper Stock 2: Notebook Scrap */
-.notebook-scrap {
-    background: var(--notebook-white);
-    background-image: repeating-linear-gradient(transparent, transparent 23px, #e2e8f0 24px);
-    line-height: 24px;
-    padding: 22px 18px;
-    border-left: 3px solid #38bdf8;
-    font-size: 14px;
-}
-.vocab-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 8px 0;
-}
-.vocab-pills span {
-    background: #dbeafe;
-    color: #1e40af;
-    font-size: 12px;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-family: 'Special Elite', monospace;
-}
-.note-foot {
-    font-size: 13px;
-    color: #475569;
-    margin: 6px 0 0;
-    font-style: italic;
-}
-
-/* Paper Stock 3: Torn Kraft Scrap */
-.torn-kraft-scrap {
-    background: #fbf0dc;
-    border: 1px dashed #d4a373;
-    padding: 20px 18px;
-    font-size: 14px;
-}
-.mini-list {
-    margin: 6px 0 10px 18px;
-    padding: 0;
-    line-height: 1.5;
-}
-.video-tag {
-    font-size: 12px;
-    color: #854d0e;
-    background: #fef3c7;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-/* Paper Stock 4: Post-it Sticky Notes */
-.sticky-note-blue {
-    background: var(--postit-blue);
-    padding: 16px 18px;
-    font-size: 14px;
-    box-shadow: 2px 5px 10px rgba(0,0,0,0.18), inset 0 -8px 12px rgba(0,0,0,0.04);
-}
-.sticky-note-blue strong {
-    font-family: 'Special Elite', monospace;
-    font-size: 12px;
-    color: #0369a1;
-    display: block;
-    margin-bottom: 4px;
-}
-.sticky-note-blue p {
-    margin: 0;
-    line-height: 1.4;
-}
-
-.sticky-note-yellow {
-    background: var(--postit-yellow);
-    padding: 16px 18px;
-    font-size: 14px;
-    box-shadow: 2px 5px 10px rgba(0,0,0,0.18), inset 0 -8px 12px rgba(0,0,0,0.04);
-}
-.sticky-note-yellow strong {
-    font-family: 'Special Elite', monospace;
-    font-size: 12px;
-    color: #854d0e;
-    display: block;
-    margin-bottom: 4px;
-}
-.sticky-note-yellow p {
-    margin: 0;
-    line-height: 1.4;
-}
-
-/* CENTER ZONE: COWBOY BIRD ANATOMY CARD (Manila Cardstock) */
-.cowboy-card {
-    background: var(--manila-stock);
-    border: 1.5px solid #d4c19c;
-    padding: 22px 24px;
-}
-.card-label-badge {
-    font-family: 'Special Elite', monospace;
-    font-size: 11px;
-    font-weight: bold;
-    color: #9a3412;
-    background: #fed7aa;
-    padding: 3px 10px;
-    border-radius: 12px;
-    display: inline-block;
-    margin-bottom: 6px;
-}
-.cowboy-card h2 {
-    font-family: 'Special Elite', Georgia, serif;
-    font-size: 22px;
-    color: #7c2d12;
-    margin: 2px 0 4px;
-}
-.cowboy-sub {
-    font-size: 14px;
-    color: #78350f;
-    margin: 0 0 16px;
-    font-style: italic;
-}
-.cowboy-parts-grid {
+.birds-quick-deck {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-}
-.cowboy-item {
-    background: #fffcf5;
-    border: 1px solid #e7d8bc;
-    border-radius: 6px;
-    padding: 12px 14px;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-}
-.cowboy-icon {
-    font-size: 26px;
-    flex-shrink: 0;
-}
-.cowboy-text strong {
-    color: #9a3412;
-    font-size: 14px;
-}
-.cowboy-text .arrow {
-    color: #15803d;
-    font-weight: bold;
-}
-.cowboy-text em {
-    color: #15803d;
-    font-weight: bold;
-    font-style: normal;
-}
-.cowboy-text p {
-    margin: 4px 0 0;
-    font-size: 12px;
-    color: #475569;
-    line-height: 1.35;
-}
-
-/* "CHACHALACA & FRIENDS" POLAROID PHOTO GRID (REAL OPEN PHOTOS) */
-.polaroid-row-container {
-    margin-top: 6px;
-}
-.row-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Special Elite', monospace;
-    font-size: 13px;
-    font-weight: bold;
-    color: #451a03;
-    margin-bottom: 12px;
-    padding: 0 4px;
-}
-.audio-hint {
-    font-size: 11px;
-    color: #15803d;
-}
-.polaroids-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
 }
-.polaroid-card {
+
+.bird-tally-card {
     background: #ffffff;
-    padding: 10px 10px 14px 10px;
-    border-radius: 2px;
-    box-shadow: 2px 6px 14px rgba(0,0,0,0.25);
+    border-radius: 4px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-/* Real Bird Photo Styling inside Polaroids */
-.polaroid-photo {
-    height: 155px;
-    border-radius: 2px;
-    position: relative;
+.bird-card-media {
+    height: 120px;
+    border-radius: 3px;
     overflow: hidden;
+    position: relative;
     background: #1e293b;
-    border: 1px solid rgba(0,0,0,0.15);
 }
 
-.real-bird-img {
+.real-bird-thumb {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
 }
-.polaroid-card:hover .real-bird-img {
+.bird-tally-card:hover .real-bird-thumb {
     transform: scale(1.04);
 }
 
 .species-badge {
     position: absolute;
-    bottom: 6px;
-    left: 6px;
+    bottom: 4px;
+    left: 4px;
     font-family: 'Special Elite', monospace;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: bold;
     color: #fff;
     background: rgba(0,0,0,0.7);
-    padding: 2px 6px;
-    border-radius: 6px;
-    letter-spacing: 0.5px;
+    padding: 1px 5px;
+    border-radius: 4px;
 }
 
-.polaroid-caption {
-    padding-top: 10px;
+.bird-card-body {
+    padding-top: 8px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
-.polaroid-caption strong {
-    font-size: 15px;
+
+.bird-card-body h4 {
+    margin: 0;
+    font-size: 14px;
     color: #1e293b;
-    display: block;
 }
 .sci-name {
-    font-size: 11px;
+    font-size: 10px;
     color: #64748b;
     font-style: italic;
-    display: block;
-    margin-bottom: 4px;
-}
-.polaroid-caption p {
-    font-size: 12px;
-    color: #475569;
-    margin: 0 0 10px;
-    line-height: 1.35;
 }
 
-/* Sound Action Box & Xeno-Canto Deep Link */
-.sound-action-box {
+.sound-row {
     display: flex;
     gap: 6px;
-    margin-bottom: 8px;
+    margin: 4px 0 6px;
 }
 
-.radio-sound-btn {
-    flex: 1.2;
+.mini-sound-btn {
+    flex: 1.4;
     background: #1e293b;
     color: #f8fafc;
-    border: 1.5px solid #0f172a;
-    border-radius: 18px;
-    padding: 5px 10px;
-    font-family: 'Special Elite', monospace;
-    font-size: 11px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    transition: all 0.15s;
-}
-.radio-sound-btn:hover {
-    background: #334155;
-    transform: scale(1.02);
-}
-
-.xeno-link {
-    flex: 1;
-    background: #0284c7;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 18px;
-    padding: 5px 10px;
+    border: 1px solid #0f172a;
+    border-radius: 12px;
+    padding: 3px 6px;
     font-family: 'Special Elite', monospace;
     font-size: 10px;
+    cursor: pointer;
+}
+.mini-sound-btn:hover { background: #334155; }
+
+.mini-xeno-link {
+    flex: 1;
+    background: #0284c7;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 3px 6px;
+    font-family: 'Special Elite', monospace;
+    font-size: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.15s;
 }
-.xeno-link:hover {
-    background: #0369a1;
+.mini-xeno-link:hover { background: #0369a1; }
+
+/* Quick Counter Component */
+.quick-counter-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f1f5f9;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 3px 6px;
+    margin-top: 2px;
+}
+.counter-lbl {
+    font-size: 11px;
+    font-weight: bold;
+    color: #475569;
+}
+.mini-tally-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.btn-tally-step {
+    background: #e2e8f0;
+    border: 1px solid #94a3b8;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-tally-step:hover { background: #cbd5e1; }
+.btn-tally-step:active { transform: scale(0.95); }
+.species-count-val {
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e293b;
+    min-width: 18px;
+    text-align: center;
 }
 
-.photo-attribution {
-    font-size: 10px;
-    color: #64748b;
-    border-top: 1px dashed #e2e8f0;
-    padding-top: 4px;
-    line-height: 1.25;
-}
-.photo-attribution a {
-    color: #0284c7;
-    text-decoration: none;
-}
-.photo-attribution a:hover {
-    text-decoration: underline;
+/* ==========================================================================
+   2-COLUMN BALANCED GRID (FOR BOTH BIRDING & TREE STEWARDSHIP)
+   ========================================================================== */
+
+.board-two-col-grid {
+    display: grid;
+    grid-template-columns: 440px 1fr;
+    gap: 22px;
+    align-items: start;
 }
 
-/* RIGHT COLUMN: DIGITAL LOGGER CLIPBOARD */
+/* Clipboard Container */
 .clipboard-container {
     background: #6e4726;
     background-image: repeating-linear-gradient(90deg, #6e4726, #6e4726 10px, #5c381c 10px, #5c381c 20px);
@@ -778,6 +605,15 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.5);
     border: 1px solid #334155;
 }
+
+.tree-clipboard {
+    background: #2a3c24;
+    background-image: repeating-linear-gradient(90deg, #2a3c24, #2a3c24 10px, #1e2c1a 10px, #1e2c1a 20px);
+}
+.tree-clip-bar {
+    background: linear-gradient(to bottom, #fde047, #ca8a04, #854d0e);
+}
+
 .clipboard-inner-sheet {
     background: #ffffff;
     border-radius: 3px;
@@ -798,38 +634,24 @@ body {
     padding: 2px 6px;
     border-radius: 4px;
 }
+.tag-green { color: #166534; background: #bbf7d0; }
+
 .clip-header h2 {
     font-family: 'Special Elite', monospace;
     font-size: 20px;
     color: #1e293b;
     margin: 4px 0 2px;
 }
-.zero-pii {
-    font-size: 11px;
-    color: #15803d;
-    font-weight: bold;
-}
+.zero-pii { font-size: 11px; color: #15803d; font-weight: bold; }
 
 .logger-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-.form-field label {
-    font-size: 13px;
-    font-weight: bold;
-    color: #334155;
-}
-.form-field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
+.form-field { display: flex; flex-direction: column; gap: 4px; }
+.form-field label { font-size: 13px; font-weight: bold; color: #334155; }
+.form-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .clip-input, .clip-select {
     font-family: inherit;
     font-size: 14px;
@@ -844,6 +666,7 @@ body {
     border-color: #2f6b3f;
     background: #fff;
 }
+
 .tally-box {
     display: flex;
     align-items: center;
@@ -869,6 +692,29 @@ body {
     font-family: monospace;
 }
 
+/* Tree Health Radio Grid */
+.health-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+.health-btn-label input { display: none; }
+.health-pill {
+    display: block;
+    text-align: center;
+    padding: 6px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1.5px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.health-btn-label input:checked + .pill-good { background: #dcfce7; border-color: #22c55e; color: #15803d; }
+.health-btn-label input:checked + .pill-medium { background: #fef9c3; border-color: #eab308; color: #854d0e; }
+.health-btn-label input:checked + .pill-bad { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+
 .stamp-submit-btn {
     background: #b91c1c;
     color: #ffffff;
@@ -887,9 +733,9 @@ body {
     gap: 6px;
     transition: background 0.15s;
 }
-.stamp-submit-btn:hover {
-    background: #991b1b;
-}
+.stamp-submit-btn:hover { background: #991b1b; }
+.btn-tree-submit { background: #15803d; box-shadow: 0 4px 8px rgba(21, 128, 61, 0.3); }
+.btn-tree-submit:hover { background: #166534; }
 
 .success-stamp {
     font-family: 'Special Elite', Impact, sans-serif;
@@ -903,7 +749,7 @@ body {
     background: #f0fdf4;
 }
 
-/* RIGHT COLUMN: GRAPH PAPER TRACKING TABLE */
+/* GRAPH PAPER TRACKING TABLE */
 .graph-paper-card {
     background: var(--graph-bg);
     background-image: 
@@ -918,12 +764,9 @@ body {
     padding-bottom: 4px;
     margin-bottom: 10px;
 }
-.graph-tag {
-    font-family: 'Special Elite', monospace;
-    font-size: 10px;
-    font-weight: bold;
-    color: #1e40af;
-}
+.graph-tag { font-family: 'Special Elite', monospace; font-size: 10px; font-weight: bold; color: #1e40af; }
+.tag-tree-lead { color: #166534; }
+
 .graph-header h3 {
     font-family: 'Special Elite', monospace;
     font-size: 16px;
@@ -931,9 +774,7 @@ body {
     color: #1e293b;
 }
 
-.table-wrap {
-    overflow-x: auto;
-}
+.table-wrap { overflow-x: auto; }
 .graph-tally-table {
     width: 100%;
     border-collapse: collapse;
@@ -951,11 +792,10 @@ body {
 .graph-tally-table td {
     border: 1px solid #cbd5e1;
     padding: 6px 8px;
-    font-size: 13px;
+    font-size: 12px;
 }
-.graph-tally-table tbody tr:nth-child(even) {
-    background: rgba(241, 245, 249, 0.6);
-}
+.graph-tally-table tbody tr:nth-child(even) { background: rgba(241, 245, 249, 0.6); }
+
 .tally-marks {
     font-family: monospace;
     font-weight: bold;
@@ -1002,58 +842,19 @@ body {
 
 /* PRINT MEDIA STYLESHEET (8.5" x 11" Clean Output) */
 @media print {
-    body {
-        background: #ffffff !important;
-        font-family: serif;
-    }
-    .site-nav, .frame-controls, .pinned-board-layout, .string-layer {
-        display: none !important;
-    }
-    .wood-frame {
-        background: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        width: 100% !important;
-    }
-    .cork-board {
-        background: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-    }
-    .official-doc {
-        display: block !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        max-width: 100% !important;
-    }
+    body { background: #ffffff !important; font-family: serif; }
+    .site-nav, .frame-controls, .pinned-board-layout, .string-layer { display: none !important; }
+    .wood-frame { background: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; width: 100% !important; }
+    .cork-board { background: none !important; box-shadow: none !important; padding: 0 !important; }
+    .official-doc { display: block !important; box-shadow: none !important; padding: 0 !important; max-width: 100% !important; }
 }
 
 /* Responsive Breakpoints */
 @media (max-width: 1200px) {
-    .board-grid-zones {
-        grid-template-columns: 1fr 1fr;
-    }
-    .col-right {
-        grid-column: span 2;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
+    .birds-quick-deck { grid-template-columns: repeat(2, 1fr); }
+    .board-two-col-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 850px) {
-    .board-grid-zones {
-        grid-template-columns: 1fr;
-    }
-    .col-right {
-        grid-column: span 1;
-        display: flex;
-        flex-direction: column;
-    }
-    .cowboy-parts-grid {
-        grid-template-columns: 1fr;
-    }
-    .polaroids-grid {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 800px) {
+    .birds-quick-deck { grid-template-columns: 1fr; }
 }
