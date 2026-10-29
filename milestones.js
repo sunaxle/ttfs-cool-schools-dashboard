@@ -53,8 +53,13 @@ const milestoneData = [
     month: "October 2026",
     monthEnd: "2026-10-31T23:59:59",
     items: [
-      { id: "oct-26-1", desc: "Dashboard v2 near-final; ingestion & styling docs updated.", docs: [] },
-      { id: "oct-26-2", desc: "Prep 2027 reporting workplan (review cycles, roles).", docs: [] }
+      { id: "oct-26-1", desc: "Dashboard v2 near-final; ingestion & styling docs updated.", docs: [
+        { name: "Month 5 Progress Report (Oct 2026)", url: "doc_viewer.html?doc=docs/Month_5_Progress_Report.md" },
+        { name: "Invoice #5 — October 2026 ($6,272)", url: "invoices/Invoice_005_October_2026_TTFS_UTRGV.html" }
+      ] },
+      { id: "oct-26-2", desc: "Prep 2027 reporting workplan (review cycles, roles).", docs: [
+        { name: "2027 Reporting Workplan & Baseline Lock", url: "doc_viewer.html?doc=docs/2027_Reporting_Workplan.md" }
+      ] }
     ]
   },
   {
