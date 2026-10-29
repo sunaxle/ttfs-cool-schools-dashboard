@@ -513,7 +513,7 @@ function selectCampus(campusId) {
     localStorage.setItem("activeCampusLng", chosen.coords[0]);
     localStorage.setItem("activeCampusLat", chosen.coords[1]);
 
-    // Redirect to the detail page (index.html or the static file)
-    window.location.href = campusId + ".html";
+    // Redirect to the main Impact & Microclimate dashboard with the selected campus active
+    window.location.href = "index.html";
   }
 }

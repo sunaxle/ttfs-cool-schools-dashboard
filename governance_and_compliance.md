@@ -98,5 +98,38 @@ This document tracks all privacy, compliance, and governance audits to ensure st
     *   *Birding by Ear (Web Audio API)*: Zero-dependency sound synthesis allowing students to listen to calls of signature RGV species (Plain Chachalaca, Great Kiskadee, Green Jay, Golden-fronted Woodpecker).
 *   **Zero Vendor Lock-in & Portability**: 100% vanilla ES6 JavaScript, zero backend API locks, client-side synthesized audio, and static asset portability ready for immediate Texas Trees Foundation hosting handoff.
 
+---
+
+#### [2026-10-27] TTFS October 2026 Dashboard Simplification & Feature Consolidation (`v2-simplified`)
+*   **Auditor**: Antigravity AI Agent + Lead Systems Architect
+*   **Scope**: `albedo.html/js/css`, `index.html/js`, `canopy.html/js`, `itree_ledger.html`, `dashboard_map.html`, `main.js`, `biodiversity.html`, `rivas_tree_roster.html`, `sponsorship_portal.html`, `campuses.html`, `style.css`
+*   **Status**: **APPROVED — FULLY COMPLIANT**
+
+##### 1. Version Control & Handoff Preservation
+*   **Full v1 Snapshot Frozen**: Tagged the complete 49-page exploratory suite as `v1.0-full-archive` on branch `archive/v1-full-suite` (and `main`), and created independent branch `v2-simplified` for the streamlined district-facing delivery.
+*   **Navigation Pruning**: Removed the 6 secondary modules (`Site Zoning`, `Economics/ROI`, `Trails`, `Wind`, `Water Table`, `Soils/Moisture`) and 3 standalone absorbed tabs (`Surface Breakdown`, `3D Shade Models`, `Temp`) from the core navigation bar across all retained pages.
+
+##### 2. Consolidated Albedo, Surface Breakdown, 3D Shade & Temperature Module (`albedo.html`, `albedo.js`, `albedo.css`)
+*   **Unified Architecture**: Consolidates `surface_area.html`, `tree_3d.html`, and `temperature.html` directly into `albedo.html` using a Human-Analog 50/50 split-screen layout:
+    *   *Left Persistent Viewport*: Switches cleanly between the 2D FLIR Smooth Thermal Heatmap, 2D Digitized Surface Zone Polygons (Leaflet), and the 360° 3D Orbital Shade & Canopy Simulator (Three.js WebGL), complete with an 8:00 AM – 6:00 PM diurnal solar scrubber and live solar/thermal KPI strip.
+    *   *Right Scrollable Analytical Pane*: Houses the Pre/Post-to-Mature Tree Impact Comparison Report, Surface Breakdown Doughnut Chart & Land Cover Proportions Table (with optional custom `*_Zones.json` drag-and-drop), 2025–2040 Microclimate Temperature Trajectory Chart, and Zone-by-Zone Hourly Surface Temperature Matrix.
+*   **Representative District Campuses**: Configured with a one-click switcher between one representative campus from each partner school district:
+    *   *Donna ISD*: **J.W. Caceres Discovery Intermediate Academy** (`donna_jw_caceres`, 154 trees planted, 450,000 sq ft footprint, 5% baseline $\rightarrow$ 30% mature target).
+    *   *Mercedes ISD*: **Ruben Hinojosa Elementary School** (`mercedes_hinojosa`, 142 trees planted, 418,000 sq ft footprint, 4% baseline $\rightarrow$ 30% mature target).
+
+##### 3. Pre/Post Planting-to-Mature Tree Impact Reports & Live District Feeds
+*   **Pre/Post-to-Mature Reports**: Standardized 3-stage lifecycle toggles and side-by-side comparison tables (`1. Pre-Planting Baseline` $\rightarrow$ `2. Initial Planting (Yr 1)` $\rightarrow$ `3. Mature Tree Canopy (10–15 Yr)`) across `dashboard_map.html`, `canopy.html`, `albedo.html`, `index.html`, and `itree_ledger.html`.
+*   **Live District Upload Exceptions**: Preserved `biodiversity.html` and `rivas_tree_roster.html` (`sponsorship_portal.html`) as live district-updated feeds with zero individual student PII (COPPA/FERPA compliant).
+
+##### 4. Semi-Urban Schoolyard Soil & Construction Sub-Base Crown Modeling (`config.js`, `itree_engine.js`, `canopy.js`, `itree_ledger.js`, `albedo.js`, `data/mock_trees.json`)
+*   **Allometric & Soil Calibration**: Replaced idealized botanical park growth rates with semi-urban Rio Grande Valley schoolyard growth curves across all 9 native tree species (*Bur Oak, Live Oak, Montezuma Bald Cypress, Texas Pecan, Mexican Sycamore, Cedar Elm, Texas Ebony, Honey Mesquite, Anacua*).
+*   **3-Tier Schoolyard Soil Regimes**:
+    *   *Unamended Compacted Construction Fill*: Models `1.72 g/cm³` bulk density, `0.6%` organic matter, stratified imported caliche/clay sub-base pan (`14–24 in`), 3-year transplant root shock lag, `88%` survival (`12%` sapling mortality), and a `0.52×` growth multiplier (stalling at `16.4%` canopy cover in 2040).
+    *   *Realistic Semi-Urban Schoolyard Planting (Default)*: Models `1.48 g/cm³` bulk density, `1.8%` organic matter, 3× rootball pit excavation through the construction fill layer, 1.5-year establishment lag, `95%` survival, and a `0.76×` growth multiplier (reaching `28.1%` canopy in Year 15 and `29.9%` by Year 20).
+    *   *UTRGV Agroecology Soil Remediation*: Models `1.28 g/cm³` bulk density, `4.2%` organic matter, deep pneumatic radial trenching (`36 in` sub-soiling fracturing the construction pan), mycorrhizal biochar amendment, 0.5-year lag, `98%` survival, and a `0.93×` growth multiplier (exceeding the `30.0%` Cool Schools shade target by 2040).
+*   **Client Portability**: 100% deterministic client-side math in `ITreeEngine` (`itree_engine.js`) and `config.js` with zero external API dependencies.
+
+
+
 
 

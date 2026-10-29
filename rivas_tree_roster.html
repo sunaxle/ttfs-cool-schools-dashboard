@@ -11,19 +11,40 @@
 </head>
 <body>
 
-    <nav style="padding: 10px 20px; background: #1b4d2b; display: flex; gap: 16px; align-items: center;">
-      <a href="index.html" style="color: #dce9df; text-decoration: none; font-family: Georgia, serif; font-size: 14px; font-weight: 600;">← Back to Dashboard</a>
-      <span style="color: #dce9df; opacity: 0.5;">|</span>
-      <a href="campuses.html" style="color: #dce9df; text-decoration: none; font-family: Georgia, serif; font-size: 14px;">🏫 All Campuses</a>
-    </nav>
-
     <header class="app-header">
         <div class="brand-left"></div>
-        <div class="title">M. Rivas Academy - Community Canopy</div>
-        <div class="brand-right">
-            <a href="donna_rivas.html" style="color: white; text-decoration: none;">← Back to Campus</a>
-        </div>
+        <div class="title">Tree Sponsorship Roster — Community Canopy</div>
+        <div class="brand-right"></div>
     </header>
+
+    <nav class="app-nav" aria-label="Main Dashboard Navigation">
+        <div class="nav-section deliverables-section">
+            <span class="nav-header-label">⭐ CORE DISTRICT DASHBOARD</span>
+            <a class="nav-link" href="campuses.html">Select Campus</a>
+            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">PRE/POST</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag live-tag">LIVE UPDATES</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo &amp; Reflectance <span class="badge-tag consolidated-tag">CONSOLIDATED</span></a>
+            <a class="nav-link deliverable-link" href="index.html">Impact <span class="badge-tag">PRE/POST</span></a>
+            <a class="nav-link deliverable-link" href="itree_ledger.html">i-Tree Eco Ledger <span class="badge-tag">PRE/POST</span></a>
+            <a class="nav-link deliverable-link active" href="rivas_tree_roster.html">Tree Sponsorship Roster <span class="badge-tag live-tag">LIVE UPDATES</span></a>
+        </div>
+        <div class="nav-section simulations-section">
+            <span class="nav-header-label muted">📚 CURRICULUM &amp; FIELD TOOLS (AWAITING DISTRICT INPUT)</span>
+            <a class="nav-link" href="teks_lesson_plans.html">TEKS-Aligned Lessons <span class="badge-tag pending-tag">DISTRICT REVIEW</span></a>
+            <a class="nav-link" href="tree_stewardship.html">Tree Stewardship Lab</a>
+            <a class="nav-link" href="birding_biodiversity.html">Birding Field Lab</a>
+            <a class="nav-link" href="sponsorship_portal.html">Tree Adoption ROI Calculator</a>
+        </div>
+    </nav>
+
+    <div class="live-district-banner" style="margin: 14px 20px 0 20px;">
+        <div>
+            <span class="live-pulse-dot"></span>
+            <strong>Live District Sponsorship &amp; Stewardship Roster:</strong> Displays real-time classroom and community tree adoptions as updates are uploaded by the school districts (COPPA/FERPA anonymized).
+        </div>
+        <a href="sponsorship_portal.html" style="color: var(--green-dark); font-weight: bold; text-decoration: underline;">Launch Full Tree Adoption &amp; Certificate Portal &rarr;</a>
+    </div>
 
     <div class="roster-layout">
         <!-- Left Pane: Map -->

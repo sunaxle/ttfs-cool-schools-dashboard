@@ -173,24 +173,105 @@ window.APP_CONFIG = {
   },
   treeSpecies: {
     "Bur Oak": {
-      growthRateFeetPerYear: 2.5,
-      color: [34, 139, 34, 0.6] // ForestGreen
+      growthRateFeetPerYear: 1.05,
+      matureRadiusFeet: 20.5,
+      soilTolerance: "Moderate (Deep taproot; slowed by caliche hardpan)",
+      compactionPenalty: 0.62,
+      color: [34, 139, 34, 0.65]
     },
     "Live Oak": {
-      growthRateFeetPerYear: 2.0,
-      color: [0, 100, 0, 0.6] // DarkGreen
+      growthRateFeetPerYear: 1.15,
+      matureRadiusFeet: 22.0,
+      soilTolerance: "High (Strong lateral roots; adapts to semi-urban fill)",
+      compactionPenalty: 0.72,
+      color: [0, 100, 0, 0.65]
     },
     "Montezuma Bald Cypress": {
-      growthRateFeetPerYear: 3.0,
-      color: [143, 188, 143, 0.6] // DarkSeaGreen
+      growthRateFeetPerYear: 1.20,
+      matureRadiusFeet: 21.0,
+      soilTolerance: "Moderate-High (Fast grower if irrigated; sensitive to bone-dry fill)",
+      compactionPenalty: 0.65,
+      color: [46, 125, 50, 0.65]
     },
     "Texas Pecan": {
-      growthRateFeetPerYear: 2.5,
-      color: [107, 142, 35, 0.6] // OliveDrab
+      growthRateFeetPerYear: 0.95,
+      matureRadiusFeet: 20.0,
+      soilTolerance: "Low-Moderate (Requires deep alluvial soil; stunted by construction fill)",
+      compactionPenalty: 0.52,
+      color: [107, 142, 35, 0.65]
     },
     "Mexican Sycamore": {
-      growthRateFeetPerYear: 3.0,
-      color: [154, 205, 50, 0.6] // YellowGreen
+      growthRateFeetPerYear: 1.20,
+      matureRadiusFeet: 19.5,
+      soilTolerance: "Moderate (Rapid foliage; leaf scorch in unamended hot asphalt zones)",
+      compactionPenalty: 0.58,
+      color: [154, 205, 50, 0.65]
+    },
+    "Cedar Elm": {
+      growthRateFeetPerYear: 1.05,
+      matureRadiusFeet: 19.5,
+      soilTolerance: "Very High (Tolerates heavy clay, compacted alkaline fill & drought)",
+      compactionPenalty: 0.78,
+      color: [67, 160, 71, 0.65]
+    },
+    "Texas Ebony": {
+      growthRateFeetPerYear: 0.85,
+      matureRadiusFeet: 16.0,
+      soilTolerance: "Extreme (Nitrogen-fixing RGV native; thrives in dry caliche/imported fill)",
+      compactionPenalty: 0.85,
+      color: [27, 94, 32, 0.70]
+    },
+    "Honey Mesquite": {
+      growthRateFeetPerYear: 1.10,
+      matureRadiusFeet: 18.5,
+      soilTolerance: "Extreme (Deep root penetrator; breaks compacted schoolyard sub-base)",
+      compactionPenalty: 0.88,
+      color: [124, 179, 66, 0.65]
+    },
+    "Anacua": {
+      growthRateFeetPerYear: 0.95,
+      matureRadiusFeet: 17.5,
+      soilTolerance: "High (Drought-hardy RGV native understory/canopy stabilizer)",
+      compactionPenalty: 0.80,
+      color: [56, 142, 60, 0.65]
+    }
+  },
+  soilRegimes: {
+    unamended_compacted: {
+      id: "unamended_compacted",
+      label: "Unamended Schoolyard Soil (Compacted Construction Fill)",
+      shortLabel: "Compacted Construction Soil (Unamended)",
+      growthMultiplier: 0.52,
+      maxRadiusMultiplier: 0.72,
+      establishmentLagYears: 3.0,
+      survivalRate: 0.88,
+      bulkDensityGcm3: "1.72 g/cm³ (Root-Restricting Hardpan)",
+      organicMatterPct: "0.6% (Biologically Depleted)",
+      summary: "Models typical semi-urban school grounds with stratified imported construction fill, mower/foot-traffic compaction (>1.7 g/cm³), 3-year transplant shock lag, high radiant asphalt heat, and 12% sapling mortality—stalling 2040 canopy at ~16.4%."
+    },
+    semi_urban_realistic: {
+      id: "semi_urban_realistic",
+      label: "Standard Semi-Urban Planting (Excavated Pit + Seasonal Irrigation)",
+      shortLabel: "Realistic Semi-Urban Schoolyard (Default)",
+      growthMultiplier: 0.76,
+      maxRadiusMultiplier: 0.90,
+      establishmentLagYears: 1.5,
+      survivalRate: 0.95,
+      bulkDensityGcm3: "1.48 g/cm³ (Moderate Sub-Base Resistance)",
+      organicMatterPct: "1.8% (Pit-Amended Only)",
+      summary: "Accounts for semi-urban heat island stress and compacted surrounding sub-soils once lateral roots exit the initial planting pit, yielding a 1.5-year transplant lag, 5% mortality, and 28.1% canopy by 2040 (reaching 30% by 2045)."
+    },
+    agroecology_remediated: {
+      id: "agroecology_remediated",
+      label: "UTRGV Agroecology Soil Remediation (Subsoiling + Mulch/Bio-Amendment)",
+      shortLabel: "Agroecology Remediated Soil (Optimal)",
+      growthMultiplier: 0.93,
+      maxRadiusMultiplier: 1.0,
+      establishmentLagYears: 0.5,
+      survivalRate: 0.98,
+      bulkDensityGcm3: "1.28 g/cm³ (Decompacted Rhizosphere)",
+      organicMatterPct: "4.2% (Active Mycorrhizal Mulch Ring)",
+      summary: "Applies UTRGV Agroecology intervention: deep ripping of imported construction hardpan layers, wide native woodchip mulch rings to cool soil by 12°F, and mycorrhizal inoculation—surpassing the 30.0% canopy target ahead of 2040."
     }
   },
   swipe: {

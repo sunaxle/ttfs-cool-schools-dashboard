@@ -702,3 +702,134 @@ textarea {
 .metric-card.highlight strong { color: #2e7d32; font-size: 24px; }
 .metric-card.blue strong { color: #1565c0; }
 .metric-card.orange strong { color: #e65100; }
+
+/* --- v2 Simplified Navigation & Pre/Post-to-Mature Impact Report Styles --- */
+.badge-tag.live-tag {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.badge-tag.consolidated-tag {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.badge-tag.pending-tag {
+  background: #6b7280;
+  color: #ffffff;
+}
+
+.prepost-banner {
+  background: #ffffff;
+  border: 2px solid var(--green-dark);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(27, 77, 43, 0.08);
+}
+
+.prepost-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 2px solid var(--green-light);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.prepost-header h2,
+.prepost-header h3 {
+  margin: 0;
+  color: var(--green-dark);
+  font-size: 19px;
+}
+
+.lifecycle-btn-group {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lifecycle-btn {
+  background: #f4f8f5;
+  color: var(--green-dark);
+  border: 1.5px solid var(--green-dark);
+  padding: 7px 14px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.lifecycle-btn:hover {
+  background: #dce9df;
+}
+
+.lifecycle-btn.active {
+  background: var(--green-dark);
+  color: #ffffff;
+}
+
+.prepost-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.prepost-table th {
+  background: var(--green-light);
+  color: var(--green-dark);
+  padding: 9px 12px;
+  border-bottom: 2px solid var(--border);
+  font-weight: 700;
+}
+
+.prepost-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.prepost-table tr:last-child td {
+  border-bottom: none;
+}
+
+.delta-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 12px;
+  background: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid #a5d6a7;
+}
+
+.live-district-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #f0fdf4;
+  border: 2px solid #16a34a;
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #14532d;
+}
+
+.live-pulse-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #16a34a;
+  margin-right: 8px;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.25);
+}

@@ -1,6 +1,7 @@
 /**
  * USDA Forest Service i-Tree Eco-Services Calculation Engine
  * Implements published i-Tree Eco v6.0 mathematical models customized for South Texas (UTRGV/Donna ISD/Mercedes ISD)
+ * Includes Semi-Urban Schoolyard Soil Compaction, Imported Construction Fill, and Establishment Lag physics.
  */
 window.ITreeEngine = {
     // Annual rainfall in South Texas (inches/year)
@@ -19,17 +20,78 @@ window.ITreeEngine = {
     HEALTH_COST_PER_LB_POLLUTANT: 42.50,
 
     /**
-     * Calculates complete i-Tree eco-services for a given canopy footprint and tree inventory.
+     * Computes the soil-compaction & establishment-adjusted crown radius (ft) for an individual tree.
+     */
+    calculateTreeCrownRadius: function(props, idx, targetYear, soilRegimeKey) {
+        const config = window.APP_CONFIG || {};
+        const regimes = config.soilRegimes || {};
+        const reg = regimes[soilRegimeKey] || regimes.semi_urban_realistic || {
+            growthMultiplier: 0.76,
+            maxRadiusMultiplier: 0.90,
+            establishmentLagYears: 1.5,
+            survivalRate: 0.95
+        };
+
+        const plantYear = props.plantYear || 2026;
+        if (targetYear < plantYear) {
+            return { planted: false, surviving: false, radiusFt: 0, maxRadiusFt: props.maxRadiusFeet || 20 };
+        }
+
+        const isLegacy = Boolean(props.isLegacy || plantYear <= 2022);
+        if (!isLegacy && targetYear > plantYear) {
+            const deterministicHash = ((idx * 37) % 100) / 100;
+            if (deterministicHash >= reg.survivalRate) {
+                return { planted: true, surviving: false, radiusFt: 0, maxRadiusFt: props.maxRadiusFeet || 20 };
+            }
+        }
+
+        const speciesName = props.species || "Bur Oak";
+        const spCfg = (config.treeSpecies && config.treeSpecies[speciesName]) || {
+            growthRateFeetPerYear: 1.05,
+            matureRadiusFeet: 20.0,
+            compactionPenalty: 0.65
+        };
+
+        const rawYears = targetYear - plantYear;
+        const effectiveYears = isLegacy
+            ? rawYears * 0.12
+            : Math.max(0, rawYears - (rawYears > 0 ? reg.establishmentLagYears : 0));
+
+        const speciesSoilFactor = (soilRegimeKey === "unamended_compacted")
+            ? (0.55 + (spCfg.compactionPenalty || 0.65) * 0.45)
+            : 1.0;
+
+        const baseR = props.baseRadiusFeet || (isLegacy ? 19.8 : 7.1);
+        const biologicalMaxR = props.maxRadiusFeet || spCfg.matureRadiusFeet || 20.0;
+        const effectiveMaxR = isLegacy ? biologicalMaxR : biologicalMaxR * reg.maxRadiusMultiplier;
+
+        let radiusFt = baseR + (effectiveYears * spCfg.growthRateFeetPerYear * reg.growthMultiplier * speciesSoilFactor);
+        if (radiusFt > effectiveMaxR) radiusFt = effectiveMaxR;
+
+        return {
+            planted: true,
+            surviving: true,
+            radiusFt,
+            maxRadiusFt: effectiveMaxR,
+            effectiveGrowthRate: +(spCfg.growthRateFeetPerYear * reg.growthMultiplier * speciesSoilFactor).toFixed(2)
+        };
+    },
+
+    /**
+     * Calculates complete i-Tree eco-services for a given canopy footprint, soil regime, and tree inventory.
      * @param {number} targetYear - Active simulation year (2020 - 2055)
      * @param {Array} treesList - Array of tree features from mock_trees.json
+     * @param {string} [soilRegimeKey="semi_urban_realistic"] - Soil compaction regime key
+     * @param {number} [totalCampusAreaSqFt=450000] - Total campus ground footprint in sq ft
      * @returns {Object} Complete i-Tree eco-services breakdown
      */
-    calculateEcoServices: function(targetYear, treesList) {
+    calculateEcoServices: function(targetYear, treesList, soilRegimeKey = "semi_urban_realistic", totalCampusAreaSqFt = 450000) {
         if (!treesList || !Array.isArray(treesList)) {
             treesList = [];
         }
 
         let activeTreesCount = 0;
+        let mortalityCount = 0;
         let totalCanopyAreaSqFt = 0;
         let totalLeafAreaSqFt = 0;
         let annualCo2SequestrationLbs = 0;
@@ -41,36 +103,41 @@ window.ITreeEngine = {
         let annualAcSavingsKwh = 0;
         let totalCtlaAssetValue = 0;
 
-        treesList.forEach(tree => {
+        // Soil health affects Leaf Area Index (LAI) & stomatal transpiration vigor
+        const laiSoilMultiplier = soilRegimeKey === "unamended_compacted" ? 0.78 : (soilRegimeKey === "agroecology_remediated" ? 1.12 : 1.0);
+
+        treesList.forEach((tree, idx) => {
             const props = tree.properties || tree;
-            const plantYear = props.plantYear || 2024;
-            if (targetYear < plantYear) return;
+            const status = this.calculateTreeCrownRadius(props, idx, targetYear, soilRegimeKey);
+            if (!status.planted) return;
+            if (!status.surviving) {
+                mortalityCount++;
+                return;
+            }
 
             activeTreesCount++;
-            const yearsGrown = targetYear - plantYear;
+            const plantYear = props.plantYear || 2026;
+            const yearsGrown = Math.max(0, targetYear - plantYear);
             const species = props.species || "Bur Oak";
-            
-            const speciesProfile = (window.APP_CONFIG && window.APP_CONFIG.treeSpecies && window.APP_CONFIG.treeSpecies[species]) || { growthRateFeetPerYear: 2.5 };
-            const growthRate = speciesProfile.growthRateFeetPerYear || 2.5;
-            
-            let radiusFt = (props.baseRadiusFeet || 3.5) + (yearsGrown * growthRate);
-            if (radiusFt > (props.maxRadiusFeet || 45)) radiusFt = props.maxRadiusFeet || 45;
+            const radiusFt = status.radiusFt;
 
             // Canopy area = π * r^2
             const canopyArea = Math.PI * radiusFt * radiusFt;
             totalCanopyAreaSqFt += canopyArea;
 
-            // Leaf Area Index (LAI) multiplier based on species crown density (typically 3.8 - 5.2x)
-            const laiFactor = species.includes("Cypress") || species.includes("Oak") ? 4.8 : 3.9;
-            const leafArea = canopyArea * laiFactor;
+            // Leaf Area Index (LAI) multiplier based on species crown density & soil vigor
+            const baseLaiFactor = species.includes("Cypress") || species.includes("Oak") || species.includes("Elm") ? 4.6 : 3.8;
+            const leafArea = canopyArea * baseLaiFactor * laiSoilMultiplier;
             totalLeafAreaSqFt += leafArea;
 
             // 1. Stormwater Interception: ~0.623 gallons per sq ft of canopy per inch of rain
-            const interceptionGallons = canopyArea * (this.ANNUAL_RAINFALL_INCHES * 0.42) * 0.623;
+            // Decompacted agroecology soil increases root-zone infiltration by +22%
+            const soilInfiltrationBonus = soilRegimeKey === "agroecology_remediated" ? 1.22 : (soilRegimeKey === "unamended_compacted" ? 0.75 : 1.0);
+            const interceptionGallons = canopyArea * (this.ANNUAL_RAINFALL_INCHES * 0.42) * 0.623 * soilInfiltrationBonus;
             annualRunoffAvoidedGallons += interceptionGallons;
 
             // 2. Carbon Sequestration: USDA i-Tree Eco growth equation (~0.38 lbs CO2 / sq ft canopy / yr)
-            const treeCo2Seq = canopyArea * 0.38 * (1 + (yearsGrown * 0.02));
+            const treeCo2Seq = canopyArea * 0.38 * (1 + (yearsGrown * 0.015)) * laiSoilMultiplier;
             annualCo2SequestrationLbs += treeCo2Seq;
 
             // Cumulative Storage = Sequestration accumulated over tree age
@@ -86,15 +153,14 @@ window.ITreeEngine = {
             annualAcSavingsKwh += canopyArea * 0.85;
 
             // 5. CTLA Structural Replacement Valuation ($ per sq in trunk DBH + canopy footprint)
-            const estimatedDbhInches = Math.min(36, 4 + (yearsGrown * 0.8));
+            const estimatedDbhInches = Math.min(28, 3.0 + (yearsGrown * 0.55 * laiSoilMultiplier));
             const trunkCrossSectionSqIn = Math.PI * Math.pow(estimatedDbhInches / 2, 2);
-            const ctlaVal = trunkCrossSectionSqIn * 48.5 + (canopyArea * 12.5);
+            const ctlaVal = trunkCrossSectionSqIn * 44.0 + (canopyArea * 11.5);
             totalCtlaAssetValue += ctlaVal;
         });
 
         // Effective canopy overlap factor (88%)
         const effectiveCanopySqFt = totalCanopyAreaSqFt * 0.88;
-        const totalCampusAreaSqFt = 450000; // ~10.3 acres
         const canopyCoverPct = Math.min(100, (effectiveCanopySqFt / totalCampusAreaSqFt) * 100);
         const overallLai = totalCanopyAreaSqFt > 0 ? (totalLeafAreaSqFt / totalCanopyAreaSqFt).toFixed(2) : "0.00";
 
@@ -109,13 +175,15 @@ window.ITreeEngine = {
 
         return {
             targetYear,
+            soilRegimeKey,
             activeTreesCount,
+            mortalityCount,
             totalCanopyAreaSqFt: Math.round(totalCanopyAreaSqFt),
             effectiveCanopySqFt: Math.round(effectiveCanopySqFt),
             canopyCoverPct: canopyCoverPct.toFixed(1),
             totalLeafAreaSqFt: Math.round(totalLeafAreaSqFt),
             overallLai,
-            
+
             // Stormwater
             annualRunoffAvoidedGallons: Math.round(annualRunoffAvoidedGallons),
             stormwaterSavingsUsd: Math.round(stormwaterSavingsUsd),

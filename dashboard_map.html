@@ -25,42 +25,26 @@
     <div class="brand-right">
       </div>
   </header>
-          <nav class="app-nav">
-        <div class="nav-section deliverables-section">
-            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
-            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
-            <a class="nav-link" href="campuses.html">Select Campus</a>
-            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
-            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
-        </div>
-        <div class="nav-section simulations-section">
-            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
-            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
-            <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
-            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
-            <a class="nav-link" href="zoning.html">Site Zoning</a>
-            <a class="nav-link" href="protocols.html">SOP Protocols</a>
-            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
-            <a class="nav-link" href="economics.html">Economics / ROI</a>
-            <a class="nav-link" href="trails.html">Trails</a>
-            <a class="nav-link" href="wind.html">Wind</a>
-            <a class="nav-link" href="temperature.html">Temp</a>
-            <a class="nav-link" href="soil_moisture.html">Moisture</a>
-            <a class="nav-link" href="water_table.html">Water Table</a>
-            <a class="nav-link" href="soil_types.html">Soils</a>
-            <a class="nav-link" href="index.html">Impact</a>
-        </div>
-        <div class="nav-section new-prototypes-section" style="border-left: 2px solid #9C27B0; padding-left: 10px; margin-left: 15px;">
-            <span class="nav-header-label" style="color: #9C27B0;">🆕 NEW PROTOTYPES (NOT DELIVERABLES)</span>
-            <a class="nav-link" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
-            <a class="nav-link" href="biodiversity_analog_concept.html">Child-Friendly Biodiversity</a>
-            <a class="nav-link" href="rivas_tree_roster.html">Tree Sponsorship Roster</a>
-            <a class="nav-link" href="user_access_strategy.html">User Access Strategy</a>
-        </div>
-    </nav>
+  <nav class="app-nav" aria-label="Main Dashboard Navigation">
+    <div class="nav-section deliverables-section">
+      <span class="nav-header-label">⭐ CORE DISTRICT DASHBOARD</span>
+      <a class="nav-link" href="campuses.html">Select Campus</a>
+      <a class="nav-link active" href="dashboard_map.html">Dashboard Overview</a>
+      <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">PRE/POST</span></a>
+      <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag live-tag">LIVE UPDATES</span></a>
+      <a class="nav-link deliverable-link" href="albedo.html">Albedo &amp; Reflectance <span class="badge-tag consolidated-tag">CONSOLIDATED</span></a>
+      <a class="nav-link deliverable-link" href="index.html">Impact <span class="badge-tag">PRE/POST</span></a>
+      <a class="nav-link deliverable-link" href="itree_ledger.html">i-Tree Eco Ledger <span class="badge-tag">PRE/POST</span></a>
+      <a class="nav-link deliverable-link" href="rivas_tree_roster.html">Tree Sponsorship Roster <span class="badge-tag live-tag">LIVE UPDATES</span></a>
+    </div>
+    <div class="nav-section simulations-section">
+      <span class="nav-header-label muted">📚 CURRICULUM &amp; FIELD TOOLS (AWAITING DISTRICT INPUT)</span>
+      <a class="nav-link" href="teks_lesson_plans.html">TEKS-Aligned Lessons <span class="badge-tag pending-tag">DISTRICT REVIEW</span></a>
+      <a class="nav-link" href="tree_stewardship.html">Tree Stewardship Lab</a>
+      <a class="nav-link" href="birding_biodiversity.html">Birding Field Lab</a>
+      <a class="nav-link" href="sponsorship_portal.html">Tree Adoption ROI Calculator</a>
+    </div>
+  </nav>
 
   <main class="app-grid">
     <aside class="panel left">
@@ -121,6 +105,54 @@
     <aside class="panel right">
       <section class="card district-title">
         <h2 id="districtName">District</h2>
+        <div style="margin-top: 8px;">
+          <label for="overviewStageSelect" style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 4px; color: var(--green-dark);">🌱 Pre/Post Lifecycle Stage:</label>
+          <select id="overviewStageSelect" style="width: 100%; padding: 6px; border: 1.5px solid var(--green-dark); border-radius: 4px; font-weight: bold; font-size: 12px;">
+            <option value="pre">1. Pre-Planting Baseline</option>
+            <option value="post" selected>2. Initial Planting (Yr 1)</option>
+            <option value="mature">3. Mature Tree Canopy (10–15 Yr)</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card" style="background: #f8fbf9; border-color: var(--green-dark);">
+        <h3 style="color: var(--green-dark); font-size: 15px;">📊 Pre/Post-to-Mature Summary</h3>
+        <table class="prepost-table" style="font-size: 11px;">
+          <thead>
+            <tr>
+              <th style="padding: 5px 4px;">Metric</th>
+              <th style="padding: 5px 4px;">Pre</th>
+              <th style="padding: 5px 4px;">Post</th>
+              <th style="padding: 5px 4px;">Mature</th>
+            </tr>
+          </thead>
+          <tbody id="overviewPrePostBody">
+            <tr>
+              <td><strong>Canopy %</strong></td>
+              <td id="ovPreCanopy">4.8%</td>
+              <td id="ovPostCanopy">9.5%</td>
+              <td id="ovMatCanopy" style="color:#15803d; font-weight:bold;">30.0%</td>
+            </tr>
+            <tr>
+              <td><strong>Surf (Exp)</strong></td>
+              <td id="ovPreExp">125°F</td>
+              <td id="ovPostExp">121°F</td>
+              <td id="ovMatExp" style="color:#15803d; font-weight:bold;">115°F</td>
+            </tr>
+            <tr>
+              <td><strong>Surf (Shade)</strong></td>
+              <td id="ovPreShade">91°F</td>
+              <td id="ovPostShade">89°F</td>
+              <td id="ovMatShade" style="color:#15803d; font-weight:bold;">81°F</td>
+            </tr>
+            <tr>
+              <td><strong>Albedo (α)</strong></td>
+              <td id="ovPreAlbedo">0.15</td>
+              <td id="ovPostAlbedo">0.18</td>
+              <td id="ovMatAlbedo" style="color:#15803d; font-weight:bold;">0.28</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <section class="card metric">

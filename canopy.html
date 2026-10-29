@@ -23,42 +23,94 @@
     <div class="brand-right"></div>
   </header>
 
-              <nav class="app-nav">
-        <div class="nav-section deliverables-section">
-            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
-            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
-            <a class="nav-link" href="campuses.html">Select Campus</a>
-            <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
-            <a class="nav-link deliverable-link active" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
-        </div>
-        <div class="nav-section simulations-section">
-            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
-            <a class="nav-link" href="itree_ledger.html">i-Tree Eco Ledger</a>
-            <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
-            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
-            <a class="nav-link" href="zoning.html">Site Zoning</a>
-            <a class="nav-link" href="protocols.html">SOP Protocols</a>
-            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
-            <a class="nav-link" href="economics.html">Economics / ROI</a>
-            <a class="nav-link" href="trails.html">Trails</a>
-            <a class="nav-link" href="wind.html">Wind</a>
-            <a class="nav-link" href="temperature.html">Temp</a>
-            <a class="nav-link" href="soil_moisture.html">Moisture</a>
-            <a class="nav-link" href="water_table.html">Water Table</a>
-            <a class="nav-link" href="soil_types.html">Soils</a>
-            <a class="nav-link" href="index.html">Impact</a>
-        </div>
-        <div class="nav-section new-prototypes-section" style="border-left: 2px solid #9C27B0; padding-left: 10px; margin-left: 15px;">
-            <span class="nav-header-label" style="color: #9C27B0;">🆕 NEW PROTOTYPES (NOT DELIVERABLES)</span>
-            <a class="nav-link" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
-            <a class="nav-link" href="biodiversity_analog_concept.html">Child-Friendly Biodiversity</a>
-            <a class="nav-link" href="rivas_tree_roster.html">Tree Sponsorship Roster</a>
-            <a class="nav-link" href="user_access_strategy.html">User Access Strategy</a>
-        </div>
-    </nav>
+  <nav class="app-nav" aria-label="Main Dashboard Navigation">
+    <div class="nav-section deliverables-section">
+      <span class="nav-header-label">⭐ CORE DISTRICT DASHBOARD</span>
+      <a class="nav-link" href="campuses.html">Select Campus</a>
+      <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
+      <a class="nav-link deliverable-link active" href="canopy.html">Canopy Over Time <span class="badge-tag">PRE/POST</span></a>
+      <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag live-tag">LIVE UPDATES</span></a>
+      <a class="nav-link deliverable-link" href="albedo.html">Albedo &amp; Reflectance <span class="badge-tag consolidated-tag">CONSOLIDATED</span></a>
+      <a class="nav-link deliverable-link" href="index.html">Impact <span class="badge-tag">PRE/POST</span></a>
+      <a class="nav-link deliverable-link" href="itree_ledger.html">i-Tree Eco Ledger <span class="badge-tag">PRE/POST</span></a>
+      <a class="nav-link deliverable-link" href="rivas_tree_roster.html">Tree Sponsorship Roster <span class="badge-tag live-tag">LIVE UPDATES</span></a>
+    </div>
+    <div class="nav-section simulations-section">
+      <span class="nav-header-label muted">📚 CURRICULUM &amp; FIELD TOOLS (AWAITING DISTRICT INPUT)</span>
+      <a class="nav-link" href="teks_lesson_plans.html">TEKS-Aligned Lessons <span class="badge-tag pending-tag">DISTRICT REVIEW</span></a>
+      <a class="nav-link" href="tree_stewardship.html">Tree Stewardship Lab</a>
+      <a class="nav-link" href="birding_biodiversity.html">Birding Field Lab</a>
+      <a class="nav-link" href="sponsorship_portal.html">Tree Adoption ROI Calculator</a>
+    </div>
+  </nav>
+
+  <!-- Representative Campus & Schoolyard Soil Compaction Control Bar -->
+  <section class="prepost-banner" style="margin: 14px 20px 0 20px; background: #f8fbf9;" aria-label="Representative Campus and Schoolyard Soil Controls">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; padding-bottom: 12px; border-bottom: 2px solid var(--green-light); margin-bottom: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <strong style="font-size: 12px; text-transform: uppercase; color: var(--green-dark);">🏫 Representative District Campus:</strong>
+        <button type="button" class="lifecycle-btn canopy-campus-btn active" data-campus="donna_jw_caceres">Donna ISD: J.W. Caceres (158 Trees)</button>
+        <button type="button" class="lifecycle-btn canopy-campus-btn" data-campus="mercedes_hinojosa">Mercedes ISD: Ruben Hinojosa Elem (142 Trees)</button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <label for="soilRegimeSelect" style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--green-dark);">🪨 Schoolyard Soil &amp; Urban Stress Model:</label>
+        <select id="soilRegimeSelect" style="padding: 7px 12px; border: 2px solid var(--green-dark); border-radius: 5px; font-weight: bold; font-size: 13px; background: #ffffff; color: var(--text);">
+          <option value="unamended_compacted">1. Unamended Compacted Construction Fill (1.72 g/cm³ • 3-Yr Lag • 12% Mortality)</option>
+          <option value="semi_urban_realistic" selected>2. Realistic Semi-Urban Schoolyard (Imported Fill + Pit Prep • 1.5-Yr Lag • 5% Mortality)</option>
+          <option value="agroecology_remediated">3. UTRGV Agroecology Soil Remediation (Subsoiled + Mulch Ring • 0.5-Yr Lag • 2% Mortality)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Soil Physics & Semi-Urban Compaction Diagnostic Strip -->
+    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 12px; align-items: center; background: #ffffff; padding: 10px 14px; border-radius: 6px; border: 1px solid #c8e6c9; margin-bottom: 14px; font-size: 12px;">
+      <div>
+        <strong style="color: var(--green-dark); display: block; margin-bottom: 2px;">🔬 Semi-Urban Schoolyard Soil &amp; Construction Sub-Base Reality:</strong>
+        <span id="soilRegimeSummaryText" style="color: #444; line-height: 1.35;">Accounts for semi-urban heat island stress and compacted surrounding sub-soils once lateral roots exit the initial planting pit.</span>
+      </div>
+      <div style="text-align: center; border-left: 1px solid #e5e7eb; padding-left: 8px;">
+        <span style="color: #666; font-size: 11px; display: block;">Sub-Base Bulk Density</span>
+        <strong id="soilBulkDensityVal" style="color: #b45309; font-size: 13px;">1.48 g/cm³</strong>
+      </div>
+      <div style="text-align: center; border-left: 1px solid #e5e7eb; padding-left: 8px;">
+        <span style="color: #666; font-size: 11px; display: block;">Soil Organic Matter</span>
+        <strong id="soilOrganicMatterVal" style="color: var(--green-dark); font-size: 13px;">1.8% (Pit-Amended)</strong>
+      </div>
+      <div style="text-align: center; border-left: 1px solid #e5e7eb; padding-left: 8px;">
+        <span style="color: #666; font-size: 11px; display: block;">Cohort Survival &amp; Lag</span>
+        <strong id="soilSurvivalVal" style="color: #1565c0; font-size: 13px;">95% Survival (1.5-Yr Lag)</strong>
+      </div>
+    </div>
+
+    <div class="prepost-header">
+      <div>
+        <h2>🌳 Pre/Post Canopy Impact Report: Initial Planting to Mature Tree (<span id="canopyCampusTitle">J.W. Caceres Discovery Academy</span>)</h2>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">Compare pre-planting baseline canopy against initial TTFS tree installation (2026) and mature canopy crown expansion (2040) under the active schoolyard soil regime.</p>
+      </div>
+      <div class="lifecycle-btn-group">
+        <button type="button" class="lifecycle-btn canopy-stage-btn" data-year="2024">1. Pre-Planting Baseline (2024)</button>
+        <button type="button" class="lifecycle-btn canopy-stage-btn active" data-year="2026">2. Initial Planting (2026)</button>
+        <button type="button" class="lifecycle-btn canopy-stage-btn" data-year="2040">3. Mature Tree Canopy (2040)</button>
+      </div>
+    </div>
+    <div style="overflow-x: auto;">
+      <table class="prepost-table">
+        <thead>
+          <tr>
+            <th>Canopy Growth Metric</th>
+            <th>1. Pre-Planting Baseline (2024)</th>
+            <th>2. Initial Planting (2026)</th>
+            <th>3. Mature Tree Canopy (2040)</th>
+            <th>Net Maturation Gain (&Delta;)</th>
+          </tr>
+        </thead>
+        <tbody id="canopyPrePostTableBody">
+          <!-- Populated dynamically by canopy.js -->
+        </tbody>
+      </table>
+    </div>
+  </section>
 
   <main class="canopy-layout">
     <!-- Left Sidebar: Controls & Notes -->
@@ -193,12 +245,13 @@
                   <tr style="background: var(--green-dark); color: #ffffff; position: sticky; top: 0; z-index: 5;">
                       <th style="padding: 10px 12px;">Map Tag ID</th>
                       <th style="padding: 10px 12px;">Tree Species Name</th>
+                      <th style="padding: 10px 12px;">Schoolyard Soil Sub-Base &amp; Tolerance</th>
                       <th style="padding: 10px 12px;">Planted Year</th>
-                      <th style="padding: 10px 12px;">Annual Growth Rate</th>
-                      <th style="padding: 10px 12px;">Initial Radius @ Planting</th>
-                      <th style="padding: 10px 12px;">Current Radius (<span class="dyn-year-text">2025</span>)</th>
+                      <th style="padding: 10px 12px;">Soil-Adjusted Growth</th>
+                      <th style="padding: 10px 12px;">Initial Radius</th>
+                      <th style="padding: 10px 12px;">Current Radius (<span class="dyn-year-text">2026</span>)</th>
                       <th style="padding: 10px 12px;">Current Shade Area (ft²)</th>
-                      <th style="padding: 10px 12px;">Max Biological Limit</th>
+                      <th style="padding: 10px 12px;">Soil-Capped Max Radius</th>
                       <th style="padding: 10px 12px; text-align: center;">Locate on Map</th>
                   </tr>
               </thead>

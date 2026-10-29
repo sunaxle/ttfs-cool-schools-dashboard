@@ -37,20 +37,80 @@
     districtSelect.appendChild(option);
   });
 
+  const overviewStageSelect = document.getElementById("overviewStageSelect");
+
   /**
-   * Updates the UI dashboard cards with metrics specific to a selected school district.
+   * Updates the UI dashboard cards with metrics specific to a selected school district and lifecycle stage.
    * @param {string} districtId - The unique identifier of the selected district.
    */
   function setMetrics(districtId) {
     const metrics = config.metrics[districtId];
     if (!metrics) return;
+    const stage = overviewStageSelect ? overviewStageSelect.value : "post";
     districtName.textContent = config.districts.find((d) => d.id === districtId)?.name || "District";
-    canopyValue.textContent = `${metrics.canopyPct}%`;
-    albedoValue.textContent = `${metrics.albedoPct}%`;
-    lstSummer.textContent = `${metrics.lst.summer}°F`;
-    lstSpring.textContent = `${metrics.lst.spring}°F`;
-    lstFall.textContent = `${metrics.lst.fall}°F`;
-    lstWinter.textContent = `${metrics.lst.winter}°F`;
+
+    const baseCanopy = parseFloat(metrics.canopyPct) || 5.0;
+    const postCanopy = +(baseCanopy + 4.8).toFixed(1);
+    const matCanopy = 30.0;
+
+    const baseAlbedoLowPct = parseFloat(metrics.albedoPct) || 68;
+    const postAlbedoLowPct = Math.max(15, baseAlbedoLowPct - 12);
+    const matAlbedoLowPct = Math.max(10, baseAlbedoLowPct - 38);
+
+    const baseAir = parseFloat(metrics.lst.summer) || 95;
+    const baseExp = parseFloat(metrics.lst.spring) || 124;
+    const baseShade = parseFloat(metrics.lst.fall) || 90;
+    const baseMoisture = parseFloat(metrics.lst.winter) || 12;
+
+    const ovPreCanopy = document.getElementById("ovPreCanopy");
+    const ovPostCanopy = document.getElementById("ovPostCanopy");
+    const ovMatCanopy = document.getElementById("ovMatCanopy");
+    if (ovPreCanopy) ovPreCanopy.textContent = `${baseCanopy}%`;
+    if (ovPostCanopy) ovPostCanopy.textContent = `${postCanopy}%`;
+    if (ovMatCanopy) ovMatCanopy.textContent = `${matCanopy}%`;
+
+    const ovPreExp = document.getElementById("ovPreExp");
+    const ovPostExp = document.getElementById("ovPostExp");
+    const ovMatExp = document.getElementById("ovMatExp");
+    if (ovPreExp) ovPreExp.textContent = `${baseExp}°F`;
+    if (ovPostExp) ovPostExp.textContent = `${(baseExp - 3.5).toFixed(0)}°F`;
+    if (ovMatExp) ovMatExp.textContent = `${(baseExp - 9.0).toFixed(0)}°F`;
+
+    const ovPreShade = document.getElementById("ovPreShade");
+    const ovPostShade = document.getElementById("ovPostShade");
+    const ovMatShade = document.getElementById("ovMatShade");
+    if (ovPreShade) ovPreShade.textContent = `${baseShade}°F`;
+    if (ovPostShade) ovPostShade.textContent = `${(baseShade - 1.5).toFixed(0)}°F`;
+    if (ovMatShade) ovMatShade.textContent = `${(baseShade - 8.5).toFixed(0)}°F`;
+
+    if (stage === "pre") {
+      canopyValue.textContent = `${baseCanopy}%`;
+      albedoValue.textContent = `${baseAlbedoLowPct}%`;
+      lstSummer.textContent = `${baseAir}°F`;
+      lstSpring.textContent = `${baseExp}°F`;
+      lstFall.textContent = `${baseShade}°F`;
+      lstWinter.textContent = `${baseMoisture}%`;
+    } else if (stage === "post") {
+      canopyValue.textContent = `${postCanopy}%`;
+      albedoValue.textContent = `${postAlbedoLowPct}%`;
+      lstSummer.textContent = `${(baseAir - 1.2).toFixed(1)}°F`;
+      lstSpring.textContent = `${(baseExp - 3.5).toFixed(1)}°F`;
+      lstFall.textContent = `${(baseShade - 1.5).toFixed(1)}°F`;
+      lstWinter.textContent = `${(baseMoisture + 2.5).toFixed(1)}%`;
+    } else {
+      canopyValue.textContent = `${matCanopy}%`;
+      albedoValue.textContent = `${matAlbedoLowPct}%`;
+      lstSummer.textContent = `${(baseAir - 4.5).toFixed(1)}°F`;
+      lstSpring.textContent = `${(baseExp - 9.0).toFixed(1)}°F`;
+      lstFall.textContent = `${(baseShade - 8.5).toFixed(1)}°F`;
+      lstWinter.textContent = `${(baseMoisture + 11.0).toFixed(1)}%`;
+    }
+  }
+
+  if (overviewStageSelect) {
+    overviewStageSelect.addEventListener("change", () => {
+      setMetrics(districtSelect.value || config.districts[0]?.id);
+    });
   }
 
   /**

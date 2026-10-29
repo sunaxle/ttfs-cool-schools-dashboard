@@ -5,11 +5,13 @@
       "type": "Feature",
       "properties": {
         "id": 1,
-        "species": "Bur Oak",
-        "plantYear": 2026,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 51,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Live Oak",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -23,11 +25,13 @@
       "type": "Feature",
       "properties": {
         "id": 2,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 50,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Bur Oak",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -41,11 +45,13 @@
       "type": "Feature",
       "properties": {
         "id": 3,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.2,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -59,11 +65,13 @@
       "type": "Feature",
       "properties": {
         "id": 4,
-        "species": "Texas Pecan",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 55,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -78,10 +86,12 @@
       "properties": {
         "id": 5,
         "species": "Mexican Sycamore",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.5,
-        "maxRadiusFeet": 39,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -95,11 +105,13 @@
       "type": "Feature",
       "properties": {
         "id": 6,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.0,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -113,11 +125,13 @@
       "type": "Feature",
       "properties": {
         "id": 7,
-        "species": "Live Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 38,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -131,11 +145,13 @@
       "type": "Feature",
       "properties": {
         "id": 8,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2026,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 55,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Anacua",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -149,11 +165,13 @@
       "type": "Feature",
       "properties": {
         "id": 9,
-        "species": "Texas Pecan",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.2,
-        "maxRadiusFeet": 39,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -167,11 +185,13 @@
       "type": "Feature",
       "properties": {
         "id": 10,
-        "species": "Mexican Sycamore",
-        "plantYear": 2026,
-        "baseRadiusFeet": 2.9,
-        "maxRadiusFeet": 38,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Live Oak",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -185,11 +205,13 @@
       "type": "Feature",
       "properties": {
         "id": 11,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.7,
-        "maxRadiusFeet": 42,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Bur Oak",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -203,11 +225,13 @@
       "type": "Feature",
       "properties": {
         "id": 12,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 37,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -221,11 +245,13 @@
       "type": "Feature",
       "properties": {
         "id": 13,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.1,
-        "maxRadiusFeet": 36,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -239,11 +265,13 @@
       "type": "Feature",
       "properties": {
         "id": 14,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2026,
-        "baseRadiusFeet": 3.6,
-        "maxRadiusFeet": 49,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Mexican Sycamore",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -258,10 +286,12 @@
       "properties": {
         "id": 15,
         "species": "Texas Pecan",
-        "plantYear": 2026,
-        "baseRadiusFeet": 2.7,
-        "maxRadiusFeet": 46,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -275,11 +305,13 @@
       "type": "Feature",
       "properties": {
         "id": 16,
-        "species": "Bur Oak",
-        "plantYear": 2026,
-        "baseRadiusFeet": 4.3,
-        "maxRadiusFeet": 41,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -293,11 +325,13 @@
       "type": "Feature",
       "properties": {
         "id": 17,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2026,
-        "baseRadiusFeet": 3.7,
-        "maxRadiusFeet": 38,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Anacua",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -311,11 +345,13 @@
       "type": "Feature",
       "properties": {
         "id": 18,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2020,
+        "baseRadiusFeet": 19.8,
+        "maxRadiusFeet": 21.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": true
       },
       "geometry": {
         "type": "Point",
@@ -329,11 +365,13 @@
       "type": "Feature",
       "properties": {
         "id": 19,
-        "species": "Texas Pecan",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 42,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Live Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -347,11 +385,13 @@
       "type": "Feature",
       "properties": {
         "id": 20,
-        "species": "Live Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.2,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Bur Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -365,11 +405,13 @@
       "type": "Feature",
       "properties": {
         "id": 21,
-        "species": "Live Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.6,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -383,11 +425,13 @@
       "type": "Feature",
       "properties": {
         "id": 22,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 55,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -401,11 +445,13 @@
       "type": "Feature",
       "properties": {
         "id": 23,
-        "species": "Live Oak",
+        "species": "Mexican Sycamore",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.2,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -419,11 +465,13 @@
       "type": "Feature",
       "properties": {
         "id": 24,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.7,
-        "maxRadiusFeet": 51,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -437,11 +485,13 @@
       "type": "Feature",
       "properties": {
         "id": 25,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 47,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -455,11 +505,13 @@
       "type": "Feature",
       "properties": {
         "id": 26,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.0,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Anacua",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -473,11 +525,13 @@
       "type": "Feature",
       "properties": {
         "id": 27,
-        "species": "Live Oak",
+        "species": "Texas Ebony",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.8,
-        "maxRadiusFeet": 38,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -492,10 +546,12 @@
       "properties": {
         "id": 28,
         "species": "Live Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.2,
-        "maxRadiusFeet": 35,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -509,11 +565,13 @@
       "type": "Feature",
       "properties": {
         "id": 29,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.7,
-        "maxRadiusFeet": 40,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Bur Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -527,11 +585,13 @@
       "type": "Feature",
       "properties": {
         "id": 30,
-        "species": "Live Oak",
+        "species": "Montezuma Bald Cypress",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 55,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -545,11 +605,13 @@
       "type": "Feature",
       "properties": {
         "id": 31,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 35,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -563,11 +625,13 @@
       "type": "Feature",
       "properties": {
         "id": 32,
-        "species": "Bur Oak",
+        "species": "Mexican Sycamore",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.0,
-        "maxRadiusFeet": 41,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -581,11 +645,13 @@
       "type": "Feature",
       "properties": {
         "id": 33,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 37,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -599,11 +665,13 @@
       "type": "Feature",
       "properties": {
         "id": 34,
-        "species": "Live Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.2,
-        "maxRadiusFeet": 36,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -617,11 +685,13 @@
       "type": "Feature",
       "properties": {
         "id": 35,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.2,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Anacua",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -635,11 +705,13 @@
       "type": "Feature",
       "properties": {
         "id": 36,
-        "species": "Texas Pecan",
+        "species": "Texas Ebony",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.4,
-        "maxRadiusFeet": 42,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -653,11 +725,13 @@
       "type": "Feature",
       "properties": {
         "id": 37,
-        "species": "Texas Pecan",
+        "species": "Live Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.8,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -672,10 +746,12 @@
       "properties": {
         "id": 38,
         "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 37,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -689,11 +765,13 @@
       "type": "Feature",
       "properties": {
         "id": 39,
-        "species": "Live Oak",
+        "species": "Montezuma Bald Cypress",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.8,
-        "maxRadiusFeet": 40,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -707,11 +785,13 @@
       "type": "Feature",
       "properties": {
         "id": 40,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2025,
-        "baseRadiusFeet": 2.7,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -725,11 +805,13 @@
       "type": "Feature",
       "properties": {
         "id": 41,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.7,
-        "maxRadiusFeet": 36,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Mexican Sycamore",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -743,11 +825,13 @@
       "type": "Feature",
       "properties": {
         "id": 42,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.3,
-        "maxRadiusFeet": 38,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -761,11 +845,13 @@
       "type": "Feature",
       "properties": {
         "id": 43,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2025,
-        "baseRadiusFeet": 2.5,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -779,11 +865,13 @@
       "type": "Feature",
       "properties": {
         "id": 44,
-        "species": "Bur Oak",
+        "species": "Anacua",
         "plantYear": 2026,
-        "baseRadiusFeet": 2.9,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -797,11 +885,13 @@
       "type": "Feature",
       "properties": {
         "id": 45,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.6,
-        "maxRadiusFeet": 48,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -815,11 +905,13 @@
       "type": "Feature",
       "properties": {
         "id": 46,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.2,
-        "maxRadiusFeet": 42,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Live Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -833,11 +925,13 @@
       "type": "Feature",
       "properties": {
         "id": 47,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.1,
-        "maxRadiusFeet": 54,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Bur Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -851,11 +945,13 @@
       "type": "Feature",
       "properties": {
         "id": 48,
-        "species": "Texas Pecan",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 49,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -869,11 +965,13 @@
       "type": "Feature",
       "properties": {
         "id": 49,
-        "species": "Texas Pecan",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.3,
-        "maxRadiusFeet": 50,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -887,11 +985,13 @@
       "type": "Feature",
       "properties": {
         "id": 50,
-        "species": "Montezuma Bald Cypress",
+        "species": "Mexican Sycamore",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 55,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -905,11 +1005,13 @@
       "type": "Feature",
       "properties": {
         "id": 51,
-        "species": "Mexican Sycamore",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.4,
-        "maxRadiusFeet": 49,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -923,11 +1025,13 @@
       "type": "Feature",
       "properties": {
         "id": 52,
-        "species": "Live Oak",
+        "species": "Honey Mesquite",
         "plantYear": 2026,
-        "baseRadiusFeet": 2.9,
-        "maxRadiusFeet": 42,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -941,11 +1045,13 @@
       "type": "Feature",
       "properties": {
         "id": 53,
-        "species": "Texas Pecan",
+        "species": "Anacua",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.4,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -959,11 +1065,13 @@
       "type": "Feature",
       "properties": {
         "id": 54,
-        "species": "Texas Pecan",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.9,
-        "maxRadiusFeet": 36,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -979,9 +1087,11 @@
         "id": 55,
         "species": "Live Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.9,
-        "maxRadiusFeet": 52,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -995,11 +1105,13 @@
       "type": "Feature",
       "properties": {
         "id": 56,
-        "species": "Texas Pecan",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 47,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Bur Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1013,11 +1125,13 @@
       "type": "Feature",
       "properties": {
         "id": 57,
-        "species": "Bur Oak",
+        "species": "Montezuma Bald Cypress",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.0,
-        "maxRadiusFeet": 47,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1031,11 +1145,13 @@
       "type": "Feature",
       "properties": {
         "id": 58,
-        "species": "Live Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1049,11 +1165,13 @@
       "type": "Feature",
       "properties": {
         "id": 59,
-        "species": "Texas Pecan",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.5,
-        "maxRadiusFeet": 42,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Mexican Sycamore",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1067,11 +1185,13 @@
       "type": "Feature",
       "properties": {
         "id": 60,
-        "species": "Montezuma Bald Cypress",
+        "species": "Texas Pecan",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.1,
-        "maxRadiusFeet": 49,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1085,11 +1205,13 @@
       "type": "Feature",
       "properties": {
         "id": 61,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.9,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1103,11 +1225,13 @@
       "type": "Feature",
       "properties": {
         "id": 62,
-        "species": "Live Oak",
+        "species": "Anacua",
         "plantYear": 2026,
-        "baseRadiusFeet": 2.5,
-        "maxRadiusFeet": 41,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1121,11 +1245,13 @@
       "type": "Feature",
       "properties": {
         "id": 63,
-        "species": "Texas Pecan",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 36,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1139,11 +1265,13 @@
       "type": "Feature",
       "properties": {
         "id": 64,
-        "species": "Mexican Sycamore",
+        "species": "Live Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 51,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1157,11 +1285,13 @@
       "type": "Feature",
       "properties": {
         "id": 65,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.8,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Bur Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1175,11 +1305,13 @@
       "type": "Feature",
       "properties": {
         "id": 66,
-        "species": "Texas Pecan",
+        "species": "Montezuma Bald Cypress",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.5,
-        "maxRadiusFeet": 35,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1193,11 +1325,13 @@
       "type": "Feature",
       "properties": {
         "id": 67,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2025,
-        "baseRadiusFeet": 2.6,
-        "maxRadiusFeet": 50,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1211,11 +1345,13 @@
       "type": "Feature",
       "properties": {
         "id": 68,
-        "species": "Texas Pecan",
+        "species": "Mexican Sycamore",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.9,
-        "maxRadiusFeet": 35,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1229,11 +1365,13 @@
       "type": "Feature",
       "properties": {
         "id": 69,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.0,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1247,11 +1385,13 @@
       "type": "Feature",
       "properties": {
         "id": 70,
-        "species": "Mexican Sycamore",
+        "species": "Honey Mesquite",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 50,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1265,11 +1405,13 @@
       "type": "Feature",
       "properties": {
         "id": 71,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.8,
-        "maxRadiusFeet": 44,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Anacua",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1283,11 +1425,13 @@
       "type": "Feature",
       "properties": {
         "id": 72,
-        "species": "Mexican Sycamore",
+        "species": "Texas Ebony",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.5,
-        "maxRadiusFeet": 49,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1301,11 +1445,13 @@
       "type": "Feature",
       "properties": {
         "id": 73,
-        "species": "Texas Pecan",
+        "species": "Live Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.1,
-        "maxRadiusFeet": 49,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1319,11 +1465,13 @@
       "type": "Feature",
       "properties": {
         "id": 74,
-        "species": "Montezuma Bald Cypress",
+        "species": "Bur Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 2.9,
-        "maxRadiusFeet": 38,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1337,11 +1485,13 @@
       "type": "Feature",
       "properties": {
         "id": 75,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.9,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1355,11 +1505,13 @@
       "type": "Feature",
       "properties": {
         "id": 76,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 41,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1374,10 +1526,12 @@
       "properties": {
         "id": 77,
         "species": "Mexican Sycamore",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.4,
-        "maxRadiusFeet": 51,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1391,11 +1545,13 @@
       "type": "Feature",
       "properties": {
         "id": 78,
-        "species": "Mexican Sycamore",
+        "species": "Texas Pecan",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 36,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1409,11 +1565,13 @@
       "type": "Feature",
       "properties": {
         "id": 79,
-        "species": "Live Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.4,
-        "maxRadiusFeet": 47,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1427,11 +1585,13 @@
       "type": "Feature",
       "properties": {
         "id": 80,
-        "species": "Live Oak",
+        "species": "Anacua",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.3,
-        "maxRadiusFeet": 47,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1445,11 +1605,13 @@
       "type": "Feature",
       "properties": {
         "id": 81,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.2,
-        "maxRadiusFeet": 40,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1465,9 +1627,11 @@
         "id": 82,
         "species": "Live Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.1,
-        "maxRadiusFeet": 38,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1481,11 +1645,13 @@
       "type": "Feature",
       "properties": {
         "id": 83,
-        "species": "Live Oak",
+        "species": "Bur Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 44,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1499,11 +1665,13 @@
       "type": "Feature",
       "properties": {
         "id": 84,
-        "species": "Live Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.6,
-        "maxRadiusFeet": 41,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1517,11 +1685,13 @@
       "type": "Feature",
       "properties": {
         "id": 85,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.6,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1535,11 +1705,13 @@
       "type": "Feature",
       "properties": {
         "id": 86,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.9,
-        "maxRadiusFeet": 37,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Mexican Sycamore",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1553,11 +1725,13 @@
       "type": "Feature",
       "properties": {
         "id": 87,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.2,
-        "maxRadiusFeet": 40,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1571,11 +1745,13 @@
       "type": "Feature",
       "properties": {
         "id": 88,
-        "species": "Mexican Sycamore",
-        "plantYear": 2025,
-        "baseRadiusFeet": 2.6,
-        "maxRadiusFeet": 47,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1589,11 +1765,13 @@
       "type": "Feature",
       "properties": {
         "id": 89,
-        "species": "Live Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 54,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Anacua",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1607,11 +1785,13 @@
       "type": "Feature",
       "properties": {
         "id": 90,
-        "species": "Bur Oak",
+        "species": "Texas Ebony",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.2,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1625,11 +1805,13 @@
       "type": "Feature",
       "properties": {
         "id": 91,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.5,
-        "maxRadiusFeet": 47,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Live Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1643,11 +1825,13 @@
       "type": "Feature",
       "properties": {
         "id": 92,
-        "species": "Montezuma Bald Cypress",
+        "species": "Bur Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.7,
-        "maxRadiusFeet": 41,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1661,11 +1845,13 @@
       "type": "Feature",
       "properties": {
         "id": 93,
-        "species": "Live Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 37,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1679,11 +1865,13 @@
       "type": "Feature",
       "properties": {
         "id": 94,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 41,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1697,11 +1885,13 @@
       "type": "Feature",
       "properties": {
         "id": 95,
-        "species": "Live Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.9,
-        "maxRadiusFeet": 51,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Mexican Sycamore",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1715,11 +1905,13 @@
       "type": "Feature",
       "properties": {
         "id": 96,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 44,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1733,11 +1925,13 @@
       "type": "Feature",
       "properties": {
         "id": 97,
-        "species": "Live Oak",
+        "species": "Honey Mesquite",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1751,11 +1945,13 @@
       "type": "Feature",
       "properties": {
         "id": 98,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.4,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Anacua",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1769,11 +1965,13 @@
       "type": "Feature",
       "properties": {
         "id": 99,
-        "species": "Live Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 2.5,
-        "maxRadiusFeet": 46,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1788,10 +1986,12 @@
       "properties": {
         "id": 100,
         "species": "Live Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.0,
-        "maxRadiusFeet": 54,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1805,11 +2005,13 @@
       "type": "Feature",
       "properties": {
         "id": 101,
-        "species": "Mexican Sycamore",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.6,
-        "maxRadiusFeet": 41,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Bur Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1823,11 +2025,13 @@
       "type": "Feature",
       "properties": {
         "id": 102,
-        "species": "Mexican Sycamore",
+        "species": "Montezuma Bald Cypress",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.3,
-        "maxRadiusFeet": 47,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1841,11 +2045,13 @@
       "type": "Feature",
       "properties": {
         "id": 103,
-        "species": "Live Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.1,
-        "maxRadiusFeet": 35,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1859,11 +2065,13 @@
       "type": "Feature",
       "properties": {
         "id": 104,
-        "species": "Live Oak",
+        "species": "Mexican Sycamore",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 40,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1877,11 +2085,13 @@
       "type": "Feature",
       "properties": {
         "id": 105,
-        "species": "Mexican Sycamore",
+        "species": "Texas Pecan",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 51,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1895,11 +2105,13 @@
       "type": "Feature",
       "properties": {
         "id": 106,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.6,
-        "maxRadiusFeet": 36,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1913,11 +2125,13 @@
       "type": "Feature",
       "properties": {
         "id": 107,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 55,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Anacua",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1931,11 +2145,13 @@
       "type": "Feature",
       "properties": {
         "id": 108,
-        "species": "Live Oak",
+        "species": "Texas Ebony",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.0,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1949,11 +2165,13 @@
       "type": "Feature",
       "properties": {
         "id": 109,
-        "species": "Mexican Sycamore",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 50,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Live Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1967,11 +2185,13 @@
       "type": "Feature",
       "properties": {
         "id": 110,
-        "species": "Montezuma Bald Cypress",
+        "species": "Bur Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.8,
-        "maxRadiusFeet": 39,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -1985,11 +2205,13 @@
       "type": "Feature",
       "properties": {
         "id": 111,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.7,
-        "maxRadiusFeet": 39,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2003,11 +2225,13 @@
       "type": "Feature",
       "properties": {
         "id": 112,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.4,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2021,11 +2245,13 @@
       "type": "Feature",
       "properties": {
         "id": 113,
-        "species": "Montezuma Bald Cypress",
+        "species": "Mexican Sycamore",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.5,
-        "maxRadiusFeet": 49,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2039,11 +2265,13 @@
       "type": "Feature",
       "properties": {
         "id": 114,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.2,
-        "maxRadiusFeet": 35,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2057,11 +2285,13 @@
       "type": "Feature",
       "properties": {
         "id": 115,
-        "species": "Texas Pecan",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 44,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2075,11 +2305,13 @@
       "type": "Feature",
       "properties": {
         "id": 116,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.6,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Anacua",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2093,11 +2325,13 @@
       "type": "Feature",
       "properties": {
         "id": 117,
-        "species": "Texas Pecan",
+        "species": "Texas Ebony",
         "plantYear": 2026,
-        "baseRadiusFeet": 2.8,
-        "maxRadiusFeet": 42,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2111,11 +2345,13 @@
       "type": "Feature",
       "properties": {
         "id": 118,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.5,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Live Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2131,9 +2367,11 @@
         "id": 119,
         "species": "Bur Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.7,
-        "maxRadiusFeet": 37,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2147,11 +2385,13 @@
       "type": "Feature",
       "properties": {
         "id": 120,
-        "species": "Live Oak",
+        "species": "Montezuma Bald Cypress",
         "plantYear": 2026,
-        "baseRadiusFeet": 2.5,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2165,11 +2405,13 @@
       "type": "Feature",
       "properties": {
         "id": 121,
-        "species": "Live Oak",
+        "species": "Cedar Elm",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.7,
-        "maxRadiusFeet": 50,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2183,11 +2425,13 @@
       "type": "Feature",
       "properties": {
         "id": 122,
-        "species": "Texas Pecan",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.2,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Mexican Sycamore",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2201,11 +2445,13 @@
       "type": "Feature",
       "properties": {
         "id": 123,
-        "species": "Montezuma Bald Cypress",
+        "species": "Texas Pecan",
         "plantYear": 2026,
-        "baseRadiusFeet": 2.9,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2219,11 +2465,13 @@
       "type": "Feature",
       "properties": {
         "id": 124,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.2,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2237,11 +2485,13 @@
       "type": "Feature",
       "properties": {
         "id": 125,
-        "species": "Bur Oak",
+        "species": "Anacua",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 48,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2255,11 +2505,13 @@
       "type": "Feature",
       "properties": {
         "id": 126,
-        "species": "Live Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.5,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2273,11 +2525,13 @@
       "type": "Feature",
       "properties": {
         "id": 127,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 55,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Live Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2293,9 +2547,11 @@
         "id": 128,
         "species": "Bur Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.9,
-        "maxRadiusFeet": 36,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2309,11 +2565,13 @@
       "type": "Feature",
       "properties": {
         "id": 129,
-        "species": "Mexican Sycamore",
+        "species": "Montezuma Bald Cypress",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.2,
-        "maxRadiusFeet": 46,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2327,11 +2585,13 @@
       "type": "Feature",
       "properties": {
         "id": 130,
-        "species": "Texas Pecan",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.8,
-        "maxRadiusFeet": 37,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2346,10 +2606,12 @@
       "properties": {
         "id": 131,
         "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.1,
-        "maxRadiusFeet": 47,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2364,10 +2626,12 @@
       "properties": {
         "id": 132,
         "species": "Texas Pecan",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.5,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2381,11 +2645,13 @@
       "type": "Feature",
       "properties": {
         "id": 133,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 39,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2399,11 +2665,13 @@
       "type": "Feature",
       "properties": {
         "id": 134,
-        "species": "Montezuma Bald Cypress",
+        "species": "Anacua",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.1,
-        "maxRadiusFeet": 42,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2417,11 +2685,13 @@
       "type": "Feature",
       "properties": {
         "id": 135,
-        "species": "Mexican Sycamore",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.4,
-        "maxRadiusFeet": 51,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2435,11 +2705,13 @@
       "type": "Feature",
       "properties": {
         "id": 136,
-        "species": "Montezuma Bald Cypress",
+        "species": "Live Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 2.7,
-        "maxRadiusFeet": 50,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2454,10 +2726,12 @@
       "properties": {
         "id": 137,
         "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.6,
-        "maxRadiusFeet": 46,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2471,11 +2745,13 @@
       "type": "Feature",
       "properties": {
         "id": 138,
-        "species": "Live Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 3.4,
-        "maxRadiusFeet": 54,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2489,11 +2765,13 @@
       "type": "Feature",
       "properties": {
         "id": 139,
-        "species": "Texas Pecan",
+        "species": "Cedar Elm",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.6,
-        "maxRadiusFeet": 37,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2507,11 +2785,13 @@
       "type": "Feature",
       "properties": {
         "id": 140,
-        "species": "Live Oak",
+        "species": "Mexican Sycamore",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.7,
-        "maxRadiusFeet": 54,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2525,11 +2805,13 @@
       "type": "Feature",
       "properties": {
         "id": 141,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 51,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2543,11 +2825,13 @@
       "type": "Feature",
       "properties": {
         "id": 142,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.3,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Honey Mesquite",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2561,11 +2845,13 @@
       "type": "Feature",
       "properties": {
         "id": 143,
-        "species": "Montezuma Bald Cypress",
+        "species": "Anacua",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 52,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2579,11 +2865,13 @@
       "type": "Feature",
       "properties": {
         "id": 144,
-        "species": "Montezuma Bald Cypress",
+        "species": "Texas Ebony",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.5,
-        "maxRadiusFeet": 45,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2597,11 +2885,13 @@
       "type": "Feature",
       "properties": {
         "id": 145,
-        "species": "Montezuma Bald Cypress",
+        "species": "Live Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.8,
-        "maxRadiusFeet": 51,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2615,11 +2905,13 @@
       "type": "Feature",
       "properties": {
         "id": 146,
-        "species": "Montezuma Bald Cypress",
-        "plantYear": 2025,
-        "baseRadiusFeet": 2.7,
-        "maxRadiusFeet": 38,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Bur Oak",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2633,11 +2925,13 @@
       "type": "Feature",
       "properties": {
         "id": 147,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.1,
-        "maxRadiusFeet": 35,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2651,11 +2945,13 @@
       "type": "Feature",
       "properties": {
         "id": 148,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.7,
-        "maxRadiusFeet": 35,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Cedar Elm",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2669,11 +2965,13 @@
       "type": "Feature",
       "properties": {
         "id": 149,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.3,
-        "maxRadiusFeet": 50,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Mexican Sycamore",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2687,11 +2985,13 @@
       "type": "Feature",
       "properties": {
         "id": 150,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 3.7,
-        "maxRadiusFeet": 35,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Pecan",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2705,11 +3005,13 @@
       "type": "Feature",
       "properties": {
         "id": 151,
-        "species": "Mexican Sycamore",
+        "species": "Honey Mesquite",
         "plantYear": 2026,
-        "baseRadiusFeet": 3.9,
-        "maxRadiusFeet": 39,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 18.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2723,11 +3025,13 @@
       "type": "Feature",
       "properties": {
         "id": 152,
-        "species": "Texas Pecan",
+        "species": "Anacua",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.3,
-        "maxRadiusFeet": 54,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 17.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2741,11 +3045,13 @@
       "type": "Feature",
       "properties": {
         "id": 153,
-        "species": "Mexican Sycamore",
-        "plantYear": 2024,
-        "baseRadiusFeet": 4.2,
-        "maxRadiusFeet": 37,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Texas Ebony",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 16,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2759,11 +3065,13 @@
       "type": "Feature",
       "properties": {
         "id": 154,
-        "species": "Texas Pecan",
+        "species": "Live Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.0,
-        "maxRadiusFeet": 43,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 22,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Bus Loop Asphalt Edge (High Radiant Heat)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2777,11 +3085,13 @@
       "type": "Feature",
       "properties": {
         "id": 155,
-        "species": "Mexican Sycamore",
+        "species": "Bur Oak",
         "plantYear": 2026,
-        "baseRadiusFeet": 2.8,
-        "maxRadiusFeet": 40,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 20.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Courtyard Turf (Moderate Sub-Soil Hardpan)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2795,11 +3105,13 @@
       "type": "Feature",
       "properties": {
         "id": 156,
-        "species": "Bur Oak",
-        "plantYear": 2025,
-        "baseRadiusFeet": 4.2,
-        "maxRadiusFeet": 53,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Montezuma Bald Cypress",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 21,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Imported Caliche Sub-Base (High Compaction)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2813,11 +3125,13 @@
       "type": "Feature",
       "properties": {
         "id": 157,
-        "species": "Mexican Sycamore",
+        "species": "Cedar Elm",
         "plantYear": 2026,
-        "baseRadiusFeet": 4.1,
-        "maxRadiusFeet": 42,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Legacy Construction Fill (Bulk Density 1.68 g/cm³)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",
@@ -2831,11 +3145,13 @@
       "type": "Feature",
       "properties": {
         "id": 158,
-        "species": "Bur Oak",
-        "plantYear": 2024,
-        "baseRadiusFeet": 2.9,
-        "maxRadiusFeet": 46,
-        "campus": "J.W. Caceres & M. Rivas Academy"
+        "species": "Mexican Sycamore",
+        "plantYear": 2026,
+        "baseRadiusFeet": 7.1,
+        "maxRadiusFeet": 19.5,
+        "campus": "J.W. Caceres & M. Rivas Academy",
+        "soilZone": "Playground Perimeter (Foot-Traffic Compacted)",
+        "isLegacy": false
       },
       "geometry": {
         "type": "Point",

@@ -146,40 +146,24 @@
         <div class="brand-right"></div>
     </header>
 
-            <nav class="app-nav">
+    <nav class="app-nav" aria-label="Main Dashboard Navigation">
         <div class="nav-section deliverables-section">
-            <span class="nav-header-label">⭐ GRANT DELIVERABLES (PRIMARY FOCUS)</span>
-            <a class="nav-link" href="portals/v3/portal_v3_concept_a_scroll.html" style="color: #a3e635; font-weight: bold;">▶ Intro Portal</a>
+            <span class="nav-header-label">⭐ CORE DISTRICT DASHBOARD</span>
             <a class="nav-link" href="campuses.html">Select Campus</a>
             <a class="nav-link" href="dashboard_map.html">Dashboard Overview</a>
-            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="albedo.html">Albedo & Reflectance <span class="badge-tag">DELIVERABLE</span></a>
-            <a class="nav-link deliverable-link" href="surface_area.html">Surface Breakdown <span class="badge-tag">DELIVERABLE</span></a>
+            <a class="nav-link deliverable-link" href="canopy.html">Canopy Over Time <span class="badge-tag">PRE/POST</span></a>
+            <a class="nav-link deliverable-link" href="biodiversity.html">Biodiversity <span class="badge-tag live-tag">LIVE UPDATES</span></a>
+            <a class="nav-link deliverable-link" href="albedo.html">Albedo &amp; Reflectance <span class="badge-tag consolidated-tag">CONSOLIDATED</span></a>
+            <a class="nav-link deliverable-link" href="index.html">Impact <span class="badge-tag">PRE/POST</span></a>
+            <a class="nav-link deliverable-link active" href="itree_ledger.html">i-Tree Eco Ledger <span class="badge-tag">PRE/POST</span></a>
+            <a class="nav-link deliverable-link" href="rivas_tree_roster.html">Tree Sponsorship Roster <span class="badge-tag live-tag">LIVE UPDATES</span></a>
         </div>
         <div class="nav-section simulations-section">
-            <span class="nav-header-label muted">🧪 BONUS SIMULATIONS</span>
-            <a class="nav-link active" href="itree_ledger.html">i-Tree Eco Ledger</a>
-            <a class="nav-link" href="tree_3d.html">3D Shade Models</a>
-            <a class="nav-link" href="student_tracking.html">Student Tracking</a>
-            <a class="nav-link" href="zoning.html">Site Zoning</a>
-            <a class="nav-link" href="protocols.html">SOP Protocols</a>
-            <a class="nav-link" href="maintenance.html">Maintenance Tracker</a>
-            <a class="nav-link" href="economics.html">Economics / ROI</a>
-            <a class="nav-link" href="trails.html">Trails</a>
-            <a class="nav-link" href="wind.html">Wind</a>
-            <a class="nav-link" href="temperature.html">Temp</a>
-            <a class="nav-link" href="soil_moisture.html">Moisture</a>
-            <a class="nav-link" href="water_table.html">Water Table</a>
-            <a class="nav-link" href="soil_types.html">Soils</a>
-            <a class="nav-link" href="index.html">Impact</a>
-        </div>
-        <div class="nav-section new-prototypes-section" style="border-left: 2px solid #9C27B0; padding-left: 10px; margin-left: 15px;">
-            <span class="nav-header-label" style="color: #9C27B0;">🆕 NEW PROTOTYPES (NOT DELIVERABLES)</span>
-            <a class="nav-link" href="teks_lesson_plans.html">TEKS Lesson Plans</a>
-            <a class="nav-link" href="biodiversity_analog_concept.html">Child-Friendly Biodiversity</a>
-            <a class="nav-link" href="rivas_tree_roster.html">Tree Sponsorship Roster</a>
-            <a class="nav-link" href="user_access_strategy.html">User Access Strategy</a>
+            <span class="nav-header-label muted">📚 CURRICULUM &amp; FIELD TOOLS (AWAITING DISTRICT INPUT)</span>
+            <a class="nav-link" href="teks_lesson_plans.html">TEKS-Aligned Lessons <span class="badge-tag pending-tag">DISTRICT REVIEW</span></a>
+            <a class="nav-link" href="tree_stewardship.html">Tree Stewardship Lab</a>
+            <a class="nav-link" href="birding_biodiversity.html">Birding Field Lab</a>
+            <a class="nav-link" href="sponsorship_portal.html">Tree Adoption ROI Calculator</a>
         </div>
     </nav>
 
@@ -188,22 +172,70 @@
         <div class="summary-banner">
             <div>
                 <h1>🌳 USDA i-Tree Ecosystem Services Ledger</h1>
-                <p>Quantifying urban forestry benefits using USDA Forest Service i-Tree Eco v6.0 mathematical models for J.W. Caceres & M. Rivas Academy.</p>
+                <p>Quantifying urban forestry benefits from initial tree planting to mature canopy using USDA Forest Service i-Tree Eco v6.0 models.</p>
             </div>
             <div>
-                <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px;">Combined Annual Eco Benefit (<span id="bannerYear">2025</span>)</div>
+                <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px;">Combined Annual Eco Benefit (<span id="bannerYear">2026</span>)</div>
                 <div class="metric-big" id="bannerTotalValue">$0 / yr</div>
             </div>
         </div>
+
+        <!-- Pre/Post Impact Report: Initial Planting to Mature Tree -->
+        <section class="prepost-banner" aria-label="i-Tree Pre and Post Planting to Mature Tree Report">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 2px solid var(--green-light); margin-bottom: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <strong style="font-size: 12px; text-transform: uppercase; color: var(--green-dark);">🏫 Representative Campus:</strong>
+                    <button type="button" class="lifecycle-btn itree-campus-btn active" data-campus="donna_jw_caceres">Donna ISD: J.W. Caceres (158 Trees)</button>
+                    <button type="button" class="lifecycle-btn itree-campus-btn" data-campus="mercedes_hinojosa">Mercedes ISD: Ruben Hinojosa Elem (142 Trees)</button>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <label for="itreeSoilRegimeSelect" style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--green-dark);">🪨 Schoolyard Soil &amp; Compaction Model:</label>
+                    <select id="itreeSoilRegimeSelect" style="padding: 7px 12px; border: 2px solid var(--green-dark); border-radius: 5px; font-weight: bold; font-size: 13px; background: #ffffff; color: var(--text);">
+                        <option value="unamended_compacted">1. Unamended Compacted Construction Fill (1.72 g/cm³ • 3-Yr Lag • 12% Mortality)</option>
+                        <option value="semi_urban_realistic" selected>2. Realistic Semi-Urban Schoolyard (Imported Fill + Pit Prep • 1.5-Yr Lag • 5% Mortality)</option>
+                        <option value="agroecology_remediated">3. UTRGV Agroecology Soil Remediation (Subsoiled + Mulch Ring • 0.5-Yr Lag • 2% Mortality)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="prepost-header">
+                <div>
+                    <h2>📊 i-Tree Pre/Post Impact Report: Initial Planting to Mature Tree (<span id="itreeCampusLabel">J.W. Caceres Discovery Academy</span>)</h2>
+                    <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">Compare ecosystem service valuations from pre-planting baseline (2024) to initial planting (2026) and mature canopy (2040) under the selected schoolyard soil regime.</p>
+                </div>
+                <div class="lifecycle-btn-group">
+                    <button type="button" class="lifecycle-btn itree-stage-btn" data-year="2024">1. Pre-Planting Baseline (2024)</button>
+                    <button type="button" class="lifecycle-btn itree-stage-btn active" data-year="2026">2. Initial Planting (2026)</button>
+                    <button type="button" class="lifecycle-btn itree-stage-btn" data-year="2040">3. Mature Tree Canopy (2040)</button>
+                </div>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="prepost-table">
+                    <thead>
+                        <tr>
+                            <th>USDA i-Tree Ecosystem Service</th>
+                            <th>1. Pre-Planting Baseline (2024)</th>
+                            <th>2. Initial Planting (2026)</th>
+                            <th>3. Mature Tree Canopy (2040)</th>
+                            <th>Initial-to-Mature Growth (&Delta;)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itreePrePostTableBody">
+                        <!-- Populated dynamically by script below -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
         <!-- Timeline Slider -->
         <div class="timeline-card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <label for="itreeYearSlider" style="font-weight: bold; font-size: 16px; color: var(--green-dark);">Simulation Timeline Year:</label>
-                <div style="font-size: 24px; font-weight: bold; color: var(--green-dark);" id="itreeYearReadout">2025</div>
+                <div style="font-size: 24px; font-weight: bold; color: var(--green-dark);" id="itreeYearReadout">2026</div>
             </div>
-            <input id="itreeYearSlider" type="range" min="2020" max="2055" step="1" value="2025" style="width: 100%; cursor: pointer;" />
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666; text-align: center;">Scrub the slider to watch stormwater interception, carbon storage, air filtration, and CTLA asset value grow over a 35-year lifecycle.</p>
+            <input id="itreeYearSlider" type="range" min="2020" max="2055" step="1" value="2026" style="width: 100%; cursor: pointer;" />
+            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666; text-align: center;">Scrub the slider or click a lifecycle stage button above to watch stormwater interception, carbon storage, air filtration, and CTLA asset value scale from sapling to mature tree.</p>
         </div>
 
         <!-- 6 i-Tree Pillars Grid -->
@@ -357,100 +389,6 @@
 
     <script src="config.js"></script>
     <script src="itree_engine.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const slider = document.getElementById('itreeYearSlider');
-            const yearReadout = document.getElementById('itreeYearReadout');
-            const bannerYear = document.getElementById('bannerYear');
-            const bannerTotalValue = document.getElementById('bannerTotalValue');
-            const exportReportBtn = document.getElementById('exportReportBtn');
-
-            let mockTrees = [];
-
-            fetch('data/mock_trees.json')
-                .then(res => res.json())
-                .then(data => {
-                    mockTrees = data.features || [];
-                    updateLedger();
-                })
-                .catch(err => console.error("Error loading mock trees for i-Tree engine:", err));
-
-            function updateLedger() {
-                const year = parseInt(slider.value, 10);
-                yearReadout.textContent = year;
-                bannerYear.textContent = year;
-
-                if (!window.ITreeEngine) return;
-
-                const res = window.ITreeEngine.calculateEcoServices(year, mockTrees);
-
-                // Update Banner
-                bannerTotalValue.textContent = `$${res.totalAnnualEcoBenefitsUsd.toLocaleString()} / yr`;
-
-                // 1. Stormwater
-                document.getElementById('valRunoffGal').textContent = `${res.annualRunoffAvoidedGallons.toLocaleString()} gal / yr`;
-                document.getElementById('valRunoffUsd').textContent = `$${res.stormwaterSavingsUsd.toLocaleString()} / yr`;
-
-                // 2. Carbon
-                document.getElementById('valCarbonSeqLbs').textContent = `${res.annualCo2SequestrationLbs.toLocaleString()} lbs CO₂ / yr`;
-                document.getElementById('valCarbonStoreLbs').textContent = `${res.lifetimeCo2StorageLbs.toLocaleString()} lbs CO₂ stored`;
-                document.getElementById('valCarbonUsd').textContent = `$${res.carbonSequestrationValueUsd.toLocaleString()} / yr`;
-
-                // 3. Air Quality
-                document.getElementById('valPm25Lbs').textContent = `${res.annualPm25RemovedLbs} lbs / yr`;
-                document.getElementById('valOzoneLbs').textContent = `${res.annualOzoneRemovedLbs} lbs / yr`;
-                document.getElementById('valHealthUsd').textContent = `$${res.healthSavingsUsd.toLocaleString()} / yr`;
-
-                // 4. Energy
-                document.getElementById('valEnergyKwh').textContent = `${res.annualAcSavingsKwh.toLocaleString()} kWh / yr`;
-                document.getElementById('valEnergyUsd').textContent = `$${res.energySavingsUsd.toLocaleString()} / yr`;
-
-                // 5. Microclimate
-                document.getElementById('valLai').textContent = res.overallLai;
-                document.getElementById('valLeafAreaSqFt').textContent = `${res.totalLeafAreaSqFt.toLocaleString()} sq ft`;
-                document.getElementById('valCanopyAreaSqFt').textContent = `${res.effectiveCanopySqFt.toLocaleString()} sq ft (${res.canopyCoverPct}%)`;
-
-                // 6. Asset Valuation
-                document.getElementById('valTreeCount').textContent = `${res.activeTreesCount} Trees`;
-                document.getElementById('valCtlaAssetUsd').textContent = `$${res.totalCtlaAssetValue.toLocaleString()}`;
-                const avgAsset = res.activeTreesCount > 0 ? Math.round(res.totalCtlaAssetValue / res.activeTreesCount) : 0;
-                document.getElementById('valAvgAssetUsd').textContent = `$${avgAsset.toLocaleString()} / tree`;
-            }
-
-            slider.addEventListener('input', updateLedger);
-
-            if (exportReportBtn) {
-                exportReportBtn.addEventListener('click', () => {
-                    const year = parseInt(slider.value, 10);
-                    const res = window.ITreeEngine.calculateEcoServices(year, mockTrees);
-
-                    let csvContent = "data:text/csv;charset=utf-8,";
-                    csvContent += "USDA i-Tree Eco Summary Report - J.W. Caceres & M. Rivas Academy\n";
-                    csvContent += `Simulation Year,${year}\n`;
-                    csvContent += `Active Trees,${res.activeTreesCount}\n`;
-                    csvContent += `Canopy Cover Area (sq ft),${res.effectiveCanopySqFt}\n`;
-                    csvContent += `Canopy Cover Percentage,${res.canopyCoverPct}%\n`;
-                    csvContent += `Leaf Area Index (LAI),${res.overallLai}\n`;
-                    csvContent += `Avoided Runoff (Gallons/yr),${res.annualRunoffAvoidedGallons}\n`;
-                    csvContent += `Stormwater Treatment Savings ($/yr),${res.stormwaterSavingsUsd}\n`;
-                    csvContent += `Annual CO2 Sequestration (lbs/yr),${res.annualCo2SequestrationLbs}\n`;
-                    csvContent += `Cumulative Carbon Storage (lbs),${res.lifetimeCo2StorageLbs}\n`;
-                    csvContent += `PM2.5 Air Filtration (lbs/yr),${res.annualPm25RemovedLbs}\n`;
-                    csvContent += `Healthcare Expense Savings ($/yr),${res.healthSavingsUsd}\n`;
-                    csvContent += `Summer AC Electricity Savings (kWh/yr),${res.annualAcSavingsKwh}\n`;
-                    csvContent += `CTLA Replacement Asset Value ($),${res.totalCtlaAssetValue}\n`;
-                    csvContent += `Total Combined Ecosystem Benefit ($/yr),${res.totalAnnualEcoBenefitsUsd}\n`;
-
-                    const encodedUri = encodeURI(csvContent);
-                    const link = document.createElement("a");
-                    link.setAttribute("href", encodedUri);
-                    link.setAttribute("download", `iTree_Eco_Report_Donna_ISD_${year}.csv`);
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                });
-            }
-        });
-    </script>
+    <script src="itree_ledger.js"></script>
 </body>
 </html>
