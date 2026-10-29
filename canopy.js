@@ -91,9 +91,9 @@
 
   function updateSummary() {
     const year = Number(yearSlider.value);
-    const reg = getSoilRegime(activeSoilRegimeKey);
+    const prof = CAMPUS_PROFILES[activeCampusKey];
     yearReadout.textContent = year;
-    summaryText.textContent = `Soil Model: ${reg.shortLabel} | Year: ${year}`;
+    summaryText.textContent = `Showing ${prof.shortName} in ${year}`;
     if (activeYearLabel) activeYearLabel.textContent = year;
   }
 
@@ -273,9 +273,7 @@
     const metrics = calculateYearShadeMetrics(targetYear, activeSoilRegimeKey);
 
     if (liveTreeCount) {
-      liveTreeCount.textContent = metrics.mortalityTrees > 0
-        ? `${metrics.activeTrees} (${metrics.mortalityTrees} Lost to Soil Stress)`
-        : `${metrics.activeTrees} Surviving`;
+      liveTreeCount.textContent = `${metrics.activeTrees} Trees`;
     }
     if (liveShadeArea) liveShadeArea.textContent = `${metrics.shadeAreaSqFt.toLocaleString()} sq ft`;
     if (liveCoverPercent) liveCoverPercent.textContent = `${metrics.coverPercent}%`;
@@ -313,39 +311,32 @@
 
     const rows = [
       {
-        label: "🌴 Surviving Campus Trees (Soil-Adjusted)",
-        pre: `${mPre.activeTrees} Legacy Trees`,
-        post: `${mPost.activeTrees} Installed Trees`,
-        mat: `${mMat.activeTrees} Mature (${mMat.mortalityTrees} Sapling Mortality)`,
-        delta: `+${mMat.activeTrees - mPre.activeTrees} Net Surviving Trees`
+        label: "🌴 Total Campus Trees",
+        pre: `${mPre.activeTrees} Existing Trees`,
+        post: `${mPost.activeTrees} Trees After Planting`,
+        mat: `${mMat.activeTrees} Established Trees`,
+        delta: `+${mMat.activeTrees - mPre.activeTrees} New Campus Trees`
       },
       {
-        label: "☂️ Total Shaded Ground Area",
+        label: "☂️ Cool Shaded Ground Area",
         pre: `${mPre.shadeAreaSqFt.toLocaleString()} sq ft`,
         post: `${mPost.shadeAreaSqFt.toLocaleString()} sq ft`,
         mat: `${mMat.shadeAreaSqFt.toLocaleString()} sq ft`,
-        delta: `+${(mMat.shadeAreaSqFt - mPost.shadeAreaSqFt).toLocaleString()} sq ft vs. Initial Planting`
+        delta: `+${(mMat.shadeAreaSqFt - mPre.shadeAreaSqFt).toLocaleString()} sq ft of New Shade`
       },
       {
-        label: "🌳 Campus Canopy Coverage (%)",
-        pre: `${mPre.coverPercent}%`,
-        post: `${mPost.coverPercent}%`,
-        mat: `${mMat.coverPercent}% (30% Contract Target)`,
-        delta: `+${(parseFloat(mMat.coverPercent) - parseFloat(mPre.coverPercent)).toFixed(1)}% Total Gain`
+        label: "🌳 Schoolyard Covered in Shade (%)",
+        pre: `${mPre.coverPercent}% of Campus`,
+        post: `${mPost.coverPercent}% of Campus`,
+        mat: `${mMat.coverPercent}% of Campus`,
+        delta: `+${(parseFloat(mMat.coverPercent) - parseFloat(mPre.coverPercent)).toFixed(1)}% More Shade`
       },
       {
-        label: "🌡️ Estimated Surface Cooling Drop",
-        pre: `-${mPre.tempDrop}°F`,
-        post: `-${mPost.tempDrop}°F`,
-        mat: `-${mMat.tempDrop}°F`,
-        delta: `-${(parseFloat(mMat.tempDrop) - parseFloat(mPre.tempDrop)).toFixed(1)}°F Additional Cooling`
-      },
-      {
-        label: "☀️ Daily Solar Radiation Blocked",
-        pre: `${mPre.solarBlocked.toLocaleString()} kWh/day`,
-        post: `${mPost.solarBlocked.toLocaleString()} kWh/day`,
-        mat: `${mMat.solarBlocked.toLocaleString()} kWh/day`,
-        delta: `+${(mMat.solarBlocked - mPost.solarBlocked).toLocaleString()} kWh/day Intercepted`
+        label: "🌡️ Ground Cooling Under Trees",
+        pre: `-${mPre.tempDrop}°F Cooler`,
+        post: `-${mPost.tempDrop}°F Cooler`,
+        mat: `-${mMat.tempDrop}°F Cooler`,
+        delta: `-${(parseFloat(mMat.tempDrop) - parseFloat(mPre.tempDrop)).toFixed(1)}°F Extra Cooling`
       }
     ];
 
@@ -430,20 +421,15 @@
 
       if (selectedFilter !== "all" && props.species !== selectedFilter) return;
 
-      const spCfg = (config.treeSpecies && config.treeSpecies[props.species]) || {
-        growthRateFeetPerYear: 1.05,
-        soilTolerance: "Moderate"
-      };
       const ev = evaluateTreeAtYear(feature, idx, targetYear, activeSoilRegimeKey);
+      if (ev.planted && !ev.surviving) return;
       const areaSqFt = (ev.planted && ev.surviving) ? Math.round(Math.PI * ev.radiusFt * ev.radiusFt) : 0;
+      const widthFt = (ev.planted && ev.surviving) ? (ev.radiusFt * 2).toFixed(1) : "0.0";
 
-      let statusText = `<span style="color:#777; font-style:italic;">Scheduled (${props.plantYear})</span>`;
+      let statusText = `<span style="color:#777; font-style:italic;">Planted in ${props.plantYear}</span>`;
       let rowBg = "#f8f9fa";
-      if (ev.planted && !ev.surviving) {
-        statusText = `<span style="color:#dc2626; font-weight:bold;">Lost (Compacted Soil / Heat Stress)</span>`;
-        rowBg = "#fef2f2";
-      } else if (ev.planted && ev.surviving) {
-        statusText = `${ev.radiusFt.toFixed(1)} ft`;
+      if (ev.planted && ev.surviving) {
+        statusText = `${widthFt} ft wide`;
         rowBg = "#ffffff";
       }
 
@@ -454,20 +440,13 @@
       tr.innerHTML = `
         <td style="padding: 8px 10px; font-weight: bold; color: var(--green-dark);">Tree #${props.id}</td>
         <td style="padding: 8px 10px; font-weight: 600;">${props.species}</td>
-        <td style="padding: 8px 10px; font-size: 11px; color: #444;">
-          <strong>${props.soilZone || "Imported Construction Fill"}</strong><br/>
-          <span style="color:#1b5e20;">Tolerance: ${spCfg.soilTolerance || "Moderate"}</span>
-        </td>
-        <td style="padding: 8px 10px;">${props.plantYear}${props.isLegacy ? " (Legacy)" : ""}</td>
-        <td style="padding: 8px 10px; color: #2e7d32; font-weight: bold;">+${ev.effRate} ft/yr</td>
-        <td style="padding: 8px 10px;">${props.baseRadiusFeet} ft</td>
+        <td style="padding: 8px 10px;">${props.plantYear}${props.isLegacy ? " (Existing)" : ""}</td>
         <td style="padding: 8px 10px; font-weight: bold; color: #1565c0;">${statusText}</td>
         <td style="padding: 8px 10px; font-weight: bold; color: #2e7d32;">${areaSqFt.toLocaleString()} sq ft</td>
-        <td style="padding: 8px 10px; color: #666;">${ev.maxR} ft max</td>
         <td style="padding: 8px 10px; text-align: center;">
           <button type="button" class="locate-btn" data-lat="${coords[1]}" data-lng="${coords[0]}"
-            style="background: var(--green-dark); color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold;">
-            📍 Focus
+            style="background: var(--green-dark); color: white; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold;">
+            📍 Find on Map
           </button>
         </td>
       `;
@@ -515,11 +494,10 @@
       });
 
       circle.bindPopup(`
-        <b>Tree #${props.id}: ${props.species}</b><br/>
-        <b>Soil Zone:</b> ${props.soilZone || "Compacted Fill"}<br/>
-        <b>Planted:</b> ${props.plantYear} | <b>Year:</b> ${targetYear}<br/>
-        <b>Soil-Adjusted Radius:</b> ${ev.radiusFt.toFixed(1)} ft (Max ${ev.maxR} ft)<br/>
-        <b>Shade Footprint:</b> ${Math.round(Math.PI * ev.radiusFt * ev.radiusFt).toLocaleString()} sq ft
+        <b>🌳 Tree #${props.id}: ${props.species}</b><br/>
+        <b>Year Planted:</b> ${props.plantYear}<br/>
+        <b>Canopy Width (${targetYear}):</b> ${(ev.radiusFt * 2).toFixed(1)} ft across<br/>
+        <b>Ground Shaded:</b> ${Math.round(Math.PI * ev.radiusFt * ev.radiusFt).toLocaleString()} sq ft
       `);
       treeCanopyLayer.addLayer(circle);
     });

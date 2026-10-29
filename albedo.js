@@ -16,9 +16,9 @@
             lngOffset: 0.0006,
             stages: {
                 pre: {
-                    label: "1. Pre-Planting (Baseline)",
-                    canopyPct: 5.0,
-                    shadedSqFt: 22500,
+                    label: "1. Before Planting",
+                    canopyPct: 4.5,
+                    shadedSqFt: 20250,
                     albedo: 0.15,
                     airTempPeak: 95.8,
                     exposedPeak: 128.0,
@@ -29,10 +29,10 @@
                     showNewTrees: false
                 },
                 post: {
-                    label: "2. Initial Planting (Yr 1)",
-                    canopyPct: 9.8,
-                    shadedSqFt: 44100,
-                    albedo: 0.18,
+                    label: "2. Newly Planted (Yr 1)",
+                    canopyPct: 9.0,
+                    shadedSqFt: 40500,
+                    albedo: 0.17,
                     airTempPeak: 94.2,
                     exposedPeak: 122.5,
                     shadedPeak: 89.1,
@@ -42,16 +42,16 @@
                     showNewTrees: true
                 },
                 mature: {
-                    label: "3. Mature Tree (10–15 Yr)",
-                    canopyPct: 30.0,
-                    shadedSqFt: 135000,
-                    albedo: 0.28,
-                    airTempPeak: 89.7,
-                    exposedPeak: 116.5,
-                    shadedPeak: 81.1,
-                    outdoorDays: 22,
-                    coolingOffset: -14.7,
-                    treeScale: 1.35,
+                    label: "3. Grown Trees (10–15 Yr)",
+                    canopyPct: 22.8,
+                    shadedSqFt: 102600,
+                    albedo: 0.24,
+                    airTempPeak: 91.2,
+                    exposedPeak: 118.4,
+                    shadedPeak: 82.8,
+                    outdoorDays: 17,
+                    coolingOffset: -13.0,
+                    treeScale: 1.08,
                     showNewTrees: true
                 }
             },
@@ -76,7 +76,7 @@
             lngOffset: 0.0838,
             stages: {
                 pre: {
-                    label: "1. Pre-Planting (Baseline)",
+                    label: "1. Before Planting",
                     canopyPct: 4.0,
                     shadedSqFt: 16720,
                     albedo: 0.14,
@@ -89,9 +89,9 @@
                     showNewTrees: false
                 },
                 post: {
-                    label: "2. Initial Planting (Yr 1)",
-                    canopyPct: 9.2,
-                    shadedSqFt: 38456,
+                    label: "2. Newly Planted (Yr 1)",
+                    canopyPct: 8.6,
+                    shadedSqFt: 35948,
                     albedo: 0.16,
                     airTempPeak: 94.5,
                     exposedPeak: 121.2,
@@ -102,16 +102,16 @@
                     showNewTrees: true
                 },
                 mature: {
-                    label: "3. Mature Tree (10–15 Yr)",
-                    canopyPct: 30.0,
-                    shadedSqFt: 125400,
-                    albedo: 0.27,
-                    airTempPeak: 90.0,
-                    exposedPeak: 115.8,
-                    shadedPeak: 81.0,
-                    outdoorDays: 21,
-                    coolingOffset: -14.5,
-                    treeScale: 1.32,
+                    label: "3. Grown Trees (10–15 Yr)",
+                    canopyPct: 21.6,
+                    shadedSqFt: 90288,
+                    albedo: 0.23,
+                    airTempPeak: 91.6,
+                    exposedPeak: 118.0,
+                    shadedPeak: 83.1,
+                    outdoorDays: 16,
+                    coolingOffset: -13.1,
+                    treeScale: 1.05,
                     showNewTrees: true
                 }
             },
@@ -235,33 +235,7 @@
         let treeMeshesGroup = null;
 
         function getSoilAdjustedStage(campusObj, stageKey) {
-            const baseSt = Object.assign({}, campusObj.stages[stageKey]);
-            if (stageKey !== "mature") return baseSt;
-            const regime = soilSelect ? soilSelect.value : "semi_urban_realistic";
-            if (regime === "unamended_compacted") {
-                baseSt.label = "3. Mature Tree (15 Yr — Unamended Compacted Fill)";
-                baseSt.canopyPct = +(baseSt.canopyPct * 0.547).toFixed(1); // ~16.4%
-                baseSt.shadedSqFt = Math.round(campusObj.totalAreaSqFt * (baseSt.canopyPct / 100));
-                baseSt.albedo = +(baseSt.albedo - 0.05).toFixed(2);
-                baseSt.airTempPeak = +(baseSt.airTempPeak + 2.4).toFixed(1);
-                baseSt.exposedPeak = +(baseSt.exposedPeak + 3.2).toFixed(1);
-                baseSt.shadedPeak = +(baseSt.shadedPeak + 4.1).toFixed(1);
-                baseSt.outdoorDays = Math.round(baseSt.outdoorDays * 0.59);
-                baseSt.treeScale = +(baseSt.treeScale * 0.68).toFixed(2);
-            } else if (regime === "semi_urban_realistic") {
-                baseSt.label = "3. Mature Tree (15 Yr — Realistic Semi-Urban Soil)";
-                baseSt.canopyPct = +(baseSt.canopyPct * 0.937).toFixed(1); // ~28.1%
-                baseSt.shadedSqFt = Math.round(campusObj.totalAreaSqFt * (baseSt.canopyPct / 100));
-                baseSt.albedo = +(baseSt.albedo - 0.01).toFixed(2);
-                baseSt.airTempPeak = +(baseSt.airTempPeak + 0.4).toFixed(1);
-                baseSt.exposedPeak = +(baseSt.exposedPeak + 0.5).toFixed(1);
-                baseSt.shadedPeak = +(baseSt.shadedPeak + 0.7).toFixed(1);
-                baseSt.outdoorDays = baseSt.outdoorDays - 1;
-                baseSt.treeScale = +(baseSt.treeScale * 0.94).toFixed(2);
-            } else {
-                baseSt.label = "3. Mature Tree (15 Yr — Agroecology Remediated)";
-            }
-            return baseSt;
+            return Object.assign({}, campusObj.stages[stageKey]);
         }
 
         function getTempForHourAndStage(campusObj, stageKey, hour) {
@@ -312,52 +286,50 @@
             const sPre = getSoilAdjustedStage(campusObj, "pre");
             const sPost = getSoilAdjustedStage(campusObj, "post");
             const sMat = getSoilAdjustedStage(campusObj, "mature");
-            const regime = soilSelect ? soilSelect.value : "semi_urban_realistic";
-            const survRate = regime === "unamended_compacted" ? 0.88 : (regime === "agroecology_remediated" ? 0.98 : 0.95);
-            const survivingNew = Math.round(campusObj.treeCountPlanted * survRate);
+            const survivingNew = Math.round(campusObj.treeCountPlanted * 0.94);
 
             const rows = [
                 {
-                    metric: "🌳 Campus Tree Count (Installed + Legacy)",
-                    pre: `${campusObj.legacyTrees} Legacy Trees`,
-                    post: `${campusObj.legacyTrees + campusObj.treeCountPlanted} Trees (+${campusObj.treeCountPlanted} TTFS)`,
-                    mat: `${campusObj.legacyTrees + survivingNew} Surviving Trees (${Math.round(survRate * 100)}% Survival)`,
-                    delta: `+${survivingNew} Mature Native Trees`
+                    metric: "🌳 Total Campus Trees",
+                    pre: `${campusObj.legacyTrees} Existing Trees`,
+                    post: `${campusObj.legacyTrees + campusObj.treeCountPlanted} Trees (+${campusObj.treeCountPlanted} Planted)`,
+                    mat: `${campusObj.legacyTrees + survivingNew} Grown Trees`,
+                    delta: `+${survivingNew} New Campus Trees`
                 },
                 {
-                    metric: "☂️ Canopy Shade Coverage (% of Campus)",
+                    metric: "☂️ Schoolyard Covered in Shade",
                     pre: `${sPre.canopyPct.toFixed(1)}% (${sPre.shadedSqFt.toLocaleString()} ft²)`,
                     post: `${sPost.canopyPct.toFixed(1)}% (${sPost.shadedSqFt.toLocaleString()} ft²)`,
                     mat: `${sMat.canopyPct.toFixed(1)}% (${sMat.shadedSqFt.toLocaleString()} ft²)`,
                     delta: `+${(sMat.canopyPct - sPre.canopyPct).toFixed(1)}% (+${(sMat.shadedSqFt - sPre.shadedSqFt).toLocaleString()} ft²)`
                 },
                 {
-                    metric: "☀️ Campus Mean Albedo / Solar Reflectance (α)",
-                    pre: `α = ${sPre.albedo.toFixed(2)}`,
-                    post: `α = ${sPost.albedo.toFixed(2)}`,
-                    mat: `α = ${sMat.albedo.toFixed(2)}`,
-                    delta: `+${(sMat.albedo - sPre.albedo).toFixed(2)} Reflectance Gain`
+                    metric: "☀️ Sunlight Reflected Back (Cool Ground Score)",
+                    pre: `${sPre.albedo.toFixed(2)}`,
+                    post: `${sPost.albedo.toFixed(2)}`,
+                    mat: `${sMat.albedo.toFixed(2)}`,
+                    delta: `+${(sMat.albedo - sPre.albedo).toFixed(2)} Cooler Surface`
                 },
                 {
-                    metric: "🛣️ Peak Exposed Asphalt Surface Temp (2 PM)",
+                    metric: "🛣️ Hot Blacktop Temp (2:00 PM)",
                     pre: `${sPre.exposedPeak.toFixed(1)}°F`,
                     post: `${sPost.exposedPeak.toFixed(1)}°F`,
                     mat: `${sMat.exposedPeak.toFixed(1)}°F`,
-                    delta: `${(sMat.exposedPeak - sPre.exposedPeak).toFixed(1)}°F Surface Reduction`
+                    delta: `${(sMat.exposedPeak - sPre.exposedPeak).toFixed(1)}°F Cooler`
                 },
                 {
-                    metric: "🌲 Shaded Canopy Ground Surface Temp (2 PM)",
+                    metric: "🌲 Ground Temp Under Tree Shade (2:00 PM)",
                     pre: `${sPre.shadedPeak.toFixed(1)}°F`,
                     post: `${sPost.shadedPeak.toFixed(1)}°F`,
                     mat: `${sMat.shadedPeak.toFixed(1)}°F`,
-                    delta: `${(sMat.shadedPeak - sPre.exposedPeak).toFixed(1)}°F vs. Unshaded Asphalt`
+                    delta: `${(sMat.shadedPeak - sPre.exposedPeak).toFixed(1)}°F Cooler Than Blacktop`
                 },
                 {
-                    metric: "🎒 Outdoor Learning Days Recovered (<95°F)",
+                    metric: "🎒 Extra Comfortable Outdoor School Days",
                     pre: `+${sPre.outdoorDays} Days / yr`,
                     post: `+${sPost.outdoorDays} Days / yr`,
                     mat: `+${sMat.outdoorDays} Days / yr`,
-                    delta: `+${sMat.outdoorDays - sPre.outdoorDays} Additional School Days`
+                    delta: `+${sMat.outdoorDays - sPre.outdoorDays} More Days Outside`
                 }
             ];
 

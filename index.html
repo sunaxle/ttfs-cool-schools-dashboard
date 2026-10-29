@@ -61,13 +61,13 @@
         <section class="prepost-banner" aria-label="Pre and Post Planting to Mature Tree Impact Report">
             <div class="prepost-header">
                 <div>
-                    <h2>📊 Pre/Post Impact Report: Initial Planting to Mature Tree</h2>
-                    <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">Side-by-side progression from unshaded baseline to initial TTFS planting and mature 10–15 year tree canopy.</p>
+                    <h2>📊 How Trees Improve Our Schoolyard: Before Planting to Grown Trees</h2>
+                    <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">Compare our schoolyard before planting, right after planting day, and 10–15 years later as the trees grow.</p>
                 </div>
                 <div class="lifecycle-btn-group">
-                    <button type="button" class="lifecycle-btn" data-phase="baseline">1. Pre-Planting (Baseline)</button>
-                    <button type="button" class="lifecycle-btn active" data-phase="post">2. Initial Planting (Post-Planting)</button>
-                    <button type="button" class="lifecycle-btn" data-phase="projection">3. Mature Tree (10–15 Yr)</button>
+                    <button type="button" class="lifecycle-btn" data-phase="baseline">1. Before Planting</button>
+                    <button type="button" class="lifecycle-btn active" data-phase="post">2. Newly Planted Trees (Yr 1)</button>
+                    <button type="button" class="lifecycle-btn" data-phase="projection">3. Grown Trees (10–15 Yr)</button>
                 </div>
             </div>
 
@@ -75,11 +75,11 @@
                 <table class="prepost-table">
                     <thead>
                         <tr>
-                            <th>Campus Indicator</th>
-                            <th>1. Pre-Planting Baseline</th>
-                            <th>2. Initial Planting (Yr 1)</th>
-                            <th>3. Mature Tree (10–15 Yr)</th>
-                            <th>Net Lifecycle Gain (&Delta;)</th>
+                            <th>What We Measure on Campus</th>
+                            <th>1. Before Planting</th>
+                            <th>2. Newly Planted (Yr 1)</th>
+                            <th>3. Grown Trees (10–15 Yr)</th>
+                            <th>Total Improvement</th>
                         </tr>
                     </thead>
                     <tbody id="impactPrePostTableBody">
@@ -90,25 +90,25 @@
         </section>
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; margin-top: 24px;">
-            <h3 id="metricsHeaderTitle" style="margin: 0; color: var(--green-dark);">Active Stage Metrics: Initial Planting (Post-Planting)</h3>
+            <h3 id="metricsHeaderTitle" style="margin: 0; color: var(--green-dark);">Viewing Stage: 2. Newly Planted Trees (Year 1)</h3>
             <div>
-                <label for="timelinePhaseSelect" style="font-weight: bold; font-size: 14px; margin-right: 6px;">Select Stage:</label>
+                <label for="timelinePhaseSelect" style="font-weight: bold; font-size: 14px; margin-right: 6px;">Choose Stage:</label>
                 <select id="timelinePhaseSelect" style="padding: 8px 12px; font-size: 14px; border: 1.5px solid var(--green-dark); border-radius: 4px; background: white; color: var(--text); font-weight: bold;">
-                    <option value="baseline">1. Pre-Planting (Baseline)</option>
-                    <option value="post" selected>2. Initial Planting (Post-Planting)</option>
-                    <option value="projection">3. Mature Tree (10–15 Year Projection)</option>
+                    <option value="baseline">1. Before Planting</option>
+                    <option value="post" selected>2. Newly Planted Trees (Year 1)</option>
+                    <option value="projection">3. Grown Trees (10–15 Years)</option>
                 </select>
             </div>
         </div>
         <div class="impact-grid" id="baselineGrid">
-            <div class="impact-card"><div class="impact-icon">🌳</div><div class="impact-value" id="valBaselineCanopy">--%</div><h3>Canopy Coverage</h3><p>Current % of total campus area covered by tree canopy. Target is 30%.</p></div>
-            <div class="impact-card"><div class="impact-icon">🌡️</div><div class="impact-value" id="valAirTemp">--°F</div><h3>Air Temperature</h3><p>Baseline ambient air temperature during peak sunlight hours.</p></div>
-            <div class="impact-card"><div class="impact-icon">🛣️</div><div class="impact-value" id="valSurfaceExposed">--°F</div><h3>Surface Temp (Exposed)</h3><p>Temperature of unshaded asphalt/concrete surfaces (UHI contributor).</p></div>
-            <div class="impact-card"><div class="impact-icon">🌲</div><div class="impact-value" id="valSurfaceShaded">--°F</div><h3>Surface Temp (Shaded)</h3><p>Temperature of surfaces immediately beneath existing tree canopies.</p></div>
-            <div class="impact-card"><div class="impact-icon">☀️</div><div class="impact-value" id="valAlbedo">--</div><h3>Albedo Index</h3><p>Average solar reflectance of the campus grounds (0-1 scale).</p></div>
-            <div class="impact-card"><div class="impact-icon">💧</div><div class="impact-value" id="valSoil">--%</div><h3>Soil Moisture</h3><p>Volumetric water content in topsoil layers.</p></div>
-            <div class="impact-card"><div class="impact-icon">🦋</div><div class="impact-value" id="valBio">--</div><h3>Biodiversity Tracking</h3><p>Number of distinct flora/fauna species recorded by students via iNaturalist.</p></div>
-            <div class="impact-card"><div class="impact-icon">🌴</div><div class="impact-value" id="valTreeCount">--</div><h3>Total Tree Count</h3><p>Aggregated sum of all installed and legacy trees.</p></div>
+            <div class="impact-card"><div class="impact-icon">🌳</div><div class="impact-value" id="valBaselineCanopy">--%</div><h3>Schoolyard Shade</h3><p>Percent of the school grounds covered by cool tree shade.</p></div>
+            <div class="impact-card"><div class="impact-icon">🌡️</div><div class="impact-value" id="valAirTemp">--°F</div><h3>Outdoor Air Temp</h3><p>Afternoon air temperature on campus during sunny school days.</p></div>
+            <div class="impact-card"><div class="impact-icon">🛣️</div><div class="impact-value" id="valSurfaceExposed">--°F</div><h3>Hot Blacktop Temp</h3><p>How hot unshaded parking lots and blacktop get in the sun.</p></div>
+            <div class="impact-card"><div class="impact-icon">🌲</div><div class="impact-value" id="valSurfaceShaded">--°F</div><h3>Temp Under Tree Shade</h3><p>How much cooler the ground stays right underneath a tree.</p></div>
+            <div class="impact-card"><div class="impact-icon">☀️</div><div class="impact-value" id="valAlbedo">--</div><h3>Heat Reflected (0–1)</h3><p>How much sunlight bounces back instead of baking the ground.</p></div>
+            <div class="impact-card"><div class="impact-icon">💧</div><div class="impact-value" id="valSoil">--%</div><h3>Soil Moisture</h3><p>How well shaded ground holds water for healthy tree roots.</p></div>
+            <div class="impact-card"><div class="impact-icon">🦋</div><div class="impact-value" id="valBio">--</div><h3>Birds &amp; Pollinators</h3><p>Number of bird, butterfly, and plant species spotted by students.</p></div>
+            <div class="impact-card"><div class="impact-icon">🌴</div><div class="impact-value" id="valTreeCount">--</div><h3>Total Campus Trees</h3><p>Total number of trees growing across the school grounds.</p></div>
         </div>
 
         <h3 id="academicHeader" style="margin-top: 40px; border-bottom: 2px solid var(--primary); padding-bottom: 10px; display: none;">i-Tree & Academic Forecasts (Projected)</h3>

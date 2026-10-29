@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const bannerYear = document.getElementById('bannerYear');
     const bannerTotalValue = document.getElementById('bannerTotalValue');
     const exportReportBtn = document.getElementById('exportReportBtn');
-    const soilRegimeSelect = document.getElementById('itreeSoilRegimeSelect');
     const campusLabel = document.getElementById('itreeCampusLabel');
 
     const CAMPUS_META = {
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateLedger() {
         const year = parseInt(slider.value, 10);
-        const soilRegime = soilRegimeSelect ? soilRegimeSelect.value : 'semi_urban_realistic';
+        const soilRegime = 'semi_urban_realistic';
         const meta = CAMPUS_META[activeCampusKey] || CAMPUS_META.donna_jw_caceres;
 
         yearReadout.textContent = year;
@@ -68,9 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('valCanopyAreaSqFt').textContent = `${res.effectiveCanopySqFt.toLocaleString()} sq ft (${res.canopyCoverPct}%)`;
 
         // 6. Asset Valuation
-        document.getElementById('valTreeCount').textContent = res.mortalityCount > 0
-            ? `${res.activeTreesCount} Surviving (${res.mortalityCount} Lost to Soil Stress)`
-            : `${res.activeTreesCount} Trees`;
+        document.getElementById('valTreeCount').textContent = `${res.activeTreesCount} Trees`;
         document.getElementById('valCtlaAssetUsd').textContent = `$${res.totalCtlaAssetValue.toLocaleString()}`;
         const avgAsset = res.activeTreesCount > 0 ? Math.round(res.totalCtlaAssetValue / res.activeTreesCount) : 0;
         document.getElementById('valAvgAssetUsd').textContent = `$${avgAsset.toLocaleString()} / tree`;
@@ -86,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (!tbody || !window.ITreeEngine) return;
-        const soilRegime = soilRegimeSelect ? soilRegimeSelect.value : 'semi_urban_realistic';
+        const soilRegime = 'semi_urban_realistic';
         const meta = CAMPUS_META[activeCampusKey] || CAMPUS_META.donna_jw_caceres;
         const slice = getActiveTreesSlice();
 
@@ -96,49 +93,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const rows = [
             {
-                label: "🌳 Surviving Trees & Canopy Cover (%)",
-                pre: `${rPre.activeTreesCount} Trees (${rPre.canopyCoverPct}%)`,
-                post: `${rPost.activeTreesCount} Trees (${rPost.canopyCoverPct}%)`,
-                mat: `${rMat.activeTreesCount} Surviving (${rMat.canopyCoverPct}% Cover)`,
-                delta: `+${(parseFloat(rMat.canopyCoverPct) - parseFloat(rPre.canopyCoverPct)).toFixed(1)}% Canopy (${rMat.mortalityCount} Soil Mortality)`
+                label: "🌳 Campus Trees & Shade Cover (%)",
+                pre: `${rPre.activeTreesCount} Trees (${rPre.canopyCoverPct}% Shade)`,
+                post: `${rPost.activeTreesCount} Trees (${rPost.canopyCoverPct}% Shade)`,
+                mat: `${rMat.activeTreesCount} Grown Trees (${rMat.canopyCoverPct}% Shade)`,
+                delta: `+${(parseFloat(rMat.canopyCoverPct) - parseFloat(rPre.canopyCoverPct)).toFixed(1)}% More Campus Shade`
             },
             {
-                label: "🌧️ Avoided Stormwater Runoff",
+                label: "🌧️ Rainwater Soaked Up by Tree Roots",
                 pre: `${rPre.annualRunoffAvoidedGallons.toLocaleString()} gal/yr ($${rPre.stormwaterSavingsUsd.toLocaleString()})`,
                 post: `${rPost.annualRunoffAvoidedGallons.toLocaleString()} gal/yr ($${rPost.stormwaterSavingsUsd.toLocaleString()})`,
                 mat: `${rMat.annualRunoffAvoidedGallons.toLocaleString()} gal/yr ($${rMat.stormwaterSavingsUsd.toLocaleString()})`,
-                delta: `+${(rMat.annualRunoffAvoidedGallons - rPost.annualRunoffAvoidedGallons).toLocaleString()} gal/yr`
+                delta: `+${(rMat.annualRunoffAvoidedGallons - rPost.annualRunoffAvoidedGallons).toLocaleString()} gal/yr Soaked Up`
             },
             {
-                label: "🌿 Annual CO₂ Sequestration",
+                label: "🌿 Carbon Cleaned from the Air Each Year",
                 pre: `${rPre.annualCo2SequestrationLbs.toLocaleString()} lbs/yr`,
                 post: `${rPost.annualCo2SequestrationLbs.toLocaleString()} lbs/yr`,
                 mat: `${rMat.annualCo2SequestrationLbs.toLocaleString()} lbs/yr`,
                 delta: `+${(rMat.annualCo2SequestrationLbs - rPost.annualCo2SequestrationLbs).toLocaleString()} lbs CO₂/yr`
             },
             {
-                label: "🫁 Fine Particulate (PM2.5) & Ozone Filtered",
-                pre: `${rPre.annualPm25RemovedLbs} lbs PM2.5 / ${rPre.annualOzoneRemovedLbs} lbs O₃`,
-                post: `${rPost.annualPm25RemovedLbs} lbs PM2.5 / ${rPost.annualOzoneRemovedLbs} lbs O₃`,
-                mat: `${rMat.annualPm25RemovedLbs} lbs PM2.5 / ${rMat.annualOzoneRemovedLbs} lbs O₃`,
-                delta: `+$${(rMat.healthSavingsUsd - rPost.healthSavingsUsd).toLocaleString()}/yr Health Value`
+                label: "🫁 Dust & Smog Filtered by Tree Leaves",
+                pre: `${rPre.annualPm25RemovedLbs} lbs Dust / ${rPre.annualOzoneRemovedLbs} lbs Smog`,
+                post: `${rPost.annualPm25RemovedLbs} lbs Dust / ${rPost.annualOzoneRemovedLbs} lbs Smog`,
+                mat: `${rMat.annualPm25RemovedLbs} lbs Dust / ${rMat.annualOzoneRemovedLbs} lbs Smog`,
+                delta: `+$${(rMat.healthSavingsUsd - rPost.healthSavingsUsd).toLocaleString()}/yr Cleaner Air`
             },
             {
-                label: "⚡ Summer A/C Electricity Saved",
+                label: "⚡ School A/C Electricity Saved",
                 pre: `${rPre.annualAcSavingsKwh.toLocaleString()} kWh/yr ($${rPre.energySavingsUsd.toLocaleString()})`,
-                post: `${rPost.annualAcSavingsKwh.toLocaleString()} kWh/yr ($${rPre.energySavingsUsd.toLocaleString()})`,
+                post: `${rPost.annualAcSavingsKwh.toLocaleString()} kWh/yr ($${rPost.energySavingsUsd.toLocaleString()})`,
                 mat: `${rMat.annualAcSavingsKwh.toLocaleString()} kWh/yr ($${rMat.energySavingsUsd.toLocaleString()})`,
-                delta: `+${(rMat.annualAcSavingsKwh - rPost.annualAcSavingsKwh).toLocaleString()} kWh/yr`
+                delta: `+${(rMat.annualAcSavingsKwh - rPost.annualAcSavingsKwh).toLocaleString()} kWh/yr Saved`
             },
             {
-                label: "💎 CTLA Structural Replacement Asset Value",
+                label: "💎 Community Value of Campus Trees",
                 pre: `$${rPre.totalCtlaAssetValue.toLocaleString()}`,
                 post: `$${rPost.totalCtlaAssetValue.toLocaleString()}`,
                 mat: `$${rMat.totalCtlaAssetValue.toLocaleString()}`,
-                delta: `+$${(rMat.totalCtlaAssetValue - rPost.totalCtlaAssetValue).toLocaleString()} Asset Growth`
+                delta: `+$${(rMat.totalCtlaAssetValue - rPost.totalCtlaAssetValue).toLocaleString()} Added Value`
             },
             {
-                label: "💰 Combined Annual Ecosystem Benefit",
+                label: "💰 Total Annual Savings for Our School",
                 pre: `$${rPre.totalAnnualEcoBenefitsUsd.toLocaleString()} / yr`,
                 post: `$${rPost.totalAnnualEcoBenefitsUsd.toLocaleString()} / yr`,
                 mat: `$${rMat.totalAnnualEcoBenefitsUsd.toLocaleString()} / yr`,
@@ -175,28 +172,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    if (soilRegimeSelect) {
-        soilRegimeSelect.addEventListener('change', updateLedger);
-    }
-
     slider.addEventListener('input', updateLedger);
 
     if (exportReportBtn) {
         exportReportBtn.addEventListener('click', () => {
             const year = parseInt(slider.value, 10);
-            const soilRegime = soilRegimeSelect ? soilRegimeSelect.value : 'semi_urban_realistic';
+            const soilRegime = 'semi_urban_realistic';
             const meta = CAMPUS_META[activeCampusKey] || CAMPUS_META.donna_jw_caceres;
             const res = window.ITreeEngine.calculateEcoServices(year, getActiveTreesSlice(), soilRegime, meta.areaSqFt);
 
             let csvContent = "data:text/csv;charset=utf-8,";
             csvContent += `USDA i-Tree Eco Summary Report - ${meta.name}\n`;
-            csvContent += `Schoolyard Soil Regime,${soilRegime}\n`;
             csvContent += `Simulation Year,${year}\n`;
-            csvContent += `Surviving Trees,${res.activeTreesCount}\n`;
-            csvContent += `Soil/Heat Sapling Mortality,${res.mortalityCount}\n`;
+            csvContent += `Campus Trees,${res.activeTreesCount}\n`;
             csvContent += `Canopy Cover Area (sq ft),${res.effectiveCanopySqFt}\n`;
             csvContent += `Canopy Cover Percentage,${res.canopyCoverPct}%\n`;
-            csvContent += `Leaf Area Index (LAI),${res.overallLai}\n`;
             csvContent += `Avoided Runoff (Gallons/yr),${res.annualRunoffAvoidedGallons}\n`;
             csvContent += `Stormwater Treatment Savings ($/yr),${res.stormwaterSavingsUsd}\n`;
             csvContent += `Annual CO2 Sequestration (lbs/yr),${res.annualCo2SequestrationLbs}\n`;
@@ -204,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             csvContent += `PM2.5 Air Filtration (lbs/yr),${res.annualPm25RemovedLbs}\n`;
             csvContent += `Healthcare Expense Savings ($/yr),${res.healthSavingsUsd}\n`;
             csvContent += `Summer AC Electricity Savings (kWh/yr),${res.annualAcSavingsKwh}\n`;
-            csvContent += `CTLA Replacement Asset Value ($),${res.totalCtlaAssetValue}\n`;
+            csvContent += `Tree Replacement Asset Value ($),${res.totalCtlaAssetValue}\n`;
             csvContent += `Total Combined Ecosystem Benefit ($/yr),${res.totalAnnualEcoBenefitsUsd}\n`;
 
             const encodedUri = encodeURI(csvContent);

@@ -185,41 +185,33 @@
         <section class="prepost-banner" aria-label="i-Tree Pre and Post Planting to Mature Tree Report">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 2px solid var(--green-light); margin-bottom: 12px;">
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                    <strong style="font-size: 12px; text-transform: uppercase; color: var(--green-dark);">🏫 Representative Campus:</strong>
+                    <strong style="font-size: 13px; color: var(--green-dark);">🏫 Choose a School Campus:</strong>
                     <button type="button" class="lifecycle-btn itree-campus-btn active" data-campus="donna_jw_caceres">Donna ISD: J.W. Caceres (158 Trees)</button>
                     <button type="button" class="lifecycle-btn itree-campus-btn" data-campus="mercedes_hinojosa">Mercedes ISD: Ruben Hinojosa Elem (142 Trees)</button>
                 </div>
 
-                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                    <label for="itreeSoilRegimeSelect" style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--green-dark);">🪨 Schoolyard Soil &amp; Compaction Model:</label>
-                    <select id="itreeSoilRegimeSelect" style="padding: 7px 12px; border: 2px solid var(--green-dark); border-radius: 5px; font-weight: bold; font-size: 13px; background: #ffffff; color: var(--text);">
-                        <option value="unamended_compacted">1. Unamended Compacted Construction Fill (1.72 g/cm³ • 3-Yr Lag • 12% Mortality)</option>
-                        <option value="semi_urban_realistic" selected>2. Realistic Semi-Urban Schoolyard (Imported Fill + Pit Prep • 1.5-Yr Lag • 5% Mortality)</option>
-                        <option value="agroecology_remediated">3. UTRGV Agroecology Soil Remediation (Subsoiled + Mulch Ring • 0.5-Yr Lag • 2% Mortality)</option>
-                    </select>
+                <div class="lifecycle-btn-group">
+                    <button type="button" class="lifecycle-btn itree-stage-btn" data-year="2024">1. Before Planting (2024)</button>
+                    <button type="button" class="lifecycle-btn itree-stage-btn active" data-year="2026">2. Newly Planted Trees (2026)</button>
+                    <button type="button" class="lifecycle-btn itree-stage-btn" data-year="2040">3. Grown Trees (2040)</button>
                 </div>
             </div>
 
             <div class="prepost-header">
                 <div>
-                    <h2>📊 i-Tree Pre/Post Impact Report: Initial Planting to Mature Tree (<span id="itreeCampusLabel">J.W. Caceres Discovery Academy</span>)</h2>
-                    <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">Compare ecosystem service valuations from pre-planting baseline (2024) to initial planting (2026) and mature canopy (2040) under the selected schoolyard soil regime.</p>
-                </div>
-                <div class="lifecycle-btn-group">
-                    <button type="button" class="lifecycle-btn itree-stage-btn" data-year="2024">1. Pre-Planting Baseline (2024)</button>
-                    <button type="button" class="lifecycle-btn itree-stage-btn active" data-year="2026">2. Initial Planting (2026)</button>
-                    <button type="button" class="lifecycle-btn itree-stage-btn" data-year="2040">3. Mature Tree Canopy (2040)</button>
+                    <h2>📊 How Our Campus Trees Help the Community (<span id="itreeCampusLabel">J.W. Caceres Discovery Academy</span>)</h2>
+                    <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">Compare the benefits of our campus trees from before planting (2024), to planting day (2026), to grown trees (2040).</p>
                 </div>
             </div>
             <div style="overflow-x: auto;">
                 <table class="prepost-table">
                     <thead>
                         <tr>
-                            <th>USDA i-Tree Ecosystem Service</th>
-                            <th>1. Pre-Planting Baseline (2024)</th>
-                            <th>2. Initial Planting (2026)</th>
-                            <th>3. Mature Tree Canopy (2040)</th>
-                            <th>Initial-to-Mature Growth (&Delta;)</th>
+                            <th>How Trees Help Our School</th>
+                            <th>1. Before Planting (2024)</th>
+                            <th>2. Newly Planted (2026)</th>
+                            <th>3. Grown Trees (2040)</th>
+                            <th>Total Improvement</th>
                         </tr>
                     </thead>
                     <tbody id="itreePrePostTableBody">
@@ -246,22 +238,22 @@
                 <div>
                     <div class="eco-card-header">
                         <span class="eco-icon">🌧️</span>
-                        <h3>Stormwater & Flood Mitigation</h3>
+                        <h3>Rainwater &amp; Flood Prevention</h3>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Avoided Runoff Volume:</span>
+                        <span>Rainwater Soaked Up:</span>
                         <strong id="valRunoffGal">0 gallons / yr</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Annual Rainfall Intercepted:</span>
+                        <span>Average Annual Rainfall:</span>
                         <strong id="valRainfallInches">24.8 inches / yr</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Sewer Infrastructure Savings:</span>
+                        <span>Drainage Cost Savings:</span>
                         <strong id="valRunoffUsd">$0 / yr</strong>
                     </div>
                 </div>
-                <div class="value-highlight" id="valRunoffBadge">Prevents localized schoolyard flooding</div>
+                <div class="value-highlight" id="valRunoffBadge">Helps stop puddles and flooding on school grounds</div>
             </div>
 
             <!-- 2. Carbon -->
@@ -269,22 +261,22 @@
                 <div>
                     <div class="eco-card-header">
                         <span class="eco-icon">🌿</span>
-                        <h3>Carbon Sequestration & Storage</h3>
+                        <h3>Carbon Cleaned from the Air</h3>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Gross Annual Sequestration:</span>
+                        <span>CO₂ Cleaned Each Year:</span>
                         <strong id="valCarbonSeqLbs">0 lbs CO₂ / yr</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Cumulative Lifetime Storage:</span>
+                        <span>Total CO₂ Stored in Trees:</span>
                         <strong id="valCarbonStoreLbs">0 lbs CO₂ stored</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Social Carbon Offset Value:</span>
+                        <span>Clean Air Benefit Value:</span>
                         <strong id="valCarbonUsd">$0 / yr</strong>
                     </div>
                 </div>
-                <div class="value-highlight" id="valCarbonBadge">Locks atmospheric carbon into biomass</div>
+                <div class="value-highlight" id="valCarbonBadge">Trees breathe in CO₂ and store it in their trunks &amp; roots</div>
             </div>
 
             <!-- 3. Air Quality -->
@@ -292,22 +284,22 @@
                 <div>
                     <div class="eco-card-header">
                         <span class="eco-icon">🫁</span>
-                        <h3>Air Quality & Health Impact</h3>
+                        <h3>Cleaner Air for Students</h3>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Fine Particulates (PM2.5) Removed:</span>
+                        <span>Fine Dust &amp; Soot Trapped:</span>
                         <strong id="valPm25Lbs">0.00 lbs / yr</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Ground Ozone (O₃) Filtered:</span>
+                        <span>Smog &amp; Ozone Filtered:</span>
                         <strong id="valOzoneLbs">0.00 lbs / yr</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Avoided Healthcare Expenses:</span>
+                        <span>Community Health Value:</span>
                         <strong id="valHealthUsd">$0 / yr</strong>
                     </div>
                 </div>
-                <div class="value-highlight" id="valHealthBadge">Filters particulate soot linked to asthma</div>
+                <div class="value-highlight" id="valHealthBadge">Tree leaves trap dust and exhaust near bus lanes</div>
             </div>
 
             <!-- 4. Energy -->
@@ -315,22 +307,22 @@
                 <div>
                     <div class="eco-card-header">
                         <span class="eco-icon">⚡</span>
-                        <h3>Building Energy & AC Savings</h3>
+                        <h3>School Electricity &amp; A/C Savings</h3>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Summer A/C Electricity Saved:</span>
+                        <span>A/C Electricity Saved:</span>
                         <strong id="valEnergyKwh">0 kWh / yr</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Winter Heating Reduction:</span>
+                        <span>Winter Wind Protection:</span>
                         <strong id="valHeatingMbtu">18.5 MBtu / yr</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Annual Utility Bill Savings:</span>
+                        <span>School Power Bill Savings:</span>
                         <strong id="valEnergyUsd">$0 / yr</strong>
                     </div>
                 </div>
-                <div class="value-highlight" id="valEnergyBadge">Shades building roofs & windows</div>
+                <div class="value-highlight" id="valEnergyBadge">Shading school walls &amp; windows keeps classrooms cooler</div>
             </div>
 
             <!-- 5. Microclimate -->
@@ -338,22 +330,22 @@
                 <div>
                     <div class="eco-card-header">
                         <span class="eco-icon">🌡️</span>
-                        <h3>Microclimate & Leaf Area Index</h3>
+                        <h3>Tree Leaves &amp; Ground Shade</h3>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Campus Leaf Area Index (LAI):</span>
+                        <span>Leaf Density Score:</span>
                         <strong id="valLai">0.00</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Total Leaf Surface Area:</span>
+                        <span>Total Area of All Leaves:</span>
                         <strong id="valLeafAreaSqFt">0 sq ft</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Effective Canopy Footprint:</span>
+                        <span>Ground Shaded by Trees:</span>
                         <strong id="valCanopyAreaSqFt">0 sq ft</strong>
                     </div>
                 </div>
-                <div class="value-highlight" id="valMicroclimateBadge">Cooling air via evapotranspiration</div>
+                <div class="value-highlight" id="valMicroclimateBadge">Creates cool outdoor spaces for recess and learning</div>
             </div>
 
             <!-- 6. Asset Value -->
@@ -361,22 +353,22 @@
                 <div>
                     <div class="eco-card-header">
                         <span class="eco-icon">💎</span>
-                        <h3>CTLA Structural Replacement Asset</h3>
+                        <h3>Community Value of Our Trees</h3>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Active Campus Trees:</span>
+                        <span>Total Campus Trees:</span>
                         <strong id="valTreeCount">0 Trees</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Appraised CTLA Asset Value:</span>
+                        <span>Total Value of Campus Forest:</span>
                         <strong id="valCtlaAssetUsd">$0</strong>
                     </div>
                     <div class="eco-metric-row">
-                        <span>Average Asset Value / Tree:</span>
+                        <span>Average Value per Tree:</span>
                         <strong id="valAvgAssetUsd">$0 / tree</strong>
                     </div>
                 </div>
-                <div class="value-highlight" id="valAssetBadge">Structural value of living forest assets</div>
+                <div class="value-highlight" id="valAssetBadge">A living green investment that grows more valuable each year</div>
             </div>
         </div>
 

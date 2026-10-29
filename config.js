@@ -251,15 +251,15 @@ window.APP_CONFIG = {
     },
     semi_urban_realistic: {
       id: "semi_urban_realistic",
-      label: "Standard Semi-Urban Planting (Excavated Pit + Seasonal Irrigation)",
-      shortLabel: "Realistic Semi-Urban Schoolyard (Default)",
-      growthMultiplier: 0.76,
-      maxRadiusMultiplier: 0.90,
-      establishmentLagYears: 1.5,
-      survivalRate: 0.95,
-      bulkDensityGcm3: "1.48 g/cm³ (Moderate Sub-Base Resistance)",
-      organicMatterPct: "1.8% (Pit-Amended Only)",
-      summary: "Accounts for semi-urban heat island stress and compacted surrounding sub-soils once lateral roots exit the initial planting pit, yielding a 1.5-year transplant lag, 5% mortality, and 28.1% canopy by 2040 (reaching 30% by 2045)."
+      label: "Standard Semi-Urban Schoolyard Growth Model",
+      shortLabel: "Realistic Schoolyard Growth",
+      growthMultiplier: 0.64,
+      maxRadiusMultiplier: 0.84,
+      establishmentLagYears: 2.0,
+      survivalRate: 0.94,
+      bulkDensityGcm3: "1.48 g/cm³",
+      organicMatterPct: "1.8%",
+      summary: "Realistic 10–15 year growth projection calibrated for South Texas schoolyards."
     },
     agroecology_remediated: {
       id: "agroecology_remediated",

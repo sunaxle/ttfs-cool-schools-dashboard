@@ -45,65 +45,36 @@
     </div>
   </nav>
 
-  <!-- Representative Campus & Schoolyard Soil Compaction Control Bar -->
-  <section class="prepost-banner" style="margin: 14px 20px 0 20px; background: #f8fbf9;" aria-label="Representative Campus and Schoolyard Soil Controls">
+  <!-- Representative Campus & Pre/Post Canopy Impact Report -->
+  <section class="prepost-banner" style="margin: 14px 20px 0 20px; background: #f8fbf9;" aria-label="Campus Tree Canopy Growth Report">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; padding-bottom: 12px; border-bottom: 2px solid var(--green-light); margin-bottom: 12px;">
       <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <strong style="font-size: 12px; text-transform: uppercase; color: var(--green-dark);">🏫 Representative District Campus:</strong>
+        <strong style="font-size: 13px; color: var(--green-dark);">🏫 Choose a School Campus:</strong>
         <button type="button" class="lifecycle-btn canopy-campus-btn active" data-campus="donna_jw_caceres">Donna ISD: J.W. Caceres (158 Trees)</button>
         <button type="button" class="lifecycle-btn canopy-campus-btn" data-campus="mercedes_hinojosa">Mercedes ISD: Ruben Hinojosa Elem (142 Trees)</button>
       </div>
-
-      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <label for="soilRegimeSelect" style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--green-dark);">🪨 Schoolyard Soil &amp; Urban Stress Model:</label>
-        <select id="soilRegimeSelect" style="padding: 7px 12px; border: 2px solid var(--green-dark); border-radius: 5px; font-weight: bold; font-size: 13px; background: #ffffff; color: var(--text);">
-          <option value="unamended_compacted">1. Unamended Compacted Construction Fill (1.72 g/cm³ • 3-Yr Lag • 12% Mortality)</option>
-          <option value="semi_urban_realistic" selected>2. Realistic Semi-Urban Schoolyard (Imported Fill + Pit Prep • 1.5-Yr Lag • 5% Mortality)</option>
-          <option value="agroecology_remediated">3. UTRGV Agroecology Soil Remediation (Subsoiled + Mulch Ring • 0.5-Yr Lag • 2% Mortality)</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Soil Physics & Semi-Urban Compaction Diagnostic Strip -->
-    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 12px; align-items: center; background: #ffffff; padding: 10px 14px; border-radius: 6px; border: 1px solid #c8e6c9; margin-bottom: 14px; font-size: 12px;">
-      <div>
-        <strong style="color: var(--green-dark); display: block; margin-bottom: 2px;">🔬 Semi-Urban Schoolyard Soil &amp; Construction Sub-Base Reality:</strong>
-        <span id="soilRegimeSummaryText" style="color: #444; line-height: 1.35;">Accounts for semi-urban heat island stress and compacted surrounding sub-soils once lateral roots exit the initial planting pit.</span>
-      </div>
-      <div style="text-align: center; border-left: 1px solid #e5e7eb; padding-left: 8px;">
-        <span style="color: #666; font-size: 11px; display: block;">Sub-Base Bulk Density</span>
-        <strong id="soilBulkDensityVal" style="color: #b45309; font-size: 13px;">1.48 g/cm³</strong>
-      </div>
-      <div style="text-align: center; border-left: 1px solid #e5e7eb; padding-left: 8px;">
-        <span style="color: #666; font-size: 11px; display: block;">Soil Organic Matter</span>
-        <strong id="soilOrganicMatterVal" style="color: var(--green-dark); font-size: 13px;">1.8% (Pit-Amended)</strong>
-      </div>
-      <div style="text-align: center; border-left: 1px solid #e5e7eb; padding-left: 8px;">
-        <span style="color: #666; font-size: 11px; display: block;">Cohort Survival &amp; Lag</span>
-        <strong id="soilSurvivalVal" style="color: #1565c0; font-size: 13px;">95% Survival (1.5-Yr Lag)</strong>
+      <div class="lifecycle-btn-group">
+        <button type="button" class="lifecycle-btn canopy-stage-btn" data-year="2024">1. Before Planting (2024)</button>
+        <button type="button" class="lifecycle-btn canopy-stage-btn active" data-year="2026">2. Newly Planted Trees (2026)</button>
+        <button type="button" class="lifecycle-btn canopy-stage-btn" data-year="2040">3. Grown Trees (2040)</button>
       </div>
     </div>
 
     <div class="prepost-header">
       <div>
-        <h2>🌳 Pre/Post Canopy Impact Report: Initial Planting to Mature Tree (<span id="canopyCampusTitle">J.W. Caceres Discovery Academy</span>)</h2>
-        <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">Compare pre-planting baseline canopy against initial TTFS tree installation (2026) and mature canopy crown expansion (2040) under the active schoolyard soil regime.</p>
-      </div>
-      <div class="lifecycle-btn-group">
-        <button type="button" class="lifecycle-btn canopy-stage-btn" data-year="2024">1. Pre-Planting Baseline (2024)</button>
-        <button type="button" class="lifecycle-btn canopy-stage-btn active" data-year="2026">2. Initial Planting (2026)</button>
-        <button type="button" class="lifecycle-btn canopy-stage-btn" data-year="2040">3. Mature Tree Canopy (2040)</button>
+        <h2>🌳 How Our Schoolyard Shade Grows Over Time (<span id="canopyCampusTitle">J.W. Caceres Discovery Academy</span>)</h2>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">See how the schoolyard changes from before planting, to planting day, to 10–15 years later as the trees grow across the campus.</p>
       </div>
     </div>
     <div style="overflow-x: auto;">
       <table class="prepost-table">
         <thead>
           <tr>
-            <th>Canopy Growth Metric</th>
-            <th>1. Pre-Planting Baseline (2024)</th>
-            <th>2. Initial Planting (2026)</th>
-            <th>3. Mature Tree Canopy (2040)</th>
-            <th>Net Maturation Gain (&Delta;)</th>
+            <th>What Changes on Campus</th>
+            <th>1. Before Planting (2024)</th>
+            <th>2. Newly Planted Trees (2026)</th>
+            <th>3. Grown Trees (2040)</th>
+            <th>Total Improvement</th>
           </tr>
         </thead>
         <tbody id="canopyPrePostTableBody">
@@ -218,15 +189,15 @@
   <section class="tree-registry-section" style="padding: 24px; background: #ffffff; border-top: 3px solid var(--green-dark); margin-top: 20px;">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
           <div>
-              <h2 style="margin: 0; color: var(--green-dark); font-size: 22px;">🌳 Campus Tree Species & Individual Growth Registry</h2>
+              <h2 style="margin: 0; color: var(--green-dark); font-size: 22px;">🌳 Explore Individual Campus Trees</h2>
               <p style="margin: 4px 0 0 0; color: #555; font-size: 13px;">
-                  Dynamic inventory of all 158 campus trees mapped to their corresponding map ID tag (#1 to #158). Canopy radii and shade surface areas recalculate in real-time as you move the timeline slider for <strong style="color:var(--green-dark);" id="registryYearLabel">2025</strong>.
+                  Click <strong>📍 Find on Map</strong> next to any tree to zoom right to it on the schoolyard map for <strong style="color:var(--green-dark);" id="registryYearLabel">2026</strong>.
               </p>
           </div>
           <div style="display: flex; gap: 10px; align-items: center;">
-              <label for="speciesFilter" style="font-weight: bold; font-size: 13px; color: var(--green-dark);">Filter Species:</label>
+              <label for="speciesFilter" style="font-weight: bold; font-size: 13px; color: var(--green-dark);">Show Tree Type:</label>
               <select id="speciesFilter" style="padding: 6px 12px; border: 1px solid var(--border); border-radius: 4px; font-weight: 500;">
-                  <option value="all">All Species (158 Trees)</option>
+                  <option value="all">All Tree Types</option>
                   <option value="Bur Oak">Bur Oak</option>
                   <option value="Montezuma Bald Cypress">Montezuma Bald Cypress</option>
                   <option value="Texas Pecan">Texas Pecan</option>
@@ -244,16 +215,12 @@
           <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
               <thead>
                   <tr style="background: var(--green-dark); color: #ffffff; position: sticky; top: 0; z-index: 5;">
-                      <th style="padding: 10px 12px;">Map Tag ID</th>
-                      <th style="padding: 10px 12px;">Tree Species Name</th>
-                      <th style="padding: 10px 12px;">Schoolyard Soil Sub-Base &amp; Tolerance</th>
-                      <th style="padding: 10px 12px;">Planted Year</th>
-                      <th style="padding: 10px 12px;">Soil-Adjusted Growth</th>
-                      <th style="padding: 10px 12px;">Initial Radius</th>
-                      <th style="padding: 10px 12px;">Current Radius (<span class="dyn-year-text">2026</span>)</th>
-                      <th style="padding: 10px 12px;">Current Shade Area (ft²)</th>
-                      <th style="padding: 10px 12px;">Soil-Capped Max Radius</th>
-                      <th style="padding: 10px 12px; text-align: center;">Locate on Map</th>
+                      <th style="padding: 10px 12px;">Tree Tag #</th>
+                      <th style="padding: 10px 12px;">Tree Species</th>
+                      <th style="padding: 10px 12px;">Year Planted</th>
+                      <th style="padding: 10px 12px;">Canopy Width (<span class="dyn-year-text">2026</span>)</th>
+                      <th style="padding: 10px 12px;">Ground Shaded (sq ft)</th>
+                      <th style="padding: 10px 12px; text-align: center;">Find on Map</th>
                   </tr>
               </thead>
               <tbody id="treeRegistryTableBody">

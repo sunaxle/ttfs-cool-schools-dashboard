@@ -49,9 +49,9 @@
     const stage = overviewStageSelect ? overviewStageSelect.value : "post";
     districtName.textContent = config.districts.find((d) => d.id === districtId)?.name || "District";
 
-    const baseCanopy = parseFloat(metrics.canopyPct) || 5.0;
-    const postCanopy = +(baseCanopy + 4.8).toFixed(1);
-    const matCanopy = 30.0;
+    const baseCanopy = parseFloat(metrics.canopyPct) || 4.5;
+    const postCanopy = +(baseCanopy + 4.5).toFixed(1);
+    const matCanopy = +(baseCanopy + 18.0).toFixed(1);
 
     const baseAlbedoLowPct = parseFloat(metrics.albedoPct) || 68;
     const postAlbedoLowPct = Math.max(15, baseAlbedoLowPct - 12);

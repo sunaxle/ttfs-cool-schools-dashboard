@@ -28,41 +28,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getStageValues(campusObj) {
         if (!campusObj) return null;
-        const baseCanopy = campusObj.canopy.baselinePercent || 5;
-        const postCanopy = +(baseCanopy + 4.8).toFixed(1);
-        const matCanopy = campusObj.canopy.targetPercent || 30;
+        const baseCanopy = campusObj.canopy.baselinePercent || 4.5;
+        const postCanopy = +(baseCanopy + 4.5).toFixed(1);
+        const matCanopy = +(baseCanopy + 18.2).toFixed(1); // Realistic 10-15 yr semi-urban canopy (~22-23%)
 
         const postAir = parseFloat(campusObj.metrics.airTemp) || 94.2;
         const baseAir = +(postAir + 1.6).toFixed(1);
-        const matAir = +(postAir - 4.5).toFixed(1);
+        const matAir = +(postAir - 3.0).toFixed(1);
 
         const postExp = parseFloat(campusObj.metrics.surfaceTempExposed) || 122.5;
         const baseExp = +(postExp + 5.5).toFixed(1);
-        const matExp = +(postExp - 6.0).toFixed(1);
+        const matExp = +(postExp - 4.1).toFixed(1);
 
         const postShade = parseFloat(campusObj.metrics.surfaceTempShaded) || 89.1;
         const baseShade = +(postShade + 2.1).toFixed(1);
-        const matShade = +(postShade - 8.0).toFixed(1);
+        const matShade = +(postShade - 6.3).toFixed(1);
 
-        const postAlbedo = parseFloat(campusObj.metrics.albedo) || 0.18;
-        const baseAlbedo = +(Math.max(0.12, postAlbedo - 0.03)).toFixed(2);
-        const matAlbedo = +(postAlbedo + 0.10).toFixed(2);
+        const postAlbedo = parseFloat(campusObj.metrics.albedo) || 0.17;
+        const baseAlbedo = +(Math.max(0.12, postAlbedo - 0.02)).toFixed(2);
+        const matAlbedo = +(postAlbedo + 0.07).toFixed(2);
 
         const postSoil = parseFloat(campusObj.metrics.soilMoisture) || 14.2;
         const baseSoil = +(Math.max(8.0, postSoil - 3.2)).toFixed(1);
-        const matSoil = +(postSoil + 12.5).toFixed(1);
+        const matSoil = +(postSoil + 9.4).toFixed(1);
 
         const postBio = parseInt(campusObj.metrics.biodiversityCount, 10) || 12;
         const baseBio = Math.max(4, postBio - 5);
-        const matBio = postBio + 58;
+        const matBio = postBio + 42;
 
         const postTrees = parseInt(campusObj.metrics.treeCount, 10) || 154;
         const baseTrees = 18;
-        const matTrees = postTrees + baseTrees;
+        const survivingNew = Math.round(postTrees * 0.94);
+        const matTrees = survivingNew + baseTrees;
 
         return {
             baseline: {
-                title: "1. Pre-Planting Baseline Metrics (Before TTFS Tree Planting)",
+                title: "Viewing Stage: 1. Before Planting",
                 canopy: `${baseCanopy}%`,
                 air: `${baseAir}°F`,
                 exp: `${baseExp}°F`,
@@ -70,10 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 albedo: baseAlbedo.toFixed(2),
                 soil: `${baseSoil}%`,
                 bio: `${baseBio} Species`,
-                trees: `${baseTrees} Legacy Trees`
+                trees: `${baseTrees} Existing Trees`
             },
             post: {
-                title: "2. Initial Planting Metrics (Year 1 Post-Planting)",
+                title: "Viewing Stage: 2. Newly Planted Trees (Year 1)",
                 canopy: `${postCanopy}%`,
                 air: `${postAir}°F`,
                 exp: `${postExp}°F`,
@@ -81,10 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 albedo: postAlbedo.toFixed(2),
                 soil: `${postSoil}%`,
                 bio: `${postBio} Species`,
-                trees: `${matTrees} Trees (+${postTrees} Planted)`
+                trees: `${postTrees + baseTrees} Trees (+${postTrees} Planted)`
             },
             projection: {
-                title: "3. Mature Tree Metrics (10–15 Year Canopy Projection)",
+                title: "Viewing Stage: 3. Grown Trees (10–15 Years)",
                 canopy: `${matCanopy}%`,
                 air: `${matAir}°F`,
                 exp: `${matExp}°F`,
@@ -92,17 +93,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 albedo: matAlbedo.toFixed(2),
                 soil: `${matSoil}%`,
                 bio: `${matBio} Species`,
-                trees: `${matTrees} Mature Trees`
+                trees: `${matTrees} Grown Trees`
             },
             deltas: {
-                canopy: `+${(matCanopy - baseCanopy).toFixed(1)}% Cover`,
-                air: `${(matAir - baseAir).toFixed(1)}°F Ambient`,
-                exp: `${(matExp - baseExp).toFixed(1)}°F Asphalt`,
-                shade: `${(matShade - baseShade).toFixed(1)}°F Shade`,
-                albedo: `+${(matAlbedo - baseAlbedo).toFixed(2)} α`,
-                soil: `+${(matSoil - baseSoil).toFixed(1)}% Moisture`,
-                bio: `+${matBio - baseBio} Species`,
-                trees: `+${postTrees} Native Trees`
+                canopy: `+${(matCanopy - baseCanopy).toFixed(1)}% More Shade`,
+                air: `${(matAir - baseAir).toFixed(1)}°F Cooler Air`,
+                exp: `${(matExp - baseExp).toFixed(1)}°F Cooler`,
+                shade: `${(matShade - baseShade).toFixed(1)}°F Cooler Shade`,
+                albedo: `+${(matAlbedo - baseAlbedo).toFixed(2)} Cooler`,
+                soil: `+${(matSoil - baseSoil).toFixed(1)}% More Moisture`,
+                bio: `+${matBio - baseBio} More Species`,
+                trees: `+${survivingNew} New Trees`
             }
         };
     }
@@ -110,14 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderPrePostTable(stages, activePhase) {
         if (!prePostTableBody || !stages) return;
         const rows = [
-            { label: "🌳 Canopy Coverage (% of Campus)", key: "canopy" },
-            { label: "🌴 Total Installed & Legacy Trees", key: "trees" },
-            { label: "🌡️ Peak Ambient Air Temperature", key: "air" },
-            { label: "🛣️ Surface Temp (Exposed Asphalt)", key: "exp" },
-            { label: "🌲 Surface Temp (Under Canopy Shade)", key: "shade" },
-            { label: "☀️ Campus Albedo & Reflectance (α)", key: "albedo" },
-            { label: "💧 Topsoil Volumetric Moisture", key: "soil" },
-            { label: "🦋 Observed Campus Biodiversity", key: "bio" }
+            { label: "🌳 Schoolyard Covered in Shade (%)", key: "canopy" },
+            { label: "🌴 Total Campus Trees", key: "trees" },
+            { label: "🌡️ Afternoon Outdoor Air Temp", key: "air" },
+            { label: "🛣️ Hot Blacktop Temp (In Sun)", key: "exp" },
+            { label: "🌲 Ground Temp Under Tree Shade", key: "shade" },
+            { label: "☀️ Heat Reflected (Cool Ground Score)", key: "albedo" },
+            { label: "💧 Soil Moisture for Tree Roots", key: "soil" },
+            { label: "🦋 Birds & Pollinators Spotted", key: "bio" }
         ];
 
         prePostTableBody.innerHTML = rows.map(r => `

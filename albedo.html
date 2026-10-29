@@ -65,28 +65,19 @@
         </div>
 
         <div class="lifecycle-group">
-            <span class="control-group-label">🌱 Stage:</span>
+            <span class="control-group-label">🌱 Tree Stage:</span>
             <div class="lifecycle-btn-group">
-                <button type="button" class="lifecycle-btn" data-stage="pre">1. Pre-Planting</button>
-                <button type="button" class="lifecycle-btn" data-stage="post">2. Initial Planting</button>
-                <button type="button" class="lifecycle-btn active" data-stage="mature">3. Mature Tree</button>
+                <button type="button" class="lifecycle-btn" data-stage="pre">1. Before Planting</button>
+                <button type="button" class="lifecycle-btn" data-stage="post">2. Newly Planted</button>
+                <button type="button" class="lifecycle-btn active" data-stage="mature">3. Grown Trees (10–15 Yr)</button>
             </div>
         </div>
 
-        <div class="lifecycle-group">
-            <label for="albedoSoilSelect" class="control-group-label">🪨 Schoolyard Soil:</label>
-            <select id="albedoSoilSelect" style="padding: 6px 10px; border: 1.5px solid var(--green-dark); border-radius: 5px; font-weight: bold; font-size: 12px; background: #fff; color: var(--text);">
-                <option value="unamended_compacted">Unamended Compacted Fill (1.72 g/cm³ • 16.4% Cap)</option>
-                <option value="semi_urban_realistic" selected>Realistic Semi-Urban Soil (1.48 g/cm³ • 28.1% @ Yr 15)</option>
-                <option value="agroecology_remediated">Agroecology Remediated (1.28 g/cm³ • 30.0%+ Target)</option>
-            </select>
-        </div>
-
         <div class="diurnal-group">
-            <span class="control-group-label">☀️ Solar Time:</span>
+            <span class="control-group-label">☀️ Time of Day:</span>
             <input id="hourSlider" type="range" min="8" max="18" step="1" value="14" style="width: 120px; cursor: pointer;" aria-label="Time of Day Slider" />
             <strong id="hourReadout" style="font-size: 15px; color: var(--green-dark); min-width: 68px;">2:00 PM</strong>
-            <button type="button" id="playHourBtn" class="lifecycle-btn" style="padding: 5px 10px; font-size: 12px;">▶ Play Cycle</button>
+            <button type="button" id="playHourBtn" class="lifecycle-btn" style="padding: 5px 10px; font-size: 12px;">▶ Play Day</button>
         </div>
     </section>
 
@@ -97,18 +88,18 @@
         <section class="consolidated-left-pane" aria-label="Interactive Thermal Map and 3D Shade Model">
             <div class="viewport-mode-bar">
                 <div class="viewport-tab-group">
-                    <button type="button" id="btnModeHeatmap" class="viewport-tab-btn active">🔥 2D FLIR Thermal Field</button>
-                    <button type="button" id="btnModePolygons" class="viewport-tab-btn">📐 2D Surface Zones</button>
-                    <button type="button" id="btnMode3dShade" class="viewport-tab-btn">🌳 3D Orbital Shade Model</button>
+                    <button type="button" id="btnModeHeatmap" class="viewport-tab-btn active">🔥 Heat Map View</button>
+                    <button type="button" id="btnModePolygons" class="viewport-tab-btn">📐 Schoolyard Surfaces</button>
+                    <button type="button" id="btnMode3dShade" class="viewport-tab-btn">🌳 3D Tree Shade View</button>
                 </div>
 
                 <div style="display: flex; align-items: center; gap: 6px;">
-                    <label for="albedoTypeSelect" style="font-size: 11px; font-weight: bold; color: var(--green-dark);">Surface Filter:</label>
+                    <label for="albedoTypeSelect" style="font-size: 11px; font-weight: bold; color: var(--green-dark);">Show Surface:</label>
                     <select id="albedoTypeSelect" style="padding: 4px 8px; border-radius: 4px; border: 1px solid var(--border); font-size: 12px;">
-                        <option value="all">All Campus Surfaces</option>
-                        <option value="parking">Asphalt &amp; Parking (Low α = 0.08)</option>
-                        <option value="roof">Building Rooftops (Med α = 0.22)</option>
-                        <option value="veg">Turf &amp; Canopy Shade (High α = 0.48–0.82)</option>
+                        <option value="all">All Schoolyard Areas</option>
+                        <option value="parking">Parking Lots &amp; Blacktop (Hot)</option>
+                        <option value="roof">School Building Roofs (Warm)</option>
+                        <option value="veg">Grass &amp; Tree Shade (Cool)</option>
                     </select>
                 </div>
             </div>
@@ -144,28 +135,28 @@
             <!-- Bottom Live Solar & Microclimate Readout Strip -->
             <div class="viewport-kpi-strip">
                 <div class="vkpi-box">
-                    <span class="vkpi-lbl">Solar Irradiance</span>
+                    <span class="vkpi-lbl">Sun Intensity</span>
                     <strong class="vkpi-val" id="valSolarIrradiance" style="color: #d97706;">860 W/m²</strong>
                 </div>
                 <div class="vkpi-box">
-                    <span class="vkpi-lbl">Ambient Air</span>
+                    <span class="vkpi-lbl">Outdoor Air Temp</span>
                     <strong class="vkpi-val" id="valAmbientTemp" style="color: #1565c0;">94.2&deg;F</strong>
                 </div>
                 <div class="vkpi-box">
-                    <span class="vkpi-lbl">Exposed Asphalt</span>
+                    <span class="vkpi-lbl">Hot Blacktop</span>
                     <strong class="vkpi-val" id="valPeakAsphaltTemp" style="color: #dc2626;">126.5&deg;F</strong>
                 </div>
                 <div class="vkpi-box">
-                    <span class="vkpi-lbl">Canopy Shade</span>
+                    <span class="vkpi-lbl">Under Tree Shade</span>
                     <strong class="vkpi-val" id="valCanopyShadeTemp" style="color: #16a34a;">83.4&deg;F</strong>
                 </div>
                 <div class="vkpi-box">
-                    <span class="vkpi-lbl">Shade Relief (&Delta;)</span>
+                    <span class="vkpi-lbl">Shade Cooling</span>
                     <strong class="vkpi-val" id="riskValue" style="color: #15803d;">-43.1&deg;F Cooler</strong>
                 </div>
                 <div class="vkpi-box">
-                    <span class="vkpi-lbl">Outdoor Days Gained</span>
-                    <strong class="vkpi-val" id="outdoorDaysValue" style="color: #1b4d2b;">+18 Days/yr</strong>
+                    <span class="vkpi-lbl">Cool School Days</span>
+                    <strong class="vkpi-val" id="outdoorDaysValue" style="color: #1b4d2b;">+17 Days/yr</strong>
                 </div>
             </div>
         </section>
@@ -177,24 +168,24 @@
             <article class="consolidated-section-card" style="border-color: var(--green-dark); background: #f8fbf9;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
                     <div>
-                        <h2>📈 Pre/Post Impact Report: Initial Planting to Mature Tree</h2>
+                        <h2>📈 How Trees Cool Our Schoolyard: Before Planting to Grown Trees</h2>
                         <p class="section-sub">
-                            Simulated microclimate progression for <strong id="campusNameDisplay" style="color: var(--green-dark);">J.W. Caceres Discovery Intermediate Academy (Donna ISD)</strong>
-                            from baseline unshaded grounds to mature 30% canopy target.
+                            See how new trees at <strong id="campusNameDisplay" style="color: var(--green-dark);">J.W. Caceres Discovery Intermediate Academy (Donna ISD)</strong>
+                            expand shade and cool down hot playground and parking surfaces over 10–15 years.
                         </p>
                     </div>
-                    <span class="delta-badge" id="activeStageBadge">Viewing: Mature Tree (10–15 Yr)</span>
+                    <span class="delta-badge" id="activeStageBadge">Viewing: Grown Trees (10–15 Yr)</span>
                 </div>
 
                 <div style="overflow-x: auto;">
                     <table class="prepost-table">
                         <thead>
                             <tr>
-                                <th>Microclimate &amp; Surface Metric</th>
-                                <th>1. Pre-Planting (Baseline)</th>
-                                <th>2. Initial Planting (Yr 1)</th>
-                                <th>3. Mature Tree (10–15 Yr)</th>
-                                <th>Net Lifecycle Impact (&Delta;)</th>
+                                <th>What We Measure</th>
+                                <th>1. Before Planting</th>
+                                <th>2. Newly Planted (Yr 1)</th>
+                                <th>3. Grown Trees (10–15 Yr)</th>
+                                <th>Total Improvement</th>
                             </tr>
                         </thead>
                         <tbody id="prePostComparisonBody">
@@ -209,9 +200,9 @@
             <article class="consolidated-section-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
                     <div>
-                        <h2>📐 Campus Surface Breakdown &amp; Solar Reflectance (&alpha;)</h2>
+                        <h2>📐 What Covers Our School Grounds (Surface Breakdown)</h2>
                         <p class="section-sub" id="campusSurfaceSubtitle">
-                            Land cover proportions and solar reflectance across digitized campus zones as tree canopy expands.
+                            How much of the schoolyard is covered by hot pavement and roofs vs. cool grass and tree shade.
                         </p>
                     </div>
                 </div>
@@ -224,8 +215,8 @@
                         <table class="stats-table">
                             <thead>
                                 <tr>
-                                    <th>Surface / Zone Category</th>
-                                    <th>Albedo (&alpha;)</th>
+                                    <th>Schoolyard Surface Type</th>
+                                    <th>Heat Reflected (0–1)</th>
                                     <th>Area (sq ft)</th>
                                     <th>% of Campus</th>
                                 </tr>
@@ -238,16 +229,16 @@
                 </div>
 
                 <div class="dropzone-compact" id="dropzone">
-                    📂 Optional: Drag &amp; drop a custom <code>*_Zones.json</code> file here (or click to upload) to simulate custom district polygon sets
+                    📂 Optional: Drag &amp; drop a custom <code>*_Zones.json</code> file here (or click to upload) to test another school map
                     <input type="file" id="fileInput" style="display: none;" accept=".json,.geojson" />
                 </div>
             </article>
 
             <!-- CARD 3: Consolidated Temperature & 3D Shade Trajectory (Merged from temperature.html & tree_3d.html) -->
             <article class="consolidated-section-card">
-                <h2>🌡️ Microclimate Temperature &amp; 3D Canopy Shade Trajectory (2025–2040)</h2>
+                <h2>🌡️ Hot Blacktop vs. Cool Tree Shade Over Time (2025–2040)</h2>
                 <p class="section-sub">
-                    Compares peak afternoon exposed asphalt temperature vs. evapotranspiration-cooled canopy shade across the 15-year maturation timeline.
+                    Compares how hot unshaded blacktop gets at 2:00 PM vs. how cool the ground stays underneath growing tree shade.
                 </p>
 
                 <div style="height: 220px; width: 100%; margin-bottom: 14px;">
@@ -256,15 +247,15 @@
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; background: #f4f8f5; padding: 12px; border-radius: 6px; border: 1px solid #c8e6c9;">
                     <div>
-                        <strong style="color: var(--green-dark);">Solar Reflectance &amp; Heat Transfer Physics</strong>
+                        <strong style="color: var(--green-dark);">Why Does Tree Shade Make Such a Big Difference?</strong>
                         <p style="margin: 4px 0 0 0; color: #444; line-height: 1.4;">
-                            Low-albedo asphalt ($\alpha = 0.08$) absorbs 92% of incoming solar irradiance ($I_{\text{solar}}$), whereas mature native canopy ($\alpha = 0.82$ effective interception + latent transpiration) prevents ground heat storage.
+                            Dark asphalt absorbs over 90% of sunlight and bakes above 125&deg;F. Tree leaves block that direct sunlight before it hits the ground and release cool moisture into the air, keeping shaded areas up to 35&deg;F cooler!
                         </p>
                     </div>
                     <div>
-                        <label for="tempNotes" style="font-weight: bold; color: var(--green-dark); display: block; margin-bottom: 4px;">Campus Thermal &amp; Shade Field Notes:</label>
+                        <label for="tempNotes" style="font-weight: bold; color: var(--green-dark); display: block; margin-bottom: 4px;">Class or Campus Heat Notes:</label>
                         <div style="display: flex; gap: 6px;">
-                            <input type="text" id="tempNotes" placeholder="Log courtyard or playground heat observations..." style="flex: 1; padding: 6px 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px;" />
+                            <input type="text" id="tempNotes" placeholder="Write down your playground temperature observations..." style="flex: 1; padding: 6px 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px;" />
                             <button type="button" id="saveTempNotes" class="lifecycle-btn" style="padding: 6px 12px; font-size: 12px;">Save</button>
                         </div>
                     </div>
@@ -273,25 +264,25 @@
 
             <!-- CARD 4: Zone-by-Zone Hourly Surface Temperature Matrix -->
             <article class="consolidated-section-card">
-                <h2>📊 Zone-by-Zone Diurnal Surface Temperature Matrix (<span id="matrixHourLabel">2:00 PM</span>)</h2>
+                <h2>📊 Hour-by-Hour Schoolyard Temperatures (<span id="matrixHourLabel">2:00 PM</span>)</h2>
                 <p class="section-sub">
-                    Hour-by-hour surface temperature fluctuations (&deg;F) across digitized campus zones for the selected representative campus and tree growth stage.
+                    See how different areas of the campus heat up and cool down from 8:00 AM to 6:00 PM.
                 </p>
 
                 <div style="max-height: 320px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px;">
                     <table class="matrix-table">
                         <thead>
                             <tr>
-                                <th>Zone Category</th>
-                                <th>Material</th>
-                                <th>Albedo (&alpha;)</th>
+                                <th>Campus Area</th>
+                                <th>Surface Material</th>
+                                <th>Heat Reflected</th>
                                 <th>8 AM</th>
                                 <th>10 AM</th>
                                 <th>12 PM</th>
                                 <th>2 PM (Peak)</th>
                                 <th>4 PM</th>
                                 <th>6 PM</th>
-                                <th>Active (<span id="tableActiveHourLabel">2 PM</span>)</th>
+                                <th>Selected (<span id="tableActiveHourLabel">2 PM</span>)</th>
                                 <th>vs. Air</th>
                             </tr>
                         </thead>
