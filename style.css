@@ -854,3 +854,23 @@ textarea {
   font-weight: 800;
   text-transform: uppercase;
 }
+
+.nav-link.nav-under-construction {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  border: 2px dashed #f59e0b !important;
+  font-weight: 700;
+}
+
+.nav-link.nav-under-construction:hover,
+.nav-link.nav-under-construction.active {
+  background: #fde68a !important;
+  color: #78350f !important;
+  border: 2px solid #d97706 !important;
+}
+
+.badge-tag.uc-tag {
+  background-color: #d97706;
+  color: #ffffff;
+  font-weight: 800;
+}
