@@ -833,3 +833,24 @@ textarea {
   margin-right: 8px;
   box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.25);
 }
+
+.under-construction-bar {
+  background: #fef3c7;
+  color: #92400e;
+  border-bottom: 2px solid #f59e0b;
+  padding: 8px 16px;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  line-height: 1.4;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 9999;
+}
+
+.under-construction-bar strong {
+  color: #78350f;
+  font-weight: 800;
+  text-transform: uppercase;
+}
