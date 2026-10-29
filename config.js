@@ -279,3 +279,30 @@ window.APP_CONFIG = {
     trailing: "lstSummer"
   }
 };
+
+// Automatically purge legacy v2.0.0 Service Worker caches so pages always render fresh content
+(function purgeLegacyCaches() {
+  try {
+    const PURGE_FLAG = "ttfs_sw_cache_purged_20261029_v3";
+    if ("caches" in window && !sessionStorage.getItem(PURGE_FLAG)) {
+      caches.keys().then((keys) => {
+        const legacyKeys = keys.filter((k) => !k.includes("v3.0.0-20261029"));
+        if (legacyKeys.length > 0) {
+          Promise.all(legacyKeys.map((k) => caches.delete(k))).then(() => {
+            sessionStorage.setItem(PURGE_FLAG, "1");
+          });
+        } else {
+          sessionStorage.setItem(PURGE_FLAG, "1");
+        }
+      }).catch(() => {});
+    }
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.getRegistrations().then((regs) => {
+        regs.forEach((reg) => reg.update().catch(() => {}));
+      }).catch(() => {});
+    }
+  } catch (e) {
+    // Ignore storage/SW security restrictions in private browsing
+  }
+})();
+

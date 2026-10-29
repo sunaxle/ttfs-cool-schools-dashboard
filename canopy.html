@@ -12,7 +12,7 @@
   <meta name="description" content="UTRGV Agroecology Project Dashboard - Canopy Over Time" />
   <meta name="author" content="UTRGV Agroecology" />
   <title>Canopy Over Time</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20261029" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
 </head>
 
@@ -78,7 +78,34 @@
           </tr>
         </thead>
         <tbody id="canopyPrePostTableBody">
-          <!-- Populated dynamically by canopy.js -->
+          <tr>
+            <td><strong>🌴 Total Campus Trees</strong></td>
+            <td>18 Existing Trees</td>
+            <td style="background:#e0f2fe; font-weight:700;">158 Trees After Planting</td>
+            <td>149 Established Trees</td>
+            <td><span class="delta-badge">+131 New Campus Trees</span></td>
+          </tr>
+          <tr>
+            <td><strong>☂️ Cool Shaded Ground Area</strong></td>
+            <td>20,153 sq ft</td>
+            <td style="background:#e0f2fe; font-weight:700;">39,990 sq ft</td>
+            <td>106,698 sq ft</td>
+            <td><span class="delta-badge">+86,545 sq ft of New Shade</span></td>
+          </tr>
+          <tr>
+            <td><strong>🌳 Schoolyard Covered in Shade (%)</strong></td>
+            <td>4.5% of Campus</td>
+            <td style="background:#e0f2fe; font-weight:700;">8.9% of Campus</td>
+            <td>23.7% of Campus</td>
+            <td><span class="delta-badge">+19.2% More Shade</span></td>
+          </tr>
+          <tr>
+            <td><strong>🌡️ Ground Cooling Under Trees</strong></td>
+            <td>-6.0°F Cooler</td>
+            <td style="background:#e0f2fe; font-weight:700;">-7.5°F Cooler</td>
+            <td>-12.6°F Cooler</td>
+            <td><span class="delta-badge">-6.6°F Extra Cooling</span></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -94,8 +121,8 @@
             style="background:#2e7d32; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; font-weight:bold;">Play</button>
           <label for="yearSlider" style="margin-bottom:0; font-weight:bold;">Year</label>
         </div>
-        <input id="yearSlider" type="range" min="2020" max="2055" step="1" value="2025" style="width:100%; cursor:pointer;" />
-        <div class="year-readout" id="yearReadout" style="font-size:24px; font-weight:bold; color:var(--green-dark); text-align:center; margin:8px 0;">2025</div>
+        <input id="yearSlider" type="range" min="2020" max="2055" step="1" value="2026" style="width:100%; cursor:pointer;" />
+        <div class="year-readout" id="yearReadout" style="font-size:24px; font-weight:bold; color:var(--green-dark); text-align:center; margin:8px 0;">2026</div>
         <label for="scenarioSelect" style="font-weight:bold;">Scenario</label>
         <select id="scenarioSelect" style="width:100%; padding:6px; margin-top:4px;">
           <option value="observed">Observed Canopy</option>
@@ -107,11 +134,11 @@
 
       <section class="card">
         <h3>Scenario Summary</h3>
-        <p id="summaryText">Select a year to view canopy estimates.</p>
+        <p id="summaryText">Showing J.W. Caceres Discovery Academy in 2026</p>
       </section>
 
       <section class="card">
-        <h3>Field Observations & Notes</h3>
+        <h3>Field Observations &amp; Notes</h3>
         <textarea id="canopyNotes" rows="3" style="width:100%; border:1px solid var(--border); border-radius:4px; padding:6px;" placeholder="Record canopy observations or ground shade notes..."></textarea>
         <button type="button" id="saveCanopyNotes" style="margin-top: 6px; width: 100%;">Save Notes</button>
       </section>
@@ -119,51 +146,51 @@
 
     <!-- Center Satellite Map Panel -->
     <section class="map-panel">
-      <div id="canopyMap"></div>
+      <div id="canopyMap" style="min-height: 560px; height: 100%; width: 100%;"></div>
     </section>
 
     <!-- Right Sidebar: Live Shade Metrics, Surface Breakdown & Benchmark Table -->
     <aside class="panel right">
       <section class="card">
-        <h3>Ground Shade Metrics (<span id="activeYearLabel">2025</span>)</h3>
+        <h3>Ground Shade Metrics (<span id="activeYearLabel">2026</span>)</h3>
         <div class="field-row">
           <span>Active Trees Planted:</span>
-          <strong id="liveTreeCount">--</strong>
+          <strong id="liveTreeCount">158 Trees</strong>
         </div>
         <div class="field-row">
           <span>Shaded Ground Area:</span>
-          <strong id="liveShadeArea">-- sq ft</strong>
+          <strong id="liveShadeArea">39,990 sq ft</strong>
         </div>
         <div class="field-row">
           <span>Campus Canopy Cover:</span>
-          <strong id="liveCoverPercent" style="color: #2e7d32; font-size: 15px;">--%</strong>
+          <strong id="liveCoverPercent" style="color: #2e7d32; font-size: 15px;">8.9%</strong>
         </div>
         <div class="field-row">
           <span>Est. Surface Cooling:</span>
-          <strong id="liveTempCooling" style="color: #1565c0;">--°F drop</strong>
+          <strong id="liveTempCooling" style="color: #1565c0;">-7.5°F</strong>
         </div>
         <div class="field-row">
           <span>Solar Blocked:</span>
-          <strong id="liveSolarBlocked" style="color: #e65100;">-- kWh/day</strong>
+          <strong id="liveSolarBlocked" style="color: #e65100;">20,531 kWh/d</strong>
         </div>
       </section>
 
       <section class="card">
         <h3>Campus Surface Breakdown</h3>
         <div class="surface-bar-container" style="height: 20px; width: 100%; background: #e0e0e0; border-radius: 4px; display: flex; overflow: hidden; margin: 8px 0; border: 1px solid var(--border);">
-          <div id="barShade" style="width: 8%; background: #2e7d32; transition: width 0.3s;" title="Tree Shade Cover"></div>
-          <div id="barAsphalt" style="width: 55%; background: #616161; transition: width 0.3s;" title="Exposed Asphalt/Hardscape"></div>
-          <div id="barTurf" style="width: 37%; background: #a1887f; transition: width 0.3s;" title="Exposed Soil/Turf"></div>
+          <div id="barShade" style="width: 8.9%; background: #2e7d32; transition: width 0.3s;" title="Tree Shade Cover"></div>
+          <div id="barAsphalt" style="width: 51%; background: #616161; transition: width 0.3s;" title="Exposed Asphalt/Hardscape"></div>
+          <div id="barTurf" style="width: 40.1%; background: #a1887f; transition: width 0.3s;" title="Exposed Soil/Turf"></div>
         </div>
         <div style="display: flex; justify-content: space-between; font-size: 11px; color: #333; font-weight: bold;">
-          <span>🟩 Shade: <strong id="lblPctShade" style="color:#2e7d32;">8.1%</strong></span>
-          <span>⬛ Asphalt: <strong id="lblPctAsphalt">55.0%</strong></span>
-          <span>🟫 Turf: <strong id="lblPctTurf">36.9%</strong></span>
+          <span>🟩 Shade: <strong id="lblPctShade" style="color:#2e7d32;">8.9%</strong></span>
+          <span>⬛ Asphalt: <strong id="lblPctAsphalt">51.0%</strong></span>
+          <span>🟫 Turf: <strong id="lblPctTurf">40.1%</strong></span>
         </div>
       </section>
 
       <section class="card" style="padding: 10px;">
-        <h3 style="margin-bottom: 4px;">Ground Cover & Shade Over Time</h3>
+        <h3 style="margin-bottom: 4px;">Ground Cover &amp; Shade Over Time</h3>
         <p class="hint" style="margin-bottom: 8px; font-size: 11px;">Click any row to jump timeline to that year.</p>
         <div style="max-height: 260px; overflow-y: auto; border: 1px solid var(--border); border-radius: 4px;">
           <table id="shadeForecastTable" style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: left;">
@@ -177,7 +204,10 @@
               </tr>
             </thead>
             <tbody id="forecastTableBody">
-              <!-- Dynamically rendered rows for 2020 - 2055 -->
+              <tr data-year="2024"><td style="padding: 8px 6px; font-weight: bold;">2024</td><td style="padding: 8px 6px;">18</td><td style="padding: 8px 6px; font-weight: 600;">20,153</td><td style="padding: 8px 6px; color: #2e7d32; font-weight: bold;">4.5%</td><td style="padding: 8px 6px; color: #1565c0; font-weight: bold;">-6.0°F</td></tr>
+              <tr data-year="2026" style="background-color: var(--green-light); font-weight: bold;"><td style="padding: 8px 6px; font-weight: bold;">2026</td><td style="padding: 8px 6px;">158</td><td style="padding: 8px 6px; font-weight: 600;">39,990</td><td style="padding: 8px 6px; color: #2e7d32; font-weight: bold;">8.9%</td><td style="padding: 8px 6px; color: #1565c0; font-weight: bold;">-7.5°F</td></tr>
+              <tr data-year="2030"><td style="padding: 8px 6px; font-weight: bold;">2030</td><td style="padding: 8px 6px;">149</td><td style="padding: 8px 6px; font-weight: 600;">52,960</td><td style="padding: 8px 6px; color: #2e7d32; font-weight: bold;">11.8%</td><td style="padding: 8px 6px; color: #1565c0; font-weight: bold;">-8.5°F</td></tr>
+              <tr data-year="2040"><td style="padding: 8px 6px; font-weight: bold;">2040</td><td style="padding: 8px 6px;">149</td><td style="padding: 8px 6px; font-weight: 600;">106,698</td><td style="padding: 8px 6px; color: #2e7d32; font-weight: bold;">23.7%</td><td style="padding: 8px 6px; color: #1565c0; font-weight: bold;">-12.6°F</td></tr>
             </tbody>
           </table>
         </div>
@@ -224,15 +254,16 @@
                   </tr>
               </thead>
               <tbody id="treeRegistryTableBody">
-                  <!-- Populated dynamically by canopy.js -->
+                  <!-- Populated immediately by canopy.js -->
               </tbody>
           </table>
       </div>
   </section>
 
-  <script src="config.js"></script>
+  <script src="config.js?v=20261029"></script>
+  <script src="data/mock_trees_data.js?v=20261029"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="canopy.js"></script>
+  <script src="canopy.js?v=20261029"></script>
 </body>
 
 </html>

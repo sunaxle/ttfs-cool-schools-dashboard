@@ -50,9 +50,39 @@
     }
   };
 
-  let activeCampusKey = (localStorage.getItem("activeCampusId") === "mercedes_hinojosa")
-    ? "mercedes_hinojosa"
-    : "donna_jw_caceres";
+  const DEFAULT_BOUNDARY_DATA = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {
+          category: "Campus Boundary",
+          campus: "J.W. Caceres & M. Rivas Academy"
+        },
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [-98.07254821467039, 26.16625940702799],
+              [-98.07220327840014, 26.168215328607253],
+              [-98.06862395428908, 26.1677205540179],
+              [-98.0690146767054, 26.165738124571327],
+              [-98.0722486244963, 26.166228356210034],
+              [-98.07254821467039, 26.16625940702799]
+            ]
+          ]
+        }
+      }
+    ]
+  };
+
+  let activeCampusKey = "donna_jw_caceres";
+  try {
+    if (localStorage.getItem("activeCampusId") === "mercedes_hinojosa") {
+      activeCampusKey = "mercedes_hinojosa";
+    }
+  } catch (e) {}
+
   let activeSoilRegimeKey = soilRegimeSelect ? soilRegimeSelect.value : "semi_urban_realistic";
 
   if (yearSlider && Number(yearSlider.value) === 2025) {
@@ -65,14 +95,14 @@
     const regimes = config.soilRegimes || {};
     return regimes[regimeKey] || regimes.semi_urban_realistic || {
       id: "semi_urban_realistic",
-      shortLabel: "Realistic Semi-Urban Schoolyard",
-      growthMultiplier: 0.76,
-      maxRadiusMultiplier: 0.90,
-      establishmentLagYears: 1.5,
-      survivalRate: 0.95,
+      shortLabel: "Realistic Schoolyard Growth",
+      growthMultiplier: 0.64,
+      maxRadiusMultiplier: 0.84,
+      establishmentLagYears: 2.0,
+      survivalRate: 0.94,
       bulkDensityGcm3: "1.48 g/cm³",
-      organicMatterPct: "1.8% (Pit-Amended)",
-      summary: "Accounts for semi-urban heat island stress and compacted surrounding sub-soils once lateral roots exit the initial planting pit."
+      organicMatterPct: "1.8%",
+      summary: "Realistic 10–15 year growth projection calibrated for South Texas schoolyards."
     };
   }
 
@@ -90,21 +120,25 @@
   }
 
   function updateSummary() {
-    const year = Number(yearSlider.value);
+    const year = yearSlider ? Number(yearSlider.value) : 2026;
     const prof = CAMPUS_PROFILES[activeCampusKey];
-    yearReadout.textContent = year;
-    summaryText.textContent = `Showing ${prof.shortName} in ${year}`;
+    if (yearReadout) yearReadout.textContent = year;
+    if (summaryText) summaryText.textContent = `Showing ${prof.shortName} in ${year}`;
     if (activeYearLabel) activeYearLabel.textContent = year;
   }
 
   function loadNotes() {
-    const notes = localStorage.getItem("canopy-notes");
-    if (notes && canopyNotes) canopyNotes.value = notes;
+    try {
+      const notes = localStorage.getItem("canopy-notes");
+      if (notes && canopyNotes) canopyNotes.value = notes;
+    } catch (e) {}
   }
 
   function saveNotes() {
     if (!saveCanopyNotes) return;
-    localStorage.setItem("canopy-notes", canopyNotes ? canopyNotes.value : "");
+    try {
+      localStorage.setItem("canopy-notes", canopyNotes ? canopyNotes.value : "");
+    } catch (e) {}
     const originalText = saveCanopyNotes.textContent;
     saveCanopyNotes.textContent = "Saved!";
     saveCanopyNotes.style.backgroundColor = "#4CAF50";
@@ -117,27 +151,51 @@
   if (saveCanopyNotes) saveCanopyNotes.addEventListener("click", saveNotes);
   loadNotes();
 
-  // Initialize Map
+  // Safely Initialize Leaflet Map (even if external CDN is delayed or blocked)
   const initialProfile = CAMPUS_PROFILES[activeCampusKey];
-  const map = L.map("canopyMap", {
-    zoomControl: false
-  }).setView(initialProfile.center, config?.map?.zoom || 17);
+  let map = null;
+  let boundaryLayer = null;
+  let treeCanopyLayer = null;
 
-  L.control.zoom({ position: "topright" }).addTo(map);
-  setTimeout(() => { map.invalidateSize(); }, 200);
+  if (typeof window.L !== "undefined") {
+    try {
+      map = L.map("canopyMap", {
+        zoomControl: false
+      }).setView(initialProfile.center, (config && config.map && config.map.zoom) || 17);
 
-  L.tileLayer("https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
-    maxZoom: 20,
-    attribution: "Google"
-  }).addTo(map);
+      L.control.zoom({ position: "topright" }).addTo(map);
+      setTimeout(() => {
+        if (map) map.invalidateSize();
+      }, 200);
 
-  const boundaryLayer = L.layerGroup().addTo(map);
-  const treeCanopyLayer = L.layerGroup().addTo(map);
+      const googleHybrid = L.tileLayer("https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
+        maxZoom: 20,
+        attribution: "Google Satellite"
+      });
+      const esriImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        maxZoom: 19,
+        attribution: "Esri World Imagery"
+      });
 
-  let rawBoundaryData = null;
-  let mockTreesData = null;
+      googleHybrid.on("tileerror", () => {
+        if (map && !map.hasLayer(esriImagery)) {
+          esriImagery.addTo(map);
+        }
+      });
+      googleHybrid.addTo(map);
+
+      boundaryLayer = L.layerGroup().addTo(map);
+      treeCanopyLayer = L.layerGroup().addTo(map);
+    } catch (err) {
+      console.warn("Leaflet map initialization warning:", err);
+    }
+  }
+
+  let rawBoundaryData = DEFAULT_BOUNDARY_DATA;
+  let mockTreesData = window.MOCK_TREES_DATA || null;
 
   function drawCampusBoundary() {
+    if (!map || !boundaryLayer || typeof window.L === "undefined") return;
     boundaryLayer.clearLayers();
     if (!rawBoundaryData || !rawBoundaryData.features || !rawBoundaryData.features[0]) return;
     const prof = CAMPUS_PROFILES[activeCampusKey];
@@ -158,16 +216,22 @@
     });
     boundaryLayer.addLayer(geoJsonLayer);
     const bounds = geoJsonLayer.getBounds();
-    map.fitBounds(bounds, { padding: [30, 30] });
+    if (bounds && bounds.isValid()) {
+      map.fitBounds(bounds, { padding: [30, 30] });
+    }
   }
 
+  // Draw immediately with embedded boundary, then optionally refresh from JSON
+  drawCampusBoundary();
   fetch("data/campus_boundary.json")
-    .then(response => response.json())
+    .then(response => (response.ok ? response.json() : null))
     .then(data => {
-      rawBoundaryData = data;
-      drawCampusBoundary();
+      if (data && data.features) {
+        rawBoundaryData = data;
+        drawCampusBoundary();
+      }
     })
-    .catch(err => console.error("Error loading boundary:", err));
+    .catch(() => {});
 
   function getColorString(colorArr) {
     if (Array.isArray(colorArr)) {
@@ -352,9 +416,9 @@
   }
 
   function renderForecastTable() {
-    if (!forecastTableBody) return;
+    if (!forecastTableBody || !mockTreesData) return;
     forecastTableBody.innerHTML = "";
-    const currentSelectedYear = Number(yearSlider.value);
+    const currentSelectedYear = yearSlider ? Number(yearSlider.value) : 2026;
 
     benchmarkYears.forEach(yr => {
       const m = calculateYearShadeMetrics(yr, activeSoilRegimeKey);
@@ -377,8 +441,8 @@
       `;
 
       tr.addEventListener("click", () => {
-        yearSlider.value = yr;
-        yearReadout.textContent = yr;
+        if (yearSlider) yearSlider.value = yr;
+        if (yearReadout) yearReadout.textContent = yr;
         updateSummary();
         renderCanopy();
       });
@@ -458,7 +522,9 @@
       btn.addEventListener("click", () => {
         const lat = parseFloat(btn.dataset.lat);
         const lng = parseFloat(btn.dataset.lng);
-        map.flyTo([lat, lng], 19, { duration: 1.0 });
+        if (map && typeof map.flyTo === "function") {
+          map.flyTo([lat, lng], 19, { duration: 1.0 });
+        }
       });
     });
   }
@@ -466,41 +532,43 @@
   function renderCanopy() {
     if (!mockTreesData) return;
 
-    treeCanopyLayer.clearLayers();
-    const targetYear = Number(yearSlider.value);
+    const targetYear = yearSlider ? Number(yearSlider.value) : 2026;
     const prof = CAMPUS_PROFILES[activeCampusKey];
     const trees = getActiveCampusTrees();
 
-    trees.forEach((feature, idx) => {
-      const props = feature.properties;
-      const ev = evaluateTreeAtYear(feature, idx, targetYear, activeSoilRegimeKey);
-      if (!ev.planted || !ev.surviving) return;
+    if (map && treeCanopyLayer && typeof window.L !== "undefined") {
+      treeCanopyLayer.clearLayers();
+      trees.forEach((feature, idx) => {
+        const props = feature.properties;
+        const ev = evaluateTreeAtYear(feature, idx, targetYear, activeSoilRegimeKey);
+        if (!ev.planted || !ev.surviving) return;
 
-      const coords = [
-        feature.geometry.coordinates[0] + prof.lngOffset,
-        feature.geometry.coordinates[1] + prof.latOffset
-      ];
+        const coords = [
+          feature.geometry.coordinates[0] + prof.lngOffset,
+          feature.geometry.coordinates[1] + prof.latOffset
+        ];
 
-      const spCfg = (config.treeSpecies && config.treeSpecies[props.species]) || { color: [34, 139, 34, 0.65] };
-      const currentRadiusMeters = ev.radiusFt * 0.3048;
-      const colorStr = getColorString(spCfg.color);
+        const spCfg = (config.treeSpecies && config.treeSpecies[props.species]) || { color: [34, 139, 34, 0.65] };
+        const currentRadiusMeters = ev.radiusFt * 0.3048;
+        const colorStr = getColorString(spCfg.color);
 
-      const circle = L.circle([coords[1], coords[0]], {
-        radius: currentRadiusMeters,
-        color: "#ffffff",
-        weight: 1,
-        fillColor: colorStr,
-        fillOpacity: 0.8
+        const circle = L.circle([coords[1], coords[0]], {
+          radius: currentRadiusMeters,
+          color: "#ffffff",
+          weight: 1,
+          fillColor: colorStr,
+          fillOpacity: 0.8
+        });
+
+        circle.bindPopup(`
+          <b>🌳 Tree #${props.id}: ${props.species}</b><br/>
+          <b>Year Planted:</b> ${props.plantYear}<br/>
+          <b>Canopy Width (${targetYear}):</b> ${(ev.radiusFt * 2).toFixed(1)} ft across<br/>
+          <b>Ground Shaded:</b> ${Math.round(Math.PI * ev.radiusFt * ev.radiusFt).toLocaleString()} sq ft
+        `);
+        treeCanopyLayer.addLayer(circle);
       });
-
-      circle.bindPopup(`
-        <b>🌳 Tree #${props.id}: ${props.species}</b><br/>
-        <b>Year Planted:</b> ${props.plantYear}<br/>
-        <b>Canopy Width (${targetYear}):</b> ${(ev.radiusFt * 2).toFixed(1)} ft across<br/>
-        <b>Ground Shaded:</b> ${Math.round(Math.PI * ev.radiusFt * ev.radiusFt).toLocaleString()} sq ft
-      `);
-      treeCanopyLayer.addLayer(circle);
-    });
+    }
 
     updateSoilDiagnosticStrip();
     renderForecastTable();
@@ -512,8 +580,8 @@
   document.querySelectorAll(".canopy-stage-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const targetYr = Number(btn.dataset.year);
-      yearSlider.value = targetYr;
-      yearReadout.textContent = targetYr;
+      if (yearSlider) yearSlider.value = targetYr;
+      if (yearReadout) yearReadout.textContent = targetYr;
       updateSummary();
       renderCanopy();
     });
@@ -526,10 +594,12 @@
       btn.classList.add("active");
       activeCampusKey = btn.dataset.campus;
       const prof = CAMPUS_PROFILES[activeCampusKey];
-      localStorage.setItem("activeCampusId", prof.id);
-      localStorage.setItem("activeCampusName", prof.name);
-      localStorage.setItem("activeCampusLat", prof.center[0]);
-      localStorage.setItem("activeCampusLng", prof.center[1]);
+      try {
+        localStorage.setItem("activeCampusId", prof.id);
+        localStorage.setItem("activeCampusName", prof.name);
+        localStorage.setItem("activeCampusLat", prof.center[0]);
+        localStorage.setItem("activeCampusLng", prof.center[1]);
+      } catch (e) {}
       const titleEl = document.getElementById("canopyCampusTitle");
       if (titleEl) titleEl.textContent = prof.shortName;
       drawCampusBoundary();
@@ -548,14 +618,16 @@
   const speciesFilter = document.getElementById("speciesFilter");
   if (speciesFilter) {
     speciesFilter.addEventListener("change", () => {
-      renderTreeRegistryTable(Number(yearSlider.value));
+      renderTreeRegistryTable(yearSlider ? Number(yearSlider.value) : 2026);
     });
   }
 
-  yearSlider.addEventListener("input", () => {
-    updateSummary();
-    renderCanopy();
-  });
+  if (yearSlider) {
+    yearSlider.addEventListener("input", () => {
+      updateSummary();
+      renderCanopy();
+    });
+  }
 
   if (scenarioSelect) scenarioSelect.addEventListener("change", updateSummary);
 
@@ -583,19 +655,28 @@
   }
 
   if (playBtn) playBtn.addEventListener("click", togglePlay);
-  yearSlider.addEventListener("mousedown", () => {
-    if (isPlaying) togglePlay();
-  });
+  if (yearSlider) {
+    yearSlider.addEventListener("mousedown", () => {
+      if (isPlaying) togglePlay();
+    });
+  }
 
+  // Render immediately using synchronous window.MOCK_TREES_DATA if present
   updateSummary();
-  fetch("data/mock_trees.json")
-    .then(response => response.json())
-    .then(data => {
-      mockTreesData = data;
-      const prof = CAMPUS_PROFILES[activeCampusKey];
-      const titleEl = document.getElementById("canopyCampusTitle");
-      if (titleEl) titleEl.textContent = prof.shortName;
-      renderCanopy();
-    })
-    .catch(err => console.error("Error loading mock trees:", err));
+  const titleEl = document.getElementById("canopyCampusTitle");
+  if (titleEl) titleEl.textContent = CAMPUS_PROFILES[activeCampusKey].shortName;
+  if (mockTreesData) {
+    renderCanopy();
+  }
+
+  // Also fetch data/mock_trees.json as an async backup if window.MOCK_TREES_DATA wasn't loaded
+  if (!mockTreesData) {
+    fetch("data/mock_trees.json")
+      .then(response => response.json())
+      .then(data => {
+        mockTreesData = data;
+        renderCanopy();
+      })
+      .catch(err => console.error("Error loading mock trees:", err));
+  }
 })();
